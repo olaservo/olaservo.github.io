@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROSES vs RISEN and "Goals" vs "Objectives"
+title: Using ROSES vs RISEN to Understand "Goals" vs "Objectives"
 ---
 
 While learning how to use GenAI for coding projects, I've run into a few different prompting frameworks that help to organize my thinking and make my instructions more consistent.  ROSES and RISEN are two strategies that seem similar on the surface, so I wanted to dig into the differences between them.
