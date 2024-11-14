@@ -24,14 +24,14 @@ The good news here is that you don't need to be a prompt hacker to get quality r
 I like the implication here of accessibility getting better in the long run.  Getting into this stuff can give off some strong 'crypto vibes' (a.k.a. my mental shorthand for weird gatekeepy terminology, general mystique, high hype factor, and bias towards specific demographics).
 
 For technical problem solving, here is the most useful pattern I've personally stumbled onto:
-1.) Models like o1 can provide the initial guidance or solution at a higher level, and works through the nuances and edge cases that you might not have considered, without you having to ask it to.  (Note that Sonnet also falls into this category for me, maybe its because it uses agents behind the scenes.)
-2.) Once you get to specifics, use models like GPT-4o and Sonnet in the context of your app (example: Github Copilot in VSCode) to work on the details and reference more specific knowledge for your tasks.
-3.) If you really need to optimize for cost and speed, the simpler and cheaper models can do the things that don't really benefit from a more advanced model to do well.
+
+1. Models like o1 can provide the initial guidance or solution at a higher level, and works through the nuances and edge cases that you might not have considered, without you having to ask it to.  (Note that Sonnet also falls into this category for me, maybe its because it uses agents behind the scenes.)
+2. Once you get to specifics, use models like GPT-4o and Sonnet in the context of your app (example: Github Copilot in VSCode) to work on the details and reference more specific knowledge for your tasks.
+3. If you really need to optimize for cost and speed, the simpler and cheaper models can do the things that don't really benefit from a more advanced model to do well.
 
 This conveniently falls into the pattern of how you might work with a team of people.  This is probably another pitfall, however, since these models are not just artificial people.  They are more like aliens that learned how to do things based on verbal human behavior.  For now, its the most useful shorthand for making the best use of these alien superpowers.  At least, until we can let the aliens design their own patterns and solutions, in which case we'll probably have to un-learn our best practices all over again.
 
 ****
 
 Things that probably influenced this post:
-* [Nexus](https://www.ynharari.com/book/nexus/){:target="_blank"} by Yuval Noah Harari is a highly recommended book I recently finished as an audiobook and will be revisiting in hard copy form.  Harari discuses the concept of "artifical intelligence" being a misnomer in favor of "alien intelligence."
-
+* [Nexus](https://www.ynharari.com/book/nexus/){:target="_blank"} by Yuval Noah Harari is a highly recommended book I recently finished as an audiobook and will be revisiting in hard copy form.
