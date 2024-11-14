@@ -17,7 +17,7 @@ Here are a few counter-intuitive things about using o1 that jumped out to me, in
 - Temperature is fixed at 1 and other params are also set to specific values (see [link](https://platform.openai.com/docs/guides/reasoning#beta-limitations) for more details).
 - I usually set this to 0 for things like coding tasks and technical questions.  I'm assuming the technique being used behind the scenes helps with accuracy through 'agreement' between multiple agents/bots vs. relying on a low temp setting.
 
-All of this seems to imply that some 'good prompt engineering' techniques kind of go out the window when using o1...in other words, its less about micromanaging and more about giving it just enough of the critical info it needs to solve the problem.
+All of this seems to imply that some 'good prompt engineering' techniques go out the window when using o1...in other words, its less about micromanaging and more about giving it just enough of the critical info it needs to solve the problem.
 
 The good news here is that you don't need to be a prompt hacker to get quality results, at the expense of less fine grained control over how it solves the problem and/or exactly what info it uses.
 
