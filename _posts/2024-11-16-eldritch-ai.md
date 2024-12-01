@@ -7,7 +7,7 @@ Today I had a fun conversation with Claude about "Visualizing Generative AI Beyo
 
 ****
 
-*Me:* I am getting a little tired of humanoid robots that look like Apple products being used to represent AI.  What are some alterative visual representations, specifically for generative AI?
+*Me:* I am getting a little tired of humanoid robots that look like Apple products being used to represent AI.  What are some alternative visual representations, specifically for generative AI?
 
 *Claude:* I've created an [abstract visual representation](https://claude.site/artifacts/cde8d78d-0d08-44b1-9142-756033e03f43) of generative AI that moves away from anthropomorphic designs.
 
