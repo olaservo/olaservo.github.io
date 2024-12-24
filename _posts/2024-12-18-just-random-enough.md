@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Just Random Enough (Allowing for uncertainty when using models for high accuracy tasks)
+title: Just Random Enough: Allowing for uncertainty when using models for high accuracy tasks
 ---
 
 If you want consistent, deterministic outputs from an LLM, setting the temperature to 0.0 seems like the obvious choice.  In my mind, 'removing randomness equals better' for most tasks I use these models for. This is especially tempting for tasks like coding or technical writing where mistakes and reproducibility matter most. However, asking the LLMs themselves to suggest temperature settings for tasks has made me rethink this assumption.  The lowest setting they suggest is usually 0.2, even for high accuracy technical or analytical tasks.
