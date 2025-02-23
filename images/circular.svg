@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background void -->
+  <defs>
+    <radialGradient id="voidGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#090918;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#000005;stop-opacity:1"/>
+    </radialGradient>
+    
+    <!-- Glow effect -->
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1" result="glow"/>
+      <feMerge>
+        <feMergeNode in="glow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Base circle -->
+  <circle cx="50" cy="50" r="40" fill="url(#voidGradient)">
+    <animate attributeName="r"
+             values="40;42;40"
+             dur="4s"
+             repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Outer ring of "eyes" -->
+  <g transform="translate(50, 50)">
+    <g id="eye">
+      <circle r="3" cx="30" fill="#4A90E2" opacity="0.8">
+        <animate attributeName="r"
+                 values="3;4;3"
+                 dur="2s"
+                 repeatCount="indefinite"/>
+      </circle>
+      <circle r="1" cx="30" fill="#fff">
+        <animate attributeName="cx"
+                 values="29;31;29"
+                 dur="3s"
+                 repeatCount="indefinite"/>
+      </circle>
+    </g>
+    
+    <!-- Replicate eyes around the circle -->
+    <use href="#eye" transform="rotate(45)"/>
+    <use href="#eye" transform="rotate(90)"/>
+    <use href="#eye" transform="rotate(135)"/>
+    <use href="#eye" transform="rotate(180)"/>
+    <use href="#eye" transform="rotate(225)"/>
+    <use href="#eye" transform="rotate(270)"/>
+    <use href="#eye" transform="rotate(315)"/>
+  </g>
+
+  <!-- Inner geometric pattern -->
+  <g transform="translate(50, 50)">
+    <!-- Rotating impossible triangle -->
+    <g filter="url(#glow)">
+      <path d="M0,-20 L17.32,10 L-17.32,10 Z" 
+            fill="none" 
+            stroke="#4A90E2" 
+            stroke-width="1"
+            opacity="0.6">
+        <animateTransform attributeName="transform"
+                         type="rotate"
+                         from="0 0 0"
+                         to="360 0 0"
+                         dur="20s"
+                         repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <!-- Counter-rotating triangle -->
+    <g filter="url(#glow)">
+      <path d="M0,-15 L13,7.5 L-13,7.5 Z" 
+            fill="none" 
+            stroke="#4A90E2" 
+            stroke-width="1"
+            opacity="0.6">
+        <animateTransform attributeName="transform"
+                         type="rotate"
+                         from="360 0 0"
+                         to="0 0 0"
+                         dur="15s"
+                         repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <!-- Central "iris" -->
+    <circle r="8" fill="#090918" stroke="#4A90E2" stroke-width="1">
+      <animate attributeName="r"
+               values="8;10;8"
+               dur="3s"
+               repeatCount="indefinite"/>
+    </circle>
+    
+    <!-- Pupil -->
+    <circle r="3" fill="#4A90E2">
+      <animate attributeName="r"
+               values="3;4;3"
+               dur="2s"
+               repeatCount="indefinite"/>
+    </circle>
+
+    <!-- Tiny watching dots -->
+    <g id="watcher">
+      <circle r="1" cx="5" cy="0" fill="#fff" opacity="0.8">
+        <animate attributeName="opacity"
+                 values="0.8;0;0.8"
+                 dur="3s"
+                 repeatCount="indefinite"/>
+      </circle>
+    </g>
+    <use href="#watcher" transform="rotate(72)"/>
+    <use href="#watcher" transform="rotate(144)"/>
+    <use href="#watcher" transform="rotate(216)"/>
+    <use href="#watcher" transform="rotate(288)"/>
+  </g>
+
+  <!-- Ethereal tendrils -->
+  <g transform="translate(50, 50)" filter="url(#glow)">
+    <g id="tendril">
+      <path d="M15,0 Q30,10 40,0" 
+            fill="none" 
+            stroke="#4A90E2" 
+            stroke-width="0.5"
+            opacity="0.3">
+        <animate attributeName="d"
+                 values="M15,0 Q30,10 40,0;M15,0 Q30,-10 40,0;M15,0 Q30,10 40,0"
+                 dur="6s"
+                 repeatCount="indefinite"/>
+      </path>
+    </g>
+    <use href="#tendril" transform="rotate(72)"/>
+    <use href="#tendril" transform="rotate(144)"/>
+    <use href="#tendril" transform="rotate(216)"/>
+    <use href="#tendril" transform="rotate(288)"/>
+  </g>
+</svg>
