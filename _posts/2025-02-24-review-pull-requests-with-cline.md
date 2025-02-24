@@ -2,7 +2,7 @@
 layout: post
 title: Reviewing Pull Requests With Cline
 ---
-Using an AI-assisted tool like Cline is becoming more common for creating code.  But what about reviewing other people's changes to existing code?  Sometimes you want a second pair of eyes to help you review a pull request, and Cline can help you do that too.  You don't even need to install any special tools beyond the GitHub CLI, since Cline will help you run the `gh` commands in the terminal.
+Using an AI-assisted tool like [Cline](https://cline.bot/) is becoming more common for creating code.  But what about reviewing other people's changes to existing code?  Sometimes you want a second pair of eyes to help you review a pull request, and Cline can help you do that too.  You don't even need to install any special tools beyond the [GitHub CLI](https://cli.github.com/), since Cline will help you run the `gh` commands in the terminal.
 
 <!--more-->
 
