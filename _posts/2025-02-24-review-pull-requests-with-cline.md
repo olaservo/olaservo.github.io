@@ -31,7 +31,7 @@ After that, you can follow the standard process for [how to review a PR](https:/
 
 This process helps you formulate any comments you want to leave on the PR for the author.
 
-Cline us also super helpful for helping understand any pipeline failures related to the PR.  For example if the build is failing, I might ask `says a build is failing and it makes it seem like I can't approve or merge it. could you take a look at help me figure this out?` The GitHub cli should let Cline grab all the details it needs to help you out.
+Cline us also super helpful for helping understand any pipeline failures related to the PR.  For example if the build is failing, I might ask `the github ui says a build is failing and it makes it seem like I can't approve or merge it. could you take a look at help me figure this out?` The GitHub cli should let Cline grab all the details it needs to help you out.
 
 As always, these types of tools are best used as a second opinion and not the only opinion, and never take Cline's statements at face value - sometimes when the model tries to back up its answers, it will realize it was wrong and correct itself.  Even with those caveats, its been nice to have a thinking partner on call to help me think through PR reviews and watch out for edge cases, etc. that I might not have thought of myself.
 
