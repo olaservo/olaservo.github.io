@@ -15,7 +15,7 @@ So far I've had the most success doing this using the latest Claude Sonnet 3.5 a
 
 To review a PR, I usually have the source repo open in VS Code.  You don't need to have any specific branch checked out, but I usually have the latest from `main` to make it simple for Cline to refer to other context from the repo without looking up remote files.
 
-First I put Cline into Plan mode.  Then I just ask Cline something like:
+First I put Cline into Plan mode.  Then I just ask it something like:
 
 ```
 please help me review this PR {{ put link to PR here}} 
@@ -31,7 +31,7 @@ After that, you can follow the standard process for [how to review a PR](https:/
 
 This process helps you formulate any comments you want to leave on the PR for the author.
 
-Cline us also super helpful for helping understand any pipeline failures related to the PR.  For example if the build is failing, I might ask `the github ui says a build is failing and it makes it seem like I can't approve or merge it. could you take a look at help me figure this out?` The GitHub cli should let Cline grab all the details it needs to help you out.
+Cline is also super helpful for helping understand any pipeline failures related to the PR.  For example if the build is failing, I might ask `the github ui says a build is failing and it makes it seem like I can't approve or merge it. could you take a look at help me figure this out?` The GitHub cli should let Cline grab all the details it needs to help you out.
 
 As always, these types of tools are best used as a second opinion and not the only opinion, and never take Cline's statements at face value - sometimes when the model tries to back up its answers, it will realize it was wrong and correct itself.  Even with those caveats, its been nice to have a thinking partner on call to help me think through PR reviews and watch out for edge cases, etc. that I might not have thought of myself.
 
