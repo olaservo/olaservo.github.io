@@ -5,7 +5,7 @@ title: Drawing and Animating Graphics with Claude
 
 Even though it's not an image generation model, Claude.ai can draw pictures and create simple animations in the form of [Scalable Vector Graphics](https://en.wikipedia.org/wiki/SVG) a.k.a SVGs.  Lately I've been using this feature more for things like creating icons, making diagrams, and visualizing weird geometric entities.  I wanted to create a post to recap some of the specific workflows I've used to create usable images and animations in case it helps anyone else, including future me.
 
-![blinking alien created by CLaude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/refs/heads/master/images/mcp-monster-eyelids-blinking-v2.svg){:width="400px"}
+![blinking alien created by CLaude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/refs/heads/master/images/mcp-monster-eyelids-blinking-v2.svg){:width="400px" style="display:block; margin-left:auto; margin-right:auto"}
 
 <!--more-->
 
