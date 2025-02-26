@@ -5,6 +5,8 @@ title: Drawing and Animating Graphics with Claude
 
 Even though it's not an image generation model, Claude.ai can draw pictures and create simple animations in the form of [Scalable Vector Graphics](https://en.wikipedia.org/wiki/SVG) a.k.a SVGs.  Lately I've been using this feature more for things like creating icons, making diagrams, and visualizing weird geometric entities.  I wanted to create a post to recap some of the specific workflows I've used to create usable images and animations in case it helps anyone else, including future me.
 
+![blinking alien created by CLaude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/refs/heads/master/images/mcp-monster-eyelids-blinking-v2.svg){:width="400px"}
+
 <!--more-->
 
 One thing I want to mention right off the bat: you shouldn't expect too much detail or real-world accuracy from these creations.  No matter how imaginatively Claude describes them, they have roughly the complexity level of a toddler with a set of crayons.  However, that doesn't make this capability useless outside of [entertaining reddit post material](https://www.reddit.com/r/ClaudeAI/comments/1ilzhkp/claude_nailed_it_xd_naively_asked_him_to_create/).   You just have to know what to expect, work within its bounds, and be ready to apply some manual tweaking now and then (which happens to be especially flexible with vector graphics).  With some additional processing, you can even turn animated SVGs into video clips, which I will get into at the very end of this post.
@@ -76,7 +78,7 @@ You might ask Claude to draw something and be pleasantly surprised that it turns
 
 If Claude doesn't do this naturally, try asking them to add some movement.  Here's an example of an animated eldritch entity that was entirely created by the AI without me telling them to animate it:
 
-![animated entity](https://raw.githubusercontent.com/olaservo/olaservo.github.io/e092e674f19c27d24c2022f13c0008263b48b6c7/images/circular.svg)
+![animated entity created by Claude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/e092e674f19c27d24c2022f13c0008263b48b6c7/images/circular.svg){:width="400px"}
 ## Other options for generating SVGs
 
 Claude struggles to draw some simple things.  Examples of real-world items that they had trouble drawing for me include a wrench, a dart, and a few other common objects.  Since I'm just creating free presentations for fun, I have been using either existing Creative Commons licensed images or [Recraft v3 SVG](https://replicate.com/recraft-ai/recraft-v3-svg) to fill these gaps.
