@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <!-- Clip paths for each eye -->
+    <clipPath id="eyeClip">
+      <circle r="15"/>
+    </clipPath>
+  </defs>
+  
+  <!-- The Box - simplified and rounder -->
+    <!-- <rect x="300" y="150" width="200" height="200" rx="20" fill="#e8eaf6" stroke-width="4"/> -->
+  
+  <!-- Simple Brain - rounder and cuter -->
+  <circle cx="400" cy="250" r="50" fill="#bbdefb"/>
+  
+  <!-- Wavy Tentacles with Eye Endpoints -->
+  <!-- Top tentacles -->
+  <path d="M400 200 Q420 190 400 180 Q380 170 400 165" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(400,165)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15"/>
+  </g>
+  
+  <!-- Right tentacles -->
+  <path d="M450 250 Q470 270 480 250 Q490 230 485 250" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(485,250)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15">
+      <animate 
+        attributeName="cy" 
+        values="-15;0;-15" 
+        dur="0.2s"
+        begin="2s;10s;18s;26s;34s;42s" 
+        fill="freeze"/>
+    </circle>
+  </g>
+  
+  <!-- Bottom tentacles -->
+  <path d="M400 300 Q420 310 400 320 Q380 330 400 335" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(400,335)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15"/>
+  </g>
+  
+  <!-- Left tentacles -->
+  <path d="M350 250 Q330 270 320 250 Q310 230 315 250" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(315,250)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15">
+      <animate 
+        attributeName="cy" 
+        values="-15;0;-15" 
+        dur="0.2s"
+        begin="5s;13s;21s;29s;37s;45s" 
+        fill="freeze"/>
+    </circle>
+  </g>
+  
+  <!-- Diagonal tentacles - adjusted starting points -->
+  <path d="M435 285 Q460 300 470 310 Q480 320 475 320" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(475,320)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15"/>
+  </g>
+  
+  <path d="M365 285 Q340 300 330 310 Q320 320 325 320" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(325,320)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15"/>
+  </g>
+  
+  <path d="M435 215 Q460 200 470 190 Q480 180 475 180" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(475,180)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15">
+      <animate 
+        attributeName="cy" 
+        values="-15;0;-15" 
+        dur="0.2s"
+        begin="0s;8s;16s;24s;32s;40s" 
+        fill="freeze"/>
+    </circle>
+  </g>
+  
+  <path d="M365 215 Q340 200 330 190 Q320 180 325 180" fill="none" stroke="#bbdefb" stroke-width="8" stroke-linecap="round"/>
+  <g clip-path="url(#eyeClip)" transform="translate(325,180)">
+    <circle r="15" fill="#bbdefb"/>
+    <circle r="10" fill="white"/>
+    <circle r="4" fill="#3f51b5"/>
+    <circle r="15" fill="#bbdefb" cy="-15"/>
+  </g>
+</svg>
