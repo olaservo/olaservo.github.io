@@ -78,7 +78,7 @@ You might ask Claude to draw something and be pleasantly surprised that it turns
 
 If Claude doesn't do this naturally, try asking them to add some movement.  Here's an example of an animated eldritch entity that was entirely created by the AI without me telling them to animate it:
 
-![animated entity created by Claude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/e092e674f19c27d24c2022f13c0008263b48b6c7/images/circular.svg){:width="400px"}
+![animated entity created by Claude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/e092e674f19c27d24c2022f13c0008263b48b6c7/images/circular.svg){:width="400px" style="display:block; margin-left:auto; margin-right:auto"}
 ## Other options for generating SVGs
 
 Claude struggles to draw some simple things.  Examples of real-world items that they had trouble drawing for me include a wrench, a dart, and a few other common objects.  Since I'm just creating free presentations for fun, I have been using either existing Creative Commons licensed images or [Recraft v3 SVG](https://replicate.com/recraft-ai/recraft-v3-svg) to fill these gaps.
