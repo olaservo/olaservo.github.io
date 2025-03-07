@@ -42,7 +42,9 @@ Claude: I'll increase the stroke-width of the dice outline.
 I've doubled the thickness of the outline from 2 to 4 units. How does that look? I can make it even thicker if you'd like.
 ```
 
-**Example [Result](https://claude.site/artifacts/92b2858b-6681-4608-af6a-2c9bb05b7cbb)**
+Result:
+
+![a die with three pips created by CLaude](https://raw.githubusercontent.com/olaservo/olaservo.github.io/refs/heads/master/images/die_3_pips.svg){:width="400px" style="display:block; margin-left:auto; margin-right:auto"}
  
 ## Method two: Start with an existing SVG file and paste the code into the chat box.  
 
