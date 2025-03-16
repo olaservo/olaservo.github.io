@@ -35,5 +35,19 @@ Cline is also super helpful for helping understand any pipeline failures related
 
 As always, these types of tools are best used as a second opinion and not the only opinion, and never take Cline's statements at face value - sometimes when the model tries to back up its answers, it will realize it was wrong and correct itself.  Even with those caveats, its been nice to have a thinking partner on call to help me think through PR reviews and watch out for edge cases, etc. that I might not have thought of myself.
 
+****
 
+Added on 3/16/2024: Viewing All Review Comment Details
 
+I wanted to add a note here about how to get all the review comment details using the GitHub API instead.  This has been a requested feature in the GitHub CLI for a while, but the main challenge appears to be figuring out how to display all the complex details.  LLMs don't really care about how info is laid out visually, so as long as information is structured logically and not too big they can manage the raw API output pretty well.
+
+If you want Cline to help you with understanding and responding to review comments, you can use the following GitHUb API command in your VSCode terminal:
+
+```
+gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /repos/modelcontextprotocol/inspector/pull/159/comments
+```
+
+The link to the documentation is [here](https://docs.github.com/en/rest/pulls/comments?apiVersion=2022-11-28#list-review-comments-on-a-pull-request).  Thank you to [Kyle Mitofsky](https://github.com/KyleMit) in this [comment](https://github.com/cli/cli/issues/5788#issuecomment-1704351943) for helping folks out.  Note that if you're authenticated to the CLI then the API should just work too.
