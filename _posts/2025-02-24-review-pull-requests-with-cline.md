@@ -47,7 +47,7 @@ If you want Cline to help you with understanding and responding to review commen
 gh api \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  /repos/modelcontextprotocol/inspector/pull/159/comments
+  /repos/OWNER/REPO/pulls/PULL_NUMBER/comments
 ```
 
 The link to the documentation is [here](https://docs.github.com/en/rest/pulls/comments?apiVersion=2022-11-28#list-review-comments-on-a-pull-request).  Thank you to [Kyle Mitofsky](https://github.com/KyleMit) in this [comment](https://github.com/cli/cli/issues/5788#issuecomment-1704351943) for helping folks out.  Note that if you're authenticated to the CLI then the API should just work too.
