@@ -40,7 +40,7 @@ The third thing is more of an experiment, since I usually phrase prompts on an a
 
 You can use the mcp-advisor server in any host that supports Resources and Prompt capabilities (or at the very least Resources).  The main hosts I've been using with this are Claude Desktop and Cline in VSCode.  Note that the way that clients actually choose which Resources to use can vary a lot.  For example, in Claude Desktop you (the human) need to select specific resources using a button in the chat interface. 
 
-If you use a client that just doesn't support this capability yet, there's other ways to do roughly the same thing.  For example, you can also use an MCP server like [fetch](https://github.com/modelcontextprotocol/servers/tree/main/src/fetch) to do the following:
+If you use a client that doesn't support this capability yet, there's other ways to do roughly the same thing.  For example, you can also use an MCP server like [fetch](https://github.com/modelcontextprotocol/servers/tree/main/src/fetch) to do the following:
 
 1. Fetch the contents of [https://modelcontextprotocol.io/llms.txt](https://modelcontextprotocol.io/llms.txt) to get the list of valid links
 2. Fetch content from links that are relevant to the current task
