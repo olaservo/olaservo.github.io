@@ -33,7 +33,7 @@ The result has to be 100% correct before I can use these scripts to deploy real 
 1. Give the model the template, the data, and detailed instructions for creating a script which will populate the template using the data.
 2. Test and iterate on the script.
 
-Along with better accuracy and predictability, this "generate the tool" approach has a few other advantages.  One of them is reusability: you can create the tool once, then use it repeatedly, either for the same task, or as a reference point for creating similar tasks.  Another obvious benefit is explainability, since you can actually see how the tool works, rather than just the end result from the model, which is a black box.
+Along with better accuracy and predictability, this "generate the tool" approach has a few other advantages.  One of them is reusability: you can create the tool once, then use it repeatedly, either for the same task, or as a reference point for creating similar tools.  Another obvious benefit is explainability, since you can actually see how the tool works, rather than just the end result from the model, which is a black box.
 
 Notice that I say this *might* work better, because there is no one-size-fits-all approach to every possible task. I tend to use this pattern for tasks that involve stuff like repeatable calculations or common 'search and replace' type tasks.  Sometimes, the first method will also let you learn more about how to do the task yourself.  Explaining things is a great way to learn new skills, and this includes explaining things to models.  Its also important to check in now and then to see how AI progresses at performing a given task, rather than writing it off forever.
 
