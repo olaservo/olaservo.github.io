@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Diving, fishing,  - Generating the tool vs generating the result
+title: Building fishing rods (vs. asking for fish) - Generating tools vs. generating solutions
 ---
 
 One of the more painful recurring experiences I've had working with AI tools is when the model seems *so close* to being able to do something right, that I spend way too much time on that last 10-20% of trying to get them to do the right thing through prompting and pleading or giving them more information.
