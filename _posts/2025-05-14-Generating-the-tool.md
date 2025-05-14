@@ -1,6 +1,6 @@
 ---
 layout: post
-title: I'm Feeling Lucky - Generating the tool vs generating the result
+title: Diving, fishing,  - Generating the tool vs generating the result
 ---
 
 One of the more painful recurring experiences I've had working with AI tools is when the model seems *so close* to being able to do something right, that I spend way too much time on that last 10-20% of trying to get them to do the right thing through prompting and pleading or giving them more information.
@@ -35,7 +35,7 @@ The result has to be 100% correct before I can use these scripts to deploy real 
 
 Along with better accuracy and predictability, this "generate the tool" approach has a few other advantages.  One of them is reusability: you can create the tool once, then use it repeatedly, either for the same task, or as a reference point for creating similar tools.  Another obvious benefit is explainability, since you can actually see how the tool works, rather than just the end result from the model, which is a black box.
 
-I tend to use the "generate the tool" pattern specifically for tasks involving repeatable calculations, structured transformations, or complex "search and replace" operations where precision matters (but I don't want to write my own regex). Direct generation still has its place, like when I'm exploring something new.  Just like explaining new knowledge to a person, the process of looking up the correct information/syntax/etc. and explaining it the model can help me learn.  It's also worth periodically checking in and reassessing what models can do directly as they improve, rather than assuming certain tasks will always require tool creation.
+I tend to use the "generate the tool" pattern specifically for tasks involving repeatable calculations, structured transformations, or complex "search and replace" operations where precision matters (but I don't want to write my own regex). Direct generation still has its place, like when I'm exploring something new. Both approaches leverage some form of the Feynman Technique, i.e. learning through explanation. With direct generation, I tend to dive deeper into a new topic in order to clarify my own understanding.  With tool creation, I'm forced to articulate the underlying patterns rather than specifics around a single instance of a problem. It's also worth periodically checking in and reassessing what models can do directly as they improve, rather than assuming certain tasks will always require tool creation.
 
 Using a dice roll to generate code or data comes with many caveats we are all now familiar with.  The randomness can even be addicting and exciting, like pulling on the arm of a slot machine.  However, the real promise of AI isn't just providing quick answers.  It's empowering us to create specialized tools that extend our capabilities in meaningful ways. By shifting from "do this thing for me" to "help me build something that does this," we can move from being consumers to collaborators.
 
