@@ -31,7 +31,11 @@ The result has to be 100% correct before I can use these scripts to deploy real 
 **Another, more predictable approach:**
 
 1. Give the model the template, the data, and detailed instructions for creating a script which will populate the template using the data.
-2. Test and iterate on the script.
+2. Test and iterate on the script with a sample of your data. This validation process is more controlled because:
+   - You're debugging logic once rather than fixing multiple outputs
+   - Errors are consistent and reproducible rather than random 
+   - When you fix an issue, it stays fixed for all future runs
+3. Once validated, run the script against your full dataset.
 
 Along with better accuracy and predictability, this "generate the tool" approach has a few other advantages.  One of them is reusability: you can create the tool once, then use it repeatedly, either for the same task, or as a reference point for creating similar tools.  Another obvious benefit is explainability, since you can actually see how the tool works, rather than just the end result from the model, which is a black box.
 
