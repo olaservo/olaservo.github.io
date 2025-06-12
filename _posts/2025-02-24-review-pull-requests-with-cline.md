@@ -15,12 +15,65 @@ So far I've had the most success doing this using the latest Claude Sonnet 3.5 a
 
 To review a PR, I usually have the source repo open in VS Code.  You don't need to have any specific branch checked out, but I usually have the latest from `main` to make it simple for Cline to refer to other context from the repo without looking up remote files.
 
-First I put Cline into Plan mode.  Then I just ask it something like:
+First I put Cline into Plan mode to make sure it doesn't start getting too proactive.  Then I can use somethig like the following prompt:
 
+(Edited because I originally had an incredibly lazy 2 line example prompt here originally)
+
+***
+
+## Setup
+You're conducting a thorough code review. Use GitHub CLI to gather information:
+
+```bash
+gh pr view {{ PR_URL }} --json title,body,author,labels,reviewDecision
+gh pr diff {{ PR_URL }}
+gh pr checks {{ PR_URL }}
 ```
-please help me review this PR {{ put link to PR here}} 
-you can use the gh cli tool
-```
+
+## Review Checklist
+
+**Code Quality**
+- Clear naming, proper error handling, performance considerations
+- Security vulnerabilities, input validation, auth checks
+- Test coverage and meaningful test cases
+- Code duplication, maintainability, documentation updates
+
+**Architecture & Impact**
+- Aligns with existing patterns, appropriate scope
+- Breaking changes, integration effects
+- Design patterns and SOLID principles
+
+## Review Structure
+
+### Summary
+- What the PR accomplishes
+- Overall recommendation (approve/request changes/comment)
+- Key strengths and main concerns
+
+### Issues
+**Blocking**: Critical bugs, security issues, architectural problems
+**Non-blocking**: Style, optimizations, documentation improvements
+
+### Line-by-Line Comments
+For each issue provide:
+- **Location**: File:line
+- **Problem**: Clear description
+- **Solution**: Specific recommendation with code example
+- **Why**: Rationale for the change
+
+## Communication Style
+- Be constructive and specific
+- Explain reasoning behind suggestions
+- Use collaborative language ("we could improve...")
+- Acknowledge good practices
+- Focus on code, not person
+
+## Final Check
+- CI passing, adequate tests, security review, docs updated
+
+Review the PR thoroughly but efficiently, providing actionable feedback that improves code quality and team knowledge.
+
+***
 
 Cline should then fetch all the details it needs to understand the changes.
 
