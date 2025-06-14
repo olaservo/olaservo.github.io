@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-Ola Hungerford is a vocalist, songwriter, and software engineer.  As a leader in personalized product discovery at Nordstrom, she works every day to answer the question: how do you make customers feel like you know what they want or need, without irritating them or creeping them out?
+Ola Hungerford is a vocalist, songwriter, and software engineer.  As a leader in personalized product discovery and other intelligent systems at Nordstrom, she works every day to answer the question: how do you make customers feel like you know what they want or need, without irritating them or creeping them out?
 
 Ola owns, leads, and executes projects with a strong emphasis on both critical thinking and putting herself in other people’s shoes. [^1]  She acts on the belief that personalization, just like any customer experience at Nordstrom, requires empathy and good judgment as much as it does technical expertise.
 
