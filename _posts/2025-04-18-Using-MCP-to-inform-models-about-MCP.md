@@ -21,7 +21,7 @@ A couple common solutions to providing new information to models on the fly incl
 - Querying a dedicated external knowledge database
 - Using a tool to search the web
 
-Both of these can work well for augmenting a model's knowledge, but might not be the most convenient or precise option in all scenarios.
+Both of these can work well for augmenting a model's knowledge, but might not be the most convenient or appropriate option in all scenarios.
 
 For example: since these resources should easily fit within a model's context window, using a more complex knowledge database or RAG solution is not really necessary unless you need to compare documents to other documents, or do more complex types of querying.
 
