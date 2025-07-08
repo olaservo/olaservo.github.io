@@ -3,7 +3,7 @@ layout: post
 title: Using MCP to inform models about MCP
 ---
 
-[Model Context Protocol](https://github.blog/ai-and-ml/llms/what-the-heck-is-mcp-and-why-is-everyone-talking-about-it/) a.k.a. MCP has been gaining traction as a standardized communication protocol for models to connect to external resources.  However without extra context, Claude and other LLMs will come up with their own imaginative explanations of what MCP is.  Some of my favorite guesses include:
+[Model Context Protocol](https://github.blog/ai-and-ml/llms/what-the-heck-is-mcp-and-why-is-everyone-talking-about-it/) a.k.a. MCP has been gaining traction as a standardized communication protocol for AI applications to connect to external resources.  However without extra context, Claude and other LLMs will come up with their own imaginative explanations of what MCP is.  Some of my favorite guesses include:
 
 1. Master Control Program (from the movie _TRON_)
 2. Model Coordination Problem
