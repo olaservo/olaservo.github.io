@@ -87,6 +87,10 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  # Bundler installs gems here under CI (bundle install --path vendor/bundle);
+  # excluded so Jekyll doesn't try to build the gems' own template files.
+  - vendor/
+  - .bundle/
 
 include:
   - _sites
