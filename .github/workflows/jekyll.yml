@@ -42,6 +42,9 @@ jobs:
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
+          # jekyll-github-metadata (bundled with github-pages) needs the repo
+          # name-with-owner; the classic Pages env sets this automatically.
+          PAGES_REPO_NWO: ${{ github.repository }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
