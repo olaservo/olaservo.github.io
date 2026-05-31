@@ -76,7 +76,7 @@ sass:
   style: :expanded # You might prefer to minify using :compressed
 
 # Use the following plug-ins
-gems:
+plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
   - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
 
@@ -87,6 +87,10 @@ exclude:
   - LICENSE
   - README.md
   - CNAME
+  # Bundler installs gems here under CI (bundle install --path vendor/bundle);
+  # excluded so Jekyll doesn't try to build the gems' own template files.
+  - vendor/
+  - .bundle/
 
 include:
   - _sites

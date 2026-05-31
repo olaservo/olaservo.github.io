@@ -1,0 +1,63 @@
+name: Build and deploy Jekyll site to Pages
+
+on:
+  # Run a build check on PRs targeting master, and build + deploy on push to master.
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  # Allow manual runs from the Actions tab.
+  workflow_dispatch:
+
+# Permissions required for the deploy job to publish to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel an in-progress production deploy.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Builds the site on every push and PR. This is the safety check on PRs.
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3.4" # keep in sync with .ruby-version
+          bundler-cache: true   # runs `bundle install` and caches the gems
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+          # jekyll-github-metadata (bundled with github-pages) needs the repo
+          # name-with-owner; the classic Pages env sets this automatically.
+          PAGES_REPO_NWO: ${{ github.repository }}
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+
+  # Deploys the built artifact. Skipped on pull requests, so PRs only validate.
+  deploy:
+    needs: build
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
