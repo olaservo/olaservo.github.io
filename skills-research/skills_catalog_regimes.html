@@ -37,8 +37,10 @@
   #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
 
   /* ============================================================
-     Figure: self-contained under .scf — copy this style block and
-     the <figure class="scf"> below into any page to embed it.
+     Figure: scoped under .scf — to embed it elsewhere, copy this
+     style block, the <figure class="scf"> below, the loader script
+     at the bottom, and skills_catalog_creature.svg (which carries
+     the drawing and its animations).
      ============================================================ */
   .scf { --scf-w: min(900px, 96vw); width: var(--scf-w); position: relative; left: 50%; margin: 2.5rem 0 2.5rem calc(-0.5 * var(--scf-w)); }
   .scf svg { display: block; width: 100%; height: auto; }
@@ -54,20 +56,7 @@
     .scf .scf-labels { height: auto; }
     .scf .scf-label { position: static; transform: none; width: auto !important; text-align: left; margin: 0 0 0.8rem; }
   }
-  @media (prefers-reduced-motion: no-preference) {
-    .scf .fA { animation: scf-boilA .9s steps(1) infinite; }
-    .scf .fB { animation: scf-boilB .9s steps(1) infinite; }
-    .scf .eye { transform-box: fill-box; transform-origin: center; animation: scf-blink 8.4s ease-in-out infinite; }
-    .scf .fall { transform-box: fill-box; transform-origin: center; animation: scf-fall 5.5s ease-in-out infinite; }
-    .scf .breathe { animation: scf-breathe 3.4s ease-in-out infinite; }
-    .scf .pulse { animation: scf-pulse 2.6s ease-in-out infinite; }
-  }
-  @keyframes scf-boilA { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  @keyframes scf-boilB { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
-  @keyframes scf-blink { 0%, 95.5%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.08); } 98.5% { transform: scaleY(1); } }
-  @keyframes scf-fall { 0% { transform: translate(2px,-30px) rotate(0deg); opacity: 0; } 18% { opacity: .45; } 78% { transform: translate(-5px,14px) rotate(-6deg); opacity: .45; } 100% { transform: translate(-7px,26px) rotate(-8deg); opacity: 0; } }
-  @keyframes scf-breathe { 0%, 100% { opacity: .45; } 50% { opacity: .12; } }
-  @keyframes scf-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+  .scf .scf-svg { aspect-ratio: 680 / 400; }
 </style>
 <script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
 </head>
@@ -117,106 +106,7 @@ make your skills and tools trigger less reliably.</p>
 <!-- ============ FIGURE START (copy from here) ============ -->
 <figure class="scf">
   <div class="scf-stage">
-    <svg viewBox="0 0 680 400" role="img" aria-labelledby="scf-title scf-desc">
-      <title id="scf-title">Blob with skill cards under three catalog regimes</title>
-      <desc id="scf-desc">A sketchy blob full of eyes holds three groups of skill cards: a crowded uncapped pile with one card tumbling out, uniform cards with descriptions cut short by dots, and cards shrinking to name-only stubs with a dashed omitted stub and a warning triangle.</desc>
-      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M44 38 L78 36 L77 60 L45 62 Z"/>
-        <path d="M52 46 L70 45.4"/>
-        <path d="M52 53 L64 52.5"/>
-      </g>
-      <path d="M320 36 C322 50 326 68 330 82" fill="none" stroke="var(--scf-ink)" stroke-width="1.5" stroke-dasharray="2 5" opacity="0.4"/>
-      <g class="fA" fill="none" stroke="var(--scf-ink)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M72 202 C96 132 186 94 342 86 C486 78 592 112 602 180 C618 252 558 322 418 334 C272 350 122 338 84 294"/>
-        <path d="M62 256 C56 236 64 218 72 202"/>
-      </g>
-      <g class="fB" fill="none" stroke="var(--scf-ink)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0">
-        <path d="M76 198 C104 128 192 90 344 84 C490 80 596 116 598 184 C622 256 552 326 414 332 C276 346 126 334 88 290"/>
-        <path d="M64 252 C58 234 68 214 76 198"/>
-      </g>
-      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M150 96 C142 84 148 72 138 62"/>
-        <path d="M508 92 C518 80 512 70 522 60"/>
-        <path d="M604 214 C618 212 622 220 636 216"/>
-        <path d="M300 344 C298 356 306 362 302 374"/>
-        <path d="M560 310 C570 320 566 330 576 336"/>
-      </g>
-      <g class="eye" style="animation-delay:.3s"><circle cx="338" cy="122" r="13" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle id="scf-pupil" cx="339" cy="123" r="4" fill="var(--scf-ink)"/></g>
-      <g class="eye" style="animation-delay:1.4s"><circle cx="282" cy="112" r="9" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="284" cy="113" r="3" fill="var(--scf-ink)"/></g>
-      <g class="eye" style="animation-delay:2.6s"><circle cx="396" cy="118" r="10" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="394" cy="119" r="3.2" fill="var(--scf-ink)"/></g>
-      <g class="eye" style="animation-delay:.9s"><circle cx="222" cy="122" r="8" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="224" cy="121" r="2.8" fill="var(--scf-ink)"/></g>
-      <g class="eye" style="animation-delay:3.3s"><circle cx="452" cy="120" r="9" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="450" cy="121" r="3" fill="var(--scf-ink)"/></g>
-      <g class="eye" style="animation-delay:1.9s"><circle cx="372" cy="298" r="8" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="373" cy="299" r="2.8" fill="var(--scf-ink)"/></g>
-      <g class="eye" style="animation-delay:4s"><circle cx="250" cy="308" r="7" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="249" cy="309" r="2.5" fill="var(--scf-ink)"/></g>
-      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M100 148 L166 146 L164 188 L101 190 Z"/>
-        <path d="M110 160 L156 159"/>
-        <path d="M110 172 L146 171"/>
-        <path d="M176 140 L232 138 L231 174 L177 176 Z"/>
-        <path d="M185 152 L222 151"/>
-        <path d="M185 163 L214 162"/>
-        <path d="M106 200 L158 198 L157 232 L107 234 Z"/>
-        <path d="M115 211 L148 210"/>
-        <path d="M115 222 L140 221"/>
-        <path d="M168 190 L240 188 L239 236 L169 238 Z"/>
-        <path d="M178 202 L230 201"/>
-        <path d="M178 214 L222 213"/>
-        <path d="M178 226 L206 225"/>
-        <path d="M118 244 L180 242 L179 274 L119 276 Z"/>
-        <path d="M127 255 L170 254"/>
-        <path d="M127 266 L158 265"/>
-        <path d="M190 248 L236 246 L235 274 L191 276 Z"/>
-        <path d="M198 258 L228 257"/>
-        <path d="M198 268 L218 267"/>
-      </g>
-      <g class="fall" fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4" opacity="0.45">
-        <path d="M84 352 L128 350 L127 382 L86 384 Z"/>
-        <path d="M94 364 L118 363"/>
-      </g>
-      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M268 170 L340 168 L339 202 L269 204 Z"/>
-        <path d="M277 180 L298 179.6"/>
-        <path d="M277 192 L316 191"/>
-        <path d="M272 212 L342 210 L341 244 L273 246 Z"/>
-        <path d="M281 222 L300 221.6"/>
-        <path d="M281 234 L318 233"/>
-        <path d="M270 254 L338 252 L337 286 L271 288 Z"/>
-        <path d="M279 264 L297 263.6"/>
-        <path d="M279 276 L314 275"/>
-      </g>
-      <g fill="var(--scf-ink)">
-        <circle cx="322" cy="191.4" r="1.4"/><circle cx="328" cy="191.3" r="1.4"/><circle cx="334" cy="191.2" r="1.4"/>
-        <circle cx="324" cy="233.3" r="1.4"/><circle cx="330" cy="233.2" r="1.4"/><circle cx="336" cy="233.1" r="1.4"/>
-        <circle cx="320" cy="275.3" r="1.4"/><circle cx="326" cy="275.2" r="1.4"/><circle cx="332" cy="275.1" r="1.4"/>
-      </g>
-      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M406 166 L472 164 L471 208 L407 210 Z"/>
-        <path d="M415 178 L436 177.7"/>
-        <path d="M415 190 L462 189"/>
-        <path d="M415 200 L448 199.4"/>
-        <path d="M484 172 L534 170 L533 204 L485 206 Z"/>
-        <path d="M492 183 L512 182.6"/>
-        <path d="M492 194 L524 193.4"/>
-        <path d="M408 226 L444 225 L443 246 L409 247 Z"/>
-        <path d="M415 236 L436 235.5"/>
-        <path d="M454 228 L488 227 L487 247 L455 248 Z"/>
-        <path d="M461 238 L480 237.6"/>
-      </g>
-      <g class="breathe" fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4" opacity="0.45">
-        <path d="M498 230 L528 229 L527 248 L499 249 Z"/>
-        <path d="M504 239 L520 238.6"/>
-      </g>
-      <g class="pulse">
-        <path d="M545 226 L556 244 L534 244 Z" fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M545 231 L545 237" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round"/>
-        <circle cx="545" cy="240.5" r="1.3" fill="var(--scf-ink)"/>
-      </g>
-      <g stroke="var(--scf-ink)" stroke-width="1.5" stroke-dasharray="2 5" opacity="0.4">
-        <line x1="172" y1="286" x2="172" y2="396"/>
-        <line x1="318" y1="296" x2="318" y2="396"/>
-        <line x1="494" y1="284" x2="494" y2="396"/>
-      </g>
-    </svg>
+    <div class="scf-svg" id="scf-svg-slot"></div>
     <div class="scf-note scf-note--nowrap" style="left:12.9%;top:12%;transform:none;text-align:left">= a skill (name + description)</div>
     <div class="scf-note scf-note--nowrap" style="left:47%;top:4.5%;font-size:16px">an open source agentic entity</div>
     <div class="scf-note" style="left:77%;top:4%">none of the sampled hosts ranked skills by relevance<a href="#fn-relevance">*</a></div>
@@ -232,6 +122,248 @@ make your skills and tools trigger less reliably.</p>
 <!-- ============ FIGURE END ============ -->
 
 <!-- Your commentary on the regimes goes here -->
+
+<!-- ============ INTERACTIVE REGIMES START (self-contained: copy this style block,
+     the three <figure class="scv"> blocks, and the script that follows them) ============ -->
+<style>
+  .scv { margin: 2.2rem auto 2.8rem; max-width: 680px; }
+  .scv svg { display: block; width: 100%; height: auto; }
+  .scv-ui { display: flex; align-items: center; gap: 0.8rem; font-size: 0.85rem; color: var(--scf-label); }
+  .scv-ui input { flex: 1; accent-color: var(--ink); margin: 0; min-width: 6rem; }
+  .scv-ui output { min-width: 16rem; text-align: right; font-variant-numeric: tabular-nums; }
+  @media (max-width: 600px) { .scv-ui { flex-wrap: wrap; } .scv-ui output { min-width: 0; width: 100%; text-align: left; } }
+  .scv figcaption { font-size: 0.95rem; color: var(--scf-label); margin-top: 0.6rem; }
+  @media (prefers-reduced-motion: no-preference) {
+    .scv .scv-fA { animation: scv-boilA .9s steps(1) infinite; }
+    .scv .scv-fB { animation: scv-boilB .9s steps(1) infinite; }
+    .scv .scv-eye { transform-box: fill-box; transform-origin: center; animation: scv-blink 8.4s ease-in-out infinite; }
+    .scv .scv-pulse { animation: scv-pulsek 2.6s ease-in-out infinite; }
+  }
+  @keyframes scv-boilA { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes scv-boilB { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes scv-blink { 0%, 95.5%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.08); } 98.5% { transform: scaleY(1); } }
+  @keyframes scv-pulsek { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+</style>
+
+<h3>what each approach does as the list grows</h3>
+<p>Drag each slider to simulate installing more skills. (Note that 'card counts' are just for illustration, the real budgets are measured in characters or tokens.) The bar and token counter under each creature show the catalog's total size, on the same scale in all three figures, assuming the worst case the <a href="https://agentskills.io/specification" target="_blank">spec</a> allows per skill: a 64-char name and a 1024-char description, plus a file path &#8212; roughly 320 tokens per full entry. The wavy lines inside each creature are everything else in context &#8212; conversation, files, memory &#8212; which gets squeezed, and eventually compacted, as the catalog grows.</p>
+
+<figure class="scv" data-regime="none">
+  <div class="scv-svg"></div>
+  <div class="scv-ui">
+    <label for="scv-n-none">installed skills</label>
+    <input id="scv-n-none" type="range" min="4" max="60" value="4">
+    <output for="scv-n-none"></output>
+  </div>
+  <figcaption><strong>no budget</strong> (fast-agent &#183; goose &#183; opencode &#183; pi) &#8212; every skill adds a full entry and nothing is ever trimmed or dropped. The entries cram in tighter and tighter while everything else the agent needs gets squeezed out and compacted.</figcaption>
+</figure>
+
+<figure class="scv" data-regime="clip">
+  <div class="scv-svg"></div>
+  <div class="scv-ui">
+    <label for="scv-n-clip">installed skills</label>
+    <input id="scv-n-clip" type="range" min="4" max="60" value="4">
+    <output for="scv-n-clip"></output>
+  </div>
+  <figcaption><strong>clip</strong> (hermes) &#8212; every description is cut at 60 characters from the very first skill. Entries are smaller, so the pile grows slower, but it still grows by one entry per skill.</figcaption>
+</figure>
+
+<figure class="scv" data-regime="ladder">
+  <div class="scv-svg"></div>
+  <div class="scv-ui">
+    <label for="scv-n-ladder">installed skills</label>
+    <input id="scv-n-ladder" type="range" min="4" max="60" value="4">
+    <output for="scv-n-ladder"></output>
+  </div>
+  <figcaption><strong>budget + ladder</strong> (codex &#183; openclaw) &#8212; the catalog gets a fixed budget (the dashed box). As skills pile up it degrades in stages: shortened descriptions, then names only, then omitting skills with a visible warning. The rest of context keeps its room.</figcaption>
+</figure>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  var INK = 'var(--scf-ink, #0B0B0B)';
+  var GRID = { x0: 108, y0: 150 };
+  var T = {
+    full: { w: 66, h: 40, px: 78, py: 50, cols: 6, rules: [[12, 30], [21, 48], [30, 38]] },
+    clip: { w: 56, h: 28, px: 66, py: 36, cols: 7, rules: [[10, 26], [19, 30]], dots: [41, 19] },
+    stub: { w: 56, h: 16, px: 66, py: 24, cols: 7, rules: [[9, 32]] }
+  };
+  // worst-case chars per entry, per the agentskills.io spec: 64-char name +
+  // 1024-char description, plus a location path and list markup where emitted
+  var PER = { full: 1280, clip: 145, stub: 75 };
+  var SCALE = 60 * PER.full;
+  var LABELS = {
+    none: 'A tentacled blob creature filling with full-size skill cards; as skills grow the card stack crams tighter, the wavy context lines below get compacted, its eyes shrink and drift, and the size bar grows steadily',
+    clip: 'A tentacled blob creature filling with clipped skill cards; smaller cards, but still one per skill, and the wavy context lines still lose their room eventually',
+    ladder: 'A tentacled blob creature with a dashed budget box; its skill cards shrink in stages to keep fitting, then skills are omitted with a warning, and the wavy context lines keep their room'
+  };
+  var EYES = [[340, 126, 13, 0.3, 210], [272, 118, 9, 1.4, -40], [410, 121, 10, 2.6, 100], [218, 128, 7, 0.9, 160], [472, 124, 8, 3.3, -120]];
+  var TENTACLES = [
+    'M208 100 C200 88 208 78 198 66 C194 60 198 54 192 46',
+    'M300 88 C296 76 304 68 296 58 C292 52 298 46 292 38',
+    'M424 92 C432 80 426 70 436 60 C440 54 436 48 444 40',
+    'M78 196 C64 192 60 202 46 198 C38 196 36 204 26 200',
+    'M630 218 C644 214 648 224 662 220 C668 218 670 226 676 222',
+    'M148 328 C140 340 148 348 140 360 C136 366 140 372 134 380',
+    'M528 324 C536 336 528 344 538 356 C542 362 538 368 546 376'
+  ];
+  function el(parent, t, a) {
+    var e = document.createElementNS(NS, t);
+    for (var k in a) e.setAttribute(k, a[k]);
+    parent.appendChild(e);
+    return e;
+  }
+  function pathIn(g, d, w) {
+    return el(g, 'path', { d: d, fill: 'none', stroke: INK, 'stroke-width': w || 3.1, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+  }
+  function jit(seed) { return ((seed * 7919) % 13 - 6) / 4; }
+  function card(parent, x, y, t, o) {
+    o = o || {};
+    var s = o.seed || 0, w = t.w, h = t.h, g = parent;
+    if (o.rotate) g = el(parent, 'g', { transform: 'rotate(' + o.rotate + ' ' + (x + w / 2) + ' ' + (y + h / 2) + ')' });
+    if (o.dashed) g = el(g, 'g', { opacity: 0.45 });
+    var box = el(g, 'path', {
+      d: 'M' + (x + jit(s)) + ' ' + (y + jit(s + 1)) + ' L' + (x + w + jit(s + 2)) + ' ' + (y + jit(s + 3)) +
+         ' L' + (x + w + jit(s + 4)) + ' ' + (y + h + jit(s + 5)) + ' L' + (x + jit(s + 6)) + ' ' + (y + h + jit(s + 7)) + ' Z',
+      fill: o.fill ? 'var(--bg, #faf9f5)' : 'none',
+      stroke: INK, 'stroke-width': 2.1, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+    });
+    if (o.dashed) box.setAttribute('stroke-dasharray', '3 4');
+    for (var i = 0; i < t.rules.length; i++) {
+      var r = t.rules[i];
+      var rule = pathIn(g, 'M' + (x + 7) + ' ' + (y + r[0]) + ' L' + (x + 7 + r[1]) + ' ' + (y + r[0] - 0.4), 2.1);
+      if (o.dashed) rule.setAttribute('stroke-dasharray', '3 4');
+    }
+    if (t.dots && !o.dashed) for (var j = 0; j < 3; j++) el(g, 'circle', { cx: x + t.dots[0] + j * 5.5, cy: y + t.dots[1], r: 1.3, fill: INK });
+  }
+  function eyes(dyn, f) {
+    for (var i = 0; i < EYES.length; i++) {
+      var s = EYES[i], r = s[2] * (1 - 0.45 * f);
+      var a = s[4] * Math.PI / 180, off = f * r * 0.55;
+      var g = el(dyn, 'g', { 'class': 'scv-eye', style: 'animation-delay:' + s[3] + 's' });
+      el(g, 'circle', { cx: s[0], cy: s[1], r: r.toFixed(1), fill: 'none', stroke: INK, 'stroke-width': 2.1 });
+      el(g, 'circle', {
+        cx: (s[0] + (1 - f) + Math.cos(a) * off).toFixed(1),
+        cy: (s[1] + (1 - f) + Math.sin(a) * off).toFixed(1),
+        r: Math.max(1.8, r * 0.32).toFixed(1), fill: INK
+      });
+    }
+  }
+  function fmtTok(chars) {
+    var t = chars / 4;
+    return '~' + (t >= 1000 ? Math.round(t / 100) / 10 + 'k' : Math.round(t)) + ' tokens';
+  }
+  function band(n, cols, h, basePitch, maxH) {
+    var rows = Math.ceil(n / cols);
+    var natural = h + (rows - 1) * basePitch;
+    if (natural <= maxH) return { pitch: basePitch, H: natural };
+    return { pitch: rows > 1 ? (maxH - h) / (rows - 1) : 0, H: maxH };
+  }
+  function squiggles(dyn, top, bottom) {
+    var strip = bottom - top;
+    if (strip < 12) return;
+    var compact = strip <= 34;
+    var count = Math.max(1, Math.floor(strip / 15));
+    var gap = strip / (count + 1);
+    for (var i = 0; i < count; i++) {
+      var y = (top + gap * (i + 1)).toFixed(1);
+      var segs = Math.floor((compact ? 150 + (i * 89) % 60 : 330 + (i * 89) % 130) / 28);
+      var d = 'M116 ' + y + ' q 14 -3 28 0';
+      for (var s = 1; s < segs; s++) d += ' t 28 0';
+      var p = pathIn(dyn, d, 2.1);
+      p.setAttribute('opacity', compact ? 0.4 : 0.55);
+      if (compact) p.setAttribute('stroke-dasharray', '3 5');
+    }
+  }
+  function grid(dyn, t, count, pitch) {
+    var p = pitch || t.py;
+    for (var i = 0; i < count; i++) {
+      card(dyn, GRID.x0 + (i % t.cols) * t.px, GRID.y0 + Math.floor(i / t.cols) * p, t, { seed: i * 11 + 5, fill: true });
+    }
+  }
+  function sweat(dyn) {
+    pathIn(dyn, 'M204 84 C198 72 206 64 198 54', 2.1);
+    pathIn(dyn, 'M488 82 C496 70 490 62 498 52', 2.1);
+  }
+  function warn(dyn) {
+    var g = el(dyn, 'g', { 'class': 'scv-pulse' });
+    pathIn(g, 'M586 222 L597 240 L575 240 Z', 2.1);
+    pathIn(g, 'M586 227 L586 233', 2.1);
+    el(g, 'circle', { cx: 586, cy: 236.5, r: 1.3, fill: INK });
+  }
+  function render(mode, ui, n) {
+    var dyn = ui.dyn, out = ui.out, chars, b;
+    dyn.textContent = '';
+    if (mode === 'none') {
+      chars = n * PER.full;
+      eyes(dyn, Math.min(1, Math.max(0, (n - 8) / 44)));
+      b = band(n, 6, 40, 50, 140);
+      grid(dyn, T.full, n, b.pitch);
+      squiggles(dyn, GRID.y0 + b.H + 8, 314);
+      if (n > 18) sweat(dyn);
+      out.textContent = n + ' skills = ' + n + ' full entries, ' + fmtTok(chars) + (n > 18 ? ', compacting everything else' : '');
+    } else if (mode === 'clip') {
+      chars = n * PER.clip;
+      eyes(dyn, Math.min(1, Math.max(0, (n - 14) / 46) * 0.85));
+      b = band(n, 7, 28, 36, 140);
+      grid(dyn, T.clip, n, b.pitch);
+      squiggles(dyn, GRID.y0 + b.H + 8, 314);
+      if (n > 28) sweat(dyn);
+      out.textContent = n + ' entries clipped at 60 chars, ' + fmtTok(chars) + (n > 28 ? ', still one per skill' : '');
+    } else {
+      if (n <= 12) {
+        chars = n * PER.full;
+        eyes(dyn, 0);
+        grid(dyn, T.full, n);
+        out.textContent = n + ' full entries, ' + fmtTok(chars) + ' (fits the budget)';
+      } else if (n <= 21) {
+        chars = n * PER.clip;
+        eyes(dyn, 0);
+        grid(dyn, T.clip, n);
+        out.textContent = n + ' entries shortened to fit, ' + fmtTok(chars);
+      } else if (n <= 28) {
+        chars = n * PER.stub;
+        eyes(dyn, 0);
+        grid(dyn, T.stub, n);
+        out.textContent = n + ' entries, names only, ' + fmtTok(chars);
+      } else {
+        chars = 27 * PER.stub + 240;
+        eyes(dyn, 0.2);
+        grid(dyn, T.stub, 27);
+        card(dyn, GRID.x0 + 6 * T.stub.px, GRID.y0 + 3 * T.stub.py, T.stub, { dashed: true, seed: 77 });
+        warn(dyn);
+        out.textContent = '⚠ 27 of ' + n + ' listed, ' + (n - 27) + ' omitted, ' + fmtTok(chars);
+      }
+      squiggles(dyn, 266, 314);
+    }
+    ui.gauge.setAttribute('width', Math.max(2, Math.min(465, 465 * chars / SCALE)).toFixed(1));
+  }
+  function setup(fig) {
+    var mode = fig.getAttribute('data-regime');
+    var svg = el(fig.querySelector('.scv-svg'), 'svg', { viewBox: '0 0 680 424', role: 'img', 'aria-label': LABELS[mode] });
+    var fA = el(svg, 'g', { 'class': 'scv-fA' });
+    pathIn(fA, 'M74 208 C82 142 168 100 300 92 C440 86 582 114 616 176 C652 246 596 318 452 334 C310 348 138 336 92 292');
+    pathIn(fA, 'M62 266 C58 238 64 224 74 208');
+    var fB = el(svg, 'g', { 'class': 'scv-fB', opacity: 0 });
+    pathIn(fB, 'M70 204 C90 136 162 106 304 88 C434 92 586 118 610 180 C656 250 592 322 456 330 C304 352 134 332 88 296');
+    pathIn(fB, 'M66 262 C54 240 68 220 70 204');
+    for (var ti = 0; ti < TENTACLES.length; ti++) pathIn(svg, TENTACLES[ti], 2.1);
+    if (mode === 'ladder') el(svg, 'path', { d: 'M100 144 L582 142 L581 256 L101 258 Z', fill: 'none', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '2 5', opacity: 0.4 });
+    var gauge = el(svg, 'rect', { x: 109.5, y: 393.5, height: 11.5, width: 2, fill: INK, opacity: 0.28 });
+    pathIn(svg, 'M108 392 L576 391 L577.5 406 L107 407.5 Z', 2.1);
+    if (mode === 'ladder') el(svg, 'path', { d: 'M201 387 L202 411', fill: 'none', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '2 4', opacity: 0.6 });
+    var dyn = el(svg, 'g', {});
+    var input = fig.querySelector('input');
+    var ui = { dyn: dyn, out: fig.querySelector('output'), gauge: gauge };
+    function draw() { render(mode, ui, +input.value); }
+    input.addEventListener('input', draw);
+    draw();
+  }
+  var figs = document.querySelectorAll('.scv');
+  for (var i = 0; i < figs.length; i++) setup(figs[i]);
+})();
+</script>
+<!-- ============ INTERACTIVE REGIMES END ============ -->
 
 <h3>sample and methodology</h3>
 <p>Findings are from reading source at the pinned revisions below and, where noted in the individual write-ups, running each host's own formatters and test suites against seeded skill directories.</p>
@@ -263,7 +395,7 @@ make your skills and tools trigger less reliably.</p>
     <li><a href="skills_catalog_constructed.html">What a constructed skills catalog actually looks like</a></li>
   </ul>
 </nav>
-<p>Version 0.1.2 &#183; Last updated 2026-08-20 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+<p>Version 0.2.2 &#183; Last updated 2026-08-20 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
 </footer>
 
 </main>
@@ -285,8 +417,20 @@ make your skills and tools trigger less reliably.</p>
   label();
 })();
 
-// the big top eye follows the pointer
+// load the creature into the figure, then start the eye tracker
 (function () {
+  var slot = document.getElementById('scf-svg-slot');
+  fetch('skills_catalog_creature.svg')
+    .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function (markup) {
+      slot.innerHTML = markup;
+      trackPupil();
+    })
+    .catch(function () { slot.textContent = '(figure failed to load)'; });
+})();
+
+// the big top eye follows the pointer
+function trackPupil() {
   var pupil = document.getElementById('scf-pupil');
   if (!pupil || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
   var svg = pupil.ownerSVGElement;
@@ -311,7 +455,7 @@ make your skills and tools trigger less reliably.</p>
     clientY = e.clientY;
     if (!queued) { queued = true; requestAnimationFrame(track); }
   }, { passive: true });
-})();
+}
 </script>
 </body>
 </html>
