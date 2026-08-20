@@ -58,18 +58,18 @@
     <tr><th>Host</th><th>Per-skill entry</th><th>Body loads via</th></tr>
   </thead>
   <tbody>
-    <tr><td>pi</td><td>XML: name, description, location</td><td><code>read</code> tool</td></tr>
-    <tr><td>opencode</td><td>XML: name, description, location</td><td><code>skill</code> tool</td></tr>
-    <tr><td>fast-agent</td><td>XML: + directory, scripts/references/assets paths</td><td><code>read_text_file</code>, else <code>read_skill</code></td></tr>
-    <tr><td>openclaw</td><td>XML: + content-hash <code>&lt;version&gt;</code></td><td><code>read</code> tool</td></tr>
-    <tr><td>codex</td><td>line: <code>- name: description (file: path)</code></td><td>file read or <code>skills.read</code></td></tr>
-    <tr><td>goose</td><td>line: <code>• name - description</code> (state machine: <code>- name: description</code>)</td><td><code>load_skill</code> tool</td></tr>
-    <tr><td>hermes</td><td>line, grouped by category, description clipped at 60 chars</td><td><code>skill_view</code> tool</td></tr>
+    <tr><td><a href="https://github.com/badlogic/pi-mono" target="_blank">pi</a></td><td>XML: name, description, location</td><td><code>read</code> tool</td></tr>
+    <tr><td><a href="https://github.com/sst/opencode" target="_blank">opencode</a></td><td>XML: name, description, location</td><td><code>skill</code> tool</td></tr>
+    <tr><td><a href="https://github.com/evalstate/fast-agent" target="_blank">fast-agent</a></td><td>XML: + directory, scripts/references/assets paths</td><td><code>read_text_file</code>, else <code>read_skill</code></td></tr>
+    <tr><td><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a></td><td>XML: + content-hash <code>&lt;version&gt;</code></td><td><code>read</code> tool</td></tr>
+    <tr><td><a href="https://github.com/openai/codex" target="_blank">codex</a></td><td>line: <code>- name: description (file: path)</code></td><td>file read or <code>skills.read</code></td></tr>
+    <tr><td><a href="https://github.com/aaif-goose/goose" target="_blank">goose</a></td><td>line: <code>• name - description</code> (state machine: <code>- name: description</code>)</td><td><code>load_skill</code> tool</td></tr>
+    <tr><td><a href="https://github.com/NousResearch/hermes-agent" target="_blank">hermes</a></td><td>line, grouped by category, description clipped at 60 chars</td><td><code>skill_view</code> tool</td></tr>
   </tbody>
 </table>
 
 <h3>the XML family</h3>
-<p>pi is the minimal form; opencode is the same three fields behind a different intro:</p>
+<p><a href="https://github.com/badlogic/pi-mono" target="_blank">pi</a> is the minimal form; <a href="https://github.com/sst/opencode" target="_blank">opencode</a> is the same three fields behind a different intro:</p>
 <pre>The following skills provide specialized instructions for specific tasks.
 Use the read tool to load a skill's file when the task matches its description.
 [...]
@@ -81,19 +81,19 @@ Use the read tool to load a skill's file when the task matches its description.
     &lt;location&gt;C:\skills\pdf-tools\SKILL.md&lt;/location&gt;
   &lt;/skill&gt;
 &lt;/available_skills&gt;</pre>
-<p>fast-agent adds resolved paths for the skill directory and any <code>scripts/</code>, <code>references/</code>, and <code>assets/</code> subdirectories.</p>
-<p>openclaw adds a <code>&lt;version&gt;sha256:9a41cf00e2c1d3b8&lt;/version&gt;</code> (first 16 hex chars of the SKILL.md content) so a mid-session edit triggers a re-read, rewrites home paths to <code>~/</code>, and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
+<p><a href="https://github.com/evalstate/fast-agent" target="_blank">fast-agent</a> adds resolved paths for the skill directory and any <code>scripts/</code>, <code>references/</code>, and <code>assets/</code> subdirectories.</p>
+<p><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a> adds a <code>&lt;version&gt;sha256:9a41cf00e2c1d3b8&lt;/version&gt;</code> (first 16 hex chars of the SKILL.md content) so a mid-session edit triggers a re-read, rewrites home paths to <code>~/</code>, and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
 
 <h3>the line-per-skill family</h3>
-<p>codex wraps markdown bullets in a <code>&lt;skills_instructions&gt;</code> developer message:</p>
+<p><a href="https://github.com/openai/codex" target="_blank">codex</a> wraps markdown bullets in a <code>&lt;skills_instructions&gt;</code> developer message:</p>
 <pre>&lt;skills_instructions&gt;
 ## Skills
 A skill is a set of instructions provided through a `SKILL.md` source. [...]
 ### Available skills
 - demo: Demo skill. (file: /Users/test/.codex/skills/demo/SKILL.md)
 &lt;/skills_instructions&gt;</pre>
-<p>goose is the same idea minus the wrapper and the path, with the description never truncated. Its default loop renders <code>• name - description</code> under <code>## skills</code>; the state machine behind <code>GOOSE_STATE_MACHINE=1</code> (off unless set) renders <code>- name: description</code> under its own <code># Skills</code> heading.</p>
-<p>hermes is a hybrid — <code>&lt;available_skills&gt;</code> tags around category-grouped lines, descriptions clipped at 60 characters (the first entry below shows the clip), under a ~400-token preamble that orders the model to err toward loading:</p>
+<p><a href="https://github.com/aaif-goose/goose" target="_blank">goose</a> is the same idea minus the wrapper and the path, with the description never truncated. Its default loop renders <code>• name - description</code> under <code>## skills</code>; the state machine behind <code>GOOSE_STATE_MACHINE=1</code> (off unless set) renders <code>- name: description</code> under its own <code># Skills</code> heading.</p>
+<p><a href="https://github.com/NousResearch/hermes-agent" target="_blank">hermes</a> is a hybrid — <code>&lt;available_skills&gt;</code> tags around category-grouped lines, descriptions clipped at 60 characters (the first entry below shows the clip), under a ~400-token preamble that orders the model to err toward loading:</p>
 <pre>## Skills (mandatory)
 Before replying, scan the skills below. If a skill matches or is even partially
 relevant to your task, you MUST load it with skill_view(name) [...]
