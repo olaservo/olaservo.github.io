@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>examples of how harnesses bound their agent skills catalog</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --scf-ink: #0B0B0B; --scf-label: #52514E; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --scf-ink: #EDEBE4; --scf-label: #A6A49C; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --scf-ink: #EDEBE4; --scf-label: #A6A49C; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 720px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  p, ul { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; padding: 0.4rem 0.75rem 0.4rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+
+  /* ============================================================
+     Figure: self-contained under .scf — copy this style block and
+     the <figure class="scf"> below into any page to embed it.
+     ============================================================ */
+  .scf { --scf-w: min(900px, 96vw); width: var(--scf-w); position: relative; left: 50%; margin: 2.5rem 0 2.5rem calc(-0.5 * var(--scf-w)); }
+  .scf svg { display: block; width: 100%; height: auto; }
+  .scf .scf-stage { position: relative; }
+  .scf .scf-note { position: absolute; transform: translateX(-50%); font-size: 16px; line-height: 1.4; color: var(--scf-label); text-align: center; }
+  .scf .scf-note--nowrap { white-space: nowrap; font-size: 14.5px; }
+  .scf .scf-labels { position: relative; height: 100px; }
+  .scf .scf-label { position: absolute; top: 4px; transform: translateX(-50%); text-align: center; font-size: 16px; line-height: 1.5; color: var(--scf-label); }
+  .scf .scf-label strong { font-weight: 500; }
+  .scf figcaption { font-size: 1.1rem; color: var(--scf-label); text-align: center; margin-top: 0.5rem; }
+  @media (max-width: 600px) {
+    .scf .scf-note { display: none; }
+    .scf .scf-labels { height: auto; }
+    .scf .scf-label { position: static; transform: none; width: auto !important; text-align: left; margin: 0 0 0.8rem; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .scf .fA { animation: scf-boilA .9s steps(1) infinite; }
+    .scf .fB { animation: scf-boilB .9s steps(1) infinite; }
+    .scf .eye { transform-box: fill-box; transform-origin: center; animation: scf-blink 8.4s ease-in-out infinite; }
+    .scf .fall { transform-box: fill-box; transform-origin: center; animation: scf-fall 5.5s ease-in-out infinite; }
+    .scf .breathe { animation: scf-breathe 3.4s ease-in-out infinite; }
+    .scf .pulse { animation: scf-pulse 2.6s ease-in-out infinite; }
+  }
+  @keyframes scf-boilA { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes scf-boilB { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes scf-blink { 0%, 95.5%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.08); } 98.5% { transform: scaleY(1); } }
+  @keyframes scf-fall { 0% { transform: translate(2px,-30px) rotate(0deg); opacity: 0; } 18% { opacity: .45; } 78% { transform: translate(-5px,14px) rotate(-6deg); opacity: .45; } 100% { transform: translate(-7px,26px) rotate(-8deg); opacity: 0; } }
+  @keyframes scf-breathe { 0%, 100% { opacity: .45; } 50% { opacity: .12; } }
+  @keyframes scf-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .45; } }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<!-- Your intro text goes here -->
+<header class="masthead">
+<h1>Ola&#8217;s Agent Skills Research</h1>
+<p>a.k.a. <a href="https://agentskills.io/home" target="_blank">Agent Skills</a> are great, but how do they actually work?</p>
+</header>
+
+<h2>How do harnesses bound their agent skills catalog?</h2>
+
+<p>Every host in this sample implements a baseline of:</p>
+
+<ul>
+  <li><code>name</code> and <code>description</code> from the skill frontmatter gets injected into context</li>
+  <li>Most hosts below also include the file path for the SKILL.md in their catalog/manifest</li>
+</ul>
+
+<p>Where they differ is what happens to the skills catalog itself as the number of installed skills grows.  
+  This is important to be aware of because similar to tools, loading too many skills up front can use up a lot of tokens and
+make your skills and tools trigger less reliably.</p>
+
+<p>While many harnesses have some kind of optimization around how they load tools, it is still early days for skills
+  and more generalized progressive discovery patterns haven't been standardized yet.
+</p>
+
+<p>None of the sampled hosts ranks skills by relevance to the current task<a href="#fn-relevance" id="fnref-relevance">*</a>. The budgeted hosts decide what stays in the catalog by size, not by fit.</p>
+
+<p>The diagram below illustrates the 3 approaches observed in this sample:</p>
+
+<ul>
+  <li>No enforced budget or limit for installed skills</li>
+  <li>Clipping skill descriptions to reduce token usage for each loaded skill</li>
+  <li>Setting a max budget for skills (e.g. a % of the context window, or a max character count) and laddering/ranking which skills get included in that budget</li>
+</ul>
+
+<p>Disclaimer: this is just a sample of popular open source harnesses and not an exhaustive list. If you have an example you think should be included, feel free to reach out on <a href="https://www.linkedin.com/in/olahungerford/" target="_blank">LinkedIn</a>.</p>
+
+<!-- ============ FIGURE START (copy from here) ============ -->
+<figure class="scf">
+  <div class="scf-stage">
+    <svg viewBox="0 0 680 400" role="img" aria-labelledby="scf-title scf-desc">
+      <title id="scf-title">Blob with skill cards under three catalog regimes</title>
+      <desc id="scf-desc">A sketchy blob full of eyes holds three groups of skill cards: a crowded uncapped pile with one card tumbling out, uniform cards with descriptions cut short by dots, and cards shrinking to name-only stubs with a dashed omitted stub and a warning triangle.</desc>
+      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M44 38 L78 36 L77 60 L45 62 Z"/>
+        <path d="M52 46 L70 45.4"/>
+        <path d="M52 53 L64 52.5"/>
+      </g>
+      <path d="M320 36 C322 50 326 68 330 82" fill="none" stroke="var(--scf-ink)" stroke-width="1.5" stroke-dasharray="2 5" opacity="0.4"/>
+      <g class="fA" fill="none" stroke="var(--scf-ink)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M72 202 C96 132 186 94 342 86 C486 78 592 112 602 180 C618 252 558 322 418 334 C272 350 122 338 84 294"/>
+        <path d="M62 256 C56 236 64 218 72 202"/>
+      </g>
+      <g class="fB" fill="none" stroke="var(--scf-ink)" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round" opacity="0">
+        <path d="M76 198 C104 128 192 90 344 84 C490 80 596 116 598 184 C622 256 552 326 414 332 C276 346 126 334 88 290"/>
+        <path d="M64 252 C58 234 68 214 76 198"/>
+      </g>
+      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M150 96 C142 84 148 72 138 62"/>
+        <path d="M508 92 C518 80 512 70 522 60"/>
+        <path d="M604 214 C618 212 622 220 636 216"/>
+        <path d="M300 344 C298 356 306 362 302 374"/>
+        <path d="M560 310 C570 320 566 330 576 336"/>
+      </g>
+      <g class="eye" style="animation-delay:.3s"><circle cx="338" cy="122" r="13" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle id="scf-pupil" cx="339" cy="123" r="4" fill="var(--scf-ink)"/></g>
+      <g class="eye" style="animation-delay:1.4s"><circle cx="282" cy="112" r="9" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="284" cy="113" r="3" fill="var(--scf-ink)"/></g>
+      <g class="eye" style="animation-delay:2.6s"><circle cx="396" cy="118" r="10" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="394" cy="119" r="3.2" fill="var(--scf-ink)"/></g>
+      <g class="eye" style="animation-delay:.9s"><circle cx="222" cy="122" r="8" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="224" cy="121" r="2.8" fill="var(--scf-ink)"/></g>
+      <g class="eye" style="animation-delay:3.3s"><circle cx="452" cy="120" r="9" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="450" cy="121" r="3" fill="var(--scf-ink)"/></g>
+      <g class="eye" style="animation-delay:1.9s"><circle cx="372" cy="298" r="8" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="373" cy="299" r="2.8" fill="var(--scf-ink)"/></g>
+      <g class="eye" style="animation-delay:4s"><circle cx="250" cy="308" r="7" fill="none" stroke="var(--scf-ink)" stroke-width="2.1"/><circle cx="249" cy="309" r="2.5" fill="var(--scf-ink)"/></g>
+      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M100 148 L166 146 L164 188 L101 190 Z"/>
+        <path d="M110 160 L156 159"/>
+        <path d="M110 172 L146 171"/>
+        <path d="M176 140 L232 138 L231 174 L177 176 Z"/>
+        <path d="M185 152 L222 151"/>
+        <path d="M185 163 L214 162"/>
+        <path d="M106 200 L158 198 L157 232 L107 234 Z"/>
+        <path d="M115 211 L148 210"/>
+        <path d="M115 222 L140 221"/>
+        <path d="M168 190 L240 188 L239 236 L169 238 Z"/>
+        <path d="M178 202 L230 201"/>
+        <path d="M178 214 L222 213"/>
+        <path d="M178 226 L206 225"/>
+        <path d="M118 244 L180 242 L179 274 L119 276 Z"/>
+        <path d="M127 255 L170 254"/>
+        <path d="M127 266 L158 265"/>
+        <path d="M190 248 L236 246 L235 274 L191 276 Z"/>
+        <path d="M198 258 L228 257"/>
+        <path d="M198 268 L218 267"/>
+      </g>
+      <g class="fall" fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4" opacity="0.45">
+        <path d="M84 352 L128 350 L127 382 L86 384 Z"/>
+        <path d="M94 364 L118 363"/>
+      </g>
+      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M268 170 L340 168 L339 202 L269 204 Z"/>
+        <path d="M277 180 L298 179.6"/>
+        <path d="M277 192 L316 191"/>
+        <path d="M272 212 L342 210 L341 244 L273 246 Z"/>
+        <path d="M281 222 L300 221.6"/>
+        <path d="M281 234 L318 233"/>
+        <path d="M270 254 L338 252 L337 286 L271 288 Z"/>
+        <path d="M279 264 L297 263.6"/>
+        <path d="M279 276 L314 275"/>
+      </g>
+      <g fill="var(--scf-ink)">
+        <circle cx="322" cy="191.4" r="1.4"/><circle cx="328" cy="191.3" r="1.4"/><circle cx="334" cy="191.2" r="1.4"/>
+        <circle cx="324" cy="233.3" r="1.4"/><circle cx="330" cy="233.2" r="1.4"/><circle cx="336" cy="233.1" r="1.4"/>
+        <circle cx="320" cy="275.3" r="1.4"/><circle cx="326" cy="275.2" r="1.4"/><circle cx="332" cy="275.1" r="1.4"/>
+      </g>
+      <g fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M406 166 L472 164 L471 208 L407 210 Z"/>
+        <path d="M415 178 L436 177.7"/>
+        <path d="M415 190 L462 189"/>
+        <path d="M415 200 L448 199.4"/>
+        <path d="M484 172 L534 170 L533 204 L485 206 Z"/>
+        <path d="M492 183 L512 182.6"/>
+        <path d="M492 194 L524 193.4"/>
+        <path d="M408 226 L444 225 L443 246 L409 247 Z"/>
+        <path d="M415 236 L436 235.5"/>
+        <path d="M454 228 L488 227 L487 247 L455 248 Z"/>
+        <path d="M461 238 L480 237.6"/>
+      </g>
+      <g class="breathe" fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="3 4" opacity="0.45">
+        <path d="M498 230 L528 229 L527 248 L499 249 Z"/>
+        <path d="M504 239 L520 238.6"/>
+      </g>
+      <g class="pulse">
+        <path d="M545 226 L556 244 L534 244 Z" fill="none" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M545 231 L545 237" stroke="var(--scf-ink)" stroke-width="2.1" stroke-linecap="round"/>
+        <circle cx="545" cy="240.5" r="1.3" fill="var(--scf-ink)"/>
+      </g>
+      <g stroke="var(--scf-ink)" stroke-width="1.5" stroke-dasharray="2 5" opacity="0.4">
+        <line x1="172" y1="286" x2="172" y2="396"/>
+        <line x1="318" y1="296" x2="318" y2="396"/>
+        <line x1="494" y1="284" x2="494" y2="396"/>
+      </g>
+    </svg>
+    <div class="scf-note scf-note--nowrap" style="left:12.9%;top:12%;transform:none;text-align:left">= a skill (name + description)</div>
+    <div class="scf-note scf-note--nowrap" style="left:47%;top:4.5%;font-size:16px">an open source agentic entity</div>
+    <div class="scf-note" style="left:77%;top:4%">none of the sampled hosts ranked skills by relevance<a href="#fn-relevance">*</a></div>
+    <div class="scf-note scf-note--nowrap" style="left:68.8%;top:36%">e.g. a % of context, or a max character count</div>
+  </div>
+  <div class="scf-labels">
+    <div class="scf-label" style="left:25.3%;width:31%"><strong>no budget</strong><br>fast-agent &#183; goose &#183; opencode &#183; pi<br>n skills = n lines, no cap</div>
+    <div class="scf-label" style="left:46.8%;width:20%"><strong>clip</strong><br>hermes<br>cut description at 60 chars</div>
+    <div class="scf-label" style="left:72.6%;width:31%"><strong>budget + ladder</strong><br>codex &#183; openclaw<br>degrade in stages, warn visibly</div>
+  </div>
+  <figcaption>A host and its installed skills (each card is a skill&#8217;s name and description) under the three catalog regimes.</figcaption>
+</figure>
+<!-- ============ FIGURE END ============ -->
+
+<!-- Your commentary on the regimes goes here -->
+
+<h3>sample and methodology</h3>
+<p>Findings are from reading source at the pinned revisions below and, where noted in the individual write-ups, running each host's own formatters and test suites against seeded skill directories.</p>
+<table>
+  <thead>
+    <tr><th>Host</th><th>Revision studied</th><th>Notes</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><a href="https://github.com/openai/codex" target="_blank">codex</a></td><td><a href="https://github.com/openai/codex/tree/3b45c29062" target="_blank"><code>3b45c29062</code></a></td><td>budget asserted by running render tests</td></tr>
+    <tr><td><a href="https://github.com/evalstate/fast-agent" target="_blank">fast-agent</a></td><td><a href="https://github.com/evalstate/fast-agent/tree/610a2f57" target="_blank"><code>610a2f57</code></a></td><td>verified against a captured request fixture</td></tr>
+    <tr><td><a href="https://github.com/aaif-goose/goose" target="_blank">goose</a></td><td><a href="https://github.com/aaif-goose/goose/tree/0393c6009a" target="_blank"><code>0393c6009a</code></a></td><td>legacy loop (the default) and the opt-in state machine both checked</td></tr>
+    <tr><td><a href="https://github.com/NousResearch/hermes-agent" target="_blank">hermes-agent</a></td><td><a href="https://github.com/NousResearch/hermes-agent/tree/ad889540f2" target="_blank"><code>ad889540f2</code></a></td><td>rendered output produced by running repo code</td></tr>
+    <tr><td><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a></td><td><a href="https://github.com/openclaw/openclaw/tree/0a86702241" target="_blank"><code>0a86702241</code></a></td><td>formatter run directly via tsx</td></tr>
+    <tr><td><a href="https://github.com/anomalyco/opencode" target="_blank">opencode</a></td><td><a href="https://github.com/anomalyco/opencode/tree/4c5960dc4b" target="_blank"><code>4c5960dc4b</code></a> (dev branch)</td><td>v1 path; v2 core rewrite noted separately</td></tr>
+    <tr><td><a href="https://github.com/badlogic/pi-mono" target="_blank">pi</a></td><td><a href="https://github.com/badlogic/pi-mono/tree/b7bb00b936" target="_blank"><code>b7bb00b936</code></a> (read 2026-08-19)</td><td>formatter run directly via tsx</td></tr>
+  </tbody>
+</table>
+
+<h3>bonus: what a constructed catalog actually looks like</h3>
+<p>Rendered out, the catalogs from these harnesses fell into two syntax families: XML elements per skill (pi, opencode, fast-agent, openclaw) or one plain line per skill (codex, goose, hermes). Verbatim examples from each host, and the degraded forms under budget pressure, are on <a href="skills_catalog_constructed.html">a companion page</a>.</p>
+
+<p class="footnote" id="fn-relevance">* (according to the source code, codex is testing ranking skills by relevance, in shadow mode) <a href="#fnref-relevance" aria-label="Back to reference">&#8617;</a></p>
+
+<footer>
+<nav aria-label="Pages in this series">
+  agent skills research:
+  <ul>
+    <li aria-current="page">How harnesses bound their agent skills catalog</li>
+    <li><a href="skills_catalog_constructed.html">What a constructed skills catalog actually looks like</a></li>
+  </ul>
+</nav>
+<p>Version 0.1.1 &#183; Last updated 2026-08-19 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+</main>
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '☀ light' : '☾ dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+
+// the big top eye follows the pointer
+(function () {
+  var pupil = document.getElementById('scf-pupil');
+  if (!pupil || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+  var svg = pupil.ownerSVGElement;
+  var eyeX = 338, eyeY = 122, maxOffset = 8;
+  var pt = svg.createSVGPoint();
+  var queued = false, clientX = 0, clientY = 0;
+  function track() {
+    queued = false;
+    var ctm = svg.getScreenCTM();
+    if (!ctm) return;
+    pt.x = clientX;
+    pt.y = clientY;
+    var p = pt.matrixTransform(ctm.inverse());
+    var dx = p.x - eyeX, dy = p.y - eyeY;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    var k = dist ? Math.min(1, dist / 60) * maxOffset / dist : 0;
+    pupil.setAttribute('cx', (eyeX + dx * k).toFixed(2));
+    pupil.setAttribute('cy', (eyeY + dy * k).toFixed(2));
+  }
+  addEventListener('pointermove', function (e) {
+    clientX = e.clientX;
+    clientY = e.clientY;
+    if (!queued) { queued = true; requestAnimationFrame(track); }
+  }, { passive: true });
+})();
+</script>
+</body>
+</html>
