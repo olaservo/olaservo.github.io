@@ -85,7 +85,7 @@ Use the read tool to load a skill's file when the task matches its description.
   &lt;/skill&gt;
 &lt;/available_skills&gt;</pre>
 <p><a href="https://github.com/evalstate/fast-agent" target="_blank">fast-agent</a> adds resolved paths for the skill directory and any <code>scripts/</code>, <code>references/</code>, and <code>assets/</code> subdirectories.</p>
-<p><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a> adds a <code>&lt;version&gt;sha256:9a41cf00e2c1d3b8&lt;/version&gt;</code> (first 16 hex chars of the SKILL.md content) so a mid-session edit triggers a re-read, rewrites home paths to <code>~/</code>, and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
+<p><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a> adds a <code>&lt;version&gt;sha256:9a41cf00e2c1d3b8&lt;/version&gt;</code> (first 16 hex chars of the sha256 of the SKILL.md content) so a mid-session edit triggers a re-read, rewrites home paths to <code>~/</code>, and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
 
 <h3>the line-per-skill family</h3>
 <p><a href="https://github.com/openai/codex" target="_blank">codex</a> wraps markdown bullets in a <code>&lt;skills_instructions&gt;</code> developer message:</p>
@@ -122,7 +122,7 @@ relevant to your task, you MUST load it with skill_view(name) [...]
     <li aria-current="page">What a constructed skills catalog actually looks like</li>
   </ul>
 </nav>
-<p>Version 0.1.1 &#183; Last updated 2026-08-19 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+<p>Version 0.1.2 &#183; Last updated 2026-08-20 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
 </footer>
 
 </main>
