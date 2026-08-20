@@ -80,7 +80,23 @@
   <li>Most hosts below also include the file path for the SKILL.md in their catalog/manifest</li>
 </ul>
 
-<p>Where they differ is what happens to the catalog itself as the number of installed skills grows.</p>
+<p>Where they differ is what happens to the skills catalog itself as the number of installed skills grows.  
+  This is important to be aware of because similar to tools, loading too many skills up front can use up a lot of tokens and
+make your skills and tools trigger less reliably.</p>
+
+<p>While many harnesses have some kind of optimization around how they load tools, it is still early days for skills
+  and more generalized progressive discovery patterns haven't been standardized yet.
+</p>
+
+<p>The diagram below illustrates the 3 approaches observed in this sample:</p>
+
+<ul>
+  <li>No enforced budget or limit for installed skills</li>
+  <li>Clipping skill descriptions to reduce token usage for each loaded skill</li>
+  <li>Setting a max budget for skills and laddering/ranking which skills get included in that budget</li>
+</ul>
+
+<p>Disclaimer: this is just a sample of popular open source harnesses and not an exhaustive list. If you have an example you think should be included, feel free to reach out on <a href="https://www.linkedin.com/in/olahungerford/" target="_blank">LinkedIn</a>.</p>
 
 <!-- ============ FIGURE START (copy from here) ============ -->
 <figure class="scf">
