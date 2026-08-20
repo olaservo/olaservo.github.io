@@ -6,7 +6,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
-<title>what a constructed skills catalog looks like</title>
+<title>what a constructed skills catalog actually looks like</title>
 <style>
   :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; color-scheme: light; }
   @media (prefers-color-scheme: dark) {
@@ -20,6 +20,8 @@
   h2 { font-size: 1.3rem; font-weight: 500; }
   h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
   .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
   p, ul { line-height: 1.7; }
   pre { border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; overflow-x: auto; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.78rem; line-height: 1.55; }
   table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
@@ -44,10 +46,14 @@
 <header class="masthead">
 <h1>Ola&#8217;s Agent Skills Research</h1>
 <p>a.k.a. <a href="https://agentskills.io/home" target="_blank">Agent Skills</a> are great, but how do they actually work?</p>
+<nav aria-label="Pages in this series">
+  <a href="skills_catalog_regimes.html">limiting skills bloat</a> &#183;
+  <span aria-current="page">what a catalog looks like</span>
+</nav>
 </header>
 
 <h2>What a constructed skills catalog actually looks like</h2>
-<p>Companion to <a href="skills_catalog_regimes.html">how harnesses bound their skills catalog</a>, using the same sample and revisions. Rendered out, the seven catalogs fall into two syntax families:</p>
+<p>Companion to <a href="skills_catalog_regimes.html">how harnesses bound their agent skills catalog</a>, using the same sample and revisions. Rendered out, the seven catalogs fall into two syntax families:</p>
 
 <ul>
   <li>Hosts that emit one XML <code>&lt;skill&gt;</code> element per skill</li>
