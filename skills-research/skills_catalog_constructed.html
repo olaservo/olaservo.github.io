@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>what a constructed skills catalog looks like</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 720px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  p, ul { line-height: 1.7; }
+  pre { border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem 1rem; overflow-x: auto; font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.78rem; line-height: 1.55; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; padding: 0.4rem 0.75rem 0.4rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<!-- Your intro text goes here -->
+<header class="masthead">
+<h1>Ola&#8217;s Agent Skills Research</h1>
+<p>a.k.a. <a href="https://agentskills.io/home" target="_blank">Agent Skills</a> are great, but how do they actually work?</p>
+</header>
+
+<h2>What a constructed skills catalog actually looks like</h2>
+<p>Companion to <a href="skills_catalog_regimes.html">how harnesses bound their skills catalog</a>, using the same sample and revisions. Rendered out, the seven catalogs fall into two syntax families:</p>
+
+<ul>
+  <li>Hosts that emit one XML <code>&lt;skill&gt;</code> element per skill</li>
+  <li>Hosts that emit one plain text line per skill</li>
+</ul>
+
+<p>Every host puts a preamble above the list. Most of them name the tool that loads a skill body, though goose&#8217;s does not and codex&#8217;s is model-gated. Examples were produced by running each host's own formatter or taken from its test fixtures, trimmed to one or two entries.</p>
+
+<table>
+  <thead>
+    <tr><th>Host</th><th>Per-skill entry</th><th>Body loads via</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>pi</td><td>XML: name, description, location</td><td><code>read</code> tool</td></tr>
+    <tr><td>opencode</td><td>XML: name, description, location</td><td><code>skill</code> tool</td></tr>
+    <tr><td>fast-agent</td><td>XML: + directory, scripts/references/assets paths</td><td><code>read_text_file</code>, else <code>read_skill</code></td></tr>
+    <tr><td>openclaw</td><td>XML: + content-hash <code>&lt;version&gt;</code></td><td><code>read</code> tool</td></tr>
+    <tr><td>codex</td><td>line: <code>- name: description (file: path)</code></td><td>file read or <code>skills.read</code></td></tr>
+    <tr><td>goose</td><td>line: <code>• name - description</code> (state machine: <code>- name: description</code>)</td><td><code>load_skill</code> tool</td></tr>
+    <tr><td>hermes</td><td>line, grouped by category, description clipped at 60 chars</td><td><code>skill_view</code> tool</td></tr>
+  </tbody>
+</table>
+
+<h3>the XML family</h3>
+<p>pi is the minimal form; opencode is the same three fields behind a different intro:</p>
+<pre>The following skills provide specialized instructions for specific tasks.
+Use the read tool to load a skill's file when the task matches its description.
+[...]
+
+&lt;available_skills&gt;
+  &lt;skill&gt;
+    &lt;name&gt;pdf-tools&lt;/name&gt;
+    &lt;description&gt;Extracts text and tables from PDF files, fills PDF forms, and merges multiple PDFs. Use when working with PDF documents.&lt;/description&gt;
+    &lt;location&gt;C:\skills\pdf-tools\SKILL.md&lt;/location&gt;
+  &lt;/skill&gt;
+&lt;/available_skills&gt;</pre>
+<p>fast-agent adds resolved paths for the skill directory and any <code>scripts/</code>, <code>references/</code>, and <code>assets/</code> subdirectories.</p>
+<p>openclaw adds a <code>&lt;version&gt;sha256:9a41cf00e2c1d3b8&lt;/version&gt;</code> (first 16 hex chars of the SKILL.md content) so a mid-session edit triggers a re-read, rewrites home paths to <code>~/</code>, and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
+
+<h3>the line-per-skill family</h3>
+<p>codex wraps markdown bullets in a <code>&lt;skills_instructions&gt;</code> developer message:</p>
+<pre>&lt;skills_instructions&gt;
+## Skills
+A skill is a set of instructions provided through a `SKILL.md` source. [...]
+### Available skills
+- demo: Demo skill. (file: /Users/test/.codex/skills/demo/SKILL.md)
+&lt;/skills_instructions&gt;</pre>
+<p>goose is the same idea minus the wrapper and the path, with the description never truncated. Its default loop renders <code>• name - description</code> under <code>## skills</code>; the state machine behind <code>GOOSE_STATE_MACHINE=1</code> (off unless set) renders <code>- name: description</code> under its own <code># Skills</code> heading.</p>
+<p>hermes is a hybrid — <code>&lt;available_skills&gt;</code> tags around category-grouped lines, descriptions clipped at 60 characters (the first entry below shows the clip), under a ~400-token preamble that orders the model to err toward loading:</p>
+<pre>## Skills (mandatory)
+Before replying, scan the skills below. If a skill matches or is even partially
+relevant to your task, you MUST load it with skill_view(name) [...]
+
+&lt;available_skills&gt;
+  devops: DevOps workflows and runbooks
+    - deploy-checklist: Pre-deploy verification steps for the staging and product...
+    - incident-response: Triage steps for production incidents
+  writing:
+    - blog-voice: House style for blog posts
+&lt;/available_skills&gt;</pre>
+
+<h3>degraded forms</h3>
+<p>The budgeted hosts keep the same shape as they degrade and say so in the catalog itself. openclaw protects identities before descriptions: it drops every description, binary-searches the skill count down until that description-free block fits, then spends whatever budget is left on a per-description cap binary-searched between 4 and 220 chars. A catalog that loses entries is prefixed with <code>⚠️ Skills truncated: included 19 of 40 (compact format, descriptions omitted). Run `openclaw skills check` to audit.</code> One that keeps every skill but degrades the format says so instead: <code>⚠️ Skills catalog using compact format (descriptions shortened). Run `openclaw skills check` to audit.</code> codex cuts descriptions mid-string and ends a truncated list with <code>- N additional skills omitted from this bounded skills list.</code> Under budget pressure it also aliases shared path prefixes via a <code>### Skill roots</code> table, shrinking locators to <code>(file: r0/skill-0/SKILL.md)</code>. hermes's clip is always on and its focus mode collapses out-of-context categories to a names-only line while keeping every name visible.</p>
+
+<footer>
+<nav aria-label="Pages in this series">
+  agent skills research:
+  <ul>
+    <li><a href="skills_catalog_regimes.html">How harnesses bound their agent skills catalog</a></li>
+    <li aria-current="page">What a constructed skills catalog actually looks like</li>
+  </ul>
+</nav>
+<p>Version 0.1.0 &#183; Last updated 2026-08-19 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+</main>
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '☀ light' : '☾ dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>
