@@ -175,7 +175,7 @@ make your skills and tools trigger less reliably.</p>
     <input id="scv-n-ladder" type="range" min="4" max="60" value="4">
     <output for="scv-n-ladder"></output>
   </div>
-  <figcaption><strong>budget + ladder</strong> (codex &#183; openclaw) &#8212; the catalog gets a fixed budget (the dashed box). As skills pile up it degrades in stages: shortened descriptions, then names only, then omitting skills with a visible warning. The rest of context keeps its room.</figcaption>
+  <figcaption><strong>budget + ladder</strong> (codex &#183; openclaw) &#8212; the catalog gets a fixed budget (the dashed box). As skills pile up it degrades in stages: shortened descriptions, then names only, then omitting skills with a visible warning. Total spend stays pinned at the budget &#8212; degrading buys room for more skills, not fewer tokens &#8212; and the rest of context keeps its room.</figcaption>
 </figure>
 
 <script>
@@ -192,6 +192,7 @@ make your skills and tools trigger less reliably.</p>
   // 1024-char description, plus a location path and list markup where emitted
   var PER = { full: 1280, clip: 145, stub: 75 };
   var SCALE = 60 * PER.full;
+  var BUDGET = 12 * PER.full;
   var LABELS = {
     none: 'A tentacled blob creature filling with full-size skill cards; as skills grow the card stack crams tighter, the wavy context lines below get compacted, its eyes shrink and drift, and the size bar grows steadily',
     clip: 'A tentacled blob creature filling with clipped skill cards; smaller cards, but still one per skill, and the wavy context lines still lose their room eventually',
@@ -311,28 +312,28 @@ make your skills and tools trigger less reliably.</p>
       if (n > 28) sweat(dyn);
       out.textContent = n + ' entries clipped at 60 chars, ' + fmtTok(chars) + (n > 28 ? ', still one per skill' : '');
     } else {
+      // once degrading, the host spends its whole budget: shorter entries buy
+      // headroom that goes back into descriptions, so the total stays pinned
+      chars = BUDGET;
       if (n <= 12) {
         chars = n * PER.full;
         eyes(dyn, 0);
         grid(dyn, T.full, n);
         out.textContent = n + ' full entries, ' + fmtTok(chars) + ' (fits the budget)';
       } else if (n <= 21) {
-        chars = n * PER.clip;
         eyes(dyn, 0);
         grid(dyn, T.clip, n);
-        out.textContent = n + ' entries shortened to fit, ' + fmtTok(chars);
+        out.textContent = n + ' entries shortened to fit, ' + fmtTok(chars) + ' (at budget)';
       } else if (n <= 28) {
-        chars = n * PER.stub;
         eyes(dyn, 0);
         grid(dyn, T.stub, n);
-        out.textContent = n + ' entries, names only, ' + fmtTok(chars);
+        out.textContent = n + ' entries, names only, ' + fmtTok(chars) + ' (at budget)';
       } else {
-        chars = 27 * PER.stub + 240;
         eyes(dyn, 0.2);
         grid(dyn, T.stub, 27);
         card(dyn, GRID.x0 + 6 * T.stub.px, GRID.y0 + 3 * T.stub.py, T.stub, { dashed: true, seed: 77 });
         warn(dyn);
-        out.textContent = '⚠ 27 of ' + n + ' listed, ' + (n - 27) + ' omitted, ' + fmtTok(chars);
+        out.textContent = '⚠ 27 of ' + n + ' listed, ' + (n - 27) + ' omitted, ' + fmtTok(chars) + ' (at budget)';
       }
       squiggles(dyn, 266, 314);
     }
@@ -395,7 +396,7 @@ make your skills and tools trigger less reliably.</p>
     <li><a href="skills_catalog_constructed.html">What a constructed skills catalog actually looks like</a></li>
   </ul>
 </nav>
-<p>Version 0.2.2 &#183; Last updated 2026-08-20 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+<p>Version 0.2.3 &#183; Last updated 2026-08-20 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
 </footer>
 
 </main>
