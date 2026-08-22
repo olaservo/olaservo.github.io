@@ -70,7 +70,7 @@
     <tr><td><a href="https://github.com/badlogic/pi-mono" target="_blank">pi</a></td><td>XML: name, description, location</td><td><code>read</code> tool</td></tr>
     <tr><td><a href="https://github.com/anomalyco/opencode" target="_blank">opencode</a></td><td>XML: name, description, location</td><td><code>skill</code> tool</td></tr>
     <tr><td><a href="https://github.com/evalstate/fast-agent" target="_blank">fast-agent</a></td><td>XML: + directory, scripts/references/assets paths</td><td><code>read_text_file</code>, else <code>read_skill</code></td></tr>
-    <tr><td><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a></td><td>XML: + content-hash <code>&lt;version&gt;</code></td><td><code>read</code> tool</td></tr>
+    <tr><td><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a></td><td>XML: + home paths rewritten to <code>~/</code></td><td><code>read</code> tool</td></tr>
     <tr><td><a href="https://github.com/openai/codex" target="_blank">codex</a></td><td>line: <code>- name: description (file: path)</code></td><td>file read or <code>skills.read</code></td></tr>
     <tr><td><a href="https://github.com/aaif-goose/goose" target="_blank">goose</a></td><td>line: <code>• name - description</code> (state machine: <code>- name: description</code>)</td><td><code>load_skill</code> tool</td></tr>
     <tr><td><a href="https://github.com/NousResearch/hermes-agent" target="_blank">hermes</a></td><td>line, grouped by category, description clipped at 60 chars</td><td><code>skill_view</code> tool</td></tr>
@@ -91,7 +91,7 @@ Use the read tool to load a skill's file when the task matches its description.
   &lt;/skill&gt;
 &lt;/available_skills&gt;</pre>
 <p><a href="https://github.com/evalstate/fast-agent" target="_blank">fast-agent</a> adds resolved paths for the skill directory and any <code>scripts/</code>, <code>references/</code>, and <code>assets/</code> subdirectories.</p>
-<p><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a> adds a <code>&lt;version&gt;sha256:9a41cf00e2c1d3b8&lt;/version&gt;</code> (first 16 hex chars of the sha256 of the SKILL.md content) so a mid-session edit triggers a re-read, rewrites home paths to <code>~/</code>, and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
+<p><a href="https://github.com/openclaw/openclaw" target="_blank">openclaw</a> rewrites home paths to <code>~/</code> and prepends an imperative <code>## Skills</code> header above that same preamble: <code>Scan &lt;available_skills&gt;. Clear match: read exact &lt;location&gt; with `read`; obey.</code></p>
 
 <h3>the line-per-skill family</h3>
 <p><a href="https://github.com/openai/codex" target="_blank">codex</a> wraps markdown bullets in a <code>&lt;skills_instructions&gt;</code> developer message:</p>
@@ -117,7 +117,7 @@ relevant to your task, you MUST load it with skill_view(name) [...]
 
 <h3>degraded forms</h3>
 <p>The budgeted hosts keep the same shape as they degrade and say so in the catalog itself.</p>
-<p>openclaw protects identities before descriptions: it drops every description, binary-searches the skill count down until that description-free block fits, then spends whatever budget is left on a per-description cap binary-searched between 4 and 220 chars. A catalog that loses entries is prefixed with <code>⚠️ Skills truncated: included 19 of 40 (compact format, descriptions omitted). Run `openclaw skills check` to audit.</code> One that keeps every skill but degrades the format says so instead: <code>⚠️ Skills catalog using compact format (descriptions shortened). Run `openclaw skills check` to audit.</code></p>
+<p>openclaw protects identities before descriptions: it drops every description, binary-searches the skill count down until that description-free block fits, then spends whatever budget is left on a per-description cap binary-searched between 4 and 220 chars. A catalog that loses entries is prefixed with <code>⚠️ Skills truncated: included 27 of 40 (compact format, descriptions omitted). Run `openclaw skills check` to audit.</code> One that keeps every skill but degrades the format says so instead: <code>⚠️ Skills catalog using compact format (descriptions shortened). Run `openclaw skills check` to audit.</code></p>
 <p>codex cuts descriptions mid-string and ends a truncated list with <code>- N additional skills omitted from this bounded skills list.</code> Under budget pressure it also aliases shared path prefixes via a <code>### Skill roots</code> table, shrinking locators to <code>(file: r0/skill-0/SKILL.md)</code>. hermes's clip is always on and its focus mode collapses out-of-context categories to a names-only line while keeping every name visible.</p>
 
 <footer>
@@ -128,7 +128,7 @@ relevant to your task, you MUST load it with skill_view(name) [...]
     <li aria-current="page">What a constructed skills catalog actually looks like</li>
   </ul>
 </nav>
-<p>Version 0.1.2 &#183; Last updated 2026-08-20 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+<p>Version 0.1.3 &#183; Last updated 2026-08-21 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
 </footer>
 
 </main>
