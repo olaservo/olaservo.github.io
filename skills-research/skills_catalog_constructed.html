@@ -102,8 +102,8 @@ A skill is a set of instructions provided through a `SKILL.md` source. [...]
 - demo: Demo skill. (file: /Users/test/.codex/skills/demo/SKILL.md)
 &lt;/skills_instructions&gt;</pre>
 <p><a href="https://github.com/aaif-goose/goose" target="_blank">goose</a> is the same idea minus the wrapper and the path, with the description never truncated. Its default loop renders <code>• name - description</code> under <code>## skills</code>; the state machine behind <code>GOOSE_STATE_MACHINE=1</code> (off unless set) renders <code>- name: description</code> under its own <code># Skills</code> heading.</p>
-<p><a href="https://github.com/NousResearch/hermes-agent" target="_blank">hermes</a> is a hybrid — <code>&lt;available_skills&gt;</code> tags around category-grouped lines, descriptions clipped at 60 characters (the first entry below shows the clip), under a ~400-token preamble that orders the model to err toward loading:</p>
-<pre>## Skills (mandatory)
+<p><a href="https://github.com/NousResearch/hermes-agent" target="_blank">hermes</a> is a hybrid — <code>&lt;available_skills&gt;</code> tags around category-grouped lines, descriptions clipped at 60 characters (the first entry below shows the clip), under a preamble that orders the model to err toward loading:</p>
+<pre>## Skills
 Before replying, scan the skills below. If a skill matches or is even partially
 relevant to your task, you MUST load it with skill_view(name) [...]
 
@@ -128,7 +128,7 @@ relevant to your task, you MUST load it with skill_view(name) [...]
     <li aria-current="page">What a constructed skills catalog actually looks like</li>
   </ul>
 </nav>
-<p>Version 0.1.3 &#183; Last updated 2026-08-21 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+<p>Version 0.1.4 &#183; Last updated 2026-08-31 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
 </footer>
 
 </main>
