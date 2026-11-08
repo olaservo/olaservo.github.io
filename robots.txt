@@ -1,71 +1,50 @@
-User-agent: CCBot
+# robots.txt for olahungerford.com
+#
+# Preferences are stated by use, not by crawler name, with the signals tracked
+# in the access layer at https://www.olahungerford.com/content-provenance/.
+# Search indexing and fetches made for a person who asked are welcome everywhere.
+# AI training is not, anywhere on this site.
+
+# 1. IETF AIPREF attach draft (draft-ietf-aipref-attach): a Content-Usage rule
+#    in the catch-all group. Crawlers that do not read it ignore the line.
+# 2. Content Signals (contentsignals.org, Cloudflare's AIPREF proposal).
+#    search=yes: build an index and return links and excerpts.
+#    ai-input=yes: use as model input at answer time, for example retrieval,
+#    with the source credited.
+#    ai-train=no: no training or fine-tuning. This restriction is a reservation
+#    of rights under Article 4 of Directive (EU) 2019/790.
+User-Agent: *
+Allow: /
+Content-Usage: train-ai=n
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
+# 3. Cross-vendor training token (draft-kelley-aipref-training-preference-signal).
+#    A Disallow under this token is a preference against AI training, and the
+#    token is never matched by the * group above.
+User-Agent: __usage_ai-training
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
-
-User-agent: GPTBot
-Disallow: /
-
-User-agent: Google-Extended
-Disallow: /
-
-User-agent: Google-CloudVertexBot
-Disallow: /
-
-User-agent: Applebot-Extended 
-Disallow: /
-
-User-agent: anthropic-ai
-Disallow: /
-
-User-agent: ClaudeBot 
-Disallow: /
-
-User-agent: Omgilibot
-Disallow: /
-
-User-agent: Omgili
-Disallow: /
-
-User-agent: FacebookBot
-Disallow: /
-
-User-agent: Diffbot
-Disallow: /
-
-User-agent: DuckAssistBot
-Disallow: /
-
-User-agent: AI2Bot
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
-
-User-agent: Kangaroo Bot
-Disallow: /
-
-User-agent: ImagesiftBot 
-Disallow: /
-
-User-agent: PerplexityBot
-Disallow: /
-
-User-agent: cohere-ai
-Disallow: /
-
-User-agent: Meta-ExternalAgent
-Disallow: /
-
-User-agent: Meta-ExternalFetcher
-Disallow: /
-
-User-agent: Timpibot
-Disallow: /
-
-User-agent: Webzio-Extended
-Disallow: /
-
-User -agent: YouBot
+# 4. Fallback for crawlers whose only purpose is collecting training data.
+#    Kept from the 2024-12 version of this file. Fetchers that act for a person
+#    (ChatGPT-User, Claude-User, Perplexity-User, DuckAssistBot, YouBot,
+#    Meta-ExternalFetcher) and search indexers (PerplexityBot, OAI-SearchBot,
+#    Claude-SearchBot) are no longer listed here.
+User-Agent: AI2Bot
+User-Agent: Applebot-Extended
+User-Agent: anthropic-ai
+User-Agent: Bytespider
+User-Agent: CCBot
+User-Agent: ClaudeBot
+User-Agent: cohere-ai
+User-Agent: Diffbot
+User-Agent: FacebookBot
+User-Agent: Google-Extended
+User-Agent: GPTBot
+User-Agent: ImagesiftBot
+User-Agent: Kangaroo Bot
+User-Agent: Meta-ExternalAgent
+User-Agent: Omgili
+User-Agent: Omgilibot
+User-Agent: Timpibot
+User-Agent: Webzio-Extended
 Disallow: /
