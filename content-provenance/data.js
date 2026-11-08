@@ -288,7 +288,7 @@ window.CARDS = [
   "type": "proposal",
   "website": "https://github.com/agentskills/agentskills/discussions/393",
   "part_of": "agent-skills",
-  "status": "Six open threads, one maintainer, no convergence",
+  "status": "Six open discussions in Ideas, one maintainer, no convergence",
   "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
   "updated": "2026-11-03",
   "tags": [
@@ -297,7 +297,7 @@ window.CARDS = [
    "station/at-rest",
    "topic/skills"
   ],
-  "summary": "Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter (#252), SKILL.sig sidecar (#393), skills-lock.json (#588), `metadata.source` (#564), `metadata.derived-from` (#620), skill-evidence documents keyed by digest (#643).",
+  "summary": "Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)).",
   "sections": [
    {
     "title": "Topics",
