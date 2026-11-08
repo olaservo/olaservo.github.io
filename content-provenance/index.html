@@ -8,6 +8,8 @@
 <meta property="og:title" content="Content Provenance, Access and Attribution">
 <meta property="og:description" content="Cards for the standards bodies, working groups, specifications and proposals on content provenance, access, licensing, attribution and payment for AI systems.">
 <meta property="og:type" content="website">
+<link rel="alternate" type="text/markdown" href="cards.md" title="All cards as Markdown">
+<link rel="alternate" type="application/json" href="cards.json" title="All cards as JSON">
 <style>
   :root {
     color-scheme: light;
@@ -148,25 +150,9 @@ const store = {
 const AS_OF = cards.map(c => c.updated).filter(Boolean).sort().pop() || "";
 const SITE = "https://www.olahungerford.com/";
 
-const LAYERS = ["provenance", "access", "licensing", "attribution", "payments", "identity", "governance"];
-const LAYER_TEXT = {
-  provenance: "where content came from and what was done to it, carried as signed records",
-  access: "whether a crawler or agent may read or use content, and how that preference is expressed",
-  licensing: "the terms and prices for use, in a form machines can read",
-  attribution: "whether the source is named and credited where the content ends up",
-  payments: "how a use gets paid for, from HTTP 402 to agent checkout",
-  identity: "who the agent, crawler or signer is",
-  governance: "the foundations, policy bodies and regulation around the rest",
-};
-const STAGES = ["at-rest", "in-transit", "boundary", "after-delivery", "trust"];
-const STAGE_TEXT = {
-  "at-rest": "content or a skill is signed where it is stored",
-  "in-transit": "the credential travels with the content across a tool call",
-  "boundary": "a gateway or hook checks it on the way through",
-  "after-delivery": "credit and reporting once the content has left the protocol and its metadata is gone",
-  "trust": "who may sign or report, and how that is decided. Not a place on the path, but every other stage depends on it",
-};
-const LABELS = { "stage/boundary": "at the boundary" };
+const VOCAB = window.VOCAB || { layers: {}, stages: {}, labels: {} };
+const LAYER_TEXT = VOCAB.layers, STAGE_TEXT = VOCAB.stages, LABELS = VOCAB.labels;
+const LAYERS = Object.keys(LAYER_TEXT), STAGES = Object.keys(STAGE_TEXT);
 const GROUPS = [["layer", "Layer", LAYERS], ["stage", "Stage", STAGES], ["type", "Type", null], ["", "Other", null]];
 
 function human(t) {
@@ -237,14 +223,14 @@ function renderList() {
 }
 
 function foot() {
-  return `<p class="foot">Compiled by <a href="${SITE}about/">Ola Hungerford</a>${AS_OF ? ", as of " + esc(AS_OF) : ""}. Part of <a href="${SITE}">olahungerford.com</a>.</p>`;
+  return `<p class="foot">Compiled by <a href="${SITE}about/">Ola Hungerford</a>${AS_OF ? ", as of " + esc(AS_OF) : ""}. Part of <a href="${SITE}">olahungerford.com</a>. Also as <a href="cards.md">Markdown</a> and <a href="cards.json">JSON</a>.</p>`;
 }
 
 function intro() {
   return `<div class="intro">
 <p>${cards.length} cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.</p>
 <p>I am <a href="${SITE}about/">Ola Hungerford</a>. I keep these cards to follow the overlapping efforts while I work on content provenance and attribution in MCP, and I publish them so anyone doing the same can start from a map. They are one person's working notes${AS_OF ? ", as of " + esc(AS_OF) : ""}. Status lines carry the dates my sources gave, so check upstream before relying on one. Corrections are welcome through the contact details on my About page.</p>
-<p>Pick a card from the list, search, or filter by the tags above. Links inside a card open other cards, and "Linked from" lists the reverse. Where an effort has a public place to take part, the card says so under its name.</p>
+<p>Pick a card from the list, search, or filter by the tags above. Links inside a card open other cards, and "Linked from" lists the reverse. Where an effort has a public place to take part, the card says so under its name. Agents and scripts can read the same cards as <a href="cards.md">Markdown</a> or <a href="cards.json">JSON</a>, described in <a href="llms.txt">llms.txt</a>.</p>
 <h3>Layers</h3>
 <ul>${LAYERS.map(l => `<li><span class="lay" style="background:var(--l-${l})"></span><strong>${l}</strong>: ${LAYER_TEXT[l]}.</li>`).join("")}</ul>
 <h3>Stages</h3>
