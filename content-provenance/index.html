@@ -158,17 +158,19 @@ const LAYER_TEXT = {
   identity: "who the agent, crawler or signer is",
   governance: "the foundations, policy bodies and regulation around the rest",
 };
-const STATIONS = ["at-rest", "in-transit", "boundary", "past-last-hop", "trust"];
-const STATION_TEXT = {
+const STAGES = ["at-rest", "in-transit", "boundary", "after-delivery", "trust"];
+const STAGE_TEXT = {
   "at-rest": "content or a skill is signed where it is stored",
   "in-transit": "the credential travels with the content across a tool call",
   "boundary": "a gateway or hook checks it on the way through",
-  "past-last-hop": "credit and reporting after the content has left the protocol and its metadata is gone",
-  "trust": "who may sign or report, and how that is decided",
+  "after-delivery": "credit and reporting once the content has left the protocol and its metadata is gone",
+  "trust": "who may sign or report, and how that is decided. Not a place on the path, but every other stage depends on it",
 };
-const GROUPS = [["layer", "Layer", LAYERS], ["station", "Station", STATIONS], ["type", "Type", null], ["", "Other", null]];
+const LABELS = { "stage/boundary": "at the boundary" };
+const GROUPS = [["layer", "Layer", LAYERS], ["stage", "Stage", STAGES], ["type", "Type", null], ["", "Other", null]];
 
 function human(t) {
+  if (LABELS[t]) return LABELS[t];
   const i = t.indexOf("/");
   return (i > -1 ? t.slice(i + 1) : t).replace(/-/g, " ");
 }
@@ -245,9 +247,9 @@ function intro() {
 <p>Pick a card from the list, search, or filter by the tags above. Links inside a card open other cards, and "Linked from" lists the reverse. Where an effort has a public place to take part, the card says so under its name.</p>
 <h3>Layers</h3>
 <ul>${LAYERS.map(l => `<li><span class="lay" style="background:var(--l-${l})"></span><strong>${l}</strong>: ${LAYER_TEXT[l]}.</li>`).join("")}</ul>
-<h3>Stations</h3>
+<h3>Stages</h3>
 <p>Where a card sits on the path content takes through an agent, from my Attribution by Design talk. Not every card has one.</p>
-<ul>${STATIONS.map(s => `<li><strong>${human(s)}</strong>: ${STATION_TEXT[s]}.</li>`).join("")}</ul>
+<ul>${STAGES.map(s => `<li><strong>${human("stage/" + s)}</strong>: ${STAGE_TEXT[s]}.</li>`).join("")}</ul>
 ${foot()}</div>`;
 }
 

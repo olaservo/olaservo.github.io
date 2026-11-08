@@ -77,7 +77,7 @@ window.CARDS = [
   "tags": [
    "type/working-group",
    "layer/identity",
-   "station/trust"
+   "stage/trust"
   ],
   "summary": "Charter: agent identity, authentication and provenance, delegation chains, consent, cross-organization trust, discovery metadata.",
   "sections": [
@@ -144,7 +144,7 @@ window.CARDS = [
   "tags": [
    "type/working-group",
    "layer/governance",
-   "station/trust",
+   "stage/trust",
    "topic/skills"
   ],
   "summary": "Working group drafting a security and privacy best-practices guide for agents.",
@@ -254,7 +254,7 @@ window.CARDS = [
   "tags": [
    "type/specification",
    "topic/skills",
-   "station/at-rest"
+   "stage/at-rest"
   ],
   "summary": "The SKILL.md format for packaging instructions and files for agents.",
   "sections": [
@@ -294,7 +294,7 @@ window.CARDS = [
   "tags": [
    "type/proposal",
    "layer/provenance",
-   "station/at-rest",
+   "stage/at-rest",
    "topic/skills"
   ],
   "summary": "Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)).",
@@ -419,7 +419,7 @@ window.CARDS = [
    "type/specification",
    "layer/provenance",
    "layer/identity",
-   "station/at-rest"
+   "stage/at-rest"
   ],
   "summary": "Catalog format for discovering agents, MCP servers and skills.",
   "sections": [
@@ -506,9 +506,9 @@ window.CARDS = [
   "tags": [
    "type/organization",
    "layer/provenance",
-   "station/at-rest",
-   "station/in-transit",
-   "station/trust"
+   "stage/at-rest",
+   "stage/in-transit",
+   "stage/trust"
   ],
   "summary": "Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [[content-authenticity-initiative]].",
   "sections": [
@@ -555,7 +555,7 @@ window.CARDS = [
   "tags": [
    "type/proposal",
    "layer/provenance",
-   "station/in-transit",
+   "stage/in-transit",
    "venue/mcp"
   ],
   "summary": "Carry a [[c2pa]] credential for tool results and resources in MCP `_meta` under `org.c2pa/credential`.",
@@ -692,7 +692,7 @@ window.CARDS = [
   "tags": [
    "type/specification",
    "layer/attribution",
-   "station/past-last-hop"
+   "stage/after-delivery"
   ],
   "summary": "Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`, `content_presented`, `content_engaged`. Manifest discovery at `/.well-known/content-telemetry.json`. `license_ref` joins it to the licensing layer ([[rsl]], [[iab-comp]]).",
   "sections": [
@@ -1043,7 +1043,7 @@ window.CARDS = [
   "tags": [
    "type/working-group",
    "layer/access",
-   "station/past-last-hop"
+   "stage/after-delivery"
   ],
   "summary": "Vocabulary for AI usage preferences and how they attach to content (`Content-Usage` header and robots.txt directive).",
   "sections": [
@@ -1268,7 +1268,7 @@ window.CARDS = [
   "tags": [
    "type/working-group",
    "venue/mcp",
-   "station/boundary"
+   "stage/boundary"
   ],
   "summary": "Deterministic hooks in clients, servers and gateways. The place a seal or citation validator can run without a core spec change.",
   "sections": [
@@ -1363,7 +1363,7 @@ window.CARDS = [
   "tags": [
    "type/proposal",
    "layer/access",
-   "station/past-last-hop"
+   "stage/after-delivery"
   ],
   "summary": "Training via [[aipref-training-token]] or a page-level `ai-training:disallow`, plus a separate page-level grounding preference (`ai-grounding:disallow`) with no robots.txt form. Replaces `NoArchive` and `NoCache`.",
   "sections": [
@@ -1483,7 +1483,7 @@ window.CARDS = [
   "tags": [
    "type/organization",
    "layer/attribution",
-   "station/in-transit",
+   "stage/in-transit",
    "venue/mcp"
   ],
   "summary": "CKAN maintainers. MCP Labs runs chat over official datasets with every answer linked to its source.",
@@ -1560,7 +1560,7 @@ window.CARDS = [
   "tags": [
    "type/project",
    "layer/provenance",
-   "station/in-transit"
+   "stage/in-transit"
   ],
   "summary": "Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's planned MCP `_meta` lineage key carry lineage identity across the tool-call boundary.",
   "sections": [
@@ -1664,7 +1664,7 @@ window.CARDS = [
   "tags": [
    "type/specification",
    "venue/mcp",
-   "station/at-rest",
+   "stage/at-rest",
    "topic/skills"
   ],
   "summary": "Serves [[agent-skills]] over MCP, with digests and a `_meta` hook for intermediaries.",
@@ -1705,8 +1705,8 @@ window.CARDS = [
    "type/proposal",
    "venue/mcp",
    "layer/attribution",
-   "station/in-transit",
-   "station/past-last-hop"
+   "stage/in-transit",
+   "stage/after-delivery"
   ],
   "summary": "Citations on tool results bound by CommonMark links in the text, each a flat schema.org CreativeWork, granularity via URL fragments, integrity deferred. A `citations.render` client capability.",
   "sections": [
@@ -1854,8 +1854,8 @@ window.CARDS = [
   "tags": [
    "type/organization",
    "layer/attribution",
-   "station/past-last-hop",
-   "station/trust"
+   "stage/after-delivery",
+   "stage/trust"
   ],
   "summary": "Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [[content-telemetry]] and the publisher accreditation profile and conformance mark. Sister body [[openattribution]] maintains SDKs and profiles.",
   "sections": [
