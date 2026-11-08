@@ -4,6 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Content Provenance, Access and Attribution</title>
+<meta name="description" content="Cards for the standards bodies, working groups, specifications and proposals on content provenance, access, licensing, attribution and payment for AI systems. Compiled by Ola Hungerford.">
+<meta property="og:title" content="Content Provenance, Access and Attribution">
+<meta property="og:description" content="Cards for the standards bodies, working groups, specifications and proposals on content provenance, access, licensing, attribution and payment for AI systems.">
+<meta property="og:type" content="website">
 <style>
   :root {
     color-scheme: light;
@@ -29,27 +33,35 @@
     }
   }
   * { box-sizing: border-box; }
-  body { margin: 0; font: 15px/1.5 system-ui, sans-serif; background: var(--bg); color: var(--fg); }
-  header { padding: 14px 16px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .filters { background: var(--panel); }
+  html, body { height: 100%; }
+  body { margin: 0; display: flex; flex-direction: column; font: 15px/1.5 system-ui, sans-serif; background: var(--bg); color: var(--fg); }
+  header { flex: none; padding: 12px 16px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  header h1 { font-size: 17px; margin: 0 12px 0 0; }
+  header .home { font-size: 12px; color: var(--muted); text-decoration: none; margin-right: 4px; }
+  header .home:hover { color: var(--accent); }
   #theme { margin-left: auto; }
-  header h1 { font-size: 17px; margin: 0 16px 0 0; }
   input[type=search] { flex: 1 1 220px; padding: 6px 10px; font: inherit; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); }
   label { color: var(--muted); font-size: 13px; }
-  .filters { padding: 8px 16px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px; }
+  .filters { flex: none; padding: 5px 16px 6px; background: var(--panel); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 3px; }
+  .frow { display: flex; flex-wrap: wrap; gap: 5px; align-items: center; }
+  .flab { flex: none; width: 56px; font-size: 11px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  .fmeta { margin-left: auto; font-size: 12px; color: var(--muted); display: flex; gap: 8px; align-items: center; }
+  .ftoggle { display: none; }
+  .fhead { display: none; }
   .chip, .vbtn { font: inherit; font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--chip); border: 1px solid transparent; cursor: pointer; color: var(--fg); }
-  .chip.on, .vbtn.on { border-color: var(--accent); color: var(--accent); }
+  .chip.on, .vbtn.on, .chip.clear { border-color: var(--accent); color: var(--accent); }
+  .chip i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 5px; }
   .vbtn { font-size: 13px; padding: 3px 12px; }
-  main { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; min-height: calc(100vh - 110px); }
+  main { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: minmax(260px, 380px) 1fr; grid-template-rows: minmax(0, 1fr); }
   main.graph { grid-template-columns: 1fr minmax(280px, 440px); }
   main.graph #list { display: none; }
-  #list { border-right: 1px solid var(--line); overflow-y: auto; max-height: calc(100vh - 110px); }
+  #list { border-right: 1px solid var(--line); overflow-y: auto; }
   .item { padding: 10px 16px; border-bottom: 1px solid var(--line); cursor: pointer; }
   .item:hover { background: var(--chip); }
   .item.sel { background: var(--sel); box-shadow: inset 3px 0 0 var(--accent); }
   .item .n { font-weight: 600; }
   .item .t { color: var(--muted); font-size: 12px; }
-  #graphwrap { display: none; position: relative; background: var(--canvas); border-right: 1px solid var(--line); height: calc(100vh - 110px); }
+  #graphwrap { display: none; position: relative; min-height: 0; background: var(--canvas); border-right: 1px solid var(--line); }
   main.graph #graphwrap { display: block; }
   #graph { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; user-select: none; }
   #graph:active { cursor: grabbing; }
@@ -64,11 +76,12 @@
   .node.sel circle { stroke: var(--fg); stroke-width: 2.5; }
   .legend { position: absolute; left: 10px; bottom: 10px; font-size: 12px; color: var(--muted); background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; }
   .legend span { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 5px; }
+  .legend .note { margin-top: 4px; border-top: 1px solid var(--line); padding-top: 4px; }
   .hint { position: absolute; right: 10px; bottom: 10px; font-size: 12px; color: var(--muted); }
-  #detail { padding: 16px 24px; overflow-y: auto; max-height: calc(100vh - 110px); }
+  #detail { padding: 16px 24px 24px; overflow-y: auto; }
   #detail h2 { margin: 0 0 4px; }
   .meta { color: var(--muted); font-size: 13px; margin-bottom: 12px; }
-  .meta a { color: var(--accent); }
+  .meta a, .intro a, .foot a { color: var(--accent); }
   #detail h3 { font-size: 14px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 20px 0 6px; }
   #detail a.wl { color: var(--accent); text-decoration: none; border-bottom: 1px dotted; }
   #detail a.wl.missing { color: #c33; }
@@ -77,23 +90,38 @@
   #detail strong { font-weight: 600; }
   .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
   ul { padding-left: 20px; }
+  .intro { max-width: 70ch; }
+  .intro ul { padding-left: 18px; }
+  .intro li { margin: 2px 0; }
+  .intro .lay { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+  .foot { color: var(--muted); font-size: 12px; margin-top: 28px; padding-top: 10px; border-top: 1px solid var(--line); }
   @media (max-width: 720px) {
-    main, main.graph { grid-template-columns: 1fr; }
+    html, body { height: auto; }
+    body { display: block; }
+    .flab { width: 100%; }
+    .ftoggle { display: inline-block; }
+    .fhead { display: flex; }
+    .fhead .fmeta { margin-left: auto; }
+    .frow:not(.fhead) .fmeta { display: none; }
+    .filters.collapsed .frow { display: none; }
+    .filters.collapsed .frow.fhead { display: flex; }
+    main, main.graph { display: block; }
     #list { max-height: 40vh; border-right: 0; border-bottom: 1px solid var(--line); }
     #graphwrap { height: 60vh; border-right: 0; border-bottom: 1px solid var(--line); }
     .hint { display: none; }
-    #detail { max-height: none; padding: 16px; }
+    #detail { padding: 16px; }
   }
 </style>
 </head>
 <body>
 <header>
+  <a class="home" href="https://www.olahungerford.com/">olahungerford.com</a>
   <h1>Content Provenance, Access and Attribution</h1>
   <button class="vbtn" id="v-list">List</button>
   <button class="vbtn" id="v-graph">Graph</button>
   <input type="search" id="q" placeholder="Search names, aliases, topics">
   <label id="privwrap" hidden><input type="checkbox" id="priv"> private notes</label>
-  <button class="vbtn" id="theme" title="Colour theme">Auto</button>
+  <button class="vbtn" id="theme" title="Colour theme">Theme: Auto</button>
 </header>
 <div class="filters" id="filters"></div>
 <main id="main">
@@ -117,6 +145,38 @@ const store = {
   get(k) { try { return localStorage.getItem(k); } catch { return null; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch {} },
 };
+const AS_OF = cards.map(c => c.updated).filter(Boolean).sort().pop() || "";
+const SITE = "https://www.olahungerford.com/";
+
+const LAYERS = ["provenance", "access", "licensing", "attribution", "payments", "identity", "governance"];
+const LAYER_TEXT = {
+  provenance: "where content came from and what was done to it, carried as signed records",
+  access: "whether a crawler or agent may read or use content, and how that preference is expressed",
+  licensing: "the terms and prices for use, in a form machines can read",
+  attribution: "whether the source is named and credited where the content ends up",
+  payments: "how a use gets paid for, from HTTP 402 to agent checkout",
+  identity: "who the agent, crawler or signer is",
+  governance: "the foundations, policy bodies and regulation around the rest",
+};
+const STATIONS = ["at-rest", "in-transit", "boundary", "past-last-hop", "trust"];
+const STATION_TEXT = {
+  "at-rest": "content or a skill is signed where it is stored",
+  "in-transit": "the credential travels with the content across a tool call",
+  "boundary": "a gateway or hook checks it on the way through",
+  "past-last-hop": "credit and reporting after the content has left the protocol and its metadata is gone",
+  "trust": "who may sign or report, and how that is decided",
+};
+const GROUPS = [["layer", "Layer", LAYERS], ["station", "Station", STATIONS], ["type", "Type", null], ["", "Other", null]];
+
+function human(t) {
+  const i = t.indexOf("/");
+  return (i > -1 ? t.slice(i + 1) : t).replace(/-/g, " ");
+}
+
+function chip(t) {
+  const dot = t.startsWith("layer/") ? `<i style="background:var(--l-${t.slice(6)})"></i>` : "";
+  return `<span class="chip${active.has(t) ? " on" : ""}" data-t="${esc(t)}" title="${esc(t)}">${dot}${esc(human(t))}</span>`;
+}
 
 function inline(s) {
   return esc(s)
@@ -149,7 +209,16 @@ const selected = () => decodeURIComponent(location.hash.slice(1));
 
 function renderFilters() {
   const tags = [...new Set(cards.flatMap(c => c.tags))].sort();
-  $("filters").innerHTML = tags.map(t => `<span class="chip${active.has(t) ? " on" : ""}" data-t="${esc(t)}">${esc(t)}</span>`).join("");
+  const rows = GROUPS.map(([p, label, order]) => {
+    let ts = tags.filter(t => p ? t.startsWith(p + "/") : !GROUPS.some(([q]) => q && t.startsWith(q + "/")));
+    if (order) ts.sort((a, b) => order.indexOf(a.slice(p.length + 1)) - order.indexOf(b.slice(p.length + 1)));
+    return ts.length ? `<div class="frow"><span class="flab">${label}</span>${ts.map(chip).join("")}</div>` : "";
+  }).join("");
+  const filtered = active.size || $("q").value.trim();
+  const n = visible().length;
+  const meta = `<span class="fmeta"><span>${filtered ? `${n} of ${cards.length} cards` : `${cards.length} cards`}</span>${filtered ? `<button class="chip clear" id="clear">clear</button>` : ""}</span>`;
+  const head = `<div class="frow fhead"><button class="chip ftoggle" id="ftoggle">${$("filters").classList.contains("collapsed") ? "Filters" : "Hide filters"}${active.size ? ` (${active.size})` : ""}</button>${meta}</div>`;
+  $("filters").innerHTML = head + rows.replace(/<\/div>$/, meta + "</div>");
 }
 
 function visible() {
@@ -161,29 +230,50 @@ function renderList() {
   const sel = selected();
   const v = visible();
   $("list").innerHTML = v.map(c => `<div class="item${c.id === sel ? " sel" : ""}" data-id="${c.id}"><div class="n">${esc(c.name)}</div><div class="t">${esc(c.type)}${c.status ? " · " + esc(c.status) : ""}</div></div>`).join("") || `<div class="item t">No matches</div>`;
+  const el = $("list").querySelector(".item.sel");
+  if (el) el.scrollIntoView({ block: "nearest" });
+}
+
+function foot() {
+  return `<p class="foot">Compiled by <a href="${SITE}about/">Ola Hungerford</a>${AS_OF ? ", as of " + esc(AS_OF) : ""}. Part of <a href="${SITE}">olahungerford.com</a>.</p>`;
+}
+
+function intro() {
+  return `<div class="intro">
+<p>${cards.length} cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.</p>
+<p>I am <a href="${SITE}about/">Ola Hungerford</a>. I keep these cards to follow the overlapping efforts while I work on content provenance and attribution in MCP, and I publish them so anyone doing the same can start from a map. They are one person's working notes${AS_OF ? ", as of " + esc(AS_OF) : ""}. Status lines carry the dates my sources gave, so check upstream before relying on one. Corrections are welcome through the contact details on my About page.</p>
+<p>Pick a card from the list, search, or filter by the tags above. Links inside a card open other cards, and "Linked from" lists the reverse. Where an effort has a public place to take part, the card says so under its name.</p>
+<h3>Layers</h3>
+<ul>${LAYERS.map(l => `<li><span class="lay" style="background:var(--l-${l})"></span><strong>${l}</strong>: ${LAYER_TEXT[l]}.</li>`).join("")}</ul>
+<h3>Stations</h3>
+<p>Where a card sits on the path content takes through an agent, from my Attribution by Design talk. Not every card has one.</p>
+<ul>${STATIONS.map(s => `<li><strong>${human(s)}</strong>: ${STATION_TEXT[s]}.</li>`).join("")}</ul>
+${foot()}</div>`;
 }
 
 function renderDetail() {
   const c = byId[selected()];
-  if (!c) { $("detail").innerHTML = `<p class="meta">${cards.length} cards. Pick one, search, or filter by tag.</p>`; return; }
+  if (!c) { $("detail").innerHTML = intro(); return; }
   const parent = c.part_of ? ` · part of ${inline(`[[${c.part_of}]]`)}` : "";
   const site = c.website ? ` · <a href="${esc(c.website)}" target="_blank" rel="noopener">${esc(c.website.replace(/^https?:\/\//, ""))}</a>` : "";
+  const aliases = c.aliases.filter(a => !/^#?\d+$/.test(a));
   let h = `<h2>${esc(c.name)}</h2><div class="meta">${esc(c.type)}${parent}${site}`;
-  if (c.aliases.length) h += `<br>Also: ${esc(c.aliases.join(", "))}`;
+  if (aliases.length) h += `<br>Also: ${esc(aliases.join(", "))}`;
   if (c.status) h += `<br>Status: ${esc(c.status)}`;
-  if (c.updated) h += ` (updated ${esc(c.updated)})`;
-  h += `<div class="tags">${c.tags.map(t => `<span class="chip" data-t="${esc(t)}">${esc(t)}</span>`).join("")}</div></div>`;
+  if (c.updated) h += ` (as of ${esc(c.updated)})`;
+  if (c.participate) h += `<br>Take part: ${inline(c.participate)}`;
+  h += `<div class="tags">${c.tags.map(chip).join("")}</div></div>`;
   h += block(c.summary);
   for (const s of c.sections) h += `<h3>${esc(s.title)}</h3>${block(s.text)}`;
   if (c.backlinks.length) h += `<h3>Linked from</h3><ul>${c.backlinks.map(b => `<li>${inline(`[[${b}]]`)}</li>`).join("")}</ul>`;
   const p = window.PRIVATE && $("priv").checked && window.PRIVATE[c.id];
   if (p) h += `<div class="private"><h3>Private</h3>${block(p.summary)}${p.sections.map(s => `<h3>${esc(s.title)}</h3>${block(s.text)}`).join("")}</div>`;
-  $("detail").innerHTML = h;
+  $("detail").innerHTML = h + foot();
+  $("detail").scrollTop = 0;
 }
 
 // Graph view: a small force layout drawn in SVG.
 const SVG = "http://www.w3.org/2000/svg";
-const LAYERS = ["provenance", "access", "licensing", "attribution", "payments", "identity", "governance"];
 const view = { x: 0, y: 0, k: 1 };
 let G = null, graphOn = false, running = false, hover = null, drag = null;
 
@@ -229,7 +319,7 @@ function initGraph() {
     const t = mk("text", n.el, { x: n.r + 3, y: 4 });
     t.textContent = n.c.name;
   }
-  $("legend").innerHTML = LAYERS.map(l => `<div><span style="background:var(--l-${l})"></span>${l}</div>`).join("");
+  $("legend").innerHTML = LAYERS.map(l => `<div><span style="background:var(--l-${l})"></span>${l}</div>`).join("") + `<div class="note">size: number of links</div>`;
 
   for (let i = 0; i < 250; i++) tick();
   fit();
@@ -281,6 +371,7 @@ function draw() {
 function styleGraph() {
   if (!G) return;
   const vis = new Set(visible().map(c => c.id));
+  const few = vis.size <= 16;
   const sel = selected(), focus = hover || sel;
   const nb = new Set();
   if (G.idx[focus]) {
@@ -295,7 +386,7 @@ function styleGraph() {
     if (!vis.has(n.id)) cls.push("dim");
     else if (nb.size && !nb.has(n.id)) cls.push("fade");
     if (n.id === sel) cls.push("sel");
-    if (nb.has(n.id) || n.deg >= 7) cls.push("lab");
+    if (nb.has(n.id) || n.deg >= 7 || (few && vis.has(n.id))) cls.push("lab");
     n.el.setAttribute("class", cls.join(" "));
   }
   for (const e of G.edges) {
@@ -384,14 +475,21 @@ function setView(v) {
 function render() { renderFilters(); renderList(); renderDetail(); styleGraph(); }
 
 document.addEventListener("click", e => {
-  const chip = e.target.closest(".chip");
+  if (e.target.closest("#clear")) { active.clear(); $("q").value = ""; render(); return; }
+  if (e.target.closest("#ftoggle")) { $("filters").classList.toggle("collapsed"); renderFilters(); return; }
+  const chip = e.target.closest(".chip[data-t]");
   if (chip) { const t = chip.dataset.t; active.has(t) ? active.delete(t) : active.add(t); render(); return; }
   const item = e.target.closest(".item[data-id]");
   if (item) location.hash = item.dataset.id;
 });
 $("v-list").addEventListener("click", () => setView("list"));
 $("v-graph").addEventListener("click", () => setView("graph"));
-$("q").addEventListener("input", () => { renderList(); styleGraph(); });
+$("q").addEventListener("input", () => { renderFilters(); renderList(); styleGraph(); });
+$("q").addEventListener("keydown", e => {
+  if (e.key !== "Enter") return;
+  const v = visible();
+  if (v.length) location.hash = v[0].id;
+});
 window.addEventListener("hashchange", () => { renderList(); renderDetail(); styleGraph(); });
 if (window.PRIVATE) {
   $("privwrap").hidden = false;
@@ -402,7 +500,7 @@ const THEMES = ["auto", "light", "dark"];
 function setTheme(t) {
   if (t === "auto") delete document.documentElement.dataset.theme;
   else document.documentElement.dataset.theme = t;
-  $("theme").textContent = t[0].toUpperCase() + t.slice(1);
+  $("theme").textContent = "Theme: " + t[0].toUpperCase() + t.slice(1);
   store.set("cpaa-theme", t);
 }
 $("theme").addEventListener("click", () => {
@@ -410,6 +508,7 @@ $("theme").addEventListener("click", () => {
   setTheme(THEMES[(THEMES.indexOf(cur) + 1) % THEMES.length]);
 });
 setTheme(THEMES.includes(store.get("cpaa-theme")) ? store.get("cpaa-theme") : "auto");
+if (window.matchMedia("(max-width: 720px)").matches) $("filters").classList.add("collapsed");
 render();
 setView(store.get("cpaa-view") === "graph" ? "graph" : "list");
 </script>
