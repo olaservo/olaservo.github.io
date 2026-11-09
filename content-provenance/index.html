@@ -229,7 +229,7 @@ function foot() {
 function intro() {
   return `<div class="intro">
 <p>${cards.length} cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.</p>
-<p>I am <a href="${SITE}about/">Ola Hungerford</a>. I keep these cards to follow the overlapping efforts while I work on content provenance and attribution in MCP, and I publish them so anyone doing the same can start from a map. They are one person's working notes${AS_OF ? ", as of " + esc(AS_OF) : ""}. Status lines carry the dates my sources gave, so check upstream before relying on one. Corrections are welcome through the contact details on my About page.</p>
+<p>This page is maintained by <a href="${SITE}about/">Ola Hungerford</a>. I keep these cards to follow related standards efforts as part of my interests in content provenance and attribution in MCP. Corrections and collaboration are welcome through the contact details on my About page.</p>
 <p>Pick a card from the list, search, or filter by the tags above. Links inside a card open other cards, and "Linked from" lists the reverse. Where an effort has a public place to take part, the card says so under its name. Agents and scripts can read the same cards as <a href="cards.md">Markdown</a> or <a href="cards.json">JSON</a>, described in <a href="llms.txt">llms.txt</a>.</p>
 <h3>Layers</h3>
 <ul>${LAYERS.map(l => `<li><span class="lay" style="background:var(--l-${l})"></span><strong>${l}</strong>: ${LAYER_TEXT[l]}.</li>`).join("")}</ul>
