@@ -1,4 +1,4 @@
-# Content Provenance, Access and Attribution
+# Content Provenance, Access and Attribution: A Field Guide
 
 60 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-08. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
