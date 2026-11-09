@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>which mcp tool result fields are used and how</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>An MCP tool result has two payload fields. What happens to these results when consumed by different agents?</p>
+<nav aria-label="Pages in this series">
+  <span aria-current="page">which mcp tool result fields are used and how (clients)</span>
+</nav>
+</header>
+
+<h2>Which tool result field reaches the model?</h2>
+
+<p>A <a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools#tool-result" target="_blank">tool result</a> carries <code>content</code>, a required array of typed blocks (text, image, audio, resource), and optionally <code>structuredContent</code>. <code>structuredContent</code> can be any JSON value and it’s expected to match the tool’s <code>outputSchema</code> when one is included. The specification recommends that a server that returns <code>structuredContent</code> also serialize the same JSON into a text block in <code>content</code>, for backwards compatibility.</p>
+
+<p>A client can have several possible consumers for one tool result.  This might include the model’s context, a script the model wrote, a render for the user, an <a href="https://modelcontextprotocol.io/extensions/apps" target="_blank">MCP App</a>'s view. Each may want a different shape, a different redaction, and a different amount of the same data.</p>
+
+<p>Each implementer has a lot of decisions to make about how to use each field, including whether or not to pass it along to the LLM’s context. The protocol does specify an explicit audience signal, the <code>audience</code> annotation. This sits on individual <code>content</code> blocks, is advisory, and is not included for <code>structuredContent</code>. This means that today, a server author cannot tell from the result alone whether the model will see the JSON, the text mirror of the JSON, or both.</p>
+
+<figure class="sa">
+  <svg viewBox="0 0 680 330" role="img" aria-label="A host, drawn as a wavy vertical line with three eyes on curved stalks that look only toward the model, receives one tool result with two cards: a stack of text cards marked content and a braces card marked structuredContent. Lower down, the stack goes left into a box marked the model and the braces card goes right into a window marked the app. A small dashed card under the model box shows the placeholder the model gets when content was empty.">
+    <text x="340" y="26" font-size="12" text-anchor="middle" opacity="0.75">the host</text>
+    <path class="sa-ink" d="M338.0 38.0 C338.6 40.3 340.4 47.3 341.5 52.0 C342.6 56.7 343.8 61.3 344.7 66.0 C345.7 70.7 346.6 75.3 347.3 80.0 C348.0 84.7 348.5 89.3 348.7 94.0 C349.0 98.7 349.1 103.3 348.9 108.0 C348.7 112.7 348.3 117.3 347.7 122.0 C347.1 126.7 346.3 131.3 345.4 136.0 C344.5 140.7 343.4 145.3 342.3 150.0 C341.1 154.7 339.9 159.3 338.8 164.0 C337.7 168.7 336.5 173.3 335.5 178.0 C334.5 182.7 333.6 187.3 332.9 192.0 C332.2 196.7 331.6 201.3 331.3 206.0 C331.0 210.7 330.9 215.3 331.1 220.0 C331.2 224.7 331.6 229.3 332.1 234.0 C332.7 238.7 333.5 243.3 334.4 248.0 C335.3 252.7 336.4 257.3 337.5 262.0 C338.6 266.7 339.8 271.3 340.9 276.0 C342.1 280.7 343.3 285.3 344.3 290.0 C345.3 294.7 346.5 301.7 347.0 304.0"/>
+    <path class="sa-ink" d="M349.0 104 C343.0 124 318 130 305 137"/>
+    <g class="sa-eye" style="animation-delay:0.6s">
+      <ellipse cx="294" cy="141" rx="13.5" ry="9.5" transform="rotate(-25 294 141)" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.1"/>
+      <circle cx="289.5" cy="138.5" r="5" fill="var(--ink)"/>
+    </g>
+    <path class="sa-ink" d="M333.0 240 C319.0 254 286 250 273 233"/>
+    <path class="sa-ink" d="M335.9 176 C319.9 168 299.9 190 278 176"/>
+    <g class="sa-eye" style="animation-delay:4.3s">
+      <ellipse cx="265" cy="174" rx="13" ry="9" transform="rotate(-20 265 174)" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.1"/>
+      <circle cx="259.5" cy="175.5" r="4.8" fill="var(--ink)"/>
+    </g>
+    <g class="sa-eye" style="animation-delay:2.1s">
+      <ellipse cx="259" cy="225" rx="15" ry="10.5" transform="rotate(-12 259 225)" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.1"/>
+      <circle cx="252" cy="224" r="5.5" fill="var(--ink)"/>
+    </g>
+
+    <text class="sa-mono" x="284" y="46" font-size="10" text-anchor="middle" opacity="0.75">content</text>
+    <path class="sa-card" d="M256.5 55.8 L330.2 56.6 L331 100.4 L255.6 101.2 Z"/>
+    <path class="sa-ink sa-rule" d="M265 69 L309 68.6"/>
+    <path class="sa-card" d="M250.2 62.4 L324.6 61.6 L325.4 106.2 L249.4 107 Z"/>
+    <path class="sa-ink sa-rule" d="M259 74 L299 73.6"/>
+    <path class="sa-ink sa-rule" d="M259 83 L311 82.6"/>
+    <path class="sa-ink sa-rule" d="M259 93 L289 92.6"/>
+
+    <text class="sa-mono" x="404" y="46" font-size="10" text-anchor="middle" opacity="0.75">structuredContent</text>
+    <path class="sa-card" d="M356.4 62.2 L430.8 61.4 L431.2 106.6 L355.6 106.8 Z"/>
+    <text class="sa-mono" x="393.5" y="92" font-size="19" text-anchor="middle">{ }</text>
+
+    <path class="sa-ink" d="M278 112 C268 146 222 152 192 176"/>
+    <path class="sa-ink" d="M201.8 174.0 L192 176 L196.1 166.9"/>
+    <path class="sa-ink" d="M402 112 C412 146 458 152 488 176"/>
+    <path class="sa-ink" d="M483.9 166.9 L488 176 L478.2 174.0"/>
+
+    <text x="121" y="160" font-size="12" text-anchor="middle" opacity="0.75">the model</text>
+    <text x="121" y="173" font-size="10" text-anchor="middle" opacity="0.6">context window</text>
+    <path class="sa-ink" d="M30 183 L212 181 L214 272 L28 274 Z"/>
+    <path class="sa-ink sa-wave" d="M42 206 c5 -5 10 5 15 0 s10 5 15 0 s10 5 15 0 s10 5 15 0"/>
+    <path class="sa-ink sa-wave" d="M42 224 c5 -5 10 5 15 0 s10 5 15 0 s10 5 15 0 s10 5 15 0"/>
+    <path class="sa-ink sa-wave" d="M42 242 c5 -5 10 5 15 0 s10 5 15 0 s10 5 15 0 s10 5 15 0"/>
+    <path class="sa-card" d="M126.4 191.6 L200.6 192.4 L201.2 236.2 L125.8 237 Z"/>
+    <path class="sa-ink sa-rule" d="M135 205 L179 204.6"/>
+    <path class="sa-card" d="M120.2 198.4 L194.8 197.6 L195.4 242.4 L119.6 243.2 Z"/>
+    <path class="sa-ink sa-rule" d="M129 210 L169 209.6"/>
+    <path class="sa-ink sa-rule" d="M129 219 L181 218.6"/>
+    <path class="sa-ink sa-rule" d="M129 229 L159 228.6"/>
+    <path class="sa-card sa-dash" d="M36.2 283.6 L73.4 284 L73.8 305.6 L35.8 306 Z"/>
+    <text class="sa-mono" x="54.8" y="299" font-size="9" text-anchor="middle">""</text>
+    <text x="82" y="298" font-size="10" opacity="0.75">a placeholder when content was empty</text>
+
+    <text x="559" y="160" font-size="12" text-anchor="middle" opacity="0.75">the app</text>
+    <text x="559" y="173" font-size="10" text-anchor="middle" opacity="0.6">rendered view</text>
+    <path class="sa-ink" d="M468 183 L650 181 L652 274 L466 272 Z"/>
+    <path class="sa-ink sa-rule" d="M468 197 L651 195.6"/>
+    <circle cx="478" cy="190" r="1.6" fill="var(--ink)"/>
+    <circle cx="486" cy="190" r="1.6" fill="var(--ink)"/>
+    <path class="sa-card" d="M522.4 205.2 L596.8 204.4 L597.2 249.6 L521.6 249.8 Z"/>
+    <text class="sa-mono" x="559.5" y="235" font-size="19" text-anchor="middle">{ }</text>
+    <path class="sa-ink sa-rule" d="M486 262 L634 261.4"/>
+    <circle cx="592" cy="261.6" r="4.2" fill="var(--bg)" stroke="var(--ink)" stroke-width="2.1"/>
+
+    <text x="340" y="326" font-size="11" text-anchor="middle" opacity="0.75">the host hands each field on</text>
+  </svg>
+  <figcaption>One example of how MCP Apps responses are handled. One result returns both fields. The text blocks go into the model's context and the JSON goes to the app's view, which the model never reads. A server that doesn't send a text block leaves the model a fixed placeholder. The figure further down shows what other clients do with the same result.</figcaption>
+</figure>
+<style>
+  .sa { margin: 1.5rem auto 2.5rem; }
+  .sa svg { display: block; width: 100%; height: auto; }
+  .sa svg text { font-family: inherit; fill: var(--ink); }
+  .sa svg .sa-mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .sa .sa-ink { fill: none; stroke: var(--ink); stroke-width: 3.1; stroke-linecap: round; stroke-linejoin: round; }
+  .sa .sa-card { fill: var(--bg); stroke: var(--ink); stroke-width: 2.1; stroke-linecap: round; stroke-linejoin: round; }
+  .sa .sa-rule { stroke-width: 2.1; }
+  .sa .sa-wave { stroke-width: 1.6; opacity: 0.5; }
+  .sa .sa-dash { stroke-dasharray: 3 4; }
+  .sa .sa-eye { transform-box: fill-box; transform-origin: center; }
+  @media (prefers-reduced-motion: no-preference) { .sa .sa-eye { animation: sa-blink 8.4s ease-in-out infinite; } }
+  @keyframes sa-blink { 0%, 95.5%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.08); } 98.5% { transform: scaleY(1); } }
+  .sa figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5; }
+</style>
+
+<p>This page records what twenty open source clients do with tool results based on their source code. <a href="https://www.carbonbasedcontent.com/p/humans-are-still-the-users" target="_blank">Humans are still the users</a> sets out why the question matters for the people on the other side of the UI.</p>
+
+<h3>Four ways that clients handle results</h3>
+
+<p>Pick a group to see where each field of one tool result ends up, and whether the server wrote the text mirror. Cards that land inside the client are what the model receives. The bar underneath counts how many copies of the result’s data that is.</p>
+
+<figure class="sc">
+  <div class="sc-svg"></div>
+  <div class="sc-ui">
+    <p class="sc-legend">what reaches the model when both fields are present</p>
+    <div class="sc-row sc-row--groups" role="group" aria-label="Client group"></div>
+    <p class="sc-legend">what the server sent</p>
+    <div class="sc-row sc-row--server" role="group" aria-label="What the server sent">
+      <button type="button" class="sc-btn" data-server="mirror" aria-pressed="true"><strong>content and structuredContent</strong><small>the text mirror the specification asks for, plus the JSON</small></button>
+      <button type="button" class="sc-btn" data-server="empty" aria-pressed="false"><strong>structuredContent only</strong><small>content is an empty array</small></button>
+    </div>
+    <output aria-live="polite"></output>
+  </div>
+  <figcaption>One tool result leaving a server and arriving at a client. The stack of cards is <code>content</code>, the braces card is <code>structuredContent</code>. Cards inside the creature are in model context; cards in the dashed box are not. The wavy lines are everything else in context.</figcaption>
+</figure>
+<style>
+  .sc { margin: 1.5rem auto 2.5rem; }
+  .sc svg { display: block; width: 100%; height: auto; }
+  .sc svg text { font-family: inherit; fill: var(--ink); }
+  .sc svg .sc-mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .sc-ui { font-size: 0.85rem; }
+  .sc-legend { margin: 0.9rem 0 0.35rem; font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+  .sc-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+  .sc-row--server { grid-template-columns: repeat(2, 1fr); max-width: 520px; }
+  .sc-btn { font: inherit; font-size: 0.85rem; text-align: left; padding: 0.5rem 0.6rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  .sc-btn[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+  .sc-btn strong { display: block; font-weight: 500; }
+  .sc-btn small { display: block; color: var(--muted); line-height: 1.45; margin-top: 0.2rem; }
+  .sc-carried { opacity: 0.6; }
+  .sc output { display: block; margin-top: 0.9rem; min-height: 3em; line-height: 1.55; }
+  .sc figcaption { font-size: 0.85rem; color: var(--muted); margin-top: 0.8rem; line-height: 1.5; }
+  @media (max-width: 600px) { .sc-row { grid-template-columns: repeat(2, 1fr); } }
+  .sc-pk { transform-box: fill-box; transform-origin: center; transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+  .sc-floor { opacity: 0; transition: opacity 0.4s 0.5s; }
+  @media (prefers-reduced-motion: no-preference) {
+    .sc .sc-fA { animation: sc-boilA 0.9s steps(1) infinite; }
+    .sc .sc-fB { animation: sc-boilB 0.9s steps(1) infinite; }
+    .sc .sc-eye { transform-box: fill-box; transform-origin: center; animation: sc-blink 8.4s ease-in-out infinite; }
+  }
+  @media (prefers-reduced-motion: reduce) { .sc-pk, .sc-floor { transition: none; } }
+  @keyframes sc-boilA { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+  @keyframes sc-boilB { 0%, 49% { opacity: 0; } 50%, 100% { opacity: 1; } }
+  @keyframes sc-blink { 0%, 95.5%, 100% { transform: scaleY(1); } 97% { transform: scaleY(0.08); } 98.5% { transform: scaleY(1); } }
+</style>
+<script>
+(function () {
+  // GROUPS is generated by scripts/build-pages.py from the group rows of the table below.
+  var GROUPS = [{"label": "content only: structuredContent never reaches the model", "clients": [{"name": "zed", "carried": false}, {"name": "goose", "carried": false}, {"name": "strands", "carried": false}, {"name": "crewAI", "carried": false}, {"name": "deepagents", "carried": false}, {"name": "LibreChat", "carried": false}]}, {"label": "content first: structuredContent fills in only when content is empty", "clients": [{"name": "kilocode", "carried": false}, {"name": "opencode", "carried": false}, {"name": "pi", "carried": false}, {"name": "mastra", "carried": false}]}, {"label": "structuredContent replaces content", "clients": [{"name": "codex", "carried": false}, {"name": "VS Code", "carried": false}, {"name": "fast-agent", "carried": false}, {"name": "agent-framework (Python)", "carried": false}, {"name": "eve", "carried": false}]}, {"label": "both fields reach the model", "clients": [{"name": "hermes-agent", "carried": false}, {"name": "cline", "carried": false}, {"name": "adk-python", "carried": false}, {"name": "agent-framework (.NET)", "carried": false}, {"name": "fx", "carried": false}]}];
+  var NS = 'http://www.w3.org/2000/svg';
+  var INK = 'var(--ink, #1a1a18)';
+  var BG = 'var(--bg, #faf9f5)';
+  var CARD = { w: 74, h: 44 };
+  // Where a packet can sit, in root coordinates. The creature sits inside a translated, scaled group.
+  var POS = {
+    serverContent: [34, 146, 0], serverSc: [34, 198, 0],
+    solo: [393, 150, 0], left: [330, 150, 0], right: [446, 150, 0],
+    floorContent: [40, 292, -6], floorSc: [58, 295, 5]
+  };
+  var EYES = [[340, 126, 13, 0.3, 210], [272, 118, 9, 1.4, -40], [410, 121, 10, 2.6, 100], [218, 128, 7, 0.9, 160], [472, 124, 8, 3.3, -120]];
+  var TENTACLES = [
+    'M208 100 C200 88 208 78 198 66 C194 60 198 54 192 46',
+    'M300 88 C296 76 304 68 296 58 C292 52 298 46 292 38',
+    'M424 92 C432 80 426 70 436 60 C440 54 436 48 444 40',
+    'M78 196 C64 192 60 202 46 198 C38 196 36 204 26 200',
+    'M630 218 C644 214 648 224 662 220 C668 218 670 226 676 222',
+    'M148 328 C140 340 148 348 140 360 C136 366 140 372 134 380',
+    'M528 324 C536 336 528 344 538 356 C542 362 538 368 546 376'
+  ];
+  // One entry per group and server state: where each packet goes, how it is drawn, and what the bar shows.
+  var STATES = {
+    only: {
+      mirror: { content: ['blocks', 'solo'], sc: ['json', 'floorSc'], copies: ['content'],
+        text: 'The content blocks reach the model. structuredContent stays outside model context: zed never reads it, strands and deepagents park it as host state, goose passes it to MCP Apps, and LibreChat does when MCP Apps is enabled.' },
+      empty: { content: ['placeholder', 'solo'], sc: ['json', 'floorSc'], copies: [],
+        text: 'The model receives a placeholder or nothing: the fixed string <Tool returned an empty string> in zed, (empty result) in goose, (No response) in LibreChat, nothing from the result in strands and deepagents. crewAI shows a Python repr of the result object.' }
+    },
+    first: {
+      mirror: { content: ['blocks', 'solo'], sc: ['json', 'floorSc'], copies: ['content'],
+        text: 'The content blocks reach the model. structuredContent is not read on this path in kilocode, opencode with codemode off or execute denied, and pi. mastra, for a tool that declares an outputSchema, sends the text of the content blocks and falls back to structuredContent only when there is none.' },
+      empty: { content: ['empty', 'floorContent'], sc: ['stringified', 'solo'], copies: ['sc'],
+        text: 'structuredContent is stringified into one text block, or sent as a JSON value in mastra. The model sees the JSON because the text mirror was missing, and would not have seen it otherwise.' }
+    },
+    replaces: {
+      mirror: { content: ['blocks', 'floorContent'], sc: ['json', 'solo'], copies: ['sc'],
+        text: 'JSON of structuredContent is the whole tool output and every text block is dropped, in codex, VS Code, fast-agent, agent-framework Python and eve. fast-agent keeps non-text blocks; VS Code keeps images; in eve any non-text block makes the blocks win and drops structuredContent.' },
+      empty: { content: ['empty', 'floorContent'], sc: ['json', 'solo'], copies: ['sc'],
+        text: 'The same JSON. In this group the model sees the same thing whether or not the server wrote the text mirror.' }
+    },
+    both: {
+      mirror: { content: ['blocks', 'left'], sc: ['json', 'right'], copies: ['content', 'sc'],
+        text: 'Both copies reach the model: as one JSON object in hermes-agent, which keeps one copy when the text is an exact JSON mirror, as the whole envelope stringified in cline, agent-framework .NET and fx, or as the whole result dict in adk-python.' },
+      empty: { content: ['empty', 'left'], sc: ['json', 'right'], copies: ['sc'],
+        text: 'One copy of the data: structuredContent inside the envelope, with the empty content array beside it. hermes-agent sends {"result": <value>} with no content array.' }
+    }
+  };
+  function keyOf(label) {
+    if (/^content only/.test(label)) return 'only';
+    if (/^content first/.test(label)) return 'first';
+    if (/replaces/.test(label)) return 'replaces';
+    if (/^both/.test(label)) return 'both';
+    return null;
+  }
+  function el(parent, t, a) {
+    var e = document.createElementNS(NS, t);
+    for (var k in a) e.setAttribute(k, a[k]);
+    parent.appendChild(e);
+    return e;
+  }
+  function pathIn(g, d, w) {
+    return el(g, 'path', { d: d, fill: 'none', stroke: INK, 'stroke-width': w || 3.1, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' });
+  }
+  function text(g, x, y, s, size, o) {
+    o = o || {};
+    var t = el(g, 'text', { x: x, y: y, 'font-size': size, 'text-anchor': o.anchor || 'middle' });
+    if (o.mono) t.setAttribute('class', 'sc-mono');
+    if (o.opacity) t.setAttribute('opacity', o.opacity);
+    t.textContent = s;
+    return t;
+  }
+  function jit(seed) { return ((seed * 7919) % 13 - 6) / 4; }
+  function cardBox(g, x, y, seed, dashed) {
+    var w = CARD.w, h = CARD.h, s = seed;
+    var box = el(g, 'path', {
+      d: 'M' + (x + jit(s)) + ' ' + (y + jit(s + 1)) + ' L' + (x + w + jit(s + 2)) + ' ' + (y + jit(s + 3)) +
+         ' L' + (x + w + jit(s + 4)) + ' ' + (y + h + jit(s + 5)) + ' L' + (x + jit(s + 6)) + ' ' + (y + h + jit(s + 7)) + ' Z',
+      fill: BG, stroke: INK, 'stroke-width': 2.1, 'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+    });
+    if (dashed) box.setAttribute('stroke-dasharray', '3 4');
+    return box;
+  }
+  function rules(g, x, y, list) {
+    for (var i = 0; i < list.length; i++) pathIn(g, 'M' + (x + 9) + ' ' + (y + list[i][0]) + ' L' + (x + 9 + list[i][1]) + ' ' + (y + list[i][0] - 0.4), 2.1);
+  }
+  // Draw a packet at the origin of its group. mode is one of blocks, empty, placeholder, json, stringified.
+  function drawPacket(g, mode, label) {
+    g.textContent = '';
+    if (mode === 'blocks') {
+      cardBox(g, 6, -6, 3);
+      rules(g, 6, -6, [[13, 44]]);
+      cardBox(g, 0, 0, 11);
+      rules(g, 0, 0, [[12, 40], [21, 52], [31, 30]]);
+    } else if (mode === 'empty') {
+      cardBox(g, 0, 0, 17);
+      text(g, 37, 29, '[ ]', 17, { mono: true });
+    } else if (mode === 'placeholder') {
+      cardBox(g, 0, 0, 23, true);
+      text(g, 37, 29, '""', 17, { mono: true });
+    } else if (mode === 'json') {
+      cardBox(g, 0, 0, 29);
+      text(g, 37, 30, '{ }', 19, { mono: true });
+    } else if (mode === 'stringified') {
+      cardBox(g, 0, 0, 31);
+      rules(g, 0, 0, [[12, 20], [31, 24]]);
+      text(g, 37, 30, '"{ }"', 15, { mono: true });
+    }
+    text(g, 37, CARD.h + 14, label, 10, { mono: true, opacity: 0.75 });
+  }
+  function place(g, pos) {
+    var p = POS[pos];
+    g.style.transform = 'translate(' + p[0] + 'px, ' + p[1] + 'px) rotate(' + p[2] + 'deg)';
+  }
+  function eyes(dyn, f) {
+    for (var i = 0; i < EYES.length; i++) {
+      var s = EYES[i], r = s[2] * (1 - 0.45 * f);
+      var a = s[4] * Math.PI / 180, off = f * r * 0.55;
+      var g = el(dyn, 'g', { 'class': 'sc-eye', style: 'animation-delay:' + s[3] + 's' });
+      el(g, 'circle', { cx: s[0], cy: s[1], r: r.toFixed(1), fill: 'none', stroke: INK, 'stroke-width': 2.1 });
+      var pupil = el(g, 'circle', {
+        cx: (s[0] + (1 - f) + Math.cos(a) * off).toFixed(1),
+        cy: (s[1] + (1 - f) + Math.sin(a) * off).toFixed(1),
+        r: Math.max(1.8, r * 0.32).toFixed(1), fill: INK
+      });
+      if (i === 0) { pupil.setAttribute('id', 'sc-pupil'); pupil.setAttribute('data-r', r.toFixed(1)); }
+    }
+  }
+  function squiggles(dyn, top, bottom) {
+    var strip = bottom - top;
+    var count = Math.max(1, Math.floor(strip / 15));
+    var gap = strip / (count + 1);
+    for (var i = 0; i < count; i++) {
+      var y = (top + gap * (i + 1)).toFixed(1);
+      var segs = Math.floor((330 + (i * 89) % 130) / 28);
+      var d = 'M116 ' + y + ' q 14 -3 28 0';
+      for (var s = 1; s < segs; s++) d += ' t 28 0';
+      pathIn(dyn, d, 2.1).setAttribute('opacity', 0.55);
+    }
+  }
+  function sweat(dyn) {
+    pathIn(dyn, 'M204 84 C198 72 206 64 198 54', 2.1);
+    pathIn(dyn, 'M488 82 C496 70 490 62 498 52', 2.1);
+  }
+  function gauge(g, copies) {
+    g.textContent = '';
+    var x = 231.5, seg = 202, gap = 3;
+    if (!copies.length) {
+      el(g, 'rect', { x: x, y: 361.5, width: 6, height: 11.5, fill: INK, opacity: 0.28 });
+      text(g, x + 12, 370, 'a placeholder', 9, { anchor: 'start', opacity: 0.75 });
+      return;
+    }
+    for (var i = 0; i < copies.length; i++) {
+      var sx = x + i * (seg + gap);
+      el(g, 'rect', { x: sx, y: 361.5, width: seg, height: 11.5, fill: INK, opacity: copies[i] === 'sc' ? 0.42 : 0.28 });
+      text(g, sx + 6, 370, copies[i] === 'sc' ? 'structuredContent' : 'content', 9, { anchor: 'start', mono: true, opacity: 0.85 });
+    }
+  }
+  function build(fig) {
+    var svg = el(fig.querySelector('.sc-svg'), 'svg', { viewBox: '0 0 680 400', role: 'img',
+      'aria-label': 'A small server on the left sends a tool result, drawn as a stack of text cards and a braces card, to a blob creature that stands for a client. Cards land inside the creature or on the floor beside it, marked outside model context, depending on the selected group.' });
+    // server: a small rack the packets come out of
+    text(svg, 70, 122, 'server', 12, { opacity: 0.75 });
+    pathIn(svg, 'M30 136 L111 134.5 L112.5 250 L29 251.5 Z', 2.1);
+    pathIn(svg, 'M38 162 L96 161.4', 2.1); pathIn(svg, 'M38 186 L96 185.4', 2.1); pathIn(svg, 'M38 210 L96 209.4', 2.1); pathIn(svg, 'M38 234 L96 233.4', 2.1);
+    el(svg, 'circle', { cx: 104, cy: 161.5, r: 2, fill: INK }); el(svg, 'circle', { cx: 104, cy: 185.5, r: 2, fill: INK });
+    el(svg, 'circle', { cx: 104, cy: 209.5, r: 2, fill: INK }); el(svg, 'circle', { cx: 104, cy: 233.5, r: 2, fill: INK });
+    // the floor, shown only when a packet is dropped there
+    var floor = el(svg, 'g', { 'class': 'sc-floor' });
+    el(floor, 'path', { d: 'M18 366 C60 362 112 369 170 364', fill: 'none', stroke: INK, 'stroke-width': 2.1, 'stroke-linecap': 'round', opacity: 0.6 });
+    text(floor, 94, 386, 'outside model context', 11, { opacity: 0.75 });
+    // creature
+    var cr = el(svg, 'g', { transform: 'translate(185 40) scale(0.72)' });
+    var fA = el(cr, 'g', { 'class': 'sc-fA' });
+    pathIn(fA, 'M74 208 C82 142 168 100 300 92 C440 86 582 114 616 176 C652 246 596 318 452 334 C310 348 138 336 92 292');
+    pathIn(fA, 'M62 266 C58 238 64 224 74 208');
+    var fB = el(cr, 'g', { 'class': 'sc-fB', opacity: 0 });
+    pathIn(fB, 'M70 204 C90 136 162 106 304 88 C434 92 586 118 610 180 C656 250 592 322 456 330 C304 352 134 332 88 296');
+    pathIn(fB, 'M66 262 C54 240 68 220 70 204');
+    for (var ti = 0; ti < TENTACLES.length; ti++) pathIn(cr, TENTACLES[ti], 2.1);
+    text(svg, 222, 82, 'client', 12, { anchor: 'start', opacity: 0.75 });
+    text(svg, 222, 96, 'context window inside', 10, { anchor: 'start', opacity: 0.6 });
+    var dyn = el(cr, 'g', {});
+    // gauge
+    text(svg, 230, 352, 'what the model receives', 11, { anchor: 'start', opacity: 0.75 });
+    pathIn(svg, 'M230 360 L640 359 L641 374 L229 375 Z', 2.1);
+    el(svg, 'path', { d: 'M435 356 L435 378', fill: 'none', stroke: INK, 'stroke-width': 1.5, 'stroke-dasharray': '2 4', opacity: 0.6 });
+    text(svg, 230, 389, '0', 10, { anchor: 'start', opacity: 0.6 });
+    text(svg, 435, 389, '1 copy of the data', 10, { opacity: 0.6 });
+    text(svg, 640, 389, '2 copies', 10, { anchor: 'end', opacity: 0.6 });
+    var gg = el(svg, 'g', {});
+    // packets last so they sit on top
+    var pkContent = el(svg, 'g', { 'class': 'sc-pk' });
+    var pkSc = el(svg, 'g', { 'class': 'sc-pk' });
+    drawPacket(pkContent, 'blocks', 'content');
+    drawPacket(pkSc, 'json', 'structuredContent');
+    place(pkContent, 'serverContent');
+    place(pkSc, 'serverSc');
+    return { svg: svg, cr: cr, dyn: dyn, gauge: gg, floor: floor, content: pkContent, sc: pkSc };
+  }
+  function setup(fig) {
+    var ui = build(fig);
+    var out = fig.querySelector('output');
+    var groupRow = fig.querySelector('.sc-row--groups');
+    var groupKey = null, server = 'mirror';
+    for (var gi = 0; gi < GROUPS.length; gi++) {
+      var g = GROUPS[gi], key = keyOf(g.label);
+      if (!key) continue;
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'sc-btn';
+      btn.setAttribute('data-group', key);
+      btn.setAttribute('aria-pressed', 'false');
+      var strong = document.createElement('strong');
+      strong.textContent = g.label.split(':')[0];
+      btn.appendChild(strong);
+      var small = document.createElement('small');
+      for (var ci = 0; ci < g.clients.length; ci++) {
+        var c = g.clients[ci];
+        var span = document.createElement('span');
+        span.textContent = c.name;
+        if (c.carried) span.className = 'sc-carried';
+        small.appendChild(span);
+        if (ci < g.clients.length - 1) small.appendChild(document.createTextNode(' · '));
+      }
+      btn.appendChild(small);
+      groupRow.appendChild(btn);
+    }
+    function press(selector, attr, value) {
+      var btns = fig.querySelectorAll(selector);
+      for (var i = 0; i < btns.length; i++) btns[i].setAttribute('aria-pressed', btns[i].getAttribute(attr) === value ? 'true' : 'false');
+    }
+    function render() {
+      var st = STATES[groupKey][server];
+      drawPacket(ui.content, st.content[0], 'content');
+      drawPacket(ui.sc, st.sc[0], 'structuredContent');
+      place(ui.content, st.content[1]);
+      place(ui.sc, st.sc[1]);
+      ui.floor.style.opacity = (/^floor/.test(st.content[1]) || /^floor/.test(st.sc[1])) ? 1 : 0;
+      ui.dyn.textContent = '';
+      var two = st.copies.length === 2;
+      eyes(ui.dyn, two ? 0.45 : 0);
+      if (two) sweat(ui.dyn);
+      squiggles(ui.dyn, 250, 314);
+      gauge(ui.gauge, st.copies);
+      out.textContent = st.text;
+    }
+    fig.addEventListener('click', function (e) {
+      var btn = e.target.closest('.sc-btn');
+      if (!btn) return;
+      if (btn.hasAttribute('data-group')) { groupKey = btn.getAttribute('data-group'); press('[data-group]', 'data-group', groupKey); }
+      if (btn.hasAttribute('data-server')) { server = btn.getAttribute('data-server'); press('[data-server]', 'data-server', server); }
+      render();
+    });
+    // start in the first group after a beat, so the packets are seen leaving the server
+    var first = groupRow.querySelector('[data-group]');
+    if (!first) return;
+    groupKey = first.getAttribute('data-group');
+    press('[data-group]', 'data-group', groupKey);
+    ui.dyn.textContent = '';
+    eyes(ui.dyn, 0);
+    squiggles(ui.dyn, 250, 314);
+    out.textContent = 'A tool result is on its way.';
+    var delay = matchMedia('(prefers-reduced-motion: no-preference)').matches ? 700 : 0;
+    setTimeout(render, delay);
+    // the big eye follows the pointer
+    if (matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+      var pt = ui.svg.createSVGPoint(), queued = false, cx = 0, cy = 0;
+      function track() {
+        queued = false;
+        var pupil = document.getElementById('sc-pupil');
+        var ctm = ui.cr.getScreenCTM();
+        if (!pupil || !ctm) return;
+        pt.x = cx; pt.y = cy;
+        var p = pt.matrixTransform(ctm.inverse());
+        var ex = EYES[0][0], ey = EYES[0][1], max = +pupil.getAttribute('data-r') * 0.55;
+        var dx = p.x - ex, dy = p.y - ey, dist = Math.sqrt(dx * dx + dy * dy);
+        var k = dist ? Math.min(1, dist / 60) * max / dist : 0;
+        pupil.setAttribute('cx', (ex + dx * k).toFixed(2));
+        pupil.setAttribute('cy', (ey + dy * k).toFixed(2));
+      }
+      addEventListener('pointermove', function (e) {
+        cx = e.clientX; cy = e.clientY;
+        if (!queued) { queued = true; requestAnimationFrame(track); }
+      }, { passive: true });
+    }
+  }
+  var figs = document.querySelectorAll('.sc');
+  for (var i = 0; i < figs.length; i++) setup(figs[i]);
+})();
+</script>
+
+<h3>What each client does</h3>
+
+<p>The rows are grouped by what reaches the model when a result carries both fields. The “content empty” column is the case where a server stops writing the text mirror and sends only <code>structuredContent</code>. The “other route” column names any path that handles the same result differently from the conversational one. The linked commit is the one each row was read at.</p>
+
+<table>
+<thead>
+<tr><th scope="col">Client</th><th scope="col">Both fields present</th><th scope="col">content empty, structuredContent present</th><th scope="col">Other route</th></tr>
+</thead>
+<tbody>
+<tr class="group"><th scope="row" colspan="4"><em>content only: structuredContent never reaches the model</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/zed-industries/zed/tree/decd2399b180b64dea2a4182f9ac63545a45e7a3" target="_blank">zed</a> <small>decd239 · 2026-11-02</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> is deserialized into a field with no read sites.</td>
+  <td data-label="content empty, structuredContent present">The fixed string <code>&lt;Tool returned an empty string&gt;</code>. A result with no <code>content</code> key at all fails to parse.</td>
+  <td data-label="Other route">None. External ACP agents connect to the servers themselves.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/aaif-goose/goose/tree/b23d21cabd9b4de0c045dcdd731821a3a15c2bfc" target="_blank">goose</a> <small>b23d21c · 2026-10-31</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks, filtered by audience annotation. No provider formatter names <code>structuredContent</code>.</td>
+  <td data-label="content empty, structuredContent present">The placeholder text <code>(empty result)</code>.</td>
+  <td data-label="Other route">Code mode also reads <code>content</code> text only. The ACP surface and the desktop app receive <code>structuredContent</code> for MCP Apps.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/strands-agents/sdk-python/tree/1af083deb09c956041ddbb47d1f12da59b896bc4" target="_blank">strands</a> <small>1af083d · 2026-10-30</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> is parked on a sidecar key for hooks, sessions and telemetry.</td>
+  <td data-label="content empty, structuredContent present">Nothing from <code>structuredContent</code>.</td>
+  <td data-label="Other route">Hooks, direct <code>agent.tool</code> calls and session state see the sidecar.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/crewAIInc/crewAI/tree/86dca29b536d700b69a97a3592857d5f9d4a8873" target="_blank">crewAI</a> <small>86dca29 · 2026-11-01</small></th>
+  <td data-label="Both fields present">Every <code>content</code> block joined with newlines, with non-text blocks as typed placeholders such as <code>[image: image/png]</code>. The vendored crewai-tools adapter sends a Python list of every text block when there is more than one.</td>
+  <td data-label="content empty, structuredContent present">A Python <code>repr</code> of the result object, which happens to include <code>structuredContent</code>. The vendored adapter sends <code>[]</code>.</td>
+  <td data-label="Other route">None.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Where the repr comes from</summary>
+<p>Both default paths flatten the content blocks with <code>content_blocks_to_text</code> and otherwise fall back to <code>str(result)</code> on the pydantic <code>CallToolResult</code>. The structured value reaches the model only because the repr happens to print every field. <code>lib/crewai/src/crewai/mcp/client.py</code>, <code>MCPClient._call_tool_impl</code>:</p>
+<pre><code>if hasattr(result, "content") and result.content:
+    return _MCPToolResult(content_blocks_to_text(result.content), is_error)
+
+return _MCPToolResult(str(result), is_error)</code></pre>
+<p>The observation for a structured-only result therefore reads <code>meta=None content=[] structuredContent={...} isError=False</code>. The vendored crewai-tools adapter never reads <code>structuredContent</code> and returns <code>[]</code> instead.</p>
+</details></td></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/langchain-ai/deepagents/tree/c23a11fc7f8e6f4872738f0258980595cfddb7f5" target="_blank">deepagents</a> <small>c23a11f · 2026-11-01</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> goes to <code>ToolMessage.artifact</code>, host state the model does not see.</td>
+  <td data-label="content empty, structuredContent present">Nothing from <code>structuredContent</code>.</td>
+  <td data-label="Other route">PostToolUse hooks receive the whole <code>ToolMessage</code>, artifact included. The QuickJS interpreter, when allowed to call MCP tools, receives the <code>content</code> blocks only. An <code>outputSchema</code> mismatch raises out of the tool call, so no <code>ToolMessage</code> is produced and the model sees no error text.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/danny-avila/LibreChat/tree/f4154b649efa37e1345ccc517a4d8d1ed2178c82" target="_blank">LibreChat</a> <small>f4154b6 · 2026-10-31</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks, flattened to one string. <code>structuredContent</code> goes only to the MCP Apps snapshot, which is built only with <code>mcpSettings.apps</code> on. It is off by default.</td>
+  <td data-label="content empty, structuredContent present">The placeholder <code>(No response)</code>. With MCP Apps on, an empty string when the tool declares an MCP App.</td>
+  <td data-label="Other route">With MCP Apps on, the iframe receives <code>structuredContent</code>. The programmatic tool calling sandbox receives the flattened string.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>The validation it skips on purpose</summary>
+<p>The call goes through the SDK’s raw <code>request</code> rather than its typed <code>callTool</code>, and the comment above it says why. <code>packages/api/src/mcp/MCPManager.ts</code>:</p>
+<pre><code>// Deliberately use `request`: the typed wrapper also enforces the tool's output schema and
+// rejects task-required tools, which would turn a server response into a host-side failure.</code></pre>
+<p>So a <code>structuredContent</code> value that does not match the declared <code>outputSchema</code> is never rejected here; the model sees the <code>content</code> text either way. The result type now carries <code>structuredContent</code>, but <code>formatToolContent</code> in <code>parsers.ts</code> builds the model text from <code>result?.content ?? []</code> alone, and the one read of the structured value is the MCP Apps snapshot that goes to the iframe.</p>
+<p>The comment arrived with <a href="https://github.com/LibreChat-AI/LibreChat/pull/13831" target="_blank">LibreChat-AI/LibreChat#13831</a>, the MCP Apps pull request merged 2026-09-24, which also added <code>structuredContent</code> to the result type and to the snapshot. The raw <code>request</code> call itself dates from the first MCP support in December 2024, before the SDK’s <code>callTool</code> validated anything, so the comment explains a path that was never changed. The PR body and review threads do not discuss the bypass. The maintainer’s stated position, from <a href="https://github.com/LibreChat-AI/LibreChat/discussions/8450" target="_blank">discussion #8450</a> in July 2025: “The structured content is for the output of the tool call, and mainly on the MCP server, not the client (LibreChat) to address.” Two pull requests that would serialize <code>structuredContent</code> at the <code>(No response)</code> sites, <a href="https://github.com/LibreChat-AI/LibreChat/pull/14492" target="_blank">#14492</a> and <a href="https://github.com/LibreChat-AI/LibreChat/pull/15236" target="_blank">#15236</a>, are unmerged, with reports from users of the Airtable, Traccar and Microsoft WorkIQ servers, which send an empty <code>content</code> array.</p>
+</details></td></tr>
+<tr class="group"><th scope="row" colspan="4"><em>content first: structuredContent fills in only when content is empty</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/Kilo-Org/kilocode/tree/dd35e09db9c74c62c84423df485fb3603a02dba1" target="_blank">kilocode</a> <small>dd35e09 · 2026-10-31</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> is not read on this path.</td>
+  <td data-label="content empty, structuredContent present">One text block holding <code>JSON.stringify(structuredContent)</code>.</td>
+  <td data-label="Other route">Code mode, when enabled, replaces the direct MCP tools and returns <code>structuredContent</code> as the script value. A <code>tool.execute.after</code> plugin can rewrite <code>content</code> before the model sees it. The experimental call-tool endpoint returns both fields to a widget’s own calls.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/anomalyco/opencode/tree/52c7faa07368ffa781c0605fc71ab3eb43053fcf" target="_blank">opencode</a> <small>52c7faa · 2026-11-01</small></th>
+  <td data-label="Both fields present">With <code>codemode: false</code>, or with the <code>execute</code> permission wholly denied: the <code>content</code> blocks, and <code>structuredContent</code> goes into a tool output field that is not persisted to the transcript.</td>
+  <td data-label="content empty, structuredContent present">On the same path: one text block holding <code>JSON.stringify(structuredContent)</code>.</td>
+  <td data-label="Other route">Default for every server unless <code>execute</code> is wholly denied. MCP tools are reachable only through the <code>execute</code> script tool; scripts receive <code>structuredContent</code> and the model sees the script’s return value.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/badlogic/pi-mono/tree/c9f4c7b9fcd0f3e6b5bbc35c7c9b6cda35580eb8" target="_blank">pi</a> <small>c9f4c7b · 2026-11-01</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. The transcript message type has no <code>structuredContent</code> field.</td>
+  <td data-label="content empty, structuredContent present">One text block holding pretty-printed JSON of <code>structuredContent</code>.</td>
+  <td data-label="Other route">Codemode scripts receive the whole result minus <code>_meta</code>, untruncated, with <code>outputSchema</code> rendered as a TypeScript return type.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/mastra-ai/mastra/tree/6f82b3a14f06ecca0c9668c5d1e5109dfc0a3829" target="_blank">mastra</a> <small>6f82b3a1 · 2026-11-02</small></th>
+  <td data-label="Both fields present">For a tool that declares an <code>outputSchema</code>: the text of the <code>content</code> blocks, falling back to <code>structuredContent</code> as a JSON value when there is none. For a tool without one: <code>structuredContent</code> alone, as a JSON value. The whole result envelope when <code>structuredContent</code> is absent.</td>
+  <td data-label="content empty, structuredContent present"><code>structuredContent</code> as a JSON value.</td>
+  <td data-label="Other route">Code mode gives scripts <code>structuredContent</code>, with <code>outputSchema</code> rendered as the TypeScript return type. Studio MCP Apps receive the stored value. With the opt-in <code>tasks</code> option, a result delivered through a task skips the SDK’s <code>outputSchema</code> check, and mastra’s own check applies.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Why this row moved, with the source</summary>
+<p>The August reading had one line deciding the model path: <code>if (res.structuredContent !== undefined) return res.structuredContent;</code>. The client now attaches a model-output mapper only to tools that declare an <code>outputSchema</code>, and that mapper prefers the text of <code>content</code>. <code>packages/mcp/src/client/client.ts</code>:</p>
+<pre><code>...(tool.outputSchema ? { toModelOutput: createStructuredToolToModelOutput() } : {}),
+
+function createStructuredToolToModelOutput() {
+  return output =&gt; {
+    const modelText = extractModelTextFromToolContent(getMcpCallToolContent(output));
+    if (modelText !== undefined) {
+      return { type: 'text', value: modelText };
+    }
+    return { type: 'json', value: output };
+  };
+}</code></pre>
+<p><code>execute</code> still returns <code>structuredContent</code> as the tool’s value, with the <code>content</code> blocks attached on a non-enumerable symbol so the mapper can read them without changing the return shape. A tool without a schema gets no mapper, so the AI SDK sends the structured value as JSON. Whether the server declared a schema is what decides which field the model sees, and this is the only client of the twenty where <code>outputSchema</code> does that.</p>
+<p>The change came in through <a href="https://github.com/mastra-ai/mastra/pull/20176" target="_blank">mastra-ai/mastra#20176</a>, merged 2026-08-07, fixing <a href="https://github.com/mastra-ai/mastra/issues/20168" target="_blank">issue #20168</a>, which reported that the model received a large structured payload where it should receive the text of <code>content</code>. Both cite the specification’s description of the two fields. The PR body: "Per the MCP specification, <code>content</code> is the LLM-facing channel while <code>structuredContent</code> is intended for client/UI consumption." The costs named are tokens and the MCP Apps pattern of a short summary in <code>content</code> with the data in <code>structuredContent</code>. <a href="https://github.com/mastra-ai/mastra/pull/27131" target="_blank">#27131</a>, merged 2026-10-15, widened the text filter to embedded resource text after the GitHub MCP server added an <code>outputSchema</code> to its file tool and an agent could no longer read a file through mastra.</p>
+</details></td></tr>
+<tr class="group"><th scope="row" colspan="4"><em>structuredContent replaces content</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/openai/codex/tree/a09812981de703f18f38015cd5d500ab373f616c" target="_blank">codex</a> <small>a098129 · 2026-11-01</small></th>
+  <td data-label="Both fields present">JSON of <code>structuredContent</code> as the whole tool output whenever it is non-null, including <code>{}</code>. Every <code>content</code> block is dropped.</td>
+  <td data-label="content empty, structuredContent present">The same JSON.</td>
+  <td data-label="Other route"><code>content</code> wins when a text block carries the private <code>_meta</code> key <code>codex/encryptedContent</code>. Code mode receives the whole result. PostToolUse hooks receive it for non-error results and can replace what the model sees.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/microsoft/vscode/tree/67710841ad061a9e253214f87bf5415a185ab2ff" target="_blank">VS Code</a> <small>67710841 · 2026-11-01</small></th>
+  <td data-label="Both fields present">JSON of <code>structuredContent</code> as one assistant-audience text part, also for <code>{}</code>. Every server text block is dropped; images go through, audio is converted but Copilot Chat drops it, and resource blocks become links.</td>
+  <td data-label="content empty, structuredContent present">The same JSON. A result with no <code>content</code> key throws.</td>
+  <td data-label="Other route">MCP Apps receive the raw result. The gateway republishes results that carry <code>content</code> verbatim.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/evalstate/fast-agent/tree/91eb90238e7b50790fce8a30db768869d189ab38" target="_blank">fast-agent</a> <small>91eb902 · 2026-11-01</small></th>
+  <td data-label="Both fields present">Compact JSON of <code>structuredContent</code> replaces every text block; non-text blocks stay.</td>
+  <td data-label="content empty, structuredContent present">The same JSON.</td>
+  <td data-label="Other route">The ACP channel receives <code>content</code> blocks only. Tools with app-only visibility are hidden from the model. With the opt-in <code>--ptc</code> flag, scripts receive <code>structuredContent</code>, wrapped with any non-text blocks, and the model sees the <code>execute_python</code> output.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/microsoft/agent-framework/tree/ca65085e1025ecb12c03535a9aaa53bb4b422648" target="_blank">agent-framework (Python)</a> <small>ca65085 · 2026-11-01</small></th>
+  <td data-label="Both fields present"><code>structuredContent</code> as one JSON text block. Every <code>content</code> block is dropped, images and audio included.</td>
+  <td data-label="content empty, structuredContent present">The JSON text block.</td>
+  <td data-label="Other route">The <code>tool_result_content</code> option selects <code>content_first</code>, <code>content_only</code>, <code>structured_only</code> or <code>both</code> instead. AG-UI receives the full result. The Hyperlight sandbox receives the selected blocks. In the Monty sandbox an MCP tool call gives the script an error, because <code>Content</code> objects fail its JSON check.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Why this row moved, with the source</summary>
+<p>In August the parser walked <code>content</code> and appended <code>structuredContent</code> as a trailing JSON text block, so both copies reached the model. That behaviour is now one of five modes on a constructor option, and the default drops <code>content</code> whenever the structured value is present. <code>python/packages/core/agent_framework/_mcp.py</code>:</p>
+<pre><code>tool_result_content: MCPToolResultContentMode = "structured_first",
+
+elif mode == "content_first":
+    if not result and structured_block is not None:
+        result.append(structured_block)
+elif mode == "structured_first":
+    if structured_block is not None:
+        result = [structured_block]</code></pre>
+<p>The other modes are <code>content_first</code>, <code>content_only</code>, <code>structured_only</code> and <code>both</code>. Image and audio blocks are dropped with the text under the default. An application that wants the August behaviour passes <code>tool_result_content="both"</code>. This is the one client whose routing switch lives in its own constructor rather than in <code>_meta</code> or in what the server sent.</p>
+<p>The option came in through <a href="https://github.com/microsoft/agent-framework/pull/8274" target="_blank">microsoft/agent-framework#8274</a>, merged 2026-09-15, fixing <a href="https://github.com/microsoft/agent-framework/issues/7866" target="_blank">issue #7866</a>, a report that the DeepWiki and MS Learn servers return the same payload in both fields and the model saw it twice. The first version of the PR preferred <code>content</code>. A reviewer asked for an explicit policy instead, because servers may also use the two fields as complementary data, and the maintainer who listed the five modes wrote that the default “should probably be to propagate from the most specific (structuredContent) to the more generic (content)”. The issue thread cites the MCP roadmap’s line that returning both fields “has confused server and client authors alike” and the deferral of SEP-2200 as the reason the specification gives no rule to follow.</p>
+</details></td></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/vercel/eve/tree/db7850007a424b2f0d62f1909145acd2ff2d124f" target="_blank">eve</a> <small>db78500 · 2026-10-31</small></th>
+  <td data-label="Both fields present"><code>structuredContent</code> as a JSON value, also for <code>{}</code> and <code>null</code>. Every text block is dropped. If any block is an image, audio or resource, the blocks go through with their text and <code>structuredContent</code> is dropped.</td>
+  <td data-label="content empty, structuredContent present">The same JSON value. A result with no <code>content</code> key gets the same value.</td>
+  <td data-label="Other route">Hooks, stream clients and ACP receive the value already chosen. No script path exists. When <code>structuredContent</code> is absent, a tool with no <code>outputSchema</code> has its text parsed as JSON.</td>
+</tr>
+<tr class="group"><th scope="row" colspan="4"><em>both fields reach the model</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/NousResearch/hermes-agent/tree/5aa8df742c81ca7d993d94a0bc80b27edd65dc0c" target="_blank">hermes-agent</a> <small>5aa8df74 · 2026-11-01</small></th>
+  <td data-label="Both fields present">One JSON object, <code>{"result": &lt;joined text&gt;, "structuredContent": &lt;value&gt;}</code>. The structured copy is dropped when a text block parses to the same JSON.</td>
+  <td data-label="content empty, structuredContent present"><code>{"result": &lt;value&gt;}</code>.</td>
+  <td data-label="Other route">Plugins get the envelope reshaped with an <code>ok</code> key, minus <code>_meta</code>, cut at 64 KiB. A separate computer-use client treats <code>structuredContent</code> as canonical.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/cline/cline/tree/a6507a62a147db4a35e27f4294589742ccac5060" target="_blank">cline</a> <small>a6507a6 · 2026-10-30</small></th>
+  <td data-label="Both fields present">The whole result envelope, <code>content</code>, <code>structuredContent</code>, <code>isError</code> and <code>_meta</code>, stringified into one text block. Image and audio blocks are stringified with their base64 intact.</td>
+  <td data-label="content empty, structuredContent present">The same stringified envelope.</td>
+  <td data-label="Other route">CLI hooks and the ACP agent receive the raw object. VS Code hooks receive the string <code>[object Object]</code>.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/google/adk-python/tree/95d8610ea3445ce9c6d0cf70aed1a0071ddc1e2f" target="_blank">adk-python</a> <small>95d8610 · 2026-10-31</small></th>
+  <td data-label="Both fields present">The entire result as a dict, both fields included, on the Gemini, LiteLLM, Interactions and Apigee backends. The Anthropic backend sends the <code>content</code> text only.</td>
+  <td data-label="content empty, structuredContent present">The same dict. On the Anthropic backend, the dict as a JSON string.</td>
+  <td data-label="Other route"><code>after_tool_callback</code> and plugin callbacks can replace the dict. <code>outputSchema</code> is forwarded to Gemini as <code>response_json_schema</code>.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Same client, different answer per model backend</summary>
+<p>The MCP tool dumps the whole <code>CallToolResult</code> to a dict with the wire key names (<code>_dump_mcp_model</code> in <code>tools/mcp_tool/mcp_tool.py</code>), and the Gemini backend sends that dict as the function response, <code>structuredContent</code> included. The Anthropic backend reformats function responses before sending them and keeps only the content list when it is non-empty. <code>src/google/adk/models/anthropic_llm.py</code>, <code>_part_to_message_block</code>:</p>
+<pre><code>if (
+    "content" in response_data
+    and isinstance(response_data["content"], list)
+    and response_data["content"]
+):
+    content_items = []
+    for item in response_data["content"]:
+        if isinstance(item, dict):
+            if item.get("type") == "text" and "text" in item:
+                content_items.append(item["text"])
+            else:
+                content_items.append(str(item))</code></pre>
+<p>Only when <code>content</code> is empty does it fall back to <code>json.dumps(response_data)</code>, which is when the structured value reaches Claude. The same agent therefore sits in the both-fields group on Gemini and in the content-first group on Anthropic.</p>
+<p>The <code>content</code> branch was added by commit <a href="https://github.com/google/adk-python/commit/1dd97f5b45226c25e4c51455c78ebf3ff56ab46a" target="_blank">1dd97f5b</a> on 2025-11-17, an internal change with no pull request and no message body. The whole-dict dump came from commit <a href="https://github.com/google/adk-python/commit/4df926388b6e9ebcf517fbacf2f5532fd73b0f71" target="_blank">4df92638</a>, whose message says the aim was that “what ADK runtime sees is identical to what is persisted in the session event list”. No issue or pull request in the repository discusses the Anthropic path dropping <code>structuredContent</code>. <a href="https://github.com/google/adk-python/issues/7073" target="_blank">Issue #7073</a> raised the same Gemini-versus-Claude gap for dicts with a <code>result</code> key and left the MCP <code>content</code> branch out of scope on purpose.</p>
+</details></td></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/microsoft/agent-framework/tree/ca65085e1025ecb12c03535a9aaa53bb4b422648" target="_blank">agent-framework (.NET)</a> <small>ca65085 · 2026-11-01</small></th>
+  <td data-label="Both fields present">The whole result serialized, both fields included.</td>
+  <td data-label="content empty, structuredContent present">The same serialization.</td>
+  <td data-label="Other route">Declarative workflows read <code>content</code> only. The Hyperlight sandbox receives the same serialization.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/vercel-labs/fx/tree/15070ecbda474d798c0e24a516b03331108f2662" target="_blank">fx</a> <small>15070ec · 2026-11-01</small></th>
+  <td data-label="Both fields present">One string, <code>{"server":…,"tool":…,"result":{"content":[…],"structuredContent":…,"isError":…}}</code>, on every provider backend. Image data moves to typed images. Audio and other blob data are removed, leaving a <code>delivery</code> note. Over 16 KiB with a session store, the model gets a 4 KiB preview of the envelope and a handle.</td>
+  <td data-label="content empty, structuredContent present">The same envelope with <code>"content":[]</code>. A result with no <code>content</code> key ends the call with a failure text. Over the cap without a store, the model gets only a truncation marker.</td>
+  <td data-label="Other route">The libfx JS adapter sends the content text, a newline and compact JSON, or the JSON alone when the text is byte-identical, with no envelope. ACP editors get a 200-byte prefix of the same text.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>How this was populated</h3>
+
+<p>Each row comes from an evidence card that traces one client from the point a <code>tools/call</code> response is deserialized to the bytes placed in the provider request, with file paths and quoted source lines.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li aria-current="page">Which tool result field reaches the model</li>
+  </ul>
+</nav>
+<p>Version 0.7.0 &#183; Last updated 2026-11-01 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>
