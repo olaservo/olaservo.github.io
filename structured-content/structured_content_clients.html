@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>which mcp tool result fields are used and how</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>An MCP tool result has two payload fields. What happens to these results when consumed by different agents?</p>
+<nav aria-label="Pages in this series">
+  <span aria-current="page">which mcp tool result fields are used and how (clients)</span>
+</nav>
+</header>
+
+<h2>Which tool result field reaches the model?</h2>
+
+<p>A <a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools#tool-result" target="_blank">tool result</a> carries <code>content</code>, a required array of typed blocks (text, image, audio, resource), and optionally <code>structuredContent</code>. <code>structuredContent</code> can be any JSON value and it’s expected to match the tool’s <code>outputSchema</code> when one is included. The specification recommends that a server that returns <code>structuredContent</code> also serialize the same JSON into a text block in <code>content</code>, for backwards compatibility.</p>
+
+<p>A client can have several possible consumers for one tool result.  This might include the model’s context, a script the model wrote, a render for the user, an <a href="https://modelcontextprotocol.io/extensions/apps" target="_blank">MCP App</a>'s view. Each may want a different shape, a different redaction, and a different amount of the same data.</p>
+
+<p>Each implementer has a lot of decisions to make about how to use each field, including whether or not to pass it along to the LLM’s context. The protocol does specify an explicit audience signal, the <code>audience</code> annotation. This sits on individual <code>content</code> blocks, is advisory, and is not included for <code>structuredContent</code>. This means that today, a server author cannot tell from the result alone whether the model will see the JSON, the text mirror of the JSON, or both.</p>
+
+<p>This page records what a sample of open source clients do with tool results based on analyzing their source code.</p>
+
+<h3>What each client does</h3>
+
+<p>The rows are grouped by what reaches the model when a result carries both fields. The “content empty” column is the case where a server stops writing the text mirror and sends only <code>structuredContent</code>. The “other route” column names any path that handles the same result differently from the conversational one. The linked commit is the one each row was read at.</p>
+
+<table>
+<thead>
+<tr><th scope="col">Client</th><th scope="col">Both fields present</th><th scope="col">content empty, structuredContent present</th><th scope="col">Other route</th></tr>
+</thead>
+<tbody>
+<tr class="group"><th scope="row" colspan="4"><em>content only: structuredContent never reaches the model</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/zed-industries/zed/tree/decd2399b180b64dea2a4182f9ac63545a45e7a3" target="_blank">zed</a> <small>decd239 · 2026-11-02</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> is deserialized into a field with no read sites.</td>
+  <td data-label="content empty, structuredContent present">The fixed string <code>&lt;Tool returned an empty string&gt;</code>. A result with no <code>content</code> key at all fails to parse.</td>
+  <td data-label="Other route">None. External ACP agents connect to the servers themselves.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/aaif-goose/goose/tree/5bad61a87c27c313aec5187bfb72e69b594086b5" target="_blank">goose</a> <small>5bad61a · 2026-11-08</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks, filtered by audience annotation. No provider formatter names <code>structuredContent</code>.</td>
+  <td data-label="content empty, structuredContent present">The placeholder text <code>(empty result)</code>.</td>
+  <td data-label="Other route">Code mode also reads <code>content</code> text only. The ACP surface and the desktop app receive <code>structuredContent</code> for MCP Apps.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/strands-agents/harness-sdk/tree/3d32c2269609f235bea121cc2afcb14afeefd670" target="_blank">strands</a> <small>3d32c22 · 2026-11-06</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> is parked on a sidecar key for hooks, sessions and telemetry.</td>
+  <td data-label="content empty, structuredContent present">Nothing from <code>structuredContent</code>.</td>
+  <td data-label="Other route">Hooks, direct <code>agent.tool</code> calls and session state see the sidecar.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/crewAIInc/crewAI/tree/2fba413623a60d7a2f24a7d21685bbcd8dd45a4f" target="_blank">crewAI</a> <small>2fba413 · 2026-11-08</small></th>
+  <td data-label="Both fields present">Every <code>content</code> block joined with newlines, with non-text blocks as typed placeholders such as <code>[image: image/png]</code>. The vendored crewai-tools adapter sends a Python list of every text block when there is more than one.</td>
+  <td data-label="content empty, structuredContent present">A Python <code>repr</code> of the result object, which happens to include <code>structuredContent</code>. The vendored adapter sends <code>[]</code>.</td>
+  <td data-label="Other route">None.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Where the repr comes from</summary>
+<p>Both default paths flatten the content blocks with <code>content_blocks_to_text</code> and otherwise fall back to <code>str(result)</code> on the pydantic <code>CallToolResult</code>. The structured value reaches the model only because the repr happens to print every field. <code>lib/crewai/src/crewai/mcp/client.py</code>, <code>MCPClient._call_tool_impl</code>:</p>
+<pre><code>if hasattr(result, "content") and result.content:
+    return _MCPToolResult(content_blocks_to_text(result.content), is_error)
+
+return _MCPToolResult(str(result), is_error)</code></pre>
+<p>The observation for a structured-only result therefore reads <code>meta=None content=[] structuredContent={...} isError=False</code>. The vendored crewai-tools adapter never reads <code>structuredContent</code> and returns <code>[]</code> instead.</p>
+</details></td></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/langchain-ai/deepagents/tree/4182b6f89ddc8236159e0b51e76eeb3c8ca01eb8" target="_blank">deepagents</a> <small>4182b6f · 2026-11-08</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> goes to <code>ToolMessage.artifact</code>, host state the model does not see.</td>
+  <td data-label="content empty, structuredContent present">Nothing from <code>structuredContent</code>.</td>
+  <td data-label="Other route">PostToolUse hooks receive the whole <code>ToolMessage</code>, artifact included. The QuickJS interpreter, when allowed to call MCP tools, receives the <code>content</code> blocks only. An <code>outputSchema</code> mismatch raises out of the tool call, so no <code>ToolMessage</code> is produced and the model sees no error text. A result the backend session cannot parse (no <code>content</code>, non-object <code>structuredContent</code>) reaches the tool call as a bare <code>-32602 Invalid request parameters</code> and also produces no <code>ToolMessage</code>. Through the interpreter the model sees the <code>content</code> blocks as a JS-style literal inside <code>&lt;result&gt;</code> tags, cut at 4,000 characters by default.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/danny-avila/LibreChat/tree/f4154b649efa37e1345ccc517a4d8d1ed2178c82" target="_blank">LibreChat</a> <small>f4154b6 · 2026-10-31</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks, flattened to one string. <code>structuredContent</code> goes only to the MCP Apps snapshot, which is built only with <code>mcpSettings.apps</code> on. It is off by default.</td>
+  <td data-label="content empty, structuredContent present">The placeholder <code>(No response)</code>. With MCP Apps on, an empty string when the tool declares an MCP App.</td>
+  <td data-label="Other route">With MCP Apps on, the iframe receives <code>structuredContent</code>. The programmatic tool calling sandbox receives the flattened string.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>The validation it skips on purpose</summary>
+<p>The call goes through the SDK’s raw <code>request</code> rather than its typed <code>callTool</code>, and the comment above it says why. <code>packages/api/src/mcp/MCPManager.ts</code>:</p>
+<pre><code>// Deliberately use `request`: the typed wrapper also enforces the tool's output schema and
+// rejects task-required tools, which would turn a server response into a host-side failure.</code></pre>
+<p>So a <code>structuredContent</code> value that does not match the declared <code>outputSchema</code> is never rejected here; the model sees the <code>content</code> text either way. The result type now carries <code>structuredContent</code>, but <code>formatToolContent</code> in <code>parsers.ts</code> builds the model text from <code>result?.content ?? []</code> alone, and the one read of the structured value is the MCP Apps snapshot that goes to the iframe.</p>
+<p>The comment arrived with <a href="https://github.com/LibreChat-AI/LibreChat/pull/13831" target="_blank">LibreChat-AI/LibreChat#13831</a>, the MCP Apps pull request merged 2026-09-24, which also added <code>structuredContent</code> to the result type and to the snapshot. The raw <code>request</code> call itself dates from the first MCP support in December 2024, before the SDK’s <code>callTool</code> validated anything, so the comment explains a path that was never changed. The PR body and review threads do not discuss the bypass. The maintainer’s stated position, from <a href="https://github.com/LibreChat-AI/LibreChat/discussions/8450" target="_blank">discussion #8450</a> in July 2025: “The structured content is for the output of the tool call, and mainly on the MCP server, not the client (LibreChat) to address.” Two pull requests that would serialize <code>structuredContent</code> at the <code>(No response)</code> sites, <a href="https://github.com/LibreChat-AI/LibreChat/pull/14492" target="_blank">#14492</a> and <a href="https://github.com/LibreChat-AI/LibreChat/pull/15236" target="_blank">#15236</a>, are unmerged, with reports from users of the Airtable, Traccar and Microsoft WorkIQ servers, which send an empty <code>content</code> array.</p>
+</details></td></tr>
+<tr class="group"><th scope="row" colspan="4"><em>content first: structuredContent fills in only when content is empty</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/Kilo-Org/kilocode/tree/dd35e09db9c74c62c84423df485fb3603a02dba1" target="_blank">kilocode</a> <small>dd35e09 · 2026-10-31</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. <code>structuredContent</code> is not read on this path.</td>
+  <td data-label="content empty, structuredContent present">One text block holding <code>JSON.stringify(structuredContent)</code>.</td>
+  <td data-label="Other route">Code mode, when enabled, replaces the direct MCP tools and returns <code>structuredContent</code> as the script value. A <code>tool.execute.after</code> plugin can rewrite <code>content</code> before the model sees it. The experimental call-tool endpoint returns both fields to a widget’s own calls.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/anomalyco/opencode/tree/a98e3fa7a1a6073f27e39ba0eee8cc13ec8ab438" target="_blank">opencode</a> <small>a98e3fa · 2026-11-08</small></th>
+  <td data-label="Both fields present">With <code>codemode: false</code>, or with the <code>execute</code> permission wholly denied: the <code>content</code> blocks, and <code>structuredContent</code> goes into a tool output field that is not persisted to the transcript.</td>
+  <td data-label="content empty, structuredContent present">On the same path: one text block holding <code>JSON.stringify(structuredContent)</code>.</td>
+  <td data-label="Other route">Default for every server unless <code>execute</code> is wholly denied. MCP tools are reachable only through the <code>execute</code> script tool; scripts receive <code>structuredContent</code> and the model sees the script’s return value.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/earendil-works/pi/tree/5ea81d2cd9bb997774b49e379aa5bc496fdfeb6c" target="_blank">pi</a> <small>5ea81d2 · 2026-11-08</small></th>
+  <td data-label="Both fields present">The <code>content</code> blocks. The transcript message type has no <code>structuredContent</code> field.</td>
+  <td data-label="content empty, structuredContent present">One text block holding pretty-printed JSON of <code>structuredContent</code>.</td>
+  <td data-label="Other route">Codemode scripts receive the whole result minus <code>_meta</code>, untruncated, with <code>content: []</code> added when absent and <code>outputSchema</code> rendered as a TypeScript return type. Script output is cut at 10,000 tokens.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/mastra-ai/mastra/tree/b1f91397d5eb2f34d2d7dfdba988ac286cd1ed6a" target="_blank">mastra</a> <small>b1f91397 · 2026-11-08</small></th>
+  <td data-label="Both fields present">For a tool that declares an <code>outputSchema</code>: the text of the <code>content</code> blocks, falling back to <code>structuredContent</code> as a JSON value when there is none. For a tool without one: <code>structuredContent</code> alone, as a JSON value. The whole result envelope when <code>structuredContent</code> is absent.</td>
+  <td data-label="content empty, structuredContent present"><code>structuredContent</code> as a JSON value.</td>
+  <td data-label="Other route">Code mode gives scripts <code>structuredContent</code>, with <code>outputSchema</code> rendered as the TypeScript return type. Studio MCP Apps receive the stored value. With the opt-in <code>tasks</code> option, a result delivered through a task skips the SDK’s <code>outputSchema</code> check, and mastra’s own check applies.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Why this row moved, with the source</summary>
+<p>The August reading had one line deciding the model path: <code>if (res.structuredContent !== undefined) return res.structuredContent;</code>. The client now attaches a model-output mapper only to tools that declare an <code>outputSchema</code>, and that mapper prefers the text of <code>content</code>. <code>packages/mcp/src/client/client.ts</code>:</p>
+<pre><code>...(tool.outputSchema ? { toModelOutput: createStructuredToolToModelOutput() } : {}),
+
+function createStructuredToolToModelOutput() {
+  return output =&gt; {
+    const modelText = extractModelTextFromToolContent(getMcpCallToolContent(output));
+    if (modelText !== undefined) {
+      return { type: 'text', value: modelText };
+    }
+    return { type: 'json', value: output };
+  };
+}</code></pre>
+<p><code>execute</code> still returns <code>structuredContent</code> as the tool’s value, with the <code>content</code> blocks attached on a non-enumerable symbol so the mapper can read them without changing the return shape. A tool without a schema gets no mapper, so the AI SDK sends the structured value as JSON. Whether the server declared a schema is what decides which field the model sees, and this is the only client of the twenty where <code>outputSchema</code> does that.</p>
+<p>The change came in through <a href="https://github.com/mastra-ai/mastra/pull/20176" target="_blank">mastra-ai/mastra#20176</a>, merged 2026-08-07, fixing <a href="https://github.com/mastra-ai/mastra/issues/20168" target="_blank">issue #20168</a>, which reported that the model received a large structured payload where it should receive the text of <code>content</code>. Both cite the specification’s description of the two fields. The PR body: "Per the MCP specification, <code>content</code> is the LLM-facing channel while <code>structuredContent</code> is intended for client/UI consumption." The costs named are tokens and the MCP Apps pattern of a short summary in <code>content</code> with the data in <code>structuredContent</code>. <a href="https://github.com/mastra-ai/mastra/pull/27131" target="_blank">#27131</a>, merged 2026-10-15, widened the text filter to embedded resource text after the GitHub MCP server added an <code>outputSchema</code> to its file tool and an agent could no longer read a file through mastra.</p>
+</details></td></tr>
+<tr class="group"><th scope="row" colspan="4"><em>structuredContent replaces content</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/openai/codex/tree/748ab55ca7de0b647d9a7a9d9a8e70e00f28666d" target="_blank">codex</a> <small>748ab55 · 2026-11-08</small></th>
+  <td data-label="Both fields present">JSON of <code>structuredContent</code> as the whole tool output whenever it is non-null, including <code>{}</code>. Every <code>content</code> block is dropped.</td>
+  <td data-label="content empty, structuredContent present">The same JSON.</td>
+  <td data-label="Other route"><code>content</code> wins when a text block carries the private <code>_meta</code> key <code>codex/encryptedContent</code>. Code mode receives the whole result. PostToolUse hooks receive it for non-error results and can replace what the model sees.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/microsoft/vscode/tree/67710841ad061a9e253214f87bf5415a185ab2ff" target="_blank">VS Code</a> <small>67710841 · 2026-11-01</small></th>
+  <td data-label="Both fields present">JSON of <code>structuredContent</code> as one assistant-audience text part, also for <code>{}</code>. Every server text block is dropped; images go through, audio is converted but Copilot Chat drops it, and resource blocks become links.</td>
+  <td data-label="content empty, structuredContent present">The same JSON. A result with no <code>content</code> key throws.</td>
+  <td data-label="Other route">MCP Apps receive the raw result. The gateway republishes results that carry <code>content</code> verbatim.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/evalstate/fast-agent/tree/d89956d84c2e04adbea6e480df33d41aad38b242" target="_blank">fast-agent</a> <small>d89956d · 2026-11-08</small></th>
+  <td data-label="Both fields present">Compact JSON of <code>structuredContent</code> replaces every text block. Non-text blocks stay when the model’s catalogue entry accepts their MIME type.</td>
+  <td data-label="content empty, structuredContent present">The same JSON.</td>
+  <td data-label="Other route">The ACP channel receives <code>content</code> blocks only. Tools with app-only visibility are hidden from the model. Under programmatic tool calling (on by default for some catalogued models, or with <code>--ptc</code>), scripts receive <code>structuredContent</code>, wrapped with any non-text blocks, and the model sees the <code>exec_sandbox</code> output.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/microsoft/agent-framework/tree/924a6e50ec0336f3c965ee8b1151c54085888b6e" target="_blank">agent-framework (Python)</a> <small>924a6e5 · 2026-11-06</small></th>
+  <td data-label="Both fields present"><code>structuredContent</code> as one JSON text block. Every <code>content</code> block is dropped, images and audio included.</td>
+  <td data-label="content empty, structuredContent present">The JSON text block.</td>
+  <td data-label="Other route">The <code>tool_result_content</code> option selects <code>content_first</code>, <code>content_only</code>, <code>structured_only</code> or <code>both</code> instead. AG-UI receives the full result. The Hyperlight sandbox receives the selected blocks. In the Monty sandbox an MCP tool call gives the script an error, because <code>Content</code> objects fail its JSON check.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Why this row moved, with the source</summary>
+<p>In August the parser walked <code>content</code> and appended <code>structuredContent</code> as a trailing JSON text block, so both copies reached the model. That behaviour is now one of five modes on a constructor option, and the default drops <code>content</code> whenever the structured value is present. <code>python/packages/core/agent_framework/_mcp.py</code>:</p>
+<pre><code>tool_result_content: MCPToolResultContentMode = "structured_first",
+
+elif mode == "content_first":
+    if not result and structured_block is not None:
+        result.append(structured_block)
+elif mode == "structured_first":
+    if structured_block is not None:
+        result = [structured_block]</code></pre>
+<p>The other modes are <code>content_first</code>, <code>content_only</code>, <code>structured_only</code> and <code>both</code>. Image and audio blocks are dropped with the text under the default. An application that wants the August behaviour passes <code>tool_result_content="both"</code>. This is the one client whose routing switch lives in its own constructor rather than in <code>_meta</code> or in what the server sent.</p>
+<p>The option came in through <a href="https://github.com/microsoft/agent-framework/pull/8274" target="_blank">microsoft/agent-framework#8274</a>, merged 2026-09-15, fixing <a href="https://github.com/microsoft/agent-framework/issues/7866" target="_blank">issue #7866</a>, a report that the DeepWiki and MS Learn servers return the same payload in both fields and the model saw it twice. The first version of the PR preferred <code>content</code>. A reviewer asked for an explicit policy instead, because servers may also use the two fields as complementary data, and the maintainer who listed the five modes wrote that the default “should probably be to propagate from the most specific (structuredContent) to the more generic (content)”. The issue thread cites the MCP roadmap’s line that returning both fields “has confused server and client authors alike” and the deferral of SEP-2200 as the reason the specification gives no rule to follow.</p>
+</details></td></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/vercel/eve/tree/35fc0786c1b873a3ce8cdf6372674ee771bdfd52" target="_blank">eve</a> <small>35fc078 · 2026-11-07</small></th>
+  <td data-label="Both fields present"><code>structuredContent</code> as a JSON value, also for <code>{}</code> and <code>null</code>. Every text block is dropped. If any block is an image, audio or resource, the blocks go through with their text and <code>structuredContent</code> is dropped.</td>
+  <td data-label="content empty, structuredContent present">The same JSON value. A result with no <code>content</code> key gets the same value.</td>
+  <td data-label="Other route">Hooks, stream clients and ACP receive the value already chosen. No script path exists. When <code>structuredContent</code> is absent, a tool with no <code>outputSchema</code> has its text parsed as JSON.</td>
+</tr>
+<tr class="group"><th scope="row" colspan="4"><em>both fields reach the model</em></th></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/NousResearch/hermes-agent/tree/e075441241b8d626789b4aae0e376f86eabf824d" target="_blank">hermes-agent</a> <small>e0754412 · 2026-11-08</small></th>
+  <td data-label="Both fields present">One JSON object, <code>{"result": &lt;joined text&gt;, "structuredContent": &lt;value&gt;}</code>, inside an <code>&lt;untrusted_tool_result&gt;</code> block with a data-not-instructions preamble. The structured copy is dropped when a text block parses to the same JSON. Over 50,000 characters the result spills to disk and the model gets a 1,500-character preview.</td>
+  <td data-label="content empty, structuredContent present"><code>{"result": &lt;value&gt;}</code>.</td>
+  <td data-label="Other route">Plugins get the envelope reshaped with an <code>ok</code> key, minus <code>_meta</code>, cut at 64 KiB. A separate computer-use client treats <code>structuredContent</code> as canonical. By default MCP tools are reached through the <code>tool_search</code>/<code>tool_call</code> bridge, which unwraps to the same handler.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/cline/cline/tree/94eecbbe1a2f899c66b118d13656651b0a884e1f" target="_blank">cline</a> <small>94eecbb · 2026-11-06</small></th>
+  <td data-label="Both fields present">The whole result envelope, <code>content</code>, <code>structuredContent</code>, <code>isError</code> and <code>_meta</code>, stringified into one text block. Image and audio blocks are stringified with their base64 intact.</td>
+  <td data-label="content empty, structuredContent present">The same stringified envelope.</td>
+  <td data-label="Other route">CLI hooks and the ACP agent receive the raw object. VS Code hooks receive the string <code>[object Object]</code>.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/google/adk-python/tree/1cb926d5b8d702261ec82a26d3f1c4296e0db7d7" target="_blank">adk-python</a> <small>1cb926d · 2026-11-07</small></th>
+  <td data-label="Both fields present">The entire result as a dict, both fields included, on the Gemini, LiteLLM, Interactions and Apigee backends. The Anthropic backend sends the <code>content</code> text only.</td>
+  <td data-label="content empty, structuredContent present">The same dict. On the Anthropic backend, the dict as a JSON string.</td>
+  <td data-label="Other route"><code>after_tool_callback</code> and plugin callbacks can replace the dict. <code>outputSchema</code> is forwarded to Gemini as <code>response_json_schema</code>.</td>
+</tr>
+<tr class="detail"><td colspan="4"><details><summary>Same client, different answer per model backend</summary>
+<p>The MCP tool dumps the whole <code>CallToolResult</code> to a dict with the wire key names (<code>_dump_mcp_model</code> in <code>tools/mcp_tool/mcp_tool.py</code>), and the Gemini backend sends that dict as the function response, <code>structuredContent</code> included. The Anthropic backend reformats function responses before sending them and keeps only the content list when it is non-empty. <code>src/google/adk/models/anthropic_llm.py</code>, <code>_part_to_message_block</code>:</p>
+<pre><code>if (
+    "content" in response_data
+    and isinstance(response_data["content"], list)
+    and response_data["content"]
+):
+    content_items = []
+    for item in response_data["content"]:
+        if isinstance(item, dict):
+            if item.get("type") == "text" and "text" in item:
+                content_items.append(item["text"])
+            else:
+                content_items.append(str(item))</code></pre>
+<p>Only when <code>content</code> is empty does it fall back to <code>json.dumps(response_data)</code>, which is when the structured value reaches Claude. The same agent therefore sits in the both-fields group on Gemini and in the content-first group on Anthropic.</p>
+<p>The <code>content</code> branch was added by commit <a href="https://github.com/google/adk-python/commit/1dd97f5b45226c25e4c51455c78ebf3ff56ab46a" target="_blank">1dd97f5b</a> on 2025-11-17, an internal change with no pull request and no message body. The whole-dict dump came from commit <a href="https://github.com/google/adk-python/commit/4df926388b6e9ebcf517fbacf2f5532fd73b0f71" target="_blank">4df92638</a>, whose message says the aim was that “what ADK runtime sees is identical to what is persisted in the session event list”. No issue or pull request in the repository discusses the Anthropic path dropping <code>structuredContent</code>. <a href="https://github.com/google/adk-python/issues/7073" target="_blank">Issue #7073</a> raised the same Gemini-versus-Claude gap for dicts with a <code>result</code> key and left the MCP <code>content</code> branch out of scope on purpose.</p>
+</details></td></tr>
+<tr>
+  <th scope="row"><a href="https://github.com/microsoft/agent-framework/tree/924a6e50ec0336f3c965ee8b1151c54085888b6e" target="_blank">agent-framework (.NET)</a> <small>924a6e5 · 2026-11-06</small></th>
+  <td data-label="Both fields present">The whole result serialized, both fields included.</td>
+  <td data-label="content empty, structuredContent present">The same serialization.</td>
+  <td data-label="Other route">Declarative workflows read <code>content</code> only. The Hyperlight sandbox receives the same serialization.</td>
+</tr>
+<tr>
+  <th scope="row"><a href="https://github.com/vercel-labs/fx/tree/eab1401ca141b1f344e1fc96bcf42c83d673a3f4" target="_blank">fx</a> <small>eab1401 · 2026-11-07</small></th>
+  <td data-label="Both fields present">One string, <code>{"server":…,"tool":…,"result":{"content":[…],"structuredContent":…,"isError":…}}</code>, on every provider backend. Image data moves to typed images. Audio and other blob data are removed, leaving a <code>delivery</code> note. Over 16 KiB with a session store, the model gets a 4 KiB preview of the envelope and a handle. Over the 64 KiB cap without a session store (for example <code>fx ask --no-save</code>), the model gets only the <code>text</code>, <code>data</code>, <code>blob</code> and <code>content</code> values, cut to the cap, and no <code>structuredContent</code>.</td>
+  <td data-label="content empty, structuredContent present">The same envelope with <code>"content":[]</code>. A result with no <code>content</code> key ends the call with a failure text. Over the cap without a store, the model gets only a truncation marker.</td>
+  <td data-label="Other route">The libfx JS adapter sends the content text, a newline and compact JSON, or the JSON alone when the text is byte-identical, with no envelope. Over 64 KiB, libfx replaces the whole result with <code>Host tool result exceeded the configured limit</code>. ACP editors get a 200-byte prefix of the same text.</td>
+</tr>
+</tbody>
+</table>
+
+<h3>How this was populated</h3>
+
+<p>Each row comes from an evidence card that traces one client from the point a <code>tools/call</code> response is deserialized to the bytes placed in the provider request, with file paths and quoted source lines.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li aria-current="page">Which tool result field reaches the model</li>
+  </ul>
+</nav>
+<p>Version 0.8.0 &#183; Last updated 2026-11-08 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>
