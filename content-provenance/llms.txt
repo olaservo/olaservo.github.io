@@ -1,0 +1,15 @@
+# Content Provenance, Access and Attribution
+
+> 60 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford, as of 2026-11-08.
+
+One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. Each card has a name, type, status, website, tags (layer, stage, type), a short summary, topic sections, links to related cards and, where there is one, a public place to take part.
+
+## Cards
+
+- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): one file, one section per card, with the layer and stage definitions first
+- [All cards as JSON](https://www.olahungerford.com/content-provenance/cards.json): the same cards as structured data, with the vocabularies under "vocab"
+
+## Optional
+
+- [Explorer](https://www.olahungerford.com/content-provenance/): the list and graph view for people
+- [About the author](https://www.olahungerford.com/about/)
