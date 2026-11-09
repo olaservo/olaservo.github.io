@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution
 
-58 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-03. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+59 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-08. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -112,7 +112,11 @@ Working group on agent-level observability, above the OpenTelemetry GenAI teleme
 - **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.
 - **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member, so nothing connects the group to [Content Telemetry](#content-telemetry).
 
-Linked from: [Agentic AI Foundation](#aaif)
+#### Related
+
+- The conventions it builds above, and what they leave out: [OpenTelemetry for MCP](#otel-mcp).
+
+Linked from: [Agentic AI Foundation](#aaif), [OpenTelemetry for MCP](#otel-mcp)
 
 ### AAIF Security and Privacy WG
 
@@ -382,7 +386,7 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 - A credential check could run as an interceptor validator ([MCP Interceptors WG and SEP-2624](#mcp-interceptors)).
 - Lineage key overlap: [OpenLineage](#openlineage).
 
-Linked from: [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [OpenLineage](#openlineage)
+Linked from: [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [OpenTelemetry for MCP](#otel-mcp)
 
 ### CC Signals
 
@@ -469,9 +473,10 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 
 #### Related
 
+- Execution traces, which stop at the tool call: [OpenTelemetry for MCP](#otel-mcp).
 - [COUNTER Metrics](#counter) plans to reference it in phase two.
 
-Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [CC Signals](#cc-signals), [COUNTER Metrics](#counter), [Model Context Protocol](#mcp), [OpenAttribution.org](#openattribution), [Really Simple Licensing](#rsl), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SPUR Coalition](#spur-coalition)
+Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [CC Signals](#cc-signals), [COUNTER Metrics](#counter), [Model Context Protocol](#mcp), [OpenAttribution.org](#openattribution), [OpenTelemetry for MCP](#otel-mcp), [Really Simple Licensing](#rsl), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SPUR Coalition](#spur-coalition)
 
 ### COUNTER Metrics
 
@@ -893,10 +898,11 @@ The protocol between agents and the tools, resources, prompts and skills they re
 
 #### Related
 
+- Built-in tracing and metrics in the SDKs: [OpenTelemetry for MCP](#otel-mcp).
 - Threads: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SEP-2640 Skills Extension](#mcp-skills-extension), [MCP Interceptors WG and SEP-2624](#mcp-interceptors).
 - Groups: [MCP Financial Services Interest Group](#mcp-fsig), [MCP Security Interest Group](#mcp-security-ig).
 
-Linked from: [Agentic AI Foundation](#aaif), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Financial Services Interest Group](#mcp-fsig), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [SEP-2640 Skills Extension](#mcp-skills-extension), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
+Linked from: [Agentic AI Foundation](#aaif), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Financial Services Interest Group](#mcp-fsig), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [OpenTelemetry for MCP](#otel-mcp), [SEP-2640 Skills Extension](#mcp-skills-extension), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
 
 ### Open Future
 
@@ -983,7 +989,35 @@ Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage
 
 - Overlaps [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta). Introduced at [MCP Financial Services Interest Group](#mcp-fsig) on 2026-09-05.
 
-Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Financial Services Interest Group](#mcp-fsig)
+Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Financial Services Interest Group](#mcp-fsig), [OpenTelemetry for MCP](#otel-mcp)
+
+### OpenTelemetry for MCP
+
+- Id: otel-mcp
+- Also known as: MCP semantic conventions, SEP-414
+- Type: specification
+- Status: Conventions in Development; built into the Python SDK since v2.0.0; merged for the TypeScript SDK 2026-10-31, not yet released
+- Website: https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/mcp.md
+- Part of: [Model Context Protocol](#mcp)
+- Take part: [semantic-conventions-genai issues](https://github.com/open-telemetry/semantic-conventions-genai/issues), [MCP community channels](https://modelcontextprotocol.io/community/communication)
+- Tags: type/specification, venue/mcp, layer/provenance, stage/in-transit
+- Updated: 2026-11-08
+- Explorer: https://www.olahungerford.com/content-provenance/#otel-mcp
+
+OpenTelemetry semantic conventions for MCP spans and metrics, and the SDKs that emit them. Spans are named `{mcp.method.name} {target}`, for example `tools/call get-weather`, with `mcp.session.id`, `mcp.protocol.version` and `jsonrpc.request.id`. Trace context travels in `params._meta` under three keys that [SEP-414](https://modelcontextprotocol.io/seps/414-request-meta) proposed in April 2025 and the [2026-07-28 spec reserves](https://modelcontextprotocol.io/specification/2026-07-28/basic/index#_meta): `traceparent`, `tracestate` and `baggage`.
+
+#### Topics
+
+- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in the same `_meta` slot that [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) proposes for content credentials. The propagation rules are a precedent for any other credential that has to survive the hop.
+- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where [Content Telemetry](#content-telemetry) and the [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg) sit.
+- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-08). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation.
+
+#### Related
+
+- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026.
+- Lineage after the tool call, rather than the call itself: [OpenLineage](#openlineage).
+
+Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [Content Telemetry](#content-telemetry), [Model Context Protocol](#mcp)
 
 ### Project NANDA
 
