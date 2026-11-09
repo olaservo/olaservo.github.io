@@ -299,10 +299,10 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing)
 
 - Id: ai-disclosures-project
 - Type: organization
-- Status: Convenings at Bellagio (April 2026), Foo Camp (June 2026), MSR NYC (September 2026)
+- Status: Convenings at Bellagio (April 2026), Foo Camp (June and October 2026), Microsoft Research New York (September 2026)
 - Website: https://ai-disclosures.org
 - Tags: type/organization, layer/governance, layer/attribution, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-08
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-disclosures-project
 
 Project housed at Code for Science and Society working on the standards and mechanisms for value distribution in the human and AI economy. Prototypes include [Skills Marketplace](#skills-marketplace), the Open Memory Protocol Consortium and the Open Alpha Registry.
@@ -1143,15 +1143,15 @@ Linked from: [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF 
 - Id: skills-marketplace
 - Also known as: skill-cards, skillproof
 - Type: project
-- Status: Initial testing with O'Reilly authors
-- Website: https://github.com/SrulyRosenblat/skill-cards
+- Status: Work in progress with O'Reilly Media and Miso.ai; initial testing with O'Reilly Media authors
+- Website: https://ai-disclosures.org/prototypes.html
 - Part of: [AI Disclosures Project](#ai-disclosures-project)
-- Take part: [GitHub issues](https://github.com/SrulyRosenblat/skill-cards/issues)
+- Take part: [Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)
 - Tags: type/project, layer/licensing, layer/attribution, layer/payments, topic/skills
-- Updated: 2026-11-03
+- Updated: 2026-11-08
 - Explorer: https://www.olahungerford.com/content-provenance/#skills-marketplace
 
-Monetizable, rights-protected, interoperable skills, with skillproof benchmarks.
+A marketplace for modular, interoperable, rights-protected skills with monetization for their authors, built with O'Reilly Media and Miso.ai. Two public tools so far: [Skill Cards](https://github.com/SrulyRosenblat/skill-cards) measures how well a skill covers its source documentation, and [SkillProof](https://srulyrosenblat.github.io/skillproof/) benchmarks the uplift a skill gives an agent.
 
 #### Topics
 

@@ -448,9 +448,9 @@ window.CARDS = [
   "type": "organization",
   "website": "https://ai-disclosures.org",
   "part_of": "",
-  "status": "Convenings at Bellagio (April 2026), Foo Camp (June 2026), MSR NYC (September 2026)",
+  "status": "Convenings at Bellagio (April 2026), Foo Camp (June and October 2026), Microsoft Research New York (September 2026)",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-08",
   "tags": [
    "type/organization",
    "layer/governance",
@@ -1840,11 +1840,11 @@ window.CARDS = [
    "skillproof"
   ],
   "type": "project",
-  "website": "https://github.com/SrulyRosenblat/skill-cards",
+  "website": "https://ai-disclosures.org/prototypes.html",
   "part_of": "ai-disclosures-project",
-  "status": "Initial testing with O'Reilly authors",
-  "participate": "[GitHub issues](https://github.com/SrulyRosenblat/skill-cards/issues)",
-  "updated": "2026-11-03",
+  "status": "Work in progress with O'Reilly Media and Miso.ai; initial testing with O'Reilly Media authors",
+  "participate": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
+  "updated": "2026-11-08",
   "tags": [
    "type/project",
    "layer/licensing",
@@ -1852,7 +1852,7 @@ window.CARDS = [
    "layer/payments",
    "topic/skills"
   ],
-  "summary": "Monetizable, rights-protected, interoperable skills, with skillproof benchmarks.",
+  "summary": "A marketplace for modular, interoperable, rights-protected skills with monetization for their authors, built with O'Reilly Media and Miso.ai. Two public tools so far: [Skill Cards](https://github.com/SrulyRosenblat/skill-cards) measures how well a skill covers its source documentation, and [SkillProof](https://srulyrosenblat.github.io/skillproof/) benchmarks the uplift a skill gives an agent.",
   "sections": [
    {
     "title": "Topics",
