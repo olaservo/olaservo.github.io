@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution
 
-59 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-08. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+60 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-08. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -20,7 +20,7 @@ Where a card sits on the path content takes through an agent. Not every card has
 
 - at rest: content or a skill is signed where it is stored.
 - in transit: the credential travels with the content across a tool call.
-- at the boundary: a gateway or hook checks it on the way through.
+- at the boundary: a gateway or context middleware checks it on the way through.
 - after delivery: credit and reporting once the content has left the protocol and its metadata is gone.
 - trust: who may sign or report, and how that is decided. Not a place on the path, but every other stage depends on it.
 
@@ -183,6 +183,32 @@ Mandates that prove a human authorized an agent purchase.
 
 Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [x402](#x402)
 
+### Agent Plugins
+
+- Id: agent-plugins
+- Also known as: agent-plugins-spec, plugin.json
+- Type: specification
+- Status: 1.0.0 published 2026-08-06; 1.1.0 current; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel
+- Website: https://agent-plugins.org/
+- Take part: [GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)
+- Tags: type/specification, layer/provenance, layer/licensing, topic/skills, stage/at-rest
+- Updated: 2026-11-08
+- Explorer: https://www.olahungerford.com/content-provenance/#agent-plugins
+
+Package format that puts [Agent Skills](#agent-skills) and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed, not an [Agentic AI Foundation](#aaif) project. The spec is CC BY 4.0 and the schemas Apache 2.0.
+
+#### Topics
+
+- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.
+- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails, which is the same ground as [Agent Skills at-rest signing threads](#agent-skills-signing).
+- **No distribution layer**: registries, marketplaces, installation and updates are each client's own, so a [Skills Marketplace](#skills-marketplace) has a package to ship but no shared channel to ship it through.
+
+#### Related
+
+- The skills inside a plugin follow the [Agent Skills](#agent-skills) specification unchanged; [SEP-2640 Skills Extension](#mcp-skills-extension) serves the same skills over MCP instead of on disk.
+
+Linked from: [Agent Skills](#agent-skills), [Agent Skills at-rest signing threads](#agent-skills-signing), [Skills Marketplace](#skills-marketplace)
+
 ### Agent Skills
 
 - Id: agent-skills
@@ -203,7 +229,11 @@ The SKILL.md format for packaging instructions and files for agents.
 - **Skill provenance**: signing, lineage and authorship of skills ([Agent Skills at-rest signing threads](#agent-skills-signing)).
 - **Skill rights and payment**: paying authors and respecting licenses ([Skills Marketplace](#skills-marketplace)).
 
-Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Agentic AI Foundation](#aaif), [SEP-2640 Skills Extension](#mcp-skills-extension)
+#### Related
+
+- Packaged with MCP servers by [Agent Plugins](#agent-plugins).
+
+Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing threads](#agent-skills-signing), [Agentic AI Foundation](#aaif), [SEP-2640 Skills Extension](#mcp-skills-extension)
 
 ### Agent Skills at-rest signing threads
 
@@ -228,9 +258,10 @@ Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in f
 
 #### Related
 
+- [Agent Plugins](#agent-plugins) carries author and licence in its manifest and lists signing as future work.
 - Digests from [SEP-2640 Skills Extension](#mcp-skills-extension), catalog-side signing in [AI Catalog](#ai-catalog), sidecars from [C2PA](#c2pa), verification tiers in [AAIF Security and Privacy WG](#aaif-security-privacy-wg).
 
-Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Skills](#agent-skills), [AI Catalog](#ai-catalog), [C2PA](#c2pa), [Creator Assertions Working Group](#cawg), [SEP-2640 Skills Extension](#mcp-skills-extension), [Skills Marketplace](#skills-marketplace)
+Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Catalog](#ai-catalog), [C2PA](#c2pa), [Creator Assertions Working Group](#cawg), [SEP-2640 Skills Extension](#mcp-skills-extension), [Skills Marketplace](#skills-marketplace)
 
 ### Agentic AI Foundation
 
@@ -251,7 +282,7 @@ Hosts [Model Context Protocol](#mcp), goose, AGENTS.md, agentgateway, A2A, [Agen
 - **Caller-side provenance**: its working groups cover who acted: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg).
 - **Content-side representation**: content-side groups (publishers, CC, Wikimedia) are not on the WG liaison rosters.
 
-Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Skills](#agent-skills), [Model Context Protocol](#mcp), [Open Future](#open-future), [Wikimedia](#wikimedia), [x402](#x402)
+Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [Model Context Protocol](#mcp), [Open Future](#open-future), [Wikimedia](#wikimedia), [x402](#x402)
 
 ### Agentic Commerce Protocol
 
@@ -803,14 +834,14 @@ Linked from: [Model Context Protocol](#mcp), [OpenLineage](#openlineage)
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/working-group, venue/mcp, stage/boundary
-- Updated: 2026-11-03
+- Updated: 2026-11-08
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-interceptors
 
-Deterministic hooks in clients, servers and gateways. The place a seal or citation validator can run without a core spec change.
+Context middleware for clients, servers and gateways: deterministic code that sees each request and result on the way through. The place a seal or citation validator can run without a core spec change.
 
 #### Topics
 
-- **Checking at the boundary**: verifying provenance in a gateway or hook, since most clients will not.
+- **Checking at the boundary**: verifying provenance in a gateway or in context middleware, since most clients will not.
 - **The `signature` field**: deciding what it signs and whether it ever carries content provenance.
 - **Sample validator**: a seal or citation validator for [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) or [SEP-3094 Granular Citations](#mcp-sep-3094-citations).
 
@@ -1072,17 +1103,17 @@ Linked from: [Content Telemetry](#content-telemetry), [EU AI Act and GPAI Code o
 - Updated: 2026-11-03
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-skills-extension
 
-Serves [Agent Skills](#agent-skills) over MCP, with digests and a `_meta` hook for intermediaries.
+Serves [Agent Skills](#agent-skills) over MCP, with digests and a `_meta` slot for intermediaries.
 
 #### Topics
 
-- **Skills over MCP**: distributing skills to clients with digests and a `_meta` hook for intermediaries.
+- **Skills over MCP**: distributing skills to clients with digests and a `_meta` slot for intermediaries.
 
 #### Related
 
 - At-rest signing is not on the Skills WG agenda ([Agent Skills at-rest signing threads](#agent-skills-signing)).
 
-Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Model Context Protocol](#mcp)
+Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing threads](#agent-skills-signing), [Model Context Protocol](#mcp)
 
 ### SEP-3094 Granular Citations
 
@@ -1159,7 +1190,11 @@ A marketplace for modular, interoperable, rights-protected skills with monetizat
 - **Multi-source skills**: crediting every source behind a skill ([OpenAttribution.org](#openattribution), [C2PA](#c2pa)).
 - **Missing metadata**: no skill registry frontmatter carries author, license or source ([Agent Skills at-rest signing threads](#agent-skills-signing)).
 
-Linked from: [Agent Skills](#agent-skills), [AI Disclosures Project](#ai-disclosures-project)
+#### Related
+
+- [Agent Plugins](#agent-plugins) gives a package format but defines no marketplace or distribution.
+
+Linked from: [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Disclosures Project](#ai-disclosures-project)
 
 ### Spawning
 

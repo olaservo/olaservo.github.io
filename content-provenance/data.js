@@ -245,6 +245,50 @@ window.CARDS = [
   ]
  },
  {
+  "id": "agent-plugins",
+  "name": "Agent Plugins",
+  "aliases": [
+   "agent-plugins-spec",
+   "plugin.json"
+  ],
+  "type": "specification",
+  "website": "https://agent-plugins.org/",
+  "part_of": "",
+  "status": "1.0.0 published 2026-08-06; 1.1.0 current; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel",
+  "participate": "[GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)",
+  "updated": "2026-11-08",
+  "tags": [
+   "type/specification",
+   "layer/provenance",
+   "layer/licensing",
+   "topic/skills",
+   "stage/at-rest"
+  ],
+  "summary": "Package format that puts [[agent-skills]] and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed, not an [[aaif]] project. The spec is CC BY 4.0 and the schemas Apache 2.0.",
+  "sections": [
+   {
+    "title": "Topics",
+    "text": "- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.\n- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails, which is the same ground as [[agent-skills-signing]].\n- **No distribution layer**: registries, marketplaces, installation and updates are each client's own, so a [[skills-marketplace]] has a package to ship but no shared channel to ship it through."
+   },
+   {
+    "title": "Related",
+    "text": "- The skills inside a plugin follow the [[agent-skills]] specification unchanged; [[mcp-skills-extension]] serves the same skills over MCP instead of on disk."
+   }
+  ],
+  "links": [
+   "agent-skills",
+   "aaif",
+   "agent-skills-signing",
+   "skills-marketplace",
+   "mcp-skills-extension"
+  ],
+  "backlinks": [
+   "agent-skills",
+   "agent-skills-signing",
+   "skills-marketplace"
+  ]
+ },
+ {
   "id": "agent-skills",
   "name": "Agent Skills",
   "aliases": [
@@ -267,14 +311,20 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Skill provenance**: signing, lineage and authorship of skills ([[agent-skills-signing]]).\n- **Skill rights and payment**: paying authors and respecting licenses ([[skills-marketplace]])."
+   },
+   {
+    "title": "Related",
+    "text": "- Packaged with MCP servers by [[agent-plugins]]."
    }
   ],
   "links": [
    "agent-skills-signing",
    "skills-marketplace",
+   "agent-plugins",
    "aaif"
   ],
   "backlinks": [
+   "agent-plugins",
    "agent-skills-signing",
    "aaif",
    "mcp-skills-extension"
@@ -311,11 +361,12 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Digests from [[mcp-skills-extension]], catalog-side signing in [[ai-catalog]], sidecars from [[c2pa]], verification tiers in [[aaif-security-privacy-wg]]."
+    "text": "- [[agent-plugins]] carries author and licence in its manifest and lists signing as future work.\n- Digests from [[mcp-skills-extension]], catalog-side signing in [[ai-catalog]], sidecars from [[c2pa]], verification tiers in [[aaif-security-privacy-wg]]."
    }
   ],
   "links": [
    "cawg",
+   "agent-plugins",
    "mcp-skills-extension",
    "ai-catalog",
    "c2pa",
@@ -324,6 +375,7 @@ window.CARDS = [
   ],
   "backlinks": [
    "aaif-security-privacy-wg",
+   "agent-plugins",
    "agent-skills",
    "ai-catalog",
    "c2pa",
@@ -370,6 +422,7 @@ window.CARDS = [
    "aaif-identity-trust-wg",
    "aaif-observability-traceability-wg",
    "aaif-security-privacy-wg",
+   "agent-plugins",
    "agent-skills",
    "mcp",
    "open-future",
@@ -1273,17 +1326,17 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "SEP open; chain concept removed 2026-10-27; `signature` on ValidationResult reserved",
   "participate": "[SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-08",
   "tags": [
    "type/working-group",
    "venue/mcp",
    "stage/boundary"
   ],
-  "summary": "Deterministic hooks in clients, servers and gateways. The place a seal or citation validator can run without a core spec change.",
+  "summary": "Context middleware for clients, servers and gateways: deterministic code that sees each request and result on the way through. The place a seal or citation validator can run without a core spec change.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Checking at the boundary**: verifying provenance in a gateway or hook, since most clients will not.\n- **The `signature` field**: deciding what it signs and whether it ever carries content provenance.\n- **Sample validator**: a seal or citation validator for [[mcp-c2pa-in-meta]] or [[mcp-sep-3094-citations]]."
+    "text": "- **Checking at the boundary**: verifying provenance in a gateway or in context middleware, since most clients will not.\n- **The `signature` field**: deciding what it signs and whether it ever carries content provenance.\n- **Sample validator**: a seal or citation validator for [[mcp-c2pa-in-meta]] or [[mcp-sep-3094-citations]]."
    }
   ],
   "links": [
@@ -1722,11 +1775,11 @@ window.CARDS = [
    "stage/at-rest",
    "topic/skills"
   ],
-  "summary": "Serves [[agent-skills]] over MCP, with digests and a `_meta` hook for intermediaries.",
+  "summary": "Serves [[agent-skills]] over MCP, with digests and a `_meta` slot for intermediaries.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Skills over MCP**: distributing skills to clients with digests and a `_meta` hook for intermediaries."
+    "text": "- **Skills over MCP**: distributing skills to clients with digests and a `_meta` slot for intermediaries."
    },
    {
     "title": "Related",
@@ -1739,6 +1792,7 @@ window.CARDS = [
    "mcp"
   ],
   "backlinks": [
+   "agent-plugins",
    "agent-skills-signing",
    "mcp"
   ]
@@ -1857,15 +1911,21 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.\n- **Multi-source skills**: crediting every source behind a skill ([[openattribution]], [[c2pa]]).\n- **Missing metadata**: no skill registry frontmatter carries author, license or source ([[agent-skills-signing]])."
+   },
+   {
+    "title": "Related",
+    "text": "- [[agent-plugins]] gives a package format but defines no marketplace or distribution."
    }
   ],
   "links": [
    "openattribution",
    "c2pa",
    "agent-skills-signing",
+   "agent-plugins",
    "ai-disclosures-project"
   ],
   "backlinks": [
+   "agent-plugins",
    "agent-skills",
    "ai-disclosures-project"
   ]
@@ -2166,7 +2226,7 @@ window.VOCAB = {
  "stages": {
   "at-rest": "content or a skill is signed where it is stored",
   "in-transit": "the credential travels with the content across a tool call",
-  "boundary": "a gateway or hook checks it on the way through",
+  "boundary": "a gateway or context middleware checks it on the way through",
   "after-delivery": "credit and reporting once the content has left the protocol and its metadata is gone",
   "trust": "who may sign or report, and how that is decided. Not a place on the path, but every other stage depends on it"
  },
