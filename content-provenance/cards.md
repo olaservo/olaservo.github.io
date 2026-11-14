@@ -1,8 +1,8 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-60 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-08. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+61 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-13. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
-Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Links between cards point at the card's heading in this file; each card also has an Id line.
+Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. What changed and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
 ## Layers
 
@@ -507,7 +507,7 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 - Execution traces, which stop at the tool call: [OpenTelemetry for MCP](#otel-mcp).
 - [COUNTER Metrics](#counter) plans to reference it in phase two.
 
-Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [CC Signals](#cc-signals), [COUNTER Metrics](#counter), [Model Context Protocol](#mcp), [OpenAttribution.org](#openattribution), [OpenTelemetry for MCP](#otel-mcp), [Really Simple Licensing](#rsl), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SPUR Coalition](#spur-coalition)
+Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [CC Signals](#cc-signals), [COUNTER Metrics](#counter), [Internet Licensing Collective](#internet-licensing-collective), [Model Context Protocol](#mcp), [OpenAttribution.org](#openattribution), [OpenTelemetry for MCP](#otel-mcp), [Really Simple Licensing](#rsl), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SPUR Coalition](#spur-coalition)
 
 ### COUNTER Metrics
 
@@ -748,6 +748,34 @@ Signed bot traffic with RFC 9421 HTTP message signatures and a key directory at 
 - Pairs with [Agent Identity and Manifest Standard](#aims) and the agent identifiability asks from [Wikimedia](#wikimedia).
 
 Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Agent Identity and Manifest Standard](#aims), [IETF](#ietf), [IETF AI Preferences Working Group](#ietf-aipref), [Wikimedia](#wikimedia)
+
+### Internet Licensing Collective
+
+- Id: internet-licensing-collective
+- Also known as: ILC, RSL Collective
+- Type: organization
+- Status: Launched 2026-11-12 with Yahoo Scout as first commercial licensee
+- Website: https://internetcollective.org
+- Take part: [publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)
+- Tags: type/organization, layer/licensing, layer/payments
+- Updated: 2026-11-13
+- Explorer: https://www.olahungerford.com/content-provenance/#internet-licensing-collective
+
+Nonprofit, publisher-led collecting society for AI use of web content, formerly the RSL Collective. Sells AI companies one blanket license to its members' content and pays the revenue out to publishers after costs it projects at 10% or less. Co-authored [Really Simple Licensing](#rsl) and says it supports any standard a publisher wishes to use.
+
+#### Topics
+
+- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).
+- **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [Really Simple Licensing](#rsl) on the publisher's own site.
+- **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.
+- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked. [Content Telemetry](#content-telemetry) standardizes reports of this kind.
+
+#### Related
+
+- Its About page lists 3,100+ supporting publications, among them the Guardian (a [SPUR Coalition](#spur-coalition) founder), Wikipedia ([Wikimedia](#wikimedia)) and O'Reilly Media.
+- Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it.
+
+Linked from: [Really Simple Licensing](#rsl)
 
 ### IPTC
 
@@ -1071,24 +1099,24 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg)
 ### Really Simple Licensing
 
 - Id: rsl
-- Also known as: RSL, RSL Collective
+- Also known as: RSL
 - Type: specification
 - Status: RSL 1.0 published 2025-12-10
 - Website: https://rslstandard.org
 - Take part: [GitHub](https://github.com/rslstandard)
 - Tags: type/specification, layer/licensing, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-13
 - Explorer: https://www.olahungerford.com/content-provenance/#rsl
 
-XML vocabulary for usage and compensation terms (per-crawl, per-inference, subscription, attribution-only), discovered from robots.txt, RSS, HTTP headers or HTML. Includes a Crawler Authorization Protocol and an Open License Protocol on OAuth 2.0. The RSL Collective is the collecting society behind it.
+XML vocabulary for usage and compensation terms (per-crawl, per-inference, subscription, attribution-only), discovered from robots.txt, RSS, HTTP headers or HTML. Includes a Crawler Authorization Protocol and an Open License Protocol on OAuth 2.0. [Internet Licensing Collective](#internet-licensing-collective), formerly the RSL Collective, is the collecting society behind it.
 
 #### Topics
 
 - **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.
-- **Adoption**: getting model developers to honor it on the open web. None has committed; [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace) is reported to support it.
+- **Adoption**: getting model developers to honor it on the open web. None has committed; [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace) is reported to support it, and Yahoo Scout licenses through [Internet Licensing Collective](#internet-licensing-collective) (2026-11-12).
 - **Enforcement**: supplying the lever [Content Telemetry](#content-telemetry) manifests lack, through a SPUR profile binding drafted for the RSL WG.
 
-Linked from: [Content Telemetry](#content-telemetry), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace), [OpenAttribution.org](#openattribution), [W3C ODRL](#w3c-odrl), [x402](#x402)
+Linked from: [Content Telemetry](#content-telemetry), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [Internet Licensing Collective](#internet-licensing-collective), [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace), [OpenAttribution.org](#openattribution), [W3C ODRL](#w3c-odrl), [x402](#x402)
 
 ### SEP-2640 Skills Extension
 
@@ -1233,7 +1261,7 @@ Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, wi
 - **Verifying reports**: checking self-reported events through sampled audits or canary content. Signed events are deferred to a later version of the spec (section 8.9).
 - **Publisher accreditation**: a conformance mark for agents that report at the required level.
 
-Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry)
+Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet Licensing Collective](#internet-licensing-collective)
 
 ### Universal Commerce Protocol
 
@@ -1340,7 +1368,7 @@ Movement behind Wikipedia and Wikidata. Wikimedia Enterprise supplies Microsoft,
 - **Attribution for reuse**: meeting attribution requirements in agent answers. A WikiCite contributor listed six functions of citation on [SEP-3094 Granular Citations](#mcp-sep-3094-citations), including provenance chains to primary sources.
 - **A seat at the table**: [Open Future](#open-future) argued in December 2025 that Wikimedia needs one at [Agentic AI Foundation](#aaif).
 
-Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Open Future](#open-future), [Open Knowledge Foundation](#okfn), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
+Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Internet Licensing Collective](#internet-licensing-collective), [Open Future](#open-future), [Open Knowledge Foundation](#okfn), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
 
 ### x402
 

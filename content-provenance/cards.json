@@ -1,13 +1,14 @@
 {
  "title": "Content Provenance, Access and Attribution: A Field Guide",
- "description": "60 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.",
+ "description": "61 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.",
  "author": {
   "name": "Ola Hungerford",
   "url": "https://www.olahungerford.com/about/"
  },
- "as_of": "2026-11-08",
+ "as_of": "2026-11-13",
  "explorer": "https://www.olahungerford.com/content-provenance/",
  "markdown": "https://www.olahungerford.com/content-provenance/cards.md",
+ "changelog": "https://www.olahungerford.com/content-provenance/changelog.md",
  "note": "One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.",
  "vocab": {
   "layers": {
@@ -829,6 +830,7 @@
     "aaif-observability-traceability-wg",
     "cc-signals",
     "counter",
+    "internet-licensing-collective",
     "mcp",
     "openattribution",
     "otel-mcp",
@@ -1246,6 +1248,46 @@
     "wikimedia"
    ],
    "url": "https://www.olahungerford.com/content-provenance/#ietf-web-bot-auth"
+  },
+  {
+   "id": "internet-licensing-collective",
+   "name": "Internet Licensing Collective",
+   "aliases": [
+    "ILC",
+    "RSL Collective"
+   ],
+   "type": "organization",
+   "website": "https://internetcollective.org",
+   "part_of": "",
+   "status": "Launched 2026-11-12 with Yahoo Scout as first commercial licensee",
+   "participate": "[publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)",
+   "updated": "2026-11-13",
+   "tags": [
+    "type/organization",
+    "layer/licensing",
+    "layer/payments"
+   ],
+   "summary": "Nonprofit, publisher-led collecting society for AI use of web content, formerly the RSL Collective. Sells AI companies one blanket license to its members' content and pays the revenue out to publishers after costs it projects at 10% or less. Co-authored [[rsl]] and says it supports any standard a publisher wishes to use.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).\n- **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [[rsl]] on the publisher's own site.\n- **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.\n- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked. [[content-telemetry]] standardizes reports of this kind."
+    },
+    {
+     "title": "Related",
+     "text": "- Its About page lists 3,100+ supporting publications, among them the Guardian (a [[spur-coalition]] founder), Wikipedia ([[wikimedia]]) and O'Reilly Media.\n- Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it."
+    }
+   ],
+   "links": [
+    "rsl",
+    "content-telemetry",
+    "spur-coalition",
+    "wikimedia"
+   ],
+   "backlinks": [
+    "rsl"
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#internet-licensing-collective"
   },
   {
    "id": "iptc",
@@ -1801,34 +1843,35 @@
    "id": "rsl",
    "name": "Really Simple Licensing",
    "aliases": [
-    "RSL",
-    "RSL Collective"
+    "RSL"
    ],
    "type": "specification",
    "website": "https://rslstandard.org",
    "part_of": "",
    "status": "RSL 1.0 published 2025-12-10",
    "participate": "[GitHub](https://github.com/rslstandard)",
-   "updated": "2026-11-03",
+   "updated": "2026-11-13",
    "tags": [
     "type/specification",
     "layer/licensing",
     "layer/payments"
    ],
-   "summary": "XML vocabulary for usage and compensation terms (per-crawl, per-inference, subscription, attribution-only), discovered from robots.txt, RSS, HTTP headers or HTML. Includes a Crawler Authorization Protocol and an Open License Protocol on OAuth 2.0. The RSL Collective is the collecting society behind it.",
+   "summary": "XML vocabulary for usage and compensation terms (per-crawl, per-inference, subscription, attribution-only), discovered from robots.txt, RSS, HTTP headers or HTML. Includes a Crawler Authorization Protocol and an Open License Protocol on OAuth 2.0. [[internet-licensing-collective]], formerly the RSL Collective, is the collecting society behind it.",
    "sections": [
     {
      "title": "Topics",
-     "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed; [[microsoft-publisher-content-marketplace]] is reported to support it.\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a SPUR profile binding drafted for the RSL WG."
+     "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed; [[microsoft-publisher-content-marketplace]] is reported to support it, and Yahoo Scout licenses through [[internet-licensing-collective]] (2026-11-12).\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a SPUR profile binding drafted for the RSL WG."
     }
    ],
    "links": [
+    "internet-licensing-collective",
     "microsoft-publisher-content-marketplace",
     "content-telemetry"
    ],
    "backlinks": [
     "content-telemetry",
     "eu-ai-act-gpai-code",
+    "internet-licensing-collective",
     "microsoft-publisher-content-marketplace",
     "openattribution",
     "w3c-odrl",
@@ -2070,7 +2113,8 @@
    ],
    "backlinks": [
     "c2pa",
-    "content-telemetry"
+    "content-telemetry",
+    "internet-licensing-collective"
    ],
    "url": "https://www.olahungerford.com/content-provenance/#spur-coalition"
   },
@@ -2257,6 +2301,7 @@
    ],
    "backlinks": [
     "ietf-web-bot-auth",
+    "internet-licensing-collective",
     "open-future",
     "okfn",
     "mcp-sep-3094-citations"
