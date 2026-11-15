@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How deepagents handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How deepagents handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the deepagents source (<code>clones/deepagents</code>, checked out at commit a93aed4bca3a5e4d45bff393e16092222767e6c3 (a93aed4), read on 2026-11-14). File references are relative to <code>libs/</code> unless they name a dependency file. Dependency references are to the wheels pinned in <code>code/uv.lock</code>, read from downloads whose sha256 matches the lockfile: langchain 1.5.0 (<code>langchain/mcp/</code>), langchain-core 1.8.0, langgraph-prebuilt 1.1.0, fastmcp 4.1.2 (a metapackage over fastmcp-slim 4.1.2), mcp 2.3.0 and mcp-types 2.3.0. <code>code/pyproject.toml</code> declares <code>"fastmcp&gt;=4.0.0b4"</code> and <code>"mcp&gt;=2.0.0"</code>. langchain-mcp-adapters is not in the lockfile.</p>
+
+<h2 id="entry-results-enter-through-a-fastmcp-router-and-langchain-mcp-typed-as-a-fastmcp-calltoolresult">Entry: results enter through a FastMCP router and <code>langchain.mcp</code>, typed as a FastMCP <code>CallToolResult</code></h2>
+
+<p><code>code/deepagents_code/mcp_tools.py</code> <code>_mount_backends</code> opens one <code>StatefulProxyClient</code> per configured server, calls <code>backend.list_tools()</code>, wraps each backend with <code>create_proxy</code> plus <code>MCPBackendMiddleware</code> (<code>code/deepagents_code/mcp_proxy.py</code>), mounts it on a local <code>FastMCP(name="deepagents-code")</code> router under <code>namespace=name.encode().hex()</code>, and returns <code>FastMCPClient(router)</code>. <code>_build_mcp_tool</code> passes each discovered tool to <code>as_langchain_tool(routed_tool, client)</code> from <code>langchain.mcp</code>. In langchain <code>mcp/tools.py</code>, the tool coroutine calls <code>client.call_tool(tool.name, arguments, raise_on_error=False)</code>, or <code>_call_tool_with_interrupts</code> (<code>mcp/elicitation.py</code>) when <code>_drives_interrupts</code> finds the client armed by <code>MCPAdapter</code>; deepagents passes <code>FastMCPClient(router)</code> and never uses <code>MCPAdapter</code>, so it takes <code>client.call_tool</code>. The result is the FastMCP <code>CallToolResult</code> dataclass (<code>fastmcp/client/client.py</code>), with <code>content</code>, <code>structured_content</code>, <code>meta</code>, <code>data</code> and <code>is_error</code>. On the backend hop, <code>ProxyTool.run</code> in <code>fastmcp/server/providers/proxy.py</code> calls <code>client.session.call_tool</code> (modern backends) or <code>client.call_tool_mcp</code> (legacy backends) and returns <code>ToolResult(content=..., structured_content=..., meta=..., is_error=...)</code>, so <code>structuredContent</code> survives both hops. The stateless branch, <code>_make_stateless_tool</code> in <code>mcp_tools.py</code>, reloads the server through <code>_load_tools_from_config</code> on each call and runs the same adapted coroutine.</p>
+
+<p><code>content</code> is a required field on <code>CallToolResult</code> in mcp-types <code>mcp_types/_types.py</code> and in both wire models (<code>mcp_types/_v2025_11_25/__init__.py</code>, <code>mcp_types/_v2026_07_28/__init__.py</code>). mcp <code>client/session.py</code> <code>ClientSession.send_request</code> runs <code>_methods.validate_server_result(method, version, raw)</code> against the negotiated revision and then validates against the <code>CallToolResult | InputRequiredResult</code> adapter, so a result without <code>content</code> raises <code>pydantic.ValidationError</code> in the session that receives it. The backend hop is that session, since <code>ProxyClient</code> connects in <code>legacy</code> mode and <code>_ForwardingClientSession</code> overrides only <code>validate_tool_result</code>. The exception leaves <code>ProxyTool.run</code>, and <code>MCPBackendMiddleware._recover</code> (<code>code/deepagents_code/mcp_proxy.py</code>) re-raises it because it is neither a disconnect nor a re-auth failure. The router’s <code>tools/call</code> handler in <code>fastmcp/server/server.py</code> logs “Invalid arguments for tool” and re-raises it. mcp <code>shared/jsonrpc_dispatcher.py</code> <code>handler_exception_to_error_data</code> turns any pydantic <code>ValidationError</code> into <code>ErrorData(code=INVALID_PARAMS, message="Invalid request parameters", data="")</code>, so the front <code>FastMCPClient(router)</code> session raises <code>MCPError: Invalid request parameters</code> with no pydantic text. That is not a <code>ToolException</code>, so the call ends without a <code>ToolMessage</code>, as for the outputSchema <code>RuntimeError</code> below.</p>
+
+<h2 id="model-path-content-only-structuredcontent-parked-on-toolmessage-artifact">Model path: content only, structuredContent parked on <code>ToolMessage.artifact</code></h2>
+
+<p>langchain <code>mcp/tools.py</code> <code>_convert_call_tool_result</code> decides the split. It converts every block with <code>tool_content = [_convert_content_block(block) for block in result.content]</code>, raises <code>_MCPToolExecutionError(tool_content)</code> when <code>result.is_error</code>, and otherwise sets <code>artifact = MCPToolArtifact(structured_content=result.structured_content)</code> when <code>result.structured_content is not None</code>. <code>as_langchain_tool</code> builds the <code>StructuredTool</code> with <code>response_format="content_and_artifact"</code>, so langchain-core <code>tools/base.py</code> <code>_format_output</code> returns <code>ToolMessage(content, artifact=artifact, ...)</code>. The model receives <code>content</code>. <code>artifact</code> is host state, and no provider request is built from it.</p>
+
+<p>With both fields present the model gets the converted <code>content</code> blocks and nothing from <code>structuredContent</code>. With <code>content: []</code> and <code>structuredContent</code> present the result is a <code>ToolMessage</code> with empty <code>content</code> and the artifact set, with no fallback to the structured value. The one substitution is <code>NemotronToolCallShim._normalize</code> in <code>deepagents/deepagents/profiles/harness/_nvidia_nemotron_3_ultra.py</code>, which replaces empty content with <code>"(empty tool result)"</code> for the Nemotron 3 Ultra model specs it registers. On an <code>isError</code> result the exception is raised before the artifact is built, <code>_handle_mcp_tool_error</code> returns the converted blocks (or <code>str(error)</code> when there are none) as a <code>status="error"</code> message, and <code>structuredContent</code> is dropped.</p>
+
+<p>Whether the text mirrors <code>structuredContent</code> or differs from it, the model gets the same converted <code>content</code> blocks. No step compares the two fields or removes a duplicate. <code>structuredContent</code> is not serialized into the provider request in any form: <code>MCPToolArtifact</code> holds the parsed value as <code>structured_content</code>. The <code>str(error)</code> text for an <code>isError</code> result with no content blocks is “The MCP tool reported an error with empty content.”, from <code>_summarize_tool_error</code> in langchain <code>mcp/tools.py</code>. Non-text blocks do not change which field reaches the model, and image and file blocks stay in <code>content</code> next to the artifact.</p>
+
+<p><code>annotations.audience</code> is not read on the model path. <code>_convert_content_block</code> reads only the block type, text, data, URI and MIME type, so a block annotated <code>audience: ["user"]</code> reaches the model like any other block. A search for <code>audience</code> returns no matches in langchain <code>mcp/</code> or in non-test files under <code>libs/</code>. The only <code>annotations</code> read in either is the tool-level <code>Tool.annotations</code>, copied into tool metadata by <code>_tool_metadata</code> and by <code>_build_mcp_tool</code> in <code>code/deepagents_code/mcp_tools.py</code>.</p>
+
+<p><code>_convert_content_block</code> maps <code>TextContent</code> to a text block and <code>ImageContent</code> to a base64 image block. <code>ResourceLink</code> becomes a URL image block when its MIME type starts with <code>image/</code> and a URL file block otherwise. <code>EmbeddedResource</code> becomes a text block for text contents, and a base64 image or file block for blobs. <code>AudioContent</code> raises <code>NotImplementedError</code>. That is not a <code>ToolException</code>, so <code>handle_tool_error</code> does not run, <code>mcp_tool_middleware</code> in <code>code/deepagents_code/mcp_middleware.py</code> re-raises it, and langgraph-prebuilt <code>prebuilt/tool_node.py</code> <code>_default_handle_tool_errors</code> re-raises anything other than <code>ToolInvocationError</code>, so the call ends without a <code>ToolMessage</code>. The image and file blocks are then converted by whichever LangChain provider package is installed; those converters are outside this repository.</p>
+
+<h2 id="outputschema-never-read-by-deepagents-validated-by-the-mcp-sdk-on-the-router-session-raised-out-of-the-tool-call">outputSchema: never read by deepagents, validated by the mcp SDK on the router session, raised out of the tool call</h2>
+
+<p><code>output_schema</code> and <code>outputSchema</code> have no occurrences under <code>libs/</code> outside tests. <code>_build_server</code> in <code>mcp_tools.py</code> records only <code>input_schema</code> in <code>MCPToolInfo</code>. FastMCP copies the backend schema into the proxy in <code>ProxyTool.from_mcp_tool</code> (<code>output_schema=mcp_tool.output_schema</code>). mcp <code>client/session.py</code> <code>ClientSession.call_tool</code> runs <code>await self.validate_tool_result(name, result)</code> when <code>not result.is_error</code>, which raises <code>RuntimeError(f"Tool {name} has an output schema but did not return structured content")</code> or <code>RuntimeError(f"Invalid structured content returned by tool {name}: {error}")</code>. The backend session does not run that check: <code>ProxyClient.__init__</code> in <code>fastmcp/server/providers/proxy.py</code> applies <code>PROXY_TRANSPORT_OPTIONS</code>, whose <code>session_class</code> is <code>_ForwardingClientSession</code>, and its <code>validate_tool_result</code> returns <code>None</code>. The front <code>FastMCPClient(router)</code> session is a plain <code>ClientSession</code> and runs the SDK check on successful results against the schema the proxy lists. The <code>RuntimeError</code> leaves <code>client.call_tool</code> in the langchain coroutine before <code>_convert_call_tool_result</code> runs. That is not a <code>ToolException</code>, so <code>handle_tool_error</code> does not run, <code>mcp_tool_middleware</code> re-raises it, and <code>_default_handle_tool_errors</code> re-raises it, so the call ends without a <code>ToolMessage</code>. FastMCP’s own <code>_parse_call_tool_result</code> (<code>fastmcp/client/mixins/tools.py</code>) builds <code>data</code> with a pydantic <code>TypeAdapter</code> and only logs on failure; langchain does not read <code>data</code>.</p>
+
+<p>The schema does not reach the model. <code>as_langchain_tool</code> builds the <code>StructuredTool</code> from <code>tool.name</code>, <code>tool.description</code> and <code>args_schema=_normalize_mcp_schema(tool.input_schema)</code>, and nothing in langchain <code>mcp/tools.py</code> reads <code>output_schema</code> or appends it to the description.</p>
+
+<h2 id="other-paths-hooks-see-the-artifact-ptc-and-acp-see-content-only">Other paths: hooks see the artifact, PTC and ACP see content only</h2>
+
+<p><code>code/deepagents_code/hooks/models/domain.py</code> <code>PostToolUseEvent.from_tool_result</code> sends <code>result.model_dump(mode="json")</code>, the whole <code>ToolMessage</code> including <code>artifact</code>, as <code>tool_response</code> (<code>hooks/projection.py</code> <code>_project_post_tool_use</code>). A hook’s <code>additionalContext</code> is appended to the message content as a text block by <code>_merge_tool_message_content</code> in <code>hooks/server_middleware.py</code>, which reaches the model. <code>hooks/reducer.py</code> <code>_merge_post_tool_use</code> parses <code>updatedMCPToolOutput</code> and calls <code>_diagnose_unsupported_field(state, handler_id, "updatedMCPToolOutput")</code>, which logs “is not supported and was ignored”. <code>_tool_result_error</code> reads <code>message.artifact</code> only for the <code>execute</code> tool’s <code>exit_code</code>. It returns the message text for a <code>ToolMessage</code> with <code>status="error"</code>, which is what an <code>isError</code> result becomes, so <code>_maybe_post_tool_use</code> sends a <code>PostToolUseFailureEvent</code> carrying <code>call</code> and <code>error</code> and no <code>tool_response</code>, and <code>PostToolUse</code> does not fire.</p>
+
+<p>The <code>js_eval</code> interpreter (<code>partners/quickjs/langchain_quickjs/_repl.py</code>, wired by <code>CostAwareCodeInterpreterMiddleware</code> in <code>code/deepagents_code/agent.py</code>) can call MCP tools when <code>interpreter_ptc</code> names them or is <code>"all"</code>; the <code>"safe"</code> preset is <code>{"read_file", "glob", "grep"}</code> (<code>code/deepagents_code/config.py</code>). <code>_ainvoke_tool_on_outer_loop</code> calls <code>tool.arun(args, ..., tool_call_id=(tool_call_id if _tool_uses_injected_tool_call_id(tool) else None))</code>. MCP tools declare no injected id, and <code>_format_output</code> returns bare content when <code>tool_call_id is None</code>, so JS receives the content block list from <code>coerce_tool_output_for_ptc</code> (<code>_format.py</code>) and no artifact. These calls go to <code>tool.arun</code> directly, outside the agent middleware chain. The model sees the <code>js_eval</code> output, where <code>_repl.py</code> renders the script’s return value with <code>stringify</code> and <code>format_outcome</code> (<code>_format.py</code>) wraps it in <code>&lt;result&gt;</code> tags, so a returned block list reads as an unquoted-key literal such as <code>[{type: "text", text: "..."}]</code>.</p>
+
+<p><code>deepagents/deepagents/middleware/_message_eviction.py</code> <code>_build_evicted_tool_message</code>, used by <code>FilesystemMiddleware</code> offload and <code>SummarizationMiddleware</code> clipping, replaces text with a preview and keeps <code>artifact=message.artifact</code>; this is the only line in the repository that reads an MCP artifact back. The TUI renders <code>format_tool_message_content(message.content)</code> (<code>code/deepagents_code/tool_display.py</code>, called from <code>tui/textual_adapter.py</code>). The ACP server in <code>acp/deepagents_acp/server.py</code> forwards <code>str(content)</code> in <code>update_tool_call</code>. It stores ACP-supplied <code>mcp_servers</code> in <code>_session_mcp_servers</code> and reads them nowhere else in that file. Neither deepagents nor <code>langchain.mcp</code> reads result <code>_meta</code>; <code>_tool_metadata</code> copies tool-level <code>_meta</code> into <code>tool.metadata["mcp"]["tool"]</code> and nothing reads it.</p>
+
+<p>There is no MCP Apps support. Searches under <code>libs/</code> and langchain <code>mcp/</code> for <code>ui://</code>, <code>resourceUri</code>, <code>io.modelcontextprotocol/ui</code>, <code>visibility</code> and a <code>"ui"</code> key in tool <code>_meta</code> find nothing MCP-related, so no view receives either field and <code>_meta.ui.visibility</code> is not read. No switch changes which field the model gets. <code>as_langchain_tool(tool, client)</code> takes no result options, <code>response_format="content_and_artifact"</code> is fixed, and no non-test file under <code>libs/</code> mentions <code>structured_content</code> or <code>structuredContent</code>.</p>
+
+<h2 id="protocol-revision-initialize-on-the-backend-hop-negotiated-by-the-sdk-in-auto-mode-on-the-router-hop">Protocol revision: <code>initialize</code> on the backend hop, negotiated by the SDK in <code>auto</code> mode on the router hop</h2>
+
+<p>deepagents pins no protocol string. <code>StatefulProxyClient(transport=..., log_handler=...)</code> and <code>FastMCPClient(router)</code> are constructed without <code>mode</code>. <code>ProxyClient.__init__</code> runs <code>kwargs.setdefault("mode", "legacy")</code>, so each backend connects through <code>initialize</code>, and <code>create_proxy(connected[name])</code> passes a <code>Client</code>, so FastMCP’s mirroring of the front connection’s era does not apply. <code>FastMCPClient(router)</code> gets <code>mode: ConnectMode = "auto"</code> from FastMCP <code>Client.__init__</code>, and <code>_negotiate</code> calls the SDK’s <code>negotiate_auto</code> (<code>mcp/client/_probe.py</code>). That probes <code>server/discover</code> at <code>LATEST_MODERN_VERSION</code> (“2026-07-28”) and falls back to <code>initialize</code> at <code>LATEST_HANDSHAKE_VERSION</code> (“2025-11-25”), from <code>KNOWN_PROTOCOL_VERSIONS</code> in mcp-types <code>mcp_types/version.py</code>. <code>ProxyTool.run</code> branches on <code>client.protocol_version in MODERN_PROTOCOL_VERSIONS</code>, so backends take the <code>client.call_tool_mcp</code> path.</p>
+
+<h2 id="upstream-history-the-artifact-rule-came-from-langchain-mcp-adapters-and-was-ported-into-langchain-mcp">Upstream history: the artifact rule came from langchain-mcp-adapters and was ported into <code>langchain.mcp</code></h2>
+
+<p>deepagents-code took the rule over in <a href="https://github.com/langchain-ai/deepagents/pull/5922" target="_blank">langchain-ai/deepagents#5922</a>, merged 2026-09-18, which moved MCP onto FastMCP and <code>langchain.mcp</code> and removed <code>langchain-mcp-adapters</code>. Its body says tools are converted "through <code>langchain.mcp</code>" and does not discuss <code>structuredContent</code>. <code>langchain.mcp</code> arrived in <a href="https://github.com/langchain-ai/langchain/pull/39939" target="_blank">langchain-ai/langchain#39939</a>, merged 2026-09-03: "Tool results are ported from <code>langchain-mcp-adapters</code>, so a call reaches a model in the same shape either way. Results become LangChain content blocks (audio raises <code>NotImplementedError</code>); structured content becomes an <code>MCPToolArtifact</code>; <code>args_schema</code> is the tool’s <code>input_schema</code>." The module docstring of <code>mcp/tools.py</code> says the same.</p>
+
+<p>The artifact rule itself came from <a href="https://github.com/langchain-ai/langchain-mcp-adapters/pull/379" target="_blank">langchain-ai/langchain-mcp-adapters#379</a>, merged 2025-12-02, which closed <a href="https://github.com/langchain-ai/langchain-mcp-adapters/issues/283" target="_blank">issue #283</a>. The issue reported that the adapter "is ignoring the <code>structuredContent</code> field from MCP <code>CallToolResult</code> responses, causing loss of structured data“. The PR body: ”We introduce a new <code>MCPToolArtifact</code> type that contains <code>structured_output</code> from the MCP tool, if available.“ On content it says non-text blocks ”used to“ go into the artifact and ”This content is intended to be in the chat history (images, files), so it makes more sense for it to be in content." Neither the PR body nor the issue thread gives a reason for keeping <code>structuredContent</code> out of the model’s content. A maintainer comment on the issue (2025-11-24) offered an interceptor workaround that put <code>structuredContent</code> in the artifact and noted that “the interceptor pattern allows you to also directly update langgraph state via Command()”. An earlier community PR, <a href="https://github.com/langchain-ai/langchain-mcp-adapters/pull/300" target="_blank">#300</a>, closed unmerged on 2025-12-01, proposed the same <code>content_and_artifact</code> split.</p>
+
+<p>At the time of reading, <a href="https://github.com/langchain-ai/langchain/pull/41566" target="_blank">langchain-ai/langchain#41566</a> (closed unmerged on 2026-11-06) would have kept <code>structuredContent</code> as the artifact on <code>isError</code> results, and <a href="https://github.com/langchain-ai/langchain/pull/40722" target="_blank">langchain-ai/langchain#40722</a> (open) would add MCP Apps tool visibility to <code>langchain.mcp</code>. The clone is a depth-1 checkout, so <code>git log</code> and <code>git blame</code> show only a93aed4 and could not trace the deepagents files further. Searches of langchain-ai/deepagents PRs and issues for <code>structuredContent</code>, <code>structured_content</code> and <code>artifact mcp</code> returned nothing.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>The backend hop validates results against the 2025-11-25 wire model, whose <code>CallToolResult.structured_content</code> is <code>dict[str, Any] | None</code> (<code>mcp_types/_v2025_11_25/__init__.py</code>), so a backend that sends an array or scalar <code>structuredContent</code> fails that validation in <code>ClientSession.send_request</code>. FastMCP’s own <code>CallToolResult</code> dataclass also types <code>structured_content</code> as <code>dict[str, Any] | None</code>.</p>
+
+<p><code>format_outcome</code> in <code>partners/quickjs/langchain_quickjs/_format.py</code> truncates the <code>js_eval</code> result to <code>max_result_chars</code> and appends “… [truncated N chars]”. deepagents-code passes <code>interpreter.max_result_chars</code>, whose default is 4,000 (<code>INTERPRETER_MAX_RESULT_CHARS_DEFAULT</code> in <code>code/deepagents_code/config_manifest.py</code>), so an MCP result returned from a script is cut there.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit a93aed4 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How fx handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How fx handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the fx source (<code>clones/fx</code>, checked out at commit 3fd4905, read 2026-11-14). File references are relative to the clone root. fx has two client paths. The native engine (<code>src/mcp/</code>, connected through <code>src/core/mcp_host/</code>) is the default, and it serves the terminal app, <code>fx ask</code>, and ACP editors. The JavaScript library libfx does not own an MCP connection: <code>sdk/mcp.js</code> <code>createMcpAdapter</code> wraps a client the host supplies.</p>
+
+<h2 id="entry-a-hand-written-zig-client-that-keeps-three-fields-and-drops-meta">Entry: a hand-written Zig client that keeps three fields and drops <code>_meta</code></h2>
+
+<p>fx has its own MCP client and no MCP SDK dependency. <code>Server.callAnswer</code> in <code>src/mcp/server.zig</code> passes the decoded response to <code>classifyCall</code> in <code>src/mcp/protocol/tools.zig</code>, which reads three raw JSON slices:</p>
+
+<pre><code>wire.objectFields(result.raw, &amp;.{ "content", "structuredContent", "isError" }, &amp;found) catch return .invalid;
+const content = found[0] orelse return .invalid;</code></pre>
+
+<p>The result type is <code>Call.result</code>, <code>struct { content: []const u8, structured: ?[]const u8, is_error: bool }</code>, with the comment "<code>structured</code> is passed on unvalidated". Result <code>_meta</code> and any other key stop here. A result with no <code>content</code> key, or a <code>content</code> that is not an array, is <code>.invalid</code>. <code>copyCall</code> in <code>src/core/mcp_host/runtime.zig</code> turns that into <code>.ended</code> (“An answer that isn’t a result ended the call”), and <code>ended</code> in <code>src/core/mcp_host/model.zig</code> gives the model a failure text beginning <code>MCP server '&lt;name&gt;' ended the call:</code>. So a <code>structuredContent</code>-only result without a <code>content</code> key does not reach the model.</p>
+
+<p><code>Catalog.callTool</code> in <code>src/core/mcp_host/model.zig</code> calls <code>render</code>, which writes the three fields back into a JSON-RPC response and passes it to <code>tool_result.extract</code> in <code>src/core/mcp/tool_result.zig</code>. <code>extract</code> calls <code>parseCallOutcome</code> in <code>src/core/mcp/features/tools.zig</code>, which validates each content block. An unknown block type or a malformed annotation fails the whole result, and the model gets <code>MCP protocol failure: InvalidContent</code>.</p>
+
+<p><code>build.zig.zon</code> lists no dependencies and gives fx version <code>0.0.0</code>. <code>sdk/package.json</code> (libfx <code>0.0.0</code>) has no <code>dependencies</code> field. No MCP SDK source was read because neither path uses one.</p>
+
+<h2 id="model-path-the-whole-result-is-stringified-inside-a-server-and-tool-envelope">Model path: the whole result is stringified inside a server and tool envelope</h2>
+
+<p><code>extract</code> projects media out of <code>content</code> and hands the entire parsed result to <code>serialize_capped</code>. <code>write_envelope</code> in <code>src/core/mcp/tool_result.zig</code> then writes the text the model receives:</p>
+
+<pre><code>try writer.writeAll("{\"server\":");
+try std.json.Stringify.value(server_name, .{}, writer);
+try writer.writeAll(",\"tool\":");
+try std.json.Stringify.value(tool_name, .{}, writer);
+try writer.writeAll(",\"result\":");
+try writeJsonProjection(alloc, writer, result, false);</code></pre>
+
+<p>With both fields present the model receives <code>{"server":…,"tool":…,"result":{"content":[…],"structuredContent":…,"isError":false}}</code> as one string. Text blocks stay as block objects with their <code>annotations</code> and <code>_meta</code>. No code compares the text mirror to the structured value. With <code>content</code> empty the same envelope arrives with <code>"content":[]</code> beside <code>structuredContent</code>. <code>writeJsonProjection</code> replaces any string holding a NUL byte or invalid UTF-8 with <code>binary or non-utf8 tool output omitted (&lt;n&gt; bytes)</code>, inside <code>structuredContent</code> too. An <code>isError</code> result keeps the same envelope and its <code>structuredContent</code>, and <code>tool_mcp_registry.call</code> returns it as <code>.failure</code>. Text that differs from the JSON arrives the same way, with both copies in the envelope. <code>writeJsonProjection</code> writes compact JSON with no whitespace and keeps object keys in parsed order, so <code>structuredContent</code> is a JSON value inside the envelope string. No placeholder replaces an empty result. <code>extract</code> sends <code>{"content":[]}</code> through <code>write_envelope</code> like any other result, so the model receives <code>"result":{"content":[]}</code>, and a test in <code>src/core/mcp/tool_result.zig</code> checks that its status is <code>success</code>.</p>
+
+<p>Size changes the answer. <code>resultBytes</code> in <code>src/core/tooling/tool_mcp_registry.zig</code> asks for up to <code>stored_text_max_bytes</code> (8 MiB) when a session store exists. <code>prepareManaged</code> and <code>prepare</code> in <code>src/core/session/result_store.zig</code> store the envelope when it exceeds <code>large_result_threshold_bytes</code> (16 KiB) or the inline cap (<code>default_max_tool_result_bytes</code>, 64 KiB), and the model receives the first <code>preview_bytes</code> (4 KiB) of it inside <code>&lt;tool_result_preview&gt;</code> with a handle for <code>read_tool_result</code>. <code>content</code> is written first, so with a text mirror over 4 KiB the preview holds no <code>structuredContent</code>. Without a store (<code>fx ask --no-save</code> runs without one, "Unsaved (<code>--no-save</code>, or no store)" in <code>src/core/cli/cli_ask.zig</code>), or past 8 MiB with one, <code>serialize_capped</code> cuts to the requested size using <code>collect_result_text</code>, which follows only the keys <code>text</code>, <code>data</code>, <code>blob</code> and <code>content</code>:</p>
+
+<pre><code>if (std.mem.eql(u8, entry.key_ptr.*, "text") or
+    std.mem.eql(u8, entry.key_ptr.*, "data") or
+    std.mem.eql(u8, entry.key_ptr.*, "blob") or
+    std.mem.eql(u8, entry.key_ptr.*, "content"))</code></pre>
+
+<p><code>structuredContent</code> is not followed on this branch. An oversize result with <code>content</code> empty becomes an envelope whose only text is the marker <code>... [mcp tool result truncated for &lt;server&gt;/&lt;tool&gt;: original &lt;n&gt; bytes; cap is &lt;m&gt; bytes]</code>, built by <code>build_truncated_envelope</code>. Embedded resource text sits under the <code>resource</code> key and is also not collected.</p>
+
+<p>Non-text blocks: <code>parseToolImages</code> in <code>src/core/images/image_data.zig</code> lifts <code>image</code> blocks and <code>image/</code> embedded blobs (png, jpeg, gif, webp) into <code>CallResult.images</code>. <code>projectMediaForText</code> in <code>src/core/tooling/tool_content.zig</code> then removes <code>data</code> and <code>blob</code> from the JSON and adds a <code>delivery</code> field: <code>image content</code>, <code>unsupported media; content was not sent to the model</code>, or <code>binary resource content was not sent to the model</code>. Audio therefore reaches the model as a block with no data. <code>resource_link</code> blocks and embedded text resources stay in the envelope as JSON. <code>tool_mcp_registry.call</code> returns <code>.rich</code> when images exist.</p>
+
+<p>The provider request carries the envelope as the tool message text on every backend. <code>src/gateway/vercel_protocol.zig</code> <code>write_tool_result_part</code> writes <code>{"type":"tool-result",…,"output":{"type":"text","value":&lt;envelope&gt;}}</code>, or <code>error-text</code> on failure, for the default Vercel gateway. <code>src/gateway/chat_completions_protocol.zig</code> <code>write_request</code> writes <code>{"role":"tool","content":&lt;envelope&gt;,"tool_call_id":…}</code> for custom providers whose protocol is <code>openai-chat-completions</code>, one of the three accepted protocols with <code>openai-responses</code> and <code>anthropic-messages</code> (<code>src/core/config/configured_provider.zig</code>). <code>src/gateway/responses_protocol.zig</code> writes <code>function_call_output</code> with the envelope as <code>output</code> for Codex, Grok and <code>openai-responses</code> custom providers (<code>src/gateway/configured_responses.zig</code>). <code>write_tool_result</code> in <code>src/gateway/anthropic_messages_protocol.zig</code> writes <code>{"type":"tool_result","tool_use_id":…,"content":&lt;envelope&gt;}</code>, with <code>"is_error":true</code> on failure, for <code>anthropic-messages</code> custom providers, and <code>src/gateway/configured_transport.zig</code> adds <code>anthropic-version</code> for them. Other Claude models go through the gateway. Backends differ only in image placement: the gateway and chat completions send images in a follow-up user message (<code>write_tool_image_user_message</code>, <code>write_tool_image_follow_up</code>), Responses puts <code>input_image</code> parts in the <code>output</code> array, and Anthropic Messages puts <code>image</code> blocks after a text block holding the envelope in <code>content</code>. <code>src/core/images/image_route.zig</code> withholds images from a model the catalog lists without vision.</p>
+
+<h2 id="js-adapter-text-and-compact-json-joined-unless-they-are-byte-identical">JS adapter: text and compact JSON joined, unless they are byte-identical</h2>
+
+<p>libfx apps pass an MCP client to <code>createMcpAdapter</code>, and <code>sdk/package.json</code> declares no MCP SDK dependency. Each tool’s <code>execute</code> calls <code>client.callTool</code> and then <code>resultText</code>:</p>
+
+<pre><code>function resultText(result) {
+  const text = contentText(result?.content);
+  if (result?.structuredContent !== undefined) {
+    const structured = JSON.stringify(result.structuredContent);
+    return text &amp;&amp; text !== structured ? `${text}\n${structured}` : structured;
+  }
+  return text;
+}</code></pre>
+
+<p>With both fields present the model receives the joined text, a newline, and compact JSON. The structured copy is the only one sent when the joined text equals <code>JSON.stringify(structuredContent)</code> exactly, so a pretty-printed mirror or one with reordered keys produces two copies. With <code>content</code> empty the model receives the compact JSON. There is no envelope. <code>contentText</code> keeps text blocks and embedded text resources and renders <code>resource_link</code> as <code>&lt;name&gt;: &lt;uri&gt;</code>. Audio and non-image blobs become an empty string with no note. Images go into a <code>libfx.tool-result</code> object, which <code>hostToolContent</code> in <code>sdk/engine.js</code> and <code>parseRichResult</code> in <code>src/core/tooling/tool_content.zig</code> turn into the same typed images the native path uses. An <code>isError</code> result throws an <code>Error</code> whose message is <code>resultText</code>, and <code>sdk/engine.js</code> uses that message as the tool content. Result <code>_meta</code> is not read. A successful result with no text and no <code>structuredContent</code> returns an empty string, and no placeholder replaces it in <code>sdk/mcp.js</code>, <code>executeHostTool</code> in <code>sdk/engine.js</code>, or the host tool reader in <code>src/acp/prompt.zig</code>. An <code>isError</code> result with empty text gets the message <code>MCP tool &lt;name&gt; failed</code> from <code>sdk/mcp.js</code>, and <code>sdk/engine.js</code> substitutes <code>Tool &lt;name&gt; failed without a message</code> for any empty error content (“Providers reject an empty error result, which would end the session.”).</p>
+
+<h2 id="outputschema-stored-and-hashed-never-checked">outputSchema: stored and hashed, never checked</h2>
+
+<p><code>parseCallOutcome</code> receives the schema and discards it:</p>
+
+<pre><code>_ = output_schema_json; // Tool semantics, including output assertions, belong to the server.</code></pre>
+
+<p><code>render</code> does not pass one to <code>extract</code> anyway, so a mismatch has no effect and the result goes to the model unchanged. The test <code>MCP tool call results preserve content types errors and server output</code> in <code>src/core/mcp/features/tools.zig</code> pins a <code>structuredContent</code> string against <code>{"type":"array"}</code>. <code>tests/tla/mcp/rules.md</code> lists <code>CAT-07 | SHOULD | Validate structuredContent against outputSchema</code>, and the code does not do it.</p>
+
+<p>The schema is used in two places. <code>parseTool</code> runs <code>prepareSchema(output_schema, false)</code>, which requires an object and, when <code>$schema</code> is present, draft 2020-12 or draft-07, and <code>Catalog.build</code> in <code>src/core/mcp_host/model.zig</code> leaves out a tool that fails (“MCP tool left out”). <code>digestTools</code> in <code>src/core/mcp/catalog_state.zig</code> hashes it, so a changed schema changes <code>definition_digest</code>, and <code>callTool</code> returns <code>McpAdvertisedToolChanged</code> for a binding made against the old definition. It is not sent to a provider: <code>buildToolSchemaJsonWithLimitMarker</code> in <code>src/core/mcp/selected_schema.zig</code> passes only <code>tool.input_schema_json</code>.</p>
+
+<p><code>sdk/mcp.js</code> copies <code>name</code>, <code>description</code> and <code>inputSchema</code> from each listed tool and does not read <code>outputSchema</code>. Any validation there belongs to the client the host supplies, and a throw from <code>client.callTool</code> becomes the error text of the tool result in <code>sdk/engine.js</code>.</p>
+
+<h2 id="other-paths-fx-mcp-call-prints-only-the-data-and-the-deferred-route-ends-at-the-same-call">Other paths: <code>fx mcp call</code> prints only the data, and the deferred route ends at the same call</h2>
+
+<p>fx has no code mode, but a model-written shell command can call MCP tools. <code>Verb</code> in <code>src/core/mcp_host/verbs.zig</code> is <code>list, show, add, remove, login, logout, approve, reject, call</code>, and <code>fx mcp call TOOL [JSON | -]</code> (<code>src/core/mcp_host/mcp_call_client.zig</code>) works only inside a command that fx’s shell tool runs, on Linux and macOS (<code>supported</code> in <code>src/core/tooling/mcp_call_capability.zig</code>). On those platforms the toolbox menu in <code>src/core/tooling/toolbox.zig</code> (<code>mcp_call_hint</code>), when it lists an MCP server, tells the model: “When an MCP tool’s result would be large or needs filtering, run it from a shell command instead: fx mcp call TOOL_NAME '<JSON arguments>' > FILE. Only what the command prints returns to you.” <code>src/tools/shell/shell.zig</code> registers each shell call with the bridge in <code>src/core/mcp_host/mcp_call_bridge.zig</code>, and <code>callBridgeTool</code> in <code>src/core/tooling/tool_runtime.zig</code> runs the call through the same <code>callTool</code>, <code>render</code> and <code>extract</code> with a 16 MiB cap (<code>max_result_bytes</code>) instead of the model’s cap. The bridge runs over a Unix socket and meets the same permission check as a direct call (<code>authorizeBridgeCall</code> in <code>src/core/tooling/tool_runtime.zig</code>). <code>bridgeResultData</code> then takes the envelope apart:</p>
+
+<pre><code>/// Just the data of an MCP result envelope: its structured content as JSON
+/// when it has some, otherwise its text content.</code></pre>
+
+<p>So the script receives compact <code>structuredContent</code> and a newline, and no text when both fields are present. A <code>structuredContent</code> that is an object holding only a <code>result</code> string (<code>wrappedResultText</code>, “how some servers, FastMCP’s among them, wrap a tool that returns text”) prints as that string. A test pins <code>{"content":[{"type":"text","text":"ignored"}],"structuredContent":{"issues":[1,2]}}</code> to <code>{"issues":[1,2]}</code>. With no <code>structuredContent</code>, or <code>structuredContent: null</code>, the script gets the <code>text</code> of each content block, one per line, and with no text either it gets the whole <code>result</code> object as compact JSON. Images and other media have already lost their data to <code>projectMediaForText</code>. A <code>.tool_failure</code> result goes through the same extraction, is written to stderr after <code>fx mcp call: &lt;tool&gt; returned an error:</code>, and exits 6. A protocol failure passes its model text through and exits 1. When stdout is not a terminal, <code>shapeSummary</code> writes one stderr line such as <code>wrote &lt;n&gt; bytes of JSON: &lt;shape&gt;</code>. The model sees only what the command prints, under the shell tool’s own output handling. <code>fx mcp call help TOOL</code> prints the name, description and <code>inputSchema</code> arguments (<code>writeHelp</code> in <code>src/core/mcp/tool_lookup.zig</code>) and does not read <code>outputSchema</code>.</p>
+
+<p>Deferred tools: MCP servers are listed in the toolbox menu and their tools are kept out of the tools list. The model calls <code>toolbox</code> (<code>src/tools/capabilities/toolbox.zig</code>) with <code>open</code>, <code>search</code> or <code>run</code>, and a direct call of an unsent name gets <code>notSelectedOutput</code> from <code>src/core/tooling/tool_mcp_runtime.zig</code>. <code>toolboxRunSubject</code> in <code>src/core/agent/runtime/orchestrator.zig</code> turns a <code>run</code> into the agent’s own direct call of the tool, so it goes through <code>tool_mcp_registry.call</code> and the same <code>callTool</code>, and the result goes back under the <code>toolbox</code> call (<code>carried_by</code>).</p>
+
+<p>Subagents use the same path. <code>childToolContext</code> in <code>src/core/app/app_agent_runtime.zig</code> copies the parent context, and <code>src/core/subagent/agent_adapter.zig</code> scopes it with <code>mcp_access</code>.</p>
+
+<p>Hooks: <code>HookKind</code> in <code>src/core/hooks/definitions.zig</code> is <code>pre_tool_use, stop, post_turn_end, attention_required</code>, so no native hook runs on a tool result. libfx <code>hooks</code> receive <code>tool.end</code> and <code>tool.result</code> events with an <code>output</code> string (<code>sdk/types/libfx.d.cts</code>) and <code>mcp.start</code>, <code>mcp.request</code> and <code>mcp.end</code> events with identity and status (<code>sdk/tool-observation.js</code>). <code>sdk/README.md</code> describes these as observation, and callback results are not awaited.</p>
+
+<p>ACP: an editor receives text, not the fields. <code>toolUpdateContentText</code> in <code>src/acp/tool_call_presentation.zig</code> clips most output to a 200-byte prefix of the same model text, so an editor sees the start of the envelope. <code>src/acp/mcp_servers.zig</code> parses servers an editor supplies into the same native host.</p>
+
+<p>MCP Apps: no file under <code>src/</code> or <code>sdk/*.js</code> mentions <code>ui://</code>, <code>ui/resourceUri</code> or MCP Apps, and nothing renders <code>structuredContent</code>.</p>
+
+<h2 id="audience-and-meta-validated-then-passed-to-the-model-as-text">audience and <code>_meta</code>: validated, then passed to the model as text</h2>
+
+<p><code>audience</code> appears only in <code>validateAnnotations</code> in <code>src/core/mcp/features/tools.zig</code>, which requires an array of at most two values from <code>user</code> and <code>assistant</code>. A bad value fails the whole result with <code>InvalidContent</code>. A valid <code>["user"]</code> block still reaches the model, with the annotation visible in the envelope. <code>sdk/mcp.js</code> does not read annotations.</p>
+
+<p>No <code>_meta</code> key changes routing. Result-level <code>_meta</code> is dropped in <code>classifyCall</code>. Block-level <code>_meta</code> is size-checked and stays in the envelope. Tool-level <code>_meta</code> is stored as <code>metadata_json</code>, which has no read site except the <code>digestTools</code> hash, so <code>_meta.ui.visibility</code> has no effect and an app-only tool stays selectable by the model. The only <code>_meta</code> fx writes on a call is <code>libfx/correlationId</code> in <code>sdk/mcp.js</code>, when <code>propagateCorrelation</code> is true.</p>
+
+<p>No other switch changes which field the model gets. The per-server <code>Server</code> struct in <code>src/core/mcp_host/config.zig</code> holds transport, auth and loading fields and none that touch the result. <code>createMcpAdapter</code> reads only the options <code>prefix</code>, <code>serverName</code>, <code>propagateCorrelation</code>, <code>resources</code> and <code>prompts</code>. The <code>max_tool_result_bytes</code> setting read in <code>src/core/config/config_runtime.zig</code> replaces <code>default_max_tool_result_bytes</code> for every tool, so it moves the size thresholds described under the model path.</p>
+
+<h2 id="protocol-revision-2026-07-28-first-three-2025-revisions-as-fallback">Protocol revision: 2026-07-28 first, three 2025 revisions as fallback</h2>
+
+<p><code>Config</code> in <code>src/mcp/core/era.zig</code> sets <code>preferred = {"2026-07-28"}</code> and <code>legacy = {"2025-11-25", "2025-06-18", "2025-03-26"}</code>. <code>writeDiscover</code> probes with <code>server/discover</code>, and <code>writeInitialize</code> offers <code>config.legacy[0]</code>. <code>classifyInitialize</code> accepts a version from either list and returns <code>.other</code> for anything else, including <code>2024-11-05</code>. <code>render</code> passes <code>.protocol = .modern</code> to <code>extract</code> in every era, and <code>classifyCall</code> is shared, so result handling does not vary by revision. On the JS path the revision belongs to the host’s client.</p>
+
+<p>The repo holds no MCP server that affects this path. <code>src/core/mcp_host/fake_server.zig</code> and the <code>tests/e2e/fixtures/mcp-*</code> files are test fixtures.</p>
+
+<h2 id="upstream-history-the-envelope-dates-from-the-initial-commit-and-an-open-pr-would-keep-only-structuredcontent">Upstream history: the envelope dates from the initial commit, and an open PR would keep only <code>structuredContent</code></h2>
+
+<p>The clone is shallow with one commit, so <code>git log</code> and <code>git blame</code> there do not reach the history. The commit lists below come from <code>gh api repos/vercel-labs/fx/commits?path=...</code> and the file contents at each commit.</p>
+
+<p><code>write_envelope</code> is in <code>src/core/mcp/tool_result.zig</code> at 439f83c, the “Initial commit” of 2026-08-11, which has no PR and no message beyond its title. None of the ten later commits touching the file has a title about which field is sent. <a href="https://github.com/vercel-labs/fx/pull/825" target="_blank">vercel-labs/fx#825</a>, merged 2026-09-12, changed what the envelope carries by removing secret masking from the model path: “Tool results, tool arguments, and saved session history now reach the model verbatim (still encoding-sanitized and capped).”</p>
+
+<p><code>resultText</code> in <code>sdk/mcp.js</code> came in through <a href="https://github.com/vercel-labs/fx/pull/544" target="_blank">#544</a> (“Build the libfx agent kernel”), merged 2026-09-02, where it returned the content text when there was any and <code>JSON.stringify(structuredContent)</code> only when there was none. <a href="https://github.com/vercel-labs/fx/pull/639" target="_blank">#639</a> (“Rebuild MCP handling around independent servers”), merged 2026-09-05, changed it to the current join. The PR body’s only line on this is “Preserve typed images, structured results, cancellation, and saved history across native and SDK execution.” Neither PR has comments or reviews that discuss the rule.</p>
+
+<p><a href="https://github.com/vercel-labs/fx/pull/609" target="_blank">#609</a> (“fix(mcp): prefer structured tool results”), opened 2026-09-03 by vrmiguel and still open with no comments or reviews, changes <code>src/core/mcp/tool_result.zig</code> to keep only <code>structuredContent</code> when both fields are present. Its rationale: “For MCPs that contain both forms, this duplicates the tool response, using more input tokens than it needed.” and "This PR makes it so that if the MCP server returned both forms, it’ll prefer keeping only <code>structuredContent</code>. Truncation is then applied only to the selected representation." It cites Codex and OpenCode’s code mode as doing the same.</p>
+
+<p><a href="https://github.com/vercel-labs/fx/pull/1516" target="_blank">#1516</a> (“Add fx mcp call to run MCP tools from shell commands”), opened 2026-10-29 and merged 2026-11-02, added the script route. Its body says it prints “only the tool’s data, so the command can save a large result to a file or filter it before anything reaches the model”, and lists "Print structured content that is only a <code>result</code> string, as FastMCP servers such as DeepWiki wrap a tool’s text, as that text, so a saved file holds the document rather than a JSON wrapper.“ It also lists ”Return results whole instead of cutting them at the model’s 64 KiB limit".</p>
+
+<p>Searched: <code>gh search prs</code> and <code>gh search issues</code> in vercel-labs/fx for <code>structuredContent</code>, <code>write_envelope</code>, <code>resultText</code>, <code>structured content</code>, <code>tool result envelope</code>, <code>duplicate tool result</code>, <code>outputSchema</code> and <code>MCP tool result</code>; <code>gh pr view</code> on #544, #609, #639, #825 and #1516; and the commit lists for <code>src/core/mcp/tool_result.zig</code> and <code>sdk/mcp.js</code>. No issue discusses which field reaches the model.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>Non-object <code>structuredContent</code> passes on the native path: tests in <code>src/mcp/protocol/tools.zig</code> and <code>src/core/mcp/features/tools.zig</code> accept <code>[1,2]</code> and the string <code>"server result"</code>. In <code>sdk/mcp.js</code>, <code>structuredContent: null</code> is not <code>undefined</code>, so the model receives the text <code>null</code>, or the content text followed by <code>null</code>. <code>bridgeResultData</code> treats <code>null</code> as absent and prints the content text, and unwraps a lone <code>{"result":"…"}</code> string, so <code>fx mcp call</code> and the model path give different answers for the same result.</p>
+
+<p>libfx does not truncate an oversize result. When the <code>resultText</code> string is longer than the session’s <code>max_tool_result_bytes</code> (64 KiB by default in <code>src/acp/server.zig</code>), the host tool reader in <code>src/acp/prompt.zig</code> replaces the whole result, text and <code>structuredContent</code> alike, with the failure text <code>Host tool result exceeded the configured limit</code>. The WebAssembly build gives the same text from <code>src/core/hosts/js_host_tools.zig</code>, where <code>sdk/wasm-runtime.js</code> refuses a non-image result over the smaller of that setting and a 64 KiB bridge cap.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 3fd4905 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

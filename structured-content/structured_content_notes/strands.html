@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How strands handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How strands handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the Strands Agents Python SDK source (<code>clones/strands</code>, checked out at commit 46cbb8c94c93468cd1f06bbb8fff1e6384c9106f (46cbb8c), read on 2026-11-14). Only the Python package in <code>strands-py/</code> is covered. File references are relative to <code>strands-py/src/strands/</code> unless they name <code>pyproject.toml</code> or an SDK file. <code>strands-py/pyproject.toml</code> declares <code>"mcp&gt;=1.23.0,&lt;2.4"</code> and there is no lockfile; today that range resolves to the <code>mcp</code> 2.3.0 wheel with <code>mcp-types==2.3.0</code>, and the newest 1.x release is 1.30.0. SDK references are to those two wheels.</p>
+
+<h2 id="entry-results-enter-through-the-sdk-clientsession-typed-as-calltoolresult-read-through-a-version-shim">Entry: results enter through the SDK <code>ClientSession</code>, typed as <code>CallToolResult</code>, read through a version shim</h2>
+
+<p><code>tools/mcp/mcp_client.py</code> <code>MCPClient._async_background_thread</code> opens <code>mcp.ClientSession</code> directly and negotiates with <code>negotiate_session</code> from <code>tools/mcp/_compat.py</code>. <code>MCPClient._create_call_tool_coroutine</code> sends <code>tools/call</code> through <code>_compat.call_tool</code>, which on 2.x calls <code>session.call_tool(...)</code> inside <code>_drive_input_required</code> to resolve <code>InputRequiredResult</code> rounds. The result type is <code>mcp.types.CallToolResult</code> (<code>MCPCallToolResult</code>). <code>_compat.structured_content</code> reads <code>call_tool_result.structured_content if MCP_V2 else call_tool_result.structuredContent</code>, and <code>MCP_V2</code> is <code>hasattr(ClientSession, "discover")</code>. <code>MCPAgentTool.stream</code> in <code>tools/mcp/mcp_agent_tool.py</code> calls <code>MCPClient.call_tool_async</code>, which passes the SDK result to <code>_handle_tool_result</code>.</p>
+
+<p><code>structuredContent</code> survives parsing on both lines: <code>CallToolResult</code> declares <code>structuredContent: dict[str, Any] | None = None</code> in <code>mcp</code> 1.30.0 (<code>mcp/types.py</code>) and <code>structured_content: Any = None</code> in <code>mcp-types</code> 2.3.0 (<code>mcp_types/_types.py</code>). Both declare <code>content: list[ContentBlock]</code> with no default, so a result without a <code>content</code> key fails SDK validation inside <code>session.call_tool</code>. The <code>except Exception</code> in <code>MCPClient.call_tool_async</code> catches that error, and <code>_handle_tool_execution_error</code> turns it into <code>Tool execution failed: &lt;validation error&gt;</code> with status <code>error</code>, so the model sees the validation message and nothing from <code>structuredContent</code>. In <code>mcp</code> 2.3.0 <code>session.call_tool</code> parses the result with <code>_CallToolResultAdapter</code>, a <code>TypeAdapter(types.CallToolResult | types.InputRequiredResult)</code> in <code>mcp/client/session.py</code>, so the message is pydantic’s union error with one failure per arm: <code>CallToolResult.content</code> <code>Field required</code> and <code>InputRequiredResult.resultType</code> <code>Input should be 'input_required'</code>. A <code>{}</code> result fails the same way.</p>
+
+<h2 id="model-path-content-only">Model path: content only</h2>
+
+<p><code>MCPClient._handle_tool_result</code> maps each <code>call_tool_result.content</code> block through <code>map_mcp_content_to_tool_result_content</code> into the <code>content</code> list of an <code>MCPToolResult</code> (<code>tools/mcp/mcp_types.py</code>), a <code>ToolResult</code> TypedDict with extra keys. The structured value goes on a separate key: <code>if structured_payload is not None: result["structuredContent"] = structured_payload</code>. Result <code>_meta</code> is copied to <code>result["metadata"]</code> and the error flag to <code>result["isError"]</code>. <code>event_loop/event_loop.py</code> appends <code>[{"toolResult": result} for result in tool_results]</code> to the conversation, so the whole dict, extra keys included, sits in <code>agent.messages</code>.</p>
+
+<p>Every provider converter reads only <code>toolResult["content"]</code>, and no file under <code>models/</code> reads <code>structuredContent</code>:</p>
+
+<ul>
+  <li><code>models/anthropic.py</code> <code>_format_request_message_content</code> builds <code>tool_result</code> from <code>content["toolResult"]["content"]</code>.</li>
+  <li><code>models/bedrock.py</code> <code>_format_request_message_content</code> builds the Converse <code>toolResult</code> from <code>tool_result.get("content") or [{"text": ""}]</code>.</li>
+  <li><code>models/openai.py</code> <code>format_request_tool_message</code> joins text blocks and returns <code>"content": merged[0]["text"] if merged else ""</code>.</li>
+  <li><code>models/openai_responses.py</code> <code>_format_request_tool_message</code> turns <code>tool_result["content"]</code> into <code>function_call_output</code> parts.</li>
+  <li><code>models/gemini.py</code> <code>_format_tool_result</code> sets <code>FunctionResponse.response={"output": output}</code> from <code>tool_result["content"]</code>, keeping text and JSON blocks in <code>output</code> and sending image and document blocks as <code>FunctionResponse.parts</code> referenced by <code>{"$ref": display_name}</code>.</li>
+  <li><code>bidi/models/bedrock.py</code> <code>_send_tool_result</code> sends <code>tool_result.content</code> to Nova Sonic and raises <code>ValueError</code> on any block that is not text or JSON. A result for a tool use from an earlier connection goes through <code>_send_tool_result_after_restart</code> as user text, with <code>[non-text content omitted]</code> in place of such a block.</li>
+</ul>
+
+<p>With both fields present, the model receives the mapped <code>content</code> blocks and nothing from <code>structuredContent</code>. With empty <code>content</code> and <code>structuredContent</code> present, <code>content</code> stays <code>[]</code> and the model receives an empty result: an empty string on OpenAI chat, an empty string as <code>function_call_output.output</code> on the Responses API, a single <code>{"text": ""}</code> block on Bedrock, and an empty list on Anthropic.</p>
+
+<p>The answer is the same whether the text mirrors the JSON or differs from it, because no converter compares the two. There is no duplicate-removal step, and <code>structuredContent</code> is not serialized into the request in any form. Non-text blocks do not change which field reaches the model, since <code>structuredContent</code> never does.</p>
+
+<p>Per block, <code>map_mcp_content_to_tool_result_content</code> returns <code>{"text": content.text}</code> for <code>TextContent</code>. <code>ImageContent</code> becomes an image block with <code>"format": MIME_TO_FORMAT[image_mime]</code>, and <code>MIME_TO_FORMAT</code> lists only JPEG, PNG, GIF and WebP. Any other image MIME type raises <code>KeyError</code> inside <code>_handle_tool_result</code>, which <code>call_tool_async</code> catches, so the whole call becomes <code>Tool execution failed: '&lt;mime&gt;'</code> with status <code>error</code>. <code>EmbeddedResource</code> with text contents becomes a text block, and a blob becomes text when its MIME type is <code>text/*</code>, a listed JSON/XML/YAML/JavaScript type or a <code>+json</code>/<code>+xml</code> suffix, an image block when the MIME type is in <code>MIME_TO_FORMAT</code>, and is dropped otherwise. <code>AudioContent</code>, <code>ResourceLink</code> and any other type hit <code>self._log_debug_with_thread("unhandled content type: %s - dropping content", ...)</code> and return <code>None</code>.</p>
+
+<p>No file under <code>strands-py/src/</code> reads <code>audience</code>, and <code>map_mcp_content_to_tool_result_content</code> does not read a block’s <code>annotations</code> (grep for <code>audience</code> under <code>strands-py/src/</code> returns no hits). A text block annotated <code>audience: ["user"]</code> is mapped like any other text block and reaches the model.</p>
+
+<h2 id="outputschema-copied-onto-the-toolspec-validated-by-the-sdk-surfaced-as-an-error-string">outputSchema: copied onto the ToolSpec, validated by the SDK, surfaced as an error string</h2>
+
+<p><code>MCPAgentTool.tool_spec</code> reads <code>_compat.output_schema(self.mcp_tool)</code> and sets <code>spec["outputSchema"] = {"json": tool_output_schema}</code>. Every provider builds its tool list from <code>name</code>, <code>description</code> and <code>inputSchema</code> only, for example <code>"input_schema": tool_spec["inputSchema"]["json"]</code> in <code>models/anthropic.py</code>. The only other readers are <code>telemetry/tracer.py</code> <code>_construct_tool_definitions</code>, which exports <code>"outputSchema": spec.get("outputSchema")</code> into <code>gen_ai.tool.definitions</code> when <code>OTEL_SEMCONV_STABILITY_OPT_IN</code> contains <code>gen_ai_tool_definitions</code>, and the <code>mcp_router</code> vended tool described below.</p>
+
+<p>Strands does no validation of its own. The SDK validates inside <code>ClientSession.call_tool</code>. In <code>mcp</code> 2.3.0 (<code>mcp/client/session.py</code>) the check is <code>if isinstance(result, types.CallToolResult) and not result.is_error: await self.validate_tool_result(name, result)</code>, which raises <code>RuntimeError(f"Tool {name} has an output schema but did not return structured content")</code> or <code>RuntimeError(f"Invalid structured content returned by tool {name}: {error}")</code>. In <code>mcp</code> 1.30.0 the same check is <code>if not result.isError: await self._validate_tool_result(name, result)</code>. <code>MCPClient.call_tool_async</code> catches the exception and <code>_handle_tool_execution_error</code> returns <code>MCPToolResult(status="error", content=[{"text": f"Tool execution failed: {str(exception)}"}])</code>. The model sees that sentence and nothing from the original result. On the task-augmented path the create round passes <code>allow_claimed=True</code> and gets either a direct <code>CallToolResult</code>, which the SDK validator checks as above, or a task handle, and for a task handle the final result comes from <code>_resolve_v2_terminal_state</code> (2.x) or <code>get_task_result</code> (1.x), neither of which calls the SDK validator.</p>
+
+<h2 id="other-paths-hooks-direct-calls-sessions-conversation-managers-telemetry-the-mcp-router">Other paths: hooks, direct calls, sessions, conversation managers, telemetry, the MCP router</h2>
+
+<p><code>tools/executors/_executor.py</code> passes the <code>MCPToolResult</code> as <code>result</code> on <code>AfterToolCallEvent</code> (<code>hooks/events.py</code>), so hooks see <code>structuredContent</code> and <code>metadata</code>, and the value they leave in <code>event.result</code> is what is appended to the conversation. A direct call through <code>agent.tool.&lt;name&gt;(...)</code> in <code>tools/_caller.py</code> returns <code>tool_results[0]</code>, the full <code>MCPToolResult</code>, to the calling Python code. <code>session/repository_session_manager.py</code> <code>append_message</code> stores the message through <code>SessionMessage.from_message</code> in <code>types/session.py</code>, which keeps the dict as is, so the sidecar keys persist in session storage. <code>agent/conversation_manager/sliding_window_conversation_manager.py</code> rebuilds truncated results with <code>{k: v for k, v in tool_result.items() if k != "content"}</code>, which keeps the sidecar. <code>vended_plugins/context_offloader/plugin.py</code> <code>_handle_tool_result</code> replaces an oversized result with <code>ToolResult(toolUseId=..., status=..., content=new_content)</code>, which drops <code>structuredContent</code>, <code>metadata</code> and <code>isError</code>.</p>
+
+<p>In <code>telemetry/tracer.py</code>, <code>end_tool_call_span</code> exports only <code>tool_result.get("content", [])</code>. Under the default conventions, <code>_add_event_messages</code> and <code>end_event_loop_cycle_span</code> export <code>serialize(message["content"])</code>, which carries the whole <code>toolResult</code> dict including <code>structuredContent</code>. With <code>gen_ai_latest_experimental</code> set, <code>_map_content_blocks_to_otel_parts</code> exports <code>"response": tool_result["content"]</code> only.</p>
+
+<p><code>vended_tools/mcp_router/mcp_router.py</code> <code>make_mcp_router</code> builds an opt-in tool that lets the model connect to allowlisted servers at run time. Its <code>list_tools</code> command returns <code>[{**t.tool_spec, "name": t.mcp_tool.name} for t in all_tools]</code>, which the <code>@tool</code> decorator serializes with <code>json.dumps</code> in <code>DecoratedFunctionTool._wrap_tool_result</code>, so the model reads each tool’s <code>outputSchema</code> as text. Its <code>call_tool</code> command returns the <code>MCPToolResult</code> from <code>call_tool_async</code>, and <code>_wrap_tool_result</code> passes a dict with <code>status</code> and <code>content</code> through unchanged, so the model again receives <code>content</code> only. <code>vended_tools/python_repl/python_repl.py</code> exposes no tools to the script it runs. There is no MCP Apps handling. Result <code>_meta</code> lands in <code>result["metadata"]</code> and nothing reads it. Request <code>_meta</code> comes from the <code>MCPClient</code> <code>meta</code> argument or the per-call <code>meta</code>, with trace context added by <code>inject_trace_context</code>.</p>
+
+<p>Grep for <code>visibility</code>, <code>ui://</code> and <code>"ui"</code> under <code>strands-py/src/</code> returns no hits, so <code>_meta.ui.visibility</code> is not read. No <code>MCPClient.__init__</code> argument in <code>tools/mcp/mcp_client.py</code> changes what <code>_handle_tool_result</code> puts in <code>content</code>, and <code>_handle_tool_result</code> reads no <code>_meta</code> key or schema to decide it. The model input changes only when an <code>AfterToolCallEvent</code> hook rewrites <code>event.result</code> or a subclass overrides <code>_handle_tool_result</code> or <code>map_mcp_content_to_tool_result_content</code>.</p>
+
+<h2 id="protocol-revision-negotiated-by-the-sdk-chosen-by-which-mcp-line-is-installed">Protocol revision: negotiated by the SDK, chosen by which <code>mcp</code> line is installed</h2>
+
+<p>Strands pins no protocol string for ordinary calls. <code>_compat.negotiate_session</code> calls <code>negotiate_auto(session)</code> from <code>mcp.client.client</code> on 2.x, and <code>mcp/client/_probe.py</code> <code>negotiate_auto</code> sends <code>server/discover</code> with <code>LATEST_MODERN_VERSION</code> (“2026-07-28”) and falls back to <code>session.initialize()</code>, which offers <code>LATEST_HANDSHAKE_VERSION</code> (“2025-11-25”) from <code>mcp_types/version.py</code>. On 1.x it calls <code>session.initialize()</code>, which sends <code>protocolVersion=types.LATEST_PROTOCOL_VERSION</code> (“2025-11-25” in <code>mcp</code> 1.30.0). The one fixed value is <code>_TASKS_PROTOCOL_VERSION = "2026-07-28"</code> in <code>tools/mcp/mcp_tasks.py</code>, and <code>MCPClient._require_v2_task_lifecycle</code> raises unless the negotiated <code>session.protocol_version</code> equals it.</p>
+
+<h2 id="upstream-history-528-put-structuredcontent-beside-content-to-keep-it-away-from-the-model">Upstream history: #528 put <code>structuredContent</code> beside <code>content</code> to keep it away from the model</h2>
+
+<p>The upstream repository is now <code>strands-agents/harness-sdk</code>, and <code>gh api repos/strands-agents/sdk-python</code> redirects there. The <code>MCPToolResult</code> sidecar came from <a href="https://github.com/strands-agents/harness-sdk/pull/528" target="_blank">strands-agents/harness-sdk#528</a>, “feat(mcp): retain structured content in the AgentTool response”, merged 2025-07-29. Its body describes an earlier design that appended <code>structuredContent</code> as a <code>json</code> block at the end of <code>content</code>, and the review threads on <code>src/strands/tools/mcp/mcp_client.py</code> replaced it. One reviewer wrote: “I would like to avoid adding this to the tool result content array. MCP currently recommends that if a tool previously returned json in its result as serialized text, it SHOULD continue doing so. By appending the structuredContent to the content array, we are duplicating the number of tokens provided to the model.” The same comment proposed: "Im thinking we extend the <code>ToolResult</code> type with an <code>MCPToolResult</code>, and when we call the bedrock model, we filter out only the required keys needed. This way we can include additional information like <code>structuredContent</code> in the ToolResult, while also not impacting how the model uses it.“ The author had earlier written that ”This comes down to if we view structuredContent as something that is just intended to be used by the user or not“, quoted the spec’s backwards-compatibility SHOULD, and noted ”We could take the opinionated view that if a text block is not present we stringify the json and add it though.“ That option was not implemented. The author’s closing comment: ”the strategy implemented here was to introduce a <code>MCPToolResult</code>. This reduces duplication and allows users to effectively persist the structuredContent to be used not by the agent/llm, but instead by the user via a mechanic like Hooks.“ It adds: ”Unlike other providers, Bedrock throws ValidationExceptions when additional fields are provided in the ToolResultBlock. So, some filtering was needed in the BedrockModel when presented with a toolResult."</p>
+
+<p>At the time of reading, <a href="https://github.com/strands-agents/harness-sdk/pull/3431" target="_blank">#3431</a> (open) and <a href="https://github.com/strands-agents/harness-sdk/pull/4363" target="_blank">#4363</a> (open) would surface <code>structuredContent</code> in the TypeScript SDK under <code>strands-ts/</code>, which this note does not cover. #4363 describes the Python <code>MCPToolResult.structuredContent</code> and <code>MCPToolResult.metadata</code> as the behaviour it matches. The clone is a depth-1 checkout, so <code>git log</code> and <code>git blame</code> show only 46cbb8c and could not trace when <code>_handle_tool_result</code> switched to the <code>is not None</code> check. Searches of PRs and issues in <code>strands-agents/harness-sdk</code> for <code>structuredContent</code> returned the PRs above, PRs on <code>isError</code> and <code>_meta</code> (#2118, #1237) and the 2.x <code>call_tool</code> port (#4090). A PR search for <code>structured content</code> hit the GitHub search rate limit and was not completed.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p><code>_handle_tool_result</code> stores any <code>structuredContent</code> that is not <code>None</code>, with the comment that “the 2026-07-28 spec allows any JSON value here, so 0, False, ”“, [], and {} are all valid payloads”. An array, a scalar and <code>{}</code> are therefore kept on the result, while <code>MCPToolResult</code> in <code>tools/mcp/mcp_types.py</code> types the key as <code>dict[str, Any]</code>. A <code>null</code> value leaves the key absent, the same as a missing field.</p>
+
+<p><code>models/openai.py</code> <code>format_request_tool_message</code> joins text blocks into a string only when the result has no image or document block. Otherwise it keeps a list of parts, and <code>_split_tool_message_images</code> moves the <code>image_url</code> parts into a user message placed after all the tool messages, leaving the tool message with the text parts plus <code>Tool successfully returned an image. The image is being provided in the following user message.</code> <code>models/openai_responses.py</code> <code>_format_request_tool_message</code> keeps the image as an <code>input_image</code> part inside <code>function_call_output</code>.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 46cbb8c &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

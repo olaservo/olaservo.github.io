@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>Notes checklist</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>Notes checklist</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Every client note answers each core item below. An answer can be “not read” or “not found”, stated with the search that showed it, for example "No file under <code>src/</code> reads <code>audience</code> (grep returns only the generated schema)". Silence is not an answer. Answers go in the section of the note they belong to: Entry, Model path, outputSchema, Other paths, or Upstream history.</p>
+
+<p>Quirks are recorded when a read turns them up. Nobody checks every client for them. They go in a <code>## Quirks</code> section at the end of the note, so a page can list them without implying the other clients were checked. Quirk text already written elsewhere in a note stays where it is.</p>
+
+<h2 id="core-every-note">Core: every note</h2>
+
+<h3 id="entry">Entry</h3>
+
+<ol>
+  <li>The client library and version: SDK or hand-rolled, the pinned version, and where the SDK source was read.</li>
+  <li>Whether <code>structuredContent</code> survives parsing, and what happens when the <code>content</code> key is missing.</li>
+</ol>
+
+<h3 id="model-path">Model path</h3>
+
+<ol>
+  <li>Both fields present, with the text an exact JSON mirror of <code>structuredContent</code>.</li>
+  <li>Both fields present, with text that differs from the JSON.</li>
+  <li><code>content: []</code> with <code>structuredContent</code>.</li>
+  <li>Whether the client removes the duplicate when the text mirrors the JSON.</li>
+  <li>The form <code>structuredContent</code> takes in the request: compact JSON, pretty JSON, a JSON value, or inside an envelope.</li>
+  <li>Any placeholder substituted for an empty result.</li>
+  <li>Whether non-text blocks (image, audio, resource) change which field wins, and whether they survive when <code>structuredContent</code> wins.</li>
+</ol>
+
+<h3 id="audience">audience</h3>
+
+<ol>
+  <li>Whether <code>annotations.audience</code> is read on the model path, and whether a <code>["user"]</code> block reaches the model.</li>
+</ol>
+
+<h3 id="outputschema">outputSchema</h3>
+
+<ol>
+  <li>Whether it is validated, by whom, and the text the model sees on failure.</li>
+  <li>Whether the schema reaches the model, through the tool declaration, the description, or code-mode types.</li>
+</ol>
+
+<h3 id="other-consumers">Other consumers</h3>
+
+<ol>
+  <li>Code mode or scripts: what the script receives.</li>
+  <li>MCP Apps: which field the view gets, and whether <code>_meta.ui.visibility</code> is honoured.</li>
+  <li>Hooks and plugins: what they see, and whether they can change what the model gets.</li>
+  <li>Any switch that changes which field the model gets: a <code>_meta</code> key, per-server config, a constructor option, or the schema.</li>
+</ol>
+
+<h3 id="upstream-history">Upstream history</h3>
+
+<ol>
+  <li>The upstream PRs, issues or commits behind the routing rule, with any rationale they record. If none were found, say so and list what was searched.</li>
+</ol>
+
+<h2 id="quirks-record-when-found">Quirks: record when found</h2>
+
+<ul>
+  <li>Non-object <code>structuredContent</code> (array, scalar, <code>null</code>) handled differently from an object.</li>
+  <li><code>{}</code> treated differently from a missing field.</li>
+  <li>Unknown block types failing the whole result.</li>
+  <li>An answer that differs by provider backend.</li>
+  <li>Size caps or truncation that drop or reorder one of the fields.</li>
+  <li>Which field <code>isError</code> text comes from.</li>
+  <li>The client attaching its own audience label, or reading audience only on display paths.</li>
+  <li>The per-type rendering of non-text blocks, when it does not decide which field reaches the model.</li>
+  <li>ACP, editor and TUI output, history and replay, and telemetry.</li>
+  <li>The protocol revision, when it changes what <code>structuredContent</code> may contain.</li>
+</ul>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p><a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

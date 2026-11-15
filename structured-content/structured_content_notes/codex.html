@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How codex handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How codex handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the codex source (<code>clones/codex</code>, checked out at commit b1573f1, read 2026-11-14). File references are relative to <code>codex-rs/</code>.</p>
+
+<h2 id="entry-results-enter-through-rmcp-3-5-1-and-are-copied-into-a-four-field-struct-that-keeps-structuredcontent">Entry: results enter through rmcp 3.5.1 and are copied into a four-field struct that keeps structuredContent</h2>
+
+<p>The workspace pins <code>rmcp = { git = "https://github.com/modelcontextprotocol/rust-sdk", rev = "98a54789b80110ad210495c4ad845c89e1980471", version = "=3.5.1", default-features = false }</code> in <code>Cargo.toml</code>. <code>RmcpClient::call_tool</code> in <code>rmcp-client/src/rmcp_client.rs</code> sends <code>ClientRequest::CallToolRequest</code> through <code>call_tool_inner</code> and returns the SDK’s <code>rmcp::model::CallToolResult</code> unchanged via <code>ServerResult::CallToolResult(result) =&gt; Ok(Ok(result))</code>. On a 2026-07-28 session the same request goes through <code>call_tool</code> in <code>rmcp-client/src/request_input.rs</code>, which returns the result the same way (<code>ServerResult::CallToolResult(result) =&gt; Ok(result)</code>). <code>call_tool_result_from_rmcp</code> in <code>codex-mcp/src/binding.rs</code> copies it into <code>codex_protocol::mcp::CallToolResult</code> (<code>protocol/src/mcp.rs</code>), which holds <code>content: Vec&lt;serde_json::Value&gt;</code>, <code>structured_content: Option&lt;serde_json::Value&gt;</code>, <code>is_error</code> and <code>meta</code>. The copy is field by field, so <code>structuredContent</code> survives as untyped JSON.</p>
+
+<p>The rmcp source at the pinned rev is not in <code>clones/</code>, and <code>crates/rmcp/src/model.rs</code> and <code>crates/rmcp/src/model/annotated.rs</code> were read at that rev through the GitHub contents API. rmcp’s <code>CallToolResult</code> deserializer defaults a missing <code>content</code> to <code>[]</code> when any of <code>structuredContent</code>, <code>isError</code> or <code>_meta</code> is present. A result with none of the four fields does not deserialize as <code>CallToolResult</code>, and both <code>call_tool</code> functions map any other <code>ServerResult</code> variant to <code>ServiceError::UnexpectedResponse</code>. <code>call_tool_result_from_rmcp</code> serializes each <code>ContentBlock</code> with <code>serde_json::to_value</code>, so block <code>annotations</code>, including <code>audience</code>, survive into <code>content</code> as JSON.</p>
+
+<h2 id="model-path-structuredcontent-replaces-content-whenever-it-is-non-null-except-when-an-encrypted-content-flag-is-set">Model path: structuredContent replaces content whenever it is non-null, except when an encrypted-content flag is set</h2>
+
+<p><code>CallToolResult::as_function_call_output_payload</code> in <code>protocol/src/models.rs</code> builds the <code>function_call_output</code> body. It first converts <code>content</code> with <code>convert_mcp_content_to_items</code>. If any item is <code>FunctionCallOutputContentItem::EncryptedContent</code>, the content items are returned and <code>structured_content</code> is ignored. Otherwise <code>if let Some(structured_content) = &amp;self.structured_content &amp;&amp; !structured_content.is_null()</code> returns <code>FunctionCallOutputBody::Text(serialized_structured_content)</code>, the JSON serialized with <code>serde_json::to_string</code>, and nothing from <code>content</code> reaches the model. The test <code>preserves_structured_mcp_content</code> in the same file fixes this with a text block named <code>"ignored"</code>. There is no non-empty guard, so a <code>{}</code> payload replaces the content. Only when <code>structured_content</code> is <code>None</code> or <code>Null</code> does the body become <code>FunctionCallOutputBody::ContentItems(content_items)</code>.</p>
+
+<p>When both fields are present, the model gets only the serialized <code>structuredContent</code>, whether the text is an exact JSON mirror or differs from it. <code>content: []</code> with <code>structuredContent</code> gives the same body. The client has no duplicate check, since <code>content</code> does not reach the model when <code>structuredContent</code> is non-null. <code>serde_json::to_string</code> emits compact JSON, which goes out as a plain string body with no envelope other than the <code>Wall time</code> header described below.</p>
+
+<p><code>McpContent</code> in <code>protocol/src/models/mcp_content.rs</code> declares only <code>text</code>, <code>data</code> and <code>mimeType</code>, and <code>FunctionCallOutputContentItem::from_mcp_content_block</code> reads <code>_meta</code> from the raw block, so <code>annotations</code> is not read on the model path and a block with <code>audience: ["user"]</code> reaches the model like any other block. A grep for <code>audience</code> across <code>codex-rs</code> returns only the <code>Annotations</code> type in the code-mode TypeScript preamble in <code>code-mode-protocol/src/description.rs</code>, unrelated JWT, OAuth, websocket and TUI feedback-disclosure audience code, and test fixtures, including an <code>audience: ["user"]</code> text block in the <code>mcp_output_deferral_items</code> history-deferral fixture in <code>app-server/tests/suite/v2/thread_read.rs</code>. <code>sanitize_mcp_tool_result_for_model</code> in <code>core/src/mcp_tool_call.rs</code> checks only the block <code>type</code>.</p>
+
+<p>Content items map per block type in <code>FunctionCallOutputContentItem::from_mcp_content_block</code>, which <code>convert_mcp_content_to_items</code> calls for each block: <code>text</code> becomes <code>InputText</code>, <code>image</code> becomes <code>InputImage</code> with a <code>data:{mime_type};base64,</code> URL and a detail level read from <code>_meta["codex/imageDetail"]</code>, <code>audio</code> becomes <code>InputAudio</code>, and <code>resource</code>, <code>resource_link</code> and malformed blocks become <code>InputText</code> holding the block serialized as JSON (<code>McpContent::ResourceLink { .. } | McpContent::Resource { .. } =&gt; Self::InputText { text: serde_json::to_string(block)? }</code>, and <code>from_mcp_content_block(block).unwrap_or_else(|_| FunctionCallOutputContentItem::InputText { text: serde_json::to_string(block)... })</code> for blocks that fail to deserialize); the malformed branch is unreachable from a live server, because rmcp’s <code>ContentBlock</code> is a closed tagged enum and an unknown <code>type</code> fails deserialization of the whole result. When <code>structuredContent</code> wins, every <code>content</code> block is dropped, images and audio included. Before this conversion, <code>sanitize_mcp_tool_result_for_model</code> in <code>core/src/mcp_tool_call.rs</code> rewrites <code>image</code> blocks into the text <code>&lt;image content omitted because you do not support image input&gt;</code> and <code>audio</code> blocks into <code>&lt;audio content omitted because you do not support audio input&gt;</code> for models whose <code>input_modalities</code> lack them, and leaves <code>structured_content</code> untouched.</p>
+
+<p>Empty <code>content</code> with no <code>structuredContent</code> yields <code>ContentItems(vec![])</code>. On every path, <code>McpToolOutput::response_payload</code> in <code>core/src/tools/context.rs</code> then inserts a <code>Wall time: {wall_time_seconds:.4} seconds\nOutput:</code> header as the first item (or prefixes it to the text body), and calls <code>truncate_function_output_payload</code> with a token budget from the per-tool <code>output_token_limit</code> (<code>config/src/mcp_types.rs</code>) or the model’s <code>truncation_policy</code>. The result goes out as <code>ResponseInputItem::FunctionCallOutput</code>. The second impl, <code>impl ToolOutput for codex_protocol::mcp::CallToolResult</code> in <code>tools/src/tool_output.rs</code>, emits <code>ResponseInputItem::McpToolCallOutput</code>, and <code>core/src/stream_events_utils.rs</code> folds that into a <code>FunctionCallOutput</code> through the same <code>as_function_call_output_payload</code>.</p>
+
+<p>No placeholder text stands in for an empty result. <code>response_payload</code> sets an empty text body to the header alone and inserts the header before an empty item list.</p>
+
+<h2 id="outputschema-read-from-tools-list-never-validated-rendered-into-code-mode-typescript">outputSchema: read from tools/list, never validated, rendered into code-mode TypeScript</h2>
+
+<p><code>parse_mcp_tool_with_description_limit</code> in <code>tools/src/mcp_tool.rs</code> copies <code>tool.output_schema</code> into <code>ToolDefinition.output_schema</code> as <code>ToolOutputSchema::from_mcp_output_schema</code>. <code>mcp_call_tool_result_output_schema</code> wraps it as the <code>structuredContent</code> property of a synthetic <code>CallToolResult</code> object schema with <code>content</code>, <code>isError</code> and <code>_meta</code>. <code>ResponsesApiTool.output_schema</code> in <code>tools/src/responses_api.rs</code> carries <code>#[serde(skip)]</code>, so the schema never appears in the provider request. No code in <code>core/src/mcp_tool_call.rs</code>, <code>core/src/tools/handlers/mcp.rs</code>, <code>codex-mcp/src</code> or <code>tools/src</code> references a validator; a grep for <code>jsonschema</code> against those paths returns nothing, <code>validate</code> matches only <code>codex-mcp/src</code> code unrelated to results, such as <code>validate_mcp_server_name</code> and <code>validate_tool_call</code>, and <code>Cargo.lock</code> has no <code>jsonschema</code>, <code>boon</code> or <code>valico</code> crate. rmcp at the pinned rev does not validate either: <code>crates/rmcp/Cargo.toml</code> has no schema-validation dependency, and its <code>CallToolResult</code> deserializer in <code>crates/rmcp/src/model.rs</code> checks only that <code>resultType</code> is <code>complete</code> and that at least one known field is present, keeping an explicit <code>null</code> distinct from an absent <code>structuredContent</code>. The only consumer is code mode: <code>collect_code_mode_tool_definitions</code> in <code>tools/src/code_mode.rs</code> passes the schema into <code>CodeModeToolDefinition.output_schema</code>, and <code>render_code_mode_sample_for_definition</code> in <code>code-mode-protocol/src/description.rs</code> unwraps the envelope with <code>mcp_structured_content_schema</code> and renders <code>Promise&lt;CallToolResult&lt;{structured_content_type}&gt;&gt;</code> in the tool declaration prompt text. <code>core/src/tools/code_mode/tool_definitions.rs</code> sets <code>definition.input_schema = None</code> and <code>definition.output_schema = None</code> on every definition after <code>augment_tool_definition</code> has rendered the schemas into the description, so the rendered TypeScript type reaches the model and the raw schema does not.</p>
+
+<p>Since nothing validates <code>structuredContent</code> against the schema, the model sees no validation failure text.</p>
+
+<h2 id="other-paths-code-mode-gets-the-whole-result-hooks-and-app-server-get-both-fields-two-private-meta-keys">Other paths: code mode gets the whole result, hooks and app-server get both fields, two private _meta keys</h2>
+
+<p>Code mode receives the full result. <code>impl ToolOutput for CallToolResult::code_mode_result</code> in <code>tools/src/tool_output.rs</code> serializes the struct to JSON and removes only <code>_meta</code> (<code>fields.remove("_meta")</code>), so sandbox scripts see <code>content</code>, <code>structuredContent</code> and <code>isError</code> together; <code>core/src/tools/code_mode/mod.rs</code> returns it via <code>result.await?.code_mode_result()</code>. PostToolUse hooks receive the same whole struct: <code>McpToolOutput::post_tool_use_response</code> in <code>core/src/tools/context.rs</code> returns <code>serde_json::to_value(&amp;self.result)</code>, fed to <code>run_post_tool_use_hooks</code> in <code>core/src/hook_runtime.rs</code> as <code>tool_response</code>. <code>core/src/tools/registry.rs</code> runs them only when <code>success</code> holds, which for an MCP result is <code>is_error != Some(true)</code>; a hook that blocks turns the result into <code>FunctionCallError::RespondToModel</code>, and a hook <code>feedback_message</code> wraps the result in <code>PostToolUseFeedbackOutput</code>, whose <code>to_response_item</code> sends the hook text to the model while <code>code_mode_result</code> still returns the original. Extension contributors can mutate the result before the model path through <code>process_mcp_tool_result</code> in <code>core/src/tools/lifecycle.rs</code>, which passes <code>result: &amp;mut CallToolResult</code> to each <code>on_mcp_tool_result</code>. App-server clients get <code>McpServerToolCallResponse</code> and <code>McpToolCallResult</code> in <code>app-server-protocol/src/protocol/v2/mcp.rs</code>, both with <code>structured_content</code> and <code>content</code>. Telemetry reads <code>structured_content.get("error_code")</code> in <code>core/src/mcp_tool_call/telemetry.rs</code>. Review evidence for Node-REPL-backed connectors (<code>on_tool_result_accepted</code> in <code>core/src/tools/handlers/mcp.rs</code>) records content items and inserts <code>structuredContent</code> as text only when no non-blank text block and no encrypted block exists.</p>
+
+<p>The private <code>_meta</code> flag is confirmed. <code>from_mcp_content_block</code> reads <code>meta.get("codex/encryptedContent")</code>; a text block whose <code>_meta["codex/encryptedContent"]</code> is <code>true</code> becomes <code>EncryptedContent { encrypted_content: text }</code>, and that item’s presence is the one condition under which <code>content</code> beats <code>structuredContent</code>. The other key is <code>"codex/imageDetail"</code>, which selects the image detail level. Both are read on the model path and in the review evidence above. <code>codex/imageDetail</code> is also read by <code>parse_mcp_media_block</code> in <code>code-mode-runtime/src/runtime/value.rs</code>, through <code>from_mcp_content_block</code>, when a script passes an MCP image block to the <code>image()</code> helper. On the tool-list side, <code>tool_is_model_visible</code> in <code>codex-mcp/src/connection_manager/tool_catalog.rs</code> hides a tool from the model’s declarations when its <code>_meta.ui.visibility</code> array lacks <code>"model"</code>; tools without the key stay visible. <code>prepare_call</code> in <code>codex-mcp/src/binding.rs</code> applies the same filter to calls, and the app-server reports the flag as <code>model_visible</code>.</p>
+
+<p>For MCP Apps, <code>get_mcp_app_resource_uri</code> in <code>core/src/mcp_tool_call.rs</code> reads the tool’s <code>_meta.ui.resourceUri</code>, falling back to <code>_meta["ui/resourceUri"]</code> and <code>_meta["openai/outputTemplate"]</code>, and stores it as <code>mcp_app_resource_uri</code> on the <code>McpToolCall</code> turn item. That item’s <code>result</code> carries both <code>content</code> and <code>structured_content</code> to app-server clients (<code>app-server-protocol/src/protocol/v2/item.rs</code>), so the field a view uses is chosen by the app-server client. A grep of <code>tui/src</code> for <code>mcp_app</code>, <code>McpApp</code> and <code>ui://</code> returns only test files, <code>mcp_approval_meta</code> imports and a <code>ui://</code> prefix check in <code>tui/src/statusline_provider/descriptor.rs</code>, which picks a statusline <code>resourceUri</code> from a tool’s <code>_meta["openai/ui"].entrypoints</code> for a <code>McpResourceRead</code> request and does not touch tool results, so the TUI does not render a view.</p>
+
+<p>No config key, feature flag or constructor option changes which field reaches the model. A grep for <code>structured</code> in <code>config/src</code>, <code>features/src</code> and <code>core/src/config</code> returns only circuit-breaker error settings, feature-path merging, requirement-override warnings and the apply_patch progress feature comment. The <code>codex/encryptedContent</code> flag and a <code>null</code> value are the only inputs that make <code>content</code> reach the model when <code>structuredContent</code> is present in the result.</p>
+
+<h2 id="protocol-revision-2025-06-18-by-default-2026-07-28-behind-a-feature-flag">Protocol revision: 2025-06-18 by default, 2026-07-28 behind a feature flag</h2>
+
+<p><code>McpProtocolMode</code> in <code>rmcp-client/src/protocol_mode.rs</code> maps <code>Legacy =&gt; ProtocolVersion::V_2025_06_18</code> and <code>V20260728 | DiscoverLocalStdio =&gt; ProtocolVersion::V_2026_07_28</code>. <code>Config::mcp_protocol_mode</code> in <code>core/src/config/mod.rs</code> picks <code>V20260728</code> only when <code>Feature::Mcp20260728</code> is enabled; <code>features/src/lib.rs</code> registers that feature as <code>key: "mcp_2026_07_28"</code>, <code>stage: Stage::UnderDevelopment</code>, <code>default_enabled: false</code>. In the modern mode <code>client_lifecycle</code> returns <code>ClientLifecycleMode::Auto</code> with <code>preferred_versions: vec![V_2026_07_28]</code> and <code>legacy_version: Some(V_2025_06_18)</code>. <code>DiscoverLocalStdio</code> uses the same lifecycle for eligible local stdio servers and is selected in <code>codex-mcp/src/connection_manager.rs</code> when <code>Feature::McpConnectionSharing</code> is enabled, registered as <code>key: "mcp_connection_sharing"</code>, <code>stage: Stage::UnderDevelopment</code>, <code>default_enabled: false</code>. The hosted Codex Apps server over streamable HTTP takes its mode from <code>host_owned_apps_protocol_mode</code> instead, which <code>core/src/config/mod.rs</code> sets to <code>V20260728</code> only when <code>Feature::CodexAppsMcp20260728</code> is enabled, registered as <code>key: "codex_apps_mcp_2026_07_28"</code>, <code>stage: Stage::UnderDevelopment</code>, <code>default_enabled: false</code>.</p>
+
+<h2 id="upstream-history-structuredcontent-preferred-since-2025-08-encrypted-content-exempted-in-2026-07">Upstream history: structuredContent preferred since 2025-08, encrypted content exempted in 2026-07</h2>
+
+<p>The routing rule came in through <a href="https://github.com/openai/codex/pull/2594" target="_blank">openai/codex#2594</a>, “fix: prefer sending MCP structuredContent as the function call response, if available”, by Michael Bolin, merged 2025-08-22. It added <code>convert_call_tool_result_to_function_call_output_payload</code> in <code>codex-rs/core/src/codex.rs</code> with the same non-null guard and the <code>prefers_structured_content_when_present</code> test with the <code>"ignored"</code> text block. The PR body: "Though reading https://modelcontextprotocol.io/specification/2025-06-18/schema#tool, it appears that if <code>outputSchema</code> is specified, then <code>structuredContent</code> should be set, which seems to be a “higher-fidelity” response to the function call. This PR updates our handling of <code>CallToolResult</code> to prefer using the JSON-serialization of <code>structuredContent</code>, if present, using <code>content</code> as a fallback." Before it, the client sent the JSON-serialized <code>content</code> array and dropped <code>structuredContent</code>. <a href="https://github.com/openai/codex/pull/33509" target="_blank">#33509</a>, merged 2026-07-16, added the <code>codex/encryptedContent</code> exemption, and its body says it makes the client "Prefer the content-item payload whenever encrypted content is present so that <code>structured_content</code> does not replace the encrypted output."</p>
+
+<p><a href="https://github.com/openai/codex/issues/10334" target="_blank">Issue #10334</a>, "Codex drops MCP tool <code>content[]</code> blocks when <code>structuredContent</code> is present“, opened 2026-02-01, is open. A contributor, etraut-openai, replied: ”We previously included both <code>structuredContent</code> and <code>content</code> to the model, but we received a <a href="https://github.com/openai/codex/issues/9251#issuecomment-3756000078" target="_blank">bug report</a> asking us to change this behavior. It was pointed out that other tools like Claude Code ignore <code>content</code> if <code>structuredContent</code> is provided.“ and ”So the current behavior in Codex is by design." The linked comment on <a href="https://github.com/openai/codex/issues/9251" target="_blank">#9251</a> is about the results <code>codex mcp-server</code> returns, which <a href="https://github.com/openai/codex/pull/9192" target="_blank">#9192</a> had given a <code>structuredContent</code> holding only <code>threadId</code>, and <a href="https://github.com/openai/codex/pull/9338" target="_blank">#9338</a> fixed by putting <code>threadId</code> in both fields. Open issues <a href="https://github.com/openai/codex/issues/38287" target="_blank">#38287</a> and <a href="https://github.com/openai/codex/issues/45637" target="_blank">#45637</a> report the same routing from the user side. The clone is shallow (one commit), so <code>git log</code> and <code>git blame</code> do not reach these changes. Searched: <code>gh search prs</code> for <code>structured_content</code>, <code>structuredContent</code> and <code>structuredContent null</code>, and <code>gh search issues</code> for <code>structuredContent</code>, all in <code>openai/codex</code>.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>Arrays, strings, numbers and booleans in <code>structuredContent</code> take the same path as objects, so a string value reaches the model as a quoted JSON string (<code>as_function_call_output_payload</code> in <code>protocol/src/models.rs</code>). <code>isError</code> sets only the payload’s <code>success</code> flag, and the text comes from whichever field wins. <code>truncate_mcp_tool_result</code> in <code>utils/output-truncation/src/lib.rs</code> replaces an oversized result with one text block holding a preview of the serialized result and sets <code>structured_content: None</code>; for a non-error result with no <code>structuredContent</code> or <code>_meta</code> whose blocks all pass <code>plain_output_text</code> (<code>protocol/src/mcp.rs</code>), the preview is of <code>Truncated tool output:</code> followed by the block texts instead. It is applied to the <code>McpToolCall</code> event result at <code>DEFAULT_OUTPUT_BYTES_CAP</code> (<code>truncate_mcp_tool_result_for_event</code> in <code>core/src/mcp_tool_call.rs</code>) and to persisted rollout items at 64 KiB (<code>PERSISTED_MCP_RESULT_MAX_BYTES</code> in <code>rollout/src/policy.rs</code>), and not to the model payload.</p>
+
+<p>An empty <code>{}</code> result, which rmcp fails to deserialize, reaches the model as an error result. <code>PreparedMcpCall::call_with_preparation</code> in <code>codex-mcp/src/binding.rs</code> adds the context <code></code>tool call failed for <code>{server}/{tool_name}</code> <code></code>, <code>handle_mcp_tool_call</code> in <code>core/src/mcp_tool_call.rs</code> formats the error as <code>tool call error: {error:?}</code>, and <code>CallToolResult::from_error_text</code> in <code>protocol/src/models.rs</code> wraps that string in one text block with <code>structured_content: None</code> and <code>is_error: Some(true)</code>. The model gets the <code>Wall time</code> header and a text item ending in <code>Caused by:\n    Unexpected response type</code>.</p>
+
+<p><code>thread/items/list</code> in the app-server accepts an experimental <code>deferOutput.mcpToolCall</code> option. <code>defer_item_output</code> in <code>app-server/src/request_processors/thread_processor.rs</code> clears <code>result.content</code> and sets <code>output_deferred</code> on a completed MCP call item with no error, no <code>mcp_app_resource_uri</code>, no <code>mcp_app_ui</code>, no app-context resource URI and a server other than <code>codex_app</code>, when <code>is_deferrable_mcp_result</code> holds: it returns <code>false</code> if <code>result.structured_content.is_some() || result.meta.is_some()</code>, and otherwise requires every block to pass <code>plain_output_text</code> with at least one non-empty text. <code>plain_output_text</code> accepts only a block with exactly the <code>type</code> and <code>text</code> keys whose text does not start with <code>{</code>, <code>[</code>, <code></code> <code></code><code> </code><code> or </code>~~~<code>. Results carrying </code>structuredContent` are therefore always listed inline. This affects only app-server history listing, not the model payload.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit b1573f1 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

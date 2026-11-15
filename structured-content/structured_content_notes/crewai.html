@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How crewAI handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How crewAI handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the crewAI source (<code>clones/crewai</code>, checked out at commit d7dfa0ef5ade793bd48ff7357c6eb45a45294371 (d7dfa0e), read on 2026-11-14). File references are relative to <code>lib/</code> unless they name <code>uv.lock</code> or an SDK file. SDK references are to the <code>mcp</code> 1.30.0 wheel, which <code>crewai/pyproject.toml</code> requires as <code>"mcp&gt;=1.30.0,&lt;2"</code> and <code>uv.lock</code> resolves to <code>version = "1.30.0"</code>. The <code>mcp</code> extra in <code>crewai-tools/pyproject.toml</code> adds <code>"mcpadapt&gt;=0.1.9"</code>, locked at 0.1.19 or 0.1.20 depending on the Python version.</p>
+
+<h2 id="entry-three-sdk-client-paths-all-typed-as-mcp-types-calltoolresult">Entry: three SDK client paths, all typed as <code>mcp.types.CallToolResult</code></h2>
+
+<p><code>crewai/src/crewai/mcp/tool_resolver.py</code> <code>MCPToolResolver.resolve</code> routes an agent’s <code>mcps</code> list. A string starting with <code>https://</code> goes to <code>_resolve_external</code>, which builds <code>MCPToolWrapper</code> objects. Any other string is an AMP slug, and <code>_resolve_amp</code> fetches its config and passes it to <code>_resolve_native</code>. A config object goes to <code>_resolve_native</code>, which builds <code>MCPNativeTool</code> objects. The native path calls <code>MCPClient._call_tool_impl</code> in <code>crewai/src/crewai/mcp/client.py</code>, which awaits <code>self.session.call_tool(tool_name, arguments)</code> on an SDK <code>ClientSession</code>. The HTTPS path calls <code>session.call_tool(self.original_tool_name, kwargs)</code> inside <code>MCPToolWrapper._execute_tool</code> in <code>crewai/src/crewai/tools/mcp_tool_wrapper.py</code>. Both open a new session for every call: <code>MCPNativeTool._run_async</code> calls <code>self._client_factory()</code> and disconnects in <code>finally</code>, and <code>_execute_tool</code> enters <code>streamablehttp_client</code> and <code>ClientSession</code> per call. The third path is <code>MCPServerAdapter</code> in <code>crewai-tools/src/crewai_tools/adapters/mcp_adapter.py</code>, which hands tool construction to <code>mcpadapt.core.MCPAdapt</code> with a <code>CrewAIToolAdapter</code>; mcpadapt keeps one session and calls <code>session.call_tool(name, arguments)</code> in <code>_sync_call_tool</code> (<code>mcpadapt/core.py</code>). The SDK type is <code>CallToolResult</code> in <code>mcp/types.py</code>, with <code>content: list[ContentBlock]</code>, <code>structuredContent: dict[str, Any] | None = None</code>, <code>isError: bool = False</code>, and <code>meta</code> (alias <code>_meta</code>) from <code>Result</code>. The identifier <code>structuredContent</code> appears in no crewAI source file under <code>lib/</code>. <code>structuredContent</code> survives SDK parsing on all three paths as a field of the <code>CallToolResult</code> that crewAI receives. <code>content</code> has no default, so a result without the <code>content</code> key fails <code>result_type.model_validate</code> in <code>BaseSession.send_request</code> (<code>mcp/shared/session.py</code>) with a pydantic validation error, and no crewAI code receives a result.</p>
+
+<h2 id="model-path-every-block-as-text-with-a-repr-of-the-whole-result-when-content-is-empty">Model path: every block as text, with a repr of the whole result when content is empty</h2>
+
+<p><code>MCPClient._call_tool_impl</code> decides the native path. It reads <code>isError</code>, then under <code>if hasattr(result, "content") and result.content:</code> returns <code>content_blocks_to_text(result.content)</code> (<code>crewai/src/crewai/mcp/content.py</code>), which joins every block with newlines. When <code>content</code> is empty it falls through to <code>return _MCPToolResult(str(result), is_error)</code>. <code>MCPNativeTool._extract_content</code> (<code>crewai/src/crewai/tools/mcp_native_tool.py</code>) receives that string and returns it unchanged. <code>MCPToolWrapper._execute_tool</code> has the same shape: <code>if result.content:</code> returns <code>content_blocks_to_text(result.content)</code>, and ends with <code>return str(result)</code>. <code>str()</code> of the pydantic model prints every field, so with empty <code>content</code> the model reads <code>meta=None content=[] structuredContent={...} isError=False</code>. With both fields present, these two paths send every block, and <code>structuredContent</code> is dropped. Text blocks and embedded text resources keep their text. A non-text block becomes a typed placeholder, so an image or audio block reaches the model as <code>[image: image/png]</code> with no base64, an embedded blob as <code>[resource: &lt;uri&gt;]</code>, and a resource link as <code>[resource_link: &lt;uri&gt;]</code>. No path compares the text with <code>structuredContent</code>, so when the text mirrors the JSON the model reads it once, as the text. The <code>structuredContent</code> value inside the <code>str(result)</code> string is the Python repr of a dict, with single quotes and <code>True</code>, <code>False</code> and <code>None</code>, so it is not JSON. No path substitutes a placeholder for an empty result: empty <code>content</code> gives the repr above, and a single empty text block gives an empty string.</p>
+
+<p>The adapter path is <code>CrewAIMCPTool._run</code> inside <code>CrewAIToolAdapter.adapt</code>. It returns <code>first_content.text</code> or <code>str(first_content)</code> when <code>len(result.content) == 1</code>. Otherwise it returns <code>str([content.text for content in result.content if isinstance(content, TextContent)])</code>, a Python list literal of every text block. Empty <code>content</code> yields the string <code>[]</code>. Non-text blocks are dropped when there is more than one block. <code>structuredContent</code> never reaches the model on this path. A single non-text block reaches the model as <code>str(first_content)</code> (<code>crewai-tools/src/crewai_tools/adapters/mcp_adapter.py</code>), the pydantic repr of the block, which for an image or audio block includes the base64 <code>data</code> field and the <code>annotations</code> field.</p>
+
+<p>No path reads <code>annotations.audience</code>. <code>content_blocks_to_text</code>, <code>CrewAIMCPTool._run</code> and <code>MergeAgentHandlerTool._run</code> never read a block’s <code>annotations</code>, so a text block marked <code>audience: ["user"]</code> reaches the model like any other. Under <code>lib/</code>, <code>audience</code> appears only in OAuth and OIDC code (<code>crewai/src/crewai/a2a/auth/server_schemes.py</code>, <code>crewai-core/src/crewai_core/auth/</code>, <code>crewai-core/src/crewai_core/settings.py</code>, <code>cli/src/crewai_cli/enterprise/main.py</code>) and in catalog text in <code>crewai-core/src/crewai_core/platform_catalog.py</code> and <code>crewai-core/src/crewai_core/platform_apps.py</code>. The SDK <code>Annotations</code> model in <code>mcp/types.py</code> declares <code>audience: list[Role] | None = None</code>.</p>
+
+<p><code>isError</code> is carried only on the native path. <code>MCPNativeTool._run_async</code> returns a <code>ToolFailure</code> with <code>reason=ToolFailureReason.MCP_ERROR</code> when <code>tool_result.is_error</code>, and <code>format_native_tool_output_for_agent</code> (<code>crewai/src/crewai/utilities/agent_utils.py</code>) renders it with <code>as_agent_message()</code>, which is the same extracted string. The HTTPS wrapper and the adapter never read <code>isError</code>, so an error result reaches the model as an ordinary result.</p>
+
+<h2 id="outputschema-dropped-at-discovery-validated-by-the-sdk">outputSchema: dropped at discovery, validated by the SDK</h2>
+
+<p>No crewAI path keeps <code>outputSchema</code>. <code>MCPClient._list_tools_impl</code> rebuilds each tool as a dict with four keys, <code>name</code>, <code>original_name</code>, <code>description</code> and <code>inputSchema</code>. <code>MCPToolResolver._discover_mcp_tools</code> stores only <code>description</code> and <code>args_schema</code> per tool. <code>CrewAIToolAdapter.adapt</code> reads <code>mcp_tool.name</code>, <code>mcp_tool.description</code> and <code>mcp_tool.inputSchema</code>.</p>
+
+<p>The SDK validates on all three paths. <code>ClientSession.call_tool</code> in <code>mcp/client/session.py</code> runs <code>_validate_tool_result</code> when <code>not result.isError</code>. That method re-lists tools when the name is not in <code>_tool_output_schemas</code>, which happens on every native and HTTPS call because each uses a fresh session. It raises <code>RuntimeError(f"Tool {name} has an output schema but did not return structured content")</code> or <code>RuntimeError(f"Invalid structured content returned by tool {name}: {e}")</code>. The HTTPS wrapper sends the name produced by <code>sanitize_tool_name</code> (<code>crewai/src/crewai/utilities/string_utils.py</code>), which lowercases and splits camelCase. When sanitizing changes the name, the SDK does not find it after re-listing, logs <code>Tool {name} not listed by server</code>, and skips validation.</p>
+
+<p>What the model sees on a validation failure differs by path. On the native path, <code>MCPClient._retry_operation</code> treats the <code>RuntimeError</code> as retryable, sends <code>tools/call</code> up to <code>MCP_MAX_RETRIES = 3</code> times with backoff, then raises <code>ConnectionError(f"Operation failed after {self.max_retries} attempts: {last_error}")</code>, and <code>MCPNativeTool._run</code> wraps it as <code>Error executing MCP tool {name}: ...</code>. The executor renders the exception. <code>_execute_single_native_tool_call</code> in <code>crewai/src/crewai/agents/agent_executor.py</code> sets <code>result = f"Error executing tool: {e}"</code>, and the ReAct path in <code>crewai/src/crewai/tools/tool_usage.py</code> uses the <code>tool_usage_exception</code> template, “I encountered an error while trying to use the tool. This was the error: {error}.” Both contain the SDK sentence. On the HTTPS path the error is raised inside the <code>streamablehttp_client</code> task group, and anyio 4.14.2 (<code>uv.lock</code>) raises <code>BaseExceptionGroup("unhandled errors in a TaskGroup", ...) from None</code>. <code>_execute_tool</code> matches <code>"unhandled errors" in str(e)</code> and raises <code>asyncio.TimeoutError(f"MCP connection error: {e}")</code>. <code>_execute_single_attempt</code> maps any <code>asyncio.TimeoutError</code> to <code>f"Connection timed out after {MCP_TOOL_EXECUTION_TIMEOUT} seconds"</code> with retry set. After three attempts the tool returns “MCP tool execution failed after 3 attempts: Connection timed out after 60 seconds” as a normal result, and the SDK sentence is lost. On the adapter path the <code>RuntimeError</code> propagates from <code>_sync_call_tool</code> through <code>CrewAIMCPTool._run</code>, and the executor renders it as on the native path.</p>
+
+<h2 id="other-paths-hooks-events-cache-and-a-hand-rolled-merge-client">Other paths: hooks, events, cache and a hand-rolled Merge client</h2>
+
+<p><code>execute_single_native_tool_call</code> runs <code>run_after_tool_call_hooks</code> (<code>crewai/src/crewai/hooks/tool_hooks.py</code>) with <code>tool_result=result</code> and <code>raw_tool_result</code>, and the hook’s returned <code>context.tool_result</code> replaces what the model sees. For MCP tools both values are the extracted string, except that <code>raw_tool_result</code> is the <code>ToolFailure</code> holding it on an <code>isError</code> result, so hooks never see the <code>CallToolResult</code>. <code>MCPClient.call_tool_result</code> emits <code>MCPToolExecutionCompletedEvent(result=tool_result.content)</code> or <code>MCPToolExecutionFailedEvent</code> on <code>crewai_event_bus</code>, also carrying the string. The tools handler cache stores the same string and skips a <code>ToolFailure</code>. No code mode or sandbox route exists, and no crewAI code reads <code>_meta</code> on a tool definition or a result. The sandbox tools in <code>crewai-tools/src/crewai_tools/tools/daytona_sandbox_tool/</code>, <code>crewai-tools/src/crewai_tools/tools/e2b_sandbox_tool/</code> and <code>crewai-tools/src/crewai_tools/aws/bedrock/code_interpreter/</code> are ordinary tools, and none of their files mention <code>mcp</code>. No crewAI code renders an MCP Apps view or reads <code>_meta.ui.visibility</code>: under <code>lib/</code>, <code>ui://</code>, <code>resourceUri</code> and <code>text/html;profile=mcp-app</code> have no hits, and <code>visibility</code> appears only in unrelated code (<code>crewai/src/crewai/a2a/extensions/a2ui/</code>, <code>crewai/src/crewai/flow/conversational.py</code>, <code>crewai/src/crewai/flow/conversational_mixin.py</code>, <code>cli/src/crewai_cli/skills/main.py</code>, <code>crewai-core/src/crewai_core/platform_catalog.py</code>). No switch changes which field reaches the model. <code>MCPServerStdio</code>, <code>MCPServerHTTP</code> and <code>MCPServerSSE</code> in <code>crewai/src/crewai/mcp/config.py</code> carry connection settings, <code>tool_filter</code> and <code>cache_tools_list</code>, and <code>MCPServerAdapter.__init__</code> takes server parameters, tool names and <code>connect_timeout</code>.</p>
+
+<p><code>MergeAgentHandlerTool</code> in <code>crewai-tools/src/crewai_tools/tools/merge_agent_handler_tool/merge_agent_handler_tool.py</code> is a separate JSON-RPC client over <code>requests.post</code> for the Merge Agent Handler service. <code>_make_mcp_request</code> sends <code>tools/call</code> with no <code>initialize</code>. <code>_run</code> returns <code>json.loads(text_content)</code> of <code>content[0].get("text", "")</code>, or the raw text when it is not JSON, when <code>content</code> is non-empty. Otherwise it returns the whole JSON-RPC response dict, which the executor renders with <code>str()</code>, including any <code>structuredContent</code>.</p>
+
+<h2 id="protocol-revision-whatever-sdk-1-30-0-requests">Protocol revision: whatever SDK 1.30.0 requests</h2>
+
+<p>crewAI pins no protocol string. <code>MCPClient.connect</code>, <code>MCPToolWrapper._execute_tool</code> and <code>MCPToolResolver._discover_mcp_tools</code> all call <code>ClientSession.initialize()</code>, which sends <code>protocolVersion=types.LATEST_PROTOCOL_VERSION</code>, <code>"2025-11-25"</code> in <code>mcp/types.py</code>. It fails with <code>Unsupported protocol version from the server</code> unless the reply is in <code>SUPPORTED_PROTOCOL_VERSIONS</code> (<code>mcp/shared/version.py</code>): <code>2024-11-05</code>, <code>2025-03-26</code>, <code>2025-06-18</code> and <code>2025-11-25</code>. mcpadapt calls the same <code>initialize()</code> in <code>mcptools</code>. The Merge client sends no version.</p>
+
+<h2 id="upstream-history-the-content-flattener-no-record-on-structuredcontent">Upstream history: the content flattener, no record on structuredContent</h2>
+
+<p><code>content_blocks_to_text</code> came in through <a href="https://github.com/crewAIInc/crewAI/pull/8300" target="_blank">crewAIInc/crewAI#8300</a>, merged 2026-10-23, fixing <a href="https://github.com/crewAIInc/crewAI/issues/8299" target="_blank">issue #8299</a>, which reported that the native and HTTPS paths passed only <code>result.content[0]</code> to the agent. The PR body: "MCP tool results reached the agent with only <code>result.content[0]</code>. The rest of the blocks were dropped, and a non-text first block arrived as its pydantic repr with base64 data." It applied the helper in <code>MCPClient._call_tool_impl</code>, <code>MCPToolWrapper._execute_tool</code> and <code>MCPNativeTool._extract_content</code>, and left <code>MCPServerAdapter</code> unchanged: “It keeps all text blocks but returns them as a Python list repr, so the two integrations still format results differently.” The only human review is an approval with the body “lgtm”. An earlier attempt on the <code>MCPClient</code> copy, <a href="https://github.com/crewAIInc/crewAI/pull/5226" target="_blank">#5226</a>, was closed unmerged on 2026-09-17.</p>
+
+<p>The first-block logic and the <code>return str(result)</code> fallback for empty <code>content</code> are present in the first versions of both files on <code>main</code>: <code>crewai/src/crewai/tools/mcp_tool_wrapper.py</code> at <a href="https://github.com/crewAIInc/crewAI/pull/3618" target="_blank">#3618</a> (Release/v1.0.0, merged 2025-10-20) and <code>crewai/src/crewai/mcp/client.py</code> at <a href="https://github.com/crewAIInc/crewAI/pull/3850" target="_blank">#3850</a> (“Lorenze/feat mcp first class support”, merged 2025-11-07). Both PR bodies are empty, and #3850 has no comments and two reviews with empty bodies. The commits API returns no history for the pre-monorepo path <code>src/crewai/tools/mcp_tool_wrapper.py</code> at tags 0.201.1, 0.203.0 and 0.203.1. <code>CrewAIToolAdapter</code> in <code>crewai-tools/src/crewai_tools/adapters/mcp_adapter.py</code> came in through <a href="https://github.com/crewAIInc/crewAI/pull/4359" target="_blank">#4359</a>, merged 2026-02-04, whose body is “fixes #4312”, a schema <code>$ref</code> error. mcpadapt’s own <code>CrewAIAdapter</code> in <code>mcpadapt/crewai_adapter.py</code> (0.1.19 and 0.1.20) has the same single-block and list-repr branches and tests <code>hasattr(content, "text")</code>.</p>
+
+<p>No record discusses <code>structuredContent</code>. GitHub searches of crewAIInc/crewAI issues and PRs for <code>structuredContent</code>, <code>structured_content</code>, <code>outputSchema</code>, <code>structured content MCP</code> and <code>structuredContent mcp</code>, and of crewAIInc/crewAI-tools for <code>structuredContent</code>, return nothing relevant. The clone is shallow at one commit, so <code>git log</code> and <code>git blame</code> reach no history, and the file histories above come from the GitHub commits API.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>The SDK types <code>structuredContent</code> as <code>dict[str, Any] | None</code> (<code>mcp/types.py</code>), so an array or scalar <code>structuredContent</code> fails <code>model_validate</code> in <code>BaseSession.send_request</code> on all three paths, while <code>null</code> parses as <code>None</code>.</p>
+
+<p>An oversized successful result does not reach the model inline on the native tool-calling loop. <code>AgentExecutor._prepare_tool_result_for_context</code> (<code>crewai/src/crewai/agents/agent_executor.py</code>) runs when <code>use_better_compaction</code> is on, the default in <code>crewai/src/crewai/agent/core.py</code>, and defers any result that <code>is_tool_result_overflowing_threshold</code> (<code>crewai/src/crewai/llms/base_llm.py</code>) counts above <code>TOOL_RESULT_CONTEXT_WINDOW_THRESHOLD = 0.25</code> of <code>get_context_window_size()</code>, skipping a <code>ToolFailure</code>. The extracted string goes to a temporary file through <code>ToolResultArtifactStore</code> (<code>crewai/src/crewai/utilities/tool_result_artifacts.py</code>), and the model gets a reference with the first 10 lines, capped at 2,000 characters, plus the <code>DeferredToolResultReader</code> tool (<code>crewai/src/crewai/tools/agent_tools/deferred_tool_result_reader.py</code>, named “Read a deferred tool result”) to read it in sections. The usable window is 85% of the model’s window, and the OpenAI provider (<code>crewai/src/crewai/llms/providers/openai/completion.py</code>) assumes <code>DEFAULT_CONTEXT_WINDOW_SIZE = 8192</code> (<code>crewai/src/crewai/llms/context_window.py</code>) for a model missing from its catalog with no <code>context_window_size</code> set, so the threshold for such a model is about 1,740 tokens.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit d7dfa0e &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

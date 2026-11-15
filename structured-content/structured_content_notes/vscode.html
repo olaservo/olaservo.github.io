@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How VS Code handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How VS Code handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the VS Code source (<code>clones/vscode</code>, checked out at commit d53b9e1d, read on 2026-11-14). The clone is <code>code-oss-dev</code> 1.147.0 with the Copilot Chat extension vendored at <code>extensions/copilot</code> (<code>copilot-chat</code> 0.75.0). File references are relative to the clone root.</p>
+
+<h2 id="entry-hand-rolled-json-rpc-typed-straight-into-mcp-calltoolresult">Entry: hand-rolled JSON-RPC, typed straight into <code>MCP.CallToolResult</code></h2>
+
+<p>VS Code uses no MCP SDK on the client side. <code>src/vs/workbench/contrib/mcp/common/mcpServerRequestHandler.ts</code> owns the session: <code>McpServerRequestHandler.create</code> sends <code>initialize</code>, and <code>callTool</code> issues <code>{ method: 'tools/call', params }</code> through a generic <code>JsonRpcProtocol</code> from <code>src/vs/base/common/jsonRpcProtocol.ts</code>. The <code>@modelcontextprotocol/sdk</code> dependency in <code>extensions/copilot/package.json</code> (<code>^1.30.0</code>) is imported only for <code>McpServer</code>, <code>StreamableHTTPServerTransport</code> and <code>isInitializeRequest</code> under <code>extensions/copilot/src/extension/chatSessions/copilotcli/vscode-node/</code>, where Copilot Chat acts as a server for the Copilot CLI. The root <code>pnpm-lock.yaml</code> resolves <code>@modelcontextprotocol/sdk</code> 1.29.0 for <code>src/vs/platform/agentHost/node/claude/</code>, which imports <code>CallToolResult</code> as a type only to convert VS Code’s own client tools for the Claude agent; it is not on the server-result path.</p>
+
+<p>Bytes come off the wire as text. <code>src/vs/workbench/api/node/extHostMcpNode.ts</code> splits stdout on <code>\n</code> and forwards each line; <code>src/vs/workbench/api/common/extHostMcp.ts</code> forwards HTTP and SSE bodies. <code>mainThreadMcp.ts</code> (<code>src/vs/workbench/api/browser/</code>) does <code>parsed = JSON.parse(message)</code> in <code>pushMessage</code> and fires the object. <code>JsonRpcProtocol._handleResult</code> resolves the pending promise with <code>response.result</code> and nothing validates its shape. <code>callTool</code> returns that object as <code>MCP.CallToolResult</code>, with a detour through <code>McpTask</code> when the server answers with a task.</p>
+
+<p>The result type is the generated schema in <code>src/vs/platform/mcp/common/modelContextProtocol.ts</code>. <code>interface CallToolResult</code> keeps <code>content: ContentBlock[]</code> and <code>structuredContent?: { [key: string]: unknown }</code>, so the field survives deserialization.</p>
+
+<h2 id="model-path-structuredcontent-replaces-every-text-block-media-still-goes-through">Model path: structuredContent replaces every text block, media still goes through</h2>
+
+<p>The conversion to the chat tool result lives in <code>McpToolImplementation.invoke</code> in <code>src/vs/workbench/contrib/mcp/common/mcpLanguageModelToolContribution.ts</code>. It calls <code>this._tool.callWithProgress</code> (<code>McpTool._callWithProgress</code> in <code>mcpServer.ts</code>) and loops over <code>callResult.content</code>.</p>
+
+<p>The text branch reads <code>if (isForModel &amp;&amp; !callResult.structuredContent)</code> before pushing <code>{ kind: 'text', value: item.text }</code>. After the loop, <code>if (callResult.structuredContent)</code> pushes <code>{ kind: 'text', value: JSON.stringify(callResult.structuredContent), audience: [LanguageModelPartAudience.Assistant] }</code>. The gate is truthiness, so <code>structuredContent: {}</code> also drops every text block and the model gets the text <code>{}</code>. So when both fields are present the model gets compact JSON of <code>structuredContent</code> and none of the text blocks. When <code>content</code> is empty and <code>structuredContent</code> is present the model gets the JSON alone. When only <code>structuredContent</code> arrives and <code>content</code> is absent, <code>for (const item of callResult.content)</code> throws a <code>TypeError</code> on <code>undefined</code> before the structured branch runs, and the call fails; Copilot Chat turns the thrown error into the model-visible text <code>ERROR while calling tool: ...</code> in <code>toolCalling.tsx</code>. A pretty-printed copy of the JSON goes into <code>details.output</code> for the user-facing view with the same assistant audience. The text blocks are dropped whether or not they mirror the JSON, and no comparison between them is made. The comment above the gate reads “structured content 'represents the result of the tool call', so take that in place of any textual description when present.” The gate reads no <code>_meta</code> key, setting, constructor option or <code>outputSchema</code>; its only input is the truthiness of <code>callResult.structuredContent</code>.</p>
+
+<p>Non-text blocks bypass the structured gate. <code>image</code> and <code>audio</code> blocks go through <code>addAsInlineData</code>, which resizes via <code>IImageResizeService</code> and pushes <code>{ kind: 'data', value: { mimeType, data } }</code>. <code>resource_link</code> blocks with an attachable image mime type are read from <code>McpResourceURI</code> and inlined; other links become a data part with mime type <code>McpToolResourceLinkMimeType</code> (<code>'application/vnd.code.resource-link'</code>, <code>mcpTypes.ts</code>) carrying <code>{ uri, underlyingMimeType }</code>. Embedded <code>resource</code> blocks inline as images when they are image blobs; otherwise their text or blob goes to the details view and the model gets a resource-link part pointing at a <code>ChatResponseResource</code> permalink. Per-block <code>annotations.audience</code> is honored: a block whose audience excludes <code>assistant</code> is skipped on the model path and a <code>user</code> text block is reported through <code>progress</code>.</p>
+
+<p><code>IToolResult</code> crosses to the extension host through <code>LanguageModelToolResult.to</code> in <code>src/vs/workbench/api/common/extHostTypeConverters.ts</code>, which maps text parts to <code>LanguageModelTextPart</code> and data parts to <code>LanguageModelDataPart</code> with audience preserved. Copilot Chat renders them in <code>PrimitiveToolResult.render</code> in <code>extensions/copilot/src/extension/prompts/node/panel/toolCalling.tsx</code>, filtered by <code>hasAssistantAudience</code>. <code>onData</code> returns <code>''</code> for any data part other than a resource link, so audio and non-image binaries do not reach the model. Images are subject to <code>CAPI_IMAGE_BUDGET_BYTES</code> and a shared per-turn budget. <code>ToolResult.onText</code> writes any text part longer than <code>chat.agent.largeToolResultsToDisk.thresholdBytes</code> (default <code>8 * 1024</code>, <code>extensions/copilot/src/platform/configuration/common/configurationService.ts</code>) to disk via <code>IChatDiskSessionResources</code> and substitutes a pointer string; if the text parses as JSON it also writes <code>schema.json</code> from <code>toJsonSchema(parsed)</code>. Below that threshold, text is truncated to <code>truncateAt</code> tokens, set in <code>agentPrompt.tsx</code> as <code>modelMaxPromptTokens * MAX_TOOL_RESPONSE_PCT</code> with <code>MAX_TOOL_RESPONSE_PCT = 0.5</code>. <code>PrimitiveToolResult.render</code> wraps the rendered parts in <code>&lt;IfEmpty alt='(empty)'&gt;</code>, so a result with no assistant-audience parts reaches the model as <code>(empty)</code>.</p>
+
+<h2 id="outputschema-carried-on-the-type-never-read">outputSchema: carried on the type, never read</h2>
+
+<p><code>MCP.Tool.outputSchema</code> exists in the generated schema. <code>McpServer._normalizeTool</code> in <code>mcpServer.ts</code> spreads <code>...originalTool</code> into the <code>ValidatedMcpTool</code>, so the field rides along, but the only schema work there is on <code>inputSchema</code>: it adds an empty <code>properties</code> and runs <code>json.validate</code> against <code>https://json-schema.org/draft-07/schema</code>. The <code>IToolData</code> built in <code>mcpLanguageModelToolContribution.ts</code> copies <code>inputSchema: tool.definition.inputSchema</code> and has no output schema field. A repo-wide search for <code>outputSchema</code> outside the schema files hits only agent-host protocol types under <code>src/vs/platform/agentHost/</code>. Nothing validates <code>structuredContent</code>, and nothing puts the schema into prompt text.</p>
+
+<h2 id="other-paths-mcp-apps-the-gateway-and-hooks">Other paths: MCP Apps, the gateway, and hooks</h2>
+
+<p>MCP Apps get the raw result. When a tool’s <code>_meta.ui.resourceUri</code> is set, <code>invoke</code> stores <code>details.mcpOutput = callResult</code>, and <code>ChatMcpAppModel._sendToolResult</code> in <code>src/vs/workbench/contrib/chat/browser/widget/chatContentParts/toolInvocationParts/chatMcpAppModel.ts</code> forwards it as <code>ui/notifications/tool-result</code>. The app can push context back through <code>updateModelContext</code>; the handler at <code>if (params.structuredContent &amp;&amp; Object.keys(params.structuredContent).length &gt; 0)</code> attaches it to the chat input as a generic attachment named <code>'UI Data'</code>. Apps calling tools directly go through <code>McpToolCallUI.callTool</code> in <code>src/vs/workbench/contrib/mcp/browser/mcpToolCallUI.ts</code>, which hands the call to a transport: <code>LocalMcpAppCallTransport.callTool</code> returns <code>content</code>, <code>isError</code>, <code>_meta</code> and <code>structuredContent</code> untouched, and <code>AhpMcpAppCallTransport.callTool</code>, used for agent-host-resident servers, sends <code>tools/call</code> over the agent host <code>mcp://</code> channel and returns the result as received. <code>_meta.ui.visibility</code> sets <code>McpToolVisibility</code>; a tool without the <code>model</code> bit is skipped in the <code>IToolData</code> registration loop. <code>chat.mcp.apps.enabled</code> (<code>mcpAppsEnabledConfig</code> in <code>src/vs/platform/mcp/common/mcpManagement.ts</code>, default true) gates only the <code>mcpAppData</code> attached to the tool registration; storing <code>details.mcpOutput</code> and the visibility filter run regardless of the setting.</p>
+
+<p>The MCP Gateway re-exposes VS Code’s servers over local HTTP to agent hosts such as the Copilot CLI. <code>McpGatewaySession._handleCallTool</code> in <code>src/vs/platform/mcp/node/mcpGatewaySession.ts</code> returns the invoker’s result verbatim, except that its debug log line reads <code>result.content.length</code> eagerly, so a result with no <code>content</code> key is rethrown as <code>JsonRpcError(MCP_INVALID_PARAMS, ...)</code> there and in <code>McpGatewayToolBrokerChannel</code>; and <code>McpGatewayToolBrokerChannel._listToolsForServer</code> in <code>src/vs/workbench/contrib/mcp/common/mcpGatewayToolBrokerChannel.ts</code> republishes <code>t.definition</code> for model-visible tools, <code>outputSchema</code> included. Results from an agent host come back through <code>toMcpCallToolResult</code> in <code>src/vs/workbench/contrib/chat/browser/agentSessions/agentHost/stateToProgressAdapter.ts</code>, which rebuilds <code>{ content, structuredContent, _meta, isError }</code> for the MCP App notification only. Tools an MCP App registers through <code>App.registerTool()</code> are published to the agent host session as client tools by <code>src/vs/workbench/contrib/chat/browser/agentSessions/agentHost/agentHostMcpAppToolsService.ts</code>. Their results come from the app over a host-to-app <code>tools/call</code>, and <code>_convertResult</code> keeps every <code>content</code> block and appends <code>JSON.stringify(result.structuredContent)</code> as another text part, so the tool result holds both copies.</p>
+
+<p>Copilot Chat’s <code>PostToolUse</code> hook receives <code>toolResultToText(toolResult)</code>, which joins text parts with <code>\n</code> (<code>toolCalling.tsx</code>), so a hook sees the structured JSON string when one was substituted. Hook <code>additionalContext</code> and <code>block</code> decisions append <code>LanguageModelTextPart</code> entries wrapped in <code>&lt;PostToolUse-context&gt;</code>. <code>IMcpSandboxService</code> in <code>mcpSandboxService.ts</code> sandboxes the server process launch and does not touch results. The per-server configuration in <code>src/vs/platform/mcp/common/mcpPlatformTypes.ts</code> has no knob that changes result routing. No code-mode path exists. A case-insensitive grep for <code>codeMode</code>, <code>code-mode</code> and <code>code_mode</code> under <code>src/vs/workbench/contrib/mcp</code>, <code>src/vs/workbench/contrib/chat</code> and <code>extensions/copilot/src</code> hits only CSS (<code>modernTab</code>) and test identifiers (<code>codeModel</code>, <code>modelD</code>).</p>
+
+<h2 id="protocol-revision-2025-11-25">Protocol revision: 2025-11-25</h2>
+
+<p><code>MCP.LATEST_PROTOCOL_VERSION = "2025-11-25"</code> in <code>src/vs/platform/mcp/common/modelContextProtocol.ts</code>. <code>McpServerRequestHandler.create</code> sends it as <code>protocolVersion</code> in <code>initialize</code>, and <code>extHostMcp.ts</code> sets the <code>'MCP-Protocol-Version'</code> header to the same constant on the auth metadata requests of HTTP transports. The server’s reply is stored as <code>_serverInit</code> without a version check.</p>
+
+<h2 id="upstream-history-the-replacement-rule-the-maintainer-s-position-an-open-pr">Upstream history: the replacement rule, the maintainer’s position, an open PR</h2>
+
+<p>The gate and the structured text part arrived with <a href="https://github.com/microsoft/vscode/pull/257161" target="_blank">microsoft/vscode#257161</a>, “mcp: support resource_links and structured output”, merged 2025-07-21 into <code>src/vs/workbench/contrib/mcp/common/mcpService.ts</code>. It closed the tracking issue <a href="https://github.com/microsoft/vscode/issues/248418" target="_blank">#248418</a>, “MCP: Adopt 2025-06-18 spec”, which lists “Structured output https://github.com/modelcontextprotocol/modelcontextprotocol/pull/371”. The PR body is the template plus the closing line, and its one review is an approval with no text, so the in-code comment is the only recorded rationale. The code moved to <code>mcpLanguageModelToolContribution.ts</code> in commit <code>2f3486fd81</code> (“mcp: implement autorun, rework trust”, 2025-07-24). <a href="https://github.com/microsoft/vscode/pull/266072" target="_blank">#266072</a>, merged 2025-09-10, added <code>audience: [LanguageModelPartAudience.Assistant]</code> to the structured parts and left the gate unchanged.</p>
+
+<p><a href="https://github.com/microsoft/vscode/issues/290063" target="_blank">Issue #290063</a>, “MCP: structuredContent in tool result overrides content[].text sent to model”, opened 2026-01-24, is open. The maintainer’s reply on 2026-01-29: “It turns out structuredContent actually should not be presented to the model, its use case is PTC. Discussion here: https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1624”. Later comments report Microsoft Fabric Data Agent and Fabric IQ servers whose answer is in <code>content[].text</code> while <code>structuredContent</code> holds only metadata. <a href="https://github.com/microsoft/vscode/pull/342190" target="_blank">#342190</a>, opened 2026-10-16 and unmerged, would forward model-audience text blocks and send the serialized <code>structuredContent</code> only when no block is meant for the model. <a href="https://github.com/microsoft/vscode/issues/297669" target="_blank">Issue #297669</a>, closed 2026-02-25, reported the <code>TypeError</code> for a result without <code>content</code>; the maintainer replied “You are still <a href="https://github.com/modelcontextprotocol/modelcontextprotocol/blob/83be8b12f1f29a7983b84ded589e9b0b8453b6c2/schema/2025-11-25/schema.json#L211" target="_blank">required</a> to return a content array.”</p>
+
+<p>The clone is shallow at depth 1, so <code>git log</code> and <code>git blame</code> reach only <code>d53b9e1d</code>. The history above comes from <code>gh api</code> commit listings for both file paths, <code>gh search issues</code> and <code>gh search prs</code> for <code>structuredContent</code> in <code>microsoft/vscode</code>, and <code>gh pr view</code> and <code>gh issue view</code> on the hits.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>The gate in <code>invoke</code> tests truthiness, so a falsy non-object <code>structuredContent</code> (<code>null</code>, <code>0</code>, <code>false</code>, <code>""</code>) keeps the text blocks and adds no structured part, while an array or a non-empty string or nonzero number drops the text blocks and is sent through <code>JSON.stringify</code> (<code>mcpLanguageModelToolContribution.ts</code>).</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit d53b9e1d &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

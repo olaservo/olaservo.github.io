@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>which mcp tool result fields are used and how</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>An MCP tool result has two payload fields. What happens to them in twenty agent clients?</p>
+<nav aria-label="Pages in this series">
+  <span aria-current="page">which mcp tool result fields are used and how (clients)</span>
+</nav>
+</header>
+
+<h2 id="two-fields-no-stated-audience">Two fields, no stated audience</h2>
+
+<p>A <a href="https://modelcontextprotocol.io/specification/2026-07-28/server/tools#tool-result" target="_blank">tool result</a> carries <code>content</code>, a required array of typed blocks (text, image, audio, resource), and optionally <code>structuredContent</code>, any JSON value, which must match the tool’s <code>outputSchema</code> when one is declared. The specification recommends that a server returning <code>structuredContent</code> also put the same JSON in a text block in <code>content</code>.</p>
+
+<p>One result can have several consumers: the model’s context, a script the model wrote, an <a href="https://modelcontextprotocol.io/extensions/apps" target="_blank">MCP App</a> view, and hooks or plugins. The protocol’s only audience signal is the <code>audience</code> annotation on individual <code>content</code> blocks. It is advisory, and <code>structuredContent</code> has no equivalent annotation. This means that a server author can’t tell from the result alone which consumer will read which field. The essay <a href="https://www.carbonbasedcontent.com/p/humans-are-still-the-users" target="_blank">Humans are still the users</a> covers why that matters for what gets shown to people.</p>
+
+<p>This page shows what twenty client implementations in nineteen open source repositories do with three example results, read from their source. Each client links to its note, which has the file paths, the quoted source and the commit it was read at.</p>
+
+<p>Every row describes a default installation at the linked commit, read from source against <a href="structured_content_notes/checklist.html">a fixed checklist</a> and not run. Opt-in routes are marked. A live probe ran six of these implementations (codex, goose, mastra, fx, libfx and the TypeScript SDK client) against fixture results on 2026-11-07, at that day’s commits. The pins on this page have since moved for codex, goose, mastra and fx. Every default-configuration observation agreed with the notes.</p>
+
+<h3 id="notation">Notation</h3>
+
+<table>
+<thead>
+<tr><th scope="col">Glyph</th><th scope="col">Meaning</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row"><code>[…]</code></th>
+  <td data-label="Meaning">the <code>content</code> blocks, or their text</td>
+</tr>
+<tr>
+  <th scope="row"><code>{…}</code></th>
+  <td data-label="Meaning"><code>structuredContent</code>, as a JSON value or JSON text</td>
+</tr>
+<tr>
+  <th scope="row"><code>⟨…⟩</code></th>
+  <td data-label="Meaning">the whole result envelope (<code>content</code>, <code>structuredContent</code>, <code>isError</code>, sometimes <code>_meta</code>) serialized as one blob</td>
+</tr>
+<tr>
+  <th scope="row"><code>"…"</code></th>
+  <td data-label="Meaning">a fixed placeholder string</td>
+</tr>
+<tr>
+  <th scope="row"><code>—</code></th>
+  <td data-label="Meaning">no such route in this client</td>
+</tr>
+<tr>
+  <th scope="row"><code>°</code></th>
+  <td data-label="Meaning">the route is opt-in or off by default</td>
+</tr>
+<tr>
+  <th scope="row"><code>?</code></th>
+  <td data-label="Meaning">the note does not say whether the route is on by default</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="if-you-send-a-summary-and-the-data">If you send a summary and the data</h2>
+
+<p>This is the MCP Apps pattern: a short text for the model and the full data for the view.</p>
+
+<pre><code>{
+  "content": [{ "type": "text", "text": "Found 3 open issues" }],
+  "structuredContent": { "issues": [ ... ] }
+}</code></pre>
+
+<table>
+<thead>
+<tr><th scope="col">The model reads</th><th scope="col">Clients</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row"><code>[…]</code> the summary only</th>
+  <td data-label="Clients">zed, goose, strands, crewAI, deepagents, LibreChat, kilocode, pi</td>
+</tr>
+<tr>
+  <th scope="row"><code>{…}</code> the data only</th>
+  <td data-label="Clients">codex, VS Code, agent-framework (Python), eve</td>
+</tr>
+<tr>
+  <th scope="row"><code>[…]</code> and <code>{…}</code></th>
+  <td data-label="Clients">hermes-agent, as <code>{"result": &lt;summary&gt;, "structuredContent": &lt;data&gt;}</code></td>
+</tr>
+<tr>
+  <th scope="row"><code>⟨…⟩</code> the whole envelope</th>
+  <td data-label="Clients">cline, agent-framework (.NET), fx</td>
+</tr>
+<tr>
+  <th scope="row">it depends</th>
+  <td data-label="Clients">mastra on whether the tool declares an <code>outputSchema</code> (summary with one, data without). adk-python on the model backend (envelope on Gemini, summary on Anthropic). opencode routes MCP tools through a script by default, so the model reads whatever the script returns. fast-agent does the same for six catalog models, and reads the data for the rest.</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="if-you-mirror-the-data-as-text">If you mirror the data as text</h2>
+
+<p>This follows the specification’s recommendation: the text block is an exact JSON copy of <code>structuredContent</code>.</p>
+
+<pre><code>{
+  "content": [{ "type": "text", "text": "{\"issues\":[ ... ]}" }],
+  "structuredContent": { "issues": [ ... ] }
+}</code></pre>
+
+<table>
+<thead>
+<tr><th scope="col">The model reads the payload</th><th scope="col">Clients</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row">once, from the text</th>
+  <td data-label="Clients">zed, goose, strands, crewAI, deepagents, LibreChat, kilocode, pi, mastra with an <code>outputSchema</code>, adk-python on Anthropic</td>
+</tr>
+<tr>
+  <th scope="row">once, from <code>structuredContent</code></th>
+  <td data-label="Clients">codex, VS Code, fast-agent, agent-framework (Python), eve, mastra without an <code>outputSchema</code></td>
+</tr>
+<tr>
+  <th scope="row">once, after a duplicate check</th>
+  <td data-label="Clients">hermes-agent drops the structured copy when a text block parses to an equal value. fx’s libfx adapter drops the text when it is byte-identical to the compact JSON.</td>
+</tr>
+<tr>
+  <th scope="row">twice</th>
+  <td data-label="Clients">cline, agent-framework (.NET), adk-python on Gemini, fx’s native engine</td>
+</tr>
+</tbody>
+</table>
+
+<p>Only hermes-agent and libfx compare the fields. The others pick a field, or send both, without checking whether the two hold the same data.</p>
+
+<h2 id="if-content-is-empty">If content is empty</h2>
+
+<p>Some servers send only <code>structuredContent</code>.</p>
+
+<pre><code>{
+  "content": [],
+  "structuredContent": { "issues": [ ... ] }
+}</code></pre>
+
+<table>
+<thead>
+<tr><th scope="col">The model reads</th><th scope="col">Clients</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row">a placeholder</th>
+  <td data-label="Clients">zed <code>&lt;Tool returned an empty string&gt;</code>, goose <code>(empty result)</code>, LibreChat <code>(No response)</code></td>
+</tr>
+<tr>
+  <th scope="row">an empty result</th>
+  <td data-label="Clients">strands, deepagents</td>
+</tr>
+<tr>
+  <th scope="row"><code>{…}</code> as JSON</th>
+  <td data-label="Clients">kilocode, opencode (direct path), pi (pretty-printed), mastra, codex, VS Code, fast-agent, agent-framework (Python), eve, hermes-agent</td>
+</tr>
+<tr>
+  <th scope="row"><code>⟨…⟩</code> with <code>"content": []</code></th>
+  <td data-label="Clients">cline, agent-framework (.NET), adk-python, fx</td>
+</tr>
+<tr>
+  <th scope="row">a Python repr</th>
+  <td data-label="Clients">crewAI, which prints the whole result object, <code>structuredContent</code> included</td>
+</tr>
+</tbody>
+</table>
+
+<p>In five clients the data never reaches the model for this result: zed, goose, LibreChat, strands and deepagents.</p>
+
+<h2 id="what-scripts-get">What scripts get</h2>
+
+<p>In programmatic tool calling, or code mode, the model writes a script that calls tools, and the script’s output is what enters the model’s context. The script needs a value it can use, and ideally its type before the script is written.</p>
+
+<table>
+<thead>
+<tr><th scope="col">The script receives</th><th scope="col">Typed from <code>outputSchema</code></th><th scope="col">Clients</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row"><code>{…}</code></th>
+  <td data-label="Typed from `outputSchema`">yes</td>
+  <td data-label="Clients">opencode (default), kilocode°, mastra°, fast-agent (default for six catalog models, otherwise <code>--ptc</code>°)</td>
+</tr>
+<tr>
+  <th scope="row"><code>⟨…⟩</code> minus <code>_meta</code></th>
+  <td data-label="Typed from `outputSchema`">yes</td>
+  <td data-label="Clients">codex?, pi?</td>
+</tr>
+<tr>
+  <th scope="row"><code>⟨…⟩</code></th>
+  <td data-label="Typed from `outputSchema`">no</td>
+  <td data-label="Clients">agent-framework (.NET)°</td>
+</tr>
+<tr>
+  <th scope="row">text to parse</th>
+  <td data-label="Typed from `outputSchema`">no</td>
+  <td data-label="Clients">goose?, LibreChat?, agent-framework (Python)°</td>
+</tr>
+<tr>
+  <th scope="row"><code>[…]</code> blocks</th>
+  <td data-label="Typed from `outputSchema`">no</td>
+  <td data-label="Clients">deepagents°</td>
+</tr>
+<tr>
+  <th scope="row"><code>{…}</code> printed as JSON, else the <code>[…]</code> text</th>
+  <td data-label="Typed from `outputSchema`">no</td>
+  <td data-label="Clients">fx (<code>fx mcp call</code> from a shell command, Linux and macOS)</td>
+</tr>
+<tr>
+  <th scope="row">—</th>
+  <td data-label="Typed from `outputSchema`"></td>
+  <td data-label="Clients">zed, strands, crewAI, VS Code, eve, hermes-agent, cline, adk-python</td>
+</tr>
+</tbody>
+</table>
+
+<p>Six clients render <code>outputSchema</code> as a return type the model sees before it writes code: opencode, kilocode, mastra, codex and pi as TypeScript, and fast-agent as a <code>Returns</code> line in the stub. eve renders it as <code>Promise&lt;T&gt;</code> in tool search results, which have no script path.</p>
+
+<h2 id="mcp-apps">MCP Apps</h2>
+
+<table>
+<thead>
+<tr><th scope="col"></th><th scope="col">Clients</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row">the view receives <code>structuredContent</code></th>
+  <td data-label="Clients">goose, LibreChat°, VS Code, mastra (Studio)</td>
+</tr>
+<tr>
+  <th scope="row">the view receives the call, not the result</th>
+  <td data-label="Clients">adk-python</td>
+</tr>
+<tr>
+  <th scope="row">both fields passed on to app-server clients, no view of its own</th>
+  <td data-label="Clients">codex</td>
+</tr>
+<tr>
+  <th scope="row">a route exists but nothing turns it on</th>
+  <td data-label="Clients">kilocode, cline</td>
+</tr>
+<tr>
+  <th scope="row">no MCP Apps route</th>
+  <td data-label="Clients">zed, strands, crewAI, deepagents, opencode, pi, fast-agent, agent-framework, eve, hermes-agent, fx</td>
+</tr>
+</tbody>
+</table>
+
+<p>Seven clients hide a tool from the model when its <code>_meta.ui.visibility</code> leaves out <code>model</code>: goose, LibreChat, VS Code, codex, fast-agent, cline and mastra. Two read the <code>audience</code> annotation on the model path: goose and VS Code.</p>
+
+<h2 id="who-can-change-the-answer">Who can change the answer</h2>
+
+<p>The field the model reads is set in different places in different clients.</p>
+
+<table>
+<thead>
+<tr><th scope="col">Set by</th><th scope="col">What</th><th scope="col">Clients</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row">server</th>
+  <td data-label="What">whether the tool declares an <code>outputSchema</code></td>
+  <td data-label="Clients">mastra</td>
+</tr>
+<tr>
+  <th scope="row">server</th>
+  <td data-label="What">a non-text block in <code>content</code></td>
+  <td data-label="Clients">eve, where the blocks then win over <code>structuredContent</code></td>
+</tr>
+<tr>
+  <th scope="row">server</th>
+  <td data-label="What">a private <code>_meta</code> key</td>
+  <td data-label="Clients">codex (<code>codex/encryptedContent</code>), agent-framework .NET (any result <code>_meta</code> key forces the envelope)</td>
+</tr>
+<tr>
+  <th scope="row">server</th>
+  <td data-label="What"><code>audience: ["user"]</code> on a block</td>
+  <td data-label="Clients">goose, VS Code</td>
+</tr>
+<tr>
+  <th scope="row">server</th>
+  <td data-label="What">the size of the result</td>
+  <td data-label="Clients">fx (over the inline cap with no session store, only the text of <code>content</code> survives truncation; with a store, the model gets a 4 KiB preview of the envelope, which a long text mirror fills before <code>structuredContent</code> appears), VS Code (a text part over 8 KiB goes to disk and the model gets a pointer string), codex (a token budget truncates whichever payload was chosen), hermes-agent (over 50,000 characters the result goes to disk and the model gets a 1,500-character preview, in which <code>structuredContent</code> comes after the text)</td>
+</tr>
+<tr>
+  <th scope="row">host</th>
+  <td data-label="What">a constructor option</td>
+  <td data-label="Clients">agent-framework Python (<code>tool_result_content</code>: five modes)</td>
+</tr>
+<tr>
+  <th scope="row">host</th>
+  <td data-label="What">the model backend</td>
+  <td data-label="Clients">adk-python</td>
+</tr>
+<tr>
+  <th scope="row">host</th>
+  <td data-label="What">code mode on or off</td>
+  <td data-label="Clients">opencode, kilocode, mastra, fast-agent</td>
+</tr>
+<tr>
+  <th scope="row">host</th>
+  <td data-label="What">MCP Apps on or off</td>
+  <td data-label="Clients">LibreChat</td>
+</tr>
+<tr>
+  <th scope="row">model</th>
+  <td data-label="What">the script it writes</td>
+  <td data-label="Clients">every client with a script route</td>
+</tr>
+</tbody>
+</table>
+
+<p>Most clients also run hooks or plugins that can rewrite the result before the model sees it. The notes list them.</p>
+
+<h2 id="closed-source-clients">Closed source clients</h2>
+
+<p>Claude Code, Claude Desktop, claude.ai, Cowork and Claude for Excel cannot be read, so <a href="structured_content_notes/claude-issues.html">a separate note</a> records what public issue reports say, each as a reported observation with the client and version named, its issue state and its date. The repeated report is that <code>structuredContent</code> replaces <code>content</code> on the model path: <a href="https://github.com/anthropics/claude-code/issues/103396" target="_blank">anthropics/claude-code#103396</a> (open, 2026-10-19, labelled <code>has repro</code>, a server that puts query rows in <code>content</code> and a citation card in <code>structuredContent</code>) and <a href="https://github.com/anthropics/claude-ai-mcp/issues/1201" target="_blank">anthropics/claude-ai-mcp#1201</a> (open, 2026-10-29, Claude Desktop 4.4 with an MCP App server, where the reporter says 3.6 sent <code>content</code>). Other reports cover MCP App views receiving no <code>structuredContent</code>, and requests to show <code>outputSchema</code> to the model and to honour <code>audience</code>, both closed as not planned. Nothing in that note was read from source.</p>
+
+<h2 id="all-clients">All clients</h2>
+
+<p>The model columns show the default. The linked commit is the one each client was read at.</p>
+
+<table>
+<thead>
+<tr><th scope="col">Client</th><th scope="col">Summary + data</th><th scope="col">Content empty</th><th scope="col">Script</th><th scope="col">App view</th></tr>
+</thead>
+<tbody>
+<tr>
+  <th scope="row"><a href="structured_content_notes/zed.html">zed</a> <small><a href="https://github.com/zed-industries/zed/tree/0cfc4a483dfab6ca171df0ceedaaa2a9f7954d0e" target="_blank">0cfc4a4</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty"><code>"…"</code></td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/goose.html">goose</a> <small><a href="https://github.com/aaif-goose/goose/tree/2365bc5e898a38133c373eef2d1357416acd66e2" target="_blank">2365bc5</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>[…]</code> audience-filtered</td>
+  <td data-label="Content empty"><code>"…"</code></td>
+  <td data-label="Script">text to parse?</td>
+  <td data-label="App view"><code>{…}</code></td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/strands.html">strands</a> <small><a href="https://github.com/strands-agents/harness-sdk/tree/46cbb8c94c93468cd1f06bbb8fff1e6384c9106f" target="_blank">46cbb8c</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty">empty</td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/crewai.html">crewAI</a> <small><a href="https://github.com/crewAIInc/crewAI/tree/d7dfa0ef5ade793bd48ff7357c6eb45a45294371" target="_blank">d7dfa0e</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty">Python repr</td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/deepagents.html">deepagents</a> <small><a href="https://github.com/langchain-ai/deepagents/tree/a93aed4bca3a5e4d45bff393e16092222767e6c3" target="_blank">a93aed4</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty">empty</td>
+  <td data-label="Script"><code>[…]</code>°</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/librechat.html">LibreChat</a> <small><a href="https://github.com/danny-avila/LibreChat/tree/fad2c51da41bb46c9cdd44a720cea4df0d47876b" target="_blank">fad2c51</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty"><code>"…"</code></td>
+  <td data-label="Script">text to parse?</td>
+  <td data-label="App view"><code>⟨…⟩</code>°</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/kilocode.html">kilocode</a> <small><a href="https://github.com/Kilo-Org/kilocode/tree/85eb887a7560f452211bcd382eafe8cb2f8df497" target="_blank">85eb887</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script"><code>{…}</code>° typed</td>
+  <td data-label="App view">dormant</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/opencode.html">opencode</a> <small><a href="https://github.com/anomalyco/opencode/tree/d759c548aab33a7a6f5171cbeab40a59e91d90aa" target="_blank">d759c54</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data">script output; <code>[…]</code> on the direct path</td>
+  <td data-label="Content empty"><code>{…}</code> on the direct path</td>
+  <td data-label="Script"><code>{…}</code> typed</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/pi-mono.html">pi</a> <small><a href="https://github.com/earendil-works/pi/tree/8636e211e7834e4ca46a22aec1d65dfd2eac8677" target="_blank">8636e21</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>[…]</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script"><code>⟨…⟩</code>? typed</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/mastra.html">mastra</a> <small><a href="https://github.com/mastra-ai/mastra/tree/7277766d6c967c475675d58ff2d0e5c6d7be7c84" target="_blank">7277766d</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>[…]</code> with <code>outputSchema</code>, <code>{…}</code> without</td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script"><code>{…}</code>° typed</td>
+  <td data-label="App view"><code>{…}</code></td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/codex.html">codex</a> <small><a href="https://github.com/openai/codex/tree/b1573f102413e96a6481087922bf425231222dee" target="_blank">b1573f1</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>{…}</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script"><code>⟨…⟩</code>? typed</td>
+  <td data-label="App view">passes <code>[…]{…}</code> on</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/vscode.html">VS Code</a> <small><a href="https://github.com/microsoft/vscode/tree/d53b9e1def17b1919021ee08c87a5b9453207fe2" target="_blank">d53b9e1d</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>{…}</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script">—</td>
+  <td data-label="App view"><code>⟨…⟩</code></td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/fast-agent.html">fast-agent</a> <small><a href="https://github.com/evalstate/fast-agent/tree/c551658338782a5fd7feb161902504c8cf429e6d" target="_blank">c551658</a> · 2026-11-10</small></th>
+  <td data-label="Summary + data"><code>{…}</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script"><code>{…}</code> typed (default for six models, else °)</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/agent-framework.html">agent-framework (Python)</a> <small><a href="https://github.com/microsoft/agent-framework/tree/92838b60498395142cb8b74693353163e95a0faf" target="_blank">92838b6</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>{…}</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script">text to parse°</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/agent-framework.html">agent-framework (.NET)</a> <small><a href="https://github.com/microsoft/agent-framework/tree/92838b60498395142cb8b74693353163e95a0faf" target="_blank">92838b6</a> · 2026-11-13</small></th>
+  <td data-label="Summary + data"><code>⟨…⟩</code></td>
+  <td data-label="Content empty"><code>⟨…⟩</code></td>
+  <td data-label="Script"><code>⟨…⟩</code>°</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/eve.html">eve</a> <small><a href="https://github.com/vercel/eve/tree/be1addaaa5b7c2b75537b58767a27c3fdb595931" target="_blank">be1adda</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>{…}</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/hermes-agent.html">hermes-agent</a> <small><a href="https://github.com/NousResearch/hermes-agent/tree/cd582ed706cec677572d4da6f1c0dbdc5ca8c410" target="_blank">cd582ed7</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>[…]</code> and <code>{…}</code></td>
+  <td data-label="Content empty"><code>{…}</code></td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">—</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/cline.html">cline</a> <small><a href="https://github.com/cline/cline/tree/72b3d7140553a733242126e51a7c2e87efe75c64" target="_blank">72b3d71</a> · 2026-11-12</small></th>
+  <td data-label="Summary + data"><code>⟨…⟩</code></td>
+  <td data-label="Content empty"><code>⟨…⟩</code></td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">dormant</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/adk-python.html">adk-python</a> <small><a href="https://github.com/google/adk-python/tree/287c0b0e65899b0060efd5672c8f419c1119530d" target="_blank">287c0b0</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>⟨…⟩</code> on Gemini, <code>[…]</code> on Anthropic</td>
+  <td data-label="Content empty"><code>⟨…⟩</code></td>
+  <td data-label="Script">—</td>
+  <td data-label="App view">call only</td>
+</tr>
+<tr>
+  <th scope="row"><a href="structured_content_notes/fx.html">fx</a> <small><a href="https://github.com/vercel-labs/fx/tree/3fd4905af5b286fc68a4446da51622e3e6dddf93" target="_blank">3fd4905</a> · 2026-11-14</small></th>
+  <td data-label="Summary + data"><code>⟨…⟩</code></td>
+  <td data-label="Content empty"><code>⟨…⟩</code></td>
+  <td data-label="Script"><code>{…}</code>, else <code>[…]</code> text (<code>fx mcp call</code>)</td>
+  <td data-label="App view">—</td>
+</tr>
+</tbody>
+</table>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li aria-current="page">Which tool result field reaches the model</li>
+  </ul>
+</nav>
+<p>Version 0.8.0 &#183; Last updated 2026-11-15 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

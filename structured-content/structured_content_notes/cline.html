@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How cline handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How cline handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the cline source (<code>clones/cline</code>, checked out at commit 72b3d71, read 2026-11-13). File references are relative to the repository root. The repo is a monorepo: <code>sdk/packages/core</code> holds the agent runtime and the MCP extension, <code>apps/vscode</code> holds the VS Code extension, and <code>apps/cli</code> holds the CLI. Both apps run tool calls through the core runtime.</p>
+
+<h2 id="entry-results-enter-as-unknown-through-three-clients-two-of-them-sdk-backed">Entry: results enter as <code>unknown</code> through three clients, two of them SDK-backed</h2>
+
+<p>The lockfile resolves <code>@modelcontextprotocol/sdk</code> to 1.30.0 (<code>bun.lock</code>, <code>"@modelcontextprotocol/sdk@1.30.0"</code>); <code>sdk/packages/core/package.json</code> asks for <code>^1.29.0</code> and <code>apps/vscode/package.json</code> for <code>^1.25.1</code>. Three client classes produce results. <code>StdioMcpClient</code> in <code>sdk/packages/core/src/extensions/mcp/client.ts</code> is a hand-rolled JSON-RPC client over stdio; its <code>callTool</code> returns <code>this.request("tools/call", ...)</code> with no schema parse. <code>SdkUrlMcpClient</code> in the same file wraps the SDK <code>Client</code> for SSE and streamable HTTP and calls <code>client.callTool(...)</code>. <code>createDefaultMcpServerClientFactory</code> picks between them by <code>registration.transport.type === "stdio"</code>. The VS Code extension uses its own <code>McpHub</code> (<code>apps/vscode/src/services/mcp/McpHub.ts</code>), whose <code>callTool</code> calls <code>connection.client.request({ method: "tools/call", ... }, CallToolResultSchema, ...)</code> and returns <code>{ ...result, content: result.content ?? [] }</code>. The two core clients satisfy <code>McpServerClient.callTool</code>, whose return type is <code>export type McpToolCallResult = unknown;</code> (<code>sdk/packages/core/src/extensions/mcp/types.ts</code>); <code>McpHub.callTool</code> has its own signature and is adapted into the runtime by <code>McpHubToolProvider.callTool</code> in <code>apps/vscode/src/sdk/vscode-runtime-builder.ts</code>, which implements <code>McpToolProvider</code>. No client type names <code>structuredContent</code>; the identifier appears in no non-test source file. The field survives because the stdio client returns the raw JSON-RPC result, the SDK’s <code>CallToolResultSchema</code> declares <code>structuredContent</code> as optional on a loose object, and <code>McpHub.callTool</code> spreads the parsed result even though its declared return type <code>McpToolCallResponse</code> (<code>apps/vscode/src/shared/mcp.ts</code>) lists only <code>_meta</code>, <code>content</code>, and <code>isError</code>.</p>
+
+<h2 id="model-path-the-whole-envelope-json-stringified-into-one-text-block">Model path: the whole envelope, JSON-stringified into one text block</h2>
+
+<p><code>createMcpTools</code> in <code>sdk/packages/core/src/extensions/mcp/tools.ts</code> registers each MCP tool with <code>execute: async (input, context) =&gt; options.provider.callTool(...)</code>, so the tool’s output is the entire result object. Before each model request the orchestrator’s <code>beforeModel</code> hook (<code>createRuntimeHooks</code> in <code>sdk/packages/core/src/runtime/orchestration/session-runtime-orchestrator.ts</code>) runs <code>prepareMessagesForModelRequest</code>, which converts agent messages through <code>agentMessagesToMessages</code> and back. That conversion passes every tool-result part through <code>toPersistedToolResultContent</code> (<code>sdk/packages/core/src/session/persisted-tool-result-content.ts</code>), which returns strings and arrays as-is and otherwise returns <code>JSON.stringify(output)</code>. An MCP result is an object, so it becomes a JSON string. On the way back, <code>toolResultContentToAgentPart</code> in <code>sdk/packages/core/src/runtime/config/agent-message-codec.ts</code> sets <code>output: block.content</code>, now a string. The provider formatter <code>toAiSdkToolResultOutput</code> (<code>sdk/packages/shared/src/llms/ai-sdk-format.ts</code>) takes its first branch, <code>typeof output === "string"</code>, and emits <code>{ type: "text", value: ... }</code>.</p>
+
+<p>The model therefore receives one text block containing the serialized <code>CallToolResult</code>: <code>content</code>, <code>structuredContent</code>, <code>isError</code>, and <code>_meta</code> together, with text blocks still nested as <code>{"type":"text","text":...}</code>. When both fields are present, both are in that string. When <code>content</code> is <code>[]</code> and <code>structuredContent</code> is present, the string carries <code>"content":[]</code> and the structured object; nothing substitutes a placeholder. A result with only <code>structuredContent</code> and no <code>content</code> key arrives the same way from the stdio client; the SDK and <code>McpHub</code> paths add <code>content: []</code>. An empty result <code>{}</code> reaches the model as <code>{}</code> from the stdio client and as <code>{"content":[]}</code> from the SDK path. Image, audio, and resource blocks are stringified with their base64 payloads intact. The image-hoisting code in <code>toAiSdkToolResultOutput</code> (<code>isAiSdkContentBlockArray</code>, <code>stripImagesFromOutput</code>) never runs on the MCP path because the output is already a string by the time the formatter sees it; it also keys on <code>mediaType</code>, which MCP blocks do not carry. <code>JSON.stringify(output)</code> in <code>toPersistedToolResultContent</code> takes no indent argument, so the envelope is compact JSON and <code>structuredContent</code> is a nested value under its own key. No step compares the <code>content</code> text with <code>structuredContent</code>, so a text block that mirrors the JSON reaches the model beside it in the same string.</p>
+
+<p>No source file under <code>sdk</code> or <code>apps</code>, tests included, reads <code>audience</code>: a grep over <code>*.ts</code>, <code>*.tsx</code> and <code>*.js</code> returns only the banner targeting field in <code>apps/vscode/src/shared/ClineBanner.ts</code>, and <code>annotations</code> appears only in a comment in <code>apps/cli/src/utils/helpers.ts</code>. A block annotated <code>audience: ["user"]</code> reaches the model inside the stringified envelope with its <code>annotations</code> object intact.</p>
+
+<p>MCP tools carry <code>resultPolicy: "cache-oversized"</code>. <code>MessageBuilder</code> (<code>sdk/packages/core/src/session/services/message-builder.ts</code>) truncates the string past <code>DEFAULT_MAX_TOOL_RESULT_CHARS = 8_000</code> with <code>truncateMiddle</code>, which inserts <code>...[truncated ${n} chars]...</code> (<code>TRUNCATE_MARKER_DEFAULT</code>), and appends <code>Full result is temporarily saved to ${recovery.uri}. Only read_files can access this cache URI. Use read_files with specific line ranges if omitted content is needed.</code> The URI is <code>cline://cache/&lt;session&gt;/&lt;id&gt;.result.txt</code> (<code>ToolResultCache.store</code> in <code>sdk/packages/core/src/session/services/tool-result-cache.ts</code>). Past that limit the output changes shape: the single string becomes a <code>content</code> array of text parts, the middle-truncated JSON followed by the recovery notice, which <code>isAiSdkContentBlockArray</code> then sends as a <code>content</code>-type output. Providers in the <code>openai-compatible</code> family use the <code>openai-chat</code> protocol (<code>inferProtocol</code> in <code>sdk/packages/llms/src/providers/builtins.ts</code>), and <code>createOpenAICompatible</code> in <code>sdk/packages/llms/src/providers/vendors/openai-compatible.ts</code> does not set <code>supportsMultiPartToolContent</code>, so <code>@ai-sdk/openai-compatible</code> 3.0.67 sends a <code>content</code> output as <code>JSON.stringify(output.value)</code>. On that protocol the tool message is a JSON array of text parts, with the truncated envelope JSON-encoded a second time inside the first part. The cached full copy is YAML from <code>prepareToolResultRecovery</code> (<code>sdk/packages/core/src/session/services/tool-result-cache.ts</code>), whose <code>splitToolResultMedia</code> does recognize <code>mimeType</code> on image blocks and replaces them with <code>[image attached]</code>.</p>
+
+<h2 id="outputschema-never-read-by-client-code-only-the-sdk-http-path-validates">outputSchema: never read by client code; only the SDK HTTP path validates</h2>
+
+<p><code>outputSchema</code> appears in no non-test source file. Every <code>tools/list</code> mapper rebuilds descriptors from <code>name</code>, <code>description</code>, <code>inputSchema</code>, and <code>_meta</code>: <code>StdioMcpClient.listTools</code> and <code>SdkUrlMcpClient.listTools</code> in <code>client.ts</code>, and <code>McpHubToolProvider.listTools</code> in <code>apps/vscode/src/sdk/vscode-runtime-builder.ts</code>. The SDK’s own validation runs only where client code calls <code>Client.listTools</code> and <code>Client.callTool</code>, which is <code>SdkUrlMcpClient</code>. In SDK 1.30.0 (<code>src/client/index.ts</code>, read from the published tag), <code>listTools</code> calls <code>cacheToolMetadata</code>, which fills <code>_cachedToolOutputValidators</code>; <code>callTool</code> then throws <code>Tool ${params.name} has an output schema but did not return structured content</code> when the field is absent and <code>isError</code> is false, and <code>Structured content does not match the tool's output schema: ...</code> on a mismatch. <code>SdkUrlMcpClient.callTool</code> catches that in <code>handleOperationError</code>, records it via <code>markConnectionError</code>, and rethrows <code>new Error(message)</code>. <code>McpHub</code> calls <code>client.request(...)</code> directly for both <code>tools/list</code> and <code>tools/call</code>, so its validator cache is never filled and no validation occurs. The stdio client has no validator. <code>outputSchema</code> is not used in prompt text; <code>defaultMcpDescription</code> in <code>tools.ts</code> uses only <code>description</code>. The SDK throws these as <code>McpError</code>, whose constructor prefixes <code>MCP error ${code}: </code> (SDK 1.30.0 <code>src/types.ts</code>). <code>executePreparedTool</code> in <code>sdk/packages/agents/src/agent-runtime.ts</code> catches the rethrown error and records <code>{ error: message }</code> with <code>isError: true</code>. That object is stringified like any other output, and <code>toAiSdkToolResultOutput</code> sends it as <code>error-text</code>, so the model sees <code>{"error":"MCP error -32602: Structured content does not match the tool's output schema: ..."}</code> or <code>{"error":"MCP error -32600: Tool &lt;name&gt; has an output schema but did not return structured content"}</code>.</p>
+
+<h2 id="other-paths-display-extractors-hooks-acp-and-a-dormant-mcp-apps-gate">Other paths: display extractors, hooks, ACP, and a dormant MCP Apps gate</h2>
+
+<p>Display paths read the object before it is stringified. <code>extractToolOutputText</code> in <code>apps/vscode/src/sdk/message-translator.ts</code> feeds the webview’s <code>mcp_server_response</code> row and falls back to <code>JSON.stringify(output)</code> for objects, so the webview shows the whole envelope. The CLI’s <code>extractFullOutputText</code> (<code>apps/cli/src/tui/utils/tool-parsing.ts</code>) joins <code>content[].text</code> and <code>resource.text</code>, prints image, audio and resource blobs as labelled base64, labels <code>resource_link</code> blocks, and falls back to pretty JSON whenever no parts come out, including <code>content: []</code> (its test uses <code>{ structuredContent: { ok: true } }</code>). The <code>tool_result</code> hook payload (<code>runtimeToolRecord</code> in <code>sdk/packages/core/src/hooks/subprocess.ts</code>, and the CLI’s <code>apps/cli/src/utils/hooks.ts</code>) sets <code>output: ctx.result.output</code>, the raw object. The VS Code extension excludes core’s file-hook extension (<code>configExtensions</code> filter in <code>apps/vscode/src/sdk/vscode-session-host.ts</code>) and runs its own adapter, <code>apps/vscode/src/sdk/hooks-adapter.ts</code>, whose <code>postToolUse.result</code> is <code>String(ctx.result.output ?? "")</code> (<code>string result = 3;</code> in <code>apps/vscode/proto/cline/hooks.proto</code>), so an MCP result object reaches VS Code hooks as the literal string <code>[object Object]</code>. The ACP agent sends <code>rawOutput: e.error ?? e.output</code> (<code>apps/cli/src/acp/session-updates.ts</code>). The subprocess <code>tool_result</code> hook, the file hook in <code>sdk/packages/core/src/hooks/hook-file-hooks.ts</code>, and the VS Code <code>PostToolUse</code> adapter return only stop control and <code>appendContext</code>, so they cannot change the result. Plugin extensions (<code>sdk/packages/core/src/extensions/plugin/</code>) register <code>AgentRuntimeHooks</code>, and an <code>afterTool</code> hook there may return <code>result</code> (<code>AgentAfterToolResult</code> in <code>sdk/packages/shared/src/agent.ts</code>). <code>executePreparedTool</code> in <code>sdk/packages/agents/src/agent-runtime.ts</code> replaces the tool result with it, and that replacement is what gets stringified for the model. A <code>beforeModel</code> hook may also return <code>messages</code>, which <code>createRuntimeHooks</code> puts into the request.</p>
+
+<p>No code-mode or script path calls MCP tools. A case-insensitive grep for <code>code mode</code>, <code>codemode</code>, <code>execute_code</code> and <code>run_code</code> over <code>sdk</code> and <code>apps</code> matches only model and provider names: the Claude Code model helpers in <code>sdk/packages/llms/src/providers/builtins.ts</code>, the CommandCode and OpenCode descriptions in <code>sdk/packages/llms/src/providers/providers.generated.ts</code>, the Claude Code and VS Code LM provider settings in <code>apps/vscode/webview-ui/src/components/settings/providers/</code>, and a Claude Code model test in <code>apps/vscode/src/sdk/model-catalog/store.test.ts</code>.</p>
+
+<p><code>sdk/packages/core/src/extensions/mcp/apps.ts</code> defines an MCP Apps extension (<code>MCP_APPS_EXTENSION_ID = "io.modelcontextprotocol/ui"</code>). <code>createMcpTools</code> filters descriptors with <code>isMcpToolVisibleToModel</code>, which hides a tool when <code>_meta.ui.visibility</code> lacks <code>"model"</code>. The client capability is advertised only when <code>mcpApps</code> is true in <code>DefaultMcpServerClientFactoryOptions</code>, which <code>loadConfiguredMcpTools</code> in <code>sdk/packages/core/src/runtime/orchestration/runtime-builder.ts</code> fills from the session config’s <code>mcpApps</code> (<code>CoreRuntimeFeatures</code>), and no non-test code in <code>sdk</code> or <code>apps</code> sets it to true. A session with it on gets a <code>callMcpAppTool</code> host method (<code>sdk/packages/core/src/runtime/host/local-runtime-host.ts</code>, backed by <code>createMcpAppsRuntime</code> in <code>sdk/packages/core/src/extensions/mcp/session-apps.ts</code>), which rejects tools failing <code>isMcpToolVisibleToApp</code> and returns the raw result to the host without adding it to the conversation. No <code>_meta</code> key on results changes routing. The only per-server knob touching results is <code>timeout</code> (<code>McpServerRegistration.timeoutSeconds</code>).</p>
+
+<h2 id="protocol-revision-2024-11-05-on-stdio-sdk-default-elsewhere">Protocol revision: 2024-11-05 on stdio, SDK default elsewhere</h2>
+
+<p><code>StdioMcpClient.connect</code> sends <code>protocolVersion: MCP_PROTOCOL_VERSION</code> with <code>const MCP_PROTOCOL_VERSION = "2024-11-05";</code> (<code>client.ts</code>). <code>SdkUrlMcpClient</code> and <code>McpHub</code> construct <code>new Client(...)</code> without a version override, so the SDK sends its <code>LATEST_PROTOCOL_VERSION = '2025-11-25'</code>.</p>
+
+<h2 id="upstream-history-no-recorded-rationale-for-the-whole-envelope-return-or-the-stringify">Upstream history: no recorded rationale for the whole-envelope return or the stringify</h2>
+
+<p>The clone is shallow and <code>git log</code> reaches only 72b3d71, so the history was read through <code>gh api</code> commit listings by path. The SDK history in cline/cline begins at 78aedcde8 (“feat: agents, core, cli, llms sdk packages”, 2026-03-02), a commit with no parent. Its <code>sdk/agents/src/tools/formatting.ts</code> already has <code>formatToolResult</code>, whose doc comment reads “The result is serialized to a string (JSON for objects, string for primitives)”. <code>createMcpTools</code> arrived in 4738e8294 (“chore: clean up scripts and shared”, 2026-03-04) as <code>sdk/packages/agents/src/mcp/tools.ts</code>, with the same <code>execute</code> returning <code>options.provider.callTool(...)</code>. It was renamed to <code>sdk/packages/core/src/mcp/tools.ts</code> in 6ae37eba7 (#83) and to its current path in 700095d17 (#87). The object-to-string branch moved into <code>sdk/packages/core/src/runtime/agent-config-adapter.ts</code> in 64c8ddbcc ("refactor: makes <code>@clinebot/agents</code> stateless (#219)", 2026-04-23), into <code>agent-message-codec.ts</code> in f6791fded (#346), and into <code>toPersistedToolResultContent</code> in 6d7e745fb (<a href="https://github.com/cline/cline/pull/13075" target="_blank">#13075</a>, merged 2026-08-14). None of these commit messages gives a reason for returning the whole result or for the stringify. The low PR numbers in these SDK commit messages do not resolve in cline/cline (<code>gh pr view 219</code> and <code>gh pr view 346</code> fail), so those PRs were not read.</p>
+
+<p><a href="https://github.com/cline/cline/issues/14421" target="_blank">Issue #14421</a> (open, opened 2026-09-22) reports that “an MCP image result reaches the outgoing model request as JSON text containing the base64” in CLI 3.0.64 and the VS Code Next path, while the legacy VS Code implementation sends it as an image. <a href="https://github.com/cline/cline/pull/14483" target="_blank">#14483</a> (open) proposes recognizing <code>mimeType</code> in <code>toAiSdkToolResultOutput</code> and is not merged at 72b3d71. <a href="https://github.com/cline/cline/pull/13066" target="_blank">#13066</a>, merged 2026-08-08, changed the CLI TUI display to render MCP result text in place of escaped JSON, after <a href="https://github.com/cline/cline/issues/13038" target="_blank">issue #13038</a>; neither touches the model path. <code>gh search issues</code> and <code>gh search prs</code> in cline/cline for <code>structuredContent</code>, <code>structured content</code>, <code>outputSchema</code>, <code>MCP tool result</code>, <code>mcp tool output JSON</code>, <code>mcp image tool result</code>, <code>createMcpTools</code> and <code>McpToolCallResult</code> found no issue or PR about which field reaches the model.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>An MCP result with <code>isError: true</code> is returned, not thrown, so <code>executePreparedTool</code> in <code>sdk/packages/agents/src/agent-runtime.ts</code> records it with no <code>isError</code> on the tool result. The model receives it as <code>text</code>, not <code>error-text</code>, and the flag reaches the model only as <code>"isError":true</code> inside the stringified envelope.</p>
+
+<p>Non-object <code>structuredContent</code> depends on the transport. The stdio client passes a string or <code>null</code> through inside the envelope. On the SDK path <code>CallToolResultSchema</code> types the field as <code>z.record(z.string(), z.unknown()).optional()</code> (SDK 1.30.0 <code>src/types.ts</code>), so <code>Protocol.request</code> rejects with the <code>ZodError</code> (<code>src/shared/protocol.ts</code>), <code>SdkUrlMcpClient.handleOperationError</code> rethrows its message, and the model sees <code>{"error":"[...zod issues...]"}</code> with no <code>MCP error</code> prefix.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 72b3d71 &#183; Read 2026-11-13 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

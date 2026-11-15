@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How adk-python handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How adk-python handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the Google ADK Python source (<code>clones/adk-python</code>, checked out at commit 287c0b0e65899b0060efd5672c8f419c1119530d (287c0b0), read on 2026-11-14). File references are relative to <code>src/google/adk/</code> unless they name <code>pyproject.toml</code>, <code>tests/</code> or an SDK file. SDK references are to <code>clones/python-sdk</code> at commit 77001c9 (the 2.x line). <code>pyproject.toml</code> declares <code>"mcp&gt;=1.24,&lt;3"</code> in the <code>mcp</code>, <code>all</code> and <code>test</code> extras and not in the core <code>dependencies</code>. The repository has no lockfile. The <code>uv pip compile --all-extras</code> outputs <code>constraints-3.11.txt</code> through <code>constraints-3.14.txt</code> pin <code>mcp==1.28.1</code>, and <code>constraints-3.15.txt</code> pins <code>mcp==2.3.0</code>.</p>
+
+<h2 id="entry-results-enter-through-the-sdk-clientsession-then-become-a-plain-dict">Entry: results enter through the SDK <code>ClientSession</code>, then become a plain dict</h2>
+
+<p><code>dependencies/_mcp.py</code> imports <code>ClientSession</code> from <code>mcp</code> and sets <code>IS_MCP_SDK_V2</code> by trying the 2.x import paths first. <code>tools/mcp_tool/session_context.py</code> constructs <code>ClientSession(...)</code> for each connection, and <code>tools/mcp_tool/mcp_toolset.py</code> <code>McpToolset.get_tools</code> wraps each entry of <code>session.list_tools()</code> in an <code>McpTool</code>. <code>tools/mcp_tool/mcp_tool.py</code> <code>McpTool._run_async_impl</code> calls <code>McpTool._call_tool_on_session</code>, which calls <code>session.call_tool(self._mcp_tool.name, arguments=args, progress_callback=resolved_callback, meta=meta_trace_context)</code> and receives the SDK’s <code>CallToolResult</code>. It then converts the model with <code>result = _dump_mcp_model(response)</code>. On 1.x that is <code>model.model_dump(exclude_none=True, mode="json")</code>. On 2.x it is <code>model.model_dump(exclude_none=True, mode="json", by_alias=True)</code> followed by <code>_restore_meta_keys</code>, which renames <code>_meta</code> to <code>meta</code> and does not descend into the <code>structuredContent</code>, <code>inputSchema</code>, <code>outputSchema</code> and <code>_meta</code> values (<code>_OPAQUE_KEYS</code>). On 2.x <code>result.pop("resultType", None)</code> removes the result-type field. The returned value is a dict with the keys <code>content</code>, <code>structuredContent</code>, <code>isError</code> and <code>meta</code> as the server sent them. <code>exclude_none</code> drops only <code>None</code>, so <code>content: []</code> and <code>isError: false</code> survive. <code>tests/unittests/tools/mcp_tool/test_mcp_tool.py</code> <code>test_structured_content_keeps_its_camel_case_key</code> asserts <code>result["structuredContent"] == {"answer": 42}</code>. Outside the dump helper, no code under <code>src/google/adk/</code> names <code>structuredContent</code>, and no MCP-specific code reads <code>content</code>. In <code>clones/python-sdk</code> <code>src/mcp-types/mcp_types/_types.py</code>, <code>CallToolResult</code> declares <code>content: list[ContentBlock]</code> with no default, and <code>InputRequiredResult._require_one_field</code> rejects a result with neither <code>input_requests</code> nor <code>request_state</code>. <code>src/mcp/client/session.py</code> parses <code>tools/call</code> responses with <code>TypeAdapter(types.CallToolResult | types.InputRequiredResult)</code>, so a result without a <code>content</code> key fails to parse in the SDK before ADK sees it. Before that adapter runs, <code>ClientSession.send_request</code> calls <code>_methods.validate_server_result(method, version, raw)</code> against the negotiated revision’s wire model, which <code>src/mcp-types/mcp_types/methods.py</code> lists as <code>v2025.CallToolResult</code> for <code>2025-11-25</code> and <code>v2026.AnyCallToolResult</code> (<code>CallToolResult | InputRequiredResult</code>) for <code>2026-07-28</code>, so the <code>pydantic.ValidationError</code> names <code>CallToolResult</code> alone on a handshake session and the two-arm union on a modern one. ADK does not catch it in <code>_call_tool_on_session</code> or <code>_run_async_impl</code>, so it reaches <code>McpTool.run_async</code> and takes the path described under outputSchema below: with graceful error handling on (the default) the model receives only <code>{"error": "Unexpected error during MCP tool execution: &lt;validation error&gt;"}</code>, and with <code>ADK_DISABLE_MCP_GRACEFUL_ERROR_HANDLING=1</code> the exception reaches <code>_caller.py</code> and no tool result reaches the model unless an on-tool-error callback returns one.</p>
+
+<h2 id="model-path-the-whole-dict-on-gemini-content-first-on-anthropic">Model path: the whole dict on Gemini, content first on Anthropic</h2>
+
+<p><code>flows/llm_flows/tools/_caller.py</code> <code>_build_response_event</code> runs <code>_extract_multimodal_parts</code>, which pulls out only <code>types.Part</code> instances, so an MCP dump passes through unchanged. <code>_build_function_response_content</code> then calls <code>types.Part.from_function_response(name=tool.name, response=cast(dict[str, Any], _unwrap_enums(function_result)), parts=function_response_parts)</code> with the whole dict as <code>response</code>. What reaches the model depends on the backend converter under <code>models/</code>:</p>
+
+<ul>
+  <li><code>google_llm.py</code> (Gemini API and Vertex) sends the <code>FunctionResponse</code> as built, so the model receives the entire dict with both <code>content</code> and <code>structuredContent</code>.</li>
+  <li><code>interactions_utils.py</code> passes <code>part.function_response.response</code> through unserialized as the <code>function_result</code> <code>result</code>.</li>
+  <li><code>lite_llm.py</code> sends <code>_safe_json_serialize(response)</code>, which is <code>json.dumps(obj, ensure_ascii=False)</code>, as the tool message content.</li>
+  <li><code>apigee_llm.py</code> sends <code>'content': json.dumps(part.function_response.response)</code>.</li>
+  <li><code>anthropic_llm.py</code> <code>_part_to_message_block</code> reads <code>response_data["content"]</code> when it is a non-empty list. Each <code>text</code> item contributes its <code>text</code>, every other item contributes <code>str(item)</code>, and the pieces are joined with <code>"\n"</code>. When <code>content</code> is empty or missing, the fallback branch sends <code>content = json.dumps(response_data)</code>, the whole dict. The <code>ToolResultBlockParam</code> carries <code>is_error=True</code> when the dict has a truthy <code>isError</code> or <code>is_error</code>, and <code>is_error=False</code> otherwise.</li>
+</ul>
+
+<p>With both fields present, the Gemini, Interactions, LiteLLM and Apigee paths deliver both, and the Anthropic path delivers the <code>content</code> text and drops <code>structuredContent</code>. With <code>content: []</code> and <code>structuredContent</code> present, every path delivers the dict, and on Anthropic that is the JSON string of the dict including <code>"content": []</code>. Image, audio and embedded-resource blocks stay dicts inside <code>content</code> and are never converted to <code>FunctionResponsePart</code> media. On Gemini, Interactions, LiteLLM and Apigee they reach the model as JSON with inline base64 <code>data</code>. On Anthropic they reach it as the Python <code>str()</code> of the block dict. An <code>isError: true</code> result takes the same path, with the flag as one key of the dict. On Anthropic and Interactions it also sets <code>is_error</code> on the tool result. No code compares the <code>content</code> text with <code>structuredContent</code>, so a text block that mirrors the JSON reaches the Gemini, Interactions, LiteLLM and Apigee paths alongside it (a grep for <code>structuredContent</code> under <code>src/google/adk/</code> finds only <code>_OPAQUE_KEYS</code> and the <code>_dump_mcp_model</code> docstring in <code>tools/mcp_tool/mcp_tool.py</code>). On Gemini and Interactions, <code>structuredContent</code> is a JSON value inside the dumped result dict. On LiteLLM, Apigee and the Anthropic fallback it is part of one <code>json.dumps</code> string of the whole dict, with the default <code>", "</code> and <code>": "</code> separators and no indentation. ADK substitutes no placeholder for an empty MCP result. A result with <code>content: []</code> and no <code>structuredContent</code> still dumps to a dict with <code>content</code> and <code>isError</code>, so it takes the same paths as above. The <code>anthropic_llm.py</code> branch that leaves <code>content = ""</code> runs only for an empty dict, which an MCP dump never is.</p>
+
+<p>No file under <code>src/google/adk/</code> reads <code>audience</code> on the model path. A grep for <code>audience</code> returns only <code>auth/</code>, <code>cli/</code> (<code>api_server.py</code>, <code>cli_deploy.py</code>, <code>cli_tools_click.py</code>, <code>deployers/_dockerfile_template.py</code>, <code>fast_api.py</code>, <code>trigger_routes.py</code>), <code>integrations/eventarc/_client.py</code> and <code>tools/openapi_tool/auth/credential_exchangers/service_account_exchanger.py</code>, all of them OAuth or OIDC audiences. The dump keeps each block’s <code>annotations</code> as a key of the block dict, so a block with <code>audience: ["user"]</code> reaches the Gemini, Interactions, LiteLLM and Apigee paths with its annotations in the JSON. On Anthropic a <code>["user"]</code> text block contributes its <code>text</code>, and a <code>["user"]</code> non-text block contributes its <code>str()</code> with the annotations in it.</p>
+
+<h2 id="outputschema-validated-by-the-sdk-also-forwarded-to-the-model-as-a-schema">outputSchema: validated by the SDK, also forwarded to the model as a schema</h2>
+
+<p><code>McpTool._build_declaration</code> reads the schema when <code>is_feature_enabled(FeatureName.JSON_SCHEMA_FOR_FUNC_DECL)</code> is true: <code>output_schema = _read_field(self._mcp_tool, "outputSchema", "output_schema")</code>, then <code>FunctionDeclaration(name=..., description=..., parameters_json_schema=input_schema, response_json_schema=output_schema)</code>. <code>features/_feature_registry.py</code> registers that flag as <code>FeatureConfig(FeatureStage.STABLE, default_on=True)</code>. When the declaration goes to the model, <code>McpTool.process_llm_request</code> replaces it with <code>_build_fenced_declaration()</code>, which runs <code>fence_schema_descriptions</code> (<code>flows/llm_flows/context/_fencing.py</code>) over the input and output schemas, so every <code>description</code> string inside the forwarded schema is wrapped in <code>&lt;&lt;&lt;BEGIN_UNTRUSTED_TOOL_DESCRIPTION&gt;&gt;&gt;</code> markers. <code>google_llm.py</code> sends the declaration as built, so Gemini receives the schema as <code>response_json_schema</code>. <code>lite_llm.py</code> <code>_append_response_schema_to_description</code> renders it into the tool description as <code>f"Returns {type_label} conforming to this schema: {rendered_schema}"</code>, and leaves it out when the result would exceed <code>_MAX_TOOL_DESCRIPTION_LENGTH</code> (1024 characters) or the schema has no key besides <code>type</code>. <code>anthropic_llm.py</code> <code>function_declaration_to_tool_param</code> and <code>interactions_utils.py</code> <code>convert_tools_config_to_interactions_format</code> copy only name, description and parameters, so those backends drop it. ADK does not use the schema to choose which field to send.</p>
+
+<p>Validation happens in the SDK. In <code>clones/python-sdk</code> <code>src/mcp/client/session.py</code>, <code>ClientSession.call_tool</code> runs <code>if isinstance(result, types.CallToolResult) and not result.is_error: await self.validate_tool_result(name, result)</code>. <code>validate_tool_result</code> re-lists tools when the name is not cached and raises <code>RuntimeError(f"Tool {name} has an output schema but did not return structured content")</code> or <code>RuntimeError(f"Invalid structured content returned by tool {name}: {error}")</code>. The 1.x SDK was not read for these notes. ADK runs no validation of its own.</p>
+
+<p><code>McpTool.run_async</code> catches the exception when <code>is_feature_enabled(FeatureName._MCP_GRACEFUL_ERROR_HANDLING)</code> is true. The registry sets that flag as <code>default_on=True</code>, and <code>ADK_DISABLE_MCP_GRACEFUL_ERROR_HANDLING=1</code> turns it off. The comment above the <code>_to_gemini_schema</code> import in <code>tools/mcp_tool/mcp_tool.py</code> says the flag is off by default, which the registry contradicts. A <code>RuntimeError</code> is not an <code>McpError</code>, so it lands in <code>except Exception as e</code> and the tool returns <code>{"error": f"Unexpected error during MCP tool execution: {e}"}</code>. The model sees that one key and nothing from the original result. On Interactions the <code>error</code> key also sets <code>is_error</code> on the tool result. With the flag off, the exception reaches <code>_caller.py</code> <code>_execute_single_prepared_call</code>, which runs <code>run_on_tool_error_callbacks</code> and re-raises when no callback returns a response.</p>
+
+<h2 id="other-paths-callbacks-telemetry-grounding-metadata-mcp-apps-widgets">Other paths: callbacks, telemetry, grounding metadata, MCP Apps widgets</h2>
+
+<p><code>_caller.py</code> <code>_execute_single_prepared_call</code> hands the dict to the plugin <code>run_after_tool_callback(..., result=callback_tool_response)</code> and then to the agent’s <code>canonical_after_tool_callbacks</code> with <code>tool_response=callback_tool_response</code>. A non-<code>None</code> return replaces the dict before the <code>FunctionResponse</code> is built. Before-tool and on-tool-error callbacks can also supply the response. <code>flows/llm_flows/tools/_error_handler.py</code> <code>detect_error_type_for_telemetry</code> calls <code>McpTool._detect_error_in_response</code>, which returns <code>"MCP_TOOL_ERROR"</code> when <code>response.get("isError") or response.get("is_error")</code>, and records it as the span error type without changing the response. <code>telemetry/tracing.py</code> writes <code>function_response.response</code> to the span as <code>gcp.vertex.agent.tool_response</code> or <code>GEN_AI_TOOL_CALL_RESULT</code> when content capture is enabled, so the full dict, <code>structuredContent</code> included, goes to telemetry. It passes through <code>_serialize_tool_response</code>, which masks credential-typed values and, via <code>_redact_credential_secrets</code> at any depth, credential-shaped dicts (for example an <code>authType</code> with an auth-type value, <code>rawAuthCredential</code> or <code>exchangedAuthCredential</code> keys, <code>requestedAuthConfigs</code>), so such a dict inside <code>structuredContent</code> reaches the span with its secret keys stripped.</p>
+
+<p>Two <code>_meta</code> readers exist. <code>McpTool._store_grounding_metadata_from_result</code> copies <code>meta.adk_grounding_metadata</code> from the result into <code>temp:_adk_grounding_metadata</code> when <code>propagate_grounding_metadata</code> is set, and <code>flows/llm_flows/core/_finalizer.py</code> attaches it to the <code>LlmResponse</code> as <code>grounding_metadata</code>. When the tool definition has <code>meta.ui.resourceUri</code> (or the flat <code>ui/resourceUri</code>) starting with <code>ui://</code>, <code>_run_async_impl</code> calls <code>tool_context.render_ui_widget(UiWidget(..., provider="mcp", payload={"resource_uri": ..., "tool": ..., "tool_args": args}))</code>. That payload carries the tool definition and arguments, not the result. The <code>McpTool.visibility</code> property reads <code>meta.ui.visibility</code> and has no caller, so an app-only tool is still offered to the model. No code-mode or scripting path calls MCP tools. No <code>McpToolset.__init__</code> or <code>McpTool.__init__</code> argument in <code>tools/mcp_tool/mcp_toolset.py</code> and <code>tools/mcp_tool/mcp_tool.py</code>, and no <code>_meta</code> key, changes which field the model gets. Which field reaches the model depends on the model backend and on any callback that replaces the dict.</p>
+
+<h2 id="protocol-revision-the-sdk-handshake-by-default-the-modern-probe-behind-a-flag">Protocol revision: the SDK handshake by default, the modern probe behind a flag</h2>
+
+<p>ADK pins no protocol string. <code>tools/mcp_tool/session_context.py</code> <code>_connect</code> runs <code>await session.initialize()</code> unless <code>FeatureName._MCP_MODERN_PROTOCOL</code> is enabled, which the registry sets as <code>FeatureStage.EXPERIMENTAL, default_on=False</code>. On 2.x <code>initialize</code> offers <code>LATEST_HANDSHAKE_VERSION</code>, which is <code>"2025-11-25"</code> in <code>clones/python-sdk</code> <code>src/mcp-types/mcp_types/version.py</code>. With <code>ADK_ENABLE_MCP_MODERN_PROTOCOL=1</code> on 2.x, <code>_connect</code> calls <code>negotiate_auto</code> (imported from <code>mcp.client._probe</code> in <code>dependencies/_mcp.py</code>), which probes <code>server/discover</code> with <code>LATEST_MODERN_VERSION</code> (<code>"2026-07-28"</code>) and falls back to the handshake. On 1.x <code>negotiate_auto</code> is <code>None</code> and the handshake runs.</p>
+
+<h2 id="upstream-history-the-whole-dict-dump-and-the-anthropic-content-branch">Upstream history: the whole-dict dump and the Anthropic <code>content</code> branch</h2>
+
+<p>The <code>content</code> branch in <code>anthropic_llm.py</code> <code>_part_to_message_block</code> was added by commit <a href="https://github.com/google/adk-python/commit/1dd97f5b45226c25e4c51455c78ebf3ff56ab46a" target="_blank">1dd97f5b</a> on 2025-11-17, an internal change with no pull request and no message body. The whole-dict dump came from commit <a href="https://github.com/google/adk-python/commit/4df926388b6e9ebcf517fbacf2f5532fd73b0f71" target="_blank">4df92638</a>, whose message says the aim was that “what ADK runtime sees is identical to what is persisted in the session event list”. No issue or pull request in the repository discusses the Anthropic path dropping <code>structuredContent</code>. <a href="https://github.com/google/adk-python/issues/7073" target="_blank">Issue #7073</a> raised the same Gemini-versus-Claude gap for dicts with a <code>result</code> key and left the MCP <code>content</code> branch out of scope on purpose.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p><code>_dump_mcp_model</code> in <code>tools/mcp_tool/mcp_tool.py</code> dumps with <code>exclude_none=True</code>, so a <code>structuredContent: null</code> from the server is dropped and the dict looks the same as one with no <code>structuredContent</code>.</p>
+
+<p>On a handshake session the SDK checks the result against the <code>2025-11-25</code> wire model in <code>clones/python-sdk</code> <code>src/mcp-types/mcp_types/_v2025_11_25/__init__.py</code>, whose <code>structured_content</code> is <code>dict[str, Any] | None</code>, so a string, number or array <code>structuredContent</code> fails validation and the model receives the graceful-error dict in place of the result. At <code>2026-07-28</code> (<code>ADK_ENABLE_MCP_MODERN_PROTOCOL=1</code> on 2.x) the wire model in <code>_v2026_07_28/__init__.py</code> and <code>CallToolResult</code> in <code>_types.py</code> both type it as <code>Any</code>, so a non-object value passes and reaches the model inside the dumped dict.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 287c0b0 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

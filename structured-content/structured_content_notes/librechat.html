@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How LibreChat handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How LibreChat handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the LibreChat source (<code>clones/librechat</code>, checked out at commit fad2c51da41bb46c9cdd44a720cea4df0d47876b (fad2c51), read on 2026-11-14). File references are relative to <code>packages/api/src/</code> unless they start with <code>api/</code>, <code>client/</code> or <code>packages/data-provider/</code> or name <code>package-lock.json</code>. Agent-runtime references are to <code>@librechat/agents</code> 4.2.2 (<code>src/</code>), and SDK references are to <code>@modelcontextprotocol/sdk</code> 1.32.1 (<code>dist/esm/</code>); <code>package-lock.json</code> resolves both at those versions, and the SDK range is <code>"@modelcontextprotocol/sdk": "^1.32.1"</code> in <code>packages/api/package.json</code> and <code>api/package.json</code>.</p>
+
+<h2 id="entry-results-enter-through-the-sdk-s-raw-request-cast-to-mcptoolcallresponse-with-structuredcontent-kept">Entry: results enter through the SDK’s raw <code>request</code>, cast to <code>MCPToolCallResponse</code>, with structuredContent kept</h2>
+
+<p><code>MCPConnection</code> in <code>mcp/connection.ts</code> constructs the SDK <code>Client</code> from <code>@modelcontextprotocol/sdk/client/index.js</code>. <code>MCPManager.callTool</code> in <code>mcp/MCPManager.ts</code> sends <code>connection.client.request({ method: 'tools/call', params: { name, arguments } }, CallToolResultSchema, ...)</code> and never calls <code>Client.callTool</code>. The comment above it reads "Deliberately use <code>request</code>: the typed wrapper also enforces the tool’s output schema and rejects task-required tools". <code>Protocol.request</code> (<code>shared/protocol.js</code>) runs <code>safeParse(resultSchema, response.result)</code> and rejects on failure. <code>CallToolResultSchema</code> (<code>types.js</code>) declares <code>content: z.array(ContentBlockSchema).default([])</code> and <code>structuredContent: z.record(z.string(), z.unknown()).optional()</code>, so an absent <code>content</code> key becomes <code>[]</code> and a non-object <code>structuredContent</code> fails the parse. The parsed value is cast with <code>const toolResult = result as t.MCPToolCallResponse;</code>. <code>MCPToolCallResponse</code> in <code>mcp/types/index.ts</code> is <code>undefined</code> or <code>{ _meta?, content?, isError?, structuredContent?: Record&lt;string, unknown&gt; }</code>. <code>createToolInstance</code> in <code>api/server/services/MCP.js</code> wraps the call as a LangChain tool through <code>createMCPStructuredTool</code> (<code>mcp/tools.ts</code>) with <code>responseFormat: AgentConstants.CONTENT_AND_ARTIFACT</code>, so each call yields a <code>[string, artifacts]</code> pair.</p>
+
+<h2 id="model-path-content-only-structuredcontent-goes-to-the-mcp-apps-snapshot">Model path: content only, structuredContent goes to the MCP Apps snapshot</h2>
+
+<p><code>formatToolContent</code> in <code>mcp/parsers.ts</code> builds the model string from <code>result?.content</code> only. Its one read of <code>structuredContent</code> that feeds an output is <code>structuredContent: result?.structuredContent</code> inside the MCP Apps <code>snapshot</code> object, which goes into the UI resource artifact and not into the returned text. <code>deriveResourceId</code> also hashes <code>result.structuredContent</code> into the UI resource ID. When both fields are present, the model receives the text built from <code>content</code> and nothing from <code>structuredContent</code>. When <code>content</code> is empty or absent, the function returns <code>['(No response)', undefined]</code> through <code>if (!content.length &amp;&amp; !hasSyntheticApp)</code>, or through <code>parseAsString</code>, whose first check is <code>if (!content.length) { return '(No response)'; }</code>. When MCP Apps is enabled and the tool declares an MCP App resource (<code>hasSyntheticApp</code>), empty <code>content</code> skips that early return, and the last line <code>return [currentTextBlock || (artifacts !== undefined ? '' : '(No response)'), artifacts];</code> returns an empty string with the UI artifact attached for a recognized provider. For an unrecognized provider <code>currentTextBlock</code> starts as <code>parseAsString(result)</code>, so the same case returns <code>(No response)</code> with the UI artifact attached. No code compares <code>content</code> with <code>structuredContent</code>, so a text block that mirrors the JSON reaches the model as written and nothing is removed as a duplicate. <code>structuredContent</code> is not serialized into the model request in any form, compact, pretty or enveloped. The only reads of <code>structuredContent</code> in first-party source outside tests are <code>deriveResourceId</code> and the snapshot in <code>mcp/parsers.ts</code>, the type in <code>mcp/types/index.ts</code> and <code>packages/data-provider/src/schemas.ts</code>, and <code>buildAppToolResult</code> in <code>client/src/utils/mcpApps.ts</code>.</p>
+
+<p>Block handling depends on <code>RECOGNIZED_PROVIDERS</code>, a set of nine names: <code>google</code>, <code>anthropic</code>, <code>openai</code>, <code>azureopenai</code>, <code>openrouter</code>, <code>xai</code>, <code>deepseek</code>, <code>ollama</code>, <code>bedrock</code>. For a recognized provider, <code>text</code> blocks are joined with blank lines. <code>image</code> blocks are converted by <code>imageFormatters.default</code> to <code>image_url</code> parts and collected into <code>artifacts.content</code>. <code>resource_link</code> blocks become labelled lines from <code>describeResourceLink</code>. Embedded resources become <code>Resource Text:</code> plus URI and MIME lines, image blobs become image artifacts, and binary blobs become a byte-count line. Any other block type, including <code>audio</code>, is appended as <code>JSON.stringify(item, null, 2)</code>. A <code>ui://</code> resource with an inline body and a non-HTML MIME type, or plain HTML when <code>legacyHtmlEnabled</code> is on and the URI is not the tool’s declared App URI, becomes a <code>UIResource</code> in <code>artifacts[Tools.ui_resources]</code>, and the model text gets <code>UI Resource ID:</code> and <code>\ui{...}</code> marker lines plus a fixed “UI Resource Markers Available” instruction block. For an unrecognized provider the text starts as <code>parseAsString(result)</code>, which stringifies image blocks as JSON, so base64 data lands inline in the text. Its image blocks are also collected, but into <code>imageAttachments</code> beside an empty <code>content</code> (<code>{ content: [], imageAttachments: imageUrls }</code>), which <code>getImageAttachmentContent</code> in <code>files/resize.ts</code> hands to the attachment-saving code in <code>api/server/controllers/agents/callbacks.js</code>, so no image artifact is sent to the model. <code>assertImageDataWithinLimit</code> throws when a base64 image exceeds <code>MCP_IMAGE_DATA_MAX_BYTES</code> (default 10 MiB). Non-text blocks do not change which field reaches the model, because no branch of <code>formatToolContent</code> reads <code>structuredContent</code> for the text.</p>
+
+<p>Image artifacts are merged into the provider request by <code>projectServingArtifacts</code> in <code>@librechat/agents</code> <code>graphs/Graph.ts</code>:</p>
+
+<ul>
+  <li><code>isAnthropicLike</code> (Anthropic, or Bedrock with a Claude model): <code>projectAnthropicArtifactContent</code> (<code>messages/core.ts</code>).</li>
+  <li><code>isOpenAILike</code> except DeepSeek (OpenAI, Azure, OpenRouter, xAI) and <code>isGoogleLike</code> (Google, Vertex AI): <code>projectArtifactPayload</code>, which replaces the tool message text with “Tool response is included in the next message as a Human message” and appends a <code>HumanMessage</code> holding the text and images.</li>
+  <li>Every other provider, including DeepSeek, Ollama and non-Claude Bedrock: <code>return candidate;</code>, so image artifacts are not sent.</li>
+</ul>
+
+<p>An <code>isError</code> result is tagged by <code>markMCPToolResultError</code> (<code>mcp/status.ts</code>), and <code>createMCPStructuredTool</code> returns it as a <code>ToolMessage</code> with <code>status: 'error'</code> and the same text.</p>
+
+<p><code>formatToolContent</code> and <code>parseAsString</code> in <code>mcp/parsers.ts</code> do not read <code>annotations</code>, so a block with <code>audience: ["user"]</code> is handled like any other block of its type and reaches the model. No first-party file under <code>packages/api/src/</code>, <code>api/server/</code>, <code>client/src/</code> or <code>packages/data-provider/src/</code> reads a content-block <code>audience</code>. The only <code>audience</code> hits there are OAuth and JWT settings, in <code>auth/</code>, <code>mcp/oauth/</code>, <code>schedules/</code>, <code>middleware/</code>, <code>packages/data-provider/src/mcp.ts</code> and similar auth code. <code>@librechat/agents</code> 4.2.2 <code>src/</code> has no occurrence of <code>audience</code>.</p>
+
+<h2 id="outputschema-never-read-no-validation-on-the-call-path">outputSchema: never read; no validation on the call path</h2>
+
+<p><code>outputSchema</code> has no occurrence in first-party source outside tests. <code>formatMCPServerTools</code> in <code>mcp/tools.ts</code> builds each catalog entry as <code>{ name, description, parameters }</code> from <code>tool.inputSchema</code>, and <code>createToolInstance</code> in <code>api/server/services/MCP.js</code> builds the LangChain schema from <code>toolDefinition.parameters</code>. Neither projection carries <code>outputSchema</code> into a description or prompt. The SDK’s <code>Client.callTool</code> (<code>client/index.js</code>) validates <code>structuredContent</code> against the cached output schema and throws <code>McpError</code> on a mismatch. LibreChat calls <code>request</code> directly, so that check does not run. The only schema applied is <code>CallToolResultSchema</code>. When that parse fails, <code>Protocol.request</code> rejects, the catch block in <code>createToolInstance</code> rethrows <code>[MCP][server][tool] tool call failed: &lt;message&gt;</code>, and the agent runtime’s <code>formatToolErrorContent</code> (<code>tools/toolErrorContent.ts</code>) gives the model <code>Error: &lt;message&gt;\n Please fix your mistakes.</code>.</p>
+
+<h2 id="other-paths-programmatic-tool-calling-mcp-apps-app-originated-calls">Other paths: programmatic tool calling, MCP Apps, app-originated calls</h2>
+
+<p>The programmatic tool calling runner is <code>executeTools</code> in <code>@librechat/agents</code> <code>tools/ProgrammaticToolCalling.ts</code>. LibreChat wraps its tool map with <code>instrumentPtcToolMap</code> (<code>agents/ptc.ts</code>), which emits trace events and returns results unchanged. <code>executeTools</code> invokes the same MCP tool with <code>tool.invoke(normalizeToolInput(call.input, tool), { metadata })</code> and no <code>toolCall</code>, so <code>_formatToolOutput</code> in <code>@langchain/core</code> 1.2.8 (<code>dist/tools/index.js</code>) returns the first tuple element, the <code>formatToolContent</code> string. <code>unwrapToolResponse(result, isMCPTool)</code> runs <code>maybeParseJSON</code> only on tuples and content blocks, and a plain string falls through to <code>return result;</code>. Sandbox code sees the <code>content</code> text as a string and never <code>structuredContent</code>.</p>
+
+<p>MCP Apps tool metadata is read from <code>_meta</code> in <code>mcp/apps.ts</code>. <code>getToolUiResourceUri</code> reads <code>_meta.ui.resourceUri</code> or <code>_meta['ui/resourceUri']</code> and requires a <code>ui://</code> prefix. <code>isToolHiddenFromModel</code> returns <code>Array.isArray(visibility) &amp;&amp; !visibility.includes('model')</code>, and <code>formatMCPServerTools</code> skips such tools, so they never reach the model. <code>isToolHiddenFromApp</code> applies the same test to <code>'app'</code> and gates <code>MCPManager.appToolCall</code>. When MCP Apps is enabled (<code>mcpSettings.apps: true</code>, since <code>resolveMCPAppsPolicy</code> in <code>packages/data-provider/src/config.ts</code> sets <code>enabled: value === true</code>) and a called tool has a resource URI, <code>MCPManager.callTool</code> reads it with <code>client.readResource</code> and passes it to <code>formatToolContent</code>, which attaches a <code>UIResource</code> snapshot carrying <code>structuredContent</code>, <code>content</code>, <code>isError</code> and <code>resultMeta</code> (the result <code>_meta</code>). In the browser, <code>buildAppToolResult</code> in <code>client/src/utils/mcpApps.ts</code> rebuilds <code>{ content, structuredContent, isError, _meta }</code> from that snapshot, and <code>client/src/hooks/MCP/useAppBridge.ts</code> delivers it to the app iframe with <code>sendToolResult</code>. This is the only route on which <code>structuredContent</code> from a model-initiated call leaves the server.</p>
+
+<p><code>MCPManager.appToolCall</code> proxies <code>tools/call</code> requests from an app iframe with the same <code>client.request(..., CallToolResultSchema, ...)</code> call and returns the parsed result to the app without <code>formatToolContent</code>. That result does not reach the model.</p>
+
+<p>Deployment plugins can declare hooks in <code>ai.librechat/hooks/hooks.json</code> (<code>plugins/constants.ts</code>), and <code>plugins/hooks.ts</code> runs them only when <code>DEPLOYMENT_PLUGIN_HOOKS=true</code>. The <code>PostToolUse</code> payload built by <code>createPluginHookPayload</code> in <code>agents/hooks/runtime.ts</code> carries <code>tool_response: input.toolOutput</code>. <code>@librechat/agents</code> <code>tools/ToolNode.ts</code> fills <code>toolOutput</code> with the <code>ToolMessage</code> content, which for an MCP tool is the <code>formatToolContent</code> string, so a hook never sees <code>structuredContent</code>. <code>sanitizeOutput</code> in <code>agents/hooks/executor.ts</code> passes <code>updatedOutput</code> through on <code>PostToolUse</code>, and <code>ToolNode</code> replaces the <code>ToolMessage</code> content with it, so a hook can change the text the model gets. Tool-approval hooks configured under <code>endpoints.agents.toolApproval.hooks</code> (<code>agents/hitl/hookLoader.ts</code>) are <code>PreToolUse</code> callbacks and do not see the result.</p>
+
+<p>No <code>_meta</code> key, per-server option, constructor option or schema routes <code>structuredContent</code> to the model. The inputs to <code>formatToolContent</code> that change the model text are the provider name (<code>RECOGNIZED_PROVIDERS</code>), the MCP Apps policy (<code>enabled</code>, <code>legacyHtmlEnabled</code>), and the tool’s <code>_meta.ui.resourceUri</code>.</p>
+
+<h2 id="protocol-revision-sdk-default-not-pinned">Protocol revision: SDK default, not pinned</h2>
+
+<p>LibreChat sets no protocol version. <code>new Client({ name: '@librechat/api-client', version: '1.2.3' }, { capabilities })</code> in <code>mcp/connection.ts</code> adds only the MCP Apps UI extension capability, for the apps capability profile. The SDK’s <code>Client.connect</code> (<code>client/index.js</code>) sends <code>protocolVersion: LATEST_PROTOCOL_VERSION</code>, which is <code>'2025-11-25'</code> in <code>types.js</code>, and rejects a server reply outside <code>SUPPORTED_PROTOCOL_VERSIONS</code> (<code>2025-11-25</code>, <code>2025-06-18</code>, <code>2025-03-26</code>, <code>2024-11-05</code>, <code>2024-10-07</code>).</p>
+
+<h2 id="upstream-history-the-validation-comment-the-maintainer-s-position-open-prs">Upstream history: the validation comment, the maintainer’s position, open PRs</h2>
+
+<p>The "Deliberately use <code>request</code>" comment in <code>mcp/MCPManager.ts</code> arrived with <a href="https://github.com/LibreChat-AI/LibreChat/pull/13831" target="_blank">LibreChat-AI/LibreChat#13831</a>, the MCP Apps pull request merged 2026-09-24, which also added <code>structuredContent</code> to <code>MCPToolCallResponse</code> and to the MCP Apps snapshot. The raw <code>request</code> call dates from the first MCP support in December 2024, before the SDK’s <code>callTool</code> validated anything, so the comment explains a path that was never changed. The PR body and review threads do not discuss the bypass.</p>
+
+<p>The maintainer’s stated position, from <a href="https://github.com/LibreChat-AI/LibreChat/discussions/8450" target="_blank">discussion #8450</a> in July 2025: “The structured content is for the output of the tool call, and mainly on the MCP server, not the client (LibreChat) to address.” Two pull requests that would serialize <code>structuredContent</code> at the <code>(No response)</code> sites, <a href="https://github.com/LibreChat-AI/LibreChat/pull/14492" target="_blank">#14492</a> and <a href="https://github.com/LibreChat-AI/LibreChat/pull/15236" target="_blank">#15236</a>, are unmerged, with reports from users of the Airtable, Traccar and Microsoft WorkIQ servers, which send an empty <code>content</code> array.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p><code>formatToolContent</code> in <code>mcp/parsers.ts</code> keeps the App snapshot only if it fits <code>mcpApps.maxPersistedAppBytes</code> (default <code>DEFAULT_MCP_APP_PERSISTED_BYTES</code>). When the snapshot with the resolved body is too large, it retries without the body, and when that also fails <code>fitsPersistedAppLimit</code>, no UI resource is attached and <code>structuredContent</code> does not reach the app. <code>buildAppToolResult</code> in <code>client/src/utils/mcpApps.ts</code> forwards <code>structuredContent</code> only when it is a non-array object.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit fad2c51 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

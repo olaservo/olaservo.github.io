@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How fast-agent handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How fast-agent handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the fast-agent source (<code>clones/fast-agent</code>, checked out at commit c551658, read on 2026-11-12). File references are relative to <code>src/fast_agent/</code> unless they name <code>pyproject.toml</code> or an SDK file. SDK references are to the <code>mcp</code> and <code>mcp-types</code> 2.3.0 wheels, which <code>pyproject.toml</code> pins as <code>"mcp==2.3.0"</code> and <code>"mcp-types==2.3.0"</code>.</p>
+
+<h2 id="entry-results-enter-through-the-sdk-client-typed-as-mcp-types-calltoolresult-with-structured-content-kept">Entry: results enter through the SDK <code>Client</code>, typed as <code>mcp_types.CallToolResult</code>, with <code>structured_content</code> kept</h2>
+
+<p><code>mcp/client_connection.py</code> defines <code>MCPClientConnection</code>, which constructs <code>mcp.client.Client</code> in <code>__init__</code> and delegates <code>call_tool</code> to <code>self.client.call_tool(...)</code> inside <code>_interactive_operation</code>. The result type is <code>mcp_types.CallToolResult</code> (<code>mcp_types/_types.py</code>), whose fields are <code>content: list[ContentBlock]</code>, <code>structured_content: Any = None</code>, <code>is_error: bool = False</code> and <code>result_type</code>. The wire key <code>structuredContent</code> lands in <code>structured_content</code>, documented as “Any JSON value on 2026-07-28; restricted to a JSON object on 2025-06-18 and 2025-11-25”. <code>mcp/mcp_aggregator.py</code> <code>MCPAggregator.call_tool</code> reaches the connection through <code>_execute_on_server(method_name="call_tool", ...)</code> and <code>_execute_session_method</code>. <code>agents/mcp_agent.py</code> <code>McpAgent.call_tool</code> sends <code>exec_sandbox</code> to <code>_call_ptc_tool</code> when programmatic tool calling is enabled and everything else to <code>_dispatch_tool_call</code>, which tries <code>_call_local_tool</code> first (filesystem, shell, skill and builtin runtimes) and otherwise calls <code>self._aggregator.call_tool</code>.</p>
+
+<p><code>content</code> has no default on <code>mcp_types.CallToolResult</code>, so on a 2026-07-28 session a result without the <code>content</code> key fails <code>result_type.validate_python(raw, by_name=False)</code> in <code>ClientSession.send_request</code> (<code>mcp/client/session.py</code>). <code>InputRequiredResult</code>, the other arm of <code>_CallToolResultAdapter</code>, rejects it too, because its validator requires <code>input_requests</code> or <code>request_state</code>. The check before it, <code>_methods.validate_server_result(method, version, raw)</code>, validates against the revision’s wire type from <code>SERVER_RESULTS</code> in <code>mcp_types/methods.py</code>. On 2025-11-25 that type is <code>CallToolResult</code> from <code>mcp_types/_v2025_11_25</code>, which also requires <code>content</code>, so the result fails there with an error naming <code>CallToolResult</code> alone. On 2026-07-28 it is <code>CallToolResult | InputRequiredResult</code> from <code>mcp_types/_v2026_07_28</code>, whose <code>InputRequiredResult</code> has optional <code>input_requests</code> and <code>request_state</code> and no validator, so a result carrying <code>resultType</code> passes and fails at <code>result_type.validate_python</code>. <code>MCPClientConnection._interactive_operation</code> re-handles only <code>MCPError</code>, so the pydantic validation error reaches the generic <code>except Exception</code> branch of <code>MCPAggregator._execute_on_server</code>, and the model receives the <code>Failed to call_tool '{tool}' on server '{server}': {exc}</code> text described under outputSchema.</p>
+
+<h2 id="model-path-structuredcontent-replaces-every-text-block-and-keeps-non-text-blocks">Model path: structuredContent replaces every text block and keeps non-text blocks</h2>
+
+<p><code>mcp/helpers/content_helpers.py</code> <code>canonicalize_tool_result_content_for_llm</code> is the single model-facing view. When <code>structured_content is None</code> it returns <code>content</code> unchanged. Otherwise it drops every text block, serializes the structured value with <code>json.dumps(structured_content, ensure_ascii=False, sort_keys=True, separators=(",", ":"))</code>, and returns <code>[text_content(structured_text), *non_text_blocks]</code>. The check is <code>is None</code>, so <code>{}</code> or <code>[]</code> also replaces the text. With both fields present the model receives the compact JSON plus any image, audio or resource blocks and none of the server’s text. With empty <code>content</code> and a structured value, or with only <code>structuredContent</code>, the model receives the one JSON text block. A warning is logged only when a logger is passed and there are more than one text block; the Anthropic, OpenAI chat and OpenAI Responses converters pass a logger, the Google and Bedrock converters do not.</p>
+
+<p>Every provider converter starts from that list. <code>llm/provider/anthropic/multipart_converter_anthropic.py</code> handles <code>TextContent</code>, <code>ImageContent</code>, <code>EmbeddedResource</code> and <code>ResourceLink</code>; <code>AudioContent</code> matches no branch and is dropped, and an unsupported image MIME type becomes the text <code>Image with unsupported format '...'</code>. <code>llm/provider/openai/multipart_converter_openai.py</code> <code>convert_tool_result_to_openai</code> puts text in the tool message and non-text blocks in a separate user message, with audio rendered by <code>_convert_audio_content</code> as <code>[Unsupported audio content: {mime}]</code>. <code>llm/provider/openai/responses_content.py</code> <code>_tool_result_item_to_part</code> sends images and resources as attachment parts and anything else as <code>[Unsupported content: {type}]</code>. <code>llm/provider/google/google_converter.py</code> <code>_google_tool_result_item_part</code> returns <code>None, None</code> for audio, so it is dropped. <code>llm/provider/bedrock/multipart_converter_bedrock.py</code> keeps only <code>TextContent</code> from the canonical list. Empty canonical content becomes <code>[No content in tool result]</code> (Anthropic, Bedrock) or <code>[Tool completed successfully]</code> (OpenAI chat), and an empty-string <code>output</code> in the Responses converter. Before any converter, <code>_sanitize_call_tool_result</code> in <code>mcp/client_connection.py</code> replaces a <code>ResourceLink</code> with a <code>file:</code> URI with the text <code>[Local file attachment from a remote MCP server was blocked.]</code>, which the canonical function then drops like any other text block when <code>structuredContent</code> is present. <code>agents/llm_decorator.py</code> <code>_prepare_llm_call</code> also runs <code>_sanitize_messages_for_llm</code> on the outgoing messages, and <code>_filter_block_list</code> removes from each tool result’s <code>content</code> every non-text block that <code>_block_supported</code> rejects through <code>model_info.supports_mime</code>. A model name with no <code>ModelDatabase</code> entry gets the text-only default from <code>ModelInfo.from_name</code> (<code>llm/model_info.py</code>, <code>tokenizes=["text/plain"]</code>), so for such a model images, audio and blob resources are removed before the converters, and when every block of a result is removed the text <code>[{category} content was removed - {model} does not support this content type]</code> takes their place.</p>
+
+<p>Before conversion, <code>agents/mcp_agent.py</code> <code>_prepare_planned_tool_result</code> runs <code>bound_tool_result_for_llm</code> (<code>mcp/tool_result_truncation.py</code>) on every non-shell result, except that a <code>read_text_file</code> call to the local filesystem runtime (no namespaced MCP tool) first tries <code>page_read_text_file_result</code>, which, for a non-error result with no <code>structured_content</code> and a single text block over the limit, keeps whole lines and appends a <code>[File read truncated: showing lines ...]</code> notice. <code>bound_tool_result_for_llm</code> measures the canonical text in UTF-8 bytes against <code>_model_tool_output_byte_limit()</code>, which defaults to <code>DEFAULT_TERMINAL_OUTPUT_BYTE_LIMIT = 16_000</code> in <code>constants.py</code> through <code>ShellSettings.output_byte_limit</code>; setting that to <code>None</code> selects <code>"auto"</code>, and the limit becomes <code>calculate_terminal_output_limit_for_max_tokens(max_output_tokens)</code> from <code>llm/terminal_output_limits.py</code>, floored at 16,000. Over the limit it returns <code>result.model_copy(update={"content": content, "structured_content": None})</code> where <code>content</code> is a head-plus-tail text block from <code>truncate_text_output</code> followed by the blocks for which <code>get_text</code> returns <code>None</code>; <code>ResourceLink</code> and text <code>EmbeddedResource</code> blocks have text, so they are folded into the truncated text, and images, audio and blob resources survive as blocks. The <code>retain</code> callback runs <code>spool_tool_result</code> (<code>mcp/tool_result_spool.py</code>), which writes the structured value as indented JSON to a transient <code>.json</code> file when it fits in <code>TOOL_RESULT_ARTIFACT_MAX_BYTES</code> (32 MiB) and otherwise writes the text version; the returned notice (“The complete {tool} result is available during this session at {path}...”) becomes the guidance inside the truncation marker. <code>McpAgent._temporary_artifact_environment</code> returns <code>None</code> unless the shell runtime is enabled and no external runtime is set, so with the shell off (for example <code>--no-shell</code>) nothing is spooled and the marker carries <code>_TOOL_RESULT_TRUNCATION_GUIDANCE</code>, “Use a narrower query or request a smaller result to retain the relevant content.”</p>
+
+<p>A grep for <code>audience</code> under <code>src/fast_agent/</code> returns only <code>_convert_annotations</code> in <code>acp/content_conversion.py</code>, which copies the audience of ACP prompt blocks into MCP annotations on user input. Neither <code>canonicalize_tool_result_content_for_llm</code> nor any provider converter reads <code>annotations</code>. A <code>["user"]</code> text block reaches the model when <code>structured_content</code> is <code>None</code> and is dropped with the other text blocks when it is set. A <code>["user"]</code> image or resource block reaches the model in both cases, subject to the per-provider handling above.</p>
+
+<h2 id="outputschema-parsed-by-the-sdk-validated-by-the-sdk-surfaced-to-the-model-as-an-error-and-under-programmatic-tool-calling-as-a-stub-return-shape">outputSchema: parsed by the SDK, validated by the SDK, surfaced to the model as an error and, under programmatic tool calling, as a stub return shape</h2>
+
+<p><code>mcp_types.Tool.output_schema</code> is populated from <code>tools/list</code> by the SDK, and <code>ClientSession.list_tools</code> caches it in <code>_tool_output_schemas</code> (<code>mcp/client/session.py</code>). <code>ClientSession.call_tool</code> calls <code>validate_tool_result</code> when <code>not result.is_error</code>; <code>Client.call_tool</code> (<code>mcp/client/client.py</code>) revalidates claimed results on the same condition. <code>validate_tool_result</code> re-lists tools if the name is not cached, raises <code>RuntimeError(f"Tool {name} has an output schema but did not return structured content")</code> when the field is absent, and raises <code>RuntimeError(f"Invalid structured content returned by tool {name}: {error}")</code> on a jsonschema mismatch. fast-agent calls <code>Client.call_tool</code>, so the validation runs. <code>MCPAggregator._execute_on_server</code> catches the exception in its generic <code>except Exception</code> branch and <code>_handle_session_method_error</code> returns the <code>error_factory</code> result, <code>CallToolResult(is_error=True, content=[TextContent(type="text", text=msg)])</code>, where <code>msg</code> is <code>Failed to call_tool '{tool}' on server '{server}': {exc}</code>. The model sees that sentence and nothing from the original result. Outside programmatic tool calling, fast-agent itself never reads <code>output_schema</code> on the model path; the other reader is <code>commands/renderers/tools_markdown.py</code> <code>render_tool_schema_markdown</code>, which prints a <code>## Structured output schema</code> section for the tool-schema slash command. Local tools register with <code>output_schema=None</code> (<code>tools/function_tool_loader.py</code>, <code>mcp/server/harness_adapter.py</code>).</p>
+
+<p>A grep for <code>output_schema</code> and <code>outputSchema</code> under <code>src/fast_agent/</code> returns no hits outside <code>ptc/</code> and the three files above. The provider tool declarations are built field by field from <code>tool.input_schema</code> (<code>llm/provider/anthropic/llm_anthropic.py</code>, <code>llm/provider/openai/llm_openai.py</code>, <code>llm/provider/google/google_converter.py</code>, <code>llm/provider/bedrock/llm_bedrock.py</code>), so the output schema is not in the tool declaration or the description.</p>
+
+<h2 id="other-paths-acp-forwards-content-blocks-mcp-apps-metadata-affects-listing-and-display">Other paths: ACP forwards content blocks, MCP Apps metadata affects listing and display</h2>
+
+<p><code>acp/tool_progress.py</code> <code>on_tool_complete</code> builds the ACP <code>tool_call_update</code> from <code>_convert_mcp_content_to_tool_content(content)</code>, and <code>MCPAggregator._notify_tool_complete</code> passes <code>result.content if result.content else None</code>, so the ACP client receives the raw content blocks and never the structured value. <code>mcp/app_integrations/</code> reads <code>_meta.ui.resourceUri</code> (or <code>ui/resourceUri</code>) and <code>_meta.ui.visibility</code> from tool definitions; <code>MCPAggregator.list_tools</code> skips a tool when <code>discovered_tool.is_app_only</code>, so a tool declared with visibility exactly <code>["app"]</code> never reaches the model. <code>extract_app_tool_metadata</code> returns <code>None</code> when neither <code>ui.resourceUri</code> nor the OpenAI Apps SDK resource URI is set, so a tool with <code>visibility: ["app"]</code> and no resource URI is not hidden. On results, <code>ui/tool_display.py</code> <code>_resolve_app_integration_result_details</code> renders the structured value in the terminal under an <code>app resource: {uri}</code> label and <code>_has_structured_text_content_mismatch</code> compares parsed text blocks against it; neither affects the model path. <code>mcp/tool_result_metadata.py</code> writes <code>fast_agent/display</code>, <code>fast_agent/fatal_tool_error</code>, <code>fast_agent/url_elicitation_required</code> and <code>fast_agent/media_preview_content</code> into result <code>_meta</code> for display and control. <code>config.py</code> <code>MCPServerSettings.management = "provider"</code> delegates MCP execution to the model provider, and results on that route never pass through fast-agent.</p>
+
+<p>fast-agent hosts no MCP App view. <code>mcp/app_integrations/</code> defines the <code>text/html;profile=mcp-app</code> and <code>text/html+skybridge</code> MIME constants, and a grep under <code>src/fast_agent/</code> for <code>iframe</code>, <code>postMessage</code> and <code>ui/notifications</code> finds no view host, so no view receives either field.</p>
+
+<p><code>agents/tool_runner.py</code> <code>ToolRunnerHooks</code> has <code>before_tool_call</code> and <code>after_tool_call</code> hook points, set per agent through <code>tool_hooks</code> (<code>agents/agent_types.py</code>) and loaded from <code>module.py:function_name</code> specs by <code>tools/hook_loader.py</code>. <code>after_tool_call</code> receives the <code>PromptMessageExtended</code> returned by <code>run_tools</code>, whose <code>tool_results</code> hold the <code>CallToolResult</code> objects stored by <code>_store_planned_tool_result</code> after <code>_prepare_planned_tool_result</code>, so a hook sees <code>structured_content</code> unless truncation set it to <code>None</code>. The runner stages that same message for the next LLM call (<code>_ensure_tool_response_staged</code>), so a hook that edits <code>content</code> or <code>structured_content</code> in place changes what the converters canonicalize. The <code>ToolRunnerHooks</code> docstring calls the hooks “intentionally low-level and mutation-friendly”. An exception in <code>after_tool_call</code> is logged as “Tool hook failed after tool call” and the tool message is kept.</p>
+
+<p><code>plugins/tool_call_review.py</code> defines a plugin <code>tool_call_review</code> hook, declared in a <code>schema_version: 3</code> plugin manifest. <code>ToolAgent.run_tools</code> (<code>agents/tool_agent.py</code>) and <code>McpAgent._run_mcp_tools</code> call <code>_review_planned_tool_calls</code> before any call in the assistant message runs. A reviewer receives a <code>PluginToolCallReviewContext</code> holding the agent instruction, the tool declarations, the history, the request and the pending calls, and no tool result. It returns denied call ids mapped to text, and <code>_record_tool_error_result</code> stores <code>CallToolResult(content=[text_content(error_message)], is_error=True)</code> as each denied call’s result, so the model receives that text and the tool never runs. A reviewer that fails to load, raises or returns something other than a mapping or <code>None</code> denies every pending call with a <code>Tool call blocked: ...</code> message. Calls made from programmatic tool calling sandbox code go through <code>_call_ptc_nested_tool</code> to <code>_dispatch_tool_call</code> and are not reviewed.</p>
+
+<p><code>canonicalize_tool_result_content_for_llm</code> takes only the result, a logger and a source label. No <code>_meta</code> key, server setting, agent option or schema changes which field the model gets on the MCP path. The routes that change it are programmatic tool calling, where the model gets the <code>exec_sandbox</code> result, and <code>management = "provider"</code>, where fast-agent does not see the result.</p>
+
+<h2 id="programmatic-tool-calling-on-by-default-for-some-models-scripts-receive-the-structured-value">Programmatic tool calling: on by default for some models, scripts receive the structured value</h2>
+
+<p><code>config.py</code> <code>ProgrammaticToolCallingSettings.enabled</code> defaults to <code>None</code>, “null uses the model default”, and is “Local POSIX only”. <code>agents/mcp_agent.py</code> <code>_ptc_selection</code> takes <code>--ptc</code>/<code>--no-ptc</code> first, then <code>ResolvedModelSpec.resolve_ptc_enabled</code> (<code>llm/resolved_model.py</code>) applies the <code>ptc</code> model-string query, then <code>ptc.enabled</code>, then the catalog’s <code>ModelParameters.ptc_enabled</code> (<code>llm/model_database.py</code>), which defaults to <code>False</code> and is <code>True</code> for <code>gpt-6-astra</code>, <code>gpt-6.1-sol</code>, <code>gpt-6.1-terra</code>, <code>gpt-6-luna</code>, <code>kimi-k3.1-pro</code> (also through Hugging Face) and <code>glm-5.3-flash</code>. <code>_ptc_enabled_for</code> checks <code>_ptc_environment_supported</code>, which is false for non-POSIX hosts and for ACP-owned, remote, Docker or custom environments; there it raises when the choice was explicit and leaves PTC off when it came from the model default. When it is on, <code>ptc/runtime.py</code> <code>ProgrammaticToolRuntime.model_tools</code> replaces the agent’s tools with one tool, <code>exec_sandbox</code>, plus any tool matched by <code>ptc.direct_tools</code> or declaring <code>expose: "direct"</code> or <code>"both"</code> under <code>_meta.fast_agent.ptc</code> and not matched by <code>ptc.nested_tools</code>. The model writes Python that runs in a pydantic-monty sandbox where each remaining tool is an async function. <code>_call_ptc_nested_tool</code> sends those calls through <code>_dispatch_tool_call</code>, so MCP results take the same aggregator and SDK validation path, and a tool hidden by <code>is_app_only</code> is not a sandbox function either.</p>
+
+<p><code>ptc/values.py</code> <code>tool_result_to_value</code> builds what the script receives. A <code>fast-agent-ptc-value</code> key in result <code>_meta</code> is returned first, even for an error result; the shell, <code>attach_media</code> and subagent tools set it, and the key is read from any result with no check on its source. Any other error result raises <code>ToolCallFailed</code>, a <code>RuntimeError</code>, carrying the <code>fast-agent-ptc-error</code> <code>_meta</code> string when it is a string and otherwise the error text. When <code>structured_content is not None</code>, text blocks are dropped and the script gets the raw value, or <code>{"structured_content": ..., "content": [...]}</code> when non-text blocks are present. Without a structured value each block is converted: text starting with <code>{</code> or <code>[</code> is parsed as JSON and otherwise stays a string, images, audio and blob resources become <code>{"media_id": ...}</code> handles, and a <code>ResourceLink</code> becomes a dict. One block is returned bare, several as a list, none as <code>None</code>.</p>
+
+<p>The model receives only the <code>exec_sandbox</code> result. <code>_success</code> builds <code>CallToolResult(content=[*content, *media])</code> with one text block holding the status line, the printed output and the final value through <code>render_value</code>, plus the media whose handles appear in the final value. That result has no <code>structured_content</code>, so <code>canonicalize_tool_result_content_for_llm</code> returns it as is, and <code>bound_tool_result_for_llm</code> caps it like any other result. Nested results do not pass through <code>_prepare_planned_tool_result</code>, so the script sees them untruncated.</p>
+
+<p><code>ptc/stubs.py</code> <code>_build_function</code> takes <code>output_schema</code> from <code>_meta.fast_agent.ptc.returns</code> or else <code>tool.output_schema</code>. The stub then declares <code>-&gt; dict[str, Any]</code> in place of <code>-&gt; Any</code> and <code>_returns_shape</code> adds a compact <code>Returns:</code> line to the docstring. Those stubs appear in the <code>exec_sandbox</code> description, and with <code>ptc.type_check</code> (default <code>True</code>) Monty type-checks the code against them before it runs.</p>
+
+<h2 id="protocol-revision-negotiated-by-the-sdk-selectable-per-server-through-protocol-mode">Protocol revision: negotiated by the SDK, selectable per server through <code>protocol_mode</code></h2>
+
+<p>No protocol string is pinned in fast-agent. <code>MCPClientConnection.__init__</code> passes <code>mode=sdk_connect_mode(protocol_mode)</code>, where <code>protocol_mode</code> comes from <code>MCPServerSettings.protocol_mode</code> or <code>MCPDefaultsSettings.protocol_mode</code> in <code>config.py</code> and defaults to <code>"auto"</code>. In <code>auto</code> the SDK’s <code>negotiate_auto</code> (<code>mcp/client/_probe.py</code>) sends <code>server/discover</code> with <code>LATEST_MODERN_VERSION</code> (“2026-07-28”) and falls back to <code>initialize()</code> offering <code>LATEST_HANDSHAKE_VERSION</code> (“2025-11-25”). <code>"modern"</code> uses <code>_ForcedModernClient</code>, which sends <code>session.send_discover(LATEST_MODERN_VERSION)</code> and raises on failure. <code>"legacy"</code> runs the handshake only. The registry is <code>KNOWN_PROTOCOL_VERSIONS</code> in <code>mcp_types/version.py</code>.</p>
+
+<h2 id="upstream-history-a-display-pr-that-became-the-model-path-rule">Upstream history: a display PR that became the model-path rule</h2>
+
+<p><code>canonicalize_tool_result_content_for_llm</code> came in through <a href="https://github.com/evalstate/fast-agent/pull/703" target="_blank">evalstate/fast-agent#703</a>, merged 2026-04-09, in commit 8b47458 (“update structured content handling, with plan”). That commit also edited the Anthropic, OpenAI chat, OpenAI Responses, Google and Bedrock converters and <code>llm/internal/passthrough.py</code> to call it. The PR was opened by iqdoctor as a terminal-preview change, with the body “No MCP contract change. This is display-only.” Its stated basis: "So for clients, <code>structuredContent</code> is the canonical structured payload; <code>content</code> is the compatibility mirror.“ The maintainer, evalstate, added the model-path change and commented: ”fast-agent was using the text content block. I’ve updated the handling with what I think is most appropriate; and run the prompt for the plan."</p>
+
+<p>The same commit added <code>plan/03-07-structured-handling.md</code>, which is not in the tree at c551658. The plan names the mismatch it addresses: “the user sees one payload in the tool result panel” and “the model reasons over a different payload”. Its reason for the rule: "the presence of <code>structuredContent</code> is a strong signal that the structured payload is the authoritative result“ and ”using divergent text as canonical input is the riskier default“. It lists the cost: ”if a tool intentionally included useful narrative explanation in text blocks, that prose will no longer be the primary text passed to the model“. On the serialization: ”compact JSON is cheaper for model input than indented JSON“, ”<code>ensure_ascii=False</code> preserves readable Unicode“ and ”<code>sort_keys=True</code> improves determinism in tests and logs“. On the warning: ”semantic comparison would require parsing arbitrary text and would likely be noisy and brittle“. The docstring at c551658 keeps the reasoning: ”MCP intends <code>content</code> text and <code>structuredContent</code> to agree semantically, but that invariant is not enforced in practice." <a href="https://github.com/evalstate/fast-agent/pull/990" target="_blank">#990</a>, merged 2026-09-30, added <code>spool_tool_result</code>, and its body says structured content "is retained as indented JSON (<code>.json</code>) so line ranges and grep are useful".</p>
+
+<p>The clone is shallow with one commit, so <code>git log</code> and <code>git blame</code> do not reach these changes. <code>gh search prs</code> for “structuredContent”, “structured_content”, “canonicalize”, “structured content” and “canonical tool result”, and <code>gh search issues</code> for “structured content”, “structuredContent”, “outputSchema” and “audience”, found no other PR or issue about the rule.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p><code>canonicalize_tool_result_content_for_llm</code> does not check <code>is_error</code>, and the converters call it on every result (for example <code>llm/provider/anthropic/multipart_converter_anthropic.py</code>), so an error result that carries <code>structured_content</code> reaches the model as the JSON with its error text dropped.</p>
+
+<p>A non-object <code>structuredContent</code> depends on the revision. On 2025-11-25 the wire <code>CallToolResult</code> in <code>mcp_types/_v2025_11_25</code> declares <code>structured_content: dict[str, Any] | None</code>, so <code>_methods.validate_server_result</code> rejects a string or array and the model receives the <code>Failed to call_tool ...</code> text in place of the whole result. On 2026-07-28 the field is <code>Any</code>, and <code>canonicalize_tool_result_content_for_llm</code> serializes a string as a quoted JSON string.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit c551658 &#183; Read 2026-11-12 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

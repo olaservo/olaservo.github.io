@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How Mastra handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How Mastra handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the Mastra monorepo (<code>clones/mastra</code>, checked out at commit 7277766d6c967c475675d58ff2d0e5c6d7be7c84 (7277766d), read on 2026-11-14). File references are relative to the repo root. SDK references are to the <code>@modelcontextprotocol/client@2.4.0</code> tag of <code>modelcontextprotocol/typescript-sdk</code> at 2094c44, whose <code>packages/client/package.json</code> reads 2.4.0, the version <code>pnpm-lock.yaml</code> pins for <code>@modelcontextprotocol/client</code> and <code>@modelcontextprotocol/core</code> under <code>packages/mcp</code>.</p>
+
+<h2 id="entry-results-enter-through-the-sdk-client-calltool-and-are-reshaped-inside-each-tool-s-execute">Entry: results enter through the SDK <code>Client.callTool</code> and are reshaped inside each tool’s <code>execute</code></h2>
+
+<p><code>MCPClient</code> in <code>packages/mcp/src/client/configuration.ts</code> creates one <code>InternalMastraMCPClient</code> per server. <code>InternalMastraMCPClient</code> in <code>packages/mcp/src/client/client.ts</code> wraps <code>Client</code> from <code>@modelcontextprotocol/client</code> and forwards <code>server.jsonSchemaValidator</code> to it when one is configured. <code>buildToolFromListEntry</code> turns each <code>tools/list</code> entry into a Mastra tool with <code>createTool</code>, and is shared by live discovery (<code>tools()</code>) and cache hydration (<code>toolFromDefinition</code>). Its <code>execute</code> calls <code>this.client.callTool({ name, arguments, _meta }, ...)</code> and receives the SDK’s <code>CallToolResult</code>. It then returns one of three values. On <code>isError</code> with the default <code>onToolError: 'throw'</code> it throws a <code>MastraError</code>. On <code>res.structuredContent !== undefined &amp;&amp; !res.isError</code> it returns <code>attachMcpCallToolContent(res.structuredContent, res.content, ...)</code>, the structured value itself with <code>content</code> and result <code>_meta</code> stored on the non-enumerable symbols <code>MCP_CALL_TOOL_CONTENT</code> and <code>MCP_CALL_TOOL_META</code>. Otherwise it returns <code>res</code>, the whole envelope. Scalar or <code>null</code> structured values cannot carry the symbols.</p>
+
+<p>The SDK’s <code>CallToolResultSchema</code> in <code>packages/core/src/schemas.ts</code> (SDK, read at 2094c44 through the GitHub API) declares <code>structuredContent: z.unknown().optional()</code> and <code>content: z.array(ContentBlockSchema).default([])</code>. The negotiated revision’s codec parses the wire body first. On 2026-07-28, <code>decodeResult</code> in <code>packages/core-internal/src/wire/rev2026-07-28/codec.ts</code> (SDK) parses with that revision’s <code>CallToolResultSchema</code> from <code>rev2026-07-28/buildSchemas.ts</code>, which declares <code>content: z.array(ContentBlockSchema)</code> with no default and <code>structuredContent: z.unknown().optional()</code>. <code>structuredContent</code> survives as any JSON value, and a result without a <code>content</code> key, an empty <code>{}</code> result included, is rejected with <code>Invalid result for tools/call: ${parsed.error}</code>. <code>isReconnectableMCPError</code> does not match that message, so <code>execute</code> rethrows it and the model sees the zod issue list as error text. On 2025-11-25, <code>CallToolResultWireSchema</code> in <code>rev2025-11-25/buildSchemas.ts</code> defaults a missing <code>content</code> to <code>[]</code>, so <code>execute</code> handles it like an empty <code>content</code> array, and the revision’s <code>structuredContent: z.record(z.string(), z.unknown()).optional()</code> rejects a scalar, array or <code>null</code> <code>structuredContent</code> with the same <code>Invalid result for tools/call:</code> prefix.</p>
+
+<h2 id="model-path-the-declared-outputschema-decides-between-content-text-and-structuredcontent">Model path: the declared outputSchema decides between content text and structuredContent</h2>
+
+<p><code>buildToolFromListEntry</code> attaches a model mapper only for tools with a schema: <code>...(tool.outputSchema ? { toModelOutput: createStructuredToolToModelOutput() } : {})</code>. <code>createStructuredToolToModelOutput</code> reads the hidden <code>content</code> and returns <code>{ type: 'text', value: modelText }</code> when <code>extractModelTextFromToolContent</code> finds text, otherwise <code>{ type: 'json', value: output }</code>. <code>extractModelTextFromToolContent</code> keeps <code>text</code> blocks and the <code>resource.text</code> of embedded resources, joined with <code>\n</code> and trimmed. Core runs the mapper in <code>computeModelOutputProviderMetadata</code> (<code>packages/core/src/loop/shared/steps/tool-result-commit-core.ts</code>) and stores the result at <code>providerMetadata.mastra.modelOutput</code>. <code>MessageList</code> in <code>packages/core/src/agent/message-list/message-list.ts</code> substitutes the stored value into the tool-result <code>output</code> when it builds the prompt.</p>
+
+<p>With a declared <code>outputSchema</code> and both fields present, the model receives the joined text and not the structured value. With a declared <code>outputSchema</code>, empty <code>content</code> (or content with no text) and <code>structuredContent</code> present, the model receives <code>structuredContent</code> as <code>{ type: 'json' }</code>. Without a declared <code>outputSchema</code>, no mapper runs. The vendored AI SDK v5 <code>convertToModelMessages</code> (<code>ai</code> 5.0.285, re-exported by <code>packages/_vendored/ai_v5/src/index.ts</code>) then serializes the returned structured value as <code>{ type: 'json' }</code>, so <code>structuredContent</code> replaces <code>content</code> whether <code>content</code> is empty or not. The symbols are non-enumerable, so <code>content</code> does not reach the model on that route.</p>
+
+<p>The routes above apply whether the text is an exact mirror of the JSON or differs from it. Neither <code>createStructuredToolToModelOutput</code> nor the no-schema route compares the text with the JSON. Each sends one of the two fields, so a mirrored result reaches the model once. The exception is <code>onToolError: 'return'</code> with <code>isError</code>, where the envelope carries both fields. No placeholder is substituted for an empty result. The mapper returns either text or the structured value, and a result with <code>content: []</code> and no <code>structuredContent</code> reaches the model as the envelope JSON. A search of <code>packages/core/src/agent/message-list</code> and <code>packages/core/src/loop/shared</code> for placeholder strings found none.</p>
+
+<p>When <code>structuredContent</code> is absent, the envelope goes to the model as JSON. <code>applyMcpContentToolResultOutputs</code> in <code>packages/core/src/agent/message-list/conversion/output-converter.ts</code> rewrites that JSON into <code>{ type: 'content' }</code> when <code>convertMcpContentToolResultOutput</code> finds an <code>image</code> or <code>audio</code> block with string <code>data</code>. It maps text to text, image and audio to <code>media</code> parts, and every other block to <code>JSON.stringify(typedPart)</code> text. The rewrite is skipped when a stored <code>modelOutput</code> exists, so it applies only to tools without a declared <code>outputSchema</code>. On the structured path no media survives. The mapper keeps text only, and the no-schema route drops <code>content</code>.</p>
+
+<p><code>isError</code> is checked first. Under <code>'throw'</code>, <code>extractToolErrorText(res.content)</code> joins the text and resource text, falling back to <code>'MCP tool execution failed'</code>, and the result becomes the <code>MastraError</code> text. <code>structuredContent</code> goes only to <code>details.structuredContent</code> as a JSON string. <code>llm-mapping-step.ts</code> records the failure with <code>commitToolResult</code> as <code>{ kind: 'error', errorText: reifiedError.message }</code>, so the model sees the joined text. Under <code>onToolError: 'return'</code> the gate <code>!res.isError</code> fails and the whole envelope is returned, including <code>isError</code> and <code>structuredContent</code>.</p>
+
+<p><code>annotations.audience</code> is not read on the model path. <code>extractModelTextFromToolContent</code>, <code>extractToolErrorText</code> and <code>convertMcpContentToolResultOutput</code> select blocks by <code>type</code> only, so a <code>["user"]</code> block reaches the model like any other block. A grep for <code>audience</code> in <code>packages/mcp/src</code>, <code>packages/core/src</code>, <code>client-sdks</code> and <code>packages/playground-ui/src</code> returns only OAuth token audience checks in <code>packages/mcp/src/server/oauth-middleware.ts</code> and <code>packages/core/src/server/types.ts</code> and Knowledge pin audiences in <code>packages/core/src/knowledge</code>, <code>packages/core/src/storage/domains/knowledge</code> and the Studio Knowledge components (<code>packages/playground-ui/src/domains/knowledge</code>, <code>packages/playground-ui/src/domains/chat/tools/badges/knowledge-tool-badge.tsx</code>).</p>
+
+<h2 id="outputschema-read-for-model-mapping-and-code-mode-types-validated-by-the-sdk-or-by-mastra-depending-on-the-tool-s-origin">outputSchema: read for model mapping and code-mode types, validated by the SDK or by Mastra depending on the tool’s origin</h2>
+
+<p><code>convertOutputSchema</code> overwrites the validator on the schema handed to <code>createTool</code> with <code>validate: value =&gt; ({ value })</code>. The <code>Tool.execute</code> check in <code>packages/core/src/tools/tool.ts</code> (<code>validateToolOutput(this.outputSchema, ...)</code>) therefore always passes. <code>outputSchema</code> is also read to decide whether <code>toModelOutput</code> is attached, is copied into <code>SerializableMCPToolDefinition</code> by <code>toSerializableDefinition</code>, and becomes the code-mode return type (below).</p>
+
+<p>The schema does not reach the model through the tool declaration or the description. <code>buildToolFromListEntry</code> sets <code>description: tool.description || ''</code>. <code>prepareToolsAndToolChoice</code> in <code>packages/core/src/stream/aisdk/v5/compat/prepare-tools.ts</code> builds each function tool as <code>name</code>, <code>description</code>, <code>inputSchema</code>, <code>strict</code> and <code>providerOptions</code>, with no output schema. A grep for <code>outputSchema</code> in <code>packages/core/src/llm/model/aisdk/v6/model.ts</code>, <code>v7/model.ts</code> and <code>packages/core/src/stream/aisdk/v5/execute.ts</code> returns nothing.</p>
+
+<p>For live tools, <code>listTools</code> writes the SDK response cache and the SDK validates first. <code>Client.callTool</code> in <code>packages/client/src/client/client.ts</code> (SDK) throws <code>ProtocolError</code> with <code>Tool ${name} has an output schema but did not return structured content</code> when the field is absent, and with <code>Structured content does not match the tool's output schema: ${errorMessage}</code> on a mismatch. <code>isReconnectableMCPError</code> (<code>packages/mcp/src/client/error-utils.ts</code>) does not match those messages, so <code>execute</code> rethrows and the model sees the SDK message as error text.</p>
+
+<p>For tools rebuilt with <code>toolFromDefinition</code>, the SDK cache is cold and the SDK skips validation. Mastra validates in <code>execute</code> with a validator from <code>getJsonSchemaValidator</code>, which uses the configured validator or <code>AjvJsonSchemaValidator</code> from <code>@modelcontextprotocol/client/validators/ajv</code>. On a mismatch it returns <code>validation.error</code> from <code>validateToolOutput</code> (<code>packages/core/src/tools/validation.ts</code>). That value is an object <code>{ error: true, message, validationErrors }</code> whose message starts <code>Tool output validation failed for ${toolId}. The tool returned invalid output:</code>. It is returned as a successful result, and the mapper sends it as <code>{ type: 'json' }</code> because it carries no hidden <code>content</code>. When <code>jsonSchemaComplexity</code> (<code>packages/mcp/src/shared/json-schema-dialect.ts</code>) rejects the output schema, a result with <code>structuredContent</code> throws <code>MCP_CLIENT_OUTPUT_SCHEMA_TOO_COMPLEX</code> (<code>packages/mcp/src/client/client.ts</code>) instead of being validated.</p>
+
+<h2 id="other-paths-code-mode-studio-and-mcp-apps-history">Other paths: code mode, Studio and MCP Apps, history</h2>
+
+<p><code>createCodeMode</code> and <code>createCodeModeTool</code> in <code>packages/core/src/tools/code-mode/code-mode.ts</code> take any Mastra tools, MCP tools included. <code>generateStubs</code> in <code>stub-generator.ts</code> renders each tool’s <code>outputSchema</code> through <code>schemaToTs</code> into <code>declare function external_&lt;name&gt;(input: ...): Promise&lt;${outputType}&gt;</code>. An MCP tool’s schema becomes the stub’s TypeScript return type, and a tool without one returns <code>Promise&lt;unknown&gt;</code>. The dispatcher calls <code>tool.execute</code>, and <code>StdioCodeModeTransport.serveRpc</code> (<code>transport.ts</code>) sends the return value to the sandbox as <code>JSON.stringify({ type: 'rpc-result', id, ok, result, error })</code>. Scripts get <code>structuredContent</code> when it is present, without <code>content</code> because the symbols do not serialize, and the envelope otherwise. A thrown <code>isError</code> reaches the script as a rejected call. A returned <code>ValidationError</code> is turned into a throw by the <code>isValidationError</code> check in the dispatcher. The model sees the code-mode tool’s own <code>{ success, result, logs, error }</code> object.</p>
+
+<p>Studio renders the stored tool output. <code>useMcpAppTools</code> (<code>client-sdks/react/src/hooks/mcps/use-mcp-app-tools.ts</code>) maps tools whose definition has <code>_meta.ui.resourceUri</code>, and <code>ToolCard</code> (<code>packages/playground-ui/src/domains/chat/tools/tool-card.tsx</code>) mounts <code>McpAppToolResult</code> for them. <code>McpAppViewer</code> (<code>packages/playground-ui/src/domains/mcps/components/mcp-app-viewer.tsx</code>) passes an envelope through and wraps any other value as <code>content: [{ type: 'text', text }]</code>, with <code>text</code> the string itself or <code>JSON.stringify(toolResult)</code>, and adds <code>structuredContent: toolResult</code> when the value is a non-array object. An app receives a structured object result as both a JSON text block and <code>structuredContent</code>, and an array or scalar as the JSON text block only. An app’s <code>ui/update-model-context</code> request goes through <code>modelContextText</code> in the same file, which joins the app’s <code>text</code> blocks and <code>JSON.stringify(params.structuredContent)</code> under a <code>Context from the "${toolName}" MCP App shown in this conversation:</code> line and hands it to the chat’s <code>setModelContext</code> for the next turn. <code>getMastraToolStrictMeta</code> (<code>packages/mcp/src/shared/mastra-tool-meta.ts</code>) reads <code>_meta.mastra.strict</code> from the tool definition to set <code>strict</code>. No result <code>_meta</code> key changes what reaches the model.</p>
+
+<p><code>useMcpAppTools</code> reads tool definitions from <code>client.getMcpServers()</code>, which lists the MCP servers registered on the Mastra instance (<code>mastra.listMCPServers()</code> in <code>packages/server/src/server/handlers/mcp.ts</code>). <code>_meta.ui.visibility</code> is honoured. <code>isModelVisible</code> in <code>packages/mcp/src/client/configuration.ts</code> drops tools whose <code>visibility</code> array lacks <code>'model'</code> from <code>listTools</code>, <code>listToolsets</code>, <code>listToolDefinitions</code>, their <code>WithErrors</code> variants and <code>toolsFromDefinitions</code>, so the model is not given app-only tools. The single-tool <code>toolFromDefinition</code> does not filter. In Studio, <code>useMcpAppToolCall</code> (<code>packages/playground-ui/src/domains/mcps/hooks/use-mcp-app-tool-call.ts</code>) refuses an app’s call to a tool whose <code>visibility</code> array lacks <code>'app'</code>. <code>useMcpAppTools</code> reads only <code>_meta.ui.resourceUri</code>. <code>stampServerIdInMeta</code> in <code>packages/mcp/src/client/client.ts</code> adds <code>ui.serverId</code> to tool and result <code>_meta</code> and touches no other key.</p>
+
+<p>Agent tool hooks see the <code>execute</code> return and cannot change it after the call. <code>wrapToolWithHooks</code> in <code>packages/core/src/agent/agent.ts</code> passes <code>output</code> to <code>afterToolCall</code> and ignores its return value. <code>beforeToolCall</code> can return <code>{ proceed: false, output }</code>, which skips the MCP call and returns <code>output</code> in its place. Input processors can rewrite what the model gets. <code>processInputStep</code> receives the message list, and <code>processLLMRequest</code> (<code>packages/core/src/processors/index.ts</code>) receives the converted <code>LanguageModelV2Prompt</code>, with <code>modelOutput</code> already substituted, and may return a modified copy (<code>runProcessLLMRequest</code> in <code>packages/core/src/loop/workflows/agentic-execution/llm-execution-step.ts</code>). Tool payload transforms (<code>ToolPayloadTransform</code> in <code>packages/core/src/tools/types.ts</code>) target <code>display</code> and <code>transcript</code>, and <code>MessageList</code> builds the prompt with <code>transformToolPayloads: false</code>.</p>
+
+<p>The switches that change which field the model gets are the declared <code>outputSchema</code> and the <code>onToolError</code> option. The other <code>MCPClient</code> server options in <code>packages/mcp/src/client/types.ts</code> (<code>requireToolApproval</code>, <code>jsonSchemaValidator</code>, <code>tasks</code>, <code>forwardInstructions</code> and the rest) do not touch the result routing.</p>
+
+<p>History keeps the <code>execute</code> return as the tool invocation <code>result</code> and the mapped value at <code>providerMetadata.mastra.modelOutput</code>. Replay uses the stored <code>modelOutput</code>, so a reloaded thread sends the model what the live turn sent.</p>
+
+<h2 id="mcp-tasks-a-task-s-final-result-takes-the-same-return-path-without-the-sdk-check">MCP tasks: a task’s final result takes the same return path, without the SDK check</h2>
+
+<p>The per-server <code>tasks</code> option (<code>packages/mcp/src/client/types.ts</code>, experimental, off by default) declares the Tasks extension (SEP-2663). <code>interceptTaskResults</code> in <code>packages/mcp/src/client/tasks/intercept.ts</code> rewrites a <code>resultType: "task"</code> response into a <code>CallToolResult</code> with <code>isError: true</code> and the handle under <code>_meta['mastra.ai/mcp-task']</code>, which keeps the SDK from applying the output schema. <code>execute</code> reads the handle with <code>takeTaskHandle</code>, <code>awaitToolTask</code> polls until a terminal status, and a completed task’s <code>terminal.result</code> goes through the same <code>finishToolCall</code> as a direct result, so the three return values above apply. The SDK does not validate that result. Mastra’s check in <code>finishToolCall</code> runs when <code>structuredContent</code> is present, and a result without it returns as the envelope. A failed or cancelled task throws <code>MCP_CLIENT_TOOL_TASK_FAILED</code> or <code>MCP_CLIENT_TOOL_TASK_CANCELLED</code>. A task that reaches <code>input_required</code> with no <code>inputRequests</code> handler configured suspends the call when the agent or workflow can suspend, and <code>execute</code> returns <code>undefined</code>. The resumed call answers the task and its result takes the same <code>finishToolCall</code> path.</p>
+
+<p>With <code>tasks</code> set, <code>taskToolBackgroundConfig</code> gives the tool <code>background: { enabled: true, defaultDisposition: 'deferred', maxRetries: 0, ... }</code>, so on an agent with background tasks enabled the executor runs off the agent loop. <code>applyBackgroundToolResult</code> (<code>packages/core/src/loop/shared/steps/background-task-result-core.ts</code>) then replaces the placeholder result, runs <code>toModelOutput</code> on the real result, and overwrites <code>providerMetadata.mastra.modelOutput</code>. For a deferred task, <code>tool-call-step.ts</code> then calls <code>agent.__notifyBackgroundTaskFinished</code>, which, unless an <code>untilIdle</code> stream for the thread already handles the task or <code>notifyAgentOnFinish</code> is <code>false</code>, sends the thread a <code>background-task</code> notification signal naming the task, tool call and status but not the result.</p>
+
+<h2 id="protocol-revision-negotiated-by-the-sdk-in-auto-mode-unless-pinned-per-server">Protocol revision: negotiated by the SDK in auto mode unless pinned per server</h2>
+
+<p><code>negotiationMode</code> in <code>packages/mcp/src/client/client.ts</code> maps an absent <code>protocolVersion</code> to <code>'auto'</code>, <code>'legacy'</code> to <code>'legacy'</code>, and anything else to <code>{ pin: protocolVersion }</code>, passed to the SDK as <code>versionNegotiation: { mode }</code>. <code>MCPClientProtocolVersion</code> in <code>packages/mcp/src/client/types.ts</code> allows only <code>MCP_CLIENT_PROTOCOL_VERSION = '2026-07-28'</code> or <code>'legacy'</code>. In auto mode the SDK probes with <code>server/discover</code> and falls back to the <code>initialize</code> handshake, whose <code>LATEST_PROTOCOL_VERSION</code> is <code>'2025-11-25'</code> (<code>packages/core/src/constants.ts</code> in the SDK). <code>assertCurrentRevision</code> fails <code>subscriptions/listen</code> when a different revision was negotiated.</p>
+
+<h2 id="upstream-history-the-schema-gated-mapper-and-the-resource-text-filter">Upstream history: the schema-gated mapper and the resource-text filter</h2>
+
+<p>The <code>toModelOutput</code> mapper came in through <a href="https://github.com/mastra-ai/mastra/pull/20176" target="_blank">mastra-ai/mastra#20176</a>, merged 2026-08-07, fixing <a href="https://github.com/mastra-ai/mastra/issues/20168" target="_blank">issue #20168</a>, which reported that the model received a large structured payload where it should receive the text of <code>content</code>. Both cite the specification’s description of the two fields. The PR body: "Per the MCP specification, <code>content</code> is the LLM-facing channel while <code>structuredContent</code> is intended for client/UI consumption." The costs named are tokens and the MCP Apps pattern of a short summary in <code>content</code> with the data in <code>structuredContent</code>. <a href="https://github.com/mastra-ai/mastra/pull/27131" target="_blank">#27131</a>, merged 2026-10-15, widened <code>extractModelTextFromToolContent</code> to embedded resource text after the GitHub MCP server added an <code>outputSchema</code> to its file tool and an agent could no longer read a file through mastra.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>The gate in <code>finishToolCall</code> is <code>res.structuredContent !== undefined</code>, so <code>{}</code> and <code>null</code> take the structured path while a missing field returns the envelope. A scalar or <code>null</code> <code>structuredContent</code> on a tool with an <code>outputSchema</code> reaches the model as <code>{ type: 'json' }</code> even when <code>content</code> has text. <code>attachMcpCallToolContent</code> stores <code>content</code> only on objects and arrays, so <code>createStructuredToolToModelOutput</code> finds no hidden text for a scalar and falls back to the structured value (<code>packages/mcp/src/client/client.ts</code>). This applies on 2026-07-28 only, since on 2025-11-25 the SDK rejects a non-object <code>structuredContent</code> before <code>execute</code> sees it.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 7277766d &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>
