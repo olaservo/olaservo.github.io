@@ -655,7 +655,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Spec 2.5 published October 2026",
   "participate": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -667,11 +667,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. 2.5 added Appendix A.9.3 guidance for JSON, which [[mcp-c2pa-in-meta]] relies on. The conformance text rubric has no JSON group yet.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
+    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [[mcp-c2pa-in-meta]] relies on. The conformance text rubric has no JSON group yet.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
    },
    {
     "title": "Related",
     "text": "- Identity and consent assertions come from [[cawg]].\n- Signing skill folders: [[agent-skills-signing]].\n- Its trust layer is compared with [[aaif-identity-trust-wg]] and [[spur-coalition]]."
+   },
+   {
+    "title": "In use",
+    "text": "- The [conforming products list](https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json) had 342 records from 216 applicants on 2026-11-14: 300 generators and 42 validators. Most sign images, video and audio. One lists a plain-text format and none lists HTML. The [Conformance Explorer](https://spec.c2pa.org/conformance-explorer/) shows the same data.\n- Appendix A.8 has two published libraries: [c2pa-text](https://pypi.org/project/c2pa-text/) from [[encypher]] (3.0.0, 2026-06-19) and [c2pa-unstructured-text](https://crates.io/crates/c2pa-unstructured-text) from WritersLogic (0.2.0, 2026-08-02).\n- News publishers that sign images and video are listed on [[iptc]]."
    },
    {
     "title": "History",
@@ -680,11 +684,13 @@ window.CARDS = [
   ],
   "links": [
    "content-authenticity-initiative",
+   "encypher",
    "mcp-c2pa-in-meta",
    "cawg",
    "agent-skills-signing",
    "aaif-identity-trust-wg",
-   "spur-coalition"
+   "spur-coalition",
+   "iptc"
   ],
   "backlinks": [
    "agent-skills-signing",
@@ -692,7 +698,9 @@ window.CARDS = [
    "content-authenticity-initiative",
    "cawg",
    "croissant",
+   "encypher",
    "eu-ai-act-gpai-code",
+   "iptc",
    "skills-marketplace"
   ],
   "history": [
@@ -803,7 +811,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Individual AIPREF draft; parsed by policycheck",
   "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/proposal",
    "layer/access"
@@ -813,6 +821,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Use categories**: separating search indexing, use as model input and training in one signal."
+   },
+   {
+    "title": "In use",
+    "text": "- Cloudflare's managed robots.txt serves the policy with `search=yes, ai-train=no` by default. Cloudflare said customers had turned managed robots.txt on for over 3.8 million domains at launch ([Cloudflare blog](https://blog.cloudflare.com/content-signals-policy/), 2025-09-24).\n- [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) detects the signals in robots.txt and in `Content-Signal` headers."
    }
   ],
   "links": [
@@ -865,7 +877,7 @@ window.CARDS = [
   "part_of": "spur-coalition",
   "status": "v1.0 published 2026-09-02; signed events deferred (section 8.9)",
   "participate": "[GitHub issues](https://github.com/SPUR-Coalition/telemetry/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/attribution",
@@ -875,11 +887,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Usage reporting**: reporting how AI systems use content after retrieval, in five events.\n- **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).\n- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients, the events [[mcp-sep-3094-citations]] `citations.render` would need. telemetry-js ships an `MCPSessionTracker`."
+    "text": "- **Usage reporting**: reporting how AI systems use content after retrieval, in five events.\n- **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).\n- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients, the events [[mcp-sep-3094-citations]] `citations.render` would need."
    },
    {
     "title": "Related",
     "text": "- Execution traces, which stop at the tool call: [[otel-mcp]].\n- [[counter]] plans to reference it in phase two."
+   },
+   {
+    "title": "In use",
+    "text": "- [telemetry-js](https://github.com/SPUR-Coalition/telemetry-js) is on npm as `@openattribution/telemetry` 0.1.3 (2026-06-12) and includes an `MCPSessionTracker`. Its 1.0.0, which implements v1.0 of the standard, is unreleased."
    },
    {
     "title": "History",
@@ -1025,6 +1041,7 @@ window.CARDS = [
    "agent-skills-signing",
    "c2pa",
    "dif",
+   "encypher",
    "eu-ai-act-gpai-code",
    "iptc",
    "w3c-odrl"
@@ -1045,7 +1062,7 @@ window.CARDS = [
   "part_of": "",
   "status": "1.1 (February 2026); required for NeurIPS 2026 dataset submissions",
   "participate": "[GitHub issues](https://github.com/mlcommons/croissant/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -1056,6 +1073,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Dataset provenance and consent**: recording what a training set was allowed to contain, the dataset-side counterpart to [[c2pa]] for assets."
+   },
+   {
+    "title": "In use",
+    "text": "- The NeurIPS 2026 Evaluations and Datasets Track required a Croissant file with every dataset submission, including Responsible AI fields ([NeurIPS blog](https://blog.neurips.cc/2026/05/04/responsible-ai-metadata-requirements-for-the-evaluations-and-datasets-track-neurips-2026/), 2026-05-04).\n- Hugging Face, Kaggle, OpenML and Dataverse generate a Croissant file for the datasets they host, according to the [NeurIPS 2026 hosting guidelines](https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting)."
    },
    {
     "title": "History",
@@ -1130,6 +1151,66 @@ window.CARDS = [
    "cawg"
   ],
   "history": []
+ },
+ {
+  "id": "encypher",
+  "name": "Encypher",
+  "aliases": [
+   "Encypher Corporation",
+   "EncypherAI",
+   "c2pa-text"
+  ],
+  "type": "organization",
+  "website": "https://encypher.com",
+  "part_of": "",
+  "status": "The Atlantic plans to implement its text marking, announced 2026-11-11 with no rollout date",
+  "participate": "[c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)",
+  "updated": "2026-11-15",
+  "tags": [
+   "type/organization",
+   "layer/provenance",
+   "layer/licensing",
+   "stage/at-rest"
+  ],
+  "summary": "Company that sells text provenance built on [[c2pa]]. Signing is free for publishers, and AI companies pay for verification and usage reporting. It says it wrote the C2PA text appendix (A.8) and co-chairs the Text Provenance Task Force. The spec names no authors.",
+  "sections": [
+   {
+    "title": "Topics",
+    "text": "- **Text embedding**: carrying a signed manifest inside text that has no metadata slot, as invisible Unicode variation selectors. This part is the C2PA appendix, and its [c2pa-text](https://github.com/encypherai/c2pa-text) library is MIT-licensed.\n- **Excerpts**: checking a quoted passage against the signed original. C2PA treats partially copied text as having no manifest, so Encypher adds a marker per sentence and a Merkle assertion in its own namespace. Its glossary calls sentence-level attribution \"patent-pending\".\n- **Identity and terms**: tying the record to a publisher and to stated reuse terms. Its posts cite the [[cawg]] identity and metadata assertions and the [[iptc]] verified publishers list, and its site refers to [[rsl]] and [[w3c-odrl]] for terms."
+   },
+   {
+    "title": "Related",
+    "text": "- Its 2026-11-11 post carries one C2PA manifest and 66 sentence markers. Seven of the manifest's eleven assertions are in Encypher's namespace, and none is a CAWG identity assertion or a licensing assertion (decoded 2026-11-15, signature not checked).\n- [WritersLogic](https://github.com/writerslogic/c2pa-unstructured-text) publishes a separate implementation of the same appendix."
+   },
+   {
+    "title": "In use",
+    "text": "- [c2pa-text](https://pypi.org/project/c2pa-text/) is at 3.0.0 on PyPI (2026-06-19), with TypeScript, Rust and Go versions in the same repository.\n- It is a conformant generator on the [C2PA conforming products list](https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json) since 2026-05-26, against spec 2.2, for image, audio, video and PDF formats. The record lists no text format.\n- Its own blog is signed with it. The [post announcing The Atlantic](https://encypher.com/blog/the-atlantic-and-encypher-verifiable-journalism) carries the marks (2026-11-11)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-11: Announced that The Atlantic plans to implement its provenance technology.\n- 2026-05-26: Listed by C2PA as a conformant generator product."
+   }
+  ],
+  "links": [
+   "c2pa",
+   "cawg",
+   "iptc",
+   "rsl",
+   "w3c-odrl"
+  ],
+  "backlinks": [
+   "c2pa"
+  ],
+  "history": [
+   {
+    "date": "2026-11-11",
+    "text": "Announced that The Atlantic plans to implement its provenance technology."
+   },
+   {
+    "date": "2026-05-26",
+    "text": "Listed by C2PA as a conformant generator product."
+   }
+  ]
  },
  {
   "id": "eu-ai-act-gpai-code",
@@ -1330,7 +1411,7 @@ window.CARDS = [
   "part_of": "ietf",
   "status": "httpsig-protocol draft; Cloudflare libraries",
   "participate": "[web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -1345,6 +1426,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Pairs with [[aims]] and the agent identifiability asks from [[wikimedia]]."
+   },
+   {
+    "title": "In use",
+    "text": "- [cloudflare/web-bot-auth](https://github.com/cloudflare/web-bot-auth) publishes libraries for signing and verifying requests. `web-bot-auth` on npm is at 0.2.0 (2026-08-31) and was first published on 2025-04-14."
    }
   ],
   "links": [
@@ -1374,7 +1459,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Launched 2026-11-12 with Yahoo Scout as first commercial licensee",
   "participate": "[publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)",
-  "updated": "2026-11-13",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -1389,6 +1474,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Its About page lists 3,100+ supporting publications, among them the Guardian (a [[spur-coalition]] founder), Wikipedia ([[wikimedia]]) and O'Reilly Media.\n- Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it."
+   },
+   {
+    "title": "In use",
+    "text": "- Yahoo Scout is its first licensee ([launch release](https://internetcollective.org/press/ilc-launch-2026), 2026-11-12)."
    },
    {
     "title": "History",
@@ -1420,28 +1509,37 @@ window.CARDS = [
   "type": "organization",
   "website": "https://iptc.org",
   "part_of": "",
-  "status": "RightsML and the Data Mining property; answered the EU opt-out consultation",
+  "status": "RightsML and the Data Mining property; Verified News Publishers List; answered the EU opt-out consultation",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/licensing",
-   "layer/access"
+   "layer/access",
+   "layer/provenance",
+   "stage/trust"
   ],
-  "summary": "News-media standards body. RightsML is a profile of [[w3c-odrl]]. Its Data Mining photo-metadata property is maintained with [[cawg]].",
+  "summary": "News-media standards body. RightsML is a profile of [[w3c-odrl]]. Its Data Mining photo-metadata property is maintained with [[cawg]]. With Project Origin it runs the Origin Verified News Publishers List for [[c2pa]] signing.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **News rights**: expressing rights for news content in machine-readable form (RightsML).\n- **Recognized opt-outs**: getting the EU to recognize workable opt-out mechanisms ([[eu-ai-act-gpai-code]])."
+    "text": "- **News rights**: expressing rights for news content in machine-readable form (RightsML).\n- **Recognized opt-outs**: getting the EU to recognize workable opt-out mechanisms ([[eu-ai-act-gpai-code]]).\n- **Publisher identity**: establishing which news organization signed a [[c2pa]] credential, through signing certificates issued to verified publishers. Its page says the certificates \"confirm organisational identity and do not make any judgement on editorial position.\""
+   },
+   {
+    "title": "In use",
+    "text": "- The [Origin Verified News Publishers List](https://iptc.org/verified-news-publishers-list/) names the BBC, CBC/Radio-Canada, WDR, Deutsche Welle, AFP, France Télévisions, NTB and RTÉ (read 2026-11-15). Its sample content is images.\n- The C2PA conforming products list (2026-11-14) has IPTC's C2PA Signer Tool (2026-03-20) and Content Credentials Signing Service (2026-11-11), CBC/Radio-Canada's Content Provenance Platform (2026-08-26) and BBC Image Distribution Services (2026-10-16). All four sign images or video."
    }
   ],
   "links": [
    "w3c-odrl",
    "cawg",
+   "c2pa",
    "eu-ai-act-gpai-code"
   ],
   "backlinks": [
+   "c2pa",
    "cawg",
+   "encypher",
    "eu-ai-act-gpai-code",
    "w3c-odrl"
   ],
@@ -1640,9 +1738,9 @@ window.CARDS = [
   "type": "project",
   "website": "",
   "part_of": "",
-  "status": "Launched 2026-02-03 with Copilot as first buyer; no public spec",
+  "status": "Pilot announced 2026-02-03, with Copilot grounding answers in licensed content; no public spec",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/project",
    "layer/licensing",
@@ -1656,7 +1754,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-02-03: Launched with Copilot as first buyer."
+    "text": "- 2026-02-03: Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer."
    }
   ],
   "links": [
@@ -1668,7 +1766,7 @@ window.CARDS = [
   "history": [
    {
     "date": "2026-02-03",
-    "text": "Launched with Copilot as first buyer."
+    "text": "Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer."
    }
   ]
  },
@@ -1808,7 +1906,7 @@ window.CARDS = [
   "part_of": "",
   "status": "MCP Labs (mcp.okfn.org) live; okfn/mcp-server uses structuredContent.sources",
   "participate": "[okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/attribution",
@@ -1824,6 +1922,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Plans to move charts to MCP Apps and citations to SEP-3094. [[wikimedia]] contributors review the same SEP.\n- A natural pilot for the [[creative-commons]] RAG attribution best practices."
+   },
+   {
+    "title": "In use",
+    "text": "- [MCP Labs](https://mcp.okfn.org) answers questions over official datasets and links each answer to its source (responding 2026-11-15)."
    }
   ],
   "links": [
@@ -1936,7 +2038,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Conventions in Development; built into the Python SDK since v2.0.0; merged for the TypeScript SDK 2026-10-31, not yet released",
   "participate": "[semantic-conventions-genai issues](https://github.com/open-telemetry/semantic-conventions-genai/issues), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-08",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -1952,6 +2054,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026.\n- Lineage after the tool call, rather than the call itself: [[openlineage]]."
+   },
+   {
+    "title": "In use",
+    "text": "- The MCP Python SDK emits client and server spans as of [v2.0.0](https://github.com/modelcontextprotocol/python-sdk/releases/tag/v2.0.0) (2026-07-28)."
    },
    {
     "title": "History",
@@ -2017,7 +2123,7 @@ window.CARDS = [
   "part_of": "",
   "status": "RSL 1.0 published 2025-12-10",
   "participate": "[GitHub](https://github.com/rslstandard)",
-  "updated": "2026-11-13",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -2027,7 +2133,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed; [[microsoft-publisher-content-marketplace]] is reported to support it, and Yahoo Scout licenses through [[internet-licensing-collective]] (2026-11-12).\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a SPUR profile binding drafted for the RSL WG."
+    "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed, and [[microsoft-publisher-content-marketplace]] is reported to support it.\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a SPUR profile binding drafted for the RSL WG."
+   },
+   {
+    "title": "In use",
+    "text": "- Yahoo Scout licenses content through [[internet-licensing-collective]], whose members declare their terms in RSL ([launch release](https://internetcollective.org/press/ilc-launch-2026), 2026-11-12).\n- [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) reads RSL `License:` directives from robots.txt."
    },
    {
     "title": "History",
@@ -2041,6 +2151,7 @@ window.CARDS = [
   ],
   "backlinks": [
    "content-telemetry",
+   "encypher",
    "eu-ai-act-gpai-code",
    "internet-licensing-collective",
    "microsoft-publisher-content-marketplace",
@@ -2434,6 +2545,7 @@ window.CARDS = [
    "w3c"
   ],
   "backlinks": [
+   "encypher",
    "iptc",
    "w3c",
    "w3c-tdmrep"
@@ -2495,17 +2607,21 @@ window.CARDS = [
   "part_of": "",
   "status": "Published investigation of OpenAI-run agents 2026-10-05; Wikipedians reviewing SEP-3094",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/attribution",
    "layer/identity"
   ],
-  "summary": "Movement behind Wikipedia and Wikidata. Wikimedia Enterprise supplies Microsoft, Mistral and Perplexity, and volunteer contributors review citation and agent-identity proposals.",
+  "summary": "Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API access to the projects, and volunteer contributors review citation and agent-identity proposals.",
   "sections": [
    {
     "title": "Topics",
     "text": "- **Identifiable agents**: knowing which agents are reading the projects ([[ietf-web-bot-auth]], [[aims]]).\n- **Attribution for reuse**: meeting attribution requirements in agent answers. A WikiCite contributor listed six functions of citation on [[mcp-sep-3094-citations]], including provenance chains to primary sources.\n- **A seat at the table**: [[open-future]] argued in December 2025 that Wikimedia needs one at [[aaif]]."
+   },
+   {
+    "title": "In use",
+    "text": "- Wikimedia Enterprise supplies Amazon, Google, Meta, Microsoft, Mistral AI and Perplexity, among others ([announcement](https://enterprise.wikimedia.com/blog/wikipedia-25-enterprise-partners/), 2026-01-15)."
    },
    {
     "title": "History",

@@ -1,7 +1,7 @@
 {
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
- "as_of": "2026-11-13",
+ "as_of": "2026-11-15",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
   {
@@ -17,6 +17,13 @@
    "name": "Really Simple Licensing",
    "text": "The RSL Collective relaunched as [[internet-licensing-collective]].",
    "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  },
+  {
+   "date": "2026-11-11",
+   "card": "encypher",
+   "name": "Encypher",
+   "text": "Announced that The Atlantic plans to implement its provenance technology.",
+   "url": "https://www.olahungerford.com/content-provenance/#encypher"
   },
   {
    "date": "2026-10-31",
@@ -187,6 +194,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
   },
   {
+   "date": "2026-05-26",
+   "card": "encypher",
+   "name": "Encypher",
+   "text": "Listed by C2PA as a conformant generator product.",
+   "url": "https://www.olahungerford.com/content-provenance/#encypher"
+  },
+  {
    "date": "2026-05-15",
    "card": "aaif-agentic-commerce-wg",
    "name": "AAIF Agentic Commerce WG",
@@ -218,7 +232,7 @@
    "date": "2026-02-03",
    "card": "microsoft-publisher-content-marketplace",
    "name": "Microsoft Publisher Content Marketplace",
-   "text": "Launched with Copilot as first buyer.",
+   "text": "Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer.",
    "url": "https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace"
   },
   {

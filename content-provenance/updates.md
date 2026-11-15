@@ -4,6 +4,7 @@ Dated events from the History section of each card, newest first. These are thin
 
 - 2026-11-12 [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective): Launched under this name, formerly the RSL Collective, with Yahoo Scout as first commercial licensee.
 - 2026-11-12 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): The RSL Collective relaunched as [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective).
+- 2026-11-11 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Announced that The Atlantic plans to implement its provenance technology.
 - 2026-10-31 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): Restructured as a routing forum.
 - 2026-10-31 [OpenTelemetry for MCP](https://www.olahungerford.com/content-provenance/#otel-mcp): Conventions merged for the TypeScript SDK, not yet released.
 - 2026-10-30 [Shared AI training robots.txt token](https://www.olahungerford.com/content-provenance/#aipref-training-token): Individual draft posted.
@@ -28,10 +29,11 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-07-14 [x402](https://www.olahungerford.com/content-provenance/#x402): x402 Foundation (Linux Foundation) operational.
 - 2026-07 [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg): Consent assertion added.
 - 2026-06 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
+- 2026-05-26 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Listed by C2PA as a conformant generator product.
 - 2026-05-15 [AAIF Agentic Commerce WG](https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg): Chartered.
 - 2026-05-12 [AAIF Identity and Trust WG](https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg): Chartered.
 - 2026-04 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Bellagio.
 - 2026-03-10 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): 1.0 opened for public comment.
-- 2026-02-03 [Microsoft Publisher Content Marketplace](https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace): Launched with Copilot as first buyer.
+- 2026-02-03 [Microsoft Publisher Content Marketplace](https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace): Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer.
 - 2026-02 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): 1.1 released.
 - 2025-12-10 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): RSL 1.0 published.
