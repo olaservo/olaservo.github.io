@@ -895,7 +895,9 @@ Nonprofit, publisher-led collecting society for AI use of web content, formerly 
 
 #### Related
 
-- Its About page lists 3,100+ supporting publications, among them the Guardian (a [SPUR Coalition](#spur-coalition) founder), Wikipedia ([Wikimedia](#wikimedia)) and O'Reilly Media.
+- A Publisher Steering Committee oversees the licensing framework, safeguards and economics. The About page shows ten members: Reddit, People Inc., Yahoo, Ziff Davis, the Wikimedia Foundation ([Wikimedia](#wikimedia)), USA Today, Internet Brands, Mediahuis, The Atlantic and Vox Media (read 2026-11-15). Yahoo Scout, the first licensee, is a Yahoo product.
+- The launch release names Doug Leeds as a co-founder. The About page names no staff.
+- Its About page lists 3,100+ supporting publications, among them the Guardian (a [SPUR Coalition](#spur-coalition) founder), Wikipedia and O'Reilly Media.
 - Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it.
 
 #### In use
@@ -1266,7 +1268,7 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg)
 - Id: rsl
 - Also known as: RSL
 - Type: specification
-- Status: RSL 1.0 published 2025-12-10
+- Status: RSL 1.0 published 2025-12-10; the collective behind it relaunched as the Internet Licensing Collective 2026-11-12
 - Website: https://rslstandard.org
 - Take part: [GitHub](https://github.com/rslstandard)
 - Tags: type/specification, layer/licensing, layer/payments

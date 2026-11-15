@@ -4,6 +4,9 @@ Changes to the cards and the explorer, newest first. Dates are when the change w
 
 ## 2026-11-15
 
+- [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): the status line now mentions the 2026-11-12 relaunch of the collective behind it. The build warns when a card's newest History date is later than every date in its status.
+- [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective): added the ten Publisher Steering Committee members shown on its About page, and the co-founder named in the launch release.
+- The `search_cards` tool on the MCP endpoint lists cards with the words in their name or aliases first, and says when the rest only mention them.
 - Cards can carry a `## In use` section of released implementations and live uses, each with a date and a link. Twelve cards have one, including [C2PA](https://www.olahungerford.com/content-provenance/#c2pa), [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl), [Croissant](https://www.olahungerford.com/content-provenance/#croissant) and [Cloudflare Content Signals](https://www.olahungerford.com/content-provenance/#cloudflare-content-signals). Commitments, pilots and open pull requests stay in the status line.
 - Added [Encypher](https://www.olahungerford.com/content-provenance/#encypher). [IPTC](https://www.olahungerford.com/content-provenance/#iptc) gains the Origin Verified News Publishers List, and [C2PA](https://www.olahungerford.com/content-provenance/#c2pa) describes the text appendix (A.8).
 - [Microsoft Publisher Content Marketplace](https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace) is described as a pilot, as Microsoft's 2026-02-03 post describes it. The card said "launched".
