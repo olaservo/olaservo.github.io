@@ -1,0 +1,239 @@
+{
+ "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
+ "description": "Dated events from the History section of each card, newest first.",
+ "as_of": "2026-11-13",
+ "cards": "https://www.olahungerford.com/content-provenance/cards.json",
+ "updates": [
+  {
+   "date": "2026-11-12",
+   "card": "internet-licensing-collective",
+   "name": "Internet Licensing Collective",
+   "text": "Launched under this name, formerly the RSL Collective, with Yahoo Scout as first commercial licensee.",
+   "url": "https://www.olahungerford.com/content-provenance/#internet-licensing-collective"
+  },
+  {
+   "date": "2026-11-12",
+   "card": "rsl",
+   "name": "Really Simple Licensing",
+   "text": "The RSL Collective relaunched as [[internet-licensing-collective]].",
+   "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  },
+  {
+   "date": "2026-10-31",
+   "card": "mcp-security-ig",
+   "name": "MCP Security Interest Group",
+   "text": "Restructured as a routing forum.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-security-ig"
+  },
+  {
+   "date": "2026-10-31",
+   "card": "otel-mcp",
+   "name": "OpenTelemetry for MCP",
+   "text": "Conventions merged for the TypeScript SDK, not yet released.",
+   "url": "https://www.olahungerford.com/content-provenance/#otel-mcp"
+  },
+  {
+   "date": "2026-10-30",
+   "card": "aipref-training-token",
+   "name": "Shared AI training robots.txt token",
+   "text": "Individual draft posted.",
+   "url": "https://www.olahungerford.com/content-provenance/#aipref-training-token"
+  },
+  {
+   "date": "2026-10-28",
+   "card": "aaif-observability-traceability-wg",
+   "name": "AAIF Observability and Traceability WG",
+   "text": "OTel cross-domain provenance proposal.",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg"
+  },
+  {
+   "date": "2026-10-28",
+   "card": "ai-catalog",
+   "name": "AI Catalog",
+   "text": "Identity-keyed trust manifests merged.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
+  },
+  {
+   "date": "2026-10-27",
+   "card": "mcp-interceptors",
+   "name": "MCP Interceptors WG and SEP-2624",
+   "text": "Chain concept removed from the SEP.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-interceptors"
+  },
+  {
+   "date": "2026-10-22",
+   "card": "agent-skills",
+   "name": "Agent Skills",
+   "text": "Joined AAIF.",
+   "url": "https://www.olahungerford.com/content-provenance/#agent-skills"
+  },
+  {
+   "date": "2026-10-07",
+   "card": "openlineage",
+   "name": "OpenLineage",
+   "text": "RFC 4484 updated.",
+   "url": "https://www.olahungerford.com/content-provenance/#openlineage"
+  },
+  {
+   "date": "2026-10-05",
+   "card": "wikimedia",
+   "name": "Wikimedia",
+   "text": "Published its investigation of OpenAI-run agents.",
+   "url": "https://www.olahungerford.com/content-provenance/#wikimedia"
+  },
+  {
+   "date": "2026-10",
+   "card": "ai-disclosures-project",
+   "name": "AI Disclosures Project",
+   "text": "Convening at Foo Camp.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
+  },
+  {
+   "date": "2026-10",
+   "card": "c2pa",
+   "name": "C2PA",
+   "text": "Spec 2.5 published.",
+   "url": "https://www.olahungerford.com/content-provenance/#c2pa"
+  },
+  {
+   "date": "2026-09-25",
+   "card": "mcp-c2pa-in-meta",
+   "name": "C2PA content credentials in MCP _meta",
+   "text": "Discussion closed along with all spec-repo discussions.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta"
+  },
+  {
+   "date": "2026-09-13",
+   "card": "ietf-aipref",
+   "name": "IETF AI Preferences Working Group",
+   "text": "vocab-08 posted, without consensus.",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-09-13",
+   "card": "mcp-skills-extension",
+   "name": "SEP-2640 Skills Extension",
+   "text": "SEP-2640 marked Final.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-skills-extension"
+  },
+  {
+   "date": "2026-09-04",
+   "card": "mcp-sep-3094-citations",
+   "name": "SEP-3094 Granular Citations",
+   "text": "Revised.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations"
+  },
+  {
+   "date": "2026-09-02",
+   "card": "aaif-observability-traceability-wg",
+   "name": "AAIF Observability and Traceability WG",
+   "text": "Provenance initiative lead named.",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg"
+  },
+  {
+   "date": "2026-09-02",
+   "card": "content-telemetry",
+   "name": "Content Telemetry",
+   "text": "v1.0 published.",
+   "url": "https://www.olahungerford.com/content-provenance/#content-telemetry"
+  },
+  {
+   "date": "2026-09-02",
+   "card": "spur-coalition",
+   "name": "SPUR Coalition",
+   "text": "[[content-telemetry]] v1.0 published.",
+   "url": "https://www.olahungerford.com/content-provenance/#spur-coalition"
+  },
+  {
+   "date": "2026-09",
+   "card": "ai-disclosures-project",
+   "name": "AI Disclosures Project",
+   "text": "Convening at Microsoft Research New York.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
+  },
+  {
+   "date": "2026-08-18",
+   "card": "ietf-aipref",
+   "name": "IETF AI Preferences Working Group",
+   "text": "attach-05 posted.",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-08-06",
+   "card": "agent-plugins",
+   "name": "Agent Plugins",
+   "text": "1.0.0 published.",
+   "url": "https://www.olahungerford.com/content-provenance/#agent-plugins"
+  },
+  {
+   "date": "2026-07-14",
+   "card": "x402",
+   "name": "x402",
+   "text": "x402 Foundation (Linux Foundation) operational.",
+   "url": "https://www.olahungerford.com/content-provenance/#x402"
+  },
+  {
+   "date": "2026-07",
+   "card": "cawg",
+   "name": "Creator Assertions Working Group",
+   "text": "Consent assertion added.",
+   "url": "https://www.olahungerford.com/content-provenance/#cawg"
+  },
+  {
+   "date": "2026-06",
+   "card": "ai-disclosures-project",
+   "name": "AI Disclosures Project",
+   "text": "Convening at Foo Camp.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
+  },
+  {
+   "date": "2026-05-15",
+   "card": "aaif-agentic-commerce-wg",
+   "name": "AAIF Agentic Commerce WG",
+   "text": "Chartered.",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg"
+  },
+  {
+   "date": "2026-05-12",
+   "card": "aaif-identity-trust-wg",
+   "name": "AAIF Identity and Trust WG",
+   "text": "Chartered.",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg"
+  },
+  {
+   "date": "2026-04",
+   "card": "ai-disclosures-project",
+   "name": "AI Disclosures Project",
+   "text": "Convening at Bellagio.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
+  },
+  {
+   "date": "2026-03-10",
+   "card": "iab-comp",
+   "name": "IAB Tech Lab Content Monetization Protocols",
+   "text": "1.0 opened for public comment.",
+   "url": "https://www.olahungerford.com/content-provenance/#iab-comp"
+  },
+  {
+   "date": "2026-02-03",
+   "card": "microsoft-publisher-content-marketplace",
+   "name": "Microsoft Publisher Content Marketplace",
+   "text": "Launched with Copilot as first buyer.",
+   "url": "https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace"
+  },
+  {
+   "date": "2026-02",
+   "card": "croissant",
+   "name": "Croissant",
+   "text": "1.1 released.",
+   "url": "https://www.olahungerford.com/content-provenance/#croissant"
+  },
+  {
+   "date": "2025-12-10",
+   "card": "rsl",
+   "name": "Really Simple Licensing",
+   "text": "RSL 1.0 published.",
+   "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  }
+ ]
+}

@@ -18,6 +18,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Commerce spec harmony**: comparing and aligning [[acp]], [[ucp]], [[ap2]] and [[x402]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-05-15: Chartered."
    }
   ],
   "links": [
@@ -31,6 +35,12 @@ window.CARDS = [
    "aaif",
    "ucp",
    "x402"
+  ],
+  "history": [
+   {
+    "date": "2026-05-15",
+    "text": "Chartered."
+   }
   ]
  },
  {
@@ -62,7 +72,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "aaif"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "aaif-identity-trust-wg",
@@ -88,6 +99,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Overlaps [[aims]] and [[ietf-web-bot-auth]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-05-12: Chartered."
    }
   ],
   "links": [
@@ -99,6 +114,12 @@ window.CARDS = [
    "aims",
    "aaif",
    "c2pa"
+  ],
+  "history": [
+   {
+    "date": "2026-05-12",
+    "text": "Chartered."
+   }
   ]
  },
  {
@@ -125,6 +146,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- The conventions it builds above, and what they leave out: [[otel-mcp]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-28: OTel cross-domain provenance proposal.\n- 2026-09-02: Provenance initiative lead named."
    }
   ],
   "links": [
@@ -135,6 +160,16 @@ window.CARDS = [
   "backlinks": [
    "aaif",
    "otel-mcp"
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "OTel cross-domain provenance proposal."
+   },
+   {
+    "date": "2026-09-02",
+    "text": "Provenance initiative lead named."
+   }
   ]
  },
  {
@@ -169,7 +204,8 @@ window.CARDS = [
    "agent-skills-signing",
    "aaif",
    "project-nanda"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "aims",
@@ -210,7 +246,8 @@ window.CARDS = [
    "openattribution",
    "w3c",
    "wikimedia"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "ap2",
@@ -242,7 +279,8 @@ window.CARDS = [
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "x402"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "agent-plugins",
@@ -273,6 +311,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- The skills inside a plugin follow the [[agent-skills]] specification unchanged; [[mcp-skills-extension]] serves the same skills over MCP instead of on disk."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-08-06: 1.0.0 published."
    }
   ],
   "links": [
@@ -286,6 +328,12 @@ window.CARDS = [
    "agent-skills",
    "agent-skills-signing",
    "skills-marketplace"
+  ],
+  "history": [
+   {
+    "date": "2026-08-06",
+    "text": "1.0.0 published."
+   }
   ]
  },
  {
@@ -315,6 +363,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Packaged with MCP servers by [[agent-plugins]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-22: Joined AAIF."
    }
   ],
   "links": [
@@ -328,6 +380,12 @@ window.CARDS = [
    "agent-skills-signing",
    "aaif",
    "mcp-skills-extension"
+  ],
+  "history": [
+   {
+    "date": "2026-10-22",
+    "text": "Joined AAIF."
+   }
   ]
  },
  {
@@ -382,7 +440,8 @@ window.CARDS = [
    "cawg",
    "mcp-skills-extension",
    "skills-marketplace"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "aaif",
@@ -428,7 +487,8 @@ window.CARDS = [
    "open-future",
    "wikimedia",
    "x402"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "acp",
@@ -460,7 +520,8 @@ window.CARDS = [
    "aaif-agentic-commerce-wg",
    "openattribution",
    "ucp"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "ai-catalog",
@@ -485,6 +546,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117), a path parallel to [[agent-skills-signing]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-28: Identity-keyed trust manifests merged."
    }
   ],
   "links": [
@@ -492,6 +557,12 @@ window.CARDS = [
   ],
   "backlinks": [
    "agent-skills-signing"
+  ],
+  "history": [
+   {
+    "date": "2026-10-28",
+    "text": "Identity-keyed trust manifests merged."
+   }
   ]
  },
  {
@@ -515,6 +586,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Value distribution**: the missing mechanisms for attribution and compensation in AI markets.\n- **Measuring harm**: ecosystem exploitation in search results and access violations in pre-training data (paper repos)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10: Convening at Foo Camp.\n- 2026-09: Convening at Microsoft Research New York.\n- 2026-06: Convening at Foo Camp.\n- 2026-04: Convening at Bellagio."
    }
   ],
   "links": [
@@ -522,6 +597,24 @@ window.CARDS = [
   ],
   "backlinks": [
    "skills-marketplace"
+  ],
+  "history": [
+   {
+    "date": "2026-10",
+    "text": "Convening at Foo Camp."
+   },
+   {
+    "date": "2026-09",
+    "text": "Convening at Microsoft Research New York."
+   },
+   {
+    "date": "2026-06",
+    "text": "Convening at Foo Camp."
+   },
+   {
+    "date": "2026-04",
+    "text": "Convening at Bellagio."
+   }
   ]
  },
  {
@@ -548,7 +641,8 @@ window.CARDS = [
   "links": [
    "ietf-aipref"
   ],
-  "backlinks": []
+  "backlinks": [],
+  "history": []
  },
  {
   "id": "c2pa",
@@ -578,6 +672,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Identity and consent assertions come from [[cawg]].\n- Signing skill folders: [[agent-skills-signing]].\n- Its trust layer is compared with [[aaif-identity-trust-wg]] and [[spur-coalition]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10: Spec 2.5 published."
    }
   ],
   "links": [
@@ -596,6 +694,12 @@ window.CARDS = [
    "croissant",
    "eu-ai-act-gpai-code",
    "skills-marketplace"
+  ],
+  "history": [
+   {
+    "date": "2026-10",
+    "text": "Spec 2.5 published."
+   }
   ]
  },
  {
@@ -626,6 +730,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- A credential check could run as an interceptor validator ([[mcp-interceptors]]).\n- Lineage key overlap: [[openlineage]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-09-25: Discussion closed along with all spec-repo discussions."
    }
   ],
   "links": [
@@ -642,6 +750,12 @@ window.CARDS = [
    "mcp",
    "openlineage",
    "otel-mcp"
+  ],
+  "history": [
+   {
+    "date": "2026-09-25",
+    "text": "Discussion closed along with all spec-repo discussions."
+   }
   ]
  },
  {
@@ -675,7 +789,8 @@ window.CARDS = [
   "backlinks": [
    "creative-commons",
    "ietf-aipref"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "cloudflare-content-signals",
@@ -706,7 +821,8 @@ window.CARDS = [
   "backlinks": [
    "ietf-aipref",
    "openattribution"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "content-authenticity-initiative",
@@ -737,7 +853,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "c2pa"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "content-telemetry",
@@ -763,6 +880,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Execution traces, which stop at the tool call: [[otel-mcp]].\n- [[counter]] plans to reference it in phase two."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-09-02: v1.0 published."
    }
   ],
   "links": [
@@ -784,6 +905,12 @@ window.CARDS = [
    "rsl",
    "mcp-sep-3094-citations",
    "spur-coalition"
+  ],
+  "history": [
+   {
+    "date": "2026-09-02",
+    "text": "v1.0 published."
+   }
   ]
  },
  {
@@ -812,7 +939,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "content-telemetry"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "creative-commons",
@@ -849,7 +977,8 @@ window.CARDS = [
    "cc-signals",
    "ietf-aipref",
    "okfn"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "cawg",
@@ -878,6 +1007,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Hosts the IPTC Data Mining photo-metadata property ([[iptc]])."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-07: Consent assertion added."
    }
   ],
   "links": [
@@ -895,6 +1028,12 @@ window.CARDS = [
    "eu-ai-act-gpai-code",
    "iptc",
    "w3c-odrl"
+  ],
+  "history": [
+   {
+    "date": "2026-07",
+    "text": "Consent assertion added."
+   }
   ]
  },
  {
@@ -917,12 +1056,22 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Dataset provenance and consent**: recording what a training set was allowed to contain, the dataset-side counterpart to [[c2pa]] for assets."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-02: 1.1 released."
    }
   ],
   "links": [
    "c2pa"
   ],
-  "backlinks": []
+  "backlinks": [],
+  "history": [
+   {
+    "date": "2026-02",
+    "text": "1.1 released."
+   }
+  ]
  },
  {
   "id": "data-provenance-initiative",
@@ -947,7 +1096,8 @@ window.CARDS = [
    }
   ],
   "links": [],
-  "backlinks": []
+  "backlinks": [],
+  "history": []
  },
  {
   "id": "dif",
@@ -978,7 +1128,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "cawg"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "eu-ai-act-gpai-code",
@@ -1024,7 +1175,8 @@ window.CARDS = [
    "iptc",
    "open-future",
    "w3c-tdmrep"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "iab-comp",
@@ -1048,12 +1200,22 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Licensing offers**: standardizing how an AI system states its intended use and how a publisher or marketplace answers with a package. Enforcement is assumed to happen at the edge."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-03-10: 1.0 opened for public comment."
    }
   ],
   "links": [],
   "backlinks": [
    "content-telemetry",
    "x402"
+  ],
+  "history": [
+   {
+    "date": "2026-03-10",
+    "text": "1.0 opened for public comment."
+   }
   ]
  },
  {
@@ -1089,7 +1251,8 @@ window.CARDS = [
    "ietf-aipref",
    "ietf-web-bot-auth",
    "mpp"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "ietf-aipref",
@@ -1117,6 +1280,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Individual drafts: [[aipref-training-token]], [[cloudflare-content-signals]], and the [[creative-commons]] exclusions and parameters drafts.\n- Enforcement side: [[ietf-web-bot-auth]]. Layered on by [[cc-signals]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-09-13: vocab-08 posted, without consensus.\n- 2026-08-18: attach-05 posted."
    }
   ],
   "links": [
@@ -1140,6 +1307,16 @@ window.CARDS = [
    "microsoft-grounding-preference",
    "mcp",
    "aipref-training-token"
+  ],
+  "history": [
+   {
+    "date": "2026-09-13",
+    "text": "vocab-08 posted, without consensus."
+   },
+   {
+    "date": "2026-08-18",
+    "text": "attach-05 posted."
+   }
   ]
  },
  {
@@ -1182,7 +1359,8 @@ window.CARDS = [
    "ietf",
    "ietf-aipref",
    "wikimedia"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "internet-licensing-collective",
@@ -1211,6 +1389,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Its About page lists 3,100+ supporting publications, among them the Guardian (a [[spur-coalition]] founder), Wikipedia ([[wikimedia]]) and O'Reilly Media.\n- Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-12: Launched under this name, formerly the RSL Collective, with Yahoo Scout as first commercial licensee."
    }
   ],
   "links": [
@@ -1221,6 +1403,12 @@ window.CARDS = [
   ],
   "backlinks": [
    "rsl"
+  ],
+  "history": [
+   {
+    "date": "2026-11-12",
+    "text": "Launched under this name, formerly the RSL Collective, with Yahoo Scout as first commercial licensee."
+   }
   ]
  },
  {
@@ -1256,7 +1444,8 @@ window.CARDS = [
    "cawg",
    "eu-ai-act-gpai-code",
    "w3c-odrl"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "knight-georgetown-institute",
@@ -1285,7 +1474,8 @@ window.CARDS = [
   "links": [
    "aipref-training-token"
   ],
-  "backlinks": []
+  "backlinks": [],
+  "history": []
  },
  {
   "id": "mpp",
@@ -1317,7 +1507,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "ietf"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "mcp-fsig",
@@ -1352,7 +1543,8 @@ window.CARDS = [
   "backlinks": [
    "mcp",
    "openlineage"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "mcp-interceptors",
@@ -1377,6 +1569,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Checking at the boundary**: verifying provenance in a gateway or in context middleware, since most clients will not.\n- **The `signature` field**: deciding what it signs and whether it ever carries content provenance.\n- **Sample validator**: a seal or citation validator for [[mcp-c2pa-in-meta]] or [[mcp-sep-3094-citations]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-27: Chain concept removed from the SEP."
    }
   ],
   "links": [
@@ -1388,6 +1584,12 @@ window.CARDS = [
    "mcp-c2pa-in-meta",
    "mcp",
    "mcp-sep-3094-citations"
+  ],
+  "history": [
+   {
+    "date": "2026-10-27",
+    "text": "Chain concept removed from the SEP."
+   }
   ]
  },
  {
@@ -1410,6 +1612,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Routing**: sending [[mcp-c2pa-in-meta]] and [[mcp-sep-3094-citations]] to an owning group until a content group exists."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-31: Restructured as a routing forum."
    }
   ],
   "links": [
@@ -1419,6 +1625,12 @@ window.CARDS = [
   ],
   "backlinks": [
    "mcp"
+  ],
+  "history": [
+   {
+    "date": "2026-10-31",
+    "text": "Restructured as a routing forum."
+   }
   ]
  },
  {
@@ -1441,6 +1653,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Paying publishers**: compensating publishers for content used in AI answers, with usage reporting."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-02-03: Launched with Copilot as first buyer."
    }
   ],
   "links": [
@@ -1448,6 +1664,12 @@ window.CARDS = [
   ],
   "backlinks": [
    "rsl"
+  ],
+  "history": [
+   {
+    "date": "2026-02-03",
+    "text": "Launched with Copilot as first buyer."
+   }
   ]
  },
  {
@@ -1484,7 +1706,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "ietf-aipref"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "mcp",
@@ -1536,7 +1759,8 @@ window.CARDS = [
    "otel-mcp",
    "mcp-skills-extension",
    "mcp-sep-3094-citations"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "open-future",
@@ -1568,7 +1792,8 @@ window.CARDS = [
   "backlinks": [
    "eu-ai-act-gpai-code",
    "wikimedia"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "okfn",
@@ -1609,7 +1834,8 @@ window.CARDS = [
   "backlinks": [
    "creative-commons",
    "mcp-sep-3094-citations"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "openattribution",
@@ -1649,7 +1875,8 @@ window.CARDS = [
    "skills-marketplace",
    "spur-coalition",
    "ucp"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "openlineage",
@@ -1675,6 +1902,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Overlaps [[mcp-c2pa-in-meta]]. Introduced at [[mcp-fsig]] on 2026-09-05."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-07: RFC 4484 updated."
    }
   ],
   "links": [
@@ -1685,6 +1916,12 @@ window.CARDS = [
    "mcp-c2pa-in-meta",
    "mcp-fsig",
    "otel-mcp"
+  ],
+  "history": [
+   {
+    "date": "2026-10-07",
+    "text": "RFC 4484 updated."
+   }
   ]
  },
  {
@@ -1715,6 +1952,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026.\n- Lineage after the tool call, rather than the call itself: [[openlineage]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-31: Conventions merged for the TypeScript SDK, not yet released."
    }
   ],
   "links": [
@@ -1728,6 +1969,12 @@ window.CARDS = [
    "aaif-observability-traceability-wg",
    "content-telemetry",
    "mcp"
+  ],
+  "history": [
+   {
+    "date": "2026-10-31",
+    "text": "Conventions merged for the TypeScript SDK, not yet released."
+   }
   ]
  },
  {
@@ -1756,7 +2003,8 @@ window.CARDS = [
   ],
   "backlinks": [
    "aaif-security-privacy-wg"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "rsl",
@@ -1780,6 +2028,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed; [[microsoft-publisher-content-marketplace]] is reported to support it, and Yahoo Scout licenses through [[internet-licensing-collective]] (2026-11-12).\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a SPUR profile binding drafted for the RSL WG."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-12: The RSL Collective relaunched as [[internet-licensing-collective]].\n- 2025-12-10: RSL 1.0 published."
    }
   ],
   "links": [
@@ -1795,6 +2047,16 @@ window.CARDS = [
    "openattribution",
    "w3c-odrl",
    "x402"
+  ],
+  "history": [
+   {
+    "date": "2026-11-12",
+    "text": "The RSL Collective relaunched as [[internet-licensing-collective]]."
+   },
+   {
+    "date": "2025-12-10",
+    "text": "RSL 1.0 published."
+   }
   ]
  },
  {
@@ -1825,6 +2087,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- At-rest signing is not on the Skills WG agenda ([[agent-skills-signing]])."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-09-13: SEP-2640 marked Final."
    }
   ],
   "links": [
@@ -1836,6 +2102,12 @@ window.CARDS = [
    "agent-plugins",
    "agent-skills-signing",
    "mcp"
+  ],
+  "history": [
+   {
+    "date": "2026-09-13",
+    "text": "SEP-2640 marked Final."
+   }
   ]
  },
  {
@@ -1867,6 +2139,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Reviewers include [[okfn]] and [[wikimedia]] contributors."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-09-04: Revised."
    }
   ],
   "links": [
@@ -1887,6 +2163,12 @@ window.CARDS = [
    "mcp",
    "okfn",
    "wikimedia"
+  ],
+  "history": [
+   {
+    "date": "2026-09-04",
+    "text": "Revised."
+   }
   ]
  },
  {
@@ -1915,6 +2197,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- An alternative to the attach draft's `Content-Usage` directive in [[ietf-aipref]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-30: Individual draft posted."
    }
   ],
   "links": [
@@ -1925,6 +2211,12 @@ window.CARDS = [
    "ietf-aipref",
    "knight-georgetown-institute",
    "microsoft-grounding-preference"
+  ],
+  "history": [
+   {
+    "date": "2026-10-30",
+    "text": "Individual draft posted."
+   }
   ]
  },
  {
@@ -1969,7 +2261,8 @@ window.CARDS = [
    "agent-plugins",
    "agent-skills",
    "ai-disclosures-project"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "spawning",
@@ -1995,7 +2288,8 @@ window.CARDS = [
    }
   ],
   "links": [],
-  "backlinks": []
+  "backlinks": [],
+  "history": []
  },
  {
   "id": "spur-coalition",
@@ -2018,6 +2312,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Visibility past retrieval**: letting publishers see grounding, citation, display and engagement, not only the fetch.\n- **Verifying reports**: checking self-reported events through sampled audits or canary content. Signed events are deferred to a later version of the spec (section 8.9).\n- **Publisher accreditation**: a conformance mark for agents that report at the required level."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-09-02: [[content-telemetry]] v1.0 published."
    }
   ],
   "links": [
@@ -2028,6 +2326,12 @@ window.CARDS = [
    "c2pa",
    "content-telemetry",
    "internet-licensing-collective"
+  ],
+  "history": [
+   {
+    "date": "2026-09-02",
+    "text": "[[content-telemetry]] v1.0 published."
+   }
   ]
  },
  {
@@ -2061,7 +2365,8 @@ window.CARDS = [
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "openattribution"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "w3c",
@@ -2095,7 +2400,8 @@ window.CARDS = [
   "backlinks": [
    "w3c-odrl",
    "w3c-tdmrep"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "w3c-odrl",
@@ -2131,7 +2437,8 @@ window.CARDS = [
    "iptc",
    "w3c",
    "w3c-tdmrep"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "w3c-tdmrep",
@@ -2172,7 +2479,8 @@ window.CARDS = [
    "openattribution",
    "w3c",
    "w3c-odrl"
-  ]
+  ],
+  "history": []
  },
  {
   "id": "wikimedia",
@@ -2198,6 +2506,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Identifiable agents**: knowing which agents are reading the projects ([[ietf-web-bot-auth]], [[aims]]).\n- **Attribution for reuse**: meeting attribution requirements in agent answers. A WikiCite contributor listed six functions of citation on [[mcp-sep-3094-citations]], including provenance chains to primary sources.\n- **A seat at the table**: [[open-future]] argued in December 2025 that Wikimedia needs one at [[aaif]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-05: Published its investigation of OpenAI-run agents."
    }
   ],
   "links": [
@@ -2213,6 +2525,12 @@ window.CARDS = [
    "open-future",
    "okfn",
    "mcp-sep-3094-citations"
+  ],
+  "history": [
+   {
+    "date": "2026-10-05",
+    "text": "Published its investigation of OpenAI-run agents."
+   }
   ]
  },
  {
@@ -2240,6 +2558,10 @@ window.CARDS = [
    {
     "title": "Related",
     "text": "- Compared with other commerce specs in [[aaif-agentic-commerce-wg]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-07-14: x402 Foundation (Linux Foundation) operational."
    }
   ],
   "links": [
@@ -2253,6 +2575,12 @@ window.CARDS = [
    "aaif-agentic-commerce-wg",
    "ap2",
    "mpp"
+  ],
+  "history": [
+   {
+    "date": "2026-07-14",
+    "text": "x402 Foundation (Linux Foundation) operational."
+   }
   ]
  }
 ];
