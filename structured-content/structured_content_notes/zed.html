@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How zed handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How zed handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the Zed source (<code>clones/zed</code>, checked out at commit 0cfc4a4, read on 2026-11-14). Zed’s own version is 1.30.0 (<code>crates/zed/Cargo.toml</code>). File references are relative to <code>crates/</code>.</p>
+
+<h2 id="entry-results-enter-through-a-hand-rolled-serde-client-the-type-keeps-structuredcontent">Entry: results enter through a hand-rolled serde client; the type keeps structuredContent</h2>
+
+<p>Zed uses no MCP SDK. The <code>context_server</code> crate (<code>context_server/Cargo.toml</code>) depends on <code>serde</code>, <code>serde_json</code> and <code>schemars</code> and implements JSON-RPC itself. <code>Client::request_with</code> in <code>context_server/src/client.rs</code> parses the wire frame into <code>AnyResponse</code>, then deserializes the <code>result</code> field with <code>serde_json::from_str(result.get())</code> into whatever type the caller asks for. For <code>tools/call</code> that type is <code>CallToolResponse</code> in <code>context_server/src/types.rs</code>, which has four fields: <code>content: Vec&lt;ToolResponseContent&gt;</code>, <code>is_error: Option&lt;bool&gt;</code>, <code>meta</code> (renamed from <code>_meta</code>) and <code>structured_content: Option&lt;serde_json::Value&gt;</code> with <code>#[serde(default)]</code>. The field is kept after parsing. <code>content</code> has no serde default, so a result that omits the key fails deserialization and the call returns an error. <code>ToolResponseContent</code> is an internally tagged enum with <code>text</code>, <code>image</code>, <code>audio</code>, <code>resource</code> and <code>resource_link</code> variants and no catch-all, so an unknown block type is also a deserialization error.</p>
+
+<h2 id="model-path-content-only-structuredcontent-never-read">Model path: content only, structuredContent never read</h2>
+
+<p>The only client-side <code>tools/call</code> request is in <code>ContextServerTool::run</code> in <code>agent/src/tools/context_server_registry.rs</code>. It sends <code>CallToolParams { name, arguments, meta: None }</code>. On return it reads <code>response.is_error</code> and <code>response.content</code> and nothing else. <code>response.structured_content</code> and <code>response.meta</code> have no read sites anywhere under <code>crates/</code>; the only other occurrences of <code>structured_content</code> are the server half in <code>context_server/src/listener.rs</code>, test fixtures in <code>agent/src/tests/mod.rs</code>, and an unrelated ACP field <code>structured_content: Vec&lt;ToolCallContent&gt;</code> on <code>acp_thread::ToolCall</code> in <code>acp_thread/src/acp_thread.rs</code>.</p>
+
+<p>When both fields are present, the model receives the <code>content</code> blocks and the structured payload is dropped. When <code>content</code> is empty and <code>structuredContent</code> is present, <code>run</code> produces an empty <code>llm_output</code>, and <code>AgentMessage::to_request</code> in <code>agent/src/thread.rs</code>, reached from <code>Thread::build_request_messages</code>, substitutes a fixed string: <code>tool_result.content = vec!["&lt;Tool returned an empty string&gt;".into()];</code>, guarded by <code>is_content_empty()</code> from <code>language_model_core/src/request.rs</code>. A result with only <code>structuredContent</code> and no <code>content</code> key fails to deserialize before any of this runs.</p>
+
+<p>The outcome is the same whether the text mirrors <code>structuredContent</code> exactly or differs from it, because <code>run</code> never compares the two. No step removes a duplicate. <code>structuredContent</code> does not appear in the model request in any form. Non-text blocks do not change which field reaches the model.</p>
+
+<p>No variant of <code>ToolResponseContent</code> in <code>context_server/src/types.rs</code> declares an <code>annotations</code> field, and the enum does not use <code>deny_unknown_fields</code>, so <code>annotations.audience</code> on a tool result block is discarded during deserialization. A text block annotated <code>audience: ["user"]</code> reaches the model like any other text block. The only reads of MCP <code>audience</code> under <code>crates/</code> are on the prompts path (see Quirks).</p>
+
+<p>Per block, <code>run</code> does the following. <code>Text</code> is pushed to <code>llm_output</code> as <code>LanguageModelToolResultContent::Text</code>, pushed to the ACP tool call content, and appended to <code>concatenated_text</code>. <code>Image</code> is pushed to the ACP content and converted with <code>LanguageModelImage::from_base64_image</code>; a conversion that returns <code>None</code> or an error is logged with <code>log::warn!</code> and the image is skipped on the model path. <code>Audio</code>, <code>Resource</code> and <code>ResourceLink</code> each hit a <code>log::warn!("Ignoring ... content from tool response")</code> and reach neither the model nor the UI. <code>LanguageModelToolResultContent</code> has exactly two variants, <code>Text</code> and <code>Image</code>. If the model does not support images, <code>Thread::run_tool</code> replaces each image part with the string <code>[Tool responded with an image, but this model doesn't support images]</code> when other parts exist, and returns an error result when the output was image-only. <code>raw_output</code> on <code>AgentToolOutput</code> is <code>serde_json::Value::String(concatenated_text)</code>, the joined text blocks, so the ACP <code>rawOutput</code> channel also carries text only. An <code>is_error</code> result becomes an <code>Err</code> whose message is the concatenated text blocks.</p>
+
+<h2 id="outputschema-deserialized-from-tools-list-zero-read-sites">outputSchema: deserialized from tools/list, zero read sites</h2>
+
+<p><code>Tool</code> in <code>context_server/src/types.rs</code> declares <code>pub output_schema: Option&lt;serde_json::Value&gt;</code> with <code>#[serde(default)]</code>, and <code>ContextServerRegistry::reload_tools_for_server</code> stores each <code>Tool</code> from <code>ListToolsResponse</code> whole inside a <code>ContextServerTool</code>. The only client-side read sites on <code>Tool</code> are <code>name</code>, <code>description</code> and <code>input_schema</code> (<code>ContextServerTool::name</code>, <code>description</code>, <code>input_schema</code>). A grep for <code>.output_schema</code> across <code>crates/</code> returns no hit outside tests and the server-side <code>listener.rs</code>. Nothing validates <code>structuredContent</code> against it, and it is not folded into the tool description or any prompt text.</p>
+
+<p>With no validation step there is no failure text for the model.</p>
+
+<h2 id="other-paths-none-for-results-mcp-servers-can-be-delegated-to-external-agents">Other paths: none for results; MCP servers can be delegated to external agents</h2>
+
+<p>There is no code mode, sandbox or MCP Apps route for tool results in the native agent. <code>ContextServerTool::replay</code> is a no-op. <code>_meta</code> on the response is parsed into <code>CallToolResponse::meta</code> and never read, so no flag in it changes routing. Per-server configuration is the <code>ContextServerSettings</code> enum in <code>project/src/project_settings.rs</code> (<code>enabled</code>, <code>remote</code>, <code>command</code>, <code>url</code>, <code>headers</code>, <code>timeout</code>, <code>oauth</code>) and per-profile <code>ContextServerPreset { tools: IndexMap&lt;Arc&lt;str&gt;, bool&gt; }</code> in <code>agent_settings/src/agent_profile.rs</code>, which toggles tools on or off and does not affect result handling.</p>
+
+<p>A grep for <code>resourceUri</code>, <code>ui/</code> and <code>visibility</code> in <code>context_server/src</code>, <code>agent/src</code> and <code>agent_ui/src</code> finds no MCP Apps code, so <code>_meta.ui.visibility</code> is not read. No Rust file under <code>agent/src</code> or <code>agent_settings/src</code> matches <code>hook</code> or <code>hooks</code>, apart from the eval fixture <code>agent/src/tools/evals/fixtures/disable_cursor_blinking/before.rs</code>, which references <code>command_palette_hooks</code>. The extension API in <code>extension_api/src/extension_api.rs</code> exposes <code>context_server_command</code> and <code>context_server_configuration</code>, which supply the launch command and settings for a server. A grep for <code>CallToolResponse</code> across <code>crates/</code> returns only <code>context_server/src/types.rs</code>, <code>context_server/src/listener.rs</code> and <code>agent/src/tests/mod.rs</code>, so no extension or plugin code receives a tool result.</p>
+
+<p>A separate route exists for external ACP agents. <code>AcpV2Connection</code> in <code>agent_servers/src/acp/v2.rs</code> converts Zed’s configured servers into <code>acp::McpServer::Stdio</code> and <code>acp::McpServer::Http</code> entries and passes them in <code>SessionContext::mcp_servers</code>; <code>AcpConnection</code> in <code>acp/v1.rs</code> does the same through <code>mcp_servers_for_project</code>. The external agent then connects to those servers itself, and Zed sees only the ACP tool call updates it reports.</p>
+
+<p>Zed also ships a server half. <code>listener.rs</code> derives <code>output_schema</code> with schemars from the tool’s <code>Output</code> type and emits <code>structured_content</code> in the <code>CallToolResponse</code> it returns on success, as <code>None</code> when the handler’s result is null or an error; <code>output_schema</code> is omitted when <code>Output</code> is <code>()</code>.</p>
+
+<h2 id="protocol-revision-2025-11-25-requested-four-versions-accepted">Protocol revision: 2025-11-25 requested, four versions accepted</h2>
+
+<p><code>LATEST_PROTOCOL_VERSION: &amp;str = "2025-11-25"</code> in <code>context_server/src/types.rs</code>. <code>ModelContextProtocol::initialize</code> in <code>context_server/src/protocol.rs</code> sends that value and accepts any of <code>supported_protocols()</code>, which lists <code>2025-11-25</code>, <code>2025-06-18</code>, <code>2025-03-26</code> and <code>2024-11-05</code>, failing with <code>Unsupported protocol version</code> otherwise. The negotiated version is set on the transport via <code>set_protocol_version</code> for the <code>MCP-Protocol-Version</code> HTTP header.</p>
+
+<h2 id="upstream-history-field-added-for-the-server-half-no-recorded-rationale-for-the-client">Upstream history: field added for the server half, no recorded rationale for the client</h2>
+
+<p>The clone is shallow (one commit), so history comes from the GitHub API. <code>structured_content</code> was added to <code>CallToolResponse</code> by <a href="https://github.com/zed-industries/zed/pull/35068" target="_blank">zed-industries/zed#35068</a>, "Add ability to register tools in <code>McpServer</code>“, merged 2025-07-25, for the server half. Its body reads: ”Instead of manually handling all tool-related requests, we can now directly register tools that implement a new trait in <code>McpServer</code>". <code>output_schema</code> was added to <code>Tool</code> by <a href="https://github.com/zed-industries/zed/pull/35069" target="_blank">#35069</a>, “McpServerTool output schema”, merged the same day, whose body reads: "Add an <code>Output</code> associated type to <code>McpServerTool</code>, so that we can include its schema in <code>tools/list</code>." The client loop that reads only <code>response.content</code> and logs <code>Ignoring image content from tool response</code> for other blocks first appears in <code>agent2/src/tools/context_server_registry.rs</code> in <a href="https://github.com/zed-industries/zed/pull/36034" target="_blank">#36034</a>, “Support profiles in agent2”, merged 2025-08-12, whose body is “We still need a profile selector.” Later changes to the same loop are <a href="https://github.com/zed-industries/zed/pull/47095" target="_blank">#47095</a> (merged 2026-02-12, checks <code>is_error</code>) and <a href="https://github.com/zed-industries/zed/pull/57134" target="_blank">#57134</a> (merged 2026-05-19, “Support image output from MCP tools”); neither body mentions <code>structuredContent</code>. The earlier <code>agent/src/context_server_tool.rs</code> used before <code>agent2</code> was not traced. <a href="https://github.com/zed-industries/zed/pull/55722" target="_blank">#55722</a>, which would have kept <code>outputSchema</code> in <code>listener.rs</code> tool listings for external agents (issue <a href="https://github.com/zed-industries/zed/issues/55642" target="_blank">#55642</a>), was closed unmerged on 2026-05-05.</p>
+
+<p>Searched: <code>gh search prs</code> and <code>gh search issues</code> in <code>zed-industries/zed</code> for <code>structuredContent</code>, <code>structured_content</code>, <code>structured content</code>, <code>outputSchema</code>, <code>output_schema</code>, <code>structured output MCP tool</code> and <code>Tool returned an empty string</code>, and the commit lists from <code>gh api</code> for <code>context_server/src/types.rs</code>, <code>agent/src/tools/context_server_registry.rs</code>, <code>agent2/src/tools/context_server_registry.rs</code> and <code>agent/src/context_server_tool.rs</code>. No PR or issue records a reason for leaving <code>structuredContent</code> off the model path.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>MCP <code>audience</code> is read only for prompts. <code>MessageContent</code> in <code>context_server/src/types.rs</code>, used for <code>prompts/get</code> messages, carries <code>annotations: Option&lt;MessageAnnotations&gt;</code> with <code>audience</code>, and <code>mcp_annotations_to_acp</code> in <code>agent/src/agent.rs</code> copies it onto the ACP content blocks built from prompt messages. Tool result blocks have no such field.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 0cfc4a4 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

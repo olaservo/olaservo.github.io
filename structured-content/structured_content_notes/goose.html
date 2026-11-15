@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How goose handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How goose handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the goose source (<code>clones/goose</code>, checked out at commit 2365bc5, read on 2026-11-14). File references are relative to <code>crates/</code> in the clone root. goose is version 1.59.0 per the workspace <code>Cargo.toml</code>.</p>
+
+<h2 id="entry-results-enter-through-rmcp-3-9-0-and-keep-structuredcontent">Entry: results enter through rmcp 3.9.0 and keep <code>structuredContent</code></h2>
+
+<p>The workspace <code>Cargo.toml</code> pins <code>rmcp = { version = "3.9.0", default-features = false, features = ["schemars"] }</code> and <code>Cargo.lock</code> resolves it to 3.9.0. There is no hand-rolled transport; <code>goose/src/agents/mcp_client.rs</code> wraps an rmcp client and its <code>McpClientTrait::call_tool</code> returns <code>Result&lt;CallToolResult, Error&gt;</code> using <code>rmcp::model::CallToolResult</code>. That struct carries <code>content: Vec&lt;ContentBlock&gt;</code>, <code>structured_content: Option&lt;Value&gt;</code>, <code>is_error</code> and <code>meta</code>, so the field survives deserialization. goose stores the whole value: <code>goose-provider-types/src/conversation/message.rs</code> defines <code>pub struct ToolResponse { ... pub tool_result: ToolResult&lt;CallToolResult&gt; }</code> and the state machine’s <code>ToolBatch::record</code> in <code>goose/src/agents/state_machine/ops_toolcalling.rs</code> pushes it into a user message with <code>add_tool_response_with_metadata</code>. <code>tool_result_serde::call_tool_result</code> serializes the full struct as <code>{"status":"success","value":&lt;CallToolResult&gt;}</code>, so <code>structured_content</code> is persisted in the sqlx session store and comes back on resume. The rmcp 3.9.0 source was read from the crates.io package (<code>rmcp-3.9.0/src/model.rs</code>), since the clone has no vendored copy. Its hand-written <code>Deserialize for CallToolResult</code> defaults a missing <code>content</code> key to <code>[]</code> ("Defaults <code>content</code> to <code>[]</code> when the field is missing (lenient per Postel’s law)") and fails the result only when <code>content</code>, <code>structuredContent</code> and <code>isError</code> are all absent (<code>_meta</code> does not count), so a result carrying only <code>structuredContent</code> parses with an empty <code>content</code> vector. A result with none of the three fields (<code>{}</code>, or <code>{"resultType":"complete"}</code> on 2026-07-28) does not parse as <code>CallToolResult</code>, so rmcp’s untagged <code>ServerResult</code> union matches a later variant (<code>TaskAckResult</code> or <code>EmptyResult</code>) and both branches of <code>GooseClient::call_tool</code> in <code>goose/src/agents/mcp_client.rs</code> return <code>ServiceError::UnexpectedResponse</code> (“Unexpected response type”). <code>call_resolved</code> in <code>goose/src/agents/extension_manager/lease.rs</code> turns that into <code>ErrorData</code> with code <code>-32603</code>, and the provider formatters send the error to the model as tool-result text: <code>"The tool call returned the following error:\n{}"</code> in <code>formats/openai.rs</code>, <code>"Error: {}"</code> with <code>is_error: true</code> in <code>formats/anthropic.rs</code>. <code>tool_result_serde</code> stores an error as <code>err.to_string()</code> and reads it back as <code>ErrorData</code> with code <code>-32603</code> and that string as the message, so the code appears twice: observed with goose 1.58.0 (4facf56) as <code>-32603: -32603: Unexpected response type</code> in <code>probe/runs/goose@1.58.0/default/both-stdio/tools.result.empty_object/model.jsonl</code> in canimcp.</p>
+
+<h2 id="model-path-content-only-filtered-by-audience-placeholder-when-empty">Model path: <code>content</code> only, filtered by audience, placeholder when empty</h2>
+
+<p>There is one agent loop at this commit. <code>StateMachineServices::reply</code> in <code>goose/src/agents/services.rs</code> calls <code>start_reply</code>, which ends with <code>self.turn(session_config, cancel, turn_guard, true)</code>, <code>turn</code> calls <code>run_machine</code>, which builds the machine with <code>create_state_machine</code>, and <code>run_live_delegation</code> in <code>goose/src/acp/server/live_voice.rs</code> goes through the same <code>reply</code>; no flag selects another loop. The state machine’s inference step (<code>goose/src/agents/state_machine/ops_llm.rs</code>) delegates to the <code>goose-agent</code> crate (<code>goose-agent/Cargo.toml</code> describes it as “The GDK’s Agent Loop”) and both paths reach the provider through <code>stream_response_from_provider</code> in <code>goose/src/agents/reply_parts.rs</code>, which projects messages with <code>Conversation::agent_visible_messages()</code> and then runs <code>fix_conversation</code>. The <code>goose-agent</code> crate’s own <code>InferenceRunner::infer</code> in <code>goose-agent/src/inference.rs</code> applies the same two calls.</p>
+
+<p><code>agent_visible_messages</code> maps each message through <code>Message::agent_visible_content</code>, which calls <code>filter_for_audience(Role::Assistant)</code> on every block. For a <code>ToolResponse</code>, <code>MessageContentBlock::filter_for_audience</code> in <code>goose-provider-types/src/conversation/message.rs</code> rebuilds the result with <code>tool_result.content = filtered_content</code>, dropping blocks whose <code>annotations.audience</code> excludes <code>Assistant</code>, and copies the rest of the struct, so <code>structured_content</code> rides along unread. A block with <code>audience: ["user"]</code> does not reach the model, and a block with no <code>annotations</code> or no <code>audience</code> does (<code>.unwrap_or(true)</code> on the missing case). <code>fix_conversation</code> then runs <code>fix_empty_tool_results</code> in <code>goose-provider-types/src/conversation.rs</code>: when <code>has_tool_result_content</code> finds no non-empty text, resource text or image, it pushes <code>ContentBlock::text("(empty result)")</code>.</p>
+
+<p>Every provider formatter reads <code>result.content</code> alone. <code>goose-provider-types/src/formats/anthropic.rs</code> iterates <code>result.content.iter()</code> into text, image and PDF document blocks, joining text with <code>"\n"</code> when no media is present; <code>formats/openai.rs</code> does the same and joins text with a space, replacing images with a placeholder sentence and a separate user message when <code>options.supports_vision</code>, and otherwise with the sentence <code>This tool result included an image that was omitted as the model does not support vision.</code>; <code>supports_vision</code> comes from the model config or goose’s canonical model registry (<code>goose-provider-types/src/model.rs</code>) and is false for a model in neither (<code>model_config.supports_vision.unwrap_or_default()</code>); <code>formats/google.rs</code> builds a <code>functionResponse</code> from text plus inline media; <code>goose/src/providers/formats/bedrock.rs</code> maps blocks through <code>to_bedrock_tool_result_content_block</code> and returns an error for <code>Audio</code> and blob resources. The identifier <code>structured_content</code> appears in none of these files. Consequently, when both fields arrive the model sees <code>content</code> and nothing from <code>structuredContent</code>; when <code>content</code> is empty and <code>structuredContent</code> is present the model sees <code>(empty result)</code>; a result with only <code>structuredContent</code> is the same case. Non-text blocks: text resources inline as text, images pass to vision-capable providers, <code>Audio</code> and <code>ResourceLink</code> fall through the Anthropic and OpenAI catch-alls and are dropped, while Bedrock renders <code>ResourceLink</code> as the text <code>[Resource link]</code> and returns an error for <code>Audio</code>. Before formatting, <code>large_response_handler::process_tool_response</code> in <code>goose/src/agents/large_response_handler.rs</code> rewrites any text block over <code>GOOSE_MAX_TOOL_RESPONSE_SIZE</code> characters (default <code>DEFAULT_LARGE_TEXT_THRESHOLD: usize = 200_000</code>) into a file pointer sentence and passes other blocks and the rest of the struct through unchanged. Because <code>structuredContent</code> never enters the request, goose has no duplicate-removal step for text that mirrors the JSON, and no serialized form of <code>structuredContent</code> (compact, pretty or enveloped) exists on the model path. A mirrored text block reaches the model once, as <code>content</code> text. No block type changes which field reaches the model, since no formatter has a branch that reads <code>structured_content</code>.</p>
+
+<h2 id="outputschema-stored-never-validated-exposed-to-code-mode-and-acp-clients">outputSchema: stored, never validated, exposed to code mode and ACP clients</h2>
+
+<p>rmcp deserializes <code>tools/list</code> into <code>rmcp::model::Tool</code> with <code>output_schema</code>, and goose keeps the list. No goose code validates <code>structured_content</code> against it; the only <code>output_schema</code> reads are <code>function_details</code> in <code>goose/src/agents/platform_extensions/code_execution.rs</code>, which emits <code>"output_schema": tool.output_schema</code> in the <code>get_function_details</code> tool’s JSON reply, and <code>goose/src/acp/server/tools.rs</code>, which copies it onto <code>ToolListItem.output_schema</code> for the <code>_goose/unstable</code> ACP tools listing. rmcp 3.9.0’s <code>CallToolResult</code> docs state “we don’t need to do json schema validation here”, so the SDK does not validate either. The schema is not appended to tool descriptions or the system prompt. The provider tool declarations carry <code>input_schema</code> only: <code>formats/anthropic.rs</code> sends <code>"input_schema"</code>, <code>formats/openai.rs</code>, <code>formats/openai_responses.rs</code> and <code>formats/databricks.rs</code> send <code>"parameters": tool.input_schema</code>, <code>formats/google.rs</code> sends <code>parametersJsonSchema</code>, and <code>formats/snowflake.rs</code> sends <code>"input_schema"</code>. No file under <code>goose-provider-types/src/formats/</code> references <code>output_schema</code>. With no validation there is no failure text for the model.</p>
+
+<h2 id="other-paths-code-mode-reads-content-acp-and-the-desktop-get-structuredcontent">Other paths: code mode reads <code>content</code>, ACP and the desktop get <code>structuredContent</code></h2>
+
+<p>Code mode is the <code>code_execution</code> platform extension. Its <code>callback_result_to_value</code> in <code>code_execution.rs</code> joins <code>content</code> text blocks whose audience is absent, empty, or includes <code>Role::Assistant</code> with <code>"\n"</code> and runs <code>serde_json::from_str(&amp;text).unwrap_or(Value::String(text))</code>; it never reads <code>structured_content</code>, and the unit test <code>callback_result_ignores_hidden_structured_content_and_meta</code> asserts that. This refutes the earlier survey claim that the sandbox prefers <code>structuredContent</code>.</p>
+
+<p>The ACP surface forwards it. <code>extract_tool_raw_output</code> in <code>goose/src/acp/server/tool_calls/conversion.rs</code> returns <code>result.structured_content.clone()</code> and <code>tool_call_update_fields_from_response</code> places it in <code>fields.raw_output</code>, while <code>build_tool_call_content</code> maps <code>content</code> text, image and embedded resource blocks and returns <code>None</code> for <code>Audio</code> and <code>ResourceLink</code>. The <code>_goose/unstable/tools/call</code> custom request in <code>goose/src/acp/server/tools.rs</code> returns <code>GooseToolCallResponse { content, structured_content: result.structured_content, is_error, meta }</code>. The desktop adapter <code>ui/desktop/src/acp/adapter/tools.ts</code> sets <code>toolResult.structuredContent = update.rawOutput</code> and <code>ui/desktop/src/acp/mcp-apps.ts</code> passes it to the MCP Apps iframe.</p>
+
+<p><code>_meta</code> drives routing. A tool whose <code>_meta.ui.resourceUri</code> is set (<code>get_tool_resource_uri</code> in <code>goose/src/agents/extension_manager/mod.rs</code>) is excluded from the code-mode catalog, and after its call <code>McpAppCall::attach_resource</code> in <code>extension_manager/lease.rs</code> reads the <code>ui://</code> resource and inserts it under <code>__goose_tool_update_meta</code>; <code>remove_untrusted_mcp_app_meta</code> strips any server-supplied copy of that key first. Tools with <code>_meta.ui.visibility</code> lacking <code>"model"</code> are hidden from the model by <code>is_tool_visible_to_model</code> in <code>reply_parts.rs</code>. A result’s <code>_meta.platform_notification</code> becomes a server notification. <code>PostToolUse</code> hooks receive tool name and input only; <code>HookContext::with_tool_output</code> in <code>goose/src/hooks/mod.rs</code> has no caller on the MCP path. Post-tool hooks cannot change what the model gets: <code>with_hooks_and_recording</code> in <code>goose/src/agents/state_machine/ops_toolcalling.rs</code> records the result into the <code>ToolBatch</code> before it calls <code>emit_post_tool_hooks</code> in <code>goose/src/agents/state_machine/tool_hooks.rs</code>, which runs <code>emit_post_tool_use</code>, and <code>HookManager::emit</code> returns <code>()</code>. <code>gen_ai_telemetry::successful_tool_result_json</code> serializes the whole <code>CallToolResult</code> to a span field when <code>OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT</code> is <code>true</code>. The CLI renderer in <code>goose-cli/src/session/output.rs</code> skips blocks whose audience excludes <code>Role::User</code>. No per-server config field changes any of this.</p>
+
+<h2 id="protocol-revision-2026-07-28-preferred-2025-11-25-fallback">Protocol revision: 2026-07-28 preferred, 2025-11-25 fallback</h2>
+
+<p><code>GooseMcpClientCapabilities.protocol_version</code> is <code>None</code> by default (<code>StateMachineServicesConfig</code> sets <code>mcp_protocol_version: None</code> in <code>services.rs</code>), and <code>GooseClient::get_info</code> in <code>mcp_client.rs</code> calls <code>.with_protocol_version(self.capabilities.protocol_version.clone().unwrap_or_default())</code>. The connection itself is negotiated in <code>McpClient::connect</code>: with no configured version it uses rmcp’s <code>ClientLifecycleMode::Auto</code> with <code>preferred_versions: vec![ProtocolVersion::V_2026_07_28, ProtocolVersion::V_2025_11_25]</code> and <code>legacy_version: Some(ProtocolVersion::V_2025_11_25)</code>; with a configured version at or above <code>STANDARD_HEADERS</code> it uses <code>Discover { preferred_versions: vec![protocol_version] }</code>, otherwise <code>Initialize</code>. Two overrides exist: <code>connect_with_legacy_retry</code> in <code>extension_manager/streamable_http.rs</code> retries with <code>ProtocolVersion::V_2025_11_25</code> after an empty discovery stream, and the <code>mcp-probe</code> CLI command’s <code>McpProbeScript.protocol_version</code> in <code>goose-cli/src/cli.rs</code> sets it explicitly. When the server negotiates <code>V_2026_07_28</code>, <code>call_tool</code> copies session and trace context into <code>params.meta</code>.</p>
+
+<h2 id="upstream-history-the-audience-filter-code-mode-and-the-maintainer-s-position">Upstream history: the audience filter, code mode, and the maintainer’s position</h2>
+
+<p>The clone is shallow (one commit, 2365bc5), so <code>git log</code> and <code>git blame</code> do not reach the history. The PRs below were found with <code>gh search prs</code> and <code>gh search issues</code> for <code>structuredContent</code>, <code>structured_content</code>, <code>audience</code> and <code>callback_result</code> in aaif-goose/goose, and the commit list for <code>crates/goose/src/conversation/message.rs</code>. No PR was found that chose <code>content</code> for the provider formatters, and none that made them read <code>structured_content</code>.</p>
+
+<p><code>filter_for_audience</code> came in with <a href="https://github.com/aaif-goose/goose/pull/6646" target="_blank">#6646</a>, merged 2026-01-22, for compaction. <a href="https://github.com/aaif-goose/goose/issues/6703" target="_blank">Issue #6703</a> reported the developer shell tool’s output reaching the model twice, once per audience-tagged block: "The <code>audience</code> annotation should filter content so only <code>assistant</code>-targeted content goes to the model, but currently both are included.“ <a href="https://github.com/aaif-goose/goose/pull/6773" target="_blank">#6773</a>, merged 2026-01-28, and <a href="https://github.com/aaif-goose/goose/pull/6728" target="_blank">#6728</a>, merged 2026-01-29, fixed it. #6728’s summary reads ”Move filtering to stream_response_from_provider() so providers receive pre-filtered messages."</p>
+
+<p>Code mode: <a href="https://github.com/aaif-goose/goose/pull/6190" target="_blank">#6190</a>, merged 2025-12-19, made the sandbox “Prioritize structuredContent from MCP response when available”, because "JS code like <code>result.content</code> returned undefined because the MCP structuredContent field was ignored.“ <a href="https://github.com/aaif-goose/goose/pull/11471" target="_blank">#11471</a>, ”fix(security): restrict code mode callback output", merged 2026-08-26, removed that branch and added <code>callback_result_ignores_hidden_structured_content_and_meta</code>. Its summary: “Restrict Code Mode nested-tool results to assistant-visible text blocks” and “Preserve JSON parsing for visible text while excluding structured metadata and non-text content.” <a href="https://github.com/aaif-goose/goose/pull/11744" target="_blank">#11744</a>, open, would “treat an explicitly empty audience as hidden” in code mode.</p>
+
+<p>ACP and the desktop: <a href="https://github.com/aaif-goose/goose/issues/10125" target="_blank">issue #10125</a> reported <code>structuredContent</code> missing from the tool result an MCP App received, and <a href="https://github.com/aaif-goose/goose/pull/10128" target="_blank">#10128</a>, merged 2026-07-02, passes <code>rawOutput</code> through as <code>structuredContent</code> in the desktop.</p>
+
+<p>The maintainer’s stated position is on open <a href="https://github.com/aaif-goose/goose/issues/13182" target="_blank">issue #13182</a>, filed 2026-10-27 against v1.56.0, which reports a server sending <code>content: []</code> with <code>structuredContent</code> and the model receiving nothing. DOsinga replied on 2026-10-29: “This is not a Goose bug under the MCP spec as written.” and "So a server that expects its result to be visible to models needs to mirror it into <code>content</code>. Goose forwarding only <code>content</code> to providers preserves that distinction and avoids sending structured client/application data to the model unexpectedly."</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>An explicitly empty <code>audience: []</code> is dropped on the model path, because <code>filter_for_audience</code> keeps a block only when <code>roles.contains(&amp;audience)</code>, while <code>callback_result_to_value</code> in code mode keeps it (<code>audiences.is_empty() || audiences.contains(&amp;Role::Assistant)</code>).</p>
+
+<p>rmcp 3.9.0 holds <code>structured_content</code> as <code>Option&lt;Value&gt;</code> and keeps a present <code>structuredContent: null</code> as <code>Some(Value::Null)</code>, distinct from a missing field. A null-only result therefore parses as a <code>CallToolResult</code> (empty <code>content</code>, so the model sees <code>(empty result)</code>), and <code>extract_tool_raw_output</code> passes the <code>null</code> to ACP <code>raw_output</code>.</p>
+
+<p>With <code>GOOSE_TOOL_DEFERRAL=lookup</code> (and code mode off), <code>inference_tools</code> in <code>goose/src/agents/state_machine/ops_toolcalling.rs</code> withholds non-platform MCP tools not listed in <code>GOOSE_TOOL_DEFERRAL_ALWAYS_LOAD</code> and adds a built-in <code>enable_tools</code> tool. Its handler returns <code>CallToolResult::structured(serde_json::json!({"enabled": params.tool_names}))</code>, and <code>enabled_tools</code> re-derives the enabled set from the conversation by reading <code>result.structured_content</code> of those responses (<code>value["enabled"].as_array()</code>). This is goose’s own result, not a server’s; it reaches the model through <code>content</code> like any other, and the state-machine test <code>deferred_tools_follow_the_conversation_lifecycle</code> matches the model input on <code>"enabled":["calculator__add"]</code>.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 2365bc5 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

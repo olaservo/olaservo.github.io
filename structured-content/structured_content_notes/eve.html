@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How eve handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How eve handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the eve source (<code>clones/eve</code>, checked out at commit be1adda, read on 2026-11-14). File references are relative to <code>packages/eve/src/</code> in the clone root unless they start with <code>docs/</code>. The MCP client wrapper is <code>runtime/connections/mcp-client.ts</code>, the deciding function is <code>toConnectionToolResult</code> in <code>runtime/connections/tool-result.ts</code>, and the catalog entry that joins them is <code>execution/catalog/connection-entry.ts</code>. The SDK and provider code is not in the clone. It was read from the published packages at the versions in <code>pnpm-lock.yaml</code>: <code>@ai-sdk/mcp@2.0.99</code>, <code>ai@7.0.172</code>, <code>@ai-sdk/anthropic@4.0.104</code>, <code>@ai-sdk/openai@4.0.117</code>, <code>@ai-sdk/google@4.0.120</code>.</p>
+
+<h2 id="entry-results-enter-through-ai-sdk-mcp-and-arrive-unchanged-at-toconnectiontoolresult">Entry: results enter through <code>@ai-sdk/mcp</code> and arrive unchanged at <code>toConnectionToolResult</code></h2>
+
+<p>eve has one conversational MCP client path. <code>McpConnectionClient</code> in <code>runtime/connections/mcp-client.ts</code> wraps <code>createMCPClient</code> from <code>@ai-sdk/mcp</code>, compiled into eve with three transport and handshake patches listed in <code>packages/eve/scripts/vendor-compiled/@ai-sdk/mcp.mjs</code>. None of the patches touches result parsing. It tries the <code>http</code> transport and falls back to <code>sse</code> on status 400, 404 or 405 (<code>isMcpHttpFallbackRetryableError</code>). <code>runtime/connections/events/actions.ts</code> opens a second <code>createMCPClient</code> for <code>experimental.events</code> catalog and subscribe calls, which send no <code>tools/call</code>.</p>
+
+<p><code>#fetchToolsInner</code> calls <code>client.toolsFromDefinitions({ tools: projectedTools })</code>. <code>McpConnectionClient.executeTool</code> runs that tool’s <code>execute</code> and returns its result. In <code>@ai-sdk/mcp</code> (<code>dist/index.js</code>), <code>callTool</code> parses the response with <code>CallToolResultSchema</code>, a union of three shapes. <code>CallToolResultWithContentSchema</code> requires a <code>content</code> array and keeps <code>structuredContent</code> as optional unknown. <code>CallToolResultWithStructuredContentSchema</code> accepts a result with no <code>content</code> key and synthesizes one block: <code>text: JSON.stringify(result.structuredContent)</code>. The third accepts a legacy <code>toolResult</code>. A result with neither a <code>content</code> array nor <code>structuredContent</code> matches none of the three, and <code>request</code> throws <code>MCPClientError</code> with “Failed to parse server response”. eve passes that error through, so the model gets the <code>error-text</code> output <code>MCPClientError: Failed to parse server response</code>. The base schema is loose, so <code>_meta</code> and unknown keys survive. No field is dropped at this layer. The SDK’s own <code>mcpToModelOutput</code> is attached to the tool but eve never calls it, because eve takes only <code>sdkTool.execute</code>.</p>
+
+<p><code>runConnectionTool</code> in <code>execution/catalog/connection-entry.ts</code> then does <code>const result = toConnectionToolResult(connection.protocol, tool, raw);</code>, throws on <code>!result.ok</code>, and returns <code>result.value</code>. Everything after this point sees only that value. The <code>_meta</code> object, <code>isError</code>, and whichever field lost are gone for every later consumer.</p>
+
+<h2 id="model-path-structuredcontent-replaces-the-text-blocks-and-any-non-text-block-replaces-structuredcontent">Model path: structuredContent replaces the text blocks, and any non-text block replaces structuredContent</h2>
+
+<p><code>toConnectionToolResult</code> decides the result in this order:</p>
+
+<pre><code>const blocks = Array.isArray(raw.content) ? raw.content.filter(isMcpContentBlock) : [];
+...
+if (raw.isError === true) { ... return { ok: false, error: detail }; }
+if (blocks.some((block) =&gt; block.type !== "text")) return { ok: true, value: blocks };
+if (raw.structuredContent !== undefined) return { ok: true, value: raw.structuredContent };
+if (tool.outputSchema === undefined) return { ok: true, value: parseJsonText(text) };
+return { ok: true, value: text };</code></pre>
+
+<p>With both fields present and only text blocks, the value is <code>structuredContent</code> and every text block is dropped. The test is <code>!== undefined</code>, so <code>{}</code> and <code>null</code> also replace the text. With <code>content</code> empty or absent and <code>structuredContent</code> present, the value is the same <code>structuredContent</code>. So the model sees the same thing whether or not the server wrote the text mirror. No code compares the text with <code>structuredContent</code>, so the text is dropped whether it mirrors the JSON or differs from it.</p>
+
+<p>With both fields present and any <code>image</code>, <code>audio</code>, <code>resource</code> or <code>resource_link</code> block, the value is the block list and <code>structuredContent</code> is dropped. The text blocks in that list are kept. This is the only success case where a result carrying <code>structuredContent</code> puts server text in front of the model.</p>
+
+<p>With no <code>structuredContent</code> and text only, the joined text (<code>"\n"</code>) is parsed by <code>parseJsonText</code> when the tool declares no <code>outputSchema</code> and the trimmed text starts with <code>{</code> or <code>[</code>. A tool that declares a schema keeps the string. A result with an empty <code>content</code> array and no <code>structuredContent</code> gives the empty string. eve substitutes no placeholder for it. <code>connectionToolModelOutput</code> returns <code>{ type: "text", value: "" }</code>, and the <code>text</code> branch of <code>toolModelOutputSchema</code> in <code>harness/tool-model-output.ts</code> is <code>z.string()</code> with no minimum. A grep of <code>harness</code>, <code>execution</code> and <code>runtime</code> for empty-result or no-output wording finds no substitution. What each provider package sends for an empty string was not checked.</p>
+
+<p><code>isError: true</code> becomes <code>{ ok: false, error }</code>, where the error is the joined text, else <code>JSON.stringify(raw.structuredContent)</code>, else <code>The tool reported an error.</code>. <code>runConnectionTool</code> throws it, and <code>harness/call-executor.ts</code> writes <code>{ type: "error-text", value: failure }</code> with <code>failure = modelFacingError(error)</code>, so the model reads <code>Error: &lt;detail&gt;</code>.</p>
+
+<p><code>connectionEntry</code> sets <code>toModelOutput: connectionToolModelOutput</code>. <code>toolCallModelOutput</code> in <code>harness/tool-call-io.ts</code> calls it from <code>harness/call-executor.ts</code>, and <code>normalizeToolModelOutput</code> in <code>harness/tool-model-output.ts</code> validates the shape. <code>connectionToolModelOutput</code> maps a non-text block list to <code>{ type: "content", value }</code>, a string to <code>{ type: "text", value }</code>, and anything else to <code>{ type: "json", value: output ?? null }</code>. <code>isMcpContentBlockList</code> tests the value’s shape, so a <code>structuredContent</code> array whose items look like MCP blocks with at least one non-text also becomes <code>content</code> parts. A string <code>structuredContent</code> goes as text. <code>docs/connections/mcp.mdx</code> states "MCP connections have no per-result transform like an authored tool’s <code>toModelOutput</code>".</p>
+
+<p>Non-text blocks are mapped in <code>toModelOutputParts</code>. <code>image</code> and <code>audio</code> become <code>file</code> parts when <code>data</code> and <code>mimeType</code> are strings. An embedded <code>resource</code> with <code>blob</code> becomes a <code>file</code> part with <code>filename</code> set to its URI. An embedded <code>resource</code> with <code>text</code> becomes a text part holding <code>${uri}\n${resource.text}</code>. A <code>resource_link</code> becomes the text <code>Resource link: ${name} ${uri}</code>. A block type outside <code>MCP_CONTENT_TYPES</code> is filtered out at the top of <code>toConnectionToolResult</code>. If the mapping leaves no parts, the <code>.min(1)</code> in <code>toolModelOutputSchema</code> rejects it and the call settles as a failure.</p>
+
+<p>File parts do not stay inline. <code>stageToolResultMedia</code> in <code>harness/attachment-staging.ts</code>, called from <code>harness/step/intake.ts</code> and <code>harness/step/after-model.ts</code>, writes each one to the sandbox under <code>.eve/attachments</code> and stores an <code>eve-sandbox:</code> reference in history. With no active sandbox, or a failed write, the part becomes the text <code>Returned file ${filename} (${mediaType}) could not be stored.</code>. <code>hydrateToolOutput</code> runs for each model call in <code>harness/model-call/call.ts</code>: it renders a text label naming the sandbox path, followed by the bytes only when <code>inlinesSandboxRefAsBytes</code> allows it. That covers images in <code>INLINE_IMAGE_MEDIA_TYPES</code> up to 3 MiB and 8000 px, and PDFs up to 20 MiB. Audio and everything else stay as the label.</p>
+
+<p>The answer about which field reaches the model does not vary by backend. The <code>ToolModelOutputValue</code> is fixed before the provider is known, and only the encoding differs. A <code>string</code> model id routes through AI Gateway, which <code>resolveModelProfile</code> in <code>harness/model-profile.ts</code> marks with <code>gateway: true</code>, and the gateway’s own translation is not in these packages. In the direct providers, <code>@ai-sdk/anthropic</code> sends <code>tool_result.content</code> as <code>JSON.stringify(output.value)</code> for <code>json</code>, the string for <code>text</code>, and <code>text</code>, <code>image</code> or <code>document</code> blocks for <code>content</code>, with a warning and no block for other file types. <code>@ai-sdk/openai</code> Responses sends <code>function_call_output</code> holding <code>JSON.stringify(output.value)</code> for <code>json</code>, and <code>input_text</code>, <code>input_image</code> or <code>input_file</code> items for <code>content</code>. <code>@ai-sdk/openai</code> Chat Completions sends <code>JSON.stringify(output.value)</code> for both <code>json</code> and <code>content</code>. eve covers that case with <code>filesOutsideToolResults: provider.endsWith(".chat")</code>: <code>moveToolResultFilesToUserMessages</code> moves files into a following user message and leaves the stub <code>Attached file ... follows this tool result.</code>. <code>@ai-sdk/google</code> sends <code>functionResponse.response.content</code> as the JSON value itself, unstringified, and files as <code>functionResponse.parts</code> or legacy parts. An <code>error-text</code> output goes to <code>@ai-sdk/openai</code>, on both Chat Completions and Responses, as <code>JSON.stringify({ error: output.value })</code>, and to <code>@ai-sdk/anthropic</code> as the string with <code>is_error: true</code>.</p>
+
+<p><code>capToolResults</code> in <code>harness/compaction/engine.ts</code> caps oversized outputs in the older region of history during compaction, keeping head and tail with the annotation <code>[Truncated by eve: tool result reduced during context compaction. Re-run the tool if you need the full output.]</code>. No size cap applies to an MCP result before that.</p>
+
+<h2 id="outputschema-never-validated-rendered-into-the-signature-the-model-reads-and-it-switches-json-parsing-of-text">outputSchema: never validated, rendered into the signature the model reads, and it switches JSON parsing of text</h2>
+
+<p><code>@ai-sdk/mcp</code> can validate, but eve does not take that branch. In <code>toolsFromDefinitions</code>, <code>const outputSchema = schemas !== "automatic" ? schemas[name]?.outputSchema : void 0;</code>, and the <code>execute</code> body runs <code>extractStructuredContent</code> only when that value is non-null. eve passes no <code>schemas</code> option, so the default <code>"automatic"</code> applies and the result is returned unchecked. A mismatch has no effect, and a tool that declares a schema and returns no <code>structuredContent</code> is also accepted. The only schema validation in <code>execution/catalog/connection-entry.ts</code> is <code>checkCall</code>, on inputs.</p>
+
+<p><code>#fetchToolsInner</code> copies <code>t.outputSchema</code> into <code>ConnectionToolMetadata.outputSchema</code>. There are two uses. <code>connectionToolSignature</code> in <code>execution/catalog/signatures.ts</code> calls <code>renderToolSignature</code> in <code>tools/signature.ts</code>, which produces <code>${input.name}(input: ${inputType}): Promise&lt;${outputType}&gt;</code>, with <code>unknown</code> when no schema is declared. That string is the <code>signature</code> field of each <code>eve__search</code> result (<code>toolCandidate</code> in <code>execution/catalog/search.ts</code>) and is appended as <code>Signature: ...</code> to input validation failures in <code>checkCall</code>, so it reaches the model as tool result text. The second use is the <code>tool.outputSchema === undefined</code> test in <code>toConnectionToolResult</code>, covered above. Connection entries are not in the model’s tool list, so the schema is not sent as a provider tool definition: <code>connectionEntry</code> sets <code>deferred: true</code>, <code>description: ""</code>, and no <code>outputSchema</code>.</p>
+
+<h2 id="other-paths-no-script-path-exists-hooks-and-clients-read-the-routed-value-and-calls-through-the-catalog-run-the-same-way">Other paths: no script path exists, hooks and clients read the routed value, and calls through the catalog run the same way</h2>
+
+<p>All connection tools are deferred. <code>catalogTools</code> in <code>execution/catalog/catalog-tools.ts</code>, added to the step’s tools by <code>definitions/catalog.ts</code>, supplies <code>eve__search</code> and <code>eve__tool</code>, and <code>catalog.resolve</code> in <code>buildStepCatalog</code> (<code>execution/catalog/step-catalog.ts</code>) turns <code>eve__tool({ name, input })</code> into a call to <code>connectionEntryNamed</code>'s entry, so the <code>toModelOutput</code> above applies. Model history keeps the <code>eve__tool</code> name. There is no direct listing of an MCP tool as a provider tool.</p>
+
+<p>Scripts: there is no code mode. The header of <code>runtime/connections/tool-result.ts</code> says the value is “what the model receives for the call and what a code mode program receives later”, and <code>evals/reported-tool-name.ts</code> says “eve__execute isn’t a tool eve registers (it’s reserved for code mode)”. The provided <code>workflow</code> tool (<code>tools/provided/workflow.ts</code>, <code>execution/dynamic-workflow/program-step.ts</code>) runs model-written JavaScript with a frozen <code>ctx</code> holding only <code>agent</code>, so a program cannot call a connection tool. The only caller of <code>client.executeTool</code> is <code>executeWithDeadline</code> in <code>connection-entry.ts</code>.</p>
+
+<p>Hooks and stream clients: <code>call.settled</code> carries the value from <code>toConnectionToolResult</code> through <code>createRuntimeToolResultFromValue</code> in <code>harness/action-result-helpers.ts</code>, whose comment says "the raw-output-vs-<code>toModelOutput</code> decision — always raw". Hooks read it with <code>call(ctx.view, callId)</code> or <code>toolResultFrom</code> (<code>docs/guides/hooks.md</code>) and cannot change what the model sees. So a hook gets the same field the model got, in raw form, with base64 intact for blocks. The ACP adapter in <code>acp/adapter.ts</code> <code>callOutput</code> sends the same value as <code>rawOutput</code> and stringified text. The text mirror and <code>_meta</code> are unavailable to all of them. The raw <code>CallToolResult</code> is seen only by <code>isMcpAuthChallengeResult</code> and by <code>withMcpToolCallSpan</code> (<code>runtime/connections/mcp-tracing.ts</code>, which calls <code>createMcpTracing</code> in <code>tracing/eve/mcp.ts</code>), which records a JSON result on its span only when output recording is on.</p>
+
+<p>Subagents: <code>callableOf</code> in <code>execution/catalog/step-catalog.ts</code> builds each session’s catalog from <code>ConnectionRegistryKey</code> with the same <code>connectionEntry</code>, so a subagent’s connection call gets the same <code>toModelOutput</code>. <code>docs/subagents</code> says a subagent uses the root’s connections or its own <code>connections/</code> directory. <code>execution/tasks/render.ts</code> <code>renderModelOutputText</code> flattens a task tool’s output to text with <code>[file: ...]</code> labels, and connection entries are not task tools.</p>
+
+<p>MCP Apps: none. No code under <code>packages/eve/src</code> reads <code>ui://</code>, and eve does not call the SDK’s <code>splitMCPAppTools</code>. A result has no route to an app view.</p>
+
+<p>Server side: <code>public/channels/mcp.ts</code> and <code>internal/mcp/published-tools.ts</code> publish an eve agent’s tools. For a tool with an <code>outputSchema</code> or an object output they emit <code>structuredContent</code> with one text block (<code>published-tools.ts</code>), and add <code>isError: true</code> when the tool’s model output is <code>error-text</code>. When an eve agent connects to another eve agent’s <code>mcpChannel</code> the client path above drops that text.</p>
+
+<p>Switches: <code>toConnectionToolResult</code> takes only the protocol, the tool’s metadata and the raw result, so no connection option changes which field the model gets. The fields of <code>McpClientConnectionDefinition</code> in <code>public/definitions/connections/mcp.ts</code> cover the URL, description, protocol discovery, principal forwarding, auth, instance key, approval, headers, provided input arguments (<code>toolCall</code>), the tool filter (<code>tools</code>) and <code>experimental.events</code>. The tool’s declared <code>outputSchema</code> switches JSON parsing of text-only results, and <code>mcp/www_authenticate</code> under result <code>_meta</code> turns an error into sign-in, both covered in their sections.</p>
+
+<h2 id="audience-and-meta-audience-is-unread-and-one-result-meta-key-triggers-sign-in">audience and <code>_meta</code>: audience is unread, and one result <code>_meta</code> key triggers sign-in</h2>
+
+<p>No code reads <code>audience</code> on the result path. <code>toModelOutputParts</code> and <code>toConnectionToolResult</code> never touch block <code>annotations</code>, so a block marked <code>audience: ["user"]</code> reaches the model when the block list wins. The <code>annotations</code> read in <code>mcp-client.ts</code> is the tool-level <code>readOnlyHint</code> family, passed to approval policies by <code>toolAnnotations</code> in <code>connection-entry.ts</code>.</p>
+
+<p>One result <code>_meta</code> key changes behaviour. <code>MCP_WWW_AUTHENTICATE_META_KEY = "mcp/www_authenticate"</code>: <code>isMcpAuthChallengeResult</code> in <code>mcp-client.ts</code> returns true for <code>isError: true</code> with a non-empty string or list under that key, and <code>executeTool</code> then calls <code>#requireAuthorization</code>, so the call starts sign-in and the model does not receive the error. No other result <code>_meta</code> key is read.</p>
+
+<p><code>_meta.ui.visibility</code> is not honoured. <code>listTools</code> in the SDK returns every tool. <code>ConnectionToolMetadata</code> built in <code>#fetchToolsInner</code> has no <code>_meta</code> field, and <code>listToolMetadata</code> in <code>execution/catalog/connection-auth.ts</code> filters only by the connection’s <code>tools.allow</code> or <code>tools.block</code> (<code>passesToolFilter</code>), so a tool with <code>visibility: ["app"]</code> can be found by <code>eve__search</code> and called by the model. The SDK’s <code>getMCPAppToolMeta</code> still runs in <code>toolsFromDefinitions</code> and throws <code>Invalid MCP App resource URI</code> when a <code>resourceUri</code> is not a <code>ui://</code> string, which fails the connection’s tool listing.</p>
+
+<h2 id="protocol-revision-2026-07-28-by-discovery-then-2025-11-25-by-initialize-five-revisions-accepted">Protocol revision: 2026-07-28 by discovery, then 2025-11-25 by initialize, five revisions accepted</h2>
+
+<p><code>@ai-sdk/mcp</code> sets <code>LATEST_PROTOCOL_VERSION = "2026-07-28"</code>, <code>LATEST_LEGACY_PROTOCOL_VERSION = "2025-11-25"</code>, and <code>SUPPORTED_PROTOCOL_VERSIONS</code> of <code>2026-07-28</code>, <code>2025-11-25</code>, <code>2025-06-18</code>, <code>2025-03-26</code>, <code>2024-11-05</code>. <code>protocolVersionDiscovery</code> defaults to <code>true</code>, and <code>tryProtocolDiscovery</code> sends <code>server/discover</code> under <code>2026-07-28</code>. The SDK’s <code>HttpMCPTransport</code> sets <code>waitsForProtocolVersionDiscovery</code>, so discovery on HTTP has no 1 s timeout. On an ordinary failure the client falls back to <code>initialize</code> with <code>2025-11-25</code>. eve’s <code>supported-protocol-version-fallback</code> patch makes error <code>-32022</code> with <code>data.supported</code> negotiate the newest listed legacy version the client supports, and otherwise rethrows. A connection with <code>protocolVersionDiscovery: false</code> skips discovery and starts at <code>initialize</code> with <code>2025-11-25</code> (<code>public/definitions/connections/mcp.ts</code>, <code>docs/connections/mcp.mdx</code>). <code>applyInitializeResult</code> throws <code>Server's protocol version is not supported</code> for anything outside the list.</p>
+
+<h2 id="upstream-history-3924-sent-the-text-4023-made-structuredcontent-the-value-two-days-later">Upstream history: #3924 sent the text, #4023 made structuredContent the value two days later</h2>
+
+<p><code>runtime/connections/tool-result.ts</code> and <code>toConnectionToolResult</code> arrived with <a href="https://github.com/vercel/eve/pull/4023" target="_blank">vercel/eve#4023</a>, “feat(eve)!: cache-stable connection_search and connection_execute”, merged 2026-09-30. The PR body says it “moves to code mode’s result format and protocol shape now, so a later code mode only has to replace the entry point.” It lists "Code mode’s result value. <code>connection_execute</code> returns MCP <code>structuredContent</code> or text (JSON-parsed when the tool declares no output schema), MCP media as file parts, and OpenAPI’s <code>{ status, statusText, body }</code>.“ Its breaking changes include ”MCP results are no longer the raw envelope." The design is <code>research/connection-execute.md</code>. It is not in the clone at be1adda, whose <code>research/</code> holds only <code>a2a-channel.md</code>, <code>channel-text-answers.md</code>, <code>native-code-mode.md</code>, <code>recall-channel.md</code>, <code>slack-code-channels.md</code> and <code>stranded-session-revival.md</code>. Its “Result format” table gives the same order. It gives one reason, for keeping blocks: "<code>toModelOutput</code> receives only the output, so a result with non-text content keeps its MCP <code>content</code> blocks in the value." Neither the PR body nor <code>research/connection-execute.md</code> says why <code>structuredContent</code> comes before the text. The review threads on <code>tool-result.ts</code> ask for unit tests of its branches and do not discuss the order.</p>
+
+<p><a href="https://github.com/vercel/eve/pull/3924" target="_blank">vercel/eve#3924</a>, “fix(eve): send only MCP content blocks to the model”, merged 2026-09-28, had the model receive the <code>content</code> text through the SDK’s <code>toModelOutput</code>. Its body: "This follows the MCP spec, which defines <code>content</code> as the model-facing result. <code>structuredContent</code> is for clients that want typed data, and servers are expected to repeat it as text in <code>content</code>.“ It gives the cost of sending the raw result: ”The data is there twice, once JSON-escaped." #4023 removed the <code>connection_search</code> tool path that #3924 changed, and its body does not mention #3924. A review on #3924 asked that an error with empty <code>content</code> and <code>structuredContent</code> keep a failure marker, and the fix returned <code>Tool call failed:</code> followed by the JSON.</p>
+
+<p><a href="https://github.com/vercel/eve/pull/4400" target="_blank">vercel/eve#4400</a>, “feat(eve): deferred tools and skills”, merged 2026-10-08, changed only the header comment of <code>tool-result.ts</code>. <code>research/native-code-mode.md</code> in the clone root lists under “What we take”: "From opencode: <code>execute</code> as the name, catalog changes delivered as appended messages, and MCP result handling (<code>structuredContent</code>, otherwise text parsed as JSON, and <code>isError</code> throws), which eve already matches." <a href="https://github.com/vercel/eve/pull/2854" target="_blank">vercel/eve#2854</a>, closed unmerged on 2026-09-01, would have synthesized a text block for Shopify’s catalog MCP results that carry <code>structuredContent</code> and no <code>content</code>.</p>
+
+<p>Searched: the clone is shallow with one commit (be1adda), so <code>git log</code> and <code>git blame</code> do not reach the history. <code>gh api repos/vercel/eve/commits?path=packages/eve/src/runtime/connections/tool-result.ts</code> returns two commits, cc14b3d (#4023) and 8c55ea7 (#4400). <code>gh search prs</code> in <code>vercel/eve</code> for <code>structuredContent</code>, <code>toConnectionToolResult</code>, <code>connectionToolModelOutput</code>, <code>tool-result.ts</code>, “MCP content blocks” and “mcp tool result”, and <code>gh search issues</code> for <code>structuredContent</code>, “structuredContent model” and “MCP tool result”, found no issue that discusses the order. The review and issue comments on #4023 and #3924 were read.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit be1adda &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

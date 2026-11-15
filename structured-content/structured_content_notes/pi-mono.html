@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How pi-mono handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How pi-mono handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the pi-mono source (<code>clones/pi-mono</code>, checked out at commit 8636e21, read on 2026-11-14). File references are relative to <code>packages/</code> in the clone root. The MCP client lives in <code>mcp/</code>, the model-facing adapter in <code>coding-agent/src/extensions/mcp/</code>, and the script path in <code>coding-agent/src/extensions/codemode/</code> and <code>codemode/</code>.</p>
+
+<h2 id="entry-results-enter-through-a-hand-rolled-client-that-keeps-structuredcontent-as-unknown">Entry: results enter through a hand-rolled client that keeps structuredContent as unknown</h2>
+
+<p>pi has its own MCP client, <code>@earendil-works/pi-mcp</code> version 1.5.2 (<code>mcp/package.json</code>). <code>mcp/README.md</code> states “It does not depend on the official MCP SDK or other pi packages”; only the OAuth code is adapted from the TypeScript SDK v1.29.0, which is why <code>mcp/THIRD_PARTY_NOTICES/</code> carries that license. <code>McpClient.callTool</code> in <code>mcp/src/client.ts</code> sends <code>tools/call</code> and passes the raw JSON-RPC result through <code>validateCallToolResult</code>. That function checks only that <code>content</code>, if present, is an array, and defaults a missing <code>content</code> to <code>[]</code>; its comment says "<code>content</code> is required by the spec, but servers that only return <code>structuredContent</code> omit it". The result type is <code>CallToolResult</code> in <code>mcp/src/protocol/content.ts</code>, with <code>content: ContentBlock[]</code>, <code>structuredContent?: unknown</code>, <code>isError?: boolean</code>, and <code>_meta</code>. No field is dropped at this layer. The coding agent creates the client in <code>coding-agent/src/extensions/mcp/runtime.ts</code> with <code>name: "pi"</code> and wraps each listed tool with <code>createMcpToolDefinition</code> in <code>coding-agent/src/extensions/mcp/tools.ts</code>.</p>
+
+<h2 id="model-path-content-blocks-only-structuredcontent-used-solely-as-a-fallback">Model path: content blocks only, structuredContent used solely as a fallback</h2>
+
+<p><code>convertMcpResult</code> in <code>coding-agent/src/extensions/mcp/tools.ts</code> decides what the model sees: <code>result.content.length &gt; 0 ? await toModelContent(server, result.content, options) : toLlmContent(result)</code>. When both fields are present, only the <code>content</code> blocks reach the model and <code>structuredContent</code> is not read on this path. When <code>content</code> is empty, or absent and defaulted to <code>[]</code>, <code>toLlmContent</code> in <code>mcp/src/protocol/content.ts</code> pushes one text block holding <code>JSON.stringify(result.structuredContent, null, 2)</code>. <code>mcp/test/content.test.ts</code> pins both cases, including arrays and <code>null</code>. The rule is the same whether the text mirrors the JSON or differs from it. No step compares the text with <code>structuredContent</code> or removes a duplicate, and a mirrored result reaches the model once, as the <code>content</code> text. A <code>content</code> array holding only non-text blocks (image, audio, resource) is non-empty, so <code>structuredContent</code> is not used for it. When <code>structuredContent</code> is used, <code>content</code> is empty and there are no non-text blocks to keep. A non-error result with empty <code>content</code> and no <code>structuredContent</code> gets no placeholder from the adapter: <code>converted</code> stays <code>[]</code>, and the provider adapter in <code>ai/src/api/</code> decides what is sent.</p>
+
+<p><code>ContentAnnotations.audience</code> is declared in <code>mcp/src/protocol/content.ts</code>, and no code reads it. A grep for <code>audience</code> in the <code>.ts</code> files under <code>packages/</code> returns only that declaration. A block annotated <code>audience: ["user"]</code> is converted and reaches the model like any other block.</p>
+
+<p>Non-text blocks are handled in <code>blockToLlmContent</code> (<code>mcp/src/protocol/content.ts</code>) and <code>blockToContent</code> (<code>coding-agent/src/extensions/mcp/tools.ts</code>). Image blocks pass through as images. Audio becomes the text <code>[audio ${block.mimeType} omitted]</code>. A <code>resource_link</code> becomes a text line naming the URI, title, mime type, size, and the <code>read_mcp_resource</code> tool when the server has readable resources. An embedded text resource becomes its text. An embedded blob with an <code>image/</code> mime type becomes an image. Other blobs with a text-like mime type (<code>isTextMimeType</code>) are decoded as UTF-8; the rest are written to a temp file by <code>saveToTempFile</code> and replaced by <code>[Binary resource ${uri} (${kind}) saved to ${path}]</code>. <code>limitMcpContent</code> then cuts text over <code>MCP_OUTPUT_MAX_BYTES</code> (20 KB) in the middle and saves the full text to a file named in the result. An <code>isError</code> result with no text gets <code>MCP tool ${server}/${tool} returned an error</code>.</p>
+
+<p>The converted blocks become <code>AgentToolResult.content</code>. <code>ToolResultMessage</code> in <code>ai/src/types.ts</code> has no <code>structuredContent</code> field, and <code>createToolResultMessage</code> in <code>agent/src/agent-loop.ts</code> copies only <code>content</code>, <code>details</code>, <code>usage</code>, and <code>isError</code>, so structured content never enters the transcript sent to a provider. <code>agent/src/types.ts</code> documents the field as "Not sent to the model; <code>content</code> remains the model-facing result."</p>
+
+<h2 id="outputschema-carried-through-never-validated-rendered-into-script-declarations">outputSchema: carried through, never validated, rendered into script declarations</h2>
+
+<p><code>Tool.outputSchema?</code> is part of the <code>tools/list</code> type in <code>mcp/src/protocol/types.ts</code>. The <code>isTool</code> guard in <code>mcp/src/client.ts</code> checks only <code>name</code> and <code>inputSchema</code>. No code validates <code>structuredContent</code> against <code>outputSchema</code>; the only schema validation in the loop is <code>validateToolArguments</code> on inputs (<code>agent/src/agent-loop.ts</code>). A <code>structuredContent</code> that does not match the declared schema is passed on unchanged, so there is no failure text. <code>createMcpResultSchema</code> in <code>coding-agent/src/extensions/mcp/tools.ts</code> wraps the server’s schema as the <code>structuredContent</code> property of a <code>CallToolResult</code>-shaped object schema, rewriting local <code>$ref</code>s with <code>relocateSchema</code>, and uses <code>{}</code> when the tool declares none (“Servers may send structured content without declaring a schema for it, and it may be any JSON value”). That wrapped schema becomes the pi tool’s <code>outputSchema</code>. It is not sent to the provider: <code>toToolDeclaration</code> in <code>ai/src/utils/transcript.ts</code> copies only <code>name</code>, <code>description</code>, <code>parameters</code>, and <code>constrainedSampling</code>. It is used for prompt text in codemode: <code>renderToolSignature</code> in <code>codemode/src/declarations.ts</code> renders <code>name(args: T): Promise&lt;R&gt;</code> from it, and <code>describeScriptCall</code> in <code>coding-agent/src/extensions/codemode/tool.ts</code> appends "Codemode: <code>tools.x(args)</code> resolves to ..." to a direct tool’s description.</p>
+
+<h2 id="other-paths-codemode-scripts-receive-the-whole-calltoolresult">Other paths: codemode scripts receive the whole CallToolResult</h2>
+
+<p><code>convertMcpResult</code> sets <code>structuredContent: scriptResult</code>, where <code>scriptResult</code> is the full <code>CallToolResult</code> minus <code>_meta</code>, untruncated. <code>toScriptValue</code> in <code>coding-agent/src/extensions/codemode/execute.ts</code> hands a script <code>result.structuredContent</code> whenever the tool declares an <code>outputSchema</code>, which every MCP tool does, so scripts see <code>{ content, structuredContent, isError }</code> as the server sent them. A result without a <code>content</code> key reaches scripts with the <code>content: []</code> that <code>validateCallToolResult</code> adds. <code>isError</code> results still resolve in scripts. Only the script’s own output reaches the model (<code>coding-agent/src/extensions/codemode/tool.ts</code> header). That output has its own limit: <code>truncateOutput</code> in <code>coding-agent/src/extensions/codemode/execute.ts</code> cuts the script’s text in the middle at <code>DEFAULT_MAX_OUTPUT_TOKENS</code> (10,000 tokens at four characters each, settable per script with <code>max_output_tokens</code>), so a large result a script prints is cut by this budget, not by <code>MCP_OUTPUT_MAX_BYTES</code>. Exposure (<code>direct</code>, <code>codemode</code>, <code>deferred</code>, <code>hidden</code>, mapped by <code>toToolExposure</code>) decides whether the model sees a declaration at all. A <code>deferred</code> tool is declared once <code>tool_search</code> (<code>coding-agent/src/extensions/tool-search/tool.ts</code>) activates it, “so the next model call declares them”, and from then on it is called directly and its result goes through <code>convertMcpResult</code> like a <code>direct</code> tool’s. No switch changes which field the model gets. The <code>mcp.json</code> keys that apply per server are <code>enabled</code>, <code>exposure</code>, and <code>toolExposure</code> (<code>coding-agent/src/extensions/mcp/config.ts</code>), which decide whether a tool is declared. <code>outputSchema</code> changes only what <code>toScriptValue</code> hands a script, and <code>convertMcpResult</code> applies the same rule to every result.</p>
+
+<p>MCP Apps: pi does not render them. The <code>McpClient</code> options in <code>coding-agent/src/extensions/mcp/runtime.ts</code> set <code>name</code>, <code>version</code>, <code>requestTimeoutMs</code>, and <code>roots</code>, and declare no <code>extensions</code> capability. <code>coding-agent/src/extensions/mcp/resources.ts</code> leaves <code>ui://</code> and <code>profile=mcp-app</code> resources out of listings (“they are user interfaces for hosts that render them”). No code reads <code>_meta.ui</code>: a grep for <code>visibility</code> in <code>mcp/src/</code> and <code>coding-agent/src/extensions/mcp/</code> returns nothing, so a tool marked app-only is registered by <code>createMcpToolDefinition</code> like any other.</p>
+
+<p>Hooks: the <code>tool_result</code> extension event (<code>ToolResultEventBase.structuredContent</code> in <code>coding-agent/src/core/extensions/types.ts</code>) and <code>afterToolCall</code> in <code>agent/src/agent-loop.ts</code> can replace both fields; replacing <code>content</code> alone drops <code>structuredContent</code>. UI: <code>renderResult</code> in <code>tools.ts</code> shows <code>getTextOutput(result)</code> and <code>details.fullOutputPath</code>. <code>_meta</code>: no routing flag is read; the client writes <code>_meta.progressToken</code> on requests and the adapter strips <code>_meta</code> from script results. <code>read_mcp_resource</code> in <code>coding-agent/src/extensions/mcp/resources.ts</code> runs <code>resources/read</code> contents through the same <code>toModelContent</code> and sets <code>structuredContent: { server, uri, contents }</code>.</p>
+
+<p>The phrase “changing result shapes” does not appear in the source. The closest statements are the <code>toLlmContent</code> comment “servers should, but do not always, mirror structured results as text”, the <code>additionalProperties: true</code> entry in <code>createMcpResultSchema</code> annotated “Fields newer protocol versions add”, the <code>coding-agent/CHANGELOG.md</code> fix for non-object <code>structuredContent</code> (#10416), and the <code>codemode/CHANGELOG.md</code> entry removing the shared <code>CallToolResult&lt;T&gt;</code> type in favour of spelling each result type out per tool.</p>
+
+<h2 id="protocol-revision-2025-11-25-requested-three-older-revisions-accepted">Protocol revision: 2025-11-25 requested, three older revisions accepted</h2>
+
+<p><code>LATEST_PROTOCOL_VERSION = "2025-11-25"</code> and <code>SUPPORTED_PROTOCOL_VERSIONS</code> (<code>2025-11-25</code>, <code>2025-06-18</code>, <code>2025-03-26</code>, <code>2024-11-05</code>) are in <code>mcp/src/protocol/types.ts</code>. <code>McpClient.connect</code> sends <code>this.options.protocolVersion ?? LATEST_PROTOCOL_VERSION</code> and throws <code>MCP server selected unsupported protocol version</code> for anything outside the list. <code>mcp/src/transports/streamable-http.ts</code> sets the <code>MCP-Protocol-Version</code> header to the negotiated value. Comments in <code>content.ts</code> and <code>client.ts</code> cite “MCP 2026-07-28” for structured content being any JSON value, but that revision is not in the negotiated list.</p>
+
+<h2 id="upstream-history-the-rule-arrived-with-mcp-support-in-one-pr-with-no-recorded-rationale-beyond-a-code-comment">Upstream history: the rule arrived with MCP support in one PR, with no recorded rationale beyond a code comment</h2>
+
+<p>The clone is shallow (one commit), so <code>git log</code> and <code>git blame</code> do not reach the history. <code>github.com/badlogic/pi-mono</code> redirects to <code>earendil-works/pi</code>. The MCP client, the adapter, and the <code>content</code>-first rule with the <code>structuredContent</code> fallback arrived together in <a href="https://github.com/earendil-works/pi/pull/10040" target="_blank">earendil-works/pi#10040</a>, squash-merged as 8562bcf66 on 2026-09-29 and released in 0.99.0 (<code>coding-agent/CHANGELOG.md</code>, <code>mcp/CHANGELOG.md</code>). <code>mcp/src/protocol/content.ts</code> and <code>coding-agent/src/extensions/mcp/tools.ts</code> at 8562bcf66, read with <code>gh api</code>, already hold the <code>toLlmContent</code> fallback and the <code>result.content.length &gt; 0</code> branch, with <code>structuredContent</code> typed as <code>Record&lt;string, unknown&gt;</code>. The PR body and commit message say of results only: "Tools can also return <code>structuredContent</code> with an <code>outputSchema</code>, and can report errors with <code>isError</code> instead of throwing.“ The PR has no review comments, and its 16 conversation comments do not discuss which field reaches the model. One comment from noctuid on 2026-09-27 notes ”Tool inputs are validated, but structuredContent is not validated against the outputSchema. Maybe there could be optional validation?" The only recorded reason for the fallback is the <code>toLlmContent</code> comment in <code>mcp/src/protocol/content.ts</code>: “servers should, but do not always, mirror structured results as text”.</p>
+
+<p>Before built-in MCP support, <a href="https://github.com/earendil-works/pi/issues/5364" target="_blank">#5364</a> (closed 2026-06-03) proposed falling back to pretty-printed <code>structuredContent</code> "when the standard <code>content</code> text blocks are missing or empty“. badlogic closed it with ”pi has no built-in mcp support. bring this up with the maintainer of the mcp extension you are using." The 1.2.0 entries in both changelogs cite <a href="https://github.com/earendil-works/pi/issues/10416" target="_blank">#10416</a> for accepting non-object <code>structuredContent</code>. That issue is still open and asks for MCP 2026-07-28 support and to “Keep Pi’s existing result-envelope contract”. Searched: <code>gh search issues</code> and <code>gh search prs</code> for <code>structuredContent</code>, “structured content”, “mcp audience”, and “mcp apps” in <code>earendil-works/pi</code>, and every <code>CHANGELOG.md</code> under <code>packages/</code>.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>The empty-result placeholder differs by provider API. With no text and no images, <code>openai-completions.ts</code>, <code>openai-responses-shared.ts</code>, and <code>mistral-conversations.ts</code> in <code>ai/src/api/</code> send <code>(no tool output)</code>, while <code>google-shared.ts</code> sends an empty string and <code>convertContentBlocks</code> in <code>anthropic-messages.ts</code> joins no text into an empty string.</p>
+
+<p>An unknown block type does not fail the result: <code>blockToLlmContent</code> in <code>mcp/src/protocol/content.ts</code> turns it into the text <code>[unsupported MCP content ${type}]</code>.</p>
+
+<p>The 20 KB cut reorders blocks. <code>limitMcpContent</code> in <code>mcp/src/output-limit.ts</code> joins every text block into one, keeps the first and last 10 KB around a <code>…N chars truncated…</code> marker, prefixes <code>Warning: truncated output (original token count: N)</code> and the line count, appends <code>[Full output: &lt;path&gt; (read it with offset/limit)]</code>, and puts any images after that single block. The script result in <code>structuredContent</code> is not cut.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 8636e21 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

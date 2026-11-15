@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How agent-framework handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How agent-framework handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the Microsoft Agent Framework monorepo (<code>clones/agent-framework</code>, checked out at commit 92838b60498395142cb8b74693353163e95a0faf (92838b6), read on 2026-11-14). Python file references are relative to <code>python/packages/</code>, except <code>uv.lock</code> and SDK files. .NET file references are relative to <code>dotnet/src/</code>, except <code>Directory.Packages.props</code> and SDK files.</p>
+
+<h2 id="python">Python</h2>
+
+<h3 id="entry-results-enter-through-the-sdk-client-typed-as-calltoolresult-with-structured-content-kept">Entry: results enter through the SDK <code>Client</code>, typed as <code>CallToolResult</code>, with <code>structured_content</code> kept</h3>
+
+<p><code>core/pyproject.toml</code> declares <code>"mcp&gt;=2.2.0,&lt;3"</code>, and <code>uv.lock</code> resolves <code>mcp</code> 2.3.0 and <code>mcp-types</code> 2.3.0. <code>MCPTool.connect</code> in <code>core/agent_framework/_mcp.py</code> constructs <code>mcp.Client(server=..., read_timeout_seconds=..., ...)</code> and wraps it in <code>_ClientMCPConnection</code>, whose <code>call_tool</code> calls <code>self._client.call_tool(name, arguments=..., meta=meta)</code>. A caller-supplied <code>ClientSession</code> is wrapped in <code>_SessionMCPConnection</code> and calls <code>session.call_tool</code> directly. <code>MCPTool._call_tool_with_retries</code> receives the <code>types.CallToolResult</code>, records it with <code>_capture_mcp_result(self, result)</code>, and passes it to <code>parser = self.parse_tool_results or self._parse_tool_result_from_mcp</code>.</p>
+
+<p>The <code>CallToolResult</code> models in <code>mcp-types</code>, read at python-sdk tag <code>v2.3.0</code> (<code>src/mcp-types/mcp_types/_types.py</code> and the <code>_v2025_11_25</code> and <code>_v2026_07_28</code> wire modules), declare <code>content: list[ContentBlock]</code> with no default and <code>structured_content: Any = None</code>. <code>ClientSession.send_request</code> in <code>mcp/client/session.py</code> validates the raw result against them, so a result without a <code>content</code> key raises <code>pydantic.ValidationError</code>. <code>_call_tool_with_retries</code> catches it in its final <code>except Exception</code> arm, and the model sees <code>"Error: Function failed."</code>.</p>
+
+<h3 id="model-path-structuredcontent-replaces-content-by-default-a-constructor-mode-selects-the-rule">Model path: structuredContent replaces content by default; a constructor mode selects the rule</h3>
+
+<p><code>MCPTool.__init__</code> takes <code>tool_result_content: MCPToolResultContentMode = "structured_first"</code>, validated against five values. <code>_parse_tool_result_from_mcp</code> first converts every <code>content</code> block to a <code>Content</code> item: text as text, image and audio as <code>Content.from_data</code>, <code>ResourceLink</code> as <code>Content.from_uri</code>, text resources as text, blob resources as a <code>data:</code> URI, and any other block as <code>Content.from_text(str(item))</code>. It then builds <code>structured_block = Content.from_text(json.dumps(mcp_type.structured_content, default=str))</code> when <code>structured_content is not None</code>. The mode decides the list. <code>structured_first</code> runs <code>result = [structured_block]</code>, so with both fields present the model receives one JSON text block and every <code>content</code> block, non-text included, is dropped. <code>content_first</code> appends the JSON block only when <code>not result</code>. <code>content_only</code> leaves the content list. <code>structured_only</code> keeps only the JSON block. <code>both</code> appends the JSON block after the content items. With empty <code>content</code> and a structured value, every mode except <code>content_only</code> yields the one JSON block. A list left empty after selection becomes <code>Content.from_text("null")</code>. A custom <code>parse_tool_results</code> callable replaces the whole function.</p>
+
+<p>No mode compares the text blocks with the JSON, so under <code>both</code> a text block that mirrors <code>structuredContent</code> reaches the model twice. <code>_parse_tool_result_from_mcp</code> does not read <code>annotations</code>, and no non-test file under <code>python/packages/</code> reads <code>audience</code>. A block with <code>audience: ["user"]</code> is converted like any other block and reaches the model in every mode that keeps <code>content</code> items. <code>_parse_content_from_mcp</code>, on the prompt and sampling path, copies an embedded resource’s <code>annotations</code> into <code>additional_properties</code>.</p>
+
+<p>On <code>result.is_error</code>, <code>_call_tool_with_retries</code> runs the parser, joins its text items, and raises <code>_mcp_tool_execution_exception(text or str(parsed))</code>. <code>_function_execution_error_result</code> in <code>core/agent_framework/_tools.py</code> turns any tool exception into the result <code>"Error: Function failed."</code>, and appends <code>f" Exception: {exception}"</code> only when <code>include_detailed_errors</code> is set.</p>
+
+<p>The selected list becomes the function result items, and each provider converter decides what survives.</p>
+
+<ul>
+  <li><code>openai/agent_framework_openai/_chat_completion_client.py</code> (Chat Completions) joins text items with <code>"\n"</code> and logs a warning that “Rich content items will be omitted” for <code>data</code> and <code>uri</code> items.</li>
+  <li><code>openai/agent_framework_openai/_chat_client.py</code> (Responses) sends <code>input_text</code> parts plus prepared rich parts when <code>SUPPORTS_RICH_FUNCTION_OUTPUT</code> is true and any item is <code>data</code>, <code>uri</code> or <code>hosted_file</code>. <code>foundry/agent_framework_foundry/_chat_client.py</code> sets it to <code>False</code>.</li>
+  <li><code>anthropic/agent_framework_anthropic/_chat_client.py</code> keeps text and image <code>data</code> or <code>uri</code> items and drops the rest with <code>logger.debug("Ignoring unsupported rich content media type in tool result: %s", ...)</code>.</li>
+  <li><code>bedrock/agent_framework_bedrock/_chat_client.py</code> keeps text items only and logs that rich content “will be omitted”.</li>
+</ul>
+
+<p><code>MCPTool._parse_content_from_mcp</code>, used for prompt and sampling messages, has a separate <code>ToolResultContent</code> arm with the inverse rule: <code>result=self._parse_content_from_mcp(mcp_type.content) if mcp_type.content else mcp_type.structured_content</code>.</p>
+
+<h3 id="outputschema-never-read-by-the-client-validated-by-the-sdk-the-model-sees-a-generic-error">outputSchema: never read by the client; validated by the SDK; the model sees a generic error</h3>
+
+<p>No file under <code>core/agent_framework/</code> reads <code>output_schema</code> or <code>outputSchema</code>. Validation is the SDK’s. In mcp 2.3.0, <code>ClientSession.call_tool</code> (<code>mcp/client/session.py</code>) runs <code>if isinstance(result, types.CallToolResult) and not result.is_error: await self.validate_tool_result(name, result)</code>, and <code>Client.call_tool</code> (<code>mcp/client/client.py</code>) revalidates claimed results on the same condition. <code>validate_tool_result</code> raises <code>RuntimeError(f"Tool {name} has an output schema but did not return structured content")</code> or <code>RuntimeError(f"Invalid structured content returned by tool {name}: {error}")</code>. <code>_call_tool_with_retries</code> catches it in its final <code>except Exception</code> arm and raises <code>_mcp_tool_execution_exception(f"Failed to call tool '{tool_name}'.", inner_exception=ex)</code>. The model then sees <code>"Error: Function failed."</code>, with the exception text appended only under <code>include_detailed_errors</code>. The one other reader is the declarative workflow handler: <code>DefaultMCPToolHandler._invoke_list_tools</code> in <code>declarative/agent_framework_declarative/_workflows/_mcp_handler.py</code> writes <code>"outputSchema"</code> into the JSON catalog it returns for the reserved tool name <code>"tools/list"</code>.</p>
+
+<h3 id="other-paths-host-payload-code-mode-sandboxes-declarative-workflows-meta-labels-hosted-mcp">Other paths: Host payload, code-mode sandboxes, declarative workflows, <code>_meta</code> labels, hosted MCP</h3>
+
+<p><code>_MCPResultCapture.record</code> stores <code>model_dump(by_alias=True, exclude_none=True, mode="json", fallback=str)</code> of the whole result, up to <code>max_host_payload_size_bytes</code> (default 1 MiB), under <code>_mcp_tool_result_host_payload</code>. <code>ag-ui/agent_framework_ag_ui/_run_common.py</code> <code>_resolve_tool_result_host_payload</code> sends that payload to the AG-UI client as the display and snapshot result, so the UI receives both fields regardless of mode. <code>hyperlight/agent_framework_hyperlight/_execute_code_tool.py</code> <code>_make_sandbox_callback</code> and <code>monty/agent_framework_monty/_execute_code_tool.py</code> <code>_make_tool_callback</code> call <code>invoke(..., skip_parsing=True)</code> on registered tools, so sandbox code receives the mode-selected <code>list[Content]</code>. Monty passes it through <code>_ensure_json_value</code> in <code>_monty_bridge.py</code>, which raises <code>ValueError</code> for anything other than JSON primitives, lists and dicts. When a registered tool raises, which an MCP <code>isError</code> result or an SDK <code>outputSchema</code> failure does, Hyperlight’s callback raises <code>RuntimeError("Host tool execution failed.")</code> into the sandbox and Monty’s <code>_external_error</code> resumes the script with <code>{"exc_type": "RuntimeError", "message": "Host tool execution failed."}</code>. The tool’s error text reaches sandbox code only when the CodeAct tool or provider is built with <code>include_detailed_errors=True</code>. The Python declarative <code>DefaultMCPToolHandler</code> builds an <code>MCPStreamableHTTPTool</code> without <code>tool_result_content</code> and returns <code>call_tool</code> output as <code>MCPToolResult(outputs=...)</code>, so it follows <code>structured_first</code>. <code>_invoke_connected_tool</code> turns a <code>ToolExecutionException</code> with no <code>__cause__</code>, which an MCP <code>isError</code> result raises, into <code>MCPToolResult(outputs=[Content.from_text(f"Error: {message}")], is_error=True, ...)</code>, and re-raises one with a cause, which an SDK <code>outputSchema</code> failure produces, so that failure fails the <code>InvokeMcpTool</code> action. Result <code>_meta</code> is copied onto each item as <code>additional_properties["_meta"]</code>. The Chat Completions, Responses and Anthropic <code>function_result</code> arms build the tool message from <code>item.text</code> and the media fields only, so <code>_meta</code> does not reach the model. <code>_label_from_mcp_meta</code> in <code>core/agent_framework/security.py</code> reads <code>meta["ifc"]</code> for <code>integrity</code> and <code>confidentiality</code>, and <code>LabelTrackingFunctionMiddleware._should_hide</code> replaces an item labelled untrusted with a variable reference when <code>auto_hide_untrusted</code> is on. The chat clients' <code>get_mcp_tool</code> (OpenAI, Anthropic, Foundry, Gemini) declares a provider-hosted MCP tool, and its results never pass through <code>MCPTool</code>.</p>
+
+<p>No non-test file under <code>python/packages/</code> reads <code>resourceUri</code> or a <code>ui</code> key in <code>_meta</code>, so <code>_meta.ui.visibility</code> is not honoured. Function middleware sees the mode-selected <code>list[Content]</code> in <code>FunctionInvocationContext.result</code> (<code>core/agent_framework/_middleware.py</code>), and the class docstring says “any middleware may overwrite it with a value of any type”.</p>
+
+<h3 id="protocol-revision-negotiated-by-the-sdk-in-auto-mode">Protocol revision: negotiated by the SDK in <code>auto</code> mode</h3>
+
+<p><code>MCPTool.connect</code> passes no <code>mode</code> to <code>Client</code>, so the SDK default <code>mode: ConnectMode = "auto"</code> in <code>mcp/client/client.py</code> applies. <code>negotiate_auto</code> in <code>mcp/client/_probe.py</code> sends <code>server/discover</code> with <code>LATEST_MODERN_VERSION</code> and falls back to <code>initialize()</code>. In <code>mcp_types/version.py</code> that constant is <code>"2026-07-28"</code> and <code>LATEST_HANDSHAKE_VERSION</code> is <code>"2025-11-25"</code>. An unnegotiated caller-supplied <code>ClientSession</code> is initialized with <code>session.initialize()</code>.</p>
+
+<h3 id="upstream-history-the-tool-result-content-option">Upstream history: the <code>tool_result_content</code> option</h3>
+
+<p>The option came in through <a href="https://github.com/microsoft/agent-framework/pull/8274" target="_blank">microsoft/agent-framework#8274</a>, merged 2026-09-15, fixing <a href="https://github.com/microsoft/agent-framework/issues/7866" target="_blank">issue #7866</a>, a report that the DeepWiki and MS Learn servers return the same payload in both fields and the model saw it twice. The first version of the PR preferred <code>content</code>. A reviewer asked for an explicit policy instead, because servers may also use the two fields as complementary data, and the maintainer who listed the five modes wrote that the default “should probably be to propagate from the most specific (structuredContent) to the more generic (content)”. The issue thread cites the MCP roadmap’s line that returning both fields “has confused server and client authors alike” and the deferral of SEP-2200 as the reason the specification gives no rule to follow.</p>
+
+<h2 id="net">.NET</h2>
+
+<h3 id="entry-the-sdk-s-mcpclienttool-is-the-aifunction-two-wrappers-forward-to-it">Entry: the SDK’s <code>McpClientTool</code> is the <code>AIFunction</code>; two wrappers forward to it</h3>
+
+<p><code>Directory.Packages.props</code> pins <code>ModelContextProtocol</code> and <code>ModelContextProtocol.Extensions.Tasks</code> at <code>2.2.0</code> and <code>Microsoft.Extensions.AI</code> at <code>10.11.0</code>. The SDK source is not in the clone. SDK references below were read from <code>modelcontextprotocol/csharp-sdk</code> at tag <code>v2.2.0</code>, paths relative to <code>src/ModelContextProtocol.Core/</code>. <code>McpClient.ListToolsAsync</code> returns <code>McpClientTool</code> instances, which derive from <code>AIFunction</code> and are passed to agents as tools. <code>Microsoft.Agents.AI.Mcp/McpClientTaskExtensions.cs</code> <code>ListAgentToolsWithTasksAsync</code> wraps each in <code>TaskAwareMcpClientAIFunction</code>, which calls <code>this._client.CallToolAsTaskAsync(...)</code> and, for a task, deserializes the completed <code>CallToolResult</code> from <code>GetTaskAsync</code>. <code>Microsoft.Agents.AI.Foundry.Hosting/FoundryToolboxService.cs</code> wraps each in <code>ConsentAwareMcpClientAIFunction</code>, which returns <code>this._inner.InvokeAsync(arguments, cancellationToken)</code> and only intercepts <code>McpProtocolException</code> code <code>-32006</code>.</p>
+
+<p><code>CallToolResult</code> (<code>Protocol/CallToolResult.cs</code>) declares <code>Content</code> with the initializer <code>= []</code> and <code>StructuredContent</code> as <code>JsonElement?</code>, so a result without a <code>content</code> key deserializes with an empty list and keeps <code>structuredContent</code>.</p>
+
+<h3 id="model-path-native-content-only-when-nothing-else-is-present-otherwise-the-whole-result-as-json">Model path: native content only when nothing else is present; otherwise the whole result as JSON</h3>
+
+<p><code>McpClientTool.InvokeCoreAsync</code> (<code>Client/McpClientTool.cs</code>) returns native <code>AIContent</code> only under <code>if (result.IsError is not true &amp;&amp; result.StructuredContent is null &amp;&amp; !HasApplicationResultMetadata(result.Meta))</code>, then switches on <code>result.Content.Count</code>: <code>case 1</code> returns the single <code>ToAIContent</code> value, and <code>case &gt; 1</code> returns the array when <code>aiContents.All(static c =&gt; c is not null)</code>. Every other result returns <code>JsonSerializer.SerializeToElement(result, McpJsonUtilities.JsonContext.Default.CallToolResult)</code>. <code>HasApplicationResultMetadata</code> is true for any <code>_meta</code> key other than <code>MetaKeys.ServerInfo</code>. <code>TaskAwareMcpClientAIFunction.ProjectResult</code> repeats the same condition and switch, and its class comment says “Its result projection matches McpClientTool”.</p>
+
+<p>With both fields present the model receives the serialized <code>CallToolResult</code>, with <code>content</code>, <code>structuredContent</code> and the other fields. With empty <code>content</code> and a structured value, the structured check already routes to the same envelope. With empty <code>content</code> and no structured value, <code>Count</code> 0 matches neither arm and the model receives <code>{"content":[]...}</code>. An <code>isError</code> result is returned as the envelope, not thrown. <code>ToAIContent</code> in <code>AIContentExtensions.cs</code> maps text to <code>TextContent</code>, image and audio to <code>DataContent</code>, and embedded resources through <code>Resource.ToAIContent()</code>. Its <code>_ =&gt; null</code> arm covers <code>ResourceLinkBlock</code>, so any result that includes a resource link becomes the envelope.</p>
+
+<p>No comparison of the text with <code>structuredContent</code> runs, so a mirrored payload reaches the model twice inside the envelope. <code>ToAIContent</code> does not read <code>Annotations</code> and copies only <code>Meta</code> into <code>AdditionalProperties</code>. No file under <code>dotnet/src/</code> reads <code>audience</code> (grep returns no match). A block with <code>audience: ["user"]</code> reaches the model as native content, or inside the envelope with its <code>annotations</code>.</p>
+
+<h3 id="outputschema-surfaced-as-returnjsonschema-forwarded-not-validated">outputSchema: surfaced as <code>ReturnJsonSchema</code>, forwarded, not validated</h3>
+
+<p><code>McpClientTool.ReturnJsonSchema =&gt; ProtocolTool.OutputSchema</code> in the SDK. <code>TaskAwareMcpClientAIFunction</code>, <code>ConsentAwareMcpClientAIFunction</code> and <code>ClientAIFunctionDeclaration</code> in <code>Microsoft.Agents.AI.Hosting.OpenAI/Responses/OpenAIResponseRequestInfoBuilder.cs</code> override it as <code>this._inner.ReturnJsonSchema</code> (<code>this._innerFunction.ReturnJsonSchema</code> in the last) and have no other reader in <code>dotnet/src/</code>. The SDK’s <code>Client/McpClient.Methods.cs</code> and <code>Client/McpClientTool.cs</code> at <code>v2.2.0</code> contain no output-schema validation. No validation runs, so a mismatched <code>structuredContent</code> reaches the model inside the envelope like any other value. <code>Microsoft.Agents.AI.Workflows.Declarative.Mcp/DefaultMcpToolHandler.cs</code> <code>SerializeToolsList</code> writes <code>tool.OutputSchema</code> into the <code>"tools/list"</code> catalog text. No code under <code>dotnet/src/</code> puts <code>ReturnJsonSchema</code> into a provider tool declaration. The <code>Microsoft.Extensions.AI</code> 10.11.0 provider adapters were not read, so whether they send it to the model is not determined.</p>
+
+<h3 id="other-paths-declarative-workflows-drop-structuredcontent-hyperlight-codeact-serializes-the-projection">Other paths: declarative workflows drop structuredContent; Hyperlight CodeAct serializes the projection</h3>
+
+<p><code>DefaultMcpToolHandler.InvokeClientAsync</code> calls <code>client.CallToolAsync</code> directly and <code>PopulateResultContent</code> reads only <code>result.Content</code>. On <code>IsError</code> it emits one <code>TextContent($"Error: {errorText ?? "Unknown error from MCP Server call"}")</code> from the text blocks. On empty content it returns with no outputs. Otherwise it maps each block through <code>ConvertContentBlock</code>, which uses <code>block.ToAIContent()</code> and maps <code>ResourceLinkBlock</code> to <code>UriContent</code>. <code>CreateClientAsync</code> wraps the HTTP handler in <code>McpResponseLimitHandler</code> (<code>MaxResponseBodyBytes</code> and <code>MaxSseEventBytes</code>, default 4 MiB each), which throws <code>HttpRequestException("The MCP response body exceeds the configured byte limit.")</code> for a larger non-SSE body and <code>InvalidDataException("The MCP SSE event exceeds the configured byte limit.")</code> for a larger SSE event, so an oversized response raises an exception instead of producing outputs. <code>InvokeMcpToolExecutor.ProcessResultAsync</code> in <code>Microsoft.Agents.AI.Workflows.Declarative/ObjectModel/</code> puts those outputs in a <code>ChatRole.Tool</code> message. <code>Microsoft.Agents.AI.Hyperlight/Internal/ToolBridge.cs</code> <code>InvokeAsync</code> calls <code>tool.InvokeAsync</code> and <code>SerializeResult</code> serializes the return value with <code>AIJsonUtilities.DefaultOptions</code>, so sandbox code receives the same native-or-envelope projection as JSON. When the tool throws, <code>InvokeAsync</code> returns <code>SerializeError(includeDetailedErrors ? ex.ToString() : "Host tool execution failed.")</code>, with the flag taken from <code>HyperlightCodeActProviderOptions.IncludeDetailedErrors</code> (default <code>false</code>). No code in <code>dotnet/src/</code> routes on result <code>_meta</code> beyond the SDK’s <code>HasApplicationResultMetadata</code> check.</p>
+
+<p>No file under <code>dotnet/src/</code> reads <code>resourceUri</code> or a <code>ui</code> key in <code>_meta</code>, so <code>_meta.ui.visibility</code> is not honoured. <code>Microsoft.Agents.AI.GitHub.Copilot/GitHubCopilotAgent.cs</code> copies an <code>EnableMcpApps</code> option into the GitHub Copilot session configuration. <code>Microsoft.Agents.AI/FunctionInvocationDelegatingAgent.cs</code> runs function middleware as a delegate that takes a <code>next</code> callback and returns <code>ValueTask&lt;object?&gt;</code>, so middleware sees the native-or-envelope value and its return value replaces it. The SDK’s <code>McpClientTool</code> offers <code>WithName</code>, <code>WithDescription</code>, <code>WithProgress</code> and <code>WithMeta</code>, and none of them changes the projection.</p>
+
+<h3 id="protocol-revision-sdk-default-2026-07-28-preferred-with-fallback">Protocol revision: SDK default, 2026-07-28 preferred with fallback</h3>
+
+<p>The one <code>McpClientOptions.ProtocolVersion</code> assignment in <code>dotnet/src/</code> is <code>DefaultMcpToolHandler</code>'s <code>new McpClientOptions { ProtocolVersion = this.ProtocolVersion }</code>, from an init-only <code>ProtocolVersion</code> property whose default is <code>null</code> (“to use its automatic negotiation”). In the SDK, <code>McpClientImpl.ConnectAsync</code> (<code>Client/McpClientImpl.cs</code>) uses <code>_options.ProtocolVersion ?? McpProtocolVersions.July2026ProtocolVersion</code>, sends <code>server/discover</code>, retries a server-named per-request-metadata version on <code>UnsupportedProtocolVersionException</code>, and otherwise falls back to the <code>initialize</code> handshake. The comment reads “A null ProtocolVersion prefers the 2026-07-28 revision and automatically falls back to the initialize handshake”.</p>
+
+<h3 id="upstream-history-the-native-or-envelope-rule-in-csharp-sdk">Upstream history: the native-or-envelope rule in csharp-sdk</h3>
+
+<p>The rule came in through <a href="https://github.com/modelcontextprotocol/csharp-sdk/pull/941" target="_blank">modelcontextprotocol/csharp-sdk#941</a>, “Tweak how McpClientTool.InvokeAsync exposes some content”, merged 2025-11-07. It made <code>InvokeCoreAsync</code> return <code>AIContent</code> when the result has no <code>isError</code>, no <code>structuredContent</code> and no <code>_meta</code>, and the serialized <code>CallToolResult</code> otherwise. Before it, the method always returned the serialized <code>CallToolResult</code>. The code comment it added gives the rationale: “when there is additional information carried by the CallToolResult outside of its ContentBlocks, just returning AIContent from those ContentBlocks would lose that information. So, we only do the translation if there is no additional information to preserve.” The first version converted only when non-text content was present, and the author wrote that this was “to try to minimize the differences from today for the vastly most common case today (which is just text)”. A reviewer asked "Doesn’t this lose the <code>"isError": true</code> from the <code>CallToolResult</code>?“ and wrote that ”Changing the return type from <code>AIContent[]</code> to <code>JsonElement</code> based on a subtle change in the MCP server’s <code>CallToolResult</code> is a recipe for latent bugs." The author answered that always returning a <code>JsonElement</code> “means that logic like this can’t work”, linking <code>OpenAIResponsesChatClient.cs</code> in <code>dotnet/extensions</code>. Another reviewer approved and wrote “It has no way of combining AIContent conversion and structured output which might become an emerging pattern, given how it seems structured content is becoming a pseudo-metadata payload (ie OpenAI apps SDK). But one can do that conversion in middleware that will exist in such clients anyway.”</p>
+
+<p><a href="https://github.com/modelcontextprotocol/csharp-sdk/pull/1752" target="_blank">modelcontextprotocol/csharp-sdk#1752</a>, merged 2026-07-27, replaced the <code>result.Meta is not { Count: &gt; 0 }</code> test with <code>HasApplicationResultMetadata</code>. Its comment reads “Server identity is protocol metadata already exposed through McpClient.ServerInfo. It should not force an otherwise simple tool result into its JSON envelope.” The PR body ties the change to specification PR #3002, which put <code>serverInfo</code> in result <code>_meta</code>.</p>
+
+<p><code>TaskAwareMcpClientAIFunction</code> came in through <a href="https://github.com/microsoft/agent-framework/pull/5994" target="_blank">microsoft/agent-framework#5994</a>, merged 2026-05-22, and <a href="https://github.com/microsoft/agent-framework/pull/7774" target="_blank">#7774</a>, merged 2026-08-20. Their bodies and review comments record no rationale for the projection beyond the class comment. The commit history of <code>src/ModelContextProtocol.Core/Client/McpClientTool.cs</code> up to <code>v2.2.0</code> and these searches found nothing further: <code>gh search issues</code> in csharp-sdk for “structuredContent InvokeAsync”, “McpClientTool JsonElement content” and “structured content AIContent”, and in agent-framework for “structuredContent .NET McpClientTool”.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<ul>
+  <li>Python: <code>_parse_tool_result_from_mcp</code> tests <code>structured_content is not None</code>, so a <code>structuredContent</code> of JSON <code>null</code> is treated as missing. Arrays and scalars pass through <code>json.dumps</code> like objects.</li>
+  <li>Python: an empty result <code>{}</code> has no <code>content</code> key, so it fails <code>CallToolResult</code> validation and reaches the model as <code>"Error: Function failed."</code>, the same text <code>_function_execution_error_result</code> gives an <code>isError</code> result when <code>include_detailed_errors</code> is off.</li>
+</ul>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit 92838b6 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>Claude clients: reported tool result handling</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>Claude clients: reported tool result handling</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Claude Code, Claude Desktop, claude.ai, Cowork and Claude for Excel are closed source, so this note records what public issue reports say about <code>content</code>, <code>structuredContent</code> and <code>audience</code>. Nothing here was read from source. Each entry states what the reporter observed, the client and version they name, and the issue state, as of 2026-11-02. Issues are in <code>anthropics/claude-code</code> (CC) and <code>anthropics/claude-ai-mcp</code> (AI). Searches: <code>gh search issues "structuredContent"</code>, <code>"audience annotation"</code> and <code>"audience" "mcp"</code> in both repositories, and <code>gh issue view</code> on each hit that concerns which field reaches the model, an MCP App, or <code>audience</code>.</p>
+
+<h2 id="model-path-structuredcontent-replaces-content">Model path: structuredContent replaces content</h2>
+
+<ul>
+  <li>AI <a href="https://github.com/anthropics/claude-ai-mcp/issues/1201" target="_blank">#1201</a>, open, 2026-10-29: in Claude Desktop 4.4 the model receives <code>structuredContent</code> in place of <code>content</code> for the Atlassian Rovo server, which shows an MCP App. The reporter says 3.6 sent <code>content</code>, and that ChatGPT and MCP Inspector send <code>content</code>. ochafik replied that <code>_meta</code> keeps data away from the model and quoted the specification’s SHOULD on the text mirror. The reporter replied that a widget does not render from <code>_meta</code> in MCP Inspector, and cited the MCP Apps specification draft and the ext-apps <code>budget-allocator-server</code> example.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/103396" target="_blank">#103396</a>, open, 2026-10-19, labels <code>bug</code>, <code>has repro</code>, <code>area:mcp</code>: Claude Code sends only <code>structuredContent</code> when both fields are present. The Microsoft Fabric IQ server puts query rows in <code>content[0].text</code> and a citation card in <code>structuredContent</code>, and declares no <code>outputSchema</code>, so the model sees only the citation. A later comment reports the same result in claude.ai web chat through an org custom connector, retested 2026-10-29.</li>
+  <li>AI <a href="https://github.com/anthropics/claude-ai-mcp/issues/1132" target="_blank">#1132</a>, open, 2026-10-12: the same Fabric IQ connector returns citation-only results in Cowork and Claude Code and returns data in claude.ai chat with the unified experience off.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/79944" target="_blank">#79944</a>, open, 2026-07-21: the text block is dropped when <code>structuredContent</code> is present. A comment reports it still reproduces on 2.1.304 (macOS, stdio), in the main session and in subagents.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/45575" target="_blank">#45575</a>, closed not planned (stale) 2026-05-28: with both fields present, the terminal displays only <code>structuredContent</code>. The reporter says the model did receive the text at that time. <a href="https://github.com/anthropics/claude-code/issues/55677" target="_blank">#55677</a> (text dropped from the model) was closed as its duplicate by localden on 2026-05-06.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/64316" target="_blank">#64316</a>, closed not planned (stale) 2026-07-03, and <a href="https://github.com/anthropics/claude-code/issues/59480" target="_blank">#59480</a>, closed duplicate 2026-05-19: “structuredContent overrides content field, losing actual tool response”.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/54450" target="_blank">#54450</a>, closed completed 2026-04-28: <code>structuredContent</code> displayed in place of <code>content[0].text</code>.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/54737" target="_blank">#54737</a>, closed completed 2026-05-02: image blocks dropped when <code>structuredContent</code> is present.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/86032" target="_blank">#86032</a>, open, labels <code>reproduced</code>: on an <code>isError</code> result <code>structuredContent</code> is dropped and the model gets only the text. bcherny reproduced it on v2.1.233 (macOS, <code>claude -p</code>, stdio).</li>
+</ul>
+
+<h2 id="mcp-apps-structuredcontent-missing-from-the-view">MCP Apps: structuredContent missing from the view</h2>
+
+<ul>
+  <li>AI <a href="https://github.com/anthropics/claude-ai-mcp/issues/563" target="_blank">#563</a>, open, 2026-07-06: for local stdio servers in Claude Desktop, <code>structuredContent</code> and <code>_meta.ui</code> are present on upload and <code>null</code> when the conversation streams back, so widgets render empty. Cloud connectors are not affected.</li>
+  <li>AI <a href="https://github.com/anthropics/claude-ai-mcp/issues/1158" target="_blank">#1158</a>, open, 2026-10-19: after a chat reload, widgets get <code>ui/notifications/tool-result</code> without <code>structuredContent</code>.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/103809" target="_blank">#103809</a>, open, 2026-10-20: in the Desktop Code tab, MCP App widgets receive no <code>structuredContent</code>, only the payload as JSON text.</li>
+  <li>AI <a href="https://github.com/anthropics/claude-ai-mcp/issues/757" target="_blank">#757</a>, open, 2026-08-03: Claude for Excel on Mac returns empty data for <code>structuredContent</code>-only results unless <code>content</code> is also sent. The reporter says claude.ai handles them.</li>
+</ul>
+
+<h2 id="outputschema">outputSchema</h2>
+
+<ul>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/90150" target="_blank">#90150</a>, open, and <a href="https://github.com/anthropics/claude-code/issues/54197" target="_blank">#54197</a>, closed not planned: requests to show <code>outputSchema</code> to the model.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/41361" target="_blank">#41361</a>, closed completed: in 2.1.88 a result whose <code>structuredContent</code> failed the schema check was not shown.</li>
+</ul>
+
+<h2 id="audience">audience</h2>
+
+<ul>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/72239" target="_blank">#72239</a>, closed not planned 2026-09-15: a feature request to honour <code>annotations.audience</code> on tool-result blocks, so that <code>["user"]</code>-only or <code>["assistant"]</code>-only output can be collapsed in the TUI.</li>
+  <li>CC <a href="https://github.com/anthropics/claude-code/issues/18034" target="_blank">#18034</a>, closed not planned 2026-02-26: a request to support the <code>Annotations</code> type (<code>audience</code>, <code>priority</code>, <code>lastModified</code>) on resources and content blocks. The reporter says Claude Code reads <code>ToolAnnotations</code> and not this type.</li>
+</ul>
+
+<p><code>gh search issues "audience annotation"</code> and <code>"audience" "mcp"</code> in <code>anthropics/claude-ai-mcp</code> returned no audience reports, only OAuth ones.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>As of 2026-11-02 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>

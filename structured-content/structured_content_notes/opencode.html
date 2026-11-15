@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+<title>How opencode handles MCP tool results</title>
+<style>
+  :root { --ink: #1a1a18; --bg: #faf9f5; --border: #e2e0d8; --muted: #6b6a64; color-scheme: light; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  }
+  :root[data-theme="dark"] { --ink: #e6e4dc; --bg: #17171a; --border: #3a3a3e; --muted: #a6a49c; color-scheme: dark; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; margin: 0; padding: 2rem 1rem; color: var(--ink); background: var(--bg); }
+  main { max-width: 760px; margin: 0 auto; }
+  h1, h2, h3 { font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  h1 { font-size: 1.5rem; font-weight: 500; margin: 0; }
+  h2 { font-size: 1.3rem; font-weight: 500; }
+  h3 { font-size: 1.15rem; font-weight: 500; margin-top: 2.5rem; }
+  .masthead { border-bottom: 1px solid var(--border); padding-bottom: 0.8rem; margin-bottom: 2rem; }
+  .masthead nav { font-size: 0.85rem; margin-top: 0.6rem; }
+  .masthead nav [aria-current="page"] { opacity: 0.55; }
+  p, ul, ol { line-height: 1.7; }
+  table { border-collapse: collapse; font-size: 0.9rem; width: 100%; }
+  th, td { text-align: left; vertical-align: top; padding: 0.45rem 0.75rem 0.45rem 0; border-bottom: 1px solid var(--border); }
+  th { font-weight: 500; }
+  tbody th { font-weight: 500; white-space: nowrap; }
+  tbody th small { display: block; font-weight: 400; font-size: 0.8em; color: var(--muted); white-space: nowrap; }
+  tr.carried td, tr.carried th { color: var(--muted); }
+  tr.group th { white-space: normal; }
+  tr.detail td { padding-top: 0; }
+  tr.detail details { font-size: 0.85rem; }
+  tr.detail summary { cursor: pointer; color: var(--muted); padding: 0.2rem 0 0.4rem; }
+  tr.detail summary:hover { color: var(--ink); }
+  tr.detail details[open] summary { color: var(--ink); }
+  tr.detail details > :not(summary) { margin-left: 1.1rem; }
+  tr.detail p { margin: 0.4rem 0; line-height: 1.6; }
+  pre, tr.detail pre { margin: 0.5rem 0; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 6px; overflow-x: auto; font-size: 0.8rem; line-height: 1.5; }
+  tr.detail pre code { font-size: inherit; }
+  code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 0.85em; }
+  a { color: inherit; }
+  .counts { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+  .counts div { border: 1px solid var(--border); border-radius: 6px; padding: 0.8rem 1rem; }
+  .counts strong { display: block; font-size: 1.6rem; font-weight: 500; font-family: "Comic Sans MS", "Comic Sans", "Comic Neue", cursive; }
+  .counts p { margin: 0.2rem 0 0; font-size: 0.9rem; line-height: 1.5; }
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.85rem; }
+  footer nav ul { list-style: none; margin: 0.35rem 0 1.2rem; padding: 0; }
+  footer nav li { margin: 0.2rem 0; }
+  footer nav [aria-current="page"] { opacity: 0.55; }
+  footer p { margin: 0; }
+  .footnote { font-size: 0.85rem; margin-top: 2.5rem; }
+  #theme-toggle { position: fixed; top: 1rem; right: 1rem; font: inherit; font-size: 0.85rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--ink); cursor: pointer; }
+  @media (max-width: 640px) {
+    table, thead, tbody, tr, th, td { display: block; }
+    thead { display: none; }
+    tr { border-bottom: 1px solid var(--border); padding: 0.6rem 0; }
+    th, td { border: 0; padding: 0.15rem 0; }
+    tbody th { white-space: normal; }
+    td::before { content: attr(data-label) ": "; color: var(--muted); }
+    tr.detail td::before { content: none; }
+    tr.detail details > :not(summary) { margin-left: 0; }
+  }
+</style>
+<script>try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
+</head>
+<body>
+<button id="theme-toggle" type="button" aria-label="Toggle color theme"></button>
+<main>
+
+<header class="masthead">
+<h1>Ola&#8217;s MCP Tool Result Research</h1>
+<p>How opencode handles MCP tool results</p>
+<nav aria-label="Pages in this series">
+  <a href="../structured_content_clients.html">which mcp tool result fields are used and how (clients)</a>
+</nav>
+</header>
+
+<p>Notes from reading the opencode source (<code>clones/opencode</code>, checked out at commit d759c54, read 2026-11-14). File references are relative to the clone root.</p>
+
+<h2 id="entry-results-enter-through-modelcontextprotocol-client-2-4-0-and-keep-structuredcontent-as-structured">Entry: results enter through <code>@modelcontextprotocol/client</code> 2.4.0 and keep <code>structuredContent</code> as <code>structured</code></h2>
+
+<p><code>packages/core/package.json</code> depends on <code>@modelcontextprotocol/client</code> and <code>@modelcontextprotocol/core</code> at <code>2.4.0</code>. The root <code>package.json</code> applies <code>patches/@modelcontextprotocol%2Fclient@2.4.0.patch</code>, which changes OAuth code and leaves <code>tools/list</code> entries unchecked (<code>tools: z.array(z.unknown())</code>), with <code>outputSchema</code> on the SDK’s tool schema loosened to <code>z.looseObject({ $schema: z.string().optional() })</code>. <code>packages/core/src/mcp/client.ts</code> constructs the SDK <code>Client</code> inside <code>initialize</code> and calls <code>client.callTool(...)</code>. The SDK result type <code>SdkCallToolResult</code> is converted at once by <code>toCallToolResult</code> into opencode’s own <code>CallToolResult</code>, whose fields are <code>isError</code>, <code>structured?: unknown</code> and <code>content: ReadonlyArray&lt;CallToolContent&gt;</code>. The line <code>structured: result.structuredContent,</code> carries the structured payload across. <code>CallToolContent</code> has two variants, <code>text</code> and <code>media</code> (base64 <code>data</code> plus <code>mimeType</code>, and <code>uri</code> for an embedded resource). The SDK 2.4.0 bundle was read from the npm tarball (<code>dist/src-CeKsbNLO.mjs</code> of <code>@modelcontextprotocol/client@2.4.0</code>). Its <code>tools/call</code> result schema for the legacy revision, <code>CallToolResultWireSchema</code>, runs <code>normalizeContentlessToolResult</code>, which gives a result with no <code>content</code> key <code>content: []</code> unless it carries <code>task</code>, <code>inputRequests</code> or <code>requestState</code>, so a result without <code>content</code> reaches <code>toCallToolResult</code> as an empty array. On the 2026-07-28 revision the <code>tools/call</code> wire schema is <code>CallToolResultSchema$1</code> built by <code>wireResult</code>, with <code>content: z.array(ContentBlockSchema$1)</code> required and no such normalization, so a result without <code>content</code> fails with <code>Invalid result for tools/call: ...</code> and becomes a <code>ToolFailure</code> as described under Quirks. <code>toCallToolResult</code> copies <code>structuredContent</code> unchanged whatever its type, and drops each block’s <code>annotations</code> and <code>_meta</code>.</p>
+
+<h2 id="model-path-content-blocks-go-to-the-model-structured-is-dropped-before-persistence">Model path: <code>content</code> blocks go to the model, <code>structured</code> is dropped before persistence</h2>
+
+<p>This path is reached directly only for servers configured <code>codemode: false</code>, or for every server when the <code>execute</code> permission is wholly denied. <code>packages/core/src/tool.ts</code> splits the active tools into <code>direct</code> (<code>tool.options?.codemode === false</code>, or all active tools when <code>execute</code> is wholly denied) and <code>codeModeTools</code> (<code>codemode !== false</code>), and the model’s tool definitions are <code>direct</code> plus the single Code Mode <code>execute</code> tool when it is enabled; a name that is not in <code>direct</code> and is not <code>execute</code> is rejected with <code>No tool named "&lt;name&gt;" is currently available</code>. With the default configuration every MCP tool is therefore called from inside an <code>execute</code> script, and the conversation receives the script’s return value as described under Other paths. The same <code>McpTool</code> <code>execute</code> runs in both cases.</p>
+
+<p><code>packages/core/src/tool/mcp.ts</code> registers every discovered MCP tool through <code>editor.add</code> in the <code>McpTool</code> layer. Its <code>execute</code> first turns <code>isError</code> into a <code>ToolFailure</code> whose message is the joined text blocks. For a success it maps <code>result.content</code> to <code>Tool.Content</code>: text stays text and, through <code>toContent</code>, a <code>media</code> part whose MIME is in <code>ReadToolFileSystem.MEDIA_MIMES</code> (PNG, JPEG, GIF, WebP, PDF) becomes <code>{ type: "file", uri: "data:&lt;mime&gt;;base64,&lt;data&gt;", mime }</code>, a textual MIME becomes a text block headed <code>[Resource &lt;label&gt; (&lt;mime&gt;)]</code>, and anything else, audio included, is saved through <code>ToolOutput</code> and becomes a text block <code>[Binary resource &lt;label&gt; (&lt;mime&gt;, &lt;n&gt; bytes) saved to &lt;file&gt;]</code>. The <code>output()</code> helper then picks the structured value: <code>if (result.structured !== undefined) return result.structured</code>, else <code>null</code> for empty text, else the text, parsed with <code>JSON.parse</code> when the server declared no <code>outputSchema</code> and the text starts with <code>{</code> or <code>[</code>. The return is <code>{ output: output(), ...(content.length === 0 ? {} : { content }) }</code>.</p>
+
+<p><code>packages/core/src/tool/runtime.ts</code> <code>execute</code> then calls <code>normalizeContent(result.content, output)</code>, which returns the content array when it is non-empty and otherwise <code>[{ type: "text", text: stringify(output) }]</code>. So when both fields arrive, the model receives the <code>content</code> blocks and <code>structuredContent</code> goes only into <code>output</code>. When <code>content</code> is empty and <code>structuredContent</code> is present, or when only <code>structuredContent</code> arrives, <code>JSON.stringify(structuredContent)</code> becomes the single text block. <code>packages/core/src/session/runner/publish-llm-event.ts</code> <code>toolExecution</code> publishes <code>SessionEvent.Tool.Success</code> with <code>content</code> and <code>metadata</code> only, and <code>packages/schema/src/session-message.ts</code> <code>ToolStateCompleted</code> has no <code>output</code> field, so the structured value is not persisted. <code>packages/core/src/session/runner/to-llm-message.ts</code> <code>toolResult</code> builds the provider part from <code>tool.state.content</code>: a single text block becomes <code>{ type: "text", value }</code>, anything else <code>{ type: "content", value: content }</code>. Text-only providers flatten the latter with <code>toolResultText</code> in <code>packages/ai/src/protocols/shared.ts</code>, which is <code>encodeJson(part.result.value)</code>. No code compares the text with <code>structuredContent</code>, so a text block that mirrors the JSON reaches the model once, as sent, and a text block that differs from it reaches the model in the same way. For a success with no content blocks and no <code>structuredContent</code>, <code>output()</code> returns <code>null</code> and <code>normalizeContent</code> sends the text <code>null</code>. For an <code>isError</code> result with no text blocks, the <code>ToolFailure</code> message is <code>MCP tool returned an error</code>.</p>
+
+<p>Non-text blocks are mapped in <code>toCallToolResult</code> in <code>packages/core/src/mcp/client.ts</code>: <code>image</code> and <code>audio</code> become <code>media</code>; <code>resource_link</code> becomes a text block holding the <code>uri</code>; an embedded <code>resource</code> becomes text when it has <code>text</code>, <code>media</code> when it has <code>blob</code> and <code>mimeType</code>, and otherwise a text block holding its <code>uri</code>. Any other block type is dropped by the final <code>return []</code>. <code>packages/core/src/tool.ts</code> <code>normalizeImages</code> resizes image files through the <code>Image</code> service and replaces undecodable or oversize ones with a short omission note. <code>packages/core/src/session/model-request.ts</code> <code>unsupportedMedia</code> swaps a file the model cannot take for an <code>ERROR: Cannot read ...</code> text, and <code>boundImages</code> drops the oldest images past a byte target. <code>packages/core/src/session/recent-text.ts</code> applies <code>truncateToolOutput</code> only to the recent, verbatim part of a summary compaction, and <code>packages/core/src/session/compaction.ts</code> applies <code>clip</code> only to the compaction transcript.</p>
+
+<p><code>annotations.audience</code> is not read on the model path. <code>toCallToolResult</code> builds <code>CallToolContent</code> without <code>annotations</code>, and a grep for <code>audience</code> under <code>packages/core/src</code>, <code>packages/schema/src</code>, <code>packages/ai/src</code> and <code>packages/codemode/src</code> finds only an OAuth <code>audience</code> in <code>packages/core/src/plugin/provider/chatgpt.ts</code>. A text block annotated <code>audience: ["user"]</code> therefore reaches the model like any other text block, and its text is also part of the joined text that Code Mode receives when <code>structuredContent</code> is absent.</p>
+
+<h2 id="outputschema-not-validated-used-only-for-the-code-mode-signature">outputSchema: not validated, used only for the Code Mode signature</h2>
+
+<p><code>packages/core/src/mcp/client.ts</code> lists tools with <code>cacheMode: "bypass"</code>, keeps <code>outputSchema</code> only when it is a record, and passes the listed entry as <code>toolDefinition</code> on every <code>client.callTool</code>, or a stub for a tool it has not listed, in both cases with <code>outputSchema: undefined</code> set over it. The SDK’s <code>Client.callTool</code> compiles the definition’s <code>outputSchema</code> through <code>_compileOutputValidator</code> (published bundle <code>dist/public-CvV4ZHkX.mjs</code> of <code>@modelcontextprotocol/client@2.4.0</code>, not vendored in the clone), which returns <code>undefined</code> when <code>outputSchema</code> is absent, so the SDK’s checks (<code>Tool ${params.name} has an output schema but did not return structured content</code> and <code>Structured content does not match the tool's output schema: ...</code>) never run. The comment above <code>toolDefinition</code> gives the reason: "Leaving out <code>outputSchema</code> skips the SDK’s output check: servers return results that miss or break their own schema (Zoom answers a 204 with nothing), and failing the call would report a completed action as failed." <code>mcp/index.ts</code> does not reference <code>outputSchema</code>, so no client code validates <code>structuredContent</code> against it. A result that misses or breaks the declared schema is returned as the server sent it; with no <code>structuredContent</code>, <code>output()</code> in <code>packages/core/src/tool/mcp.ts</code> falls back to the text, unparsed because the tool declares a schema, or <code>null</code>.</p>
+
+<p><code>packages/core/src/tool/mcp.ts</code> passes <code>output: (tool.outputSchema ?? {})</code> into the tool registry. <code>packages/core/src/tool/runtime.ts</code> <code>encodeOutput</code> treats a JSON Schema output only with <code>Schema.decodeUnknownEffect(Schema.Json)</code>, a JSON-ness check. <code>definition</code> copies the schema into <code>ToolDefinition.outputSchema</code>, and no adapter under <code>packages/ai/src/protocols</code> reads that field, so it reaches no provider request and no prompt text on the conversational path.</p>
+
+<h2 id="other-paths-code-mode-is-the-default-route-and-consumes-structured-directly">Other paths: Code Mode is the default route and consumes <code>structured</code> directly</h2>
+
+<p>Every MCP server defaults to Code Mode (<code>codemode</code> is an optional boolean on <code>LocalConfig</code> and <code>RemoteConfig</code> in <code>packages/schema/src/mcp.ts</code>, annotated “Defaults to true” with no schema default; <code>tool/mcp.ts</code> sets <code>codemode: tool.codemode !== false</code>). <code>packages/core/src/codemode/tool.ts</code> <code>create</code> exposes one <code>execute</code> tool that runs model-written JavaScript; its <code>executeTool</code> callback returns <code>executed.output</code> when defined, so the sandbox receives the raw <code>structuredContent</code> (or the parsed JSON text), and falls back to joined text, with file parts collected into <code>files</code>. The model then sees <code>formatResult</code>'s pretty-printed JSON of whatever the script returned, which is persisted as the <code>execute</code> tool’s text content. When the <code>execute</code> permission is wholly denied, <code>codeModeEnabled</code> is false in <code>packages/core/src/tool.ts</code> and the Code Mode tools are exposed as direct tools, so no <code>execute</code> tool exists and each MCP tool follows the Model path. <code>inventoryTools</code> builds each sandbox stub with <code>output: child.outputSchema ?? Schema.NullOr(Schema.String)</code>, and <code>packages/codemode/src/tool-schema.ts</code> <code>outputTypeScript</code> renders a JSON Schema output with <code>jsonSchemaToTypeScript</code> into the <code>Promise&lt;...&gt;</code> signature shown in the catalog; <code>decodeOutput</code> returns a JSON Schema value unchanged, so Code Mode does no validation of its own. <code>packages/core/src/mcp/client.ts</code> appends <code>?codemode=false</code> to remote URLs unless <code>rejectsUnknownQuery</code> matches, and <code>packages/core/src/plugin/mcp-codemode-defaults.ts</code> sets <code>codemode: false</code> for <code>executor.sh</code> remote servers and for local servers whose command is <code>executor mcp</code>.</p>
+
+<p>Other routing: <code>packages/core/src/tool.ts</code> <code>executeTool</code> passes <code>{ output, content, metadata }</code> to <code>tool.execute.after</code> plugin hooks, which can rewrite both; <code>normalizeContent</code> has already run once inside <code>runtime.execute</code>, so the hook sees the JSON fallback block when <code>content</code> was empty, and <code>tool.ts</code> normalizes again afterwards. The only <code>_meta</code> use on <code>tools/call</code> is outbound, <code>_meta: { "ai.opencode/sessionID": input.sessionID }</code> in <code>mcp/client.ts</code>, which also copies each listed tool’s <code>_meta</code> into its <code>Tool</code> record, a copy no code reads. No code under <code>packages/core/src</code> or <code>packages/schema/src</code> reads result <code>_meta</code>, <code>ui://</code> resources or an MCP Apps output template. The built-in Parallel web search plugin, <code>packages/core/src/plugin/websearch/parallel.ts</code>, calls a fixed MCP endpoint over its own HTTP helper and reads <code>result?.structuredContent.results</code> only; it does not apply to configured servers. The <code>claude-agent</code> provider plugin hands opencode tools to Claude Code through its own MCP server, and <code>convert</code> in <code>packages/core/src/plugin/provider/claude-agent/tools/result.ts</code> builds that result from the provider tool result as <code>{ content, isError }</code>, with no <code>structuredContent</code>.</p>
+
+<h2 id="protocol-revision-legacy-initialize-by-default-2026-07-28-by-config">Protocol revision: legacy initialize by default, <code>2026-07-28</code> by config</h2>
+
+<p><code>packages/schema/src/mcp.ts</code> <code>Protocol</code> is <code>Schema.Literals(["legacy", "auto", "2026-07-28"])</code>. <code>negotiation</code> in <code>packages/core/src/mcp/client.ts</code> returns <code>undefined</code> for <code>legacy</code> or an absent setting, <code>{ mode: "auto" }</code> for <code>auto</code>, and <code>{ mode: { pin: protocol } }</code> otherwise, passed as <code>versionNegotiation</code> to the SDK <code>Client</code>. The SDK’s legacy list <code>SUPPORTED_PROTOCOL_VERSIONS</code> begins with <code>LATEST_PROTOCOL_VERSION = "2025-11-25"</code> and its modern list is <code>["2026-07-28"]</code>.</p>
+
+<h2 id="upstream-history-the-v1-routing-prs-the-maintainer-s-position-and-the-v2-json-text-parse">Upstream history: the V1 routing PRs, the maintainer’s position, and the V2 JSON-text parse</h2>
+
+<p>The clone is shallow (one commit, d759c54), so <code>git log</code> and <code>git blame</code> do not reach the commits that introduced the current code. The routing pull requests and issues found on GitHub all concern the V1 file <code>packages/opencode/src/mcp/catalog.ts</code>, which is not in the clone. <a href="https://github.com/anomalyco/opencode/pull/32074" target="_blank">anomalyco/opencode#32074</a>, merged 2026-06-12 and closing <a href="https://github.com/anomalyco/opencode/issues/27263" target="_blank">issue #27263</a> (a Qt Creator server that sends <code>content: []</code> with <code>structuredContent</code>), made V1 "prefer non-null MCP <code>structuredContent</code> over unstructured <code>content</code>“ and ”serialize structured results as compact JSON text for the model“, and its body says ”This matches Codex behavior". <a href="https://github.com/anomalyco/opencode/issues/32832" target="_blank">Issue #32832</a> then reported an image dropped when <code>structuredContent</code> was also present. The maintainer closed it on 2026-06-22 with: “This isn’t a bug because the MCP spec does not require clients to merge content with structuredContent or preserve both in model context; preferring the stringified structuredContent is valid. It also matches the behavior of Claude Code and Codex, so preserving images alongside it would be unexpected”. <a href="https://github.com/anomalyco/opencode/pull/34505" target="_blank">#34505</a>, “fix(mcp): prefer content over structured output”, merged 2026-06-29, reversed the V1 order: “Preserve MCP content when structuredContent is also returned” and “Only fall back to structuredContent when content is empty”. Its body records no rationale beyond those lines.</p>
+
+<p><a href="https://github.com/anomalyco/opencode/issues/38923" target="_blank">Issue #38923</a> reported that a summary in <code>content</code> hid the data in <code>structuredContent</code>, and <a href="https://github.com/anomalyco/opencode/pull/43123" target="_blank">#43123</a> proposed appending the compact JSON after the existing content. The PR was closed unmerged on 2026-09-17 by an automated cleanup of PRs older than a month with fewer than two positive reactions. The issue was closed as not planned on 2026-10-22 with: "This was traced to V1 code (<code>packages/opencode/src/mcp/catalog.ts</code>), which isn’t part of OpenCode 2.0. V1 now only gets critical fixes, and this isn’t one. If you’d like this in OpenCode 2.0, please open a new issue for 2.0."</p>
+
+<p>For the V2 code in <code>packages/core</code>, <a href="https://github.com/anomalyco/opencode/pull/48357" target="_blank">#48357</a>, merged 2026-09-10, added the JSON-text parse in <code>output()</code> in <code>packages/core/src/tool/mcp.ts</code>, with the rationale “Agents assume JSON returned as text is already an object, so parse it for them.” Its body states the scope: "<code>output</code> is in-process only: the persisted tool state (<code>ToolStateCompleted</code>) has <code>content</code>, not <code>output</code>, and the model, TUI, and history all read <code>content</code>, which is unchanged. Only code mode programs see the parsed value.“ <a href="https://github.com/anomalyco/opencode/pull/48937" target="_blank">#48937</a>, merged 2026-09-14, reworked the MCP client for SDK v2 and the 2026-07-28 revision and does not discuss field routing. <a href="https://github.com/anomalyco/opencode/pull/61254" target="_blank">#61254</a>, ”fix(core): don’t fail MCP tool calls whose results break their output schema", merged 2026-11-08, removed <code>outputSchema</code> from the <code>toolDefinition</code> passed to the SDK. Its body cites Zoom tools that declare an empty-object schema but return no <code>structuredContent</code> after a 204, and a tool whose <code>structuredContent</code> uses an enum value its schema leaves out, both of which had failed calls that succeeded on the server; it says "Listed tools keep <code>outputSchema</code>, which still types results for Code Mode." No PR or issue was found that records why V2 <code>normalizeContent</code> sends <code>content</code> and falls back to the stringified output. Searches run: <code>gh search prs</code> and <code>gh search issues</code> in <code>anomalyco/opencode</code> for <code>structuredContent</code>, <code>MCP structured</code>, <code>code mode MCP output</code>, <code>normalizeContent</code>, <code>McpTool</code> and (merged PRs) <code>output schema mcp</code>, and the comment threads and timelines of #27263, #32074, #32832, #32867, #32868, #34505, #38923 and #43123.</p>
+
+<h2 id="quirks">Quirks</h2>
+
+<p>In the SDK 2.4.0 legacy-revision schema, <code>CallToolResultSchema$1</code> declares <code>structuredContent: z.record(z.string(), z.unknown()).optional()</code>, so an array, scalar or <code>null</code> <code>structuredContent</code> fails result validation and the call rejects with <code>Invalid result for tools/call: ...</code>. <code>callTool</code> in <code>packages/core/src/mcp/index.ts</code> wraps it as <code>ToolCallError</code> with the message <code>MCP tool "&lt;name&gt;" on server "&lt;server&gt;" failed: ...</code> (<code>on client</code> for a client-attached server), and <code>packages/core/src/tool/mcp.ts</code> turns that into a <code>ToolFailure</code> with the same message. The 2026-07-28 schema declares <code>structuredContent: z.unknown().optional()</code> and passes such values through (<code>dist/src-CeKsbNLO.mjs</code>). Both revisions' <code>ContentBlockSchema$1</code> is a union of the five known block types, so an unknown block type fails the whole result before the <code>return []</code> in <code>toCallToolResult</code> is reached. On the model path <code>stringify</code> in <code>packages/core/src/tool/runtime.ts</code> returns a string <code>structuredContent</code> as the bare string, without JSON quoting. <code>isError</code> text comes from <code>content</code> text blocks only, and <code>structuredContent</code> on an error result is not used. On the Model path a <code>ToolFailure</code> becomes the session error <code>{ type: "tool.execution", message }</code> (<code>toSessionError</code> in <code>packages/core/src/session/to-session-error.ts</code>), and <code>toolResult</code> in <code>packages/core/src/session/runner/to-llm-message.ts</code> sends it as an error result with the value <code>{ error: tool.state.error, content: tool.state.content ?? [] }</code>. Text providers encode that with <code>toolResultText</code> as JSON, so the model receives <code>{"error":{"type":"tool.execution","message":"&lt;text&gt;"},"content":[]}</code>. <code>packages/cli/src/acp/content.ts</code> <code>contentBlockToParts</code> reads <code>audience</code> on ACP prompt blocks sent by an editor, marking an <code>["assistant"]</code> block <code>synthetic</code> and a <code>["user"]</code> block <code>ignored</code>. That code handles user prompts and does not see MCP tool results.</p>
+
+</main>
+
+<footer>
+<nav aria-label="Pages in this series">
+  MCP tool result research:
+  <ul>
+    <li><a href="../structured_content_clients.html">Which tool result field reaches the model</a></li>
+  </ul>
+</nav>
+<p>Commit d759c54 &#183; Read 2026-11-14 &#183; <a href="https://www.olahungerford.com" target="_blank">olahungerford.com</a></p>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  function isDark() {
+    return root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+  function label() { btn.textContent = isDark() ? '\u2600 light' : '\u263E dark'; }
+  btn.addEventListener('click', function () {
+    var next = isDark() ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    label();
+  });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+</script>
+</body>
+</html>
