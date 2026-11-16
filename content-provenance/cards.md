@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-66 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-15. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+66 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-16. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -23,6 +23,17 @@ Where a card sits on the path content takes through an agent. Not every card has
 - at the boundary: a gateway or context middleware checks it on the way through.
 - after delivery: credit and reporting once the content has left the protocol and its metadata is gone.
 - trust: who may sign or report, and how that is decided. Not a place on the path, but every other stage depends on it.
+
+## Media
+
+The kind of content an effort is about, where its own material names one. A card with no medium tag is media-neutral.
+
+- text: articles, books, web pages and other written content.
+- image: photographs, illustrations and other still images.
+- audio: music, speech and other sound recordings, and the musical works behind them.
+- video: film, broadcast and other moving images.
+- code: software, and agent skills and plugins made of instructions and scripts.
+- data: datasets and the pipelines that produce them.
 
 ## Cards
 
@@ -59,7 +70,7 @@ Linked from: [Agentic AI Foundation](#aaif), [Universal Commerce Protocol](#ucp)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-governance-risk-and-regulatory/issues)
 - Tags: type/working-group, layer/governance
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-grr-wg
 
 Working group bridging AI policy and the foundation's technical projects.
@@ -67,7 +78,7 @@ Working group bridging AI policy and the foundation's technical projects.
 #### Topics
 
 - **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9)).
-- **Policy mapping**: mapping [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code) duties onto the projects.
+- **Policy mapping**: mapping regulation onto the projects. Its gap analysis covers EU AI Act logging articles ([EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code)) and does not name the GPAI Code of Practice.
 
 Linked from: [Agentic AI Foundation](#aaif)
 
@@ -80,7 +91,7 @@ Linked from: [Agentic AI Foundation](#aaif)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-identity-and-trust/issues)
 - Tags: type/working-group, layer/identity, stage/trust
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg
 
 Charter: agent identity, authentication and provenance, delegation chains, consent, cross-organization trust, discovery metadata.
@@ -90,9 +101,9 @@ Charter: agent identity, authentication and provenance, delegation chains, conse
 - **Evidence strength**: labels for how strong a trust claim is, a model to borrow for content trust.
 - **Bound knowledge**: a digest-bound knowledge link set from a server card.
 
-#### Related
+#### Compare
 
-- Overlaps [Agent Identity and Manifest Standard](#aims) and [IETF Web Bot Auth Working Group](#ietf-web-bot-auth).
+- [Agent Identity and Manifest Standard](#aims) and [IETF Web Bot Auth Working Group](#ietf-web-bot-auth) also work on agent identity. The WG's repository names neither, and neither names the WG (searched 2026-11-15).
 
 #### History
 
@@ -109,7 +120,7 @@ Linked from: [Agent Identity and Manifest Standard](#aims), [Agentic AI Foundati
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-observability-and-traceability/issues)
 - Tags: type/working-group, layer/provenance, layer/attribution
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg
 
 Working group on agent-level observability, above the OpenTelemetry GenAI telemetry conventions.
@@ -118,11 +129,15 @@ Working group on agent-level observability, above the OpenTelemetry GenAI teleme
 
 - **Evidence records**: tamper-evident records of agent behavior ([Evidence Record Spec proposal](https://github.com/aaif/wg-observability-and-traceability/issues/37)).
 - **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.
-- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member, so nothing connects the group to [Content Telemetry](#content-telemetry).
+- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member.
 
 #### Related
 
 - The conventions it builds above, and what they leave out: [OpenTelemetry for MCP](#otel-mcp).
+
+#### Compare
+
+- [Content Telemetry](#content-telemetry) reports what happens to content after a tool call. Nothing connects it to this group (searched 2026-11-15).
 
 #### History
 
@@ -139,15 +154,19 @@ Linked from: [Agentic AI Foundation](#aaif), [OpenTelemetry for MCP](#otel-mcp)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-security-and-privacy/issues)
 - Tags: type/working-group, layer/governance, stage/trust, topic/skills
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-security-privacy-wg
 
 Working group drafting a security and privacy best-practices guide for agents.
 
 #### Topics
 
-- **Skill verification tiers**: a four-tier ladder in which tier 2 verifies author attribution and tier 3 pins version and hash ([Agent Skills at-rest signing threads](#agent-skills-signing)).
+- **Skill verification tiers**: a four-tier ladder in which tier 2 verifies author attribution and tier 3 pins version and hash.
 - **Agent trust manifests**: from [Project NANDA](#project-nanda).
+
+#### Compare
+
+- The [Agent Skills at-rest signing threads](#agent-skills-signing) cover the same ground as the tier ladder. The WG's guide does not cite them (searched 2026-11-15).
 
 Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Agentic AI Foundation](#aaif), [Project NANDA](#project-nanda)
 
@@ -161,18 +180,19 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Age
 - Part of: [OpenAttribution.org](#openattribution)
 - Take part: [GitHub issues](https://github.com/openattribution-org/aims/issues)
 - Tags: type/specification, layer/identity
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#aims
 
 DID-based agent identity, proof of what content the agent is licensed to access, and a link from identity to the telemetry endpoint.
 
 #### Topics
 
-- **Agent identity and entitlements**: who the agent is and what content it is licensed to access. [IETF Web Bot Auth Working Group](#ietf-web-bot-auth) proves it on the wire.
+- **Agent identity and entitlements**: who the agent is and what content it is licensed to access.
 
-#### Related
+#### Compare
 
-- Overlaps [AAIF Identity and Trust WG](#aaif-identity-trust-wg).
+- [IETF Web Bot Auth Working Group](#ietf-web-bot-auth) proves an agent's identity on the wire. The AIMS spec does not mention it (searched 2026-11-15).
+- Overlaps the [AAIF Identity and Trust WG](#aaif-identity-trust-wg). Neither names the other (searched 2026-11-15).
 
 Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Decentralized Identity Foundation](#dif), [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [OpenAttribution.org](#openattribution), [W3C](#w3c), [Wikimedia](#wikimedia)
 
@@ -201,24 +221,31 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [x402](#x402
 - Id: agent-plugins
 - Also known as: agent-plugins-spec, plugin.json
 - Type: specification
-- Status: 1.0.0 published 2026-08-06; 1.1.0 current; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel
+- Status: 1.0.0 published 2026-08-06; 1.1.0 is a working draft; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel
 - Website: https://agent-plugins.org/
 - Take part: [GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)
-- Tags: type/specification, layer/provenance, layer/licensing, topic/skills, stage/at-rest
-- Updated: 2026-11-08
+- Tags: type/specification, layer/provenance, layer/licensing, topic/skills, stage/at-rest, medium/code
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-plugins
 
-Package format that puts [Agent Skills](#agent-skills) and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed, not an [Agentic AI Foundation](#aaif) project. The spec is CC BY 4.0 and the schemas Apache 2.0.
+Package format that puts [Agent Skills](#agent-skills) and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed. The spec is CC BY 4.0 and the schemas Apache 2.0.
 
 #### Topics
 
 - **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.
-- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails, which is the same ground as [Agent Skills at-rest signing threads](#agent-skills-signing).
-- **No distribution layer**: registries, marketplaces, installation and updates are each client's own, so a [Skills Marketplace](#skills-marketplace) has a package to ship but no shared channel to ship it through.
+- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails.
+- **No distribution layer**: registries, marketplaces, installation and updates are each client's own.
 
 #### Related
 
-- The skills inside a plugin follow the [Agent Skills](#agent-skills) specification unchanged; [SEP-2640 Skills Extension](#mcp-skills-extension) serves the same skills over MCP instead of on disk.
+- The skills inside a plugin follow the [Agent Skills](#agent-skills) specification unchanged.
+
+#### Compare
+
+- Not an [Agentic AI Foundation](#aaif) project. The AAIF project list does not include it (read 2026-11-15).
+- Its future-considerations list covers the same ground as the [Agent Skills at-rest signing threads](#agent-skills-signing). Neither refers to the other (searched 2026-11-15).
+- A [Skills Marketplace](#skills-marketplace) would have a package to ship here and no shared channel to ship it through.
+- [SEP-2640 Skills Extension](#mcp-skills-extension) serves the same skills over MCP instead of on disk. Both build on Agent Skills, and neither names the other (searched 2026-11-15).
 
 #### History
 
@@ -235,8 +262,8 @@ Linked from: [Agent Skills](#agent-skills), [Agent Skills at-rest signing thread
 - Website: https://agentskills.io
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub discussions](https://github.com/agentskills/agentskills/discussions)
-- Tags: type/specification, topic/skills, stage/at-rest
-- Updated: 2026-11-03
+- Tags: type/specification, topic/skills, stage/at-rest, medium/code
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-skills
 
 The SKILL.md format for packaging instructions and files for agents.
@@ -259,14 +286,14 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing thre
 ### Agent Skills at-rest signing threads
 
 - Id: agent-skills-signing
-- Also known as: #252, #393, #588, #564, #620, #643
+- Also known as: #252, #393, #588, #564, #620, #643, #651
 - Type: proposal
-- Status: Six open discussions in Ideas, one maintainer, no convergence
+- Status: Seven open discussions in Ideas, one maintainer, no convergence
 - Website: https://github.com/agentskills/agentskills/discussions/393
 - Part of: [Agent Skills](#agent-skills)
 - Take part: [GitHub discussions](https://github.com/agentskills/agentskills/discussions)
-- Tags: type/proposal, layer/provenance, stage/at-rest, topic/skills
-- Updated: 2026-11-03
+- Tags: type/proposal, layer/provenance, stage/at-rest, topic/skills, medium/code
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-skills-signing
 
 Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)).
@@ -275,12 +302,16 @@ Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in f
 
 - **Copy sprawl**: tracking copies, which outnumber originals. One dataset has half of SKILL.md files as verbatim copies, and only 11.1% of fixes reach every copy.
 - **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.
-- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it ([Creator Assertions Working Group](#cawg)). No thread covers either.
+- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. The six earlier threads cover neither. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [C2PA](#c2pa) content credentials for skills and names the [Creator Assertions Working Group](#cawg) identity assertion for the signer.
 
-#### Related
+#### Compare
 
-- [Agent Plugins](#agent-plugins) carries author and licence in its manifest and lists signing as future work.
-- Digests from [SEP-2640 Skills Extension](#mcp-skills-extension), catalog-side signing in [AI Catalog](#ai-catalog), sidecars from [C2PA](#c2pa), verification tiers in [AAIF Security and Privacy WG](#aaif-security-privacy-wg).
+- The same problem is being worked on elsewhere: digests in [SEP-2640 Skills Extension](#mcp-skills-extension), catalog-side signing in [AI Catalog](#ai-catalog) and verification tiers in [AAIF Security and Privacy WG](#aaif-security-privacy-wg). None of them cites these threads (searched 2026-11-15).
+- [Agent Plugins](#agent-plugins) carries author and licence in its manifest and lists signing as future work. Neither refers to the other (searched 2026-11-15).
+
+#### History
+
+- 2026-11-05: Discussion 651 proposed C2PA content credentials for skills.
 
 Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Catalog](#ai-catalog), [C2PA](#c2pa), [Creator Assertions Working Group](#cawg), [SEP-2640 Skills Extension](#mcp-skills-extension), [Skills Marketplace](#skills-marketplace)
 
@@ -335,7 +366,7 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [OpenAttribu
 - Website: https://github.com/Agent-Card/ai-catalog
 - Take part: [GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)
 - Tags: type/specification, layer/provenance, layer/identity, stage/at-rest
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-catalog
 
 Catalog format for discovering agents, MCP servers and skills.
@@ -343,7 +374,11 @@ Catalog format for discovering agents, MCP servers and skills.
 #### Topics
 
 - **Discovery**: finding agents, servers and skills across vendors.
-- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117), a path parallel to [Agent Skills at-rest signing threads](#agent-skills-signing).
+- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117).
+
+#### Compare
+
+- A path parallel to the [Agent Skills at-rest signing threads](#agent-skills-signing). Neither cites the other (searched 2026-11-15).
 
 #### History
 
@@ -401,7 +436,7 @@ Community list of AI crawlers with generated robots.txt, nginx, Caddy, HAProxy a
 - Status: Spec 2.5 published October 2026
 - Website: https://c2pa.org
 - Take part: [membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)
-- Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust
+- Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#c2pa
 
@@ -418,7 +453,11 @@ Standards body for content credentials: signed manifests (claims and assertions)
 
 - Identity and consent assertions come from [Creator Assertions Working Group](#cawg).
 - Signing skill folders: [Agent Skills at-rest signing threads](#agent-skills-signing).
-- Its trust layer is compared with [AAIF Identity and Trust WG](#aaif-identity-trust-wg) and [SPUR Coalition](#spur-coalition).
+- [SPUR Coalition](#spur-coalition)'s Content Telemetry accepts a C2PA manifest hash as a content identifier.
+
+#### Compare
+
+- Its trust list answers the same question as the [AAIF Identity and Trust WG](#aaif-identity-trust-wg): who may sign. Neither names the other (searched 2026-11-15).
 
 #### In use
 
@@ -442,7 +481,7 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/proposal, layer/provenance, stage/in-transit, venue/mcp
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta
 
 Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` under `org.c2pa/credential`.
@@ -452,12 +491,13 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 - **Provenance in transit**: keeping a credential attached as content crosses from server to client.
 - **A venue**: finding an owner, since no WG or IG covers content provenance and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.
 - **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.
-- **Where the field lives**: choosing between a top-level field and `_meta`, the same question [SEP-3094 Granular Citations](#mcp-sep-3094-citations) faces.
+- **Where the field lives**: choosing between a top-level field and `_meta`.
 
-#### Related
+#### Compare
 
-- A credential check could run as an interceptor validator ([MCP Interceptors WG and SEP-2624](#mcp-interceptors)).
-- Lineage key overlap: [OpenLineage](#openlineage).
+- [SEP-3094 Granular Citations](#mcp-sep-3094-citations) faced the same choice between a top-level field and `_meta`. Neither thread refers to the other (searched 2026-11-15).
+- A credential check could run as an interceptor validator ([MCP Interceptors WG and SEP-2624](#mcp-interceptors)). Neither thread refers to the other (searched 2026-11-15).
+- Lineage key overlap: [OpenLineage](#openlineage). Neither names the other (searched 2026-11-15).
 
 #### History
 
@@ -474,7 +514,7 @@ Linked from: [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors
 - Part of: [Creative Commons](#creative-commons)
 - Take part: [GitHub issues](https://github.com/creativecommons/cc-signals/issues)
 - Tags: type/proposal, layer/access, layer/attribution
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#cc-signals
 
 Preference signals for AI reuse with terms attached: Credit, Credit + Direct Contribution, Credit + Ecosystem Contribution, Credit + Open. Layered on [IETF AI Preferences Working Group](#ietf-aipref) vocabulary.
@@ -482,7 +522,11 @@ Preference signals for AI reuse with terms attached: Credit, Credit + Direct Con
 #### Topics
 
 - **Reuse with reciprocity**: letting stewards allow AI reuse with terms attached, for those who do not want a plain opt-out.
-- **Checking credit**: knowing whether credit was given, which links to [Content Telemetry](#content-telemetry) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations).
+- **Checking credit**: knowing whether credit was given.
+
+#### Compare
+
+- [Content Telemetry](#content-telemetry) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations) are two ways to check whether credit was given. Neither names CC Signals (searched 2026-11-15).
 
 Linked from: [Creative Commons](#creative-commons), [IETF AI Preferences Working Group](#ietf-aipref)
 
@@ -507,7 +551,7 @@ Network of authors' collecting societies, founded in 1926 and based in France. I
 - **Training transparency**: finding out which works a model was trained on. The same page says "AI providers must be obliged to inform on the training of copyrighted works".
 - **Revenue at risk**: putting a number on what generative AI costs creators. The [study](https://www.cisac.org/services/reports-and-research/cisacpmp-strategy-ai-study) it commissioned from PMP Strategy estimates that 24% of music creators' revenues and 21% of audiovisual creators' revenues are at risk by 2028.
 
-#### Related
+#### Compare
 
 - Collective licensing of AI use for web publishers: [Internet Licensing Collective](#internet-licensing-collective). Its About page does not mention music societies (read 2026-11-15).
 
@@ -523,9 +567,9 @@ Linked from: [GEMA](#gema)
 ### Cloudflare Content Signals
 
 - Id: cloudflare-content-signals
-- Also known as: draft-romm-aipref-vocab-contentsignals
+- Also known as: draft-romm-aipref-contentsignals
 - Type: proposal
-- Status: Individual AIPREF draft; parsed by policycheck
+- Status: Individual AIPREF draft, shown as expired on Datatracker (read 2026-11-15); parsed by policycheck
 - Website: https://contentsignals.org
 - Take part: [ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)
 - Tags: type/proposal, layer/access
@@ -552,13 +596,12 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [OpenAttribution
 - Type: project
 - Status: Maintains c2pa-rs, c2pa-python, c2pa-js and c2patool
 - Website: https://contentauthenticity.org
-- Part of: [C2PA](#c2pa)
 - Take part: [join CAI](https://contentauthenticity.org/join), [GitHub](https://github.com/contentauth)
 - Tags: type/project, layer/provenance
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#content-authenticity-initiative
 
-Adobe-led initiative that maintains the open-source reference implementations of [C2PA](#c2pa).
+Adobe-led initiative that maintains the open-source reference implementations of [C2PA](#c2pa). It is a separate body, and C2PA lists it among its partner organizations.
 
 #### Topics
 
@@ -585,12 +628,16 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 
 - **Usage reporting**: reporting how AI systems use content after retrieval, in five events.
 - **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).
-- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients, the events [SEP-3094 Granular Citations](#mcp-sep-3094-citations) `citations.render` would need.
+- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients.
 
 #### Related
 
-- Execution traces, which stop at the tool call: [OpenTelemetry for MCP](#otel-mcp).
-- [COUNTER Metrics](#counter) plans to reference it in phase two.
+- [COUNTER Metrics](#counter) says phase two of its AI guidelines is aligned with it.
+
+#### Compare
+
+- [SEP-3094 Granular Citations](#mcp-sep-3094-citations) `citations.render` would need the `content_cited` and `content_presented` events. Neither names the other (searched 2026-11-15).
+- Execution traces, which stop at the tool call: [OpenTelemetry for MCP](#otel-mcp). Neither names the other (searched 2026-11-15).
 
 #### In use
 
@@ -606,11 +653,11 @@ Linked from: [AAIF Observability and Traceability WG](#aaif-observability-tracea
 
 - Id: counter
 - Type: organization
-- Status: Plans to reference Content Telemetry in phase two
+- Status: Phase two of its AI best practice published 2026-10-23; it says the guidelines are aligned with the SPUR telemetry framework
 - Website: https://www.countermetrics.org
 - Take part: [membership](https://www.countermetrics.org/membership/)
 - Tags: type/organization, layer/attribution
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#counter
 
 Usage-metrics standard for scholarly publishers and libraries.
@@ -618,6 +665,10 @@ Usage-metrics standard for scholarly publishers and libraries.
 #### Topics
 
 - **AI usage metrics**: counting usage when the reader is an AI system. Phase two references [Content Telemetry](#content-telemetry).
+
+#### History
+
+- 2026-10-23: [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.
 
 Linked from: [Content Telemetry](#content-telemetry)
 
@@ -630,16 +681,20 @@ Linked from: [Content Telemetry](#content-telemetry)
 - Website: https://creativecommons.org
 - Take part: [contact](https://creativecommons.org/about/contact/)
 - Tags: type/organization, layer/licensing, layer/access, layer/attribution
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#creative-commons
 
-Steward of the CC licenses and CC REL machine-readable license metadata. Proposes [CC Signals](#cc-signals) and filed AIPREF drafts on exclusions and parameters ([IETF AI Preferences Working Group](#ietf-aipref)).
+Steward of the CC licenses and CC REL machine-readable license metadata. Proposes [CC Signals](#cc-signals) and filed AIPREF drafts on exclusions and parameters ([IETF AI Preferences Working Group](#ietf-aipref)). The exclusions draft expired on 2026-10-24.
 
 #### Topics
 
 - **AI reuse beyond licensing**: giving stewards terms for AI reuse, since licensing alone cannot address it (September 2026 guidance).
 - **Attribution in answers**: honoring the CC attribution requirement when content reaches a model or an agent answer.
-- **RAG attribution pilots**: finding adopters for best practices later in 2026. [Open Knowledge Foundation](#okfn) with [SEP-3094 Granular Citations](#mcp-sep-3094-citations) is a candidate.
+- **RAG attribution pilots**: finding adopters for best practices later in 2026.
+
+#### Compare
+
+- [Open Knowledge Foundation](#okfn), whose MCP server already returns a list of sources, is a candidate pilot for the RAG attribution best practices. Neither names the other (searched 2026-11-15).
 
 Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#ietf-aipref), [Open Knowledge Foundation](#okfn)
 
@@ -653,7 +708,7 @@ Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#iet
 - Part of: [Decentralized Identity Foundation](#dif)
 - Take part: [GitHub](https://github.com/creator-assertions), via DIF membership
 - Tags: type/working-group, layer/provenance, layer/identity, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#cawg
 
 Assertion specs that ride inside [C2PA](#c2pa) manifests: identity, training and data mining, consent, metadata, endorsement, certificate policy.
@@ -661,12 +716,16 @@ Assertion specs that ride inside [C2PA](#c2pa) manifests: identity, training and
 #### Topics
 
 - **Signer identity**: naming the actor behind a credential, the identity upgrade path for [Agent Skills at-rest signing threads](#agent-skills-signing).
-- **Training and data mining opt-out**: letting an opt-out travel with the asset, the asset-side counterpart to [IETF AI Preferences Working Group](#ietf-aipref) and [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep).
+- **Training and data mining opt-out**: letting an opt-out travel with the asset.
 - **Consent**: recording consent as a signed assertion.
 
 #### Related
 
-- Hosts the IPTC Data Mining photo-metadata property ([IPTC](#iptc)).
+- Its metadata assertion binds metadata from other standards, [IPTC](#iptc) among them, to the manifest.
+
+#### Compare
+
+- The training and data mining assertion is the asset-side counterpart to [IETF AI Preferences Working Group](#ietf-aipref) and [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep), which attach an opt-out to a location. The specs do not cite each other (searched 2026-11-15).
 
 #### History
 
@@ -681,7 +740,7 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 - Status: 1.1 (February 2026); required for NeurIPS 2026 dataset submissions
 - Website: https://github.com/mlcommons/croissant
 - Take part: [GitHub issues](https://github.com/mlcommons/croissant/issues)
-- Tags: type/specification, layer/provenance, layer/licensing
+- Tags: type/specification, layer/provenance, layer/licensing, medium/data
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#croissant
 
@@ -689,7 +748,11 @@ MLCommons dataset metadata format. 1.1 added machine-actionable provenance, cons
 
 #### Topics
 
-- **Dataset provenance and consent**: recording what a training set was allowed to contain, the dataset-side counterpart to [C2PA](#c2pa) for assets.
+- **Dataset provenance and consent**: recording what a training set was allowed to contain.
+
+#### Compare
+
+- The dataset-side counterpart to [C2PA](#c2pa) for assets. The only mention found is a contributor's remark on [Croissant issue 885](https://github.com/mlcommons/croissant/issues/885) (searched 2026-11-15).
 
 #### In use
 
@@ -707,8 +770,8 @@ MLCommons dataset metadata format. 1.1 added machine-actionable provenance, cons
 - Status: Last code push 2025-03
 - Website: https://www.dataprovenance.org
 - Take part: [GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)
-- Tags: type/project, layer/provenance, layer/licensing
-- Updated: 2026-11-03
+- Tags: type/project, layer/provenance, layer/licensing, medium/data
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#data-provenance-initiative
 
 MIT-led audits of training-corpus licenses, with datasets on Hugging Face.
@@ -741,9 +804,9 @@ Not-for-profit membership organisation, set up in 2006, that writes the message 
 - **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.
 - **A standard for AI declarations**: its Artificial Intelligence group is set up "to investigate the metadata requirements for the communication of AI-generated music", including musical works. The group's Generative AI Declaration Standard has finished member comments on its committee draft.
 
-#### Related
+#### Compare
 
-- [C2PA](#c2pa) records how an asset was made in a signed manifest bound to the file. A search on 2026-11-15 found no DDEX page that refers to it.
+- [C2PA](#c2pa) records how an asset was made in a signed manifest bound to the file. No DDEX page refers to it, and no C2PA page refers to DDEX (searched 2026-11-15).
 
 #### In use
 
@@ -766,14 +829,18 @@ Not-for-profit membership organisation, set up in 2006, that writes the message 
 - Website: https://identity.foundation
 - Take part: [join DIF](https://identity.foundation/join/)
 - Tags: type/organization, layer/identity
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#dif
 
 Standards body for decentralized identifiers and verifiable credentials. Hosts [Creator Assertions Working Group](#cawg).
 
 #### Topics
 
-- **Decentralized identity**: interoperable identifiers and credentials that agent identity specs such as [Agent Identity and Manifest Standard](#aims) build on.
+- **Decentralized identity**: interoperable identifiers and credentials that agent identity specs build on.
+
+#### Compare
+
+- [Agent Identity and Manifest Standard](#aims) builds on W3C DIDs and Verifiable Credentials. It names DIF only as the host of CAWG (searched 2026-11-15).
 
 Linked from: [Creator Assertions Working Group](#cawg)
 
@@ -785,7 +852,7 @@ Linked from: [Creator Assertions Working Group](#cawg)
 - Status: The Atlantic plans to implement its text marking, announced 2026-11-11 with no rollout date
 - Website: https://encypher.com
 - Take part: [c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)
-- Tags: type/organization, layer/provenance, layer/licensing, stage/at-rest
+- Tags: type/organization, layer/provenance, layer/licensing, stage/at-rest, medium/text, medium/image, medium/audio, medium/video
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#encypher
 
@@ -823,19 +890,24 @@ Linked from: [C2PA](#c2pa)
 - Status: Commission compiling a list of recognized machine-readable opt-out mechanisms
 - Website: https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai
 - Tags: type/regulation, layer/access, layer/governance, layer/provenance
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code
 
 The copyright chapter of the GPAI Code of Practice has signatories honor robots.txt and make best efforts on other protocols. Article 50 sets transparency duties for AI-generated content.
 
 #### Topics
 
-- **Ranking opt-outs**: deciding which mechanisms count, among [IETF AI Preferences Working Group](#ietf-aipref), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep), [Really Simple Licensing](#rsl) and the [Creator Assertions Working Group](#cawg) assertion. [Open Future](#open-future) and [IPTC](#iptc) answered the consultation.
-- **Transparency for generated content**: Article 50 duties, the compliance framing behind the [C2PA](#c2pa) pitch.
+- **Ranking opt-outs**: deciding which mechanisms count. The Commission's [consultation FAQ](https://digital-strategy.ec.europa.eu/en/faqs/stakeholder-consultation-ai-and-copyright-compliance) lists [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) and "C2PA TDM Assertions" ([C2PA](#c2pa)) among the solutions. [Open Future](#open-future) and [IPTC](#iptc) answered the consultation.
+- **Transparency for generated content**: Article 50 duties.
 
 #### Related
 
 - Google ties [Shared AI training robots.txt token](#aipref-training-token) support to the Code.
+
+#### Compare
+
+- The FAQ does not name [IETF AI Preferences Working Group](#ietf-aipref), [Really Simple Licensing](#rsl) or [Creator Assertions Working Group](#cawg). Open Future's response names the first two, and the assertion the FAQ calls C2PA's is now a CAWG spec (searched 2026-11-15).
+- Article 50 is the compliance framing behind the C2PA pitch. Only secondary sources tie the two (searched 2026-11-15).
 
 Linked from: [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [IPTC](#iptc), [Open Future](#open-future), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
 
@@ -861,7 +933,10 @@ Non-profit that certifies generative AI companies, products and models whose tra
 #### Related
 
 - BRIA AI and Somms.ai were among the nine companies certified at launch and are not on the list read on 2026-11-15.
-- Audits of dataset licenses from outside the developer: [Data Provenance Initiative](#data-provenance-initiative).
+
+#### Compare
+
+- Audits of dataset licenses from outside the developer: [Data Provenance Initiative](#data-provenance-initiative). Neither names the other (searched 2026-11-15).
 
 #### In use
 
@@ -896,9 +971,12 @@ German collecting society for composers, lyricists and music publishers, and [a 
 
 #### Related
 
-- A revenue-share license for AI use of web publishers' content: [Internet Licensing Collective](#internet-licensing-collective).
-- Both court press releases list Article 4 of the DSM Directive among the provisions applied, the one [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) reservations rely on.
 - The accounts of both rulings here come from the court's press releases. The judgments were not read.
+
+#### Compare
+
+- A revenue-share license for AI use of web publishers' content: [Internet Licensing Collective](#internet-licensing-collective). Neither names the other (searched 2026-11-15).
+- Both court press releases list Article 4 of the DSM Directive among the provisions applied, the one [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) reservations rely on. Neither the court nor TDMRep names the other.
 
 #### In use
 
@@ -970,7 +1048,7 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [IETF Web Bot Au
 - Part of: [IETF](#ietf)
 - Take part: [ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)
 - Tags: type/working-group, layer/access, stage/after-delivery
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#ietf-aipref
 
 Vocabulary for AI usage preferences and how they attach to content (`Content-Usage` header and robots.txt directive).
@@ -984,7 +1062,7 @@ Vocabulary for AI usage preferences and how they attach to content (`Content-Usa
 
 #### Related
 
-- Individual drafts: [Shared AI training robots.txt token](#aipref-training-token), [Cloudflare Content Signals](#cloudflare-content-signals), and the [Creative Commons](#creative-commons) exclusions and parameters drafts.
+- Individual drafts: [Shared AI training robots.txt token](#aipref-training-token), [Cloudflare Content Signals](#cloudflare-content-signals), and the [Creative Commons](#creative-commons) exclusions and parameters drafts. The exclusions draft expired on 2026-10-24.
 - Enforcement side: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth). Layered on by [CC Signals](#cc-signals).
 
 #### History
@@ -1013,9 +1091,9 @@ Signed bot traffic with RFC 9421 HTTP message signatures and a key directory at 
 
 - **Bot identity**: proving who a crawler or agent is. The preference ([IETF AI Preferences Working Group](#ietf-aipref)) says what is allowed, bot auth says who is asking.
 
-#### Related
+#### Compare
 
-- Pairs with [Agent Identity and Manifest Standard](#aims) and the agent identifiability asks from [Wikimedia](#wikimedia).
+- Pairs with [Agent Identity and Manifest Standard](#aims) and with [Wikimedia](#wikimedia)'s ask that agents be easy to identify. Neither names Web Bot Auth (searched 2026-11-15).
 
 #### In use
 
@@ -1042,14 +1120,19 @@ Nonprofit, publisher-led collecting society for AI use of web content, formerly 
 - **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).
 - **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [Really Simple Licensing](#rsl) on the publisher's own site.
 - **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.
-- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked. [Content Telemetry](#content-telemetry) standardizes reports of this kind.
+- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked.
 
 #### Related
 
 - A Publisher Steering Committee oversees the licensing framework, safeguards and economics. The About page shows ten members: Reddit, People Inc., Yahoo, Ziff Davis, the Wikimedia Foundation ([Wikimedia](#wikimedia)), USA Today, Internet Brands, Mediahuis, The Atlantic and Vox Media (read 2026-11-15). Yahoo Scout, the first licensee, is a Yahoo product.
 - The launch release names Doug Leeds as a co-founder. The About page names no staff.
-- Its About page lists 3,100+ supporting publications, among them the Guardian (a [SPUR Coalition](#spur-coalition) founder), Wikipedia and O'Reilly Media.
+- Its About page lists 3,100+ supporting publications, among them the Guardian, Wikipedia and O'Reilly Media.
 - Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it.
+
+#### Compare
+
+- [Content Telemetry](#content-telemetry) standardizes usage reports of the kind ILC pays out on. Neither names the other (searched 2026-11-15).
+- The Guardian supports ILC and is a [SPUR Coalition](#spur-coalition) founder. No source connects the two bodies themselves (searched 2026-11-15).
 
 #### In use
 
@@ -1068,11 +1151,11 @@ Linked from: [CISAC](#cisac), [GEMA](#gema), [Really Simple Licensing](#rsl)
 - Type: organization
 - Status: RightsML and the Data Mining property; Verified News Publishers List; answered the EU opt-out consultation
 - Website: https://iptc.org
-- Tags: type/organization, layer/licensing, layer/access, layer/provenance, stage/trust
+- Tags: type/organization, layer/licensing, layer/access, layer/provenance, stage/trust, medium/image, medium/video
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#iptc
 
-News-media standards body. RightsML is a profile of [W3C ODRL](#w3c-odrl). Its Data Mining photo-metadata property is maintained with [Creator Assertions Working Group](#cawg). With Project Origin it runs the Origin Verified News Publishers List for [C2PA](#c2pa) signing.
+News-media standards body. RightsML is a profile of [W3C ODRL](#w3c-odrl). Its photo metadata standard has a Data Mining property. [Creator Assertions Working Group](#cawg)'s metadata assertion can bind IPTC metadata to a C2PA manifest. With Project Origin it runs the Origin Verified News Publishers List for [C2PA](#c2pa) signing.
 
 #### Topics
 
@@ -1106,12 +1189,12 @@ Tech policy institute led by Alissa Cooper. Related: [Shared AI training robots.
 ### Machine Payments Protocol
 
 - Id: mpp
-- Also known as: MPP, draft-ryan-httpauth-payment
+- Also known as: MPP, draft-httpauth-payment, draft-ryan-httpauth-payment
 - Type: specification
-- Status: Individual IETF draft, not a WG item
+- Status: Individual IETF draft, draft-httpauth-payment-01 (2026-09-09), active on Datatracker; the earlier draft-ryan-httpauth-payment expired 2026-09-19 (read 2026-11-16); not a WG item
 - Website: https://paymentauth.org
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#mpp
 
 Stripe and Tempo protocol: HTTP 402 with a `Payment` authentication scheme, payment-method agnostic, with an MCP transport. Filed at the [IETF](#ietf).
@@ -1131,16 +1214,20 @@ Linked from: [IETF](#ietf)
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/interest-group, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-fsig
 
 Financial-services interest group. Its charter also has an audit and attestation pillar, which these cards do not cover.
 
 #### Topics
 
-- **Regulated data lineage and citation**: tracing financial data through agents. [OpenLineage](#openlineage) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations) have been presented or offered here.
+- **Regulated data lineage and citation**: tracing financial data through agents. A lineage key for [OpenLineage](#openlineage) was presented on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)) and filed as [issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16) on 2026-10-08.
 
-Linked from: [Model Context Protocol](#mcp), [OpenLineage](#openlineage)
+#### Related
+
+- [SEP-3094 Granular Citations](#mcp-sep-3094-citations) was on the agenda of the 2026-09-24 meeting. The notes have no section on it.
+
+Linked from: [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
 
 ### MCP Interceptors WG and SEP-2624
 
@@ -1152,7 +1239,7 @@ Linked from: [Model Context Protocol](#mcp), [OpenLineage](#openlineage)
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/working-group, venue/mcp, stage/boundary
-- Updated: 2026-11-08
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-interceptors
 
 Context middleware for clients, servers and gateways: deterministic code that sees each request and result on the way through. The place a seal or citation validator can run without a core spec change.
@@ -1161,7 +1248,11 @@ Context middleware for clients, servers and gateways: deterministic code that se
 
 - **Checking at the boundary**: verifying provenance in a gateway or in context middleware, since most clients will not.
 - **The `signature` field**: deciding what it signs and whether it ever carries content provenance.
-- **Sample validator**: a seal or citation validator for [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) or [SEP-3094 Granular Citations](#mcp-sep-3094-citations).
+- **Sample validator**: a citation validator for [SEP-3094 Granular Citations](#mcp-sep-3094-citations), whose author named interceptors as one way to process citation metadata.
+
+#### Compare
+
+- A seal validator for [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) is this guide's suggestion. Neither thread refers to the other (searched 2026-11-15).
 
 #### History
 
@@ -1173,22 +1264,27 @@ Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Model 
 
 - Id: mcp-security-ig
 - Type: interest-group
-- Status: Restructured as a routing forum 2026-10-31; monthly agenda-driven call
+- Status: Restructured as a routing group, decided 2026-08-26 and merged into the charter 2026-10-31; monthly agenda-driven call
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/interest-group, venue/mcp, layer/governance
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-security-ig
 
 First stop for security topics. Routes validated work to the owning group.
 
 #### Topics
 
-- **Routing**: sending [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations) to an owning group until a content group exists.
+- **Routing**: acting as the first stop for security topics and sending each to an owning group.
+
+#### Compare
+
+- [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations) have no owning group, and this IG could route them. No IG record names either. The first was filed in the Ideas - Security discussion category (searched 2026-11-15).
 
 #### History
 
-- 2026-10-31: Restructured as a routing forum.
+- 2026-10-31: The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).
+- 2026-08-26: Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.
 
 Linked from: [Model Context Protocol](#mcp)
 
@@ -1201,11 +1297,15 @@ Linked from: [Model Context Protocol](#mcp)
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace
 
-Voluntary marketplace with publisher-set terms and pricing and usage reporting. Reported to support [Really Simple Licensing](#rsl).
+Voluntary marketplace with publisher-set terms and pricing and usage reporting.
 
 #### Topics
 
 - **Paying publishers**: compensating publishers for content used in AI answers, with usage reporting.
+
+#### Compare
+
+- News reports say it supports [Really Simple Licensing](#rsl). Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-15).
 
 #### History
 
@@ -1246,7 +1346,7 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)
 - Tags: type/specification, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp
 
 The protocol between agents and the tools, resources, prompts and skills they read. MCP is the hop where content provenance can be carried or lost.
@@ -1254,7 +1354,7 @@ The protocol between agents and the tools, resources, prompts and skills they re
 #### Topics
 
 - **Content provenance ownership**: no WG or IG owns content provenance or attribution.
-- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding ([IETF AI Preferences Working Group](#ietf-aipref)).
+- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.
 - **Credit reporting**: nothing reports display or credit past the last hop ([Content Telemetry](#content-telemetry)).
 
 #### Related
@@ -1262,6 +1362,10 @@ The protocol between agents and the tools, resources, prompts and skills they re
 - Built-in tracing and metrics in the SDKs: [OpenTelemetry for MCP](#otel-mcp).
 - Threads: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SEP-2640 Skills Extension](#mcp-skills-extension), [MCP Interceptors WG and SEP-2624](#mcp-interceptors).
 - Groups: [MCP Financial Services Interest Group](#mcp-fsig), [MCP Security Interest Group](#mcp-security-ig).
+
+#### Compare
+
+- [IETF AI Preferences Working Group](#ietf-aipref) defines usage preferences for the web. MCP has no equivalent field, and no MCP material names AIPREF (searched 2026-11-15).
 
 Linked from: [Agentic AI Foundation](#aaif), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Financial Services Interest Group](#mcp-fsig), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [OpenTelemetry for MCP](#otel-mcp), [SEP-2640 Skills Extension](#mcp-skills-extension), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
 
@@ -1300,12 +1404,17 @@ CKAN maintainers. MCP Labs runs chat over official datasets with every answer li
 #### Topics
 
 - **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.
-- **Interim convention to standard**: mapping its required `structuredContent.sources` list onto [SEP-3094 Granular Citations](#mcp-sep-3094-citations).
+- **Interim convention to standard**: moving its required `structuredContent.sources` list onto a standard citation format.
 
 #### Related
 
-- Plans to move charts to MCP Apps and citations to SEP-3094. [Wikimedia](#wikimedia) contributors review the same SEP.
-- A natural pilot for the [Creative Commons](#creative-commons) RAG attribution best practices.
+- Plans to move charts to MCP Apps and citations to SEP-3094.
+
+#### Compare
+
+- Its `sources` list could map onto [SEP-3094 Granular Citations](#mcp-sep-3094-citations). An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).
+- A [Wikimedia](#wikimedia) contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).
+- A natural pilot for the [Creative Commons](#creative-commons) RAG attribution best practices. Neither names the other (searched 2026-11-15).
 
 #### In use
 
@@ -1317,14 +1426,14 @@ Linked from: [Creative Commons](#creative-commons), [SEP-3094 Granular Citations
 
 - Id: openattribution
 - Type: organization
-- Status: SDKs, edge worker, policycheck, commerce profile, AIMS draft
+- Status: policycheck, commerce profile, AIMS draft
 - Website: https://openattribution.org
 - Take part: [GitHub](https://github.com/openattribution-org)
 - Tags: type/organization, layer/attribution, layer/identity, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#openattribution
 
-Not-for-profit that maintains the [Content Telemetry](#content-telemetry) SDKs, the Cloudflare edge worker, the policycheck scanner, the commerce profile and [Agent Identity and Manifest Standard](#aims).
+Not-for-profit that originally developed the [Content Telemetry](#content-telemetry) SDKs, which [SPUR Coalition](#spur-coalition) now maintains. Its [Cloudflare edge worker](https://github.com/SPUR-Coalition/cloudflare-worker) is in SPUR's GitHub organization too (checked 2026-11-16). It maintains the policycheck scanner, the commerce profile and [Agent Identity and Manifest Standard](#aims).
 
 #### Topics
 
@@ -1337,14 +1446,14 @@ Linked from: [Agent Identity and Manifest Standard](#aims), [Agentic Commerce Pr
 
 - Id: openlineage
 - Type: project
-- Status: RFC 4484 open (updated 2026-10-07); MCP RFC in preparation by BearingNode
+- Status: RFC 4484 open (updated 2026-10-07); BearingNode proposed an MCP `_meta` lineage key to the FSIG 2026-10-08
 - Website: https://openlineage.io
 - Take part: [GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)
-- Tags: type/project, layer/provenance, stage/in-transit
-- Updated: 2026-11-03
+- Tags: type/project, layer/provenance, stage/in-transit, medium/data
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#openlineage
 
-Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's planned MCP `_meta` lineage key carry lineage identity across the tool-call boundary.
+Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's proposed MCP `_meta` lineage key ([FSIG issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16)) carry lineage identity across the tool-call boundary.
 
 #### Topics
 
@@ -1352,11 +1461,17 @@ Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage
 
 #### Related
 
-- Overlaps [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta). Introduced at [MCP Financial Services Interest Group](#mcp-fsig) on 2026-09-05.
+- Presented to [MCP Financial Services Interest Group](#mcp-fsig) on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)). The proposal was filed there as issue 16 on 2026-10-08.
+
+#### Compare
+
+- Overlaps [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) on lineage keys. Neither names the other (searched 2026-11-15).
 
 #### History
 
+- 2026-10-08: BearingNode filed the `_meta` lineage key proposal as FSIG issue 16.
 - 2026-10-07: RFC 4484 updated.
+- 2026-09-24: Presented to the MCP Financial Services Interest Group.
 
 Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Financial Services Interest Group](#mcp-fsig), [OpenTelemetry for MCP](#otel-mcp)
 
@@ -1377,14 +1492,19 @@ OpenTelemetry semantic conventions for MCP spans and metrics, and the SDKs that 
 
 #### Topics
 
-- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in the same `_meta` slot that [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) proposes for content credentials. The propagation rules are a precedent for any other credential that has to survive the hop.
-- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where [Content Telemetry](#content-telemetry) and the [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg) sit.
+- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in `_meta`. The propagation rules are a precedent for any other credential that has to survive the hop.
+- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where the [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg) sits.
 - **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-08). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation.
 
 #### Related
 
 - [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026.
-- Lineage after the tool call, rather than the call itself: [OpenLineage](#openlineage).
+
+#### Compare
+
+- [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) proposes the same `_meta` slot for content credentials. Neither names the other (searched 2026-11-15).
+- [Content Telemetry](#content-telemetry) reports on the content after the call, which a span leaves out. Neither names the other (searched 2026-11-15).
+- Lineage after the tool call, rather than the call itself: [OpenLineage](#openlineage). Its MCP RFC mentions OpenTelemetry only in passing (searched 2026-11-15).
 
 #### In use
 
@@ -1423,7 +1543,7 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg)
 - Website: https://rslstandard.org
 - Take part: [GitHub](https://github.com/rslstandard)
 - Tags: type/specification, layer/licensing, layer/payments
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#rsl
 
 XML vocabulary for usage and compensation terms (per-crawl, per-inference, subscription, attribution-only), discovered from robots.txt, RSS, HTTP headers or HTML. Includes a Crawler Authorization Protocol and an Open License Protocol on OAuth 2.0. [Internet Licensing Collective](#internet-licensing-collective), formerly the RSL Collective, is the collecting society behind it.
@@ -1431,8 +1551,12 @@ XML vocabulary for usage and compensation terms (per-crawl, per-inference, subsc
 #### Topics
 
 - **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.
-- **Adoption**: getting model developers to honor it on the open web. None has committed, and [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace) is reported to support it.
-- **Enforcement**: supplying the lever [Content Telemetry](#content-telemetry) manifests lack, through a SPUR profile binding drafted for the RSL WG.
+- **Adoption**: getting model developers to honor it on the open web. None has committed.
+- **Enforcement**: supplying the lever [Content Telemetry](#content-telemetry) manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings), a v0.1 draft marked for discussion with the RSL working group (read 2026-11-16).
+
+#### Compare
+
+- The [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace) is reported to support RSL. Neither side's pages say so (searched 2026-11-15).
 
 #### In use
 
@@ -1455,8 +1579,8 @@ Linked from: [Content Telemetry](#content-telemetry), [Encypher](#encypher), [EU
 - Website: https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-2640 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640), [MCP community channels](https://modelcontextprotocol.io/community/communication)
-- Tags: type/specification, venue/mcp, stage/at-rest, topic/skills
-- Updated: 2026-11-03
+- Tags: type/specification, venue/mcp, stage/at-rest, topic/skills, medium/code
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-skills-extension
 
 Serves [Agent Skills](#agent-skills) over MCP, with digests and a `_meta` slot for intermediaries.
@@ -1480,12 +1604,12 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing thre
 - Id: mcp-sep-3094-citations
 - Also known as: SEP-3094, #3094
 - Type: proposal
-- Status: Open, no sponsor; revised 2026-09-04; an implementation PR open from Perplexity; dormancy clock to about 2027-01-15
+- Status: Closed without merging 2026-11-08; the author plans to take it to the Core Primitives WG on 2026-11-23
 - Website: https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-3094 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/proposal, venue/mcp, layer/attribution, stage/in-transit, stage/after-delivery
-- Updated: 2026-11-03
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations
 
 Citations on tool results bound by CommonMark links in the text, each a flat schema.org CreativeWork, granularity via URL fragments, integrity deferred. A `citations.render` client capability.
@@ -1493,19 +1617,25 @@ Citations on tool results bound by CommonMark links in the text, each a flat sch
 #### Topics
 
 - **Citations in transit**: keeping sources attached from tool result to the answer a user sees.
-- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion.
+- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion. A maintainer said on 2026-11-06 that SEPs now go through working groups, and suggested the Core Primitives WG or a new interest group on citations.
 - **Field placement**: choosing a top-level field or `_meta` processed by [MCP Interceptors WG and SEP-2624](#mcp-interceptors).
-- **Reporting**: mapping to [Open Knowledge Foundation](#okfn) `sources` and [Content Telemetry](#content-telemetry) events.
 
 #### Related
 
-- Reviewers include [Open Knowledge Foundation](#okfn) and [Wikimedia](#wikimedia) contributors.
+- Reviewers include a [Wikimedia](#wikimedia) contributor.
+- On the [MCP Financial Services Interest Group](#mcp-fsig) agenda on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)).
+
+#### Compare
+
+- Reporting: the citations could map to [Open Knowledge Foundation](#okfn)'s `sources` list and to [Content Telemetry](#content-telemetry) events. Neither source makes the mapping (searched 2026-11-15).
+- Another reviewer contributes to OKFN's MCP server. No OKFN page names the SEP (searched 2026-11-15).
 
 #### History
 
+- 2026-11-08: Closed without merging.
 - 2026-09-04: Revised.
 
-Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [CC Signals](#cc-signals), [Content Telemetry](#content-telemetry), [Creative Commons](#creative-commons), [MCP Financial Services Interest Group](#mcp-fsig), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [Open Knowledge Foundation](#okfn), [Wikimedia](#wikimedia)
+Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [CC Signals](#cc-signals), [Content Telemetry](#content-telemetry), [MCP Financial Services Interest Group](#mcp-fsig), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [Open Knowledge Foundation](#okfn), [Wikimedia](#wikimedia)
 
 ### Shared AI training robots.txt token
 
@@ -1546,8 +1676,8 @@ Linked from: [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF 
 - Website: https://ai-disclosures.org/prototypes.html
 - Part of: [AI Disclosures Project](#ai-disclosures-project)
 - Take part: [Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)
-- Tags: type/project, layer/licensing, layer/attribution, layer/payments, topic/skills
-- Updated: 2026-11-08
+- Tags: type/project, layer/licensing, layer/attribution, layer/payments, topic/skills, medium/code
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#skills-marketplace
 
 A marketplace for modular, interoperable, rights-protected skills with monetization for their authors, built with O'Reilly Media and Miso.ai. Two public tools so far: [Skill Cards](https://github.com/SrulyRosenblat/skill-cards) measures how well a skill covers its source documentation, and [SkillProof](https://srulyrosenblat.github.io/skillproof/) benchmarks the uplift a skill gives an agent.
@@ -1555,12 +1685,14 @@ A marketplace for modular, interoperable, rights-protected skills with monetizat
 #### Topics
 
 - **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.
-- **Multi-source skills**: crediting every source behind a skill ([OpenAttribution.org](#openattribution), [C2PA](#c2pa)).
-- **Missing metadata**: no skill registry frontmatter carries author, license or source ([Agent Skills at-rest signing threads](#agent-skills-signing)).
+- **Multi-source skills**: crediting every source behind a skill.
+- **Missing metadata**: no skill registry frontmatter carries author, license or source.
 
-#### Related
+#### Compare
 
-- [Agent Plugins](#agent-plugins) gives a package format but defines no marketplace or distribution.
+- [OpenAttribution.org](#openattribution) and [C2PA](#c2pa) are possible ways to credit every source behind a skill. The prototypes use neither (searched 2026-11-15).
+- The [Agent Skills at-rest signing threads](#agent-skills-signing) would add author and source to a skill. The prototypes do not refer to them (searched 2026-11-15).
+- [Agent Plugins](#agent-plugins) gives a package format but defines no marketplace or distribution. Neither names the other (searched 2026-11-15).
 
 Linked from: [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Disclosures Project](#ai-disclosures-project)
 
@@ -1590,10 +1722,10 @@ Maker of datadiligence, a Python library that checks works against known opt-out
 - Website: https://www.spurcoalition.org
 - Take part: [GitHub](https://github.com/SPUR-Coalition)
 - Tags: type/organization, layer/attribution, stage/after-delivery, stage/trust
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#spur-coalition
 
-Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [Content Telemetry](#content-telemetry) and the publisher accreditation profile and conformance mark. Sister body [OpenAttribution.org](#openattribution) maintains SDKs and profiles.
+Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [Content Telemetry](#content-telemetry) and the publisher accreditation profile and conformance mark. Sister body [OpenAttribution.org](#openattribution) originally developed the SDKs, which SPUR now maintains.
 
 #### Topics
 
@@ -1605,7 +1737,7 @@ Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, wi
 
 - 2026-09-02: [Content Telemetry](#content-telemetry) v1.0 published.
 
-Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet Licensing Collective](#internet-licensing-collective)
+Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet Licensing Collective](#internet-licensing-collective), [OpenAttribution.org](#openattribution)
 
 ### Universal Commerce Protocol
 
@@ -1656,14 +1788,14 @@ Linked from: [W3C ODRL](#w3c-odrl), [W3C TDM Reservation Protocol Community Grou
 - Part of: [W3C](#w3c)
 - Take part: [join the community group](https://www.w3.org/community/odrl/join)
 - Tags: type/community-group, layer/licensing
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#w3c-odrl
 
 Policy language for permissions, prohibitions and duties on content.
 
 #### Topics
 
-- **Policy language**: one model for permissions, prohibitions and duties that [Really Simple Licensing](#rsl), IPTC RightsML ([IPTC](#iptc)), [Creator Assertions Working Group](#cawg) and [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) all point at.
+- **Policy language**: one model for permissions, prohibitions and duties that [Really Simple Licensing](#rsl), IPTC RightsML ([IPTC](#iptc)) and [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) point at. Its AI vocabulary draft cites the [Creator Assertions Working Group](#cawg) training and data mining assertion.
 - **AI actions**: adding AI-specific actions to the vocabulary (the `ai-vocab` draft).
 
 Linked from: [Encypher](#encypher), [IPTC](#iptc), [W3C](#w3c), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
@@ -1690,7 +1822,11 @@ The EU DSM Article 4 text and data mining opt-out: `tdm-reservation` and `tdm-po
 #### Related
 
 - Being weighed for the EU recognized opt-out list ([EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code)). Points at [W3C ODRL](#w3c-odrl) for detailed policy.
-- Record companies reserve the same Article 4 rights by written declaration. IFPI [links to declarations](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/) from 16 rights holders, among them Universal, Sony and Warner, and names no machine-readable protocol (read 2026-11-15). The Munich court applied Article 4 in both [GEMA](#gema) rulings.
+- Record companies reserve the same Article 4 rights by written declaration. IFPI [links to declarations](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/) from 16 rights holders, among them Universal, Sony and Warner, and names no machine-readable protocol (read 2026-11-15).
+
+#### Compare
+
+- The Munich court applied Article 4 in both [GEMA](#gema) rulings. Neither the court nor GEMA names TDMRep (searched 2026-11-15).
 
 Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [GEMA](#gema), [OpenAttribution.org](#openattribution), [W3C](#w3c), [W3C ODRL](#w3c-odrl)
 
@@ -1699,7 +1835,7 @@ Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code
 - Id: wikimedia
 - Also known as: Wikimedia Foundation, Wikimedia Enterprise, WikiCite
 - Type: organization
-- Status: Published investigation of OpenAI-run agents 2026-10-05; Wikipedians reviewing SEP-3094
+- Status: Published investigation of OpenAI-run agents 2026-10-05; a WikiCite contributor reviewed SEP-3094, which closed 2026-11-08
 - Website: https://wikimediafoundation.org
 - Tags: type/organization, layer/attribution, layer/identity
 - Updated: 2026-11-15
@@ -1709,9 +1845,14 @@ Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API
 
 #### Topics
 
-- **Identifiable agents**: knowing which agents are reading the projects ([IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Agent Identity and Manifest Standard](#aims)).
+- **Identifiable agents**: knowing which agents are reading the projects.
 - **Attribution for reuse**: meeting attribution requirements in agent answers. A WikiCite contributor listed six functions of citation on [SEP-3094 Granular Citations](#mcp-sep-3094-citations), including provenance chains to primary sources.
-- **A seat at the table**: [Open Future](#open-future) argued in December 2025 that Wikimedia needs one at [Agentic AI Foundation](#aaif).
+- **A seat at the table**: [Open Future](#open-future) argued in December 2025 that Wikimedia needs one where agent standards are set.
+
+#### Compare
+
+- [IETF Web Bot Auth Working Group](#ietf-web-bot-auth) and [Agent Identity and Manifest Standard](#aims) are two ways to identify an agent. Wikimedia's post asks for identifiable agents and names no protocol (searched 2026-11-15).
+- The seat Open Future argued for is at [Agentic AI Foundation](#aaif). Neither Wikimedia nor AAIF names the other (searched 2026-11-15).
 
 #### In use
 
@@ -1732,19 +1873,23 @@ Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Internet Li
 - Website: https://x402.org
 - Take part: [GitHub](https://github.com/coinbase/x402)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#x402
 
 HTTP 402 payments in headers, with schemes `exact`, `upto`, `auth-capture` and `batch-settlement` and transports for HTTP, MCP and A2A. Successor in spirit to L402 (Lightning). Sibling of [Agentic AI Foundation](#aaif) under the Linux Foundation, not part of it.
 
 #### Topics
 
-- **Machine payment**: paying for a request without accounts or API keys, the rail a licensing term ([Really Simple Licensing](#rsl), [IAB Tech Lab Content Monetization Protocols](#iab-comp)) would settle on.
+- **Machine payment**: paying for a request without accounts or API keys, the rail a licensing term would settle on. The [Really Simple Licensing](#rsl) spec names x402 as a payment protocol.
 - **Delegated spending**: authorization for agents spending on someone's behalf, which lives elsewhere ([Agent Payments Protocol](#ap2)).
 
 #### Related
 
 - Compared with other commerce specs in [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg).
+
+#### Compare
+
+- [IAB Tech Lab Content Monetization Protocols](#iab-comp) terms could settle on the same rail. CoMP does not mention x402 (searched 2026-11-15).
 
 #### History
 

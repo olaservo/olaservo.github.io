@@ -1,7 +1,7 @@
 {
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
- "as_of": "2026-11-15",
+ "as_of": "2026-11-16",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
   {
@@ -26,6 +26,20 @@
    "url": "https://www.olahungerford.com/content-provenance/#encypher"
   },
   {
+   "date": "2026-11-08",
+   "card": "mcp-sep-3094-citations",
+   "name": "SEP-3094 Granular Citations",
+   "text": "Closed without merging.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations"
+  },
+  {
+   "date": "2026-11-05",
+   "card": "agent-skills-signing",
+   "name": "Agent Skills at-rest signing threads",
+   "text": "Discussion 651 proposed C2PA content credentials for skills.",
+   "url": "https://www.olahungerford.com/content-provenance/#agent-skills-signing"
+  },
+  {
    "date": "2026-11-05",
    "card": "ddex",
    "name": "DDEX",
@@ -36,7 +50,7 @@
    "date": "2026-10-31",
    "card": "mcp-security-ig",
    "name": "MCP Security Interest Group",
-   "text": "Restructured as a routing forum.",
+   "text": "The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-security-ig"
   },
   {
@@ -75,11 +89,25 @@
    "url": "https://www.olahungerford.com/content-provenance/#mcp-interceptors"
   },
   {
+   "date": "2026-10-23",
+   "card": "counter",
+   "name": "COUNTER Metrics",
+   "text": "[Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.",
+   "url": "https://www.olahungerford.com/content-provenance/#counter"
+  },
+  {
    "date": "2026-10-22",
    "card": "agent-skills",
    "name": "Agent Skills",
    "text": "Joined AAIF.",
    "url": "https://www.olahungerford.com/content-provenance/#agent-skills"
+  },
+  {
+   "date": "2026-10-08",
+   "card": "openlineage",
+   "name": "OpenLineage",
+   "text": "BearingNode filed the `_meta` lineage key proposal as FSIG issue 16.",
+   "url": "https://www.olahungerford.com/content-provenance/#openlineage"
   },
   {
    "date": "2026-10-07",
@@ -115,6 +143,13 @@
    "name": "C2PA content credentials in MCP _meta",
    "text": "Discussion closed along with all spec-repo discussions.",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta"
+  },
+  {
+   "date": "2026-09-24",
+   "card": "openlineage",
+   "name": "OpenLineage",
+   "text": "Presented to the MCP Financial Services Interest Group.",
+   "url": "https://www.olahungerford.com/content-provenance/#openlineage"
   },
   {
    "date": "2026-09-13",
@@ -164,6 +199,13 @@
    "name": "AI Disclosures Project",
    "text": "Convening at Microsoft Research New York.",
    "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
+  },
+  {
+   "date": "2026-08-26",
+   "card": "mcp-security-ig",
+   "name": "MCP Security Interest Group",
+   "text": "Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-security-ig"
   },
   {
    "date": "2026-08-18",
