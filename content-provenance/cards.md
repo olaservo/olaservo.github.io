@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-62 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-15. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+66 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-15. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -411,7 +411,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 
 - **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.
 - **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method "remains under review", and partially copied text counts as having no manifest. [Encypher](#encypher) sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) relies on. The conformance text rubric has no JSON group yet.
-- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28).
+- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28). 22 of them list an audio media type, 18 watermarks and 4 fingerprints (read 2026-11-15).
 - **Signer trust**: deciding who may sign, through a trust list and a conformance program.
 
 #### Related
@@ -430,7 +430,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 
 - 2026-10: Spec 2.5 published.
 
-Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Content Authenticity Initiative](#content-authenticity-initiative), [Creator Assertions Working Group](#cawg), [Croissant](#croissant), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IPTC](#iptc), [Skills Marketplace](#skills-marketplace)
+Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Content Authenticity Initiative](#content-authenticity-initiative), [Creator Assertions Working Group](#cawg), [Croissant](#croissant), [DDEX](#ddex), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IPTC](#iptc), [Skills Marketplace](#skills-marketplace)
 
 ### C2PA content credentials in MCP _meta
 
@@ -485,6 +485,40 @@ Preference signals for AI reuse with terms attached: Credit, Credit + Direct Con
 - **Checking credit**: knowing whether credit was given, which links to [Content Telemetry](#content-telemetry) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations).
 
 Linked from: [Creative Commons](#creative-commons), [IETF AI Preferences Working Group](#ietf-aipref)
+
+### CISAC
+
+- Id: cisac
+- Also known as: International Confederation of Societies of Authors and Composers
+- Type: organization
+- Status: Asks policymakers for licensing, transparency and an effective opt-out from data mining exceptions (AI page read 2026-11-15)
+- Website: https://www.cisac.org
+- Tags: type/organization, layer/licensing, layer/payments, layer/governance, medium/audio, medium/video
+- Updated: 2026-11-15
+- Explorer: https://www.olahungerford.com/content-provenance/#cisac
+
+Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [GEMA](#gema) is a member. It lists the ISWC work identifier, IPI and CIS-Net as its standards and tools.
+
+#### Topics
+
+- **Licensing AI use**: getting AI services to take licenses for the works they train on. Director General Gadi Oron [said on 2025-01-21](https://www.cisac.org/Newsroom/articles/cisac-dg-gadi-oron-opens-music-ally-connect-impact-ai), "We want to license all of these AI platforms for the inputs", and that none of the authors' societies had licensed a music AI service at that point. The Swedish society STIM [launched one](https://www.stim.se/en/news/stim-launches-the-worlds-first-ai-license-for-music) on 2025-09-08, as a pilot with the startups Songfox and Sureel, covering a limited number of works whose rights holders opted in.
+- **Attribution for payouts**: dividing AI revenue by which works influenced an output. STIM's license requires independent attribution technology. Its [FAQ](https://www.stim.se/en/faq/ai/how-does-stim-ensure-that-compensation-from-the-ai-license-reaches-the-right-music-creators-and-publishers) calls attribution "a relatively new and untested method" and says it will fall back on how works were used in training where attribution is not reliable.
+- **Opt-out from data mining exceptions**: keeping the right to refuse where a law lets AI developers mine works without a license. Its [principles for policymakers](https://www.cisac.org/AI) say exceptions "which do not provide for effective opt-out by rightsholders should be avoided".
+- **Training transparency**: finding out which works a model was trained on. The same page says "AI providers must be obliged to inform on the training of copyrighted works".
+- **Revenue at risk**: putting a number on what generative AI costs creators. The [study](https://www.cisac.org/services/reports-and-research/cisacpmp-strategy-ai-study) it commissioned from PMP Strategy estimates that 24% of music creators' revenues and 21% of audiovisual creators' revenues are at risk by 2028.
+
+#### Related
+
+- Collective licensing of AI use for web publishers: [Internet Licensing Collective](#internet-licensing-collective). Its About page does not mention music societies (read 2026-11-15).
+
+#### History
+
+- 2025-09-08: STIM launched a collective AI license for music as a pilot.
+- 2025-01-21: Its Director General said no authors' society had yet licensed a music AI service.
+- 2023-07: Published seven principles for policymakers on AI.
+- 1926: Founded.
+
+Linked from: [GEMA](#gema)
 
 ### Cloudflare Content Signals
 
@@ -683,6 +717,46 @@ MIT-led audits of training-corpus licenses, with datasets on Hugging Face.
 
 - **Dataset license audits**: finding out which licenses actually apply to the datasets models are trained on.
 
+Linked from: [Fairly Trained](#fairly-trained)
+
+### DDEX
+
+- Id: ddex
+- Also known as: Digital Data Exchange
+- Type: organization
+- Status: Generative AI Declaration Standard (GAI-D) in peer review, with publication expected in early 2027 (announced 2026-11-05)
+- Website: https://ddex.net
+- Take part: [working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members
+- Tags: type/organization, layer/provenance, layer/attribution, layer/licensing, medium/audio
+- Updated: 2026-11-15
+- Explorer: https://www.olahungerford.com/content-provenance/#ddex
+
+Not-for-profit membership organisation, set up in 2006, that writes the message standards labels, distributors and streaming services use to exchange release data, credits and sales reports. It says the standards are free to implement and that implementers do not need to be members.
+
+#### Topics
+
+- **Release metadata**: telling a streaming service what a release is and who is credited on it, in one message format, the Electronic Release Notification (ERN).
+- **AI disclosure**: saying that a recording, or one contributor's part in it, was made with generative AI. The [ERN release notes](https://ern.ddex.net/electronic-release-notification-message-suite-part-1-definitions-of-messages/annex-a-(informative)-release-notes/) list both under version 4.3.1. A sound recording, image, text, video or release can carry [`ContainsAI`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_ContainsAI.html), and a contributor can carry [`AiContribution`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_AiContribution.html). The data dictionary's rules use the values All, Partly and None.
+- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify says it depends on artist disclosure and that "the absence of a credit doesn't mean AI wasn't used".
+- **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.
+- **A standard for AI declarations**: its Artificial Intelligence group is set up "to investigate the metadata requirements for the communication of AI-generated music", including musical works. The group's Generative AI Declaration Standard has finished member comments on its committee draft.
+
+#### Related
+
+- [C2PA](#c2pa) records how an asset was made in a signed manifest bound to the file. A search on 2026-11-15 found no DDEX page that refers to it.
+
+#### In use
+
+- ERN 4.3.2 is the latest published version, and DDEX [advises implementing it](https://kb.ddex.net/implementing-each-standard/electronic-release-notification-message-suite-(ern)/). Its data dictionary is dated 2025-06-26. The allowed value sets are at version 012 (2026-09-16).
+- Spotify launched AI Credits in April 2026 and [said on 2026-10-20](https://newsroom.spotify.com/2026-10-20/prioritizing-human-artistry/) that artists submit "tens of thousands of credits every day". Its [support page](https://support.spotify.com/us/artists/article/ai-credits/) calls the feature a beta, shown in song credits on mobile and available through certain distributors (read 2026-11-15). The support page does not mention DDEX.
+
+#### History
+
+- 2026-11-05: [Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.
+- 2025-09-25: Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support "the new industry standard for AI disclosures in music credits, developed through DDEX", and named 19 labels and distributors working on it.
+- 2024-08-09: Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.
+- 2006: Founded.
+
 ### Decentralized Identity Foundation
 
 - Id: dif
@@ -764,6 +838,83 @@ The copyright chapter of the GPAI Code of Practice has signatories honor robots.
 - Google ties [Shared AI training robots.txt token](#aipref-training-token) support to the Code.
 
 Linked from: [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [IPTC](#iptc), [Open Future](#open-future), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
+
+### Fairly Trained
+
+- Id: fairly-trained
+- Type: organization
+- Status: Quiet since 2024. Its sitemap shows no page changed after 2024-12-17, and the newest blog post is dated 2024-08-01 (read 2026-11-15)
+- Website: https://www.fairlytrained.org
+- Take part: [apply for certification](https://www.fairlytrained.org/apply)
+- Tags: type/organization, layer/licensing
+- Updated: 2026-11-15
+- Explorer: https://www.olahungerford.com/content-provenance/#fairly-trained
+
+Non-profit that certifies generative AI companies, products and models whose training data was licensed for training, openly licensed, in the public domain or owned by the developer. Ed Newton-Rex is its CEO.
+
+#### Topics
+
+- **Licensed training data**: telling apart the generative AI models that were trained without unlicensed copyrighted work. Its [launch post](https://www.fairlytrained.org/blog/fairly-trained-launches-certification-for-generative-ai-models-that-respect-creators-rights) says the Licensed Model certification "will not be awarded to models that rely on a 'fair use' copyright exception or similar".
+- **Checking the claim**: an applicant [makes a written submission](https://www.fairlytrained.org/certifications), and Fairly Trained reviews it and may ask for more. The applicant must have processes for due diligence on training data and for keeping records of the data used in each training. The certifications page describes no inspection of the data itself. Certification is reevaluated each year, for an annual fee of $250 to $6,000 depending on revenue and scope.
+- **Partly certified products**: saying which parts of a product the certificate covers. An applicant certifying a single model must state publicly which of the models it uses are certified and which are not.
+
+#### Related
+
+- BRIA AI and Somms.ai were among the nine companies certified at launch and are not on the list read on 2026-11-15.
+- Audits of dataset licenses from outside the developer: [Data Provenance Initiative](#data-provenance-initiative).
+
+#### In use
+
+- The [certified list](https://www.fairlytrained.org/certified-models) showed 19 entries on 2026-11-15: 12 companies, 2 products and 5 models.
+
+#### History
+
+- 2024-08-01: Updated its individual model certification.
+- 2024-03-20: Announced newly certified models, including its first language and speech models.
+- 2024-01-17: Launched with nine certified companies.
+
+### GEMA
+
+- Id: gema
+- Type: organization
+- Status: Won at Munich Regional Court against OpenAI (2025-11-11, under appeal) and Suno (2026-07-31, not final)
+- Website: https://www.gema.de
+- Tags: type/organization, layer/licensing, layer/payments, medium/audio
+- Updated: 2026-11-15
+- Explorer: https://www.olahungerford.com/content-provenance/#gema
+
+German collecting society for composers, lyricists and music publishers, and [a member](https://www.gema.de/de/die-gema/organisation) of [CISAC](#cisac). It has sued two AI companies and won both cases at first instance. It has also published a licensing model for generative AI and sells a licensed training dataset.
+
+#### Topics
+
+- **Pricing generative AI**: setting a fee for training on its repertoire and generating from it. The [model](https://www.gema.de/de/w/generative-ki-lizenzmodell-zwei-saeulen) it presented in September 2024 asks for 30% of the net revenue of the AI model or system, with a minimum fee tied to the volume of output. A second part covers later uses of the generated music. Its [AI page](https://www.gema.de/de/aktuelles/ki-und-musik) names no generative AI provider that has taken the license (read 2026-11-15).
+- **Works stored in a model**: whether a model that can reproduce a work is itself a copy of it. In the [OpenAI case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) the court found the lyrics of nine songs "reproduzierbar" in models 4 and 4o, called this memorisation, and held that the text and data mining exception does not cover it. In the [Suno case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) it found the same for six musical works in Suno's v3.5 and v4 models, which were stored on servers in Germany.
+- **Who answers for the output**: whether the user's prompt or the provider is responsible when a work comes back out. In both cases the court held the provider responsible, because the prompts were simple and the provider chose the training data and built the model.
+- **Training done abroad**: whether a claim reaches training that happened in the United States. The court applied US law to the copies made there and held that fair use did not cover them, because the works reappeared in the outputs. Its press release says Suno took the works from YouTube by stream-ripping.
+- **Licensed training data**: offering AI developers a dataset with the rights already cleared. [PLAI by GEMA](https://www.gema.de/de/w/plai-by-gema-musikdatensatz) bundles sound files, metadata, authors' rights and master rights, for AI tools whose output does not compete with the works. It does not cover generative AI providers.
+- **Training transparency**: its [AI Charter](https://www.gema.de/de/aktuelles/ki-und-musik/ki-charta-der-gema) of ten principles says it must be clear which works were used for training.
+
+#### Related
+
+- A revenue-share license for AI use of web publishers' content: [Internet Licensing Collective](#internet-licensing-collective).
+- Both court press releases list Article 4 of the DSM Directive among the provisions applied, the one [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) reservations rely on.
+- The accounts of both rulings here come from the court's press releases. The judgments were not read.
+
+#### In use
+
+- PLAI by GEMA has one named customer, Klangio, which trains music transcription tools on about 178,000 sound files ([press release](https://www.gema.de/de/w/plai-by-gema-musikdatensatz), 2026-07-23).
+
+#### History
+
+- 2026-07-31: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.
+- 2026-07-23: Launched PLAI by GEMA with Klangio as first customer.
+- 2025-11-11: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.
+- 2025-01-21: Sued Suno.
+- 2024-11-13: Sued OpenAI.
+- 2024-11: Published its AI Charter.
+- 2024-09: Presented its licensing model for generative AI.
+
+Linked from: [CISAC](#cisac), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
 
 ### IAB Tech Lab Content Monetization Protocols
 
@@ -908,7 +1059,7 @@ Nonprofit, publisher-led collecting society for AI use of web content, formerly 
 
 - 2026-11-12: Launched under this name, formerly the RSL Collective, with Yahoo Scout as first commercial licensee.
 
-Linked from: [Really Simple Licensing](#rsl)
+Linked from: [CISAC](#cisac), [GEMA](#gema), [Really Simple Licensing](#rsl)
 
 ### IPTC
 
@@ -1527,7 +1678,7 @@ Linked from: [Encypher](#encypher), [IPTC](#iptc), [W3C](#w3c), [W3C TDM Reserva
 - Part of: [W3C](#w3c)
 - Take part: [join the community group](https://www.w3.org/community/tdmrep/join)
 - Tags: type/community-group, layer/access, layer/licensing
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#w3c-tdmrep
 
 The EU DSM Article 4 text and data mining opt-out: `tdm-reservation` and `tdm-policy` by HTTP header, HTML meta or `/.well-known/tdmrep.json`.
@@ -1539,8 +1690,9 @@ The EU DSM Article 4 text and data mining opt-out: `tdm-reservation` and `tdm-po
 #### Related
 
 - Being weighed for the EU recognized opt-out list ([EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code)). Points at [W3C ODRL](#w3c-odrl) for detailed policy.
+- Record companies reserve the same Article 4 rights by written declaration. IFPI [links to declarations](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/) from 16 rights holders, among them Universal, Sony and Warner, and names no machine-readable protocol (read 2026-11-15). The Munich court applied Article 4 in both [GEMA](#gema) rulings.
 
-Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [OpenAttribution.org](#openattribution), [W3C](#w3c), [W3C ODRL](#w3c-odrl)
+Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [GEMA](#gema), [OpenAttribution.org](#openattribution), [W3C](#w3c), [W3C ODRL](#w3c-odrl)
 
 ### Wikimedia
 

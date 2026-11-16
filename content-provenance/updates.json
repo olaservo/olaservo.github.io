@@ -26,6 +26,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#encypher"
   },
   {
+   "date": "2026-11-05",
+   "card": "ddex",
+   "name": "DDEX",
+   "text": "[Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.",
+   "url": "https://www.olahungerford.com/content-provenance/#ddex"
+  },
+  {
    "date": "2026-10-31",
    "card": "mcp-security-ig",
    "name": "MCP Security Interest Group",
@@ -173,6 +180,20 @@
    "url": "https://www.olahungerford.com/content-provenance/#agent-plugins"
   },
   {
+   "date": "2026-07-31",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2026-07-23",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Launched PLAI by GEMA with Klangio as first customer.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
    "date": "2026-07-14",
    "card": "x402",
    "name": "x402",
@@ -248,6 +269,111 @@
    "name": "Really Simple Licensing",
    "text": "RSL 1.0 published.",
    "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  },
+  {
+   "date": "2025-11-11",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2025-09-25",
+   "card": "ddex",
+   "name": "DDEX",
+   "text": "Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support \"the new industry standard for AI disclosures in music credits, developed through DDEX\", and named 19 labels and distributors working on it.",
+   "url": "https://www.olahungerford.com/content-provenance/#ddex"
+  },
+  {
+   "date": "2025-09-08",
+   "card": "cisac",
+   "name": "CISAC",
+   "text": "STIM launched a collective AI license for music as a pilot.",
+   "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "2025-01-21",
+   "card": "cisac",
+   "name": "CISAC",
+   "text": "Its Director General said no authors' society had yet licensed a music AI service.",
+   "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "2025-01-21",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Sued Suno.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2024-11-13",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Sued OpenAI.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2024-11",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Published its AI Charter.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2024-09",
+   "card": "gema",
+   "name": "GEMA",
+   "text": "Presented its licensing model for generative AI.",
+   "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2024-08-09",
+   "card": "ddex",
+   "name": "DDEX",
+   "text": "Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.",
+   "url": "https://www.olahungerford.com/content-provenance/#ddex"
+  },
+  {
+   "date": "2024-08-01",
+   "card": "fairly-trained",
+   "name": "Fairly Trained",
+   "text": "Updated its individual model certification.",
+   "url": "https://www.olahungerford.com/content-provenance/#fairly-trained"
+  },
+  {
+   "date": "2024-03-20",
+   "card": "fairly-trained",
+   "name": "Fairly Trained",
+   "text": "Announced newly certified models, including its first language and speech models.",
+   "url": "https://www.olahungerford.com/content-provenance/#fairly-trained"
+  },
+  {
+   "date": "2024-01-17",
+   "card": "fairly-trained",
+   "name": "Fairly Trained",
+   "text": "Launched with nine certified companies.",
+   "url": "https://www.olahungerford.com/content-provenance/#fairly-trained"
+  },
+  {
+   "date": "2023-07",
+   "card": "cisac",
+   "name": "CISAC",
+   "text": "Published seven principles for policymakers on AI.",
+   "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "2006",
+   "card": "ddex",
+   "name": "DDEX",
+   "text": "Founded.",
+   "url": "https://www.olahungerford.com/content-provenance/#ddex"
+  },
+  {
+   "date": "1926",
+   "card": "cisac",
+   "name": "CISAC",
+   "text": "Founded.",
+   "url": "https://www.olahungerford.com/content-provenance/#cisac"
   }
  ]
 }
