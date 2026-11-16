@@ -31,6 +31,7 @@ window.CARDS = [
    "x402",
    "aaif"
   ],
+  "compares": [],
   "backlinks": [
    "aaif",
    "ucp",
@@ -54,7 +55,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "",
   "participate": "[GitHub issues](https://github.com/aaif/wg-governance-risk-and-regulatory/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/governance"
@@ -63,13 +64,14 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9)).\n- **Policy mapping**: mapping [[eu-ai-act-gpai-code]] duties onto the projects."
+    "text": "- **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9)).\n- **Policy mapping**: mapping regulation onto the projects. Its gap analysis covers EU AI Act logging articles ([[eu-ai-act-gpai-code]]) and does not name the GPAI Code of Practice."
    }
   ],
   "links": [
    "eu-ai-act-gpai-code",
    "aaif"
   ],
+  "compares": [],
   "backlinks": [
    "aaif"
   ],
@@ -84,7 +86,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Chartered 2026-05-12",
   "participate": "[GitHub issues](https://github.com/aaif/wg-identity-and-trust/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -97,8 +99,8 @@ window.CARDS = [
     "text": "- **Evidence strength**: labels for how strong a trust claim is, a model to borrow for content trust.\n- **Bound knowledge**: a digest-bound knowledge link set from a server card."
    },
    {
-    "title": "Related",
-    "text": "- Overlaps [[aims]] and [[ietf-web-bot-auth]]."
+    "title": "Compare",
+    "text": "- [[aims]] and [[ietf-web-bot-auth]] also work on agent identity. The WG's repository names neither, and neither names the WG (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -109,6 +111,10 @@ window.CARDS = [
    "aims",
    "ietf-web-bot-auth",
    "aaif"
+  ],
+  "compares": [
+   "aims",
+   "ietf-web-bot-auth"
   ],
   "backlinks": [
    "aims",
@@ -131,7 +137,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Nine-task Agent Behavior Trace Model plan; provenance initiative lead named 2026-09-02; OTel cross-domain provenance proposal 2026-10-28",
   "participate": "[GitHub issues](https://github.com/aaif/wg-observability-and-traceability/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -141,11 +147,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Evidence records**: tamper-evident records of agent behavior ([Evidence Record Spec proposal](https://github.com/aaif/wg-observability-and-traceability/issues/37)).\n- **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.\n- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member, so nothing connects the group to [[content-telemetry]]."
+    "text": "- **Evidence records**: tamper-evident records of agent behavior ([Evidence Record Spec proposal](https://github.com/aaif/wg-observability-and-traceability/issues/37)).\n- **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.\n- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member."
    },
    {
     "title": "Related",
     "text": "- The conventions it builds above, and what they leave out: [[otel-mcp]]."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[content-telemetry]] reports what happens to content after a tool call. Nothing connects it to this group (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -153,9 +163,12 @@ window.CARDS = [
    }
   ],
   "links": [
-   "content-telemetry",
    "otel-mcp",
+   "content-telemetry",
    "aaif"
+  ],
+  "compares": [
+   "content-telemetry"
   ],
   "backlinks": [
    "aaif",
@@ -181,7 +194,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "",
   "participate": "[GitHub issues](https://github.com/aaif/wg-security-and-privacy/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/governance",
@@ -192,13 +205,20 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Skill verification tiers**: a four-tier ladder in which tier 2 verifies author attribution and tier 3 pins version and hash ([[agent-skills-signing]]).\n- **Agent trust manifests**: from [[project-nanda]]."
+    "text": "- **Skill verification tiers**: a four-tier ladder in which tier 2 verifies author attribution and tier 3 pins version and hash.\n- **Agent trust manifests**: from [[project-nanda]]."
+   },
+   {
+    "title": "Compare",
+    "text": "- The [[agent-skills-signing]] cover the same ground as the tier ladder. The WG's guide does not cite them (searched 2026-11-15)."
    }
   ],
   "links": [
-   "agent-skills-signing",
    "project-nanda",
+   "agent-skills-signing",
    "aaif"
+  ],
+  "compares": [
+   "agent-skills-signing"
   ],
   "backlinks": [
    "agent-skills-signing",
@@ -218,7 +238,7 @@ window.CARDS = [
   "part_of": "openattribution",
   "status": "v0.1 draft",
   "participate": "[GitHub issues](https://github.com/openattribution-org/aims/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/identity"
@@ -227,17 +247,21 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Agent identity and entitlements**: who the agent is and what content it is licensed to access. [[ietf-web-bot-auth]] proves it on the wire."
+    "text": "- **Agent identity and entitlements**: who the agent is and what content it is licensed to access."
    },
    {
-    "title": "Related",
-    "text": "- Overlaps [[aaif-identity-trust-wg]]."
+    "title": "Compare",
+    "text": "- [[ietf-web-bot-auth]] proves an agent's identity on the wire. The AIMS spec does not mention it (searched 2026-11-15).\n- Overlaps the [[aaif-identity-trust-wg]]. Neither names the other (searched 2026-11-15)."
    }
   ],
   "links": [
    "ietf-web-bot-auth",
    "aaif-identity-trust-wg",
    "openattribution"
+  ],
+  "compares": [
+   "ietf-web-bot-auth",
+   "aaif-identity-trust-wg"
   ],
   "backlinks": [
    "aaif-identity-trust-wg",
@@ -276,6 +300,7 @@ window.CARDS = [
   "links": [
    "x402"
   ],
+  "compares": [],
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "x402"
@@ -292,25 +317,30 @@ window.CARDS = [
   "type": "specification",
   "website": "https://agent-plugins.org/",
   "part_of": "",
-  "status": "1.0.0 published 2026-08-06; 1.1.0 current; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel",
+  "status": "1.0.0 published 2026-08-06; 1.1.0 is a working draft; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel",
   "participate": "[GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)",
-  "updated": "2026-11-08",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/provenance",
    "layer/licensing",
    "topic/skills",
-   "stage/at-rest"
+   "stage/at-rest",
+   "medium/code"
   ],
-  "summary": "Package format that puts [[agent-skills]] and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed, not an [[aaif]] project. The spec is CC BY 4.0 and the schemas Apache 2.0.",
+  "summary": "Package format that puts [[agent-skills]] and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed. The spec is CC BY 4.0 and the schemas Apache 2.0.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.\n- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails, which is the same ground as [[agent-skills-signing]].\n- **No distribution layer**: registries, marketplaces, installation and updates are each client's own, so a [[skills-marketplace]] has a package to ship but no shared channel to ship it through."
+    "text": "- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.\n- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails.\n- **No distribution layer**: registries, marketplaces, installation and updates are each client's own."
    },
    {
     "title": "Related",
-    "text": "- The skills inside a plugin follow the [[agent-skills]] specification unchanged; [[mcp-skills-extension]] serves the same skills over MCP instead of on disk."
+    "text": "- The skills inside a plugin follow the [[agent-skills]] specification unchanged."
+   },
+   {
+    "title": "Compare",
+    "text": "- Not an [[aaif]] project. The AAIF project list does not include it (read 2026-11-15).\n- Its future-considerations list covers the same ground as the [[agent-skills-signing]]. Neither refers to the other (searched 2026-11-15).\n- A [[skills-marketplace]] would have a package to ship here and no shared channel to ship it through.\n- [[mcp-skills-extension]] serves the same skills over MCP instead of on disk. Both build on Agent Skills, and neither names the other (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -319,6 +349,12 @@ window.CARDS = [
   ],
   "links": [
    "agent-skills",
+   "aaif",
+   "agent-skills-signing",
+   "skills-marketplace",
+   "mcp-skills-extension"
+  ],
+  "compares": [
    "aaif",
    "agent-skills-signing",
    "skills-marketplace",
@@ -348,11 +384,12 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Joined AAIF 2026-10-22",
   "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "topic/skills",
-   "stage/at-rest"
+   "stage/at-rest",
+   "medium/code"
   ],
   "summary": "The SKILL.md format for packaging instructions and files for agents.",
   "sections": [
@@ -375,6 +412,7 @@ window.CARDS = [
    "agent-plugins",
    "aaif"
   ],
+  "compares": [],
   "backlinks": [
    "agent-plugins",
    "agent-skills-signing",
@@ -397,39 +435,51 @@ window.CARDS = [
    "#588",
    "#564",
    "#620",
-   "#643"
+   "#643",
+   "#651"
   ],
   "type": "proposal",
   "website": "https://github.com/agentskills/agentskills/discussions/393",
   "part_of": "agent-skills",
-  "status": "Six open discussions in Ideas, one maintainer, no convergence",
+  "status": "Seven open discussions in Ideas, one maintainer, no convergence",
   "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/proposal",
    "layer/provenance",
    "stage/at-rest",
-   "topic/skills"
+   "topic/skills",
+   "medium/code"
   ],
   "summary": "Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)).",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Copy sprawl**: tracking copies, which outnumber originals. One dataset has half of SKILL.md files as verbatim copies, and only 11.1% of fixes reach every copy.\n- **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.\n- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it ([[cawg]]). No thread covers either."
+    "text": "- **Copy sprawl**: tracking copies, which outnumber originals. One dataset has half of SKILL.md files as verbatim copies, and only 11.1% of fixes reach every copy.\n- **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.\n- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. The six earlier threads cover neither. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [[c2pa]] content credentials for skills and names the [[cawg]] identity assertion for the signer."
    },
    {
-    "title": "Related",
-    "text": "- [[agent-plugins]] carries author and licence in its manifest and lists signing as future work.\n- Digests from [[mcp-skills-extension]], catalog-side signing in [[ai-catalog]], sidecars from [[c2pa]], verification tiers in [[aaif-security-privacy-wg]]."
+    "title": "Compare",
+    "text": "- The same problem is being worked on elsewhere: digests in [[mcp-skills-extension]], catalog-side signing in [[ai-catalog]] and verification tiers in [[aaif-security-privacy-wg]]. None of them cites these threads (searched 2026-11-15).\n- [[agent-plugins]] carries author and licence in its manifest and lists signing as future work. Neither refers to the other (searched 2026-11-15)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-05: Discussion 651 proposed C2PA content credentials for skills."
    }
   ],
   "links": [
+   "c2pa",
    "cawg",
-   "agent-plugins",
    "mcp-skills-extension",
    "ai-catalog",
-   "c2pa",
    "aaif-security-privacy-wg",
+   "agent-plugins",
    "agent-skills"
+  ],
+  "compares": [
+   "mcp-skills-extension",
+   "ai-catalog",
+   "aaif-security-privacy-wg",
+   "agent-plugins"
   ],
   "backlinks": [
    "aaif-security-privacy-wg",
@@ -441,7 +491,12 @@ window.CARDS = [
    "mcp-skills-extension",
    "skills-marketplace"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-11-05",
+    "text": "Discussion 651 proposed C2PA content credentials for skills."
+   }
+  ]
  },
  {
   "id": "aaif",
@@ -475,6 +530,7 @@ window.CARDS = [
    "aaif-grr-wg",
    "aaif-agentic-commerce-wg"
   ],
+  "compares": [],
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "aaif-grr-wg",
@@ -516,6 +572,7 @@ window.CARDS = [
   "links": [
    "openattribution"
   ],
+  "compares": [],
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "openattribution",
@@ -534,7 +591,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Identity-keyed trust manifests merged 2026-10-28",
   "participate": "[GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -545,7 +602,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117), a path parallel to [[agent-skills-signing]]."
+    "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117)."
+   },
+   {
+    "title": "Compare",
+    "text": "- A path parallel to the [[agent-skills-signing]]. Neither cites the other (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -553,6 +614,9 @@ window.CARDS = [
    }
   ],
   "links": [
+   "agent-skills-signing"
+  ],
+  "compares": [
    "agent-skills-signing"
   ],
   "backlinks": [
@@ -595,6 +659,7 @@ window.CARDS = [
   "links": [
    "skills-marketplace"
   ],
+  "compares": [],
   "backlinks": [
    "skills-marketplace"
   ],
@@ -641,6 +706,7 @@ window.CARDS = [
   "links": [
    "ietf-aipref"
   ],
+  "compares": [],
   "backlinks": [],
   "history": []
  },
@@ -661,7 +727,11 @@ window.CARDS = [
    "layer/provenance",
    "stage/at-rest",
    "stage/in-transit",
-   "stage/trust"
+   "stage/trust",
+   "medium/image",
+   "medium/video",
+   "medium/audio",
+   "medium/text"
   ],
   "summary": "Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [[content-authenticity-initiative]].",
   "sections": [
@@ -671,7 +741,11 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Identity and consent assertions come from [[cawg]].\n- Signing skill folders: [[agent-skills-signing]].\n- Its trust layer is compared with [[aaif-identity-trust-wg]] and [[spur-coalition]]."
+    "text": "- Identity and consent assertions come from [[cawg]].\n- Signing skill folders: [[agent-skills-signing]].\n- [[spur-coalition]]'s Content Telemetry accepts a C2PA manifest hash as a content identifier."
+   },
+   {
+    "title": "Compare",
+    "text": "- Its trust list answers the same question as the [[aaif-identity-trust-wg]]: who may sign. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -688,9 +762,12 @@ window.CARDS = [
    "mcp-c2pa-in-meta",
    "cawg",
    "agent-skills-signing",
-   "aaif-identity-trust-wg",
    "spur-coalition",
+   "aaif-identity-trust-wg",
    "iptc"
+  ],
+  "compares": [
+   "aaif-identity-trust-wg"
   ],
   "backlinks": [
    "agent-skills-signing",
@@ -723,7 +800,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Discussion closed 2026-09-25 with all spec-repo discussions; no SEP filed yet",
   "participate": "[the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/proposal",
    "layer/provenance",
@@ -734,11 +811,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Provenance in transit**: keeping a credential attached as content crosses from server to client.\n- **A venue**: finding an owner, since no WG or IG covers content provenance and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.\n- **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.\n- **Where the field lives**: choosing between a top-level field and `_meta`, the same question [[mcp-sep-3094-citations]] faces."
+    "text": "- **Provenance in transit**: keeping a credential attached as content crosses from server to client.\n- **A venue**: finding an owner, since no WG or IG covers content provenance and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.\n- **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.\n- **Where the field lives**: choosing between a top-level field and `_meta`."
    },
    {
-    "title": "Related",
-    "text": "- A credential check could run as an interceptor validator ([[mcp-interceptors]]).\n- Lineage key overlap: [[openlineage]]."
+    "title": "Compare",
+    "text": "- [[mcp-sep-3094-citations]] faced the same choice between a top-level field and `_meta`. Neither thread refers to the other (searched 2026-11-15).\n- A credential check could run as an interceptor validator ([[mcp-interceptors]]). Neither thread refers to the other (searched 2026-11-15).\n- Lineage key overlap: [[openlineage]]. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -751,6 +828,11 @@ window.CARDS = [
    "mcp-interceptors",
    "openlineage",
    "mcp"
+  ],
+  "compares": [
+   "mcp-sep-3094-citations",
+   "mcp-interceptors",
+   "openlineage"
   ],
   "backlinks": [
    "c2pa",
@@ -776,7 +858,7 @@ window.CARDS = [
   "part_of": "creative-commons",
   "status": "GitHub draft unchanged since 2025-12; v2 to make attribution a requirement",
   "participate": "[GitHub issues](https://github.com/creativecommons/cc-signals/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/proposal",
    "layer/access",
@@ -786,7 +868,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Reuse with reciprocity**: letting stewards allow AI reuse with terms attached, for those who do not want a plain opt-out.\n- **Checking credit**: knowing whether credit was given, which links to [[content-telemetry]] and [[mcp-sep-3094-citations]]."
+    "text": "- **Reuse with reciprocity**: letting stewards allow AI reuse with terms attached, for those who do not want a plain opt-out.\n- **Checking credit**: knowing whether credit was given."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[content-telemetry]] and [[mcp-sep-3094-citations]] are two ways to check whether credit was given. Neither names CC Signals (searched 2026-11-15)."
    }
   ],
   "links": [
@@ -794,6 +880,10 @@ window.CARDS = [
    "content-telemetry",
    "mcp-sep-3094-citations",
    "creative-commons"
+  ],
+  "compares": [
+   "content-telemetry",
+   "mcp-sep-3094-citations"
   ],
   "backlinks": [
    "creative-commons",
@@ -828,7 +918,7 @@ window.CARDS = [
     "text": "- **Licensing AI use**: getting AI services to take licenses for the works they train on. Director General Gadi Oron [said on 2025-01-21](https://www.cisac.org/Newsroom/articles/cisac-dg-gadi-oron-opens-music-ally-connect-impact-ai), \"We want to license all of these AI platforms for the inputs\", and that none of the authors' societies had licensed a music AI service at that point. The Swedish society STIM [launched one](https://www.stim.se/en/news/stim-launches-the-worlds-first-ai-license-for-music) on 2025-09-08, as a pilot with the startups Songfox and Sureel, covering a limited number of works whose rights holders opted in.\n- **Attribution for payouts**: dividing AI revenue by which works influenced an output. STIM's license requires independent attribution technology. Its [FAQ](https://www.stim.se/en/faq/ai/how-does-stim-ensure-that-compensation-from-the-ai-license-reaches-the-right-music-creators-and-publishers) calls attribution \"a relatively new and untested method\" and says it will fall back on how works were used in training where attribution is not reliable.\n- **Opt-out from data mining exceptions**: keeping the right to refuse where a law lets AI developers mine works without a license. Its [principles for policymakers](https://www.cisac.org/AI) say exceptions \"which do not provide for effective opt-out by rightsholders should be avoided\".\n- **Training transparency**: finding out which works a model was trained on. The same page says \"AI providers must be obliged to inform on the training of copyrighted works\".\n- **Revenue at risk**: putting a number on what generative AI costs creators. The [study](https://www.cisac.org/services/reports-and-research/cisacpmp-strategy-ai-study) it commissioned from PMP Strategy estimates that 24% of music creators' revenues and 21% of audiovisual creators' revenues are at risk by 2028."
    },
    {
-    "title": "Related",
+    "title": "Compare",
     "text": "- Collective licensing of AI use for web publishers: [[internet-licensing-collective]]. Its About page does not mention music societies (read 2026-11-15)."
    },
    {
@@ -838,6 +928,9 @@ window.CARDS = [
   ],
   "links": [
    "gema",
+   "internet-licensing-collective"
+  ],
+  "compares": [
    "internet-licensing-collective"
   ],
   "backlinks": [
@@ -866,12 +959,12 @@ window.CARDS = [
   "id": "cloudflare-content-signals",
   "name": "Cloudflare Content Signals",
   "aliases": [
-   "draft-romm-aipref-vocab-contentsignals"
+   "draft-romm-aipref-contentsignals"
   ],
   "type": "proposal",
   "website": "https://contentsignals.org",
   "part_of": "",
-  "status": "Individual AIPREF draft; parsed by policycheck",
+  "status": "Individual AIPREF draft, shown as expired on Datatracker (read 2026-11-15); parsed by policycheck",
   "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
   "updated": "2026-11-15",
   "tags": [
@@ -892,6 +985,7 @@ window.CARDS = [
   "links": [
    "ietf-aipref"
   ],
+  "compares": [],
   "backlinks": [
    "ietf-aipref",
    "openattribution"
@@ -907,15 +1001,15 @@ window.CARDS = [
   ],
   "type": "project",
   "website": "https://contentauthenticity.org",
-  "part_of": "c2pa",
+  "part_of": "",
   "status": "Maintains c2pa-rs, c2pa-python, c2pa-js and c2patool",
   "participate": "[join CAI](https://contentauthenticity.org/join), [GitHub](https://github.com/contentauth)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/project",
    "layer/provenance"
   ],
-  "summary": "Adobe-led initiative that maintains the open-source reference implementations of [[c2pa]].",
+  "summary": "Adobe-led initiative that maintains the open-source reference implementations of [[c2pa]]. It is a separate body, and C2PA lists it among its partner organizations.",
   "sections": [
    {
     "title": "Topics",
@@ -925,6 +1019,7 @@ window.CARDS = [
   "links": [
    "c2pa"
   ],
+  "compares": [],
   "backlinks": [
    "c2pa"
   ],
@@ -949,11 +1044,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Usage reporting**: reporting how AI systems use content after retrieval, in five events.\n- **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).\n- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients, the events [[mcp-sep-3094-citations]] `citations.render` would need."
+    "text": "- **Usage reporting**: reporting how AI systems use content after retrieval, in five events.\n- **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).\n- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients."
    },
    {
     "title": "Related",
-    "text": "- Execution traces, which stop at the tool call: [[otel-mcp]].\n- [[counter]] plans to reference it in phase two."
+    "text": "- [[counter]] says phase two of its AI guidelines is aligned with it."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[mcp-sep-3094-citations]] `citations.render` would need the `content_cited` and `content_presented` events. Neither names the other (searched 2026-11-15).\n- Execution traces, which stop at the tool call: [[otel-mcp]]. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -967,10 +1066,14 @@ window.CARDS = [
   "links": [
    "rsl",
    "iab-comp",
+   "counter",
    "mcp-sep-3094-citations",
    "otel-mcp",
-   "counter",
    "spur-coalition"
+  ],
+  "compares": [
+   "mcp-sep-3094-citations",
+   "otel-mcp"
   ],
   "backlinks": [
    "aaif-observability-traceability-wg",
@@ -998,9 +1101,9 @@ window.CARDS = [
   "type": "organization",
   "website": "https://www.countermetrics.org",
   "part_of": "",
-  "status": "Plans to reference Content Telemetry in phase two",
+  "status": "Phase two of its AI best practice published 2026-10-23; it says the guidelines are aligned with the SPUR telemetry framework",
   "participate": "[membership](https://www.countermetrics.org/membership/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/organization",
    "layer/attribution"
@@ -1010,15 +1113,25 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **AI usage metrics**: counting usage when the reader is an AI system. Phase two references [[content-telemetry]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-23: [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published."
    }
   ],
   "links": [
    "content-telemetry"
   ],
+  "compares": [],
   "backlinks": [
    "content-telemetry"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-10-23",
+    "text": "[Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published."
+   }
+  ]
  },
  {
   "id": "creative-commons",
@@ -1031,25 +1144,31 @@ window.CARDS = [
   "part_of": "",
   "status": "Attribution to become a requirement in the next CC Signals iteration; RAG attribution best practices planned",
   "participate": "[contact](https://creativecommons.org/about/contact/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/organization",
    "layer/licensing",
    "layer/access",
    "layer/attribution"
   ],
-  "summary": "Steward of the CC licenses and CC REL machine-readable license metadata. Proposes [[cc-signals]] and filed AIPREF drafts on exclusions and parameters ([[ietf-aipref]]).",
+  "summary": "Steward of the CC licenses and CC REL machine-readable license metadata. Proposes [[cc-signals]] and filed AIPREF drafts on exclusions and parameters ([[ietf-aipref]]). The exclusions draft expired on 2026-10-24.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **AI reuse beyond licensing**: giving stewards terms for AI reuse, since licensing alone cannot address it (September 2026 guidance).\n- **Attribution in answers**: honoring the CC attribution requirement when content reaches a model or an agent answer.\n- **RAG attribution pilots**: finding adopters for best practices later in 2026. [[okfn]] with [[mcp-sep-3094-citations]] is a candidate."
+    "text": "- **AI reuse beyond licensing**: giving stewards terms for AI reuse, since licensing alone cannot address it (September 2026 guidance).\n- **Attribution in answers**: honoring the CC attribution requirement when content reaches a model or an agent answer.\n- **RAG attribution pilots**: finding adopters for best practices later in 2026."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[okfn]], whose MCP server already returns a list of sources, is a candidate pilot for the RAG attribution best practices. Neither names the other (searched 2026-11-15)."
    }
   ],
   "links": [
    "cc-signals",
    "ietf-aipref",
-   "okfn",
-   "mcp-sep-3094-citations"
+   "okfn"
+  ],
+  "compares": [
+   "okfn"
   ],
   "backlinks": [
    "cc-signals",
@@ -1069,7 +1188,7 @@ window.CARDS = [
   "part_of": "dif",
   "status": "Moved under DIF; consent assertion added 2026-07",
   "participate": "[GitHub](https://github.com/creator-assertions), via DIF membership",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -1080,11 +1199,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Signer identity**: naming the actor behind a credential, the identity upgrade path for [[agent-skills-signing]].\n- **Training and data mining opt-out**: letting an opt-out travel with the asset, the asset-side counterpart to [[ietf-aipref]] and [[w3c-tdmrep]].\n- **Consent**: recording consent as a signed assertion."
+    "text": "- **Signer identity**: naming the actor behind a credential, the identity upgrade path for [[agent-skills-signing]].\n- **Training and data mining opt-out**: letting an opt-out travel with the asset.\n- **Consent**: recording consent as a signed assertion."
    },
    {
     "title": "Related",
-    "text": "- Hosts the IPTC Data Mining photo-metadata property ([[iptc]])."
+    "text": "- Its metadata assertion binds metadata from other standards, [[iptc]] among them, to the manifest."
+   },
+   {
+    "title": "Compare",
+    "text": "- The training and data mining assertion is the asset-side counterpart to [[ietf-aipref]] and [[w3c-tdmrep]], which attach an opt-out to a location. The specs do not cite each other (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -1094,10 +1217,14 @@ window.CARDS = [
   "links": [
    "c2pa",
    "agent-skills-signing",
+   "iptc",
    "ietf-aipref",
    "w3c-tdmrep",
-   "iptc",
    "dif"
+  ],
+  "compares": [
+   "ietf-aipref",
+   "w3c-tdmrep"
   ],
   "backlinks": [
    "agent-skills-signing",
@@ -1128,13 +1255,18 @@ window.CARDS = [
   "tags": [
    "type/specification",
    "layer/provenance",
-   "layer/licensing"
+   "layer/licensing",
+   "medium/data"
   ],
   "summary": "MLCommons dataset metadata format. 1.1 added machine-actionable provenance, consent and licensing fields.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Dataset provenance and consent**: recording what a training set was allowed to contain, the dataset-side counterpart to [[c2pa]] for assets."
+    "text": "- **Dataset provenance and consent**: recording what a training set was allowed to contain."
+   },
+   {
+    "title": "Compare",
+    "text": "- The dataset-side counterpart to [[c2pa]] for assets. The only mention found is a contributor's remark on [Croissant issue 885](https://github.com/mlcommons/croissant/issues/885) (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -1146,6 +1278,9 @@ window.CARDS = [
    }
   ],
   "links": [
+   "c2pa"
+  ],
+  "compares": [
    "c2pa"
   ],
   "backlinks": [],
@@ -1165,11 +1300,12 @@ window.CARDS = [
   "part_of": "",
   "status": "Last code push 2025-03",
   "participate": "[GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/project",
    "layer/provenance",
-   "layer/licensing"
+   "layer/licensing",
+   "medium/data"
   ],
   "summary": "MIT-led audits of training-corpus licenses, with datasets on Hugging Face.",
   "sections": [
@@ -1179,6 +1315,7 @@ window.CARDS = [
    }
   ],
   "links": [],
+  "compares": [],
   "backlinks": [
    "fairly-trained"
   ],
@@ -1210,8 +1347,8 @@ window.CARDS = [
     "text": "- **Release metadata**: telling a streaming service what a release is and who is credited on it, in one message format, the Electronic Release Notification (ERN).\n- **AI disclosure**: saying that a recording, or one contributor's part in it, was made with generative AI. The [ERN release notes](https://ern.ddex.net/electronic-release-notification-message-suite-part-1-definitions-of-messages/annex-a-(informative)-release-notes/) list both under version 4.3.1. A sound recording, image, text, video or release can carry [`ContainsAI`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_ContainsAI.html), and a contributor can carry [`AiContribution`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_AiContribution.html). The data dictionary's rules use the values All, Partly and None.\n- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify says it depends on artist disclosure and that \"the absence of a credit doesn't mean AI wasn't used\".\n- **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.\n- **A standard for AI declarations**: its Artificial Intelligence group is set up \"to investigate the metadata requirements for the communication of AI-generated music\", including musical works. The group's Generative AI Declaration Standard has finished member comments on its committee draft."
    },
    {
-    "title": "Related",
-    "text": "- [[c2pa]] records how an asset was made in a signed manifest bound to the file. A search on 2026-11-15 found no DDEX page that refers to it."
+    "title": "Compare",
+    "text": "- [[c2pa]] records how an asset was made in a signed manifest bound to the file. No DDEX page refers to it, and no C2PA page refers to DDEX (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -1223,6 +1360,9 @@ window.CARDS = [
    }
   ],
   "links": [
+   "c2pa"
+  ],
+  "compares": [
    "c2pa"
   ],
   "backlinks": [],
@@ -1256,7 +1396,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Hosts CAWG",
   "participate": "[join DIF](https://identity.foundation/join/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/identity"
@@ -1265,11 +1405,18 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Decentralized identity**: interoperable identifiers and credentials that agent identity specs such as [[aims]] build on."
+    "text": "- **Decentralized identity**: interoperable identifiers and credentials that agent identity specs build on."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[aims]] builds on W3C DIDs and Verifiable Credentials. It names DIF only as the host of CAWG (searched 2026-11-15)."
    }
   ],
   "links": [
    "cawg",
+   "aims"
+  ],
+  "compares": [
    "aims"
   ],
   "backlinks": [
@@ -1295,7 +1442,11 @@ window.CARDS = [
    "type/organization",
    "layer/provenance",
    "layer/licensing",
-   "stage/at-rest"
+   "stage/at-rest",
+   "medium/text",
+   "medium/image",
+   "medium/audio",
+   "medium/video"
   ],
   "summary": "Company that sells text provenance built on [[c2pa]]. Signing is free for publishers, and AI companies pay for verification and usage reporting. It says it wrote the C2PA text appendix (A.8) and co-chairs the Text Provenance Task Force. The spec names no authors.",
   "sections": [
@@ -1323,6 +1474,7 @@ window.CARDS = [
    "rsl",
    "w3c-odrl"
   ],
+  "compares": [],
   "backlinks": [
    "c2pa"
   ],
@@ -1348,7 +1500,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Commission compiling a list of recognized machine-readable opt-out mechanisms",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/regulation",
    "layer/access",
@@ -1359,22 +1511,31 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Ranking opt-outs**: deciding which mechanisms count, among [[ietf-aipref]], [[w3c-tdmrep]], [[rsl]] and the [[cawg]] assertion. [[open-future]] and [[iptc]] answered the consultation.\n- **Transparency for generated content**: Article 50 duties, the compliance framing behind the [[c2pa]] pitch."
+    "text": "- **Ranking opt-outs**: deciding which mechanisms count. The Commission's [consultation FAQ](https://digital-strategy.ec.europa.eu/en/faqs/stakeholder-consultation-ai-and-copyright-compliance) lists [[w3c-tdmrep]] and \"C2PA TDM Assertions\" ([[c2pa]]) among the solutions. [[open-future]] and [[iptc]] answered the consultation.\n- **Transparency for generated content**: Article 50 duties."
    },
    {
     "title": "Related",
     "text": "- Google ties [[aipref-training-token]] support to the Code."
+   },
+   {
+    "title": "Compare",
+    "text": "- The FAQ does not name [[ietf-aipref]], [[rsl]] or [[cawg]]. Open Future's response names the first two, and the assertion the FAQ calls C2PA's is now a CAWG spec (searched 2026-11-15).\n- Article 50 is the compliance framing behind the C2PA pitch. Only secondary sources tie the two (searched 2026-11-15)."
    }
   ],
   "links": [
-   "ietf-aipref",
    "w3c-tdmrep",
-   "rsl",
-   "cawg",
+   "c2pa",
    "open-future",
    "iptc",
-   "c2pa",
-   "aipref-training-token"
+   "aipref-training-token",
+   "ietf-aipref",
+   "rsl",
+   "cawg"
+  ],
+  "compares": [
+   "ietf-aipref",
+   "rsl",
+   "cawg"
   ],
   "backlinks": [
    "aaif-grr-wg",
@@ -1406,7 +1567,11 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- BRIA AI and Somms.ai were among the nine companies certified at launch and are not on the list read on 2026-11-15.\n- Audits of dataset licenses from outside the developer: [[data-provenance-initiative]]."
+    "text": "- BRIA AI and Somms.ai were among the nine companies certified at launch and are not on the list read on 2026-11-15."
+   },
+   {
+    "title": "Compare",
+    "text": "- Audits of dataset licenses from outside the developer: [[data-provenance-initiative]]. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -1418,6 +1583,9 @@ window.CARDS = [
    }
   ],
   "links": [
+   "data-provenance-initiative"
+  ],
+  "compares": [
    "data-provenance-initiative"
   ],
   "backlinks": [],
@@ -1460,7 +1628,11 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- A revenue-share license for AI use of web publishers' content: [[internet-licensing-collective]].\n- Both court press releases list Article 4 of the DSM Directive among the provisions applied, the one [[w3c-tdmrep]] reservations rely on.\n- The accounts of both rulings here come from the court's press releases. The judgments were not read."
+    "text": "- The accounts of both rulings here come from the court's press releases. The judgments were not read."
+   },
+   {
+    "title": "Compare",
+    "text": "- A revenue-share license for AI use of web publishers' content: [[internet-licensing-collective]]. Neither names the other (searched 2026-11-15).\n- Both court press releases list Article 4 of the DSM Directive among the provisions applied, the one [[w3c-tdmrep]] reservations rely on. Neither the court nor TDMRep names the other."
    },
    {
     "title": "In use",
@@ -1473,6 +1645,10 @@ window.CARDS = [
   ],
   "links": [
    "cisac",
+   "internet-licensing-collective",
+   "w3c-tdmrep"
+  ],
+  "compares": [
    "internet-licensing-collective",
    "w3c-tdmrep"
   ],
@@ -1540,6 +1716,7 @@ window.CARDS = [
    }
   ],
   "links": [],
+  "compares": [],
   "backlinks": [
    "content-telemetry",
    "x402"
@@ -1580,6 +1757,7 @@ window.CARDS = [
    "ietf-web-bot-auth",
    "mpp"
   ],
+  "compares": [],
   "backlinks": [
    "ietf-aipref",
    "ietf-web-bot-auth",
@@ -1598,7 +1776,7 @@ window.CARDS = [
   "part_of": "ietf",
   "status": "vocab-08 (2026-09-13) without consensus; attach-05 (2026-08-18); IETF 127 sessions 2026-11-16 and 11-19",
   "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/working-group",
    "layer/access",
@@ -1612,7 +1790,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Individual drafts: [[aipref-training-token]], [[cloudflare-content-signals]], and the [[creative-commons]] exclusions and parameters drafts.\n- Enforcement side: [[ietf-web-bot-auth]]. Layered on by [[cc-signals]]."
+    "text": "- Individual drafts: [[aipref-training-token]], [[cloudflare-content-signals]], and the [[creative-commons]] exclusions and parameters drafts. The exclusions draft expired on 2026-10-24.\n- Enforcement side: [[ietf-web-bot-auth]]. Layered on by [[cc-signals]]."
    },
    {
     "title": "History",
@@ -1628,6 +1806,7 @@ window.CARDS = [
    "cc-signals",
    "ietf"
   ],
+  "compares": [],
   "backlinks": [
    "ai-robots-txt",
    "cc-signals",
@@ -1676,8 +1855,8 @@ window.CARDS = [
     "text": "- **Bot identity**: proving who a crawler or agent is. The preference ([[ietf-aipref]]) says what is allowed, bot auth says who is asking."
    },
    {
-    "title": "Related",
-    "text": "- Pairs with [[aims]] and the agent identifiability asks from [[wikimedia]]."
+    "title": "Compare",
+    "text": "- Pairs with [[aims]] and with [[wikimedia]]'s ask that agents be easy to identify. Neither names Web Bot Auth (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -1689,6 +1868,10 @@ window.CARDS = [
    "aims",
    "wikimedia",
    "ietf"
+  ],
+  "compares": [
+   "aims",
+   "wikimedia"
   ],
   "backlinks": [
    "aaif-identity-trust-wg",
@@ -1721,11 +1904,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).\n- **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [[rsl]] on the publisher's own site.\n- **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.\n- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked. [[content-telemetry]] standardizes reports of this kind."
+    "text": "- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).\n- **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [[rsl]] on the publisher's own site.\n- **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.\n- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked."
    },
    {
     "title": "Related",
-    "text": "- A Publisher Steering Committee oversees the licensing framework, safeguards and economics. The About page shows ten members: Reddit, People Inc., Yahoo, Ziff Davis, the Wikimedia Foundation ([[wikimedia]]), USA Today, Internet Brands, Mediahuis, The Atlantic and Vox Media (read 2026-11-15). Yahoo Scout, the first licensee, is a Yahoo product.\n- The launch release names Doug Leeds as a co-founder. The About page names no staff.\n- Its About page lists 3,100+ supporting publications, among them the Guardian (a [[spur-coalition]] founder), Wikipedia and O'Reilly Media.\n- Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it."
+    "text": "- A Publisher Steering Committee oversees the licensing framework, safeguards and economics. The About page shows ten members: Reddit, People Inc., Yahoo, Ziff Davis, the Wikimedia Foundation ([[wikimedia]]), USA Today, Internet Brands, Mediahuis, The Atlantic and Vox Media (read 2026-11-15). Yahoo Scout, the first licensee, is a Yahoo product.\n- The launch release names Doug Leeds as a co-founder. The About page names no staff.\n- Its About page lists 3,100+ supporting publications, among them the Guardian, Wikipedia and O'Reilly Media.\n- Mather Economics' report The Price of Intelligence (2026-11-12) estimates AI companies would pay 15% to 35% of revenue to keep access to licensed content. The launch release says ILC did not commission or fund it."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[content-telemetry]] standardizes usage reports of the kind ILC pays out on. Neither names the other (searched 2026-11-15).\n- The Guardian supports ILC and is a [[spur-coalition]] founder. No source connects the two bodies themselves (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -1738,8 +1925,12 @@ window.CARDS = [
   ],
   "links": [
    "rsl",
-   "content-telemetry",
    "wikimedia",
+   "content-telemetry",
+   "spur-coalition"
+  ],
+  "compares": [
+   "content-telemetry",
    "spur-coalition"
   ],
   "backlinks": [
@@ -1771,9 +1962,11 @@ window.CARDS = [
    "layer/licensing",
    "layer/access",
    "layer/provenance",
-   "stage/trust"
+   "stage/trust",
+   "medium/image",
+   "medium/video"
   ],
-  "summary": "News-media standards body. RightsML is a profile of [[w3c-odrl]]. Its Data Mining photo-metadata property is maintained with [[cawg]]. With Project Origin it runs the Origin Verified News Publishers List for [[c2pa]] signing.",
+  "summary": "News-media standards body. RightsML is a profile of [[w3c-odrl]]. Its photo metadata standard has a Data Mining property. [[cawg]]'s metadata assertion can bind IPTC metadata to a C2PA manifest. With Project Origin it runs the Origin Verified News Publishers List for [[c2pa]] signing.",
   "sections": [
    {
     "title": "Topics",
@@ -1790,6 +1983,7 @@ window.CARDS = [
    "c2pa",
    "eu-ai-act-gpai-code"
   ],
+  "compares": [],
   "backlinks": [
    "c2pa",
    "cawg",
@@ -1826,6 +2020,7 @@ window.CARDS = [
   "links": [
    "aipref-training-token"
   ],
+  "compares": [],
   "backlinks": [],
   "history": []
  },
@@ -1834,14 +2029,15 @@ window.CARDS = [
   "name": "Machine Payments Protocol",
   "aliases": [
    "MPP",
+   "draft-httpauth-payment",
    "draft-ryan-httpauth-payment"
   ],
   "type": "specification",
   "website": "https://paymentauth.org",
   "part_of": "",
-  "status": "Individual IETF draft, not a WG item",
+  "status": "Individual IETF draft, draft-httpauth-payment-01 (2026-09-09), active on Datatracker; the earlier draft-ryan-httpauth-payment expired 2026-09-19 (read 2026-11-16); not a WG item",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -1857,6 +2053,7 @@ window.CARDS = [
    "ietf",
    "x402"
   ],
+  "compares": [],
   "backlinks": [
    "ietf"
   ],
@@ -1873,7 +2070,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Charter has a data lineage and citation pillar",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/interest-group",
    "venue/mcp",
@@ -1884,7 +2081,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Regulated data lineage and citation**: tracing financial data through agents. [[openlineage]] and [[mcp-sep-3094-citations]] have been presented or offered here."
+    "text": "- **Regulated data lineage and citation**: tracing financial data through agents. A lineage key for [[openlineage]] was presented on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)) and filed as [issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16) on 2026-10-08."
+   },
+   {
+    "title": "Related",
+    "text": "- [[mcp-sep-3094-citations]] was on the agenda of the 2026-09-24 meeting. The notes have no section on it."
    }
   ],
   "links": [
@@ -1892,9 +2093,11 @@ window.CARDS = [
    "mcp-sep-3094-citations",
    "mcp"
   ],
+  "compares": [],
   "backlinks": [
    "mcp",
-   "openlineage"
+   "openlineage",
+   "mcp-sep-3094-citations"
   ],
   "history": []
  },
@@ -1910,7 +2113,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "SEP open; chain concept removed 2026-10-27; `signature` on ValidationResult reserved",
   "participate": "[SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-08",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "venue/mcp",
@@ -1920,7 +2123,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Checking at the boundary**: verifying provenance in a gateway or in context middleware, since most clients will not.\n- **The `signature` field**: deciding what it signs and whether it ever carries content provenance.\n- **Sample validator**: a seal or citation validator for [[mcp-c2pa-in-meta]] or [[mcp-sep-3094-citations]]."
+    "text": "- **Checking at the boundary**: verifying provenance in a gateway or in context middleware, since most clients will not.\n- **The `signature` field**: deciding what it signs and whether it ever carries content provenance.\n- **Sample validator**: a citation validator for [[mcp-sep-3094-citations]], whose author named interceptors as one way to process citation metadata."
+   },
+   {
+    "title": "Compare",
+    "text": "- A seal validator for [[mcp-c2pa-in-meta]] is this guide's suggestion. Neither thread refers to the other (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -1928,9 +2135,12 @@ window.CARDS = [
    }
   ],
   "links": [
-   "mcp-c2pa-in-meta",
    "mcp-sep-3094-citations",
+   "mcp-c2pa-in-meta",
    "mcp"
+  ],
+  "compares": [
+   "mcp-c2pa-in-meta"
   ],
   "backlinks": [
    "mcp-c2pa-in-meta",
@@ -1951,9 +2161,9 @@ window.CARDS = [
   "type": "interest-group",
   "website": "",
   "part_of": "mcp",
-  "status": "Restructured as a routing forum 2026-10-31; monthly agenda-driven call",
+  "status": "Restructured as a routing group, decided 2026-08-26 and merged into the charter 2026-10-31; monthly agenda-driven call",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/interest-group",
    "venue/mcp",
@@ -1963,11 +2173,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Routing**: sending [[mcp-c2pa-in-meta]] and [[mcp-sep-3094-citations]] to an owning group until a content group exists."
+    "text": "- **Routing**: acting as the first stop for security topics and sending each to an owning group."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[mcp-c2pa-in-meta]] and [[mcp-sep-3094-citations]] have no owning group, and this IG could route them. No IG record names either. The first was filed in the Ideas - Security discussion category (searched 2026-11-15)."
    },
    {
     "title": "History",
-    "text": "- 2026-10-31: Restructured as a routing forum."
+    "text": "- 2026-10-31: The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).\n- 2026-08-26: Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives."
    }
   ],
   "links": [
@@ -1975,13 +2189,21 @@ window.CARDS = [
    "mcp-sep-3094-citations",
    "mcp"
   ],
+  "compares": [
+   "mcp-c2pa-in-meta",
+   "mcp-sep-3094-citations"
+  ],
   "backlinks": [
    "mcp"
   ],
   "history": [
    {
     "date": "2026-10-31",
-    "text": "Restructured as a routing forum."
+    "text": "The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331))."
+   },
+   {
+    "date": "2026-08-26",
+    "text": "Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives."
    }
   ]
  },
@@ -2000,11 +2222,15 @@ window.CARDS = [
    "layer/licensing",
    "layer/payments"
   ],
-  "summary": "Voluntary marketplace with publisher-set terms and pricing and usage reporting. Reported to support [[rsl]].",
+  "summary": "Voluntary marketplace with publisher-set terms and pricing and usage reporting.",
   "sections": [
    {
     "title": "Topics",
     "text": "- **Paying publishers**: compensating publishers for content used in AI answers, with usage reporting."
+   },
+   {
+    "title": "Compare",
+    "text": "- News reports say it supports [[rsl]]. Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -2012,6 +2238,9 @@ window.CARDS = [
    }
   ],
   "links": [
+   "rsl"
+  ],
+  "compares": [
    "rsl"
   ],
   "backlinks": [
@@ -2056,6 +2285,7 @@ window.CARDS = [
    "aipref-training-token",
    "ietf-aipref"
   ],
+  "compares": [],
   "backlinks": [
    "ietf-aipref"
   ],
@@ -2072,7 +2302,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Next spec release moved to 2027-03-30 (SEP-3398); WG-first rule for SEPs",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -2083,15 +2313,18 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Content provenance ownership**: no WG or IG owns content provenance or attribution.\n- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding ([[ietf-aipref]]).\n- **Credit reporting**: nothing reports display or credit past the last hop ([[content-telemetry]])."
+    "text": "- **Content provenance ownership**: no WG or IG owns content provenance or attribution.\n- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.\n- **Credit reporting**: nothing reports display or credit past the last hop ([[content-telemetry]])."
    },
    {
     "title": "Related",
     "text": "- Built-in tracing and metrics in the SDKs: [[otel-mcp]].\n- Threads: [[mcp-c2pa-in-meta]], [[mcp-sep-3094-citations]], [[mcp-skills-extension]], [[mcp-interceptors]].\n- Groups: [[mcp-fsig]], [[mcp-security-ig]]."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[ietf-aipref]] defines usage preferences for the web. MCP has no equivalent field, and no MCP material names AIPREF (searched 2026-11-15)."
    }
   ],
   "links": [
-   "ietf-aipref",
    "content-telemetry",
    "otel-mcp",
    "mcp-c2pa-in-meta",
@@ -2100,7 +2333,11 @@ window.CARDS = [
    "mcp-interceptors",
    "mcp-fsig",
    "mcp-security-ig",
+   "ietf-aipref",
    "aaif"
+  ],
+  "compares": [
+   "ietf-aipref"
   ],
   "backlinks": [
    "aaif",
@@ -2141,6 +2378,7 @@ window.CARDS = [
    "wikimedia",
    "aaif"
   ],
+  "compares": [],
   "backlinks": [
    "eu-ai-act-gpai-code",
    "wikimedia"
@@ -2171,11 +2409,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.\n- **Interim convention to standard**: mapping its required `structuredContent.sources` list onto [[mcp-sep-3094-citations]]."
+    "text": "- **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.\n- **Interim convention to standard**: moving its required `structuredContent.sources` list onto a standard citation format."
    },
    {
     "title": "Related",
-    "text": "- Plans to move charts to MCP Apps and citations to SEP-3094. [[wikimedia]] contributors review the same SEP.\n- A natural pilot for the [[creative-commons]] RAG attribution best practices."
+    "text": "- Plans to move charts to MCP Apps and citations to SEP-3094."
+   },
+   {
+    "title": "Compare",
+    "text": "- Its `sources` list could map onto [[mcp-sep-3094-citations]]. An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).\n- A [[wikimedia]] contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).\n- A natural pilot for the [[creative-commons]] RAG attribution best practices. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -2183,6 +2425,11 @@ window.CARDS = [
    }
   ],
   "links": [
+   "mcp-sep-3094-citations",
+   "wikimedia",
+   "creative-commons"
+  ],
+  "compares": [
    "mcp-sep-3094-citations",
    "wikimedia",
    "creative-commons"
@@ -2200,16 +2447,16 @@ window.CARDS = [
   "type": "organization",
   "website": "https://openattribution.org",
   "part_of": "",
-  "status": "SDKs, edge worker, policycheck, commerce profile, AIMS draft",
+  "status": "policycheck, commerce profile, AIMS draft",
   "participate": "[GitHub](https://github.com/openattribution-org)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/organization",
    "layer/attribution",
    "layer/identity",
    "layer/payments"
   ],
-  "summary": "Not-for-profit that maintains the [[content-telemetry]] SDKs, the Cloudflare edge worker, the policycheck scanner, the commerce profile and [[aims]].",
+  "summary": "Not-for-profit that originally developed the [[content-telemetry]] SDKs, which [[spur-coalition]] now maintains. Its [Cloudflare edge worker](https://github.com/SPUR-Coalition/cloudflare-worker) is in SPUR's GitHub organization too (checked 2026-11-16). It maintains the policycheck scanner, the commerce profile and [[aims]].",
   "sections": [
    {
     "title": "Topics",
@@ -2218,6 +2465,7 @@ window.CARDS = [
   ],
   "links": [
    "content-telemetry",
+   "spur-coalition",
    "aims",
    "acp",
    "ucp",
@@ -2225,6 +2473,7 @@ window.CARDS = [
    "cloudflare-content-signals",
    "w3c-tdmrep"
   ],
+  "compares": [],
   "backlinks": [
    "aims",
    "acp",
@@ -2241,15 +2490,16 @@ window.CARDS = [
   "type": "project",
   "website": "https://openlineage.io",
   "part_of": "",
-  "status": "RFC 4484 open (updated 2026-10-07); MCP RFC in preparation by BearingNode",
+  "status": "RFC 4484 open (updated 2026-10-07); BearingNode proposed an MCP `_meta` lineage key to the FSIG 2026-10-08",
   "participate": "[GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/project",
    "layer/provenance",
-   "stage/in-transit"
+   "stage/in-transit",
+   "medium/data"
   ],
-  "summary": "Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's planned MCP `_meta` lineage key carry lineage identity across the tool-call boundary.",
+  "summary": "Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's proposed MCP `_meta` lineage key ([FSIG issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16)) carry lineage identity across the tool-call boundary.",
   "sections": [
    {
     "title": "Topics",
@@ -2257,16 +2507,23 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Overlaps [[mcp-c2pa-in-meta]]. Introduced at [[mcp-fsig]] on 2026-09-05."
+    "text": "- Presented to [[mcp-fsig]] on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)). The proposal was filed there as issue 16 on 2026-10-08."
+   },
+   {
+    "title": "Compare",
+    "text": "- Overlaps [[mcp-c2pa-in-meta]] on lineage keys. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "History",
-    "text": "- 2026-10-07: RFC 4484 updated."
+    "text": "- 2026-10-08: BearingNode filed the `_meta` lineage key proposal as FSIG issue 16.\n- 2026-10-07: RFC 4484 updated.\n- 2026-09-24: Presented to the MCP Financial Services Interest Group."
    }
   ],
   "links": [
-   "mcp-c2pa-in-meta",
-   "mcp-fsig"
+   "mcp-fsig",
+   "mcp-c2pa-in-meta"
+  ],
+  "compares": [
+   "mcp-c2pa-in-meta"
   ],
   "backlinks": [
    "mcp-c2pa-in-meta",
@@ -2275,8 +2532,16 @@ window.CARDS = [
   ],
   "history": [
    {
+    "date": "2026-10-08",
+    "text": "BearingNode filed the `_meta` lineage key proposal as FSIG issue 16."
+   },
+   {
     "date": "2026-10-07",
     "text": "RFC 4484 updated."
+   },
+   {
+    "date": "2026-09-24",
+    "text": "Presented to the MCP Financial Services Interest Group."
    }
   ]
  },
@@ -2303,11 +2568,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in the same `_meta` slot that [[mcp-c2pa-in-meta]] proposes for content credentials. The propagation rules are a precedent for any other credential that has to survive the hop.\n- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where [[content-telemetry]] and the [[aaif-observability-traceability-wg]] sit.\n- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-08). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation."
+    "text": "- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in `_meta`. The propagation rules are a precedent for any other credential that has to survive the hop.\n- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where the [[aaif-observability-traceability-wg]] sits.\n- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-08). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation."
    },
    {
     "title": "Related",
-    "text": "- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026.\n- Lineage after the tool call, rather than the call itself: [[openlineage]]."
+    "text": "- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[mcp-c2pa-in-meta]] proposes the same `_meta` slot for content credentials. Neither names the other (searched 2026-11-15).\n- [[content-telemetry]] reports on the content after the call, which a span leaves out. Neither names the other (searched 2026-11-15).\n- Lineage after the tool call, rather than the call itself: [[openlineage]]. Its MCP RFC mentions OpenTelemetry only in passing (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -2319,11 +2588,16 @@ window.CARDS = [
    }
   ],
   "links": [
+   "aaif-observability-traceability-wg",
    "mcp-c2pa-in-meta",
    "content-telemetry",
-   "aaif-observability-traceability-wg",
    "openlineage",
    "mcp"
+  ],
+  "compares": [
+   "mcp-c2pa-in-meta",
+   "content-telemetry",
+   "openlineage"
   ],
   "backlinks": [
    "aaif-observability-traceability-wg",
@@ -2361,6 +2635,7 @@ window.CARDS = [
   "links": [
    "aaif-security-privacy-wg"
   ],
+  "compares": [],
   "backlinks": [
    "aaif-security-privacy-wg"
   ],
@@ -2377,7 +2652,7 @@ window.CARDS = [
   "part_of": "",
   "status": "RSL 1.0 published 2025-12-10; the collective behind it relaunched as the Internet Licensing Collective 2026-11-12",
   "participate": "[GitHub](https://github.com/rslstandard)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -2387,7 +2662,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed, and [[microsoft-publisher-content-marketplace]] is reported to support it.\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a SPUR profile binding drafted for the RSL WG."
+    "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Adoption**: getting model developers to honor it on the open web. None has committed.\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings), a v0.1 draft marked for discussion with the RSL working group (read 2026-11-16)."
+   },
+   {
+    "title": "Compare",
+    "text": "- The [[microsoft-publisher-content-marketplace]] is reported to support RSL. Neither side's pages say so (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -2400,8 +2679,11 @@ window.CARDS = [
   ],
   "links": [
    "internet-licensing-collective",
-   "microsoft-publisher-content-marketplace",
-   "content-telemetry"
+   "content-telemetry",
+   "microsoft-publisher-content-marketplace"
+  ],
+  "compares": [
+   "microsoft-publisher-content-marketplace"
   ],
   "backlinks": [
    "content-telemetry",
@@ -2436,12 +2718,13 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Final 2026-09-13; Beta under SEP-3392",
   "participate": "[SEP-2640 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "venue/mcp",
    "stage/at-rest",
-   "topic/skills"
+   "topic/skills",
+   "medium/code"
   ],
   "summary": "Serves [[agent-skills]] over MCP, with digests and a `_meta` slot for intermediaries.",
   "sections": [
@@ -2463,6 +2746,7 @@ window.CARDS = [
    "agent-skills-signing",
    "mcp"
   ],
+  "compares": [],
   "backlinks": [
    "agent-plugins",
    "agent-skills-signing",
@@ -2485,9 +2769,9 @@ window.CARDS = [
   "type": "proposal",
   "website": "https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094",
   "part_of": "mcp",
-  "status": "Open, no sponsor; revised 2026-09-04; an implementation PR open from Perplexity; dormancy clock to about 2027-01-15",
+  "status": "Closed without merging 2026-11-08; the author plans to take it to the Core Primitives WG on 2026-11-23",
   "participate": "[SEP-3094 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-16",
   "tags": [
    "type/proposal",
    "venue/mcp",
@@ -2499,29 +2783,37 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Citations in transit**: keeping sources attached from tool result to the answer a user sees.\n- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion.\n- **Field placement**: choosing a top-level field or `_meta` processed by [[mcp-interceptors]].\n- **Reporting**: mapping to [[okfn]] `sources` and [[content-telemetry]] events."
+    "text": "- **Citations in transit**: keeping sources attached from tool result to the answer a user sees.\n- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion. A maintainer said on 2026-11-06 that SEPs now go through working groups, and suggested the Core Primitives WG or a new interest group on citations.\n- **Field placement**: choosing a top-level field or `_meta` processed by [[mcp-interceptors]]."
    },
    {
     "title": "Related",
-    "text": "- Reviewers include [[okfn]] and [[wikimedia]] contributors."
+    "text": "- Reviewers include a [[wikimedia]] contributor.\n- On the [[mcp-fsig]] agenda on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit))."
+   },
+   {
+    "title": "Compare",
+    "text": "- Reporting: the citations could map to [[okfn]]'s `sources` list and to [[content-telemetry]] events. Neither source makes the mapping (searched 2026-11-15).\n- Another reviewer contributes to OKFN's MCP server. No OKFN page names the SEP (searched 2026-11-15)."
    },
    {
     "title": "History",
-    "text": "- 2026-09-04: Revised."
+    "text": "- 2026-11-08: Closed without merging.\n- 2026-09-04: Revised."
    }
   ],
   "links": [
    "mcp-interceptors",
+   "wikimedia",
+   "mcp-fsig",
    "okfn",
    "content-telemetry",
-   "wikimedia",
    "mcp"
+  ],
+  "compares": [
+   "okfn",
+   "content-telemetry"
   ],
   "backlinks": [
    "mcp-c2pa-in-meta",
    "cc-signals",
    "content-telemetry",
-   "creative-commons",
    "mcp-fsig",
    "mcp-interceptors",
    "mcp-security-ig",
@@ -2530,6 +2822,10 @@ window.CARDS = [
    "wikimedia"
   ],
   "history": [
+   {
+    "date": "2026-11-08",
+    "text": "Closed without merging."
+   },
    {
     "date": "2026-09-04",
     "text": "Revised."
@@ -2571,6 +2867,7 @@ window.CARDS = [
   "links": [
    "ietf-aipref"
   ],
+  "compares": [],
   "backlinks": [
    "eu-ai-act-gpai-code",
    "ietf-aipref",
@@ -2596,23 +2893,24 @@ window.CARDS = [
   "part_of": "ai-disclosures-project",
   "status": "Work in progress with O'Reilly Media and Miso.ai; initial testing with O'Reilly Media authors",
   "participate": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
-  "updated": "2026-11-08",
+  "updated": "2026-11-15",
   "tags": [
    "type/project",
    "layer/licensing",
    "layer/attribution",
    "layer/payments",
-   "topic/skills"
+   "topic/skills",
+   "medium/code"
   ],
   "summary": "A marketplace for modular, interoperable, rights-protected skills with monetization for their authors, built with O'Reilly Media and Miso.ai. Two public tools so far: [Skill Cards](https://github.com/SrulyRosenblat/skill-cards) measures how well a skill covers its source documentation, and [SkillProof](https://srulyrosenblat.github.io/skillproof/) benchmarks the uplift a skill gives an agent.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.\n- **Multi-source skills**: crediting every source behind a skill ([[openattribution]], [[c2pa]]).\n- **Missing metadata**: no skill registry frontmatter carries author, license or source ([[agent-skills-signing]])."
+    "text": "- **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.\n- **Multi-source skills**: crediting every source behind a skill.\n- **Missing metadata**: no skill registry frontmatter carries author, license or source."
    },
    {
-    "title": "Related",
-    "text": "- [[agent-plugins]] gives a package format but defines no marketplace or distribution."
+    "title": "Compare",
+    "text": "- [[openattribution]] and [[c2pa]] are possible ways to credit every source behind a skill. The prototypes use neither (searched 2026-11-15).\n- The [[agent-skills-signing]] would add author and source to a skill. The prototypes do not refer to them (searched 2026-11-15).\n- [[agent-plugins]] gives a package format but defines no marketplace or distribution. Neither names the other (searched 2026-11-15)."
    }
   ],
   "links": [
@@ -2621,6 +2919,12 @@ window.CARDS = [
    "agent-skills-signing",
    "agent-plugins",
    "ai-disclosures-project"
+  ],
+  "compares": [
+   "openattribution",
+   "c2pa",
+   "agent-skills-signing",
+   "agent-plugins"
   ],
   "backlinks": [
    "agent-plugins",
@@ -2653,6 +2957,7 @@ window.CARDS = [
    }
   ],
   "links": [],
+  "compares": [],
   "backlinks": [],
   "history": []
  },
@@ -2665,14 +2970,14 @@ window.CARDS = [
   "part_of": "",
   "status": "Content Telemetry v1.0 published 2026-09-02",
   "participate": "[GitHub](https://github.com/SPUR-Coalition)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/organization",
    "layer/attribution",
    "stage/after-delivery",
    "stage/trust"
   ],
-  "summary": "Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [[content-telemetry]] and the publisher accreditation profile and conformance mark. Sister body [[openattribution]] maintains SDKs and profiles.",
+  "summary": "Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [[content-telemetry]] and the publisher accreditation profile and conformance mark. Sister body [[openattribution]] originally developed the SDKs, which SPUR now maintains.",
   "sections": [
    {
     "title": "Topics",
@@ -2687,10 +2992,12 @@ window.CARDS = [
    "content-telemetry",
    "openattribution"
   ],
+  "compares": [],
   "backlinks": [
    "c2pa",
    "content-telemetry",
-   "internet-licensing-collective"
+   "internet-licensing-collective",
+   "openattribution"
   ],
   "history": [
    {
@@ -2727,6 +3034,7 @@ window.CARDS = [
    "acp",
    "aaif-agentic-commerce-wg"
   ],
+  "compares": [],
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "openattribution"
@@ -2762,6 +3070,7 @@ window.CARDS = [
    "w3c-tdmrep",
    "aims"
   ],
+  "compares": [],
   "backlinks": [
    "w3c-odrl",
    "w3c-tdmrep"
@@ -2779,7 +3088,7 @@ window.CARDS = [
   "part_of": "w3c",
   "status": "2.2 is a W3C Recommendation; a W3C WG for 3.0 is being chartered; ai-vocab draft",
   "participate": "[join the community group](https://www.w3.org/community/odrl/join)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/community-group",
    "layer/licensing"
@@ -2788,16 +3097,17 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Policy language**: one model for permissions, prohibitions and duties that [[rsl]], IPTC RightsML ([[iptc]]), [[cawg]] and [[w3c-tdmrep]] all point at.\n- **AI actions**: adding AI-specific actions to the vocabulary (the `ai-vocab` draft)."
+    "text": "- **Policy language**: one model for permissions, prohibitions and duties that [[rsl]], IPTC RightsML ([[iptc]]) and [[w3c-tdmrep]] point at. Its AI vocabulary draft cites the [[cawg]] training and data mining assertion.\n- **AI actions**: adding AI-specific actions to the vocabulary (the `ai-vocab` draft)."
    }
   ],
   "links": [
    "rsl",
    "iptc",
-   "cawg",
    "w3c-tdmrep",
+   "cawg",
    "w3c"
   ],
+  "compares": [],
   "backlinks": [
    "encypher",
    "iptc",
@@ -2831,7 +3141,11 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Being weighed for the EU recognized opt-out list ([[eu-ai-act-gpai-code]]). Points at [[w3c-odrl]] for detailed policy.\n- Record companies reserve the same Article 4 rights by written declaration. IFPI [links to declarations](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/) from 16 rights holders, among them Universal, Sony and Warner, and names no machine-readable protocol (read 2026-11-15). The Munich court applied Article 4 in both [[gema]] rulings."
+    "text": "- Being weighed for the EU recognized opt-out list ([[eu-ai-act-gpai-code]]). Points at [[w3c-odrl]] for detailed policy.\n- Record companies reserve the same Article 4 rights by written declaration. IFPI [links to declarations](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/) from 16 rights holders, among them Universal, Sony and Warner, and names no machine-readable protocol (read 2026-11-15)."
+   },
+   {
+    "title": "Compare",
+    "text": "- The Munich court applied Article 4 in both [[gema]] rulings. Neither the court nor GEMA names TDMRep (searched 2026-11-15)."
    }
   ],
   "links": [
@@ -2839,6 +3153,9 @@ window.CARDS = [
    "w3c-odrl",
    "gema",
    "w3c"
+  ],
+  "compares": [
+   "gema"
   ],
   "backlinks": [
    "cawg",
@@ -2861,7 +3178,7 @@ window.CARDS = [
   "type": "organization",
   "website": "https://wikimediafoundation.org",
   "part_of": "",
-  "status": "Published investigation of OpenAI-run agents 2026-10-05; Wikipedians reviewing SEP-3094",
+  "status": "Published investigation of OpenAI-run agents 2026-10-05; a WikiCite contributor reviewed SEP-3094, which closed 2026-11-08",
   "participate": "",
   "updated": "2026-11-15",
   "tags": [
@@ -2873,7 +3190,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Identifiable agents**: knowing which agents are reading the projects ([[ietf-web-bot-auth]], [[aims]]).\n- **Attribution for reuse**: meeting attribution requirements in agent answers. A WikiCite contributor listed six functions of citation on [[mcp-sep-3094-citations]], including provenance chains to primary sources.\n- **A seat at the table**: [[open-future]] argued in December 2025 that Wikimedia needs one at [[aaif]]."
+    "text": "- **Identifiable agents**: knowing which agents are reading the projects.\n- **Attribution for reuse**: meeting attribution requirements in agent answers. A WikiCite contributor listed six functions of citation on [[mcp-sep-3094-citations]], including provenance chains to primary sources.\n- **A seat at the table**: [[open-future]] argued in December 2025 that Wikimedia needs one where agent standards are set."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[ietf-web-bot-auth]] and [[aims]] are two ways to identify an agent. Wikimedia's post asks for identifiable agents and names no protocol (searched 2026-11-15).\n- The seat Open Future argued for is at [[aaif]]. Neither Wikimedia nor AAIF names the other (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -2885,10 +3206,15 @@ window.CARDS = [
    }
   ],
   "links": [
-   "ietf-web-bot-auth",
-   "aims",
    "mcp-sep-3094-citations",
    "open-future",
+   "ietf-web-bot-auth",
+   "aims",
+   "aaif"
+  ],
+  "compares": [
+   "ietf-web-bot-auth",
+   "aims",
    "aaif"
   ],
   "backlinks": [
@@ -2916,7 +3242,7 @@ window.CARDS = [
   "part_of": "",
   "status": "x402 Foundation (Linux Foundation) operational 2026-07-14; v2 spec",
   "participate": "[GitHub](https://github.com/coinbase/x402)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -2925,11 +3251,15 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Machine payment**: paying for a request without accounts or API keys, the rail a licensing term ([[rsl]], [[iab-comp]]) would settle on.\n- **Delegated spending**: authorization for agents spending on someone's behalf, which lives elsewhere ([[ap2]])."
+    "text": "- **Machine payment**: paying for a request without accounts or API keys, the rail a licensing term would settle on. The [[rsl]] spec names x402 as a payment protocol.\n- **Delegated spending**: authorization for agents spending on someone's behalf, which lives elsewhere ([[ap2]])."
    },
    {
     "title": "Related",
     "text": "- Compared with other commerce specs in [[aaif-agentic-commerce-wg]]."
+   },
+   {
+    "title": "Compare",
+    "text": "- [[iab-comp]] terms could settle on the same rail. CoMP does not mention x402 (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -2939,9 +3269,12 @@ window.CARDS = [
   "links": [
    "aaif",
    "rsl",
-   "iab-comp",
    "ap2",
-   "aaif-agentic-commerce-wg"
+   "aaif-agentic-commerce-wg",
+   "iab-comp"
+  ],
+  "compares": [
+   "iab-comp"
   ],
   "backlinks": [
    "aaif-agentic-commerce-wg",
@@ -2972,6 +3305,14 @@ window.VOCAB = {
   "boundary": "a gateway or context middleware checks it on the way through",
   "after-delivery": "credit and reporting once the content has left the protocol and its metadata is gone",
   "trust": "who may sign or report, and how that is decided. Not a place on the path, but every other stage depends on it"
+ },
+ "media": {
+  "text": "articles, books, web pages and other written content",
+  "image": "photographs, illustrations and other still images",
+  "audio": "music, speech and other sound recordings, and the musical works behind them",
+  "video": "film, broadcast and other moving images",
+  "code": "software, and agent skills and plugins made of instructions and scripts",
+  "data": "datasets and the pipelines that produce them"
  },
  "labels": {
   "stage/boundary": "at the boundary"
