@@ -188,6 +188,13 @@
   },
   {
    "date": "2026-09-02",
+   "card": "socan",
+   "name": "SOCAN",
+   "text": "[Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.",
+   "url": "https://www.olahungerford.com/content-provenance/#socan"
+  },
+  {
+   "date": "2026-09-02",
    "card": "spur-coalition",
    "name": "SPUR Coalition",
    "text": "[[content-telemetry]] v1.0 published.",
@@ -236,6 +243,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#gema"
   },
   {
+   "date": "2026-07-20",
+   "card": "socan",
+   "name": "SOCAN",
+   "text": "Named Musical AI an approved technology partner for attribution services.",
+   "url": "https://www.olahungerford.com/content-provenance/#socan"
+  },
+  {
    "date": "2026-07-14",
    "card": "x402",
    "name": "x402",
@@ -250,11 +264,25 @@
    "url": "https://www.olahungerford.com/content-provenance/#cawg"
   },
   {
+   "date": "2026-06-01",
+   "card": "stim",
+   "name": "STIM",
+   "text": "The AI rights category took effect.",
+   "url": "https://www.olahungerford.com/content-provenance/#stim"
+  },
+  {
    "date": "2026-06",
    "card": "ai-disclosures-project",
    "name": "AI Disclosures Project",
    "text": "Convening at Foo Camp.",
    "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project"
+  },
+  {
+   "date": "2026-05-31",
+   "card": "stim",
+   "name": "STIM",
+   "text": "Announced that its members had voted for a separate rights category for AI.",
+   "url": "https://www.olahungerford.com/content-provenance/#stim"
   },
   {
    "date": "2026-05-26",
@@ -320,6 +348,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#gema"
   },
   {
+   "date": "2025-10-28",
+   "card": "socan",
+   "name": "SOCAN",
+   "text": "Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI.",
+   "url": "https://www.olahungerford.com/content-provenance/#socan"
+  },
+  {
    "date": "2025-09-25",
    "card": "ddex",
    "name": "DDEX",
@@ -330,8 +365,15 @@
    "date": "2025-09-08",
    "card": "cisac",
    "name": "CISAC",
-   "text": "STIM launched a collective AI license for music as a pilot.",
+   "text": "[[stim]] launched a collective AI license for music as a pilot.",
    "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "2025-09-08",
+   "card": "stim",
+   "name": "STIM",
+   "text": "Launched its AI license as a pilot with Songfox and Sureel.",
+   "url": "https://www.olahungerford.com/content-provenance/#stim"
   },
   {
    "date": "2025-01-21",
@@ -383,6 +425,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#fairly-trained"
   },
   {
+   "date": "2024-04-04",
+   "card": "rights-and-ai",
+   "name": "Rights & AI",
+   "text": "ICMP announced the site. The release was issued the day before, and says the site had already launched.",
+   "url": "https://www.olahungerford.com/content-provenance/#rights-and-ai"
+  },
+  {
    "date": "2024-03-20",
    "card": "fairly-trained",
    "name": "Fairly Trained",
@@ -416,6 +465,13 @@
    "name": "CISAC",
    "text": "Founded.",
    "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "1923",
+   "card": "stim",
+   "name": "STIM",
+   "text": "Founded.",
+   "url": "https://www.olahungerford.com/content-provenance/#stim"
   }
  ]
 }

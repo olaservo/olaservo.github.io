@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-66 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-16. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+69 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-16. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -538,15 +538,14 @@ Linked from: [Creative Commons](#creative-commons), [IETF AI Preferences Working
 - Status: Asks policymakers for licensing, transparency and an effective opt-out from data mining exceptions (AI page read 2026-11-15)
 - Website: https://www.cisac.org
 - Tags: type/organization, layer/licensing, layer/payments, layer/governance, medium/audio, medium/video
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#cisac
 
-Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [GEMA](#gema) is a member. It lists the ISWC work identifier, IPI and CIS-Net as its standards and tools.
+Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [GEMA](#gema) is a member, and the CEO of [SOCAN](#socan) is a Vice-Chair of [its board](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors). It lists the ISWC work identifier, IPI and CIS-Net as its standards and tools.
 
 #### Topics
 
-- **Licensing AI use**: getting AI services to take licenses for the works they train on. Director General Gadi Oron [said on 2025-01-21](https://www.cisac.org/Newsroom/articles/cisac-dg-gadi-oron-opens-music-ally-connect-impact-ai), "We want to license all of these AI platforms for the inputs", and that none of the authors' societies had licensed a music AI service at that point. The Swedish society STIM [launched one](https://www.stim.se/en/news/stim-launches-the-worlds-first-ai-license-for-music) on 2025-09-08, as a pilot with the startups Songfox and Sureel, covering a limited number of works whose rights holders opted in.
-- **Attribution for payouts**: dividing AI revenue by which works influenced an output. STIM's license requires independent attribution technology. Its [FAQ](https://www.stim.se/en/faq/ai/how-does-stim-ensure-that-compensation-from-the-ai-license-reaches-the-right-music-creators-and-publishers) calls attribution "a relatively new and untested method" and says it will fall back on how works were used in training where attribution is not reliable.
+- **Licensing AI use**: getting AI services to take licenses for the works they train on. Director General Gadi Oron [said on 2025-01-21](https://www.cisac.org/Newsroom/articles/cisac-dg-gadi-oron-opens-music-ally-connect-impact-ai), "We want to license all of these AI platforms for the inputs", and that none of the authors' societies had licensed a music AI service at that point. The Swedish society [STIM](#stim) launched one as a pilot on 2025-09-08, and CISAC [carried the announcement](https://www.cisac.org/Newsroom/society-news/stim-launches-worlds-first-collective-ai-music-licence) in its society news.
 - **Opt-out from data mining exceptions**: keeping the right to refuse where a law lets AI developers mine works without a license. Its [principles for policymakers](https://www.cisac.org/AI) say exceptions "which do not provide for effective opt-out by rightsholders should be avoided".
 - **Training transparency**: finding out which works a model was trained on. The same page says "AI providers must be obliged to inform on the training of copyrighted works".
 - **Revenue at risk**: putting a number on what generative AI costs creators. The [study](https://www.cisac.org/services/reports-and-research/cisacpmp-strategy-ai-study) it commissioned from PMP Strategy estimates that 24% of music creators' revenues and 21% of audiovisual creators' revenues are at risk by 2028.
@@ -557,12 +556,12 @@ Network of authors' collecting societies, founded in 1926 and based in France. I
 
 #### History
 
-- 2025-09-08: STIM launched a collective AI license for music as a pilot.
+- 2025-09-08: [STIM](#stim) launched a collective AI license for music as a pilot.
 - 2025-01-21: Its Director General said no authors' society had yet licensed a music AI service.
 - 2023-07: Published seven principles for policymakers on AI.
 - 1926: Founded.
 
-Linked from: [GEMA](#gema)
+Linked from: [GEMA](#gema), [SOCAN](#socan), [STIM](#stim)
 
 ### Cloudflare Content Signals
 
@@ -820,6 +819,8 @@ Not-for-profit membership organisation, set up in 2006, that writes the message 
 - 2024-08-09: Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.
 - 2006: Founded.
 
+Linked from: [SOCAN](#socan), [STIM](#stim)
+
 ### Decentralized Identity Foundation
 
 - Id: dif
@@ -955,7 +956,7 @@ Non-profit that certifies generative AI companies, products and models whose tra
 - Status: Won at Munich Regional Court against OpenAI (2025-11-11, under appeal) and Suno (2026-07-31, not final)
 - Website: https://www.gema.de
 - Tags: type/organization, layer/licensing, layer/payments, medium/audio
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#gema
 
 German collecting society for composers, lyricists and music publishers, and [a member](https://www.gema.de/de/die-gema/organisation) of [CISAC](#cisac). It has sued two AI companies and won both cases at first instance. It has also published a licensing model for generative AI and sells a licensed training dataset.
@@ -972,6 +973,7 @@ German collecting society for composers, lyricists and music publishers, and [a 
 #### Related
 
 - The accounts of both rulings here come from the court's press releases. The judgments were not read.
+- Koda, the Danish society, sued Suno in November 2025. It [says](https://koda.dk/en/about-koda/news/pressure-mounts-on-ai-music-service-suno-new-lawsuit-filed) its case has been referred to the Eastern High Court. A [second post](https://koda.dk/en/about-koda/news/suno-found-to-have-unlawfully-used-copyright-protected-music) says the Munich ruling "could have major implications for similar cases, including Koda's own lawsuit against Suno" (both read 2026-11-16).
 
 #### Compare
 
@@ -992,7 +994,7 @@ German collecting society for composers, lyricists and music publishers, and [a 
 - 2024-11: Published its AI Charter.
 - 2024-09: Presented its licensing model for generative AI.
 
-Linked from: [CISAC](#cisac), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
+Linked from: [CISAC](#cisac), [SOCAN](#socan), [STIM](#stim), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
 
 ### IAB Tech Lab Content Monetization Protocols
 
@@ -1571,6 +1573,46 @@ XML vocabulary for usage and compensation terms (per-crawl, per-inference, subsc
 
 Linked from: [Content Telemetry](#content-telemetry), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [Internet Licensing Collective](#internet-licensing-collective), [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace), [OpenAttribution.org](#openattribution), [W3C ODRL](#w3c-odrl), [x402](#x402)
 
+### Rights & AI
+
+- Id: rights-and-ai
+- Also known as: RightsAndAI, rightsandai.com
+- Type: project
+- Status: Lists 16 reserving rightsholders, with its company file at version 31 (read 2026-11-16)
+- Website: https://www.rightsandai.com
+- Take part: [add a company to the declaration](https://www.rightsandai.com)
+- Tags: type/project, layer/access, layer/licensing, medium/audio
+- Updated: 2026-11-16
+- Explorer: https://www.olahungerford.com/content-provenance/#rights-and-ai
+
+Public declaration in which music publishers and collecting societies reserve their rights against AI training without a license, with a downloadable file of the companies behind it. The International Confederation of Music Publishers (ICMP) announced it in a [release](https://icmpmusic.com/wp-content/uploads/2024/04/PRESS-RELEASE-International-music-sector-and-AI-www.RightsAndAI.com-03-04-2024.pdf) for 2024-04-04.
+
+#### Topics
+
+- **Reserving rights in one place**: giving AI developers one public place to see that a music rightsholder has reserved its rights. The [declaration](https://www.rightsandai.com) says use of the works "for AI training without a valid licence breaches the copyright in the Works". It reserves rights against text and data mining and names Article 4 of the EU's 2019 copyright directive, US fair use, and the copyright acts of Japan, Singapore and Israel.
+- **A file machines can read**: letting a crawler operator check who has reserved. ICMP's release says the site functions on "a technical level" through a CSV file of "company information in machine readable form", and calls it a resource for "AI companies, online content crawlers and bots". The file has four columns: company name, registered address, company number and IPI number. Version 31 has 1,516 rows (read 2026-11-16).
+- **By company**: saying who has reserved without listing every work. The file identifies companies by name and IPI number and lists no individual works.
+- **Consent, credit and compensation**: the declaration's terms for any AI use, stated as "no use without consent, credit & compensation".
+
+#### Related
+
+- The site shows 16 rightsholders, among them Universal Music Publishing Group, Sony Music Publishing, Warner Chappell Music, Kobalt, Concord, BMG, peermusic, Deezer and the societies PRS for Music, MCPS and APRA AMCOS. It shows 16 endorsing trade bodies, among them the National Music Publishers Association and ICMP (read 2026-11-16).
+- The site itself does not name its operator. The release is ICMP's.
+- The release says the site is available in seven languages.
+- Record companies reserve the same rights in separate declarations, which IFPI [lists](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/). WIN, the network of independent music trade associations, publishes its own [notice](https://winformusic.org/ai-rights-reservation).
+
+#### Compare
+
+- [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) expresses an Article 4 reservation on the publisher's own site, per resource. Rights & AI lists companies in one file. The site does not mention TDMRep or robots.txt (read 2026-11-16).
+
+#### In use
+
+- The [declaration and company file](https://www.rightsandai.com) are live, with the file at version 31 (read 2026-11-16).
+
+#### History
+
+- 2024-04-04: ICMP announced the site. The release was issued the day before, and says the site had already launched.
+
 ### SEP-2640 Skills Extension
 
 - Id: mcp-skills-extension
@@ -1697,6 +1739,50 @@ A marketplace for modular, interoperable, rights-protected skills with monetizat
 
 Linked from: [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Disclosures Project](#ai-disclosures-project)
 
+### SOCAN
+
+- Id: socan
+- Type: organization
+- Status: Sued Suno on 2026-09-02, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-16)
+- Website: https://www.socan.com
+- Tags: type/organization, layer/licensing, layer/payments, layer/attribution, medium/audio
+- Updated: 2026-11-16
+- Explorer: https://www.olahungerford.com/content-provenance/#socan
+
+The Society of Composers, Authors and Music Publishers of Canada, a rights society that collects license fees for the public performance and reproduction of music. Its CEO is a Vice-Chair of the [CISAC](#cisac) board ([CISAC](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors), 2025-05-28). It registers works made with AI tools, has named an attribution technology partner, and is suing Suno over generated songs.
+
+#### Topics
+
+- **Registering works made with AI**: deciding which works made with AI tools a society accepts and pays on. Its [guidelines](https://www.socanmagazine.ca/socan-academy/socan-ai-registration-guidelines/) of 2025-10-28 accept an AI-Assisted Work, "created by a human using AI tools to help or enhance their work". They refuse an AI-Generated Output, "created entirely by AI with little or no human input". An accepted work is paid like any other registered work. ASCAP and BMI [announced aligned policies](https://www.socan.com/?p=14445) the same day.
+- **No disclosure at registration**: whether a member has to say that AI was used. The guidelines say "You don't need to disclose how AI was used when registering your AI-Assisted Work with SOCAN", and that the generated portions need no credit.
+- **Consent first**: whether AI use starts from permission or from an opt-out. Its [AI page](https://www.socanmagazine.ca/socan-academy/socan-ai/) says Canada has no generative AI exception to opt out of, so a user needs the copyright owner's permission. Its Musical AI release says "All AI use should occur on an opt-in basis."
+- **Attribution for payouts**: tracing a generated output back to the works that shaped it. SOCAN [named](https://www.socan.com/socan-announces-collaboration-with-musical-ai-to-advance-music-creator-attribution-remuneration-and-transparency-in-ai/) Musical AI "an approved technology partner for attribution services". The release says the technology analyses generated outputs and assesses influence separately for sound recordings and musical compositions. It names no license, rate or launch date.
+- **Output that replicates songs**: whether a service infringes when what it generates replicates existing works. SOCAN's [claim against Suno](https://www.socan.com/socan-ai/ai-lawsuit/) lists a sample of 150 publicly available outputs. It alleges Suno infringed the performing right by making its platform available in Canada and streaming those outputs. The page's FAQ says the case "focuses on clear, documented examples of outputs".
+- **Training transparency**: finding out which works a model was trained on. The AI page says "Many companies have not publicly disclosed their training data sets", and asks for transparency and record-keeping rules for AI developers.
+
+#### Related
+
+- The account of the lawsuit here comes from SOCAN's release and lawsuit page. The [statement of claim](https://www.socan.com/wp-content/uploads/2026/09/ISSUED-Statement-of-Claim-SOCAN-v-Suno-September-2-2026-2.pdf) was not read.
+- The lawsuit page says "SOCAN has neither issued a licence nor received any royalty payments from Suno."
+- In the joint release, SOCAN, ASCAP and BMI each define a partially AI-generated work as one that "combines elements of AI-generated musical content with elements of human authorship". ASCAP's and BMI's own policy pages were not read.
+
+#### Compare
+
+- [DDEX](#ddex) messages carry a declaration that a recording was made with AI. SOCAN asks for none at registration. The guidelines do not mention DDEX (read 2026-11-16).
+- [GEMA](#gema) won at first instance against Suno on 2026-07-31, in a case about works stored in the model. SOCAN's claim is about outputs. SOCAN's release and lawsuit page do not mention GEMA (read 2026-11-16).
+
+#### In use
+
+- The [AI registration guidelines](https://www.socanmagazine.ca/socan-academy/socan-ai-registration-guidelines/) are dated 2025-10-28 (read 2026-11-16).
+
+#### History
+
+- 2026-09-02: [Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.
+- 2026-07-20: Named Musical AI an approved technology partner for attribution services.
+- 2025-10-28: Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI.
+
+Linked from: [CISAC](#cisac), [STIM](#stim)
+
 ### Spawning
 
 - Id: spawning
@@ -1739,6 +1825,53 @@ Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, wi
 - 2026-09-02: [Content Telemetry](#content-telemetry) v1.0 published.
 
 Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet Licensing Collective](#internet-licensing-collective), [OpenAttribution.org](#openattribution)
+
+### STIM
+
+- Id: stim
+- Also known as: Stim
+- Type: organization
+- Status: Offers a license for AI services, launched as a pilot on 2025-09-08. AI has been a separate rights category since 2026-06-01, and members approve works one by one (read 2026-11-16)
+- Website: https://www.stim.se/en
+- Take part: [license for AI services](https://www.stim.se/en/license-for-ai-services)
+- Tags: type/organization, layer/licensing, layer/payments, layer/attribution, medium/audio
+- Updated: 2026-11-16
+- Explorer: https://www.olahungerford.com/content-provenance/#stim
+
+Swedish collecting society for songwriters and music publishers, founded in 1923. It offers AI services a license that covers training and generation and requires attribution technology. [CISAC](#cisac) carried the [launch announcement](https://www.cisac.org/Newsroom/society-news/stim-launches-worlds-first-collective-ai-music-licence) in its society news.
+
+#### Topics
+
+- **Licensing AI services**: giving an AI service one license for training a model and for the music its users generate. The [license](https://www.stim.se/en/license-for-ai-services) permits the licensee "to analyze musical structures, patterns, and metadata" to train a model. A model that is retrained or trained further needs a new license. Users may generate music and distribute it to third parties such as streaming services. Advertising, television, radio and film uses need a separate agreement. The page gives no price and names no licensee (read 2026-11-16).
+- **Attribution for payouts**: dividing AI revenue by which works influenced an output. The licensee must use an attribution provider STIM approves, which works out which recordings and works influenced the generated music and to what extent. The licensee gives STIM these analyses with identifiers such as ISWC. STIM's [FAQ](https://www.stim.se/en/faq/ai/how-does-stim-ensure-that-compensation-from-the-ai-license-reaches-the-right-music-creators-and-publishers) calls attribution "a relatively new and untested method" and says it will fall back on how works were used in training where attribution is not reliable.
+- **Consent work by work**: letting each creator decide whether a work may go into an AI license. Its members [voted](https://www.stim.se/en/news/stim-strengthens-music-creators-freedom-of-choice-and-control-in-ai-introduces-new-rights-category) for a separate rights category for AI, in effect from 2026-06-01. The post says "No works will be able to be included in AI licenses without the creator actively approving it – work by work." A member can also take the category out of STIM's administration.
+- **Recording rights**: training needs a license for the recording as well as for the musical work. STIM normally licenses the works only. This first version of the license also includes master rights for a selected catalogue, and the page says the bundle "may not apply to all future licensing agreements".
+- **Labelling the output**: keeping generated music out of the royalty pool for conventional music. The licensee must "Ensure that the output is classified as AI-generated in accordance with industry practice". The page does not say which practice.
+
+#### Related
+
+- The [launch post](https://www.stim.se/en/news/stim-launches-the-worlds-first-ai-license-for-music) describes a pilot with the startups Songfox and Sureel, covering a limited number of works whose rights holders opted in. Its glossary names Sureel and Musical AI as examples of attribution providers.
+- Warner Music Group announced on 2026-06-10 that it is acquiring Sureel, which it said will keep operating as a stand-alone platform ([TechCrunch](https://techcrunch.com/2026/06/10/warner-music-acquires-ai-attribution-startup-sureel-ai)).
+
+#### Compare
+
+- [GEMA](#gema) also publishes a licensing model for generative AI, and asks for 30% of net revenue. STIM publishes no rate. STIM's license page and launch post do not name GEMA (read 2026-11-16).
+- [SOCAN](#socan) has approved an attribution provider and has announced no license. SOCAN's release does not mention STIM, and STIM's launch post names no other society (read 2026-11-16).
+- [DDEX](#ddex) messages can declare that a recording was made with AI, which is one way to meet the labelling requirement. The license page does not name DDEX (read 2026-11-16).
+
+#### In use
+
+- The [license for AI services](https://www.stim.se/en/license-for-ai-services) is open to AI services that use music STIM represents (read 2026-11-16).
+- The [AI rights category](https://www.stim.se/en/news/stim-strengthens-music-creators-freedom-of-choice-and-control-in-ai-introduces-new-rights-category) has applied to all affiliated creators since 2026-06-01.
+
+#### History
+
+- 2026-06-01: The AI rights category took effect.
+- 2026-05-31: Announced that its members had voted for a separate rights category for AI.
+- 2025-09-08: Launched its AI license as a pilot with Songfox and Sureel.
+- 1923: Founded.
+
+Linked from: [CISAC](#cisac)
 
 ### Universal Commerce Protocol
 
@@ -1829,7 +1962,7 @@ The EU DSM Article 4 text and data mining opt-out: `tdm-reservation` and `tdm-po
 
 - The Munich court applied Article 4 in both [GEMA](#gema) rulings. Neither the court nor GEMA names TDMRep (searched 2026-11-15).
 
-Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [GEMA](#gema), [OpenAttribution.org](#openattribution), [W3C](#w3c), [W3C ODRL](#w3c-odrl)
+Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [GEMA](#gema), [OpenAttribution.org](#openattribution), [Rights & AI](#rights-and-ai), [W3C](#w3c), [W3C ODRL](#w3c-odrl)
 
 ### Wikimedia
 
