@@ -1,14 +1,16 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-> 69 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford, as of 2026-11-16.
+> 78 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford, as of 2026-11-16.
 
-One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. Each card has a name, type, status, website, tags (layer, stage, medium, type), a short summary, topic sections, a dated history where one is known, links to related cards and, where there is one, a public place to take part. A link under a card's Compare heading is a comparison made by this guide. Every other link is a connection that a primary source states.
+One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. Each card has a name, type, status, website, tags (layer, stage, medium, topic, type), a short summary, topic sections, a dated history where one is known, links to related cards and, where there is one, a public place to take part. A link under a card's Compare heading is a comparison made by this guide. Every other link is a connection that a primary source states.
 
 ## Cards
 
 - [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): one file, one section per card, with the layer and stage definitions first
 - [All cards as JSON](https://www.olahungerford.com/content-provenance/cards.json): the same cards as structured data, with the vocabularies under "vocab"
 - [Updates](https://www.olahungerford.com/content-provenance/updates.md): dated events from every card's history, newest first, also as [JSON](https://www.olahungerford.com/content-provenance/updates.json)
+- [Topic: skills](https://www.olahungerford.com/content-provenance/topics/skills.md): the cards tagged topic/skills
+- [Topic: discovery](https://www.olahungerford.com/content-provenance/topics/discovery.md): the cards tagged topic/discovery
 
 ## Optional
 

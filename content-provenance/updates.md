@@ -7,6 +7,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-11-11 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Announced that The Atlantic plans to implement its provenance technology.
 - 2026-11-08 [SEP-3094 Granular Citations](https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations): Closed without merging.
 - 2026-11-05 [Agent Skills at-rest signing threads](https://www.olahungerford.com/content-provenance/#agent-skills-signing): Discussion 651 proposed C2PA content credentials for skills.
+- 2026-11-05 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): ADR-0028 accepted, opening catalog and entry objects to unrecognized members.
 - 2026-11-05 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): [Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.
 - 2026-10-31 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).
 - 2026-10-31 [OpenTelemetry for MCP](https://www.olahungerford.com/content-provenance/#otel-mcp): Conventions merged for the TypeScript SDK, not yet released.
@@ -18,30 +19,44 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-10-22 [Agent Skills](https://www.olahungerford.com/content-provenance/#agent-skills): Joined AAIF.
 - 2026-10-08 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): BearingNode filed the `_meta` lineage key proposal as FSIG issue 16.
 - 2026-10-07 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): RFC 4484 updated.
+- 2026-10-06 [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter): TRACE funding announced.
+- 2026-10-06 [SEP-2127 Server Cards](https://www.olahungerford.com/content-provenance/#mcp-server-cards): SEP-2127 PR merged.
+- 2026-10-06 [TRACE](https://www.olahungerford.com/content-provenance/#trace): Launched at the STM conference in Frankfurt.
 - 2026-10-05 [Wikimedia](https://www.olahungerford.com/content-provenance/#wikimedia): Published its investigation of OpenAI-run agents.
 - 2026-10 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-10 [C2PA](https://www.olahungerford.com/content-provenance/#c2pa): Spec 2.5 published.
+- 2026-10 [NISO](https://www.olahungerford.com/content-provenance/#niso): [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
 - 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed along with all spec-repo discussions.
 - 2026-09-24 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): Presented to the MCP Financial Services Interest Group.
 - 2026-09-13 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): vocab-08 posted, without consensus.
 - 2026-09-13 [SEP-2640 Skills Extension](https://www.olahungerford.com/content-provenance/#mcp-skills-extension): SEP-2640 marked Final.
+- 2026-09-11 [Dataspace Protocol](https://www.olahungerford.com/content-provenance/#dataspace-protocol): Second errata to 2025-1 tagged.
 - 2026-09-04 [SEP-3094 Granular Citations](https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations): Revised.
 - 2026-09-02 [AAIF Observability and Traceability WG](https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg): Provenance initiative lead named.
 - 2026-09-02 [Content Telemetry](https://www.olahungerford.com/content-provenance/#content-telemetry): v1.0 published.
 - 2026-09-02 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): [Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.
 - 2026-09-02 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): [Content Telemetry](https://www.olahungerford.com/content-provenance/#content-telemetry) v1.0 published.
 - 2026-09 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Microsoft Research New York.
+- 2026-08-26 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): v0.91.
+- 2026-08-26 [KBART](https://www.olahungerford.com/content-provenance/#kbart): [Phase III](https://www.niso.org/publications/rp-9-2026-kbart) published.
 - 2026-08-26 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.
+- 2026-08-26 [NISO](https://www.olahungerford.com/content-provenance/#niso): KBART Phase III published.
 - 2026-08-18 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): attach-05 posted.
+- 2026-08-17 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): Interest group folded into the Authorization IG.
 - 2026-08-06 [Agent Plugins](https://www.olahungerford.com/content-provenance/#agent-plugins): 1.0.0 published.
 - 2026-07-31 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.
 - 2026-07-23 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Launched PLAI by GEMA with Klangio as first customer.
 - 2026-07-20 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Named Musical AI an approved technology partner for attribution services.
 - 2026-07-14 [x402](https://www.olahungerford.com/content-provenance/#x402): x402 Foundation (Linux Foundation) operational.
+- 2026-07-09 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Loose coupling with AI Catalog agreed.
+- 2026-07-09 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Loose coupling with ARD agreed.
 - 2026-07 [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg): Consent assertion added.
+- 2026-06-18 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): Extension announced as stable.
+- 2026-06-17 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Announced by Google.
 - 2026-06-01 [STIM](https://www.olahungerford.com/content-provenance/#stim): The AI rights category took effect.
 - 2026-06 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-05-31 [STIM](https://www.olahungerford.com/content-provenance/#stim): Announced that its members had voted for a separate rights category for AI.
+- 2026-05-28 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): v0.5.
 - 2026-05-26 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Listed by C2PA as a conformant generator product.
 - 2026-05-15 [AAIF Agentic Commerce WG](https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg): Chartered.
 - 2026-05-12 [AAIF Identity and Trust WG](https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg): Chartered.
@@ -49,12 +64,17 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-03-10 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): 1.0 opened for public comment.
 - 2026-02-03 [Microsoft Publisher Content Marketplace](https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace): Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer.
 - 2026-02 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): 1.1 released.
+- 2026-01-21 [SEP-2127 Server Cards](https://www.olahungerford.com/content-provenance/#mcp-server-cards): SEP-2127 created.
+- 2026-01 [GetFTR](https://www.olahungerford.com/content-provenance/#getftr): [MCP capability](https://www.getfulltextresearch.com/getftr-enables-ai-tools-to-check-access-rights-for-academic-content) announced for AI tools.
 - 2025-12-10 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): RSL 1.0 published.
 - 2025-11-11 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.
 - 2025-10-28 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI.
 - 2025-09-25 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support "the new industry standard for AI disclosures in music credits, developed through DDEX", and named 19 labels and distributors working on it.
 - 2025-09-08 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): [STIM](https://www.olahungerford.com/content-provenance/#stim) launched a collective AI license for music as a pilot.
+- 2025-09-08 [MCP Registry](https://www.olahungerford.com/content-provenance/#mcp-registry): Launched in preview.
 - 2025-09-08 [STIM](https://www.olahungerford.com/content-provenance/#stim): Launched its AI license as a pilot with Songfox and Sureel.
+- 2025-08-29 [Dataspace Protocol](https://www.olahungerford.com/content-provenance/#dataspace-protocol): 2025-1 released.
+- 2025-06-04 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): SEP-990 created.
 - 2025-01-21 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Its Director General said no authors' society had yet licensed a music AI service.
 - 2025-01-21 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Sued Suno.
 - 2024-11-13 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Sued OpenAI.
@@ -66,6 +86,8 @@ Dated events from the History section of each card, newest first. These are thin
 - 2024-03-20 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Announced newly certified models, including its first language and speech models.
 - 2024-01-17 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Launched with nine certified companies.
 - 2023-07 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Published seven principles for policymakers on AI.
+- 2019-06-18 [KBART](https://www.olahungerford.com/content-provenance/#kbart): KBART Automation published.
+- 2014-03-27 [KBART](https://www.olahungerford.com/content-provenance/#kbart): Phase II (NISO RP-9-2014) published.
 - 2006 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Founded.
 - 1926 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Founded.
 - 1923 [STIM](https://www.olahungerford.com/content-provenance/#stim): Founded.

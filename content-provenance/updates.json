@@ -41,6 +41,13 @@
   },
   {
    "date": "2026-11-05",
+   "card": "ai-catalog",
+   "name": "AI Catalog",
+   "text": "ADR-0028 accepted, opening catalog and entry objects to unrecognized members.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
+  },
+  {
+   "date": "2026-11-05",
    "card": "ddex",
    "name": "DDEX",
    "text": "[Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.",
@@ -117,6 +124,27 @@
    "url": "https://www.olahungerford.com/content-provenance/#openlineage"
   },
   {
+   "date": "2026-10-06",
+   "card": "counter",
+   "name": "COUNTER Metrics",
+   "text": "TRACE funding announced.",
+   "url": "https://www.olahungerford.com/content-provenance/#counter"
+  },
+  {
+   "date": "2026-10-06",
+   "card": "mcp-server-cards",
+   "name": "SEP-2127 Server Cards",
+   "text": "SEP-2127 PR merged.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-server-cards"
+  },
+  {
+   "date": "2026-10-06",
+   "card": "trace",
+   "name": "TRACE",
+   "text": "Launched at the STM conference in Frankfurt.",
+   "url": "https://www.olahungerford.com/content-provenance/#trace"
+  },
+  {
    "date": "2026-10-05",
    "card": "wikimedia",
    "name": "Wikimedia",
@@ -136,6 +164,13 @@
    "name": "C2PA",
    "text": "Spec 2.5 published.",
    "url": "https://www.olahungerford.com/content-provenance/#c2pa"
+  },
+  {
+   "date": "2026-10",
+   "card": "niso",
+   "name": "NISO",
+   "text": "[Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.",
+   "url": "https://www.olahungerford.com/content-provenance/#niso"
   },
   {
    "date": "2026-09-25",
@@ -164,6 +199,13 @@
    "name": "SEP-2640 Skills Extension",
    "text": "SEP-2640 marked Final.",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-skills-extension"
+  },
+  {
+   "date": "2026-09-11",
+   "card": "dataspace-protocol",
+   "name": "Dataspace Protocol",
+   "text": "Second errata to 2025-1 tagged.",
+   "url": "https://www.olahungerford.com/content-provenance/#dataspace-protocol"
   },
   {
    "date": "2026-09-04",
@@ -209,10 +251,31 @@
   },
   {
    "date": "2026-08-26",
+   "card": "ard",
+   "name": "Agentic Resource Discovery",
+   "text": "v0.91.",
+   "url": "https://www.olahungerford.com/content-provenance/#ard"
+  },
+  {
+   "date": "2026-08-26",
+   "card": "kbart",
+   "name": "KBART",
+   "text": "[Phase III](https://www.niso.org/publications/rp-9-2026-kbart) published.",
+   "url": "https://www.olahungerford.com/content-provenance/#kbart"
+  },
+  {
+   "date": "2026-08-26",
    "card": "mcp-security-ig",
    "name": "MCP Security Interest Group",
    "text": "Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-security-ig"
+  },
+  {
+   "date": "2026-08-26",
+   "card": "niso",
+   "name": "NISO",
+   "text": "KBART Phase III published.",
+   "url": "https://www.olahungerford.com/content-provenance/#niso"
   },
   {
    "date": "2026-08-18",
@@ -220,6 +283,13 @@
    "name": "IETF AI Preferences Working Group",
    "text": "attach-05 posted.",
    "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-08-17",
+   "card": "mcp-enterprise-managed-authorization",
+   "name": "Enterprise-Managed Authorization",
+   "text": "Interest group folded into the Authorization IG.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization"
   },
   {
    "date": "2026-08-06",
@@ -257,11 +327,39 @@
    "url": "https://www.olahungerford.com/content-provenance/#x402"
   },
   {
+   "date": "2026-07-09",
+   "card": "ard",
+   "name": "Agentic Resource Discovery",
+   "text": "Loose coupling with AI Catalog agreed.",
+   "url": "https://www.olahungerford.com/content-provenance/#ard"
+  },
+  {
+   "date": "2026-07-09",
+   "card": "ai-catalog",
+   "name": "AI Catalog",
+   "text": "Loose coupling with ARD agreed.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
+  },
+  {
    "date": "2026-07",
    "card": "cawg",
    "name": "Creator Assertions Working Group",
    "text": "Consent assertion added.",
    "url": "https://www.olahungerford.com/content-provenance/#cawg"
+  },
+  {
+   "date": "2026-06-18",
+   "card": "mcp-enterprise-managed-authorization",
+   "name": "Enterprise-Managed Authorization",
+   "text": "Extension announced as stable.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization"
+  },
+  {
+   "date": "2026-06-17",
+   "card": "ard",
+   "name": "Agentic Resource Discovery",
+   "text": "Announced by Google.",
+   "url": "https://www.olahungerford.com/content-provenance/#ard"
   },
   {
    "date": "2026-06-01",
@@ -283,6 +381,13 @@
    "name": "STIM",
    "text": "Announced that its members had voted for a separate rights category for AI.",
    "url": "https://www.olahungerford.com/content-provenance/#stim"
+  },
+  {
+   "date": "2026-05-28",
+   "card": "ard",
+   "name": "Agentic Resource Discovery",
+   "text": "v0.5.",
+   "url": "https://www.olahungerford.com/content-provenance/#ard"
   },
   {
    "date": "2026-05-26",
@@ -334,6 +439,20 @@
    "url": "https://www.olahungerford.com/content-provenance/#croissant"
   },
   {
+   "date": "2026-01-21",
+   "card": "mcp-server-cards",
+   "name": "SEP-2127 Server Cards",
+   "text": "SEP-2127 created.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-server-cards"
+  },
+  {
+   "date": "2026-01",
+   "card": "getftr",
+   "name": "GetFTR",
+   "text": "[MCP capability](https://www.getfulltextresearch.com/getftr-enables-ai-tools-to-check-access-rights-for-academic-content) announced for AI tools.",
+   "url": "https://www.olahungerford.com/content-provenance/#getftr"
+  },
+  {
    "date": "2025-12-10",
    "card": "rsl",
    "name": "Really Simple Licensing",
@@ -370,10 +489,31 @@
   },
   {
    "date": "2025-09-08",
+   "card": "mcp-registry",
+   "name": "MCP Registry",
+   "text": "Launched in preview.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-registry"
+  },
+  {
+   "date": "2025-09-08",
    "card": "stim",
    "name": "STIM",
    "text": "Launched its AI license as a pilot with Songfox and Sureel.",
    "url": "https://www.olahungerford.com/content-provenance/#stim"
+  },
+  {
+   "date": "2025-08-29",
+   "card": "dataspace-protocol",
+   "name": "Dataspace Protocol",
+   "text": "2025-1 released.",
+   "url": "https://www.olahungerford.com/content-provenance/#dataspace-protocol"
+  },
+  {
+   "date": "2025-06-04",
+   "card": "mcp-enterprise-managed-authorization",
+   "name": "Enterprise-Managed Authorization",
+   "text": "SEP-990 created.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization"
   },
   {
    "date": "2025-01-21",
@@ -451,6 +591,20 @@
    "name": "CISAC",
    "text": "Published seven principles for policymakers on AI.",
    "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "2019-06-18",
+   "card": "kbart",
+   "name": "KBART",
+   "text": "KBART Automation published.",
+   "url": "https://www.olahungerford.com/content-provenance/#kbart"
+  },
+  {
+   "date": "2014-03-27",
+   "card": "kbart",
+   "name": "KBART",
+   "text": "Phase II (NISO RP-9-2014) published.",
+   "url": "https://www.olahungerford.com/content-provenance/#kbart"
   },
   {
    "date": "2006",
