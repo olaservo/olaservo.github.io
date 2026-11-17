@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-17. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-17. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -302,27 +302,35 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing thre
 - Part of: [Agent Skills](#agent-skills)
 - Take part: [GitHub discussions](https://github.com/agentskills/agentskills/discussions)
 - Tags: type/proposal, layer/provenance, stage/at-rest, topic/skills, medium/code
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-skills-signing
 
-Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)).
+Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)), a [C2PA](#c2pa) manifest reference in a frontmatter comment with a digest of the other files in `metadata` ([#651](https://github.com/agentskills/agentskills/discussions/651)).
 
 #### Topics
 
 - **Copy sprawl**: tracking copies, which outnumber originals. One dataset has half of SKILL.md files as verbatim copies, and only 11.1% of fixes reach every copy.
 - **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.
-- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. The six earlier threads cover neither. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [C2PA](#c2pa) content credentials for skills and names the [Creator Assertions Working Group](#cawg) identity assertion for the signer.
+- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. The six earlier threads cover neither. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [C2PA](#c2pa) content credentials for skills and names the [Creator Assertions Working Group](#cawg) identity assertion for the signer. Its example repository has no identity assertion yet.
+- **Whole-folder coverage**: signing the scripts and other files, when a C2PA manifest binds to one file. Discussion 651 signs SKILL.md and puts a digest of every other file in `metadata.directory-digest`, which the signature covers. In its tests a generic C2PA validator passes a skill with an edited script, and a verifier that recomputes the digest fails it.
+- **Removed credentials**: telling a skill whose manifest line was removed from one that was never signed. The bytes are the same. The author of discussion 651 says the expectation of a signature has to come from outside the skill, through publisher pinning, trust on first use or a distribution-layer policy. On 2026-11-16 they proposed four verifier results: `verified`, `invalid`, `unreachable` and `absent`.
+
+#### Related
+
+- [Cognitive-Proof/c2pa-skill-example](https://github.com/Cognitive-Proof/c2pa-skill-example) signs and verifies a sample skill as discussion 651 describes, with public test certificates and c2pa-rs from the [Content Authenticity Initiative](#content-authenticity-initiative). It pins a commit from [c2pa-rs pull request 3029](https://github.com/contentauth/c2pa-rs/pull/3029), which was open on 2026-11-17.
+- The discussion says the example's files do not follow the published C2PA 2.5 text. They follow a change the author proposed to C2PA in a repository that is not public.
 
 #### Compare
 
 - The same problem is being worked on elsewhere: digests in [SEP-2640 Skills Extension](#mcp-skills-extension), catalog-side signing in [AI Catalog](#ai-catalog) and verification tiers in [AAIF Security and Privacy WG](#aaif-security-privacy-wg). None of them cites these threads (searched 2026-11-15).
 - [Agent Plugins](#agent-plugins) carries author and licence in its manifest and lists signing as future work. Neither refers to the other (searched 2026-11-15).
+- [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) has the same author as discussion 651 and applies C2PA to MCP results. Neither thread refers to the other (read 2026-11-17).
 
 #### History
 
-- 2026-11-05: Discussion 651 proposed C2PA content credentials for skills.
+- 2026-11-05: Discussion 651 proposed C2PA content credentials for skills, with an example repository the same day.
 
-Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Catalog](#ai-catalog), [C2PA](#c2pa), [Creator Assertions Working Group](#cawg), [SEP-2640 Skills Extension](#mcp-skills-extension), [Skills Marketplace](#skills-marketplace)
+Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI Catalog](#ai-catalog), [C2PA](#c2pa), [Content Authenticity Initiative](#content-authenticity-initiative), [Creator Assertions Working Group](#cawg), [SEP-2640 Skills Extension](#mcp-skills-extension), [Skills Marketplace](#skills-marketplace)
 
 ### Agentic AI Foundation
 
@@ -501,7 +509,7 @@ Community list of AI crawlers with generated robots.txt, nginx, Caddy, HAProxy a
 - Feed: https://c2pa.org/feed/
 - Take part: [membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)
 - Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text
-- Updated: 2026-11-15
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#c2pa
 
 Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [Content Authenticity Initiative](#content-authenticity-initiative).
@@ -510,6 +518,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 
 - **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.
 - **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method "remains under review", and partially copied text counts as having no manifest. [Encypher](#encypher) sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) relies on. The conformance text rubric has no JSON group yet.
+- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.
 - **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28). 22 of them list an audio media type, 18 watermarks and 4 fingerprints (read 2026-11-15).
 - **Signer trust**: deciding who may sign, through a trust list and a conformance program.
 
@@ -567,7 +576,7 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 
 - 2026-09-25: Discussion closed along with all spec-repo discussions.
 
-Linked from: [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [OpenTelemetry for MCP](#otel-mcp)
+Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [OpenTelemetry for MCP](#otel-mcp)
 
 ### CC Signals
 
@@ -663,7 +672,7 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [OpenAttribution
 - News: https://contentauthenticity.org/blog
 - Take part: [join CAI](https://contentauthenticity.org/join), [GitHub](https://github.com/contentauth)
 - Tags: type/project, layer/provenance
-- Updated: 2026-11-15
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#content-authenticity-initiative
 
 Adobe-led initiative that maintains the open-source reference implementations of [C2PA](#c2pa). It is a separate body, and C2PA lists it among its partner organizations.
@@ -671,9 +680,9 @@ Adobe-led initiative that maintains the open-source reference implementations of
 #### Topics
 
 - **Reference SDKs**: giving developers one implementation for signing and verifying manifests, with a Rust core and Python and JS bindings.
-- **Text handlers**: signing plain and structured text in practice. Structured-text and plain-text A.8 handlers merged in c2pa-rs behind an experimental flag (2026-09); HTML, XML and TTML handlers are open.
+- **Text handlers**: signing plain and structured text in practice. Structured-text and plain-text A.8 handlers merged in c2pa-rs behind an experimental flag (2026-09); HTML, XML and TTML handlers are open. [Pull request 3029](https://github.com/contentauth/c2pa-rs/pull/3029), opened 2026-11-05, lets the structured-text handler sign and read a manifest held at a URL. It was open on 2026-11-17, and the [Agent Skills at-rest signing threads](#agent-skills-signing) example depends on it.
 
-Linked from: [C2PA](#c2pa)
+Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA](#c2pa)
 
 ### Content Telemetry
 

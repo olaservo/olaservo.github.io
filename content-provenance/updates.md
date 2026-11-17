@@ -6,7 +6,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-11-12 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): The RSL Collective relaunched as [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective).
 - 2026-11-11 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Announced that The Atlantic plans to implement its provenance technology.
 - 2026-11-08 [SEP-3094 Granular Citations](https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations): Closed without merging.
-- 2026-11-05 [Agent Skills at-rest signing threads](https://www.olahungerford.com/content-provenance/#agent-skills-signing): Discussion 651 proposed C2PA content credentials for skills.
+- 2026-11-05 [Agent Skills at-rest signing threads](https://www.olahungerford.com/content-provenance/#agent-skills-signing): Discussion 651 proposed C2PA content credentials for skills, with an example repository the same day.
 - 2026-11-05 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): ADR-0028 accepted, opening catalog and entry objects to unrecognized members.
 - 2026-11-05 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): [Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.
 - 2026-10-31 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).
