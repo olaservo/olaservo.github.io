@@ -1,6 +1,6 @@
 {
  "title": "Content Provenance, Access and Attribution: A Field Guide",
- "description": "69 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.",
+ "description": "78 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them.",
  "author": {
   "name": "Ola Hungerford",
   "url": "https://www.olahungerford.com/about/"
@@ -35,6 +35,10 @@
    "video": "film, broadcast and other moving images",
    "code": "software, and agent skills and plugins made of instructions and scripts",
    "data": "datasets and the pipelines that produce them"
+  },
+  "topics": {
+   "skills": "agent skills and plugins, and how they are packaged, signed, listed and credited",
+   "discovery": "how an agent finds a server, an agent or a skill, through registries, catalogs and well-known files"
   },
   "labels": {
    "stage/boundary": "at the boundary"
@@ -467,6 +471,7 @@
     "agent-plugins",
     "agent-skills-signing",
     "aaif",
+    "ai-catalog",
     "mcp-skills-extension"
    ],
    "history": [
@@ -635,28 +640,99 @@
    "url": "https://www.olahungerford.com/content-provenance/#acp"
   },
   {
+   "id": "ard",
+   "name": "Agentic Resource Discovery",
+   "aliases": [
+    "ARD",
+    "ard-spec",
+    "ard.json"
+   ],
+   "type": "specification",
+   "website": "https://agenticresourcediscovery.org/spec/",
+   "part_of": "",
+   "status": "v0.91 dated 2026-08-26, marked Proposal",
+   "participate": "[GitHub issues](https://github.com/ards-project/ard-spec/issues)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/specification",
+    "layer/identity",
+    "topic/discovery"
+   ],
+   "summary": "A federated search layer for agentic resources: MCP servers, A2A agents, skills and APIs. Publishers list entries on their own domain, registries index them and answer `POST /search`, and a registry can refer a query to other registries. Google announced it on 2026-06-17 under Apache 2.0. The v0.91 authors are from Google and Hugging Face, with R.V. Guha.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Choosing tools outside the context window**: putting every tool description in the prompt does not scale. ARD moves selection into a search service that can use representative queries, publisher identity and compliance metadata.\n- **Richer descriptions**: v0.91 makes an entry a JSON-LD node. A publisher can add terms from other namespaces through `@context`, and a registry can filter on them with no change to the spec.\n- **Publisher authority**: identifiers take the form `urn:air:<publisher>:...`, and the identity in an entry's trust manifest must match the publisher domain.\n- **Usage terms**: the spec defines no term for a licence, usage terms or entitlements (v0.91 read 2026-11-16)."
+    },
+    {
+     "title": "Related",
+     "text": "- Built on the [[ai-catalog]] entry. The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0010 here, ADR-0017 there): the catalog entry stays thin, and ARD adds namespaced terms.\n- v0.91 has publishers serve entries at `/.well-known/ard.json` and says a publisher on `/.well-known/ai-catalog.json` should move."
+    },
+    {
+     "title": "In use",
+     "text": "- Hugging Face's [hf-discover](https://github.com/huggingface/hf-discover) is an ARD client and server, with search at `huggingface-hf-discover.hf.space` (responding 2026-11-16). The spec copy in that repository is v0.5."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-08-26: v0.91.\n- 2026-07-09: Loose coupling with AI Catalog agreed.\n- 2026-06-17: Announced by Google.\n- 2026-05-28: v0.5."
+    }
+   ],
+   "links": [
+    "ai-catalog"
+   ],
+   "compares": [],
+   "backlinks": [
+    "ai-catalog"
+   ],
+   "history": [
+    {
+     "date": "2026-08-26",
+     "text": "v0.91."
+    },
+    {
+     "date": "2026-07-09",
+     "text": "Loose coupling with AI Catalog agreed."
+    },
+    {
+     "date": "2026-06-17",
+     "text": "Announced by Google."
+    },
+    {
+     "date": "2026-05-28",
+     "text": "v0.5."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#ard"
+  },
+  {
    "id": "ai-catalog",
    "name": "AI Catalog",
    "aliases": [
-    "Agent-Card"
+    "Agent-Card",
+    "ai-catalog.json"
    ],
    "type": "specification",
    "website": "https://github.com/Agent-Card/ai-catalog",
    "part_of": "",
-   "status": "Identity-keyed trust manifests merged 2026-10-28",
+   "status": "ADR-0028 accepted on the 2026-11-05 TSC call, opening catalog and entry objects to unrecognized members; identity-keyed trust manifests merged 2026-10-28",
    "participate": "[GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)",
-   "updated": "2026-11-15",
+   "updated": "2026-11-16",
    "tags": [
     "type/specification",
     "layer/provenance",
     "layer/identity",
-    "stage/at-rest"
+    "stage/at-rest",
+    "topic/discovery"
    ],
-   "summary": "Catalog format for discovering agents, MCP servers and skills.",
+   "summary": "Catalog format for discovering agents, MCP servers and skills. A catalog is a JSON list of typed entries that a domain can serve at `/.well-known/ai-catalog.json`, and an entry can be another catalog. A four-seat Technical Steering Committee governs it, with two seats nominated by the [[mcp]] core maintainers and two by the A2A steering committee.",
    "sections": [
     {
      "title": "Topics",
-     "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117)."
+     "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117).\n- **Publisher and operator**: the party that runs a catalog (`host`) and the party responsible for an artifact (`publisher`) are separate roles. An operator that lists an artifact it does not publish must use an identifier under its own control, and \"MUST NOT infer publisher authorization from the artifact's URL or an unsigned `publisher` field\" (Catalog Projection).\n- **Policy links**: the Policy URLs extension carries `privacyPolicyUrl` and `termsOfServiceUrl` for an artifact. A catalog signature covers the URL strings and not the documents behind them. The spec has no field for machine-readable usage terms or for the entitlements an artifact covers (read 2026-11-16)."
+    },
+    {
+     "title": "Related",
+     "text": "- Entry types include `application/mcp-server-card+json` for [[mcp-server-cards]] and `application/agent-skills+zip` for [[agent-skills]] bundles.\n- [[ard]] builds its search entries on the catalog entry. The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0017): the catalog keeps thin entries with a small `extensions` map, and ARD takes JSON-LD `@context` for richer metadata."
     },
     {
      "title": "Compare",
@@ -664,22 +740,37 @@
     },
     {
      "title": "History",
-     "text": "- 2026-10-28: Identity-keyed trust manifests merged."
+     "text": "- 2026-11-05: ADR-0028 accepted, opening catalog and entry objects to unrecognized members.\n- 2026-10-28: Identity-keyed trust manifests merged.\n- 2026-07-09: Loose coupling with ARD agreed."
     }
    ],
    "links": [
+    "mcp",
+    "mcp-server-cards",
+    "agent-skills",
+    "ard",
     "agent-skills-signing"
    ],
    "compares": [
     "agent-skills-signing"
    ],
    "backlinks": [
-    "agent-skills-signing"
+    "agent-skills-signing",
+    "ard",
+    "kbart",
+    "mcp-server-cards"
    ],
    "history": [
     {
+     "date": "2026-11-05",
+     "text": "ADR-0028 accepted, opening catalog and entry objects to unrecognized members."
+    },
+    {
      "date": "2026-10-28",
      "text": "Identity-keyed trust manifests merged."
+    },
+    {
+     "date": "2026-07-09",
+     "text": "Loose coupling with ARD agreed."
     }
    ],
    "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
@@ -836,6 +927,7 @@
     "encypher",
     "eu-ai-act-gpai-code",
     "iptc",
+    "niso",
     "skills-marketplace"
    ],
    "history": [
@@ -946,7 +1038,8 @@
    ],
    "backlinks": [
     "creative-commons",
-    "ietf-aipref"
+    "ietf-aipref",
+    "niso"
    ],
    "history": [],
    "url": "https://www.olahungerford.com/content-provenance/#cc-signals"
@@ -1153,7 +1246,8 @@
     "otel-mcp",
     "rsl",
     "mcp-sep-3094-citations",
-    "spur-coalition"
+    "spur-coalition",
+    "trace"
    ],
    "history": [
     {
@@ -1184,21 +1278,31 @@
      "text": "- **AI usage metrics**: counting usage when the reader is an AI system. Phase two references [[content-telemetry]]."
     },
     {
+     "title": "Related",
+     "text": "- [[trace]] participants part-fund its API and JSON Schema work for the AI metrics ([Introducing TRACE](https://www.countermetrics.org/trace-project/), 2026-10-06)."
+    },
+    {
      "title": "History",
-     "text": "- 2026-10-23: [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published."
+     "text": "- 2026-10-23: [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.\n- 2026-10-06: TRACE funding announced."
     }
    ],
    "links": [
-    "content-telemetry"
+    "content-telemetry",
+    "trace"
    ],
    "compares": [],
    "backlinks": [
-    "content-telemetry"
+    "content-telemetry",
+    "trace"
    ],
    "history": [
     {
      "date": "2026-10-23",
      "text": "[Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published."
+    },
+    {
+     "date": "2026-10-06",
+     "text": "TRACE funding announced."
     }
    ],
    "url": "https://www.olahungerford.com/content-provenance/#counter"
@@ -1396,6 +1500,60 @@
    "url": "https://www.olahungerford.com/content-provenance/#data-provenance-initiative"
   },
   {
+   "id": "dataspace-protocol",
+   "name": "Dataspace Protocol",
+   "aliases": [
+    "DSP",
+    "Eclipse Dataspace Protocol"
+   ],
+   "type": "specification",
+   "website": "https://eclipse-dataspace-protocol-base.github.io/DataspaceProtocol/2025-1/",
+   "part_of": "",
+   "status": "2025-1 released 2025-08-29 and considered stable; second errata tagged 2026-09-11",
+   "participate": "[GitHub issues](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/issues)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/specification",
+    "layer/licensing",
+    "layer/access",
+    "medium/data"
+   ],
+   "summary": "Eclipse Dataspace Working Group specification for sharing data between organizations under usage control. A provider publishes a catalog, the two sides negotiate an agreement, and then the data transfers. The International Data Spaces Association governed it up to version 2024-1.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Terms agreed before access**: the spec defines \"the schemas and protocols required for entities to publish data, negotiate Agreements, and access data\". It has three parts: a catalog protocol, a contract negotiation protocol and a transfer process protocol.\n- **Reusing web vocabularies**: catalogs reuse DCAT and policies reuse ODRL ([[w3c-odrl]]), each as a restricted profile."
+    },
+    {
+     "title": "Compare",
+     "text": "- In a [comment](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) of 2026-10-28, Matt Sonnati suggests data spaces as the model for a register of [[mcp]] connectors: connectors listed in a DCAT catalogue, with entitlements and AI terms as ODRL policies. Neither MCP's docs nor the 2025-1 spec names the other (searched 2026-11-16)."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-09-11: Second errata to 2025-1 tagged.\n- 2025-08-29: 2025-1 released."
+    }
+   ],
+   "links": [
+    "w3c-odrl",
+    "mcp"
+   ],
+   "compares": [
+    "mcp"
+   ],
+   "backlinks": [],
+   "history": [
+    {
+     "date": "2026-09-11",
+     "text": "Second errata to 2025-1 tagged."
+    },
+    {
+     "date": "2025-08-29",
+     "text": "2025-1 released."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#dataspace-protocol"
+  },
+  {
    "id": "ddex",
    "name": "DDEX",
    "aliases": [
@@ -1568,6 +1726,71 @@
     }
    ],
    "url": "https://www.olahungerford.com/content-provenance/#encypher"
+  },
+  {
+   "id": "mcp-enterprise-managed-authorization",
+   "name": "Enterprise-Managed Authorization",
+   "aliases": [
+    "SEP-990",
+    "EMA",
+    "ID-JAG"
+   ],
+   "type": "specification",
+   "website": "https://modelcontextprotocol.io/extensions/auth/enterprise-managed-authorization",
+   "part_of": "mcp",
+   "status": "Stable since 2026-06-18; its interest group was folded into the Authorization IG on 2026-08-17",
+   "participate": "[ext-auth issues](https://github.com/modelcontextprotocol/ext-auth/issues), [Authorization IG charter](https://modelcontextprotocol.io/community/interest-groups/auth)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/specification",
+    "venue/mcp",
+    "layer/identity",
+    "layer/access"
+   ],
+   "summary": "An MCP authorization extension (`io.modelcontextprotocol/enterprise-managed-authorization`) that lets an organization's identity provider decide which MCP servers its users can reach. The user signs in once. The client exchanges that sign-in at the identity provider for an Identity Assertion JWT Authorization Grant (ID-JAG), and the MCP server's authorization server exchanges the grant for an access token.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **One sign-in for many servers**: standard MCP authorization has each user authorize each server. Here the identity provider evaluates policy and issues the grant, with no per-server consent step.\n- **Admin control**: the spec gives administrators \"visibility and control over which MCP Servers are able to be used within the organization.\"\n- **Three parties**: the identity provider, the MCP client and the server's authorization server all have to support it. The interest group charter says the flow \"only delivers value\" when the three interoperate end to end.\n- **Identity without entitlements**: the spec does not mention licences or entitlements (2026-07-28 revision read 2026-11-16). Which content a user's institution has licensed is left to the server."
+    },
+    {
+     "title": "Related",
+     "text": "- Written for corporate identity providers. The Authorization IG charter lists Okta, Entra ID, Ping and Keycloak.\n- The 2026-06-18 announcement names Anthropic, Microsoft and Okta as adopters."
+    },
+    {
+     "title": "Compare",
+     "text": "- [[getftr]] answers whether a user's institution is entitled to an article, which this extension leaves to the server. Its MCP service authenticates with an API key (docs read 2026-11-16). Neither names the other (searched 2026-11-16)."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-08-17: Interest group folded into the Authorization IG.\n- 2026-06-18: Extension announced as stable.\n- 2025-06-04: SEP-990 created."
+    }
+   ],
+   "links": [
+    "getftr",
+    "mcp"
+   ],
+   "compares": [
+    "getftr"
+   ],
+   "backlinks": [
+    "mcp"
+   ],
+   "history": [
+    {
+     "date": "2026-08-17",
+     "text": "Interest group folded into the Authorization IG."
+    },
+    {
+     "date": "2026-06-18",
+     "text": "Extension announced as stable."
+    },
+    {
+     "date": "2025-06-04",
+     "text": "SEP-990 created."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization"
   },
   {
    "id": "eu-ai-act-gpai-code",
@@ -1771,6 +1994,59 @@
     }
    ],
    "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "id": "getftr",
+   "name": "GetFTR",
+   "aliases": [
+    "Get Full Text Research"
+   ],
+   "type": "project",
+   "website": "https://www.getfulltextresearch.com",
+   "part_of": "",
+   "status": "MCP service available to partners and developers since January 2026",
+   "participate": "[integrator documentation](https://docs.getfulltextresearch.com/latest/integrators/mcp-service), [publishers](https://www.getfulltextresearch.com/why-publishers-should-join)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/project",
+    "layer/access",
+    "medium/text"
+   ],
+   "summary": "A service that asks the publisher whether a given user is entitled to a given article and returns a link to the right version. It is funded by participating publishers and free for discovery tools to integrate. Since January 2026 AI tools can call it over [[mcp]].",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Is this user entitled to this article**: `get_entitlements` takes up to 20 DOIs and optional organization context (an IP address or entity ID) and returns `entitled` and `accessType` for each. `get_centralised_entitlements` checks DOIs against journal-level institutional subscriptions.\n- **Sending the reader to the version of record**: the launch post describes \"smart links\" that route a user \"to the correct version of record based on their entitlements\".\n- **Which entitlements a shared connector recognises**: in a [comment](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) of 2026-10-28, GetFTR's product director said it wants to help libraries confirm this and invited AI tools and publishers to pilot it."
+    },
+    {
+     "title": "Related",
+     "text": "- Its FAQ recommends that service providers use it alongside [[kbart]] \"to increase the number of links available through real-time, DOI level checks.\""
+    },
+    {
+     "title": "In use",
+     "text": "- The [MCP service](https://docs.getfulltextresearch.com/latest/integrators/mcp-service) is at `https://mcp.prod.getft.io/mcp` and needs a GetFTR API key. Both tools are marked Available (docs read 2026-11-16)."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-01: [MCP capability](https://www.getfulltextresearch.com/getftr-enables-ai-tools-to-check-access-rights-for-academic-content) announced for AI tools."
+    }
+   ],
+   "links": [
+    "mcp",
+    "kbart"
+   ],
+   "compares": [],
+   "backlinks": [
+    "mcp-enterprise-managed-authorization",
+    "mcp"
+   ],
+   "history": [
+    {
+     "date": "2026-01",
+     "text": "[MCP capability](https://www.getfulltextresearch.com/getftr-enables-ai-tools-to-check-access-rights-for-academic-content) announced for AI tools."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#getftr"
   },
   {
    "id": "iab-comp",
@@ -2086,6 +2362,72 @@
    "url": "https://www.olahungerford.com/content-provenance/#iptc"
   },
   {
+   "id": "kbart",
+   "name": "KBART",
+   "aliases": [
+    "Knowledge Bases and Related Tools",
+    "NISO RP-9-2026",
+    "KBART Automation"
+   ],
+   "type": "specification",
+   "website": "https://www.niso.org/standards-committees/kbart",
+   "part_of": "niso",
+   "status": "Phase III (NISO RP-9-2026) published 2026-08-26",
+   "participate": "[KBART Standing Committee](https://www.niso.org/standards-committees/kbart)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/specification",
+    "layer/access",
+    "medium/text"
+   ],
+   "summary": "NISO recommended practice for sending title lists and coverage data from content providers to knowledge bases and libraries. KBART Automation (NISO RP-26-2019) adds library-specific holdings reports, exchanged by API.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **What a library has licensed**: a link resolver can send a reader to full text only if it knows the institution's holdings. A KBART file lists a provider's titles and coverage, and KBART Automation delivers the list for one institution.\n- **Keeping holdings current**: Phase III adds new content types, a file manifest and file-level guidance for KBART Automation."
+    },
+    {
+     "title": "Compare",
+     "text": "- Lisa Janicke Hinchliffe [proposes](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) the same model for MCP connectors: providers supply a machine-readable feed and libraries keep the register. Her fields include the entitlements covered, terms on AI use and training, and usage reporting. [[mcp-registry]] `server.json`, [[mcp-server-cards]] and [[ai-catalog]] have no field for entitlements (schemas read 2026-11-16), and none of the three names KBART (searched 2026-11-16)."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-08-26: [Phase III](https://www.niso.org/publications/rp-9-2026-kbart) published.\n- 2019-06-18: KBART Automation published.\n- 2014-03-27: Phase II (NISO RP-9-2014) published."
+    }
+   ],
+   "links": [
+    "mcp-registry",
+    "mcp-server-cards",
+    "ai-catalog",
+    "niso"
+   ],
+   "compares": [
+    "mcp-registry",
+    "mcp-server-cards",
+    "ai-catalog"
+   ],
+   "backlinks": [
+    "getftr",
+    "mcp-registry",
+    "niso"
+   ],
+   "history": [
+    {
+     "date": "2026-08-26",
+     "text": "[Phase III](https://www.niso.org/publications/rp-9-2026-kbart) published."
+    },
+    {
+     "date": "2019-06-18",
+     "text": "KBART Automation published."
+    },
+    {
+     "date": "2014-03-27",
+     "text": "Phase II (NISO RP-9-2014) published."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#kbart"
+  },
+  {
    "id": "knight-georgetown-institute",
    "name": "Knight-Georgetown Institute",
    "aliases": [
@@ -2251,6 +2593,69 @@
    "url": "https://www.olahungerford.com/content-provenance/#mcp-interceptors"
   },
   {
+   "id": "mcp-registry",
+   "name": "MCP Registry",
+   "aliases": [
+    "server.json",
+    "Registry WG"
+   ],
+   "type": "project",
+   "website": "https://modelcontextprotocol.io/registry/about",
+   "part_of": "mcp",
+   "status": "In preview since 2025-09-08; registry release v1.8.9 dated 2026-11-10",
+   "participate": "[registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/project",
+    "venue/mcp",
+    "layer/identity",
+    "topic/discovery"
+   ],
+   "summary": "The official metadata catalog for publicly accessible MCP servers, run by the MCP Registry Working Group. Each entry is a `server.json` with the server's name, where to find it and how to run it.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Who published this server**: names are reverse-DNS and tied to a verified GitHub account or domain, so an entry shows who controls its namespace.\n- **No ranking**: the charter puts \"Ranking/choosing between MCP server implementations on behalf of MCP clients or end-users\" out of scope. The docs call the metadata \"deliberately unopinionated\" and leave curation and ratings to downstream aggregators.\n- **A feed for aggregators**: an unauthenticated read-only REST API with an `updated_since` filter. Aggregators are expected to pull about hourly and keep their own copy. The registry gives no uptime or durability guarantee.\n- **Usage terms**: `server.json` has no field for a licence, terms of use or the entitlements a server covers (draft schema read 2026-11-16).\n- **Private servers**: not supported. The docs tell organizations to run their own registry on the same OpenAPI spec."
+    },
+    {
+     "title": "Related",
+     "text": "- Server identity and remote endpoints overlap with [[mcp-server-cards]]. The two working groups coordinate to keep the schemas aligned, and the Registry charter says the registry will expose Server Cards for published entries."
+    },
+    {
+     "title": "Compare",
+     "text": "- Lisa Janicke Hinchliffe [proposes](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) (Scholarly Kitchen, 2026-10-27) that libraries keep a register of publisher connectors on the model of [[kbart]] holdings feeds, because the registry does not rank. The MCP docs do not name KBART (searched 2026-11-16)."
+    },
+    {
+     "title": "In use",
+     "text": "- [registry.modelcontextprotocol.io](https://registry.modelcontextprotocol.io) is live and in preview (responding 2026-11-16)."
+    },
+    {
+     "title": "History",
+     "text": "- 2025-09-08: Launched in preview."
+    }
+   ],
+   "links": [
+    "mcp-server-cards",
+    "kbart",
+    "mcp"
+   ],
+   "compares": [
+    "kbart"
+   ],
+   "backlinks": [
+    "kbart",
+    "mcp",
+    "mcp-server-cards"
+   ],
+   "history": [
+    {
+     "date": "2025-09-08",
+     "text": "Launched in preview."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-registry"
+  },
+  {
    "id": "mcp-security-ig",
    "name": "MCP Security Interest Group",
    "aliases": [],
@@ -2401,7 +2806,7 @@
    "part_of": "aaif",
    "status": "Next spec release moved to 2027-03-30 (SEP-3398); WG-first rule for SEPs",
    "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)",
-   "updated": "2026-11-15",
+   "updated": "2026-11-16",
    "tags": [
     "type/specification",
     "venue/mcp",
@@ -2416,11 +2821,15 @@
     },
     {
      "title": "Related",
-     "text": "- Built-in tracing and metrics in the SDKs: [[otel-mcp]].\n- Threads: [[mcp-c2pa-in-meta]], [[mcp-sep-3094-citations]], [[mcp-skills-extension]], [[mcp-interceptors]].\n- Groups: [[mcp-fsig]], [[mcp-security-ig]]."
+     "text": "- Built-in tracing and metrics in the SDKs: [[otel-mcp]].\n- Threads: [[mcp-c2pa-in-meta]], [[mcp-sep-3094-citations]], [[mcp-skills-extension]], [[mcp-interceptors]].\n- Groups: [[mcp-fsig]], [[mcp-security-ig]].\n- Discovery and authorization: [[mcp-registry]], [[mcp-server-cards]], [[mcp-enterprise-managed-authorization]]."
     },
     {
      "title": "Compare",
      "text": "- [[ietf-aipref]] defines usage preferences for the web. MCP has no equivalent field, and no MCP material names AIPREF (searched 2026-11-15)."
+    },
+    {
+     "title": "In use",
+     "text": "- Silverchair's [Research Bridge](https://www.silverchair.com/news/silverchair-launches-multi-publisher-mcp-pilot/) is a shared MCP channel for seven scholarly publishers, in a six-month pilot announced 2026-10-05.\n- [[getftr]] runs an MCP service that tells an AI tool whether a user is entitled to an article (docs read 2026-11-16)."
     }
    ],
    "links": [
@@ -2432,7 +2841,11 @@
     "mcp-interceptors",
     "mcp-fsig",
     "mcp-security-ig",
+    "mcp-registry",
+    "mcp-server-cards",
+    "mcp-enterprise-managed-authorization",
     "ietf-aipref",
+    "getftr",
     "aaif"
    ],
    "compares": [
@@ -2440,16 +2853,79 @@
    ],
    "backlinks": [
     "aaif",
+    "ai-catalog",
     "mcp-c2pa-in-meta",
+    "dataspace-protocol",
+    "mcp-enterprise-managed-authorization",
+    "getftr",
     "mcp-fsig",
     "mcp-interceptors",
+    "mcp-registry",
     "mcp-security-ig",
     "otel-mcp",
+    "mcp-server-cards",
     "mcp-skills-extension",
     "mcp-sep-3094-citations"
    ],
    "history": [],
    "url": "https://www.olahungerford.com/content-provenance/#mcp"
+  },
+  {
+   "id": "niso",
+   "name": "NISO",
+   "aliases": [
+    "National Information Standards Organization"
+   ],
+   "type": "organization",
+   "website": "https://www.niso.org",
+   "part_of": "",
+   "status": "Twelve-month provenance and attribution pilot announced October 2026; KBART Phase III published 2026-08-26",
+   "participate": "[NISO standards committees](https://www.niso.org/standards-committees)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/organization",
+    "layer/provenance",
+    "layer/attribution",
+    "layer/governance",
+    "medium/text"
+   ],
+   "summary": "US standards body for libraries, publishers and the vendors between them. Publishes [[kbart]] and is a partner in [[trace]].",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Provenance metadata for AI retrieval**: a pilot to \"develop and test a minimum metadata model that accurately tracks provenance and attribution\" when AI systems retrieve scholarly content. It convenes content creators, publishers, repositories, AI tool developers and end-users. NISO's page gives no way to join yet (read 2026-11-16).\n- **A venue for library standards on AI**: Lisa Janicke Hinchliffe [asks](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) for a NISO-style community process to define what a register of publisher MCP connectors should record."
+    },
+    {
+     "title": "Related",
+     "text": "- The pilot's [launch article](https://scholarlykitchen.sspnet.org/2026/10/07/trace-project-launches-to-advance-ai-interoperability/), by NISO's executive director, names [[c2pa]] content credentials and W3C PROV among existing standards.\n- The same article says NISO is beginning conversations with Creative Commons on how a provenance metadata package could fit into [[cc-signals]]."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-10: [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.\n- 2026-08-26: KBART Phase III published."
+    }
+   ],
+   "links": [
+    "kbart",
+    "trace",
+    "c2pa",
+    "cc-signals"
+   ],
+   "compares": [],
+   "backlinks": [
+    "kbart",
+    "trace"
+   ],
+   "history": [
+    {
+     "date": "2026-10",
+     "text": "[Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced."
+    },
+    {
+     "date": "2026-08-26",
+     "text": "KBART Phase III published."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#niso"
   },
   {
    "id": "open-future",
@@ -2676,7 +3152,7 @@
     },
     {
      "title": "Related",
-     "text": "- The conventions are an OpenTelemetry document, in its `semantic-conventions-genai` repository. [[mcp]] reserves the three `_meta` trace keys in the [2026-07-28 spec](https://modelcontextprotocol.io/specification/2026-07-28/basic/index#_meta), and its SDKs emit the spans.\n- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging in March 2026."
+     "text": "- The conventions are an OpenTelemetry document, in its `semantic-conventions-genai` repository. [[mcp]] reserves the three `_meta` trace keys in the [2026-07-28 spec](https://modelcontextprotocol.io/specification/2026-07-28/basic/index#_meta), and its SDKs emit the spans.\n- [SEP-2028](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2028), open, would forward `_meta` entries to HTTP headers for distributed tracing. [SEP-2448](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2448), server execution telemetry, closed without merging on 2026-09-22."
     },
     {
      "title": "Compare",
@@ -2728,7 +3204,8 @@
    "updated": "2026-11-03",
    "tags": [
     "type/project",
-    "layer/identity"
+    "layer/identity",
+    "topic/discovery"
    ],
    "summary": "MIT-originated agent registry and trust-manifest work, discussed in [[aaif-security-privacy-wg]].",
    "sections": [
@@ -2871,6 +3348,65 @@
     }
    ],
    "url": "https://www.olahungerford.com/content-provenance/#rights-and-ai"
+  },
+  {
+   "id": "mcp-server-cards",
+   "name": "SEP-2127 Server Cards",
+   "aliases": [
+    "SEP-2127",
+    "MCP Server Card",
+    "ext-server-card"
+   ],
+   "type": "specification",
+   "website": "https://github.com/modelcontextprotocol/ext-server-card",
+   "part_of": "mcp",
+   "status": "SEP-2127 is Final and its PR merged 2026-10-06; the extension repository README still says Experimental",
+   "participate": "[ext-server-card issues](https://github.com/modelcontextprotocol/ext-server-card/issues), [Server Card WG charter](https://modelcontextprotocol.io/community/working-groups/server-card)",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/specification",
+    "venue/mcp",
+    "layer/identity",
+    "topic/discovery"
+   ],
+   "summary": "A static JSON document that describes a remote MCP server before a client connects: its name, version, transport endpoints and supported protocol versions. The extension identifier is `io.modelcontextprotocol/server-card`. A domain advertises its cards through an [[ai-catalog]] entry of type `application/mcp-server-card+json`.",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Finding a server from a domain**: a client had no standard way to learn which MCP servers a domain offers. The domain publishes an AI Catalog at `/.well-known/ai-catalog.json` that links to or embeds its Server Cards.\n- **Servers hosted by someone else**: a catalog may list cards served from another domain, such as a SaaS host that runs a server on the organization's behalf.\n- **No tools, no terms**: the card leaves out tools, resources, prompts and capabilities, which vary by user and session. It has no field for a licence, usage terms or entitlements (`schema.ts` read 2026-11-16)."
+    },
+    {
+     "title": "Related",
+     "text": "- [[mcp-registry]] `server.json` is a separate schema owned by the Registry WG. It also covers locally installed packages, which a Server Card does not.\n- The Authorization IG charter places \"Server identity, provenance, and trust signalling\" with the Server Card and Registry efforts."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-10-06: SEP-2127 PR merged.\n- 2026-01-21: SEP-2127 created."
+    }
+   ],
+   "links": [
+    "ai-catalog",
+    "mcp-registry",
+    "mcp"
+   ],
+   "compares": [],
+   "backlinks": [
+    "ai-catalog",
+    "kbart",
+    "mcp-registry",
+    "mcp"
+   ],
+   "history": [
+    {
+     "date": "2026-10-06",
+     "text": "SEP-2127 PR merged."
+    },
+    {
+     "date": "2026-01-21",
+     "text": "SEP-2127 created."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-server-cards"
   },
   {
    "id": "mcp-skills-extension",
@@ -3062,7 +3598,7 @@
    "part_of": "ai-disclosures-project",
    "status": "Work in progress with O'Reilly Media and Miso.ai; initial testing with O'Reilly Media authors",
    "participate": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
-   "updated": "2026-11-15",
+   "updated": "2026-11-16",
    "tags": [
     "type/project",
     "layer/licensing",
@@ -3076,6 +3612,10 @@
     {
      "title": "Topics",
      "text": "- **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.\n- **Multi-source skills**: crediting every source behind a skill.\n- **Missing metadata**: no skill registry frontmatter carries author, license or source."
+    },
+    {
+     "title": "Related",
+     "text": "- The author of Skill Cards and SkillProof also publishes a [Book-to-skill pipeline](https://github.com/SrulyRosenblat/Book-to-skill-pipieline). Its benchmark of a book-derived FastAPI skill reports 13 pairwise wins with the skill and 7 without over 20 tasks, each run once. Public tests passed on 18 of 20 tasks with the skill and 20 of 20 without."
     },
     {
      "title": "Compare",
@@ -3324,6 +3864,58 @@
    "url": "https://www.olahungerford.com/content-provenance/#stim"
   },
   {
+   "id": "trace",
+   "name": "TRACE",
+   "aliases": [
+    "Trusted Retrieval and Attribution for Content Ecosystems"
+   ],
+   "type": "project",
+   "website": "https://www.countermetrics.org/trace-project/",
+   "part_of": "",
+   "status": "Launched 2026-10-06 with funding for three projects",
+   "participate": "",
+   "updated": "2026-11-16",
+   "tags": [
+    "type/project",
+    "layer/provenance",
+    "layer/attribution",
+    "layer/access",
+    "medium/text"
+   ],
+   "summary": "An initiative of scholarly publishers and standards bodies on how AI systems retrieve, attribute and report their use of scholarly content. It was announced at the STM conference in Frankfurt on 2026-10-06 and brings together STM, [[niso]], [[counter]] and Ithaka S+R. It funds three projects and has no site of its own (searched 2026-11-16).",
+   "sections": [
+    {
+     "title": "Topics",
+     "text": "- **Counting AI use**: TRACE participants part-fund the [[counter]] API and JSON Schema work for its AI metrics. COUNTER names nine publishers as contributors, including Elsevier, Springer Nature and Wiley.\n- **Provenance at inference time**: [[niso]] runs a twelve-month pilot on a minimum metadata model for provenance and attribution.\n- **How agents reach licensed content**: [The Endpoint Question](https://stm-assoc.org/stm-and-ithaka-sr-launch-research-project-on-the-interface-between-scholarly-content-and-ai/), a three-month Ithaka S+R study announced with STM. It looks at how AI agents discover scholarly content, authenticate through a user's entitlements, receive provenance-bearing information and create a credible record of use. Its scope includes \"MCP-style access protocols\". Findings are to be published openly."
+    },
+    {
+     "title": "Related",
+     "text": "- The [launch article](https://scholarlykitchen.sspnet.org/2026/10/07/trace-project-launches-to-advance-ai-interoperability/) says COUNTER will map [[content-telemetry]] citation and presentation events to its AI metrics."
+    },
+    {
+     "title": "History",
+     "text": "- 2026-10-06: Launched at the STM conference in Frankfurt."
+    }
+   ],
+   "links": [
+    "niso",
+    "counter",
+    "content-telemetry"
+   ],
+   "compares": [],
+   "backlinks": [
+    "counter",
+    "niso"
+   ],
+   "history": [
+    {
+     "date": "2026-10-06",
+     "text": "Launched at the STM conference in Frankfurt."
+    }
+   ],
+   "url": "https://www.olahungerford.com/content-provenance/#trace"
+  },
+  {
    "id": "ucp",
    "name": "Universal Commerce Protocol",
    "aliases": [
@@ -3428,6 +4020,7 @@
    ],
    "compares": [],
    "backlinks": [
+    "dataspace-protocol",
     "encypher",
     "iptc",
     "w3c",
