@@ -16,18 +16,21 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-10-28 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Identity-keyed trust manifests merged.
 - 2026-10-27 [MCP Interceptors WG and SEP-2624](https://www.olahungerford.com/content-provenance/#mcp-interceptors): Chain concept removed from the SEP.
 - 2026-10-23 [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter): [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.
+- 2026-10-23 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [phase two](https://www.countermetrics.org/ai-phase-two/) announcement says "We've also mapped Google Scholar's new MERU tool to our metrics."
 - 2026-10-22 [Agent Skills](https://www.olahungerford.com/content-provenance/#agent-skills): Joined AAIF.
 - 2026-10-08 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): BearingNode filed the `_meta` lineage key proposal as FSIG issue 16.
 - 2026-10-07 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): RFC 4484 updated.
 - 2026-10-06 [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter): TRACE funding announced.
 - 2026-10-06 [SEP-2127 Server Cards](https://www.olahungerford.com/content-provenance/#mcp-server-cards): SEP-2127 PR merged.
 - 2026-10-06 [TRACE](https://www.olahungerford.com/content-provenance/#trace): Launched at the STM conference in Frankfurt.
+- 2026-10-05 [NISO](https://www.olahungerford.com/content-provenance/#niso): Journal Article Versions RP-8-2026 published.
 - 2026-10-05 [Wikimedia](https://www.olahungerford.com/content-provenance/#wikimedia): Published its investigation of OpenAI-run agents.
 - 2026-10 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-10 [C2PA](https://www.olahungerford.com/content-provenance/#c2pa): Spec 2.5 published.
 - 2026-10 [NISO](https://www.olahungerford.com/content-provenance/#niso): [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
 - 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed along with all spec-repo discussions.
 - 2026-09-24 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): Presented to the MCP Financial Services Interest Group.
+- 2026-09-18 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [update](https://www.countermetrics.org/ai-update-sept26/) on phase two calls MERU "a form of syndicated usage" and says it has mapped how MERU messages should be reported.
 - 2026-09-13 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): vocab-08 posted, without consensus.
 - 2026-09-13 [SEP-2640 Skills Extension](https://www.olahungerford.com/content-provenance/#mcp-skills-extension): SEP-2640 marked Final.
 - 2026-09-11 [Dataspace Protocol](https://www.olahungerford.com/content-provenance/#dataspace-protocol): Second errata to 2025-1 tagged.

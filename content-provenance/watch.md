@@ -1,0 +1,139 @@
+# Watch list
+
+Where each effort in the guide posts its blog or announcements, with a feed where it has one. For a specification that lives in a repository, this can be its releases page. A card with no entry here had no news page of its own when checked. The same list as JSON is in watch.json.
+
+## Cards
+
+- [Agent Payments Protocol](https://www.olahungerford.com/content-provenance/#ap2)
+  - News: https://github.com/google-agentic-commerce/AP2/releases
+  - Feed: https://github.com/google-agentic-commerce/AP2/releases.atom
+- [Agentic AI Foundation](https://www.olahungerford.com/content-provenance/#aaif)
+  - News: https://aaif.io/news, https://aaif.io/blog
+- [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project)
+  - News: https://ai-disclosures.org/blog
+  - Feed: https://asimovaddendum.substack.com/feed
+- [ai.robots.txt](https://www.olahungerford.com/content-provenance/#ai-robots-txt)
+  - News: https://github.com/ai-robots-txt/ai.robots.txt/releases
+  - Feed: https://github.com/ai-robots-txt/ai.robots.txt/releases.atom
+- [C2PA](https://www.olahungerford.com/content-provenance/#c2pa)
+  - News: https://c2pa.org/news/, https://c2pa.org/blog/
+  - Feed: https://c2pa.org/feed/
+- [CISAC](https://www.olahungerford.com/content-provenance/#cisac)
+  - News: https://www.cisac.org/newsroom
+- [Content Authenticity Initiative](https://www.olahungerford.com/content-provenance/#content-authenticity-initiative)
+  - News: https://contentauthenticity.org/blog
+- [Content Telemetry](https://www.olahungerford.com/content-provenance/#content-telemetry)
+  - News: https://github.com/SPUR-Coalition/telemetry/releases
+  - Feed: https://github.com/SPUR-Coalition/telemetry/releases.atom
+- [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter)
+  - News: https://www.countermetrics.org/news/
+- [Creative Commons](https://www.olahungerford.com/content-provenance/#creative-commons)
+  - News: https://creativecommons.org/blog/
+  - Feed: https://creativecommons.org/feed/
+- [Croissant](https://www.olahungerford.com/content-provenance/#croissant)
+  - News: https://mlcommons.org/tag/croissant/
+  - Feed: https://mlcommons.org/tag/croissant/feed/
+- [Dataspace Protocol](https://www.olahungerford.com/content-provenance/#dataspace-protocol)
+  - News: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases
+  - Feed: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases.atom
+- [DDEX](https://www.olahungerford.com/content-provenance/#ddex)
+  - News: https://ddex.net/press/
+  - Feed: https://ddex.net/feed/
+- [Decentralized Identity Foundation](https://www.olahungerford.com/content-provenance/#dif)
+  - News: https://blog.identity.foundation/
+  - Feed: https://blog.identity.foundation/rss/
+- [Encypher](https://www.olahungerford.com/content-provenance/#encypher)
+  - News: https://encypher.com/blog
+  - Feed: https://encypher.com/feed.xml
+- [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained)
+  - News: https://www.fairlytrained.org/blog
+  - Feed: https://www.fairlytrained.org/blog?format=rss
+- [GEMA](https://www.olahungerford.com/content-provenance/#gema)
+  - News: https://www.gema.de/en/news
+- [GetFTR](https://www.olahungerford.com/content-provenance/#getftr)
+  - News: https://www.getfulltextresearch.com/blog
+  - Feed: https://www.getfulltextresearch.com/feed
+- [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp)
+  - News: https://github.com/IABTechLab/CoMP/releases
+  - Feed: https://github.com/IABTechLab/CoMP/releases.atom
+- [IETF](https://www.olahungerford.com/content-provenance/#ietf)
+  - News: https://www.ietf.org/blog/
+  - Feed: https://www.ietf.org/blog/feed/
+- [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref)
+  - News: https://datatracker.ietf.org/wg/aipref/history/
+  - Feed: https://datatracker.ietf.org/feed/group-changes/aipref/
+- [IETF Web Bot Auth Working Group](https://www.olahungerford.com/content-provenance/#ietf-web-bot-auth)
+  - News: https://datatracker.ietf.org/wg/webbotauth/history/
+  - Feed: https://datatracker.ietf.org/feed/group-changes/webbotauth/
+- [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective)
+  - News: https://internetcollective.org/press
+- [IPTC](https://www.olahungerford.com/content-provenance/#iptc)
+  - News: https://iptc.org/news/
+  - Feed: https://iptc.org/feed/
+- [Knight-Georgetown Institute](https://www.olahungerford.com/content-provenance/#knight-georgetown-institute)
+  - News: https://kgi.georgetown.edu/news/
+- [Microsoft training and grounding preferences](https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference)
+  - News: https://blogs.bing.com/search/
+  - Feed: https://blogs.bing.com/search/feed/
+- [Model Context Protocol](https://www.olahungerford.com/content-provenance/#mcp)
+  - News: https://blog.modelcontextprotocol.io/
+  - Feed: https://blog.modelcontextprotocol.io/index.xml
+- [NISO](https://www.olahungerford.com/content-provenance/#niso)
+  - News: https://www.niso.org/press-releases
+- [Open Future](https://www.olahungerford.com/content-provenance/#open-future)
+  - News: https://openfuture.eu/blog/
+  - Feed: https://openfuture.eu/feed/
+- [Open Knowledge Foundation](https://www.olahungerford.com/content-provenance/#okfn)
+  - News: https://blog.okfn.org/
+  - Feed: https://blog.okfn.org/feed/
+- [OpenAttribution.org](https://www.olahungerford.com/content-provenance/#openattribution)
+  - News: https://openattribution.org/blog
+  - Feed: https://openattribution.org/feed.xml
+- [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage)
+  - News: https://openlineage.io/blog/
+  - Feed: https://openlineage.io/blog/feed.json
+- [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl)
+  - News: https://rslstandard.org/press
+- [SOCAN](https://www.olahungerford.com/content-provenance/#socan)
+  - News: https://www.socan.com/media-centre/
+- [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition)
+  - News: https://www.spurcoalition.org/updates
+  - Feed: https://www.spurcoalition.org/updates?format=rss
+- [STIM](https://www.olahungerford.com/content-provenance/#stim)
+  - News: https://www.stim.se/en/news
+- [Universal Commerce Protocol](https://www.olahungerford.com/content-provenance/#ucp)
+  - News: https://ucp.dev/documentation/announcements/
+  - Feed: https://github.com/Universal-Commerce-Protocol/ucp/releases.atom
+- [W3C](https://www.olahungerford.com/content-provenance/#w3c)
+  - News: https://www.w3.org/news/, https://www.w3.org/blog/
+  - Feed: https://www.w3.org/news/feed/, https://www.w3.org/blog/feed/
+- [W3C ODRL](https://www.olahungerford.com/content-provenance/#w3c-odrl)
+  - Feed: https://www.w3.org/community/odrl/feed/
+- [W3C TDM Reservation Protocol Community Group](https://www.olahungerford.com/content-provenance/#w3c-tdmrep)
+  - Feed: https://www.w3.org/community/tdmrep/feed/
+- [Wikimedia](https://www.olahungerford.com/content-provenance/#wikimedia)
+  - News: https://wikimediafoundation.org/news/
+  - Feed: https://wikimediafoundation.org/news/feed/
+- [x402](https://www.olahungerford.com/content-provenance/#x402)
+  - News: https://x402.org/announcements/, https://x402.org/blog/
+  - Feed: https://x402.org/feed/
+
+## Other sources
+
+Sources that have no card and are worth following.
+
+- The Scholarly Kitchen: The Society for Scholarly Publishing's blog on scholarly publishing
+  - News: https://scholarlykitchen.sspnet.org/
+  - Feed: https://scholarlykitchen.sspnet.org/feed/
+- MLCommons: Publishes Croissant. The feed covers all of its work, including the MLPerf benchmarks
+  - News: https://mlcommons.org/insights/
+  - Feed: https://mlcommons.org/feed/
+- IAB Tech Lab: Publishes CoMP. The feed covers all of its advertising standards
+  - News: https://iabtechlab.com/iab-tech-lab-news/
+  - Feed: https://iabtechlab.com/feed/
+- OpenTelemetry Blog: The project behind the GenAI and MCP semantic conventions
+  - News: https://opentelemetry.io/blog/
+  - Feed: https://opentelemetry.io/blog/index.xml
+- Bing Webmaster Blog: Bing's blog for site owners, including how sites appear in its AI answers
+  - News: https://blogs.bing.com/webmaster/
+  - Feed: https://blogs.bing.com/webmaster/feed/

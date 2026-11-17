@@ -1,0 +1,551 @@
+{
+ "title": "Content Provenance, Access and Attribution: A Field Guide: watch list",
+ "description": "Where each effort in the guide posts its blog or announcements, with a feed where it has one, and sources that have no card. A source with a card has the card's id under card.",
+ "as_of": "2026-11-17",
+ "cards": "https://www.olahungerford.com/content-provenance/cards.json",
+ "sources": [
+  {
+   "id": "ap2",
+   "name": "Agent Payments Protocol",
+   "card": "ap2",
+   "url": "https://www.olahungerford.com/content-provenance/#ap2",
+   "news": [
+    "https://github.com/google-agentic-commerce/AP2/releases"
+   ],
+   "feed": [
+    "https://github.com/google-agentic-commerce/AP2/releases.atom"
+   ]
+  },
+  {
+   "id": "aaif",
+   "name": "Agentic AI Foundation",
+   "card": "aaif",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif",
+   "news": [
+    "https://aaif.io/news",
+    "https://aaif.io/blog"
+   ],
+   "feed": []
+  },
+  {
+   "id": "ai-disclosures-project",
+   "name": "AI Disclosures Project",
+   "card": "ai-disclosures-project",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-disclosures-project",
+   "news": [
+    "https://ai-disclosures.org/blog"
+   ],
+   "feed": [
+    "https://asimovaddendum.substack.com/feed"
+   ]
+  },
+  {
+   "id": "ai-robots-txt",
+   "name": "ai.robots.txt",
+   "card": "ai-robots-txt",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-robots-txt",
+   "news": [
+    "https://github.com/ai-robots-txt/ai.robots.txt/releases"
+   ],
+   "feed": [
+    "https://github.com/ai-robots-txt/ai.robots.txt/releases.atom"
+   ]
+  },
+  {
+   "id": "c2pa",
+   "name": "C2PA",
+   "card": "c2pa",
+   "url": "https://www.olahungerford.com/content-provenance/#c2pa",
+   "news": [
+    "https://c2pa.org/news/",
+    "https://c2pa.org/blog/"
+   ],
+   "feed": [
+    "https://c2pa.org/feed/"
+   ]
+  },
+  {
+   "id": "cisac",
+   "name": "CISAC",
+   "card": "cisac",
+   "url": "https://www.olahungerford.com/content-provenance/#cisac",
+   "news": [
+    "https://www.cisac.org/newsroom"
+   ],
+   "feed": []
+  },
+  {
+   "id": "content-authenticity-initiative",
+   "name": "Content Authenticity Initiative",
+   "card": "content-authenticity-initiative",
+   "url": "https://www.olahungerford.com/content-provenance/#content-authenticity-initiative",
+   "news": [
+    "https://contentauthenticity.org/blog"
+   ],
+   "feed": []
+  },
+  {
+   "id": "content-telemetry",
+   "name": "Content Telemetry",
+   "card": "content-telemetry",
+   "url": "https://www.olahungerford.com/content-provenance/#content-telemetry",
+   "news": [
+    "https://github.com/SPUR-Coalition/telemetry/releases"
+   ],
+   "feed": [
+    "https://github.com/SPUR-Coalition/telemetry/releases.atom"
+   ]
+  },
+  {
+   "id": "counter",
+   "name": "COUNTER Metrics",
+   "card": "counter",
+   "url": "https://www.olahungerford.com/content-provenance/#counter",
+   "news": [
+    "https://www.countermetrics.org/news/"
+   ],
+   "feed": []
+  },
+  {
+   "id": "creative-commons",
+   "name": "Creative Commons",
+   "card": "creative-commons",
+   "url": "https://www.olahungerford.com/content-provenance/#creative-commons",
+   "news": [
+    "https://creativecommons.org/blog/"
+   ],
+   "feed": [
+    "https://creativecommons.org/feed/"
+   ]
+  },
+  {
+   "id": "croissant",
+   "name": "Croissant",
+   "card": "croissant",
+   "url": "https://www.olahungerford.com/content-provenance/#croissant",
+   "news": [
+    "https://mlcommons.org/tag/croissant/"
+   ],
+   "feed": [
+    "https://mlcommons.org/tag/croissant/feed/"
+   ]
+  },
+  {
+   "id": "dataspace-protocol",
+   "name": "Dataspace Protocol",
+   "card": "dataspace-protocol",
+   "url": "https://www.olahungerford.com/content-provenance/#dataspace-protocol",
+   "news": [
+    "https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases"
+   ],
+   "feed": [
+    "https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases.atom"
+   ]
+  },
+  {
+   "id": "ddex",
+   "name": "DDEX",
+   "card": "ddex",
+   "url": "https://www.olahungerford.com/content-provenance/#ddex",
+   "news": [
+    "https://ddex.net/press/"
+   ],
+   "feed": [
+    "https://ddex.net/feed/"
+   ]
+  },
+  {
+   "id": "dif",
+   "name": "Decentralized Identity Foundation",
+   "card": "dif",
+   "url": "https://www.olahungerford.com/content-provenance/#dif",
+   "news": [
+    "https://blog.identity.foundation/"
+   ],
+   "feed": [
+    "https://blog.identity.foundation/rss/"
+   ]
+  },
+  {
+   "id": "encypher",
+   "name": "Encypher",
+   "card": "encypher",
+   "url": "https://www.olahungerford.com/content-provenance/#encypher",
+   "news": [
+    "https://encypher.com/blog"
+   ],
+   "feed": [
+    "https://encypher.com/feed.xml"
+   ]
+  },
+  {
+   "id": "fairly-trained",
+   "name": "Fairly Trained",
+   "card": "fairly-trained",
+   "url": "https://www.olahungerford.com/content-provenance/#fairly-trained",
+   "news": [
+    "https://www.fairlytrained.org/blog"
+   ],
+   "feed": [
+    "https://www.fairlytrained.org/blog?format=rss"
+   ]
+  },
+  {
+   "id": "gema",
+   "name": "GEMA",
+   "card": "gema",
+   "url": "https://www.olahungerford.com/content-provenance/#gema",
+   "news": [
+    "https://www.gema.de/en/news"
+   ],
+   "feed": []
+  },
+  {
+   "id": "getftr",
+   "name": "GetFTR",
+   "card": "getftr",
+   "url": "https://www.olahungerford.com/content-provenance/#getftr",
+   "news": [
+    "https://www.getfulltextresearch.com/blog"
+   ],
+   "feed": [
+    "https://www.getfulltextresearch.com/feed"
+   ]
+  },
+  {
+   "id": "iab-comp",
+   "name": "IAB Tech Lab Content Monetization Protocols",
+   "card": "iab-comp",
+   "url": "https://www.olahungerford.com/content-provenance/#iab-comp",
+   "news": [
+    "https://github.com/IABTechLab/CoMP/releases"
+   ],
+   "feed": [
+    "https://github.com/IABTechLab/CoMP/releases.atom"
+   ]
+  },
+  {
+   "id": "ietf",
+   "name": "IETF",
+   "card": "ietf",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf",
+   "news": [
+    "https://www.ietf.org/blog/"
+   ],
+   "feed": [
+    "https://www.ietf.org/blog/feed/"
+   ]
+  },
+  {
+   "id": "ietf-aipref",
+   "name": "IETF AI Preferences Working Group",
+   "card": "ietf-aipref",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref",
+   "news": [
+    "https://datatracker.ietf.org/wg/aipref/history/"
+   ],
+   "feed": [
+    "https://datatracker.ietf.org/feed/group-changes/aipref/"
+   ]
+  },
+  {
+   "id": "ietf-web-bot-auth",
+   "name": "IETF Web Bot Auth Working Group",
+   "card": "ietf-web-bot-auth",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf-web-bot-auth",
+   "news": [
+    "https://datatracker.ietf.org/wg/webbotauth/history/"
+   ],
+   "feed": [
+    "https://datatracker.ietf.org/feed/group-changes/webbotauth/"
+   ]
+  },
+  {
+   "id": "internet-licensing-collective",
+   "name": "Internet Licensing Collective",
+   "card": "internet-licensing-collective",
+   "url": "https://www.olahungerford.com/content-provenance/#internet-licensing-collective",
+   "news": [
+    "https://internetcollective.org/press"
+   ],
+   "feed": []
+  },
+  {
+   "id": "iptc",
+   "name": "IPTC",
+   "card": "iptc",
+   "url": "https://www.olahungerford.com/content-provenance/#iptc",
+   "news": [
+    "https://iptc.org/news/"
+   ],
+   "feed": [
+    "https://iptc.org/feed/"
+   ]
+  },
+  {
+   "id": "knight-georgetown-institute",
+   "name": "Knight-Georgetown Institute",
+   "card": "knight-georgetown-institute",
+   "url": "https://www.olahungerford.com/content-provenance/#knight-georgetown-institute",
+   "news": [
+    "https://kgi.georgetown.edu/news/"
+   ],
+   "feed": []
+  },
+  {
+   "id": "microsoft-grounding-preference",
+   "name": "Microsoft training and grounding preferences",
+   "card": "microsoft-grounding-preference",
+   "url": "https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference",
+   "news": [
+    "https://blogs.bing.com/search/"
+   ],
+   "feed": [
+    "https://blogs.bing.com/search/feed/"
+   ]
+  },
+  {
+   "id": "mcp",
+   "name": "Model Context Protocol",
+   "card": "mcp",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp",
+   "news": [
+    "https://blog.modelcontextprotocol.io/"
+   ],
+   "feed": [
+    "https://blog.modelcontextprotocol.io/index.xml"
+   ]
+  },
+  {
+   "id": "niso",
+   "name": "NISO",
+   "card": "niso",
+   "url": "https://www.olahungerford.com/content-provenance/#niso",
+   "news": [
+    "https://www.niso.org/press-releases"
+   ],
+   "feed": []
+  },
+  {
+   "id": "open-future",
+   "name": "Open Future",
+   "card": "open-future",
+   "url": "https://www.olahungerford.com/content-provenance/#open-future",
+   "news": [
+    "https://openfuture.eu/blog/"
+   ],
+   "feed": [
+    "https://openfuture.eu/feed/"
+   ]
+  },
+  {
+   "id": "okfn",
+   "name": "Open Knowledge Foundation",
+   "card": "okfn",
+   "url": "https://www.olahungerford.com/content-provenance/#okfn",
+   "news": [
+    "https://blog.okfn.org/"
+   ],
+   "feed": [
+    "https://blog.okfn.org/feed/"
+   ]
+  },
+  {
+   "id": "openattribution",
+   "name": "OpenAttribution.org",
+   "card": "openattribution",
+   "url": "https://www.olahungerford.com/content-provenance/#openattribution",
+   "news": [
+    "https://openattribution.org/blog"
+   ],
+   "feed": [
+    "https://openattribution.org/feed.xml"
+   ]
+  },
+  {
+   "id": "openlineage",
+   "name": "OpenLineage",
+   "card": "openlineage",
+   "url": "https://www.olahungerford.com/content-provenance/#openlineage",
+   "news": [
+    "https://openlineage.io/blog/"
+   ],
+   "feed": [
+    "https://openlineage.io/blog/feed.json"
+   ]
+  },
+  {
+   "id": "rsl",
+   "name": "Really Simple Licensing",
+   "card": "rsl",
+   "url": "https://www.olahungerford.com/content-provenance/#rsl",
+   "news": [
+    "https://rslstandard.org/press"
+   ],
+   "feed": []
+  },
+  {
+   "id": "socan",
+   "name": "SOCAN",
+   "card": "socan",
+   "url": "https://www.olahungerford.com/content-provenance/#socan",
+   "news": [
+    "https://www.socan.com/media-centre/"
+   ],
+   "feed": []
+  },
+  {
+   "id": "spur-coalition",
+   "name": "SPUR Coalition",
+   "card": "spur-coalition",
+   "url": "https://www.olahungerford.com/content-provenance/#spur-coalition",
+   "news": [
+    "https://www.spurcoalition.org/updates"
+   ],
+   "feed": [
+    "https://www.spurcoalition.org/updates?format=rss"
+   ]
+  },
+  {
+   "id": "stim",
+   "name": "STIM",
+   "card": "stim",
+   "url": "https://www.olahungerford.com/content-provenance/#stim",
+   "news": [
+    "https://www.stim.se/en/news"
+   ],
+   "feed": []
+  },
+  {
+   "id": "ucp",
+   "name": "Universal Commerce Protocol",
+   "card": "ucp",
+   "url": "https://www.olahungerford.com/content-provenance/#ucp",
+   "news": [
+    "https://ucp.dev/documentation/announcements/"
+   ],
+   "feed": [
+    "https://github.com/Universal-Commerce-Protocol/ucp/releases.atom"
+   ]
+  },
+  {
+   "id": "w3c",
+   "name": "W3C",
+   "card": "w3c",
+   "url": "https://www.olahungerford.com/content-provenance/#w3c",
+   "news": [
+    "https://www.w3.org/news/",
+    "https://www.w3.org/blog/"
+   ],
+   "feed": [
+    "https://www.w3.org/news/feed/",
+    "https://www.w3.org/blog/feed/"
+   ]
+  },
+  {
+   "id": "w3c-odrl",
+   "name": "W3C ODRL",
+   "card": "w3c-odrl",
+   "url": "https://www.olahungerford.com/content-provenance/#w3c-odrl",
+   "news": [],
+   "feed": [
+    "https://www.w3.org/community/odrl/feed/"
+   ]
+  },
+  {
+   "id": "w3c-tdmrep",
+   "name": "W3C TDM Reservation Protocol Community Group",
+   "card": "w3c-tdmrep",
+   "url": "https://www.olahungerford.com/content-provenance/#w3c-tdmrep",
+   "news": [],
+   "feed": [
+    "https://www.w3.org/community/tdmrep/feed/"
+   ]
+  },
+  {
+   "id": "wikimedia",
+   "name": "Wikimedia",
+   "card": "wikimedia",
+   "url": "https://www.olahungerford.com/content-provenance/#wikimedia",
+   "news": [
+    "https://wikimediafoundation.org/news/"
+   ],
+   "feed": [
+    "https://wikimediafoundation.org/news/feed/"
+   ]
+  },
+  {
+   "id": "x402",
+   "name": "x402",
+   "card": "x402",
+   "url": "https://www.olahungerford.com/content-provenance/#x402",
+   "news": [
+    "https://x402.org/announcements/",
+    "https://x402.org/blog/"
+   ],
+   "feed": [
+    "https://x402.org/feed/"
+   ]
+  },
+  {
+   "id": "scholarly-kitchen",
+   "name": "The Scholarly Kitchen",
+   "card": null,
+   "note": "The Society for Scholarly Publishing's blog on scholarly publishing",
+   "news": [
+    "https://scholarlykitchen.sspnet.org/"
+   ],
+   "feed": [
+    "https://scholarlykitchen.sspnet.org/feed/"
+   ]
+  },
+  {
+   "id": "mlcommons",
+   "name": "MLCommons",
+   "card": null,
+   "note": "Publishes Croissant. The feed covers all of its work, including the MLPerf benchmarks",
+   "news": [
+    "https://mlcommons.org/insights/"
+   ],
+   "feed": [
+    "https://mlcommons.org/feed/"
+   ]
+  },
+  {
+   "id": "iab-tech-lab",
+   "name": "IAB Tech Lab",
+   "card": null,
+   "note": "Publishes CoMP. The feed covers all of its advertising standards",
+   "news": [
+    "https://iabtechlab.com/iab-tech-lab-news/"
+   ],
+   "feed": [
+    "https://iabtechlab.com/feed/"
+   ]
+  },
+  {
+   "id": "opentelemetry-blog",
+   "name": "OpenTelemetry Blog",
+   "card": null,
+   "note": "The project behind the GenAI and MCP semantic conventions",
+   "news": [
+    "https://opentelemetry.io/blog/"
+   ],
+   "feed": [
+    "https://opentelemetry.io/blog/index.xml"
+   ]
+  },
+  {
+   "id": "bing-webmaster-blog",
+   "name": "Bing Webmaster Blog",
+   "card": null,
+   "note": "Bing's blog for site owners, including how sites appear in its AI answers",
+   "news": [
+    "https://blogs.bing.com/webmaster/"
+   ],
+   "feed": [
+    "https://blogs.bing.com/webmaster/feed/"
+   ]
+  }
+ ]
+}

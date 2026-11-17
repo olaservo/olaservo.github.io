@@ -1,7 +1,7 @@
 {
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
- "as_of": "2026-11-16",
+ "as_of": "2026-11-17",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
   {
@@ -103,6 +103,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#counter"
   },
   {
+   "date": "2026-10-23",
+   "card": "google-scholar-mediated-reading",
+   "name": "Google Scholar Mediated Reading",
+   "text": "COUNTER's [phase two](https://www.countermetrics.org/ai-phase-two/) announcement says \"We've also mapped Google Scholar's new MERU tool to our metrics.\"",
+   "url": "https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading"
+  },
+  {
    "date": "2026-10-22",
    "card": "agent-skills",
    "name": "Agent Skills",
@@ -146,6 +153,13 @@
   },
   {
    "date": "2026-10-05",
+   "card": "niso",
+   "name": "NISO",
+   "text": "Journal Article Versions RP-8-2026 published.",
+   "url": "https://www.olahungerford.com/content-provenance/#niso"
+  },
+  {
+   "date": "2026-10-05",
    "card": "wikimedia",
    "name": "Wikimedia",
    "text": "Published its investigation of OpenAI-run agents.",
@@ -185,6 +199,13 @@
    "name": "OpenLineage",
    "text": "Presented to the MCP Financial Services Interest Group.",
    "url": "https://www.olahungerford.com/content-provenance/#openlineage"
+  },
+  {
+   "date": "2026-09-18",
+   "card": "google-scholar-mediated-reading",
+   "name": "Google Scholar Mediated Reading",
+   "text": "COUNTER's [update](https://www.countermetrics.org/ai-update-sept26/) on phase two calls MERU \"a form of syndicated usage\" and says it has mapped how MERU messages should be reported.",
+   "url": "https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading"
   },
   {
    "date": "2026-09-13",
