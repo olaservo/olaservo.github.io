@@ -9,6 +9,9 @@ Changes to the cards and the explorer, newest first. Dates are when the change w
 - [OpenAttribution.org](https://www.olahungerford.com/content-provenance/#openattribution): the status no longer lists the SDKs and the edge worker, which are in the [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition) GitHub organization. [Agent Skills at-rest signing threads](https://www.olahungerford.com/content-provenance/#agent-skills-signing) counts seven discussions.
 - The MCP endpoint has a fourth tool, `list_unconnected`, which lists the pairs in `matches.md` and can filter by card or layer. A client that only uses tools had no way to reach that list.
 - [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): a Training opt-out topic names the `ai-train` usage token, and the spec's references to [Cloudflare Content Signals](https://www.olahungerford.com/content-provenance/#cloudflare-content-signals) and [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref).
+- [OpenTelemetry for MCP](https://www.olahungerford.com/content-provenance/#otel-mcp) is no longer marked as part of [Model Context Protocol](https://www.olahungerford.com/content-provenance/#mcp). The conventions are an OpenTelemetry document. A Related bullet says what MCP contributes: the reserved `_meta` trace keys and the SDKs that emit the spans.
+- Explorer: the Medium filter row says how many cards are media-neutral and have no medium tag. Those cards do not match a medium filter. A medium tag's tooltip gives its definition.
+- The README says what gets a card: something others can adopt, join or must follow. A product feature that implements a standard goes under that standard's In use section, and a company gets a card when it publishes a spec or an open implementation.
 
 ## 2026-11-15
 
