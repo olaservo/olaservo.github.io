@@ -12,6 +12,15 @@ One person's working notes. Status lines carry the dates the sources gave, so ch
 - [Topic: skills](https://www.olahungerford.com/content-provenance/topics/skills.md): the cards tagged topic/skills
 - [Topic: discovery](https://www.olahungerford.com/content-provenance/topics/discovery.md): the cards tagged topic/discovery
 
+## One card at a time
+
+The Markdown file above holds every card. A prototype at https://content-provenance-field-guide.olahungerford.workers.dev/ serves the same cards as one file each. It is experimental and its address may move.
+
+- [Guide index](https://content-provenance-field-guide.olahungerford.workers.dev/index.md): the layer and stage definitions and one line per card. One card is at https://content-provenance-field-guide.olahungerford.workers.dev/cards/<id>.md
+- [Field guide skill](https://content-provenance-field-guide.olahungerford.workers.dev/skills/content-provenance-field-guide/SKILL.md): how to answer questions from the guide, loading only the cards a question needs
+- [More for agents](https://content-provenance-field-guide.olahungerford.workers.dev/llms.txt): the cards by layer, the contributor skill and an MCP server
+- [Plugin](https://github.com/olaservo/content-provenance-cards#start-here): both skills and the MCP server for Codex and Claude Code
+
 ## Optional
 
 - [Explorer](https://www.olahungerford.com/content-provenance/): the list and graph view for people
