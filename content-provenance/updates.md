@@ -28,6 +28,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-09-04 [SEP-3094 Granular Citations](https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations): Revised.
 - 2026-09-02 [AAIF Observability and Traceability WG](https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg): Provenance initiative lead named.
 - 2026-09-02 [Content Telemetry](https://www.olahungerford.com/content-provenance/#content-telemetry): v1.0 published.
+- 2026-09-02 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): [Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.
 - 2026-09-02 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): [Content Telemetry](https://www.olahungerford.com/content-provenance/#content-telemetry) v1.0 published.
 - 2026-09 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Microsoft Research New York.
 - 2026-08-26 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.
@@ -35,9 +36,12 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-08-06 [Agent Plugins](https://www.olahungerford.com/content-provenance/#agent-plugins): 1.0.0 published.
 - 2026-07-31 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.
 - 2026-07-23 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Launched PLAI by GEMA with Klangio as first customer.
+- 2026-07-20 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Named Musical AI an approved technology partner for attribution services.
 - 2026-07-14 [x402](https://www.olahungerford.com/content-provenance/#x402): x402 Foundation (Linux Foundation) operational.
 - 2026-07 [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg): Consent assertion added.
+- 2026-06-01 [STIM](https://www.olahungerford.com/content-provenance/#stim): The AI rights category took effect.
 - 2026-06 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
+- 2026-05-31 [STIM](https://www.olahungerford.com/content-provenance/#stim): Announced that its members had voted for a separate rights category for AI.
 - 2026-05-26 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Listed by C2PA as a conformant generator product.
 - 2026-05-15 [AAIF Agentic Commerce WG](https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg): Chartered.
 - 2026-05-12 [AAIF Identity and Trust WG](https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg): Chartered.
@@ -47,8 +51,10 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-02 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): 1.1 released.
 - 2025-12-10 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): RSL 1.0 published.
 - 2025-11-11 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.
+- 2025-10-28 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI.
 - 2025-09-25 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support "the new industry standard for AI disclosures in music credits, developed through DDEX", and named 19 labels and distributors working on it.
-- 2025-09-08 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): STIM launched a collective AI license for music as a pilot.
+- 2025-09-08 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): [STIM](https://www.olahungerford.com/content-provenance/#stim) launched a collective AI license for music as a pilot.
+- 2025-09-08 [STIM](https://www.olahungerford.com/content-provenance/#stim): Launched its AI license as a pilot with Songfox and Sureel.
 - 2025-01-21 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Its Director General said no authors' society had yet licensed a music AI service.
 - 2025-01-21 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Sued Suno.
 - 2024-11-13 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Sued OpenAI.
@@ -56,8 +62,10 @@ Dated events from the History section of each card, newest first. These are thin
 - 2024-09 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Presented its licensing model for generative AI.
 - 2024-08-09 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.
 - 2024-08-01 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Updated its individual model certification.
+- 2024-04-04 [Rights & AI](https://www.olahungerford.com/content-provenance/#rights-and-ai): ICMP announced the site. The release was issued the day before, and says the site had already launched.
 - 2024-03-20 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Announced newly certified models, including its first language and speech models.
 - 2024-01-17 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Launched with nine certified companies.
 - 2023-07 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Published seven principles for policymakers on AI.
 - 2006 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Founded.
 - 1926 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Founded.
+- 1923 [STIM](https://www.olahungerford.com/content-provenance/#stim): Founded.
