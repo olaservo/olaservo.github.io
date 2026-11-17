@@ -587,7 +587,7 @@ Three robots.txt categories, `search`, `ai-input` and `ai-train`, proposed as [I
 - Cloudflare's managed robots.txt serves the policy with `search=yes, ai-train=no` by default. Cloudflare said customers had turned managed robots.txt on for over 3.8 million domains at launch ([Cloudflare blog](https://blog.cloudflare.com/content-signals-policy/), 2025-09-24).
 - [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) detects the signals in robots.txt and in `Content-Signal` headers.
 
-Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [OpenAttribution.org](#openattribution)
+Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [OpenAttribution.org](#openattribution), [Really Simple Licensing](#rsl)
 
 ### Content Authenticity Initiative
 
@@ -1070,7 +1070,7 @@ Vocabulary for AI usage preferences and how they attach to content (`Content-Usa
 - 2026-09-13: vocab-08 posted, without consensus.
 - 2026-08-18: attach-05 posted.
 
-Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudflare Content Signals](#cloudflare-content-signals), [Creative Commons](#creative-commons), [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF](#ietf), [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Microsoft training and grounding preferences](#microsoft-grounding-preference), [Model Context Protocol](#mcp), [Shared AI training robots.txt token](#aipref-training-token)
+Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudflare Content Signals](#cloudflare-content-signals), [Creative Commons](#creative-commons), [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF](#ietf), [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Microsoft training and grounding preferences](#microsoft-grounding-preference), [Model Context Protocol](#mcp), [Really Simple Licensing](#rsl), [Shared AI training robots.txt token](#aipref-training-token)
 
 ### IETF Web Bot Auth Working Group
 
@@ -1551,6 +1551,7 @@ XML vocabulary for usage and compensation terms (per-crawl, per-inference, subsc
 #### Topics
 
 - **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.
+- **Training opt-out**: saying whether AI may train on content. The [usage vocabulary](https://rslstandard.org/rsl#_3-4-1-1-usage-vocabulary) (section 3.4.1.1) has `ai-train`, `ai-input`, `ai-index` and `ai-all` tokens for `<permits>` and `<prohibits>`. The spec says it includes the [Cloudflare Content Signals](#cloudflare-content-signals) vocabulary and may add terms from [IETF AI Preferences Working Group](#ietf-aipref).
 - **Adoption**: getting model developers to honor it on the open web. None has committed.
 - **Enforcement**: supplying the lever [Content Telemetry](#content-telemetry) manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings), a v0.1 draft marked for discussion with the RSL working group (read 2026-11-16).
 
