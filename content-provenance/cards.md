@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-78 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-16. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
+79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-17. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -210,6 +210,8 @@ Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Decentraliz
 - Type: specification
 - Status: Donated by Google to the FIDO Alliance
 - Website: https://ap2-protocol.org
+- News: https://github.com/google-agentic-commerce/AP2/releases
+- Feed: https://github.com/google-agentic-commerce/AP2/releases.atom
 - Take part: [GitHub](https://github.com/google-agentic-commerce/AP2)
 - Tags: type/specification, layer/payments, layer/identity
 - Updated: 2026-11-03
@@ -329,6 +331,7 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent P
 - Type: organization
 - Status: Linux Foundation; ten hosted projects in its first year
 - Website: https://aaif.io
+- News: https://aaif.io/news, https://aaif.io/blog
 - Take part: [working group repos on GitHub](https://github.com/aaif)
 - Tags: type/organization, layer/governance
 - Updated: 2026-11-03
@@ -447,6 +450,8 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Age
 - Type: organization
 - Status: Convenings at Bellagio (April 2026), Foo Camp (June and October 2026), Microsoft Research New York (September 2026)
 - Website: https://ai-disclosures.org
+- News: https://ai-disclosures.org/blog
+- Feed: https://asimovaddendum.substack.com/feed
 - Tags: type/organization, layer/governance, layer/attribution, layer/payments
 - Updated: 2026-11-08
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-disclosures-project
@@ -472,6 +477,8 @@ Linked from: [Skills Marketplace](#skills-marketplace)
 - Id: ai-robots-txt
 - Type: project
 - Website: https://github.com/ai-robots-txt/ai.robots.txt
+- News: https://github.com/ai-robots-txt/ai.robots.txt/releases
+- Feed: https://github.com/ai-robots-txt/ai.robots.txt/releases.atom
 - Take part: [GitHub issues](https://github.com/ai-robots-txt/ai.robots.txt/issues)
 - Tags: type/project, layer/access
 - Updated: 2026-11-03
@@ -490,6 +497,8 @@ Community list of AI crawlers with generated robots.txt, nginx, Caddy, HAProxy a
 - Type: organization
 - Status: Spec 2.5 published October 2026
 - Website: https://c2pa.org
+- News: https://c2pa.org/news/, https://c2pa.org/blog/
+- Feed: https://c2pa.org/feed/
 - Take part: [membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)
 - Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text
 - Updated: 2026-11-15
@@ -592,6 +601,7 @@ Linked from: [Creative Commons](#creative-commons), [IETF AI Preferences Working
 - Type: organization
 - Status: Asks policymakers for licensing, transparency and an effective opt-out from data mining exceptions (AI page read 2026-11-15)
 - Website: https://www.cisac.org
+- News: https://www.cisac.org/newsroom
 - Tags: type/organization, layer/licensing, layer/payments, layer/governance, medium/audio, medium/video
 - Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#cisac
@@ -650,6 +660,7 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [OpenAttribution
 - Type: project
 - Status: Maintains c2pa-rs, c2pa-python, c2pa-js and c2patool
 - Website: https://contentauthenticity.org
+- News: https://contentauthenticity.org/blog
 - Take part: [join CAI](https://contentauthenticity.org/join), [GitHub](https://github.com/contentauth)
 - Tags: type/project, layer/provenance
 - Updated: 2026-11-15
@@ -670,10 +681,12 @@ Linked from: [C2PA](#c2pa)
 - Type: specification
 - Status: v1.0 published 2026-09-02; signed events deferred (section 8.9)
 - Website: https://github.com/SPUR-Coalition/telemetry
+- News: https://github.com/SPUR-Coalition/telemetry/releases
+- Feed: https://github.com/SPUR-Coalition/telemetry/releases.atom
 - Part of: [SPUR Coalition](#spur-coalition)
 - Take part: [GitHub issues](https://github.com/SPUR-Coalition/telemetry/issues)
 - Tags: type/specification, layer/attribution, stage/after-delivery
-- Updated: 2026-11-15
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#content-telemetry
 
 Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`, `content_presented`, `content_engaged`. Manifest discovery at `/.well-known/content-telemetry.json`. `license_ref` joins it to the licensing layer ([Really Simple Licensing](#rsl), [IAB Tech Lab Content Monetization Protocols](#iab-comp)).
@@ -682,11 +695,14 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 
 - **Usage reporting**: reporting how AI systems use content after retrieval, in five events.
 - **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).
+- **Declaring coverage**: a report does not show whether every event was reported. Section 5.7.6 has an emitter declare one of four coverage modes (complete, sampled, aggregated, selected) and the scope it applies over, and says a consumer must not read a missing event as proof that nothing happened unless coverage is complete.
+- **Reporting for an institution**: `access_context` names the institution a session's access rights derive from, as a claim by the emitter (section 5.1.3). `content_depth` records whether a retrieval reached metadata, an abstract or the full record (section 6.1).
 - **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients.
 
 #### Related
 
-- [COUNTER Metrics](#counter) says phase two of its AI guidelines is aligned with it.
+- [COUNTER Metrics](#counter) says phase two of its AI guidelines is aligned with it. It maps retrieved, cited and presented events to its metrics and counts nothing for a grounded event.
+- v1.0 has no event for a retrieval that was refused (read at 7da55f2, 2026-11-17).
 
 #### Compare
 
@@ -701,7 +717,7 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 
 - 2026-09-02: v1.0 published.
 
-Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [CC Signals](#cc-signals), [COUNTER Metrics](#counter), [Internet Licensing Collective](#internet-licensing-collective), [Model Context Protocol](#mcp), [OpenAttribution.org](#openattribution), [OpenTelemetry for MCP](#otel-mcp), [Really Simple Licensing](#rsl), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SPUR Coalition](#spur-coalition), [TRACE](#trace)
+Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [CC Signals](#cc-signals), [COUNTER Metrics](#counter), [Google Scholar Mediated Reading](#google-scholar-mediated-reading), [Internet Licensing Collective](#internet-licensing-collective), [Model Context Protocol](#mcp), [OpenAttribution.org](#openattribution), [OpenTelemetry for MCP](#otel-mcp), [Really Simple Licensing](#rsl), [SEP-3094 Granular Citations](#mcp-sep-3094-citations), [SPUR Coalition](#spur-coalition), [TRACE](#trace)
 
 ### COUNTER Metrics
 
@@ -709,27 +725,34 @@ Linked from: [AAIF Observability and Traceability WG](#aaif-observability-tracea
 - Type: organization
 - Status: Phase two of its AI best practice published 2026-10-23; it says the guidelines are aligned with the SPUR telemetry framework
 - Website: https://www.countermetrics.org
+- News: https://www.countermetrics.org/news/
 - Take part: [membership](https://www.countermetrics.org/membership/)
 - Tags: type/organization, layer/attribution
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#counter
 
 Usage-metrics standard for scholarly publishers and libraries.
 
 #### Topics
 
-- **AI usage metrics**: counting usage when the reader is an AI system. Phase two references [Content Telemetry](#content-telemetry).
+- **AI usage metrics**: counting usage when the reader is an AI system. Phase two references [Content Telemetry](#content-telemetry). The [best practice](https://www.countermetrics.org/code-of-practice/best-practice/bp-ai/) says the AI metric types "are all OPTIONAL extensions to the Code of Practice" and that "AI reporting is not subject to formal audits" (read 2026-11-17).
+- **Counting retrievals apart from use**: phase two adds retrieval metrics, which count an excerpt an AI system pulls even when it is not used in the answer. AI activity is tagged with the Agent access method, which appears in a report only when requested.
+- **Mapping telemetry events to metrics**: a [Content Telemetry](#content-telemetry) retrieved event counts toward Total_Retrieved_Investigations, and toward Total_Retrieved_Requests where the AI system has full text. A cited or presented event counts as 1 Total_AI_Investigation, and as 1 Total_AI_Request where the AI system has full text. The guidance's scenario gives "no COUNTER metrics" for grounded excerpts and calls engagement "usage activity covered by standard publisher reporting".
+- **Usage reported by a third party**: an AI system that sends usage to the publisher is reported under a `SYNDICATED:` namespace. The guidance has a section on [Google Scholar Mediated Reading](#google-scholar-mediated-reading), reported as `SYNDICATED:Google_MERU`.
+- **Refused reads**: "There are no denial metrics associated specifically with Access_Method Agent" (read 2026-11-17).
 
 #### Related
 
 - [TRACE](#trace) participants part-fund its API and JSON Schema work for the AI metrics ([Introducing TRACE](https://www.countermetrics.org/trace-project/), 2026-10-06).
+
+- Steve Smith and Josh Nicholson of Research Solutions [propose](https://scholarlykitchen.sspnet.org/2026/11/16/guest-post-beyond-the-download-what-counts-as-scholarly-content-use-in-the-age-of-ai/) keeping AI activity in four ledgers (usage, demand, contribution, engagement) built on these metrics. They report that from 2026-10-07 to 2026-11-06, 3.7 million of 7.2 million attempted reads of publisher content through Scite were refused full text for want of AI-access permission. They describe the figures as gateway-specific and unaudited.
 
 #### History
 
 - 2026-10-23: [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.
 - 2026-10-06: TRACE funding announced.
 
-Linked from: [Content Telemetry](#content-telemetry), [TRACE](#trace)
+Linked from: [Content Telemetry](#content-telemetry), [Google Scholar Mediated Reading](#google-scholar-mediated-reading), [TRACE](#trace)
 
 ### Creative Commons
 
@@ -738,6 +761,8 @@ Linked from: [Content Telemetry](#content-telemetry), [TRACE](#trace)
 - Type: organization
 - Status: Attribution to become a requirement in the next CC Signals iteration; RAG attribution best practices planned
 - Website: https://creativecommons.org
+- News: https://creativecommons.org/blog/
+- Feed: https://creativecommons.org/feed/
 - Take part: [contact](https://creativecommons.org/about/contact/)
 - Tags: type/organization, layer/licensing, layer/access, layer/attribution
 - Updated: 2026-11-16
@@ -798,6 +823,8 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 - Type: specification
 - Status: 1.1 (February 2026); required for NeurIPS 2026 dataset submissions
 - Website: https://github.com/mlcommons/croissant
+- News: https://mlcommons.org/tag/croissant/
+- Feed: https://mlcommons.org/tag/croissant/feed/
 - Take part: [GitHub issues](https://github.com/mlcommons/croissant/issues)
 - Tags: type/specification, layer/provenance, layer/licensing, medium/data
 - Updated: 2026-11-15
@@ -848,6 +875,8 @@ Linked from: [Fairly Trained](#fairly-trained)
 - Type: specification
 - Status: 2025-1 released 2025-08-29 and considered stable; second errata tagged 2026-09-11
 - Website: https://eclipse-dataspace-protocol-base.github.io/DataspaceProtocol/2025-1/
+- News: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases
+- Feed: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases.atom
 - Take part: [GitHub issues](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/issues)
 - Tags: type/specification, layer/licensing, layer/access, medium/data
 - Updated: 2026-11-16
@@ -876,6 +905,8 @@ Eclipse Dataspace Working Group specification for sharing data between organizat
 - Type: organization
 - Status: Generative AI Declaration Standard (GAI-D) in peer review, with publication expected in early 2027 (announced 2026-11-05)
 - Website: https://ddex.net
+- News: https://ddex.net/press/
+- Feed: https://ddex.net/feed/
 - Take part: [working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members
 - Tags: type/organization, layer/provenance, layer/attribution, layer/licensing, medium/audio
 - Updated: 2026-11-15
@@ -916,6 +947,8 @@ Linked from: [SOCAN](#socan), [STIM](#stim)
 - Type: organization
 - Status: Hosts CAWG
 - Website: https://identity.foundation
+- News: https://blog.identity.foundation/
+- Feed: https://blog.identity.foundation/rss/
 - Take part: [join DIF](https://identity.foundation/join/)
 - Tags: type/organization, layer/identity
 - Updated: 2026-11-15
@@ -940,6 +973,8 @@ Linked from: [Creator Assertions Working Group](#cawg)
 - Type: organization
 - Status: The Atlantic plans to implement its text marking, announced 2026-11-11 with no rollout date
 - Website: https://encypher.com
+- News: https://encypher.com/blog
+- Feed: https://encypher.com/feed.xml
 - Take part: [c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)
 - Tags: type/organization, layer/provenance, layer/licensing, stage/at-rest, medium/text, medium/image, medium/audio, medium/video
 - Updated: 2026-11-15
@@ -1045,6 +1080,8 @@ Linked from: [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [IPTC](#ip
 - Type: organization
 - Status: Quiet since 2024. Its sitemap shows no page changed after 2024-12-17, and the newest blog post is dated 2024-08-01 (read 2026-11-15)
 - Website: https://www.fairlytrained.org
+- News: https://www.fairlytrained.org/blog
+- Feed: https://www.fairlytrained.org/blog?format=rss
 - Take part: [apply for certification](https://www.fairlytrained.org/apply)
 - Tags: type/organization, layer/licensing
 - Updated: 2026-11-15
@@ -1082,6 +1119,7 @@ Non-profit that certifies generative AI companies, products and models whose tra
 - Type: organization
 - Status: Won at Munich Regional Court against OpenAI (2025-11-11, under appeal) and Suno (2026-07-31, not final)
 - Website: https://www.gema.de
+- News: https://www.gema.de/en/news
 - Tags: type/organization, layer/licensing, layer/payments, medium/audio
 - Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#gema
@@ -1130,6 +1168,8 @@ Linked from: [CISAC](#cisac), [SOCAN](#socan), [STIM](#stim), [W3C TDM Reservati
 - Type: project
 - Status: MCP service available to partners and developers since January 2026
 - Website: https://www.getfulltextresearch.com
+- News: https://www.getfulltextresearch.com/blog
+- Feed: https://www.getfulltextresearch.com/feed
 - Take part: [integrator documentation](https://docs.getfulltextresearch.com/latest/integrators/mcp-service), [publishers](https://www.getfulltextresearch.com/why-publishers-should-join)
 - Tags: type/project, layer/access, medium/text
 - Updated: 2026-11-16
@@ -1157,6 +1197,42 @@ A service that asks the publisher whether a given user is entitled to a given ar
 
 Linked from: [Enterprise-Managed Authorization](#mcp-enterprise-managed-authorization), [Model Context Protocol](#mcp)
 
+### Google Scholar Mediated Reading
+
+- Id: google-scholar-mediated-reading
+- Also known as: MERU, MEdiated Reading Usage protocol
+- Type: project
+- Status: Policies on Google's publisher page, with no public description of the MERU message format (read 2026-11-17); COUNTER mapped MERU to its AI metrics on 2026-10-23
+- Website: https://scholar.google.com/intl/en/scholar/publishers.html
+- Tags: type/project, layer/attribution, layer/access, stage/after-delivery, medium/text
+- Updated: 2026-11-17
+- Explorer: https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading
+
+A Google Scholar program that publishers opt journals or collections into, with a usage protocol, MERU, for the publishers that take part. Google's publisher page gives it six sentences of policy. It does not say what a reader sees, how a publisher joins, or what a MERU message contains (read 2026-11-17). [COUNTER Metrics](#counter) calls it "an example of a third party AI system which delivers usage information to participating publishers".
+
+#### Topics
+
+- **Reporting AI-mediated reading to the publisher**: participating publishers "can use the MEdiated Reading Usage (MERU) protocol to measure and report Mediated Reading related usage of subscribed collections". [COUNTER Metrics](#counter)'s guidance says it works like Google's Subscriber Links, which sends the publisher a usage message with the user's IP address, the time of the request and the URL of the content, and that a MERU message carries one extra marker.
+- **Counting it in a COUNTER report**: [COUNTER Metrics](#counter) says each MERU message counts as 1 Total_AI_Investigation and 1 Total_AI_Request for the item, under the namespace `SYNDICATED:Google_MERU`.
+- **Publisher control over participation**: publishers select the journals or collections to include and can withdraw "at any time and for any reason", completely or partially. Participation "enables user experiences only on Google Scholar".
+- **Training**: participation "does not enable use of the participating URLs for training Gemini large language models".
+
+#### Related
+
+- Google's page does not name COUNTER (read 2026-11-17).
+- In a [comment](https://scholarlykitchen.sspnet.org/2026/11/16/guest-post-beyond-the-download-what-counts-as-scholarly-content-use-in-the-age-of-ai/) of 2026-11-16, Cambridge University Press's policy director gave MERU as an example of AI-mediated reading building on existing usage infrastructure.
+
+#### Compare
+
+- [Content Telemetry](#content-telemetry) also reports AI use of content to its owner, as five event types with a published schema. Neither names the other (searched 2026-11-17).
+
+#### History
+
+- 2026-10-23: COUNTER's [phase two](https://www.countermetrics.org/ai-phase-two/) announcement says "We've also mapped Google Scholar's new MERU tool to our metrics."
+- 2026-09-18: COUNTER's [update](https://www.countermetrics.org/ai-update-sept26/) on phase two calls MERU "a form of syndicated usage" and says it has mapped how MERU messages should be reported.
+
+Linked from: [COUNTER Metrics](#counter)
+
 ### IAB Tech Lab Content Monetization Protocols
 
 - Id: iab-comp
@@ -1164,6 +1240,8 @@ Linked from: [Enterprise-Managed Authorization](#mcp-enterprise-managed-authoriz
 - Type: specification
 - Status: 1.0, public comment from 2026-03-10
 - Website: https://github.com/IABTechLab/CoMP
+- News: https://github.com/IABTechLab/CoMP/releases
+- Feed: https://github.com/IABTechLab/CoMP/releases.atom
 - Take part: [GitHub issues](https://github.com/IABTechLab/CoMP/issues)
 - Tags: type/specification, layer/licensing, layer/payments
 - Updated: 2026-11-03
@@ -1188,6 +1266,8 @@ Linked from: [Content Telemetry](#content-telemetry), [x402](#x402)
 - Type: organization
 - Status: IETF 127 San Francisco, November 2026
 - Website: https://www.ietf.org
+- News: https://www.ietf.org/blog/
+- Feed: https://www.ietf.org/blog/feed/
 - Take part: [how to participate](https://www.ietf.org/participate/)
 - Tags: type/organization, layer/access, layer/identity
 - Updated: 2026-11-03
@@ -1208,6 +1288,8 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [IETF Web Bot Au
 - Type: working-group
 - Status: vocab-08 (2026-09-13) without consensus; attach-05 (2026-08-18); IETF 127 sessions 2026-11-16 and 11-19
 - Website: https://datatracker.ietf.org/wg/aipref/about/
+- News: https://datatracker.ietf.org/wg/aipref/history/
+- Feed: https://datatracker.ietf.org/feed/group-changes/aipref/
 - Part of: [IETF](#ietf)
 - Take part: [ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)
 - Tags: type/working-group, layer/access, stage/after-delivery
@@ -1242,6 +1324,8 @@ Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudf
 - Type: working-group
 - Status: httpsig-protocol draft; Cloudflare libraries
 - Website: https://datatracker.ietf.org/wg/webbotauth/about/
+- News: https://datatracker.ietf.org/wg/webbotauth/history/
+- Feed: https://datatracker.ietf.org/feed/group-changes/webbotauth/
 - Part of: [IETF](#ietf)
 - Take part: [web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/)
 - Tags: type/working-group, layer/identity, layer/access
@@ -1271,6 +1355,7 @@ Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Agent Ident
 - Type: organization
 - Status: Launched 2026-11-12 with Yahoo Scout as first commercial licensee
 - Website: https://internetcollective.org
+- News: https://internetcollective.org/press
 - Take part: [publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)
 - Tags: type/organization, layer/licensing, layer/payments
 - Updated: 2026-11-15
@@ -1314,6 +1399,8 @@ Linked from: [CISAC](#cisac), [GEMA](#gema), [Really Simple Licensing](#rsl)
 - Type: organization
 - Status: RightsML and the Data Mining property; Verified News Publishers List; answered the EU opt-out consultation
 - Website: https://iptc.org
+- News: https://iptc.org/news/
+- Feed: https://iptc.org/feed/
 - Tags: type/organization, layer/licensing, layer/access, layer/provenance, stage/trust, medium/image, medium/video
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#iptc
@@ -1371,6 +1458,7 @@ Linked from: [GetFTR](#getftr), [MCP Registry](#mcp-registry), [NISO](#niso)
 - Also known as: KGI
 - Type: organization
 - Website: https://kgi.georgetown.edu
+- News: https://kgi.georgetown.edu/news/
 - Tags: type/organization, layer/governance, layer/access
 - Updated: 2026-11-03
 - Explorer: https://www.olahungerford.com/content-provenance/#knight-georgetown-institute
@@ -1556,6 +1644,8 @@ Linked from: [Really Simple Licensing](#rsl)
 - Type: proposal
 - Status: Effective 2027-02-01
 - Website: https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/
+- News: https://blogs.bing.com/search/
+- Feed: https://blogs.bing.com/search/feed/
 - Tags: type/proposal, layer/access, stage/after-delivery
 - Updated: 2026-11-03
 - Explorer: https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference
@@ -1579,6 +1669,8 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref)
 - Type: specification
 - Status: Next spec release moved to 2027-03-30 (SEP-3398); WG-first rule for SEPs
 - Website: https://modelcontextprotocol.io
+- News: https://blog.modelcontextprotocol.io/
+- Feed: https://blog.modelcontextprotocol.io/index.xml
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)
 - Tags: type/specification, venue/mcp, layer/provenance, layer/attribution
@@ -1618,9 +1710,10 @@ Linked from: [Agentic AI Foundation](#aaif), [AI Catalog](#ai-catalog), [C2PA co
 - Type: organization
 - Status: Twelve-month provenance and attribution pilot announced October 2026; KBART Phase III published 2026-08-26
 - Website: https://www.niso.org
+- News: https://www.niso.org/press-releases
 - Take part: [NISO standards committees](https://www.niso.org/standards-committees)
 - Tags: type/organization, layer/provenance, layer/attribution, layer/governance, medium/text
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#niso
 
 US standards body for libraries, publishers and the vendors between them. Publishes [KBART](#kbart) and is a partner in [TRACE](#trace).
@@ -1628,6 +1721,7 @@ US standards body for libraries, publishers and the vendors between them. Publis
 #### Topics
 
 - **Provenance metadata for AI retrieval**: a pilot to "develop and test a minimum metadata model that accurately tracks provenance and attribution" when AI systems retrieve scholarly content. It convenes content creators, publishers, repositories, AI tool developers and end-users. NISO's page gives no way to join yet (read 2026-11-16).
+- **Naming the version of an article**: [Journal Article Versions](https://www.niso.org/publications/rp-8-2026-jav) (RP-8-2026) is a way of describing the versions of a journal article that appear online before, during and after formal publication. It revises the 2008 edition. Steve Smith and Josh Nicholson [point to it](https://scholarlykitchen.sspnet.org/2026/11/16/guest-post-beyond-the-download-what-counts-as-scholarly-content-use-in-the-age-of-ai/) for saying which version an AI usage report refers to.
 - **A venue for library standards on AI**: Lisa Janicke Hinchliffe [asks](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) for a NISO-style community process to define what a register of publisher MCP connectors should record.
 
 #### Related
@@ -1638,6 +1732,7 @@ US standards body for libraries, publishers and the vendors between them. Publis
 #### History
 
 - 2026-10: [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
+- 2026-10-05: Journal Article Versions RP-8-2026 published.
 - 2026-08-26: KBART Phase III published.
 
 Linked from: [KBART](#kbart), [TRACE](#trace)
@@ -1647,6 +1742,8 @@ Linked from: [KBART](#kbart), [TRACE](#trace)
 - Id: open-future
 - Type: organization
 - Website: https://openfuture.eu
+- News: https://openfuture.eu/blog/
+- Feed: https://openfuture.eu/feed/
 - Tags: type/organization, layer/governance, layer/access
 - Updated: 2026-11-03
 - Explorer: https://www.olahungerford.com/content-provenance/#open-future
@@ -1667,6 +1764,8 @@ Linked from: [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [Wikim
 - Type: organization
 - Status: MCP Labs (mcp.okfn.org) live; okfn/mcp-server uses structuredContent.sources
 - Website: https://okfn.org
+- News: https://blog.okfn.org/
+- Feed: https://blog.okfn.org/feed/
 - Take part: [okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)
 - Tags: type/organization, layer/attribution, stage/in-transit, venue/mcp
 - Updated: 2026-11-15
@@ -1701,6 +1800,8 @@ Linked from: [Creative Commons](#creative-commons), [SEP-3094 Granular Citations
 - Type: organization
 - Status: policycheck, commerce profile, AIMS draft
 - Website: https://openattribution.org
+- News: https://openattribution.org/blog
+- Feed: https://openattribution.org/feed.xml
 - Take part: [GitHub](https://github.com/openattribution-org)
 - Tags: type/organization, layer/attribution, layer/identity, layer/payments
 - Updated: 2026-11-16
@@ -1721,6 +1822,8 @@ Linked from: [Agent Identity and Manifest Standard](#aims), [Agentic Commerce Pr
 - Type: project
 - Status: RFC 4484 open (updated 2026-10-07); BearingNode proposed an MCP `_meta` lineage key to the FSIG 2026-10-08
 - Website: https://openlineage.io
+- News: https://openlineage.io/blog/
+- Feed: https://openlineage.io/blog/feed.json
 - Take part: [GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)
 - Tags: type/project, layer/provenance, stage/in-transit, medium/data
 - Updated: 2026-11-16
@@ -1814,6 +1917,7 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg)
 - Type: specification
 - Status: RSL 1.0 published 2025-12-10; the collective behind it relaunched as the Internet Licensing Collective 2026-11-12
 - Website: https://rslstandard.org
+- News: https://rslstandard.org/press
 - Take part: [GitHub](https://github.com/rslstandard)
 - Tags: type/specification, layer/licensing, layer/payments
 - Updated: 2026-11-16
@@ -2053,6 +2157,7 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI
 - Type: organization
 - Status: Sued Suno on 2026-09-02, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-16)
 - Website: https://www.socan.com
+- News: https://www.socan.com/media-centre/
 - Tags: type/organization, layer/licensing, layer/payments, layer/attribution, medium/audio
 - Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#socan
@@ -2115,6 +2220,8 @@ Maker of datadiligence, a Python library that checks works against known opt-out
 - Type: organization
 - Status: Content Telemetry v1.0 published 2026-09-02
 - Website: https://www.spurcoalition.org
+- News: https://www.spurcoalition.org/updates
+- Feed: https://www.spurcoalition.org/updates?format=rss
 - Take part: [GitHub](https://github.com/SPUR-Coalition)
 - Tags: type/organization, layer/attribution, stage/after-delivery, stage/trust
 - Updated: 2026-11-15
@@ -2141,6 +2248,7 @@ Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet L
 - Type: organization
 - Status: Offers a license for AI services, launched as a pilot on 2025-09-08. AI has been a separate rights category since 2026-06-01, and members approve works one by one (read 2026-11-16)
 - Website: https://www.stim.se/en
+- News: https://www.stim.se/en/news
 - Take part: [license for AI services](https://www.stim.se/en/license-for-ai-services)
 - Tags: type/organization, layer/licensing, layer/payments, layer/attribution, medium/audio
 - Updated: 2026-11-16
@@ -2217,6 +2325,8 @@ Linked from: [COUNTER Metrics](#counter), [NISO](#niso)
 - Type: specification
 - Status: Google-led consortium, no foundation home
 - Website: https://github.com/Universal-Commerce-Protocol/ucp
+- News: https://ucp.dev/documentation/announcements/
+- Feed: https://github.com/Universal-Commerce-Protocol/ucp/releases.atom
 - Take part: [GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)
 - Tags: type/specification, layer/payments
 - Updated: 2026-11-03
@@ -2236,6 +2346,8 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [OpenAttribu
 - Also known as: World Wide Web Consortium
 - Type: organization
 - Website: https://www.w3.org
+- News: https://www.w3.org/news/, https://www.w3.org/blog/
+- Feed: https://www.w3.org/news/feed/, https://www.w3.org/blog/feed/
 - Take part: [how to participate](https://www.w3.org/participate/)
 - Tags: type/organization, layer/licensing, layer/access
 - Updated: 2026-11-03
@@ -2256,6 +2368,7 @@ Linked from: [W3C ODRL](#w3c-odrl), [W3C TDM Reservation Protocol Community Grou
 - Type: community-group
 - Status: 2.2 is a W3C Recommendation; a W3C WG for 3.0 is being chartered; ai-vocab draft
 - Website: https://www.w3.org/community/odrl/
+- Feed: https://www.w3.org/community/odrl/feed/
 - Part of: [W3C](#w3c)
 - Take part: [join the community group](https://www.w3.org/community/odrl/join)
 - Tags: type/community-group, layer/licensing
@@ -2278,6 +2391,7 @@ Linked from: [Dataspace Protocol](#dataspace-protocol), [Encypher](#encypher), [
 - Type: community-group
 - Status: CG draft; last push 2026-09
 - Website: https://www.w3.org/community/tdmrep/
+- Feed: https://www.w3.org/community/tdmrep/feed/
 - Part of: [W3C](#w3c)
 - Take part: [join the community group](https://www.w3.org/community/tdmrep/join)
 - Tags: type/community-group, layer/access, layer/licensing
@@ -2308,6 +2422,8 @@ Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code
 - Type: organization
 - Status: Published investigation of OpenAI-run agents 2026-10-05; a WikiCite contributor reviewed SEP-3094, which closed 2026-11-08
 - Website: https://wikimediafoundation.org
+- News: https://wikimediafoundation.org/news/
+- Feed: https://wikimediafoundation.org/news/feed/
 - Tags: type/organization, layer/attribution, layer/identity
 - Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#wikimedia
@@ -2342,6 +2458,8 @@ Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Internet Li
 - Type: specification
 - Status: x402 Foundation (Linux Foundation) operational 2026-07-14; v2 spec
 - Website: https://x402.org
+- News: https://x402.org/announcements/, https://x402.org/blog/
+- Feed: https://x402.org/feed/
 - Take part: [GitHub](https://github.com/coinbase/x402)
 - Tags: type/specification, layer/payments
 - Updated: 2026-11-15
