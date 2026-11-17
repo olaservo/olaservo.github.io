@@ -1,6 +1,7 @@
 {
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
+ "license": "https://creativecommons.org/licenses/by/4.0/",
  "as_of": "2026-11-17",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
@@ -36,7 +37,7 @@
    "date": "2026-11-05",
    "card": "agent-skills-signing",
    "name": "Agent Skills at-rest signing threads",
-   "text": "Discussion 651 proposed C2PA content credentials for skills.",
+   "text": "Discussion 651 proposed C2PA content credentials for skills, with an example repository the same day.",
    "url": "https://www.olahungerford.com/content-provenance/#agent-skills-signing"
   },
   {
