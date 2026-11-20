@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-17. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
+79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-20. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -53,7 +53,7 @@ Subjects that cards on different layers share.
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-agentic-commerce/issues)
 - Tags: type/working-group, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-15
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg
 
 Discovery and negotiation, checkout, delegated authority, agentic payments, fraud signals, post-purchase.
@@ -71,21 +71,21 @@ Linked from: [Agentic AI Foundation](#aaif), [Universal Commerce Protocol](#ucp)
 ### AAIF Governance, Risk and Regulatory WG
 
 - Id: aaif-grr-wg
-- Also known as: GRR
+- Also known as: GRR, GRRA WG, "Governance, Risk & Regulatory Alignment"
 - Type: working-group
 - Website: https://github.com/aaif/wg-governance-risk-and-regulatory
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-governance-risk-and-regulatory/issues)
 - Tags: type/working-group, layer/governance
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-grr-wg
 
 Working group bridging AI policy and the foundation's technical projects.
 
 #### Topics
 
-- **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9)).
-- **Policy mapping**: mapping regulation onto the projects. Its gap analysis covers EU AI Act logging articles ([EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code)) and does not name the GPAI Code of Practice.
+- **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9), closed 2026-11-12 into the interim report).
+- **Policy mapping**: mapping regulation onto the projects. The phase 2 input in issue 9 cites EU AI Act Articles 12, 19 and 26(6) ([EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code)). The public repository does not name the GPAI Code of Practice (searched 2026-11-20). The interim report is a Google Doc that needs sign-in.
 
 Linked from: [Agentic AI Foundation](#aaif)
 
@@ -98,7 +98,7 @@ Linked from: [Agentic AI Foundation](#aaif)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-identity-and-trust/issues)
 - Tags: type/working-group, layer/identity, stage/trust
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg
 
 Charter: agent identity, authentication and provenance, delegation chains, consent, cross-organization trust, discovery metadata.
@@ -122,12 +122,12 @@ Linked from: [Agent Identity and Manifest Standard](#aims), [Agentic AI Foundati
 
 - Id: aaif-observability-traceability-wg
 - Type: working-group
-- Status: Nine-task Agent Behavior Trace Model plan; provenance initiative lead named 2026-09-02; OTel cross-domain provenance proposal 2026-10-28
+- Status: Nine-task Agent Behavior Trace Model plan; provenance initiative lead named 2026-09-02; proposal joining OTel GenAI telemetry to signed evidence records opened 2026-10-28; trace model proposal well received at the OTel GenAI SIG 2026-11-11
 - Website: https://github.com/aaif/wg-observability-and-traceability
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-observability-and-traceability/issues)
 - Tags: type/working-group, layer/provenance, layer/attribution
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg
 
 Working group on agent-level observability, above the OpenTelemetry GenAI telemetry conventions.
@@ -136,7 +136,7 @@ Working group on agent-level observability, above the OpenTelemetry GenAI teleme
 
 - **Evidence records**: tamper-evident records of agent behavior ([Evidence Record Spec proposal](https://github.com/aaif/wg-observability-and-traceability/issues/37)).
 - **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.
-- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member.
+- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/blob/main/LIAISONS.md) has no content-side member.
 
 #### Related
 
@@ -148,7 +148,9 @@ Working group on agent-level observability, above the OpenTelemetry GenAI teleme
 
 #### History
 
-- 2026-10-28: OTel cross-domain provenance proposal.
+- 2026-11-11: Minutes record a positive reception of the Agent Behavior Trace Model proposal at the OTel GenAI SIG.
+- 2026-11-04: Liaison roster published.
+- 2026-10-28: [PR 67](https://github.com/aaif/wg-observability-and-traceability/pull/67) proposes joining OTel GenAI telemetry to signed action and evidence records. The meeting set an action to draft a cross-domain tracing and provenance proposal for OTel.
 - 2026-09-02: Provenance initiative lead named.
 
 Linked from: [Agentic AI Foundation](#aaif), [OpenTelemetry for MCP](#otel-mcp)
@@ -161,7 +163,7 @@ Linked from: [Agentic AI Foundation](#aaif), [OpenTelemetry for MCP](#otel-mcp)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub issues](https://github.com/aaif/wg-security-and-privacy/issues)
 - Tags: type/working-group, layer/governance, stage/trust, topic/skills
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif-security-privacy-wg
 
 Working group drafting a security and privacy best-practices guide for agents.
@@ -187,7 +189,7 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Age
 - Part of: [OpenAttribution.org](#openattribution)
 - Take part: [GitHub issues](https://github.com/openattribution-org/aims/issues)
 - Tags: type/specification, layer/identity
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#aims
 
 DID-based agent identity, proof of what content the agent is licensed to access, and a link from identity to the telemetry endpoint.
@@ -214,7 +216,7 @@ Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Decentraliz
 - Feed: https://github.com/google-agentic-commerce/AP2/releases.atom
 - Take part: [GitHub](https://github.com/google-agentic-commerce/AP2)
 - Tags: type/specification, layer/payments, layer/identity
-- Updated: 2026-11-03
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#ap2
 
 Mandates that prove a human authorized an agent purchase.
@@ -230,18 +232,18 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [x402](#x402
 - Id: agent-plugins
 - Also known as: agent-plugins-spec, plugin.json
 - Type: specification
-- Status: 1.0.0 published 2026-08-06; 1.1.0 is a working draft; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel
+- Status: 1.0.0 published 2026-08-06; 1.1.0 is a working draft; AAIF Technical Committee approved it as a Growth-stage project 2026-10-27, Governing Board vote pending; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel
 - Website: https://agent-plugins.org/
 - Take part: [GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)
 - Tags: type/specification, layer/provenance, layer/licensing, topic/skills, stage/at-rest, medium/code
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-plugins
 
 Package format that puts [Agent Skills](#agent-skills) and MCP server configuration in one portable directory: a `plugin.json` manifest, a `skills/` folder and an `mcp.json`. Independently governed. The spec is CC BY 4.0 and the schemas Apache 2.0.
 
 #### Topics
 
-- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.
+- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin carries structured authorship and repository fields. A `SKILL.md` has an optional `license` field and a free-form `metadata` map. Clients validate these by JSON type only, so nothing stops an empty or false value.
 - **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails.
 - **No distribution layer**: registries, marketplaces, installation and updates are each client's own.
 
@@ -251,13 +253,15 @@ Package format that puts [Agent Skills](#agent-skills) and MCP server configurat
 
 #### Compare
 
-- Not an [Agentic AI Foundation](#aaif) project. The AAIF project list does not include it (read 2026-11-15).
+- Not yet an [Agentic AI Foundation](#aaif) project. The AAIF Technical Committee approved it as a Growth-stage project, and it awaits a Governing Board vote ([proposal 56](https://github.com/aaif/project-proposals/issues/56)). The AAIF project list does not include it (read 2026-11-20).
 - Its future-considerations list covers the same ground as the [Agent Skills at-rest signing threads](#agent-skills-signing). Neither refers to the other (searched 2026-11-15).
 - A [Skills Marketplace](#skills-marketplace) would have a package to ship here and no shared channel to ship it through.
 - [SEP-2640 Skills Extension](#mcp-skills-extension) serves the same skills over MCP instead of on disk. Both build on Agent Skills, and neither names the other (searched 2026-11-15).
 
 #### History
 
+- 2026-10-27: AAIF staff reported Technical Committee approval as a Growth-stage project. A Governing Board vote is pending.
+- 2026-10-12: Proposed to [Agentic AI Foundation](#aaif).
 - 2026-08-06: 1.0.0 published.
 
 Linked from: [Agent Skills](#agent-skills), [Agent Skills at-rest signing threads](#agent-skills-signing), [Skills Marketplace](#skills-marketplace)
@@ -272,7 +276,7 @@ Linked from: [Agent Skills](#agent-skills), [Agent Skills at-rest signing thread
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [GitHub discussions](https://github.com/agentskills/agentskills/discussions)
 - Tags: type/specification, topic/skills, stage/at-rest, medium/code
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-skills
 
 The SKILL.md format for packaging instructions and files for agents.
@@ -290,28 +294,28 @@ The SKILL.md format for packaging instructions and files for agents.
 
 - 2026-10-22: Joined AAIF.
 
-Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing threads](#agent-skills-signing), [Agentic AI Foundation](#aaif), [AI Catalog](#ai-catalog), [SEP-2640 Skills Extension](#mcp-skills-extension)
+Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing threads](#agent-skills-signing), [Agentic AI Foundation](#aaif), [AI Catalog](#ai-catalog), [SEP-2640 Skills Extension](#mcp-skills-extension), [Skills Marketplace](#skills-marketplace)
 
 ### Agent Skills at-rest signing threads
 
 - Id: agent-skills-signing
 - Also known as: #252, #393, #588, #564, #620, #643, #651
 - Type: proposal
-- Status: Seven open discussions in Ideas, one maintainer, no convergence
+- Status: Seven open discussions in Ideas, none answered by a listed maintainer, no convergence
 - Website: https://github.com/agentskills/agentskills/discussions/393
 - Part of: [Agent Skills](#agent-skills)
 - Take part: [GitHub discussions](https://github.com/agentskills/agentskills/discussions)
 - Tags: type/proposal, layer/provenance, stage/at-rest, topic/skills, medium/code
-- Updated: 2026-11-17
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-skills-signing
 
 Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)), a [C2PA](#c2pa) manifest reference in a frontmatter comment with a digest of the other files in `metadata` ([#651](https://github.com/agentskills/agentskills/discussions/651)).
 
 #### Topics
 
-- **Copy sprawl**: tracking copies, which outnumber originals. One dataset has half of SKILL.md files as verbatim copies, and only 11.1% of fixes reach every copy.
+- **Copy sprawl**: tracking copies of a skill. The GitSkills dataset reports that half of SKILL.md files on GitHub are verbatim copies. [Skill Constellations](https://arxiv.org/abs/2610.11169) finds that only 11.1% of changes to a clone group reach every copy.
 - **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.
-- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. The six earlier threads cover neither. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [C2PA](#c2pa) content credentials for skills and names the [Creator Assertions Working Group](#cawg) identity assertion for the signer. Its example repository has no identity assertion yet.
+- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. [#252](https://github.com/agentskills/agentskills/discussions/252) names the signer by domain and suggests a `.well-known/skills-revoked` endpoint. [#393](https://github.com/agentskills/agentskills/discussions/393) carries a publisher block and a `revocation_url`. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [C2PA](#c2pa) content credentials for skills and names the [Creator Assertions Working Group](#cawg) identity assertion for the signer. Its example repository has no identity assertion yet.
 - **Whole-folder coverage**: signing the scripts and other files, when a C2PA manifest binds to one file. Discussion 651 signs SKILL.md and puts a digest of every other file in `metadata.directory-digest`, which the signature covers. In its tests a generic C2PA validator passes a skill with an edited script, and a verifier that recomputes the digest fails it.
 - **Removed credentials**: telling a skill whose manifest line was removed from one that was never signed. The bytes are the same. The author of discussion 651 says the expectation of a signature has to come from outside the skill, through publisher pinning, trust on first use or a distribution-layer policy. On 2026-11-16 they proposed four verifier results: `verified`, `invalid`, `unreachable` and `absent`.
 
@@ -342,7 +346,7 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg), [Agent P
 - News: https://aaif.io/news, https://aaif.io/blog
 - Take part: [working group repos on GitHub](https://github.com/aaif)
 - Tags: type/organization, layer/governance
-- Updated: 2026-11-03
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#aaif
 
 Hosts [Model Context Protocol](#mcp), goose, AGENTS.md, agentgateway, A2A, [Agent Skills](#agent-skills) and others.
@@ -359,11 +363,11 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [AAIF Govern
 - Id: acp
 - Also known as: ACP
 - Type: specification
-- Status: Published by OpenAI and Stripe
+- Status: Beta; maintained by OpenAI, Stripe and Meta (Meta since 2026-04-24); latest spec 2026-04-17
 - Website: https://github.com/agentic-commerce-protocol/agentic-commerce-protocol
 - Take part: [GitHub issues](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#acp
 
 Merchant checkout for agents. [OpenAttribution.org](#openattribution) has a `content_attribution` extension for it.
@@ -372,6 +376,10 @@ Merchant checkout for agents. [OpenAttribution.org](#openattribution) has a `con
 
 - **Agent checkout**: letting agents complete merchant checkout.
 - **Credit for purchases**: crediting the content that led to a purchase, through the [OpenAttribution.org](#openattribution) extension.
+
+#### History
+
+- 2026-04-24: Meta joined OpenAI and Stripe as a lead maintainer ([PR 236](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/236)).
 
 Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [OpenAttribution.org](#openattribution), [Universal Commerce Protocol](#ucp)
 
@@ -384,7 +392,7 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [OpenAttribu
 - Website: https://agenticresourcediscovery.org/spec/
 - Take part: [GitHub issues](https://github.com/ards-project/ard-spec/issues)
 - Tags: type/specification, layer/identity, topic/discovery
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ard
 
 A federated search layer for agentic resources: MCP servers, A2A agents, skills and APIs. Publishers list entries on their own domain, registries index them and answer `POST /search`, and a registry can refer a query to other registries. Google announced it on 2026-06-17 under Apache 2.0. The v0.91 authors are from Google and Hugging Face, with R.V. Guha.
@@ -398,7 +406,7 @@ A federated search layer for agentic resources: MCP servers, A2A agents, skills 
 
 #### Related
 
-- Built on the [AI Catalog](#ai-catalog) entry. The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0010 here, ADR-0017 there): the catalog entry stays thin, and ARD adds namespaced terms.
+- v0.91 defines its own ARD entry, and "every ARD entry is a well-formed catalog entry" ([AI Catalog](#ai-catalog)). The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0010 here, ADR-0017 there): the catalog entry stays thin, and ARD adds namespaced terms.
 - v0.91 has publishers serve entries at `/.well-known/ard.json` and says a publisher on `/.well-known/ai-catalog.json` should move.
 
 #### In use
@@ -410,6 +418,7 @@ A federated search layer for agentic resources: MCP servers, A2A agents, skills 
 - 2026-08-26: v0.91.
 - 2026-07-09: Loose coupling with AI Catalog agreed.
 - 2026-06-17: Announced by Google.
+- 2026-06-16: v0.9 (Draft).
 - 2026-05-28: v0.5.
 
 Linked from: [AI Catalog](#ai-catalog)
@@ -419,11 +428,11 @@ Linked from: [AI Catalog](#ai-catalog)
 - Id: ai-catalog
 - Also known as: Agent-Card, ai-catalog.json
 - Type: specification
-- Status: ADR-0028 accepted on the 2026-11-05 TSC call, opening catalog and entry objects to unrecognized members; identity-keyed trust manifests merged 2026-10-28
+- Status: ADR-0028 (open catalog and entry objects) accepted on the 2026-11-05 AI Catalog call and merged into the spec 2026-11-11; independently signed trust manifest contributions merged 2026-10-28
 - Website: https://github.com/Agent-Card/ai-catalog
 - Take part: [GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)
 - Tags: type/specification, layer/provenance, layer/identity, stage/at-rest, topic/discovery
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-catalog
 
 Catalog format for discovering agents, MCP servers and skills. A catalog is a JSON list of typed entries that a domain can serve at `/.well-known/ai-catalog.json`, and an entry can be another catalog. A four-seat Technical Steering Committee governs it, with two seats nominated by the [Model Context Protocol](#mcp) core maintainers and two by the A2A steering committee.
@@ -431,14 +440,14 @@ Catalog format for discovering agents, MCP servers and skills. A catalog is a JS
 #### Topics
 
 - **Discovery**: finding agents, servers and skills across vendors.
-- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117).
+- **Catalog trust**: publishers, assessors and operators each add an [independently signed trust manifest](https://github.com/Agent-Card/ai-catalog/pull/117) to an entry's `trustManifests` array. Each signature covers that manifest and its subject, the artifact release, and not the rest of the entry.
 - **Publisher and operator**: the party that runs a catalog (`host`) and the party responsible for an artifact (`publisher`) are separate roles. An operator that lists an artifact it does not publish must use an identifier under its own control, and "MUST NOT infer publisher authorization from the artifact's URL or an unsigned `publisher` field" (Catalog Projection).
 - **Policy links**: the Policy URLs extension carries `privacyPolicyUrl` and `termsOfServiceUrl` for an artifact. A catalog signature covers the URL strings and not the documents behind them. The spec has no field for machine-readable usage terms or for the entitlements an artifact covers (read 2026-11-16).
 
 #### Related
 
 - Entry types include `application/mcp-server-card+json` for [SEP-2127 Server Cards](#mcp-server-cards) and `application/agent-skills+zip` for [Agent Skills](#agent-skills) bundles.
-- [Agentic Resource Discovery](#ard) builds its search entries on the catalog entry. The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0017): the catalog keeps thin entries with a small `extensions` map, and ARD takes JSON-LD `@context` for richer metadata.
+- [Agentic Resource Discovery](#ard) defines its own entry, and "every ARD entry is a well-formed catalog entry". The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0017): the catalog keeps thin entries with a small `extensions` map, and ARD takes JSON-LD `@context` for richer metadata.
 
 #### Compare
 
@@ -446,8 +455,9 @@ Catalog format for discovering agents, MCP servers and skills. A catalog is a JS
 
 #### History
 
+- 2026-11-11: Spec aligned with ADR-0028 ([PR 131](https://github.com/Agent-Card/ai-catalog/pull/131)).
 - 2026-11-05: ADR-0028 accepted, opening catalog and entry objects to unrecognized members.
-- 2026-10-28: Identity-keyed trust manifests merged.
+- 2026-10-28: Independently signed trust manifest contributions merged.
 - 2026-07-09: Loose coupling with ARD agreed.
 
 Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Agentic Resource Discovery](#ard), [KBART](#kbart), [SEP-2127 Server Cards](#mcp-server-cards)
@@ -461,10 +471,10 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Age
 - News: https://ai-disclosures.org/blog
 - Feed: https://asimovaddendum.substack.com/feed
 - Tags: type/organization, layer/governance, layer/attribution, layer/payments
-- Updated: 2026-11-08
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-disclosures-project
 
-Project housed at Code for Science and Society working on the standards and mechanisms for value distribution in the human and AI economy. Prototypes include [Skills Marketplace](#skills-marketplace), the Open Memory Protocol Consortium and the Open Alpha Registry.
+Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [Skills Marketplace](#skills-marketplace), the Open Memory Protocol Initiative (OMPI) and the Open Alpha Registry.
 
 #### Topics
 
@@ -489,14 +499,24 @@ Linked from: [Skills Marketplace](#skills-marketplace)
 - Feed: https://github.com/ai-robots-txt/ai.robots.txt/releases.atom
 - Take part: [GitHub issues](https://github.com/ai-robots-txt/ai.robots.txt/issues)
 - Tags: type/project, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-robots-txt
 
-Community list of AI crawlers with generated robots.txt, nginx, Caddy, HAProxy and lighttpd blocks.
+Community list of AI crawlers with generated robots.txt, Apache .htaccess, nginx, Caddy, HAProxy and lighttpd blocks.
 
 #### Topics
 
 - **Crawler blocking today**: giving site operators ready-made blocks, and a record of what they deploy compared with what [IETF AI Preferences Working Group](#ietf-aipref) specifies.
+
+#### In use
+
+- v2.2 (2026-11-16) adds the [Shared AI training robots.txt token](#aipref-training-token) group `User-agent: __usage_ai-training` to its robots.txt.
+
+#### History
+
+- 2026-11-16: [v2.2](https://github.com/ai-robots-txt/ai.robots.txt/releases/tag/v2.2) released with the `__usage_ai-training` token.
+
+Linked from: [Shared AI training robots.txt token](#aipref-training-token)
 
 ### C2PA
 
@@ -509,7 +529,7 @@ Community list of AI crawlers with generated robots.txt, nginx, Caddy, HAProxy a
 - Feed: https://c2pa.org/feed/
 - Take part: [membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)
 - Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text
-- Updated: 2026-11-17
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#c2pa
 
 Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [Content Authenticity Initiative](#content-authenticity-initiative).
@@ -519,7 +539,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 - **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.
 - **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method "remains under review", and partially copied text counts as having no manifest. [Encypher](#encypher) sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) relies on. The conformance text rubric has no JSON group yet.
 - **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.
-- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28). 22 of them list an audio media type, 18 watermarks and 4 fingerprints (read 2026-11-15).
+- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).
 - **Signer trust**: deciding who may sign, through a trust list and a conformance program.
 
 #### Related
@@ -534,7 +554,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 
 #### In use
 
-- The [conforming products list](https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json) had 342 records from 216 applicants on 2026-11-14: 300 generators and 42 validators. Most sign images, video and audio. One lists a plain-text format and none lists HTML. The [Conformance Explorer](https://spec.c2pa.org/conformance-explorer/) shows the same data.
+- The [conforming products list](https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json) had 349 records from 222 applicants on 2026-11-19: 307 generators and 42 validators. 262 generators sign images, 201 sign video and 109 sign audio. One lists a plain-text format and none lists HTML. The [Conformance Explorer](https://spec.c2pa.org/conformance-explorer/) shows the same data.
 - Appendix A.8 has two published libraries: [c2pa-text](https://pypi.org/project/c2pa-text/) from [Encypher](#encypher) (3.0.0, 2026-06-19) and [c2pa-unstructured-text](https://crates.io/crates/c2pa-unstructured-text) from WritersLogic (0.2.0, 2026-08-02).
 - News publishers that sign images and video are listed on [IPTC](#iptc).
 
@@ -549,12 +569,12 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 - Id: mcp-c2pa-in-meta
 - Also known as: #3225, org.c2pa/credential
 - Type: proposal
-- Status: Discussion closed 2026-09-25 with all spec-repo discussions; no SEP filed yet
+- Status: Discussion closed 2026-09-25 when the spec repo limited Discussions to meeting notes; no SEP filed yet
 - Website: https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/proposal, layer/provenance, stage/in-transit, venue/mcp
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta
 
 Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` under `org.c2pa/credential`.
@@ -562,7 +582,7 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 #### Topics
 
 - **Provenance in transit**: keeping a credential attached as content crosses from server to client.
-- **A venue**: finding an owner, since no WG or IG covers content provenance and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.
+- **A venue**: finding an owner. The [MCP Financial Services Interest Group](#mcp-fsig) lists data lineage and provenance for its sector and the Scientific Computing IG lists provenance of computed results. No WG or IG covers content provenance in general, and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.
 - **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.
 - **Where the field lives**: choosing between a top-level field and `_meta`.
 
@@ -574,7 +594,7 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 
 #### History
 
-- 2026-09-25: Discussion closed along with all spec-repo discussions.
+- 2026-09-25: Discussion closed when the spec repo limited Discussions to meeting notes.
 
 Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [OpenTelemetry for MCP](#otel-mcp)
 
@@ -582,15 +602,15 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 
 - Id: cc-signals
 - Type: proposal
-- Status: GitHub draft unchanged since 2025-12; v2 to make attribution a requirement
+- Status: Public alpha planned for early 2027, starting with SourceConnection (announced 2026-11-16); the GitHub draft is unchanged since 2025-12-04
 - Website: https://github.com/creativecommons/cc-signals
 - Part of: [Creative Commons](#creative-commons)
 - Take part: [GitHub issues](https://github.com/creativecommons/cc-signals/issues)
 - Tags: type/proposal, layer/access, layer/attribution
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#cc-signals
 
-Preference signals for AI reuse with terms attached: Credit, Credit + Direct Contribution, Credit + Ecosystem Contribution, Credit + Open. Layered on [IETF AI Preferences Working Group](#ietf-aipref) vocabulary.
+Preference signals for AI reuse with terms attached: Credit, Credit + Direct Contribution, Credit + Ecosystem Contribution, Credit + Open. Layered on [IETF AI Preferences Working Group](#ietf-aipref) vocabulary. That is the 2025 GitHub draft. CC's [page](https://creativecommons.org/ai-and-the-commons/cc-signals/) now describes a framework of legal tools and norms with two components, SourceConnection and ShareBack.
 
 #### Topics
 
@@ -600,6 +620,12 @@ Preference signals for AI reuse with terms attached: Credit, Credit + Direct Con
 #### Compare
 
 - [Content Telemetry](#content-telemetry) and [SEP-3094 Granular Citations](#mcp-sep-3094-citations) are two ways to check whether credit was given. Neither names CC Signals (searched 2026-11-15).
+
+#### History
+
+- 2026-11-16: CC [said](https://creativecommons.org/2026/11/16/advancing-cc-signals-preparing-for-public-alpha-testing-in-2027/) a public alpha is planned for early 2027 and will first focus on SourceConnection.
+- 2026-05-13: CC [said](https://creativecommons.org/2026/05/13/from-signals-to-infrastructure-strengthening-the-commons-for-the-ai-era/) attribution must be a requirement in the next iteration.
+- 2026-04-23: CC [said](https://creativecommons.org/2026/04/23/update-on-cc-signals-what-changed-and-why/) CC Signals is no longer limited to signaling preferences.
 
 Linked from: [Creative Commons](#creative-commons), [IETF AI Preferences Working Group](#ietf-aipref), [NISO](#niso)
 
@@ -612,10 +638,10 @@ Linked from: [Creative Commons](#creative-commons), [IETF AI Preferences Working
 - Website: https://www.cisac.org
 - News: https://www.cisac.org/newsroom
 - Tags: type/organization, layer/licensing, layer/payments, layer/governance, medium/audio, medium/video
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#cisac
 
-Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [GEMA](#gema) is a member, and the CEO of [SOCAN](#socan) is a Vice-Chair of [its board](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors). It lists the ISWC work identifier, IPI and CIS-Net as its standards and tools.
+Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [GEMA](#gema) is a member, and the CEO of [SOCAN](#socan) is a Vice-Chair of [its board](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors). It lists ISWC, ida, CIS-Net, ISAN, DDEX and IPI as its standards and tools.
 
 #### Topics
 
@@ -646,7 +672,7 @@ Linked from: [GEMA](#gema), [SOCAN](#socan), [STIM](#stim)
 - Website: https://contentsignals.org
 - Take part: [ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)
 - Tags: type/proposal, layer/access
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#cloudflare-content-signals
 
 Three robots.txt categories, `search`, `ai-input` and `ai-train`, proposed as [IETF AI Preferences Working Group](#ietf-aipref) vocabulary.
@@ -658,7 +684,7 @@ Three robots.txt categories, `search`, `ai-input` and `ai-train`, proposed as [I
 #### In use
 
 - Cloudflare's managed robots.txt serves the policy with `search=yes, ai-train=no` by default. Cloudflare said customers had turned managed robots.txt on for over 3.8 million domains at launch ([Cloudflare blog](https://blog.cloudflare.com/content-signals-policy/), 2025-09-24).
-- [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) detects the signals in robots.txt and in `Content-Signal` headers.
+- [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) reads `Content-Signal` lines in robots.txt.
 
 Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [OpenAttribution.org](#openattribution), [Really Simple Licensing](#rsl)
 
@@ -688,14 +714,14 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 
 - Id: content-telemetry
 - Type: specification
-- Status: v1.0 published 2026-09-02; signed events deferred (section 8.9)
+- Status: v1.0 published 2026-09-02; per-event signing is informational (section 8.4) and manifest signing is deferred (section 8.9)
 - Website: https://github.com/SPUR-Coalition/telemetry
 - News: https://github.com/SPUR-Coalition/telemetry/releases
 - Feed: https://github.com/SPUR-Coalition/telemetry/releases.atom
 - Part of: [SPUR Coalition](#spur-coalition)
 - Take part: [GitHub issues](https://github.com/SPUR-Coalition/telemetry/issues)
 - Tags: type/specification, layer/attribution, stage/after-delivery
-- Updated: 2026-11-17
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#content-telemetry
 
 Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`, `content_presented`, `content_engaged`. Manifest discovery at `/.well-known/content-telemetry.json`. `license_ref` joins it to the licensing layer ([Really Simple Licensing](#rsl), [IAB Tech Lab Content Monetization Protocols](#iab-comp)).
@@ -706,7 +732,7 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 - **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).
 - **Declaring coverage**: a report does not show whether every event was reported. Section 5.7.6 has an emitter declare one of four coverage modes (complete, sampled, aggregated, selected) and the scope it applies over, and says a consumer must not read a missing event as proof that nothing happened unless coverage is complete.
 - **Reporting for an institution**: `access_context` names the institution a session's access rights derive from, as a claim by the emitter (section 5.1.3). `content_depth` records whether a retrieval reached metadata, an abstract or the full record (section 6.1).
-- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients.
+- **MCP binding**: the specification defines none and lists MCP tool calls as one delivery pattern (section 7.1). telemetry-js's `MCPSessionTracker` emits retrieved, cited and presented events from MCP tool and response hooks.
 
 #### Related
 
@@ -720,7 +746,7 @@ Five reportable stages: `content_retrieved`, `content_grounded`, `content_cited`
 
 #### In use
 
-- [telemetry-js](https://github.com/SPUR-Coalition/telemetry-js) is on npm as `@openattribution/telemetry` 0.1.3 (2026-06-12) and includes an `MCPSessionTracker`. Its 1.0.0, which implements v1.0 of the standard, is unreleased.
+- [telemetry-js](https://github.com/SPUR-Coalition/telemetry-js) is on npm as `@openattribution/telemetry` and includes an `MCPSessionTracker`. Its `latest` tag is 0.1.3 (2026-06-12), and versions 0.2.0 to 0.4.0 (2026-03-03 to 2026-05-28) are also published. Its 1.0.0, which implements v1.0 of the standard, is unreleased.
 
 #### History
 
@@ -735,9 +761,9 @@ Linked from: [AAIF Observability and Traceability WG](#aaif-observability-tracea
 - Status: Phase two of its AI best practice published 2026-10-23; it says the guidelines are aligned with the SPUR telemetry framework
 - Website: https://www.countermetrics.org
 - News: https://www.countermetrics.org/news/
-- Take part: [membership](https://www.countermetrics.org/membership/)
+- Take part: [membership](https://www.countermetrics.org/members/)
 - Tags: type/organization, layer/attribution
-- Updated: 2026-11-17
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#counter
 
 Usage-metrics standard for scholarly publishers and libraries.
@@ -768,13 +794,13 @@ Linked from: [Content Telemetry](#content-telemetry), [Google Scholar Mediated R
 - Id: creative-commons
 - Also known as: CC
 - Type: organization
-- Status: Attribution to become a requirement in the next CC Signals iteration; RAG attribution best practices planned
+- Status: CC Signals public alpha planned for early 2027, starting with SourceConnection (announced 2026-11-16)
 - Website: https://creativecommons.org
 - News: https://creativecommons.org/blog/
 - Feed: https://creativecommons.org/feed/
-- Take part: [contact](https://creativecommons.org/about/contact/)
+- Take part: [contact](https://creativecommons.org/mission/contact/)
 - Tags: type/organization, layer/licensing, layer/access, layer/attribution
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#creative-commons
 
 Steward of the CC licenses and CC REL machine-readable license metadata. Proposes [CC Signals](#cc-signals) and filed AIPREF drafts on exclusions and parameters ([IETF AI Preferences Working Group](#ietf-aipref)). The exclusions draft expired on 2026-10-24.
@@ -783,11 +809,11 @@ Steward of the CC licenses and CC REL machine-readable license metadata. Propose
 
 - **AI reuse beyond licensing**: giving stewards terms for AI reuse, since licensing alone cannot address it (September 2026 guidance).
 - **Attribution in answers**: honoring the CC attribution requirement when content reaches a model or an agent answer.
-- **RAG attribution pilots**: finding adopters for best practices later in 2026.
+- **Source references in answers**: finding early adopters for the CC Signals alpha in 2027. Its SourceConnection component would require AI developers to "provide references to sources when AI systems use outside sources to help answer questions".
 
 #### Compare
 
-- [Open Knowledge Foundation](#okfn), whose MCP server already returns a list of sources, is a candidate pilot for the RAG attribution best practices. Neither names the other (searched 2026-11-15).
+- [Open Knowledge Foundation](#okfn), whose MCP server already returns a list of sources, is a candidate early adopter for SourceConnection. Neither names the other (searched 2026-11-15).
 
 Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#ietf-aipref), [Open Knowledge Foundation](#okfn)
 
@@ -796,12 +822,12 @@ Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#iet
 - Id: cawg
 - Also known as: CAWG
 - Type: working-group
-- Status: Moved under DIF; consent assertion added 2026-07
+- Status: Moved under DIF; consent assertion started as a placeholder draft 2026-07-12
 - Website: https://cawg.io
 - Part of: [Decentralized Identity Foundation](#dif)
-- Take part: [GitHub](https://github.com/creator-assertions), via DIF membership
+- Take part: [spec repositories](https://github.com/orgs/decentralized-identity/repositories?q=cawg), via DIF membership
 - Tags: type/working-group, layer/provenance, layer/identity, layer/access
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#cawg
 
 Assertion specs that ride inside [C2PA](#c2pa) manifests: identity, training and data mining, consent, metadata, endorsement, certificate policy.
@@ -822,7 +848,7 @@ Assertion specs that ride inside [C2PA](#c2pa) manifests: identity, training and
 
 #### History
 
-- 2026-07: Consent assertion added.
+- 2026-07-12: Consent assertion repository created with a placeholder 1.0 draft.
 
 Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA](#c2pa), [Decentralized Identity Foundation](#dif), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IPTC](#iptc), [W3C ODRL](#w3c-odrl)
 
@@ -830,13 +856,13 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 
 - Id: croissant
 - Type: specification
-- Status: 1.1 (February 2026); required for NeurIPS 2026 dataset submissions
+- Status: 1.1 published 2026-01-29 and announced 2026-02-12; required for NeurIPS 2026 dataset submissions
 - Website: https://github.com/mlcommons/croissant
 - News: https://mlcommons.org/tag/croissant/
 - Feed: https://mlcommons.org/tag/croissant/feed/
 - Take part: [GitHub issues](https://github.com/mlcommons/croissant/issues)
 - Tags: type/specification, layer/provenance, layer/licensing, medium/data
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#croissant
 
 MLCommons dataset metadata format. 1.1 added machine-actionable provenance, consent and licensing fields.
@@ -852,11 +878,12 @@ MLCommons dataset metadata format. 1.1 added machine-actionable provenance, cons
 #### In use
 
 - The NeurIPS 2026 Evaluations and Datasets Track required a Croissant file with every dataset submission, including Responsible AI fields ([NeurIPS blog](https://blog.neurips.cc/2026/05/04/responsible-ai-metadata-requirements-for-the-evaluations-and-datasets-track-neurips-2026/), 2026-05-04).
-- Hugging Face, Kaggle, OpenML and Dataverse generate a Croissant file for the datasets they host, according to the [NeurIPS 2026 hosting guidelines](https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting).
+- Hugging Face, Kaggle, OpenML and Harvard Dataverse generate a Croissant file for the datasets they host, according to the [NeurIPS 2026 hosting guidelines](https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting).
 
 #### History
 
-- 2026-02: 1.1 released.
+- 2026-02-12: MLCommons announced 1.1.
+- 2026-01-29: 1.1 specification published.
 
 ### Data Provenance Initiative
 
@@ -866,7 +893,7 @@ MLCommons dataset metadata format. 1.1 added machine-actionable provenance, cons
 - Website: https://www.dataprovenance.org
 - Take part: [GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)
 - Tags: type/project, layer/provenance, layer/licensing, medium/data
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#data-provenance-initiative
 
 MIT-led audits of training-corpus licenses, with datasets on Hugging Face.
@@ -888,7 +915,7 @@ Linked from: [Fairly Trained](#fairly-trained)
 - Feed: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases.atom
 - Take part: [GitHub issues](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/issues)
 - Tags: type/specification, layer/licensing, layer/access, medium/data
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#dataspace-protocol
 
 Eclipse Dataspace Working Group specification for sharing data between organizations under usage control. A provider publishes a catalog, the two sides negotiate an agreement, and then the data transfers. The International Data Spaces Association governed it up to version 2024-1.
@@ -912,13 +939,12 @@ Eclipse Dataspace Working Group specification for sharing data between organizat
 - Id: ddex
 - Also known as: Digital Data Exchange
 - Type: organization
-- Status: Generative AI Declaration Standard (GAI-D) in peer review, with publication expected in early 2027 (announced 2026-11-05)
+- Status: Generative AI Declaration Standard (GAI-D) committee draft finished member comments and goes to peer review next, with publication expected in early 2027 (announced 2026-11-05)
 - Website: https://ddex.net
-- News: https://ddex.net/press/
 - Feed: https://ddex.net/feed/
 - Take part: [working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members
 - Tags: type/organization, layer/provenance, layer/attribution, layer/licensing, medium/audio
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ddex
 
 Not-for-profit membership organisation, set up in 2006, that writes the message standards labels, distributors and streaming services use to exchange release data, credits and sales reports. It says the standards are free to implement and that implementers do not need to be members.
@@ -927,9 +953,9 @@ Not-for-profit membership organisation, set up in 2006, that writes the message 
 
 - **Release metadata**: telling a streaming service what a release is and who is credited on it, in one message format, the Electronic Release Notification (ERN).
 - **AI disclosure**: saying that a recording, or one contributor's part in it, was made with generative AI. The [ERN release notes](https://ern.ddex.net/electronic-release-notification-message-suite-part-1-definitions-of-messages/annex-a-(informative)-release-notes/) list both under version 4.3.1. A sound recording, image, text, video or release can carry [`ContainsAI`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_ContainsAI.html), and a contributor can carry [`AiContribution`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_AiContribution.html). The data dictionary's rules use the values All, Partly and None.
-- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify says it depends on artist disclosure and that "the absence of a credit doesn't mean AI wasn't used".
+- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify's [help page](https://support.spotify.com/us/article/ai-credits/) says "AI credits are optional for artists to share" and "The absence of AI credits doesn't mean AI wasn't used on a song."
 - **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.
-- **A standard for AI declarations**: its Artificial Intelligence group is set up "to investigate the metadata requirements for the communication of AI-generated music", including musical works. The group's Generative AI Declaration Standard has finished member comments on its committee draft.
+- **A standard for AI declarations**: its Artificial Intelligence group is set up "to investigate the metadata requirements for the communication of AI-generated music", including musical works. The group's Generative AI Declaration Standard (GAI-D) has finished member comments on its committee draft and goes to peer review next, with publication expected in early 2027.
 
 #### Compare
 
@@ -960,7 +986,7 @@ Linked from: [SOCAN](#socan), [STIM](#stim)
 - Feed: https://blog.identity.foundation/rss/
 - Take part: [join DIF](https://identity.foundation/join/)
 - Tags: type/organization, layer/identity
-- Updated: 2026-11-15
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#dif
 
 Standards body for decentralized identifiers and verifiable credentials. Hosts [Creator Assertions Working Group](#cawg).
@@ -986,10 +1012,10 @@ Linked from: [Creator Assertions Working Group](#cawg)
 - Feed: https://encypher.com/feed.xml
 - Take part: [c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)
 - Tags: type/organization, layer/provenance, layer/licensing, stage/at-rest, medium/text, medium/image, medium/audio, medium/video
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#encypher
 
-Company that sells text provenance built on [C2PA](#c2pa). Signing is free for publishers, and AI companies pay for verification and usage reporting. It says it wrote the C2PA text appendix (A.8) and co-chairs the Text Provenance Task Force. The spec names no authors.
+Company that sells text provenance built on [C2PA](#c2pa). Signing is free for publishers and checking is free for anyone. Plans for marking AI output start at $99 a month, and its Meter usage reports are offered as a pilot with no listed price (read 2026-11-20). It says it wrote the C2PA text appendix (A.8) and co-chairs the Text Provenance Task Force. The spec names no authors.
 
 #### Topics
 
@@ -999,7 +1025,7 @@ Company that sells text provenance built on [C2PA](#c2pa). Signing is free for p
 
 #### Related
 
-- Its 2026-11-11 post carries one C2PA manifest and 66 sentence markers. Seven of the manifest's eleven assertions are in Encypher's namespace, and none is a CAWG identity assertion or a licensing assertion (decoded 2026-11-15, signature not checked).
+- Its 2026-11-11 post carries one C2PA manifest and 67 sentence markers (counted 2026-11-20). Seven of the manifest's eleven assertions are in Encypher's namespace, and none is a CAWG identity assertion or a licensing assertion (decoded 2026-11-15, signature not checked).
 - [WritersLogic](https://github.com/writerslogic/c2pa-unstructured-text) publishes a separate implementation of the same appendix.
 
 #### In use
@@ -1025,7 +1051,7 @@ Linked from: [C2PA](#c2pa)
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [ext-auth issues](https://github.com/modelcontextprotocol/ext-auth/issues), [Authorization IG charter](https://modelcontextprotocol.io/community/interest-groups/auth)
 - Tags: type/specification, venue/mcp, layer/identity, layer/access
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization
 
 An MCP authorization extension (`io.modelcontextprotocol/enterprise-managed-authorization`) that lets an organization's identity provider decide which MCP servers its users can reach. The user signs in once. The client exchanges that sign-in at the identity provider for an Identity Assertion JWT Authorization Grant (ID-JAG), and the MCP server's authorization server exchanges the grant for an access token.
@@ -1059,27 +1085,34 @@ Linked from: [Model Context Protocol](#mcp)
 - Id: eu-ai-act-gpai-code
 - Also known as: Article 50
 - Type: regulation
-- Status: Commission compiling a list of recognized machine-readable opt-out mechanisms
+- Status: Opt-out protocol consultation closed 2026-01-23; the Commission has not published its list of generally agreed protocols (searched 2026-11-20); Article 50 applies from 2026-08-02
 - Website: https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai
 - Tags: type/regulation, layer/access, layer/governance, layer/provenance
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code
 
-The copyright chapter of the GPAI Code of Practice has signatories honor robots.txt and make best efforts on other protocols. Article 50 sets transparency duties for AI-generated content.
+The copyright chapter of the GPAI Code of Practice has signatories follow robots.txt and identify and comply with other appropriate machine-readable protocols. Article 50 sets transparency duties for AI-generated content.
 
 #### Topics
 
 - **Ranking opt-outs**: deciding which mechanisms count. The Commission's [consultation FAQ](https://digital-strategy.ec.europa.eu/en/faqs/stakeholder-consultation-ai-and-copyright-compliance) lists [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep) and "C2PA TDM Assertions" ([C2PA](#c2pa)) among the solutions. [Open Future](#open-future) and [IPTC](#iptc) answered the consultation.
-- **Transparency for generated content**: Article 50 duties.
+- **Transparency for generated content**: Article 50 applies from 2026-08-02. Generative AI systems placed on the market before that date have until December 2026 to meet the Article 50(2) marking duty, under the AI Omnibus (Regulation (EU) 2026/1744). The Code of Practice on Transparency of AI-generated Content was published 2026-06-10.
 
 #### Related
 
-- Google ties [Shared AI training robots.txt token](#aipref-training-token) support to the Code.
+- Google says its planned [Shared AI training robots.txt token](#aipref-training-token) support "is consistent with" the Code.
 
 #### Compare
 
 - The FAQ does not name [IETF AI Preferences Working Group](#ietf-aipref), [Really Simple Licensing](#rsl) or [Creator Assertions Working Group](#cawg). Open Future's response names the first two, and the assertion the FAQ calls C2PA's is now a CAWG spec (searched 2026-11-15).
 - Article 50 is the compliance framing behind the C2PA pitch. Only secondary sources tie the two (searched 2026-11-15).
+
+#### History
+
+- 2026-08-02: Article 50 transparency rules apply.
+- 2026-07-27: AI Omnibus (Regulation (EU) 2026/1744) entered into force.
+- 2026-06-10: Final Code of Practice on Transparency of AI-generated Content published.
+- 2026-01-23: Consultation on opt-out protocols closed.
 
 Linked from: [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [IPTC](#iptc), [Open Future](#open-future), [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep)
 
@@ -1093,7 +1126,7 @@ Linked from: [AAIF Governance, Risk and Regulatory WG](#aaif-grr-wg), [IPTC](#ip
 - Feed: https://www.fairlytrained.org/blog?format=rss
 - Take part: [apply for certification](https://www.fairlytrained.org/apply)
 - Tags: type/organization, layer/licensing
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#fairly-trained
 
 Non-profit that certifies generative AI companies, products and models whose training data was licensed for training, openly licensed, in the public domain or owned by the developer. Ed Newton-Rex is its CEO.
@@ -1101,7 +1134,7 @@ Non-profit that certifies generative AI companies, products and models whose tra
 #### Topics
 
 - **Licensed training data**: telling apart the generative AI models that were trained without unlicensed copyrighted work. Its [launch post](https://www.fairlytrained.org/blog/fairly-trained-launches-certification-for-generative-ai-models-that-respect-creators-rights) says the Licensed Model certification "will not be awarded to models that rely on a 'fair use' copyright exception or similar".
-- **Checking the claim**: an applicant [makes a written submission](https://www.fairlytrained.org/certifications), and Fairly Trained reviews it and may ask for more. The applicant must have processes for due diligence on training data and for keeping records of the data used in each training. The certifications page describes no inspection of the data itself. Certification is reevaluated each year, for an annual fee of $250 to $6,000 depending on revenue and scope.
+- **Checking the claim**: an applicant [makes a written submission](https://www.fairlytrained.org/certifications), and Fairly Trained reviews it and may ask for more. The applicant must have processes for due diligence on training data and for keeping records of the data used in each training. The certifications page describes no inspection of the data itself. Certification is reevaluated each year. An applicant pays a submission fee of $100 to $500, and if certified an annual fee of $250 to $6,000, depending on revenue and scope.
 - **Partly certified products**: saying which parts of a product the certificate covers. An applicant certifying a single model must state publicly which of the models it uses are certified and which are not.
 
 #### Related
@@ -1130,7 +1163,7 @@ Non-profit that certifies generative AI companies, products and models whose tra
 - Website: https://www.gema.de
 - News: https://www.gema.de/en/news
 - Tags: type/organization, layer/licensing, layer/payments, medium/audio
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#gema
 
 German collecting society for composers, lyricists and music publishers, and [a member](https://www.gema.de/de/die-gema/organisation) of [CISAC](#cisac). It has sued two AI companies and won both cases at first instance. It has also published a licensing model for generative AI and sells a licensed training dataset.
@@ -1140,8 +1173,8 @@ German collecting society for composers, lyricists and music publishers, and [a 
 - **Pricing generative AI**: setting a fee for training on its repertoire and generating from it. The [model](https://www.gema.de/de/w/generative-ki-lizenzmodell-zwei-saeulen) it presented in September 2024 asks for 30% of the net revenue of the AI model or system, with a minimum fee tied to the volume of output. A second part covers later uses of the generated music. Its [AI page](https://www.gema.de/de/aktuelles/ki-und-musik) names no generative AI provider that has taken the license (read 2026-11-15).
 - **Works stored in a model**: whether a model that can reproduce a work is itself a copy of it. In the [OpenAI case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) the court found the lyrics of nine songs "reproduzierbar" in models 4 and 4o, called this memorisation, and held that the text and data mining exception does not cover it. In the [Suno case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) it found the same for six musical works in Suno's v3.5 and v4 models, which were stored on servers in Germany.
 - **Who answers for the output**: whether the user's prompt or the provider is responsible when a work comes back out. In both cases the court held the provider responsible, because the prompts were simple and the provider chose the training data and built the model.
-- **Training done abroad**: whether a claim reaches training that happened in the United States. The court applied US law to the copies made there and held that fair use did not cover them, because the works reappeared in the outputs. Its press release says Suno took the works from YouTube by stream-ripping.
-- **Licensed training data**: offering AI developers a dataset with the rights already cleared. [PLAI by GEMA](https://www.gema.de/de/w/plai-by-gema-musikdatensatz) bundles sound files, metadata, authors' rights and master rights, for AI tools whose output does not compete with the works. It does not cover generative AI providers.
+- **Training done abroad**: whether a claim reaches training that happened in the United States. In the Suno case the court applied US law to the copies made there and held that fair use did not cover them, because the works reappeared in the outputs. Its press release says Suno took the works from YouTube by stream-ripping.
+- **Licensed training data**: offering AI developers a dataset with the rights already cleared. [PLAI by GEMA](https://www.gema.de/de/w/plai-by-gema-musikdatensatz) bundles sound files, metadata, authors' rights and master rights, for AI tools whose output does not compete with the works. GEMA says it leaves open whether generative AI providers need a license.
 - **Training transparency**: its [AI Charter](https://www.gema.de/de/aktuelles/ki-und-musik/ki-charta-der-gema) of ten principles says it must be clear which works were used for training.
 
 #### Related
@@ -1162,7 +1195,7 @@ German collecting society for composers, lyricists and music publishers, and [a 
 
 - 2026-07-31: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.
 - 2026-07-23: Launched PLAI by GEMA with Klangio as first customer.
-- 2025-11-11: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.
+- 2025-11-11: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA [says](https://www.gema.de/en/w/suno-entscheidung-2026) OpenAI has appealed to the Munich Higher Regional Court.
 - 2025-01-21: Sued Suno.
 - 2024-11-13: Sued OpenAI.
 - 2024-11: Published its AI Charter.
@@ -1181,7 +1214,7 @@ Linked from: [CISAC](#cisac), [SOCAN](#socan), [STIM](#stim), [W3C TDM Reservati
 - Feed: https://www.getfulltextresearch.com/feed
 - Take part: [integrator documentation](https://docs.getfulltextresearch.com/latest/integrators/mcp-service), [publishers](https://www.getfulltextresearch.com/why-publishers-should-join)
 - Tags: type/project, layer/access, medium/text
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#getftr
 
 A service that asks the publisher whether a given user is entitled to a given article and returns a link to the right version. It is funded by participating publishers and free for discovery tools to integrate. Since January 2026 AI tools can call it over [Model Context Protocol](#mcp).
@@ -1194,7 +1227,7 @@ A service that asks the publisher whether a given user is entitled to a given ar
 
 #### Related
 
-- Its FAQ recommends that service providers use it alongside [KBART](#kbart) "to increase the number of links available through real-time, DOI level checks."
+- Its FAQ recommends that service providers use it alongside [KBART](#kbart) or Subscriber Links "to increase the number of links available through real-time, DOI level checks."
 
 #### In use
 
@@ -1211,10 +1244,10 @@ Linked from: [Enterprise-Managed Authorization](#mcp-enterprise-managed-authoriz
 - Id: google-scholar-mediated-reading
 - Also known as: MERU, MEdiated Reading Usage protocol
 - Type: project
-- Status: Policies on Google's publisher page, with no public description of the MERU message format (read 2026-11-17); COUNTER mapped MERU to its AI metrics on 2026-10-23
+- Status: Policies on Google's publisher page, with no public description of the MERU message format (read 2026-11-17); COUNTER mapped MERU to its AI metrics by 2026-09-18 and published the guidance on 2026-10-23
 - Website: https://scholar.google.com/intl/en/scholar/publishers.html
 - Tags: type/project, layer/attribution, layer/access, stage/after-delivery, medium/text
-- Updated: 2026-11-17
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading
 
 A Google Scholar program that publishers opt journals or collections into, with a usage protocol, MERU, for the publishers that take part. Google's publisher page gives it six sentences of policy. It does not say what a reader sees, how a publisher joins, or what a MERU message contains (read 2026-11-17). [COUNTER Metrics](#counter) calls it "an example of a third party AI system which delivers usage information to participating publishers".
@@ -1247,13 +1280,13 @@ Linked from: [COUNTER Metrics](#counter)
 - Id: iab-comp
 - Also known as: CoMP
 - Type: specification
-- Status: 1.0, public comment from 2026-03-10
+- Status: 1.0 final 2026-04-28
 - Website: https://github.com/IABTechLab/CoMP
 - News: https://github.com/IABTechLab/CoMP/releases
 - Feed: https://github.com/IABTechLab/CoMP/releases.atom
 - Take part: [GitHub issues](https://github.com/IABTechLab/CoMP/issues)
 - Tags: type/specification, layer/licensing, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#iab-comp
 
 An AI system describes itself and its intended use; a content owner or marketplace answers with a package scoped by content type, function and retrieval method. Grew out of the LLM Content Ingest API initiative.
@@ -1264,6 +1297,8 @@ An AI system describes itself and its intended use; a content owner or marketpla
 
 #### History
 
+- 2026-04-28: 1.0 finalized ([release CoMP v1.0-202604](https://github.com/IABTechLab/CoMP/releases/tag/1.0-202604)).
+- 2026-04-09: Public comment on 1.0 closed.
 - 2026-03-10: 1.0 opened for public comment.
 
 Linked from: [Content Telemetry](#content-telemetry), [x402](#x402)
@@ -1279,7 +1314,7 @@ Linked from: [Content Telemetry](#content-telemetry), [x402](#x402)
 - Feed: https://www.ietf.org/blog/feed/
 - Take part: [how to participate](https://www.ietf.org/participate/)
 - Tags: type/organization, layer/access, layer/identity
-- Updated: 2026-11-03
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#ietf
 
 Internet standards body. Hosts [IETF AI Preferences Working Group](#ietf-aipref) and [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), and individual drafts such as [Machine Payments Protocol](#mpp).
@@ -1295,14 +1330,14 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref), [IETF Web Bot Au
 - Id: ietf-aipref
 - Also known as: AIPREF
 - Type: working-group
-- Status: vocab-08 (2026-09-13) without consensus; attach-05 (2026-08-18); IETF 127 sessions 2026-11-16 and 11-19
+- Status: vocab-08 (2026-09-14) without consensus; attach-05 (2026-08-19); IETF 127 sessions 2026-11-16 and 11-19; issues 245 and 246 closed 2026-11-19
 - Website: https://datatracker.ietf.org/wg/aipref/about/
 - News: https://datatracker.ietf.org/wg/aipref/history/
 - Feed: https://datatracker.ietf.org/feed/group-changes/aipref/
 - Part of: [IETF](#ietf)
 - Take part: [ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)
 - Tags: type/working-group, layer/access, stage/after-delivery
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ietf-aipref
 
 Vocabulary for AI usage preferences and how they attach to content (`Content-Usage` header and robots.txt directive).
@@ -1311,8 +1346,8 @@ Vocabulary for AI usage preferences and how they attach to content (`Content-Usa
 
 - **Shared vocabulary**: defining training and other AI uses so every crawler reads a preference the same way.
 - **Attachment**: binding a preference to content through a `Content-Usage` header and robots.txt directive.
-- **Downstream survival**: keeping preferences intact through model redistribution, caching and embeddings ([issues 245](https://github.com/ietf-wg-aipref/drafts/issues/245) and [246](https://github.com/ietf-wg-aipref/drafts/issues/246)).
-- **Inference-time use**: covering grounding and agent use, which the vocabulary does not yet do. [Microsoft training and grounding preferences](#microsoft-grounding-preference) is the first vendor signal there. MCP has no field for a server to declare it.
+- **Downstream survival**: keeping preferences intact through model redistribution, caching and embeddings ([issues 245](https://github.com/ietf-wg-aipref/drafts/issues/245) and [246](https://github.com/ietf-wg-aipref/drafts/issues/246), closed 2026-11-19 with the existing draft text).
+- **Inference-time use**: covering grounding and agent use. vocab-08 adds an AI Use category (`ai-use`) for input to a generative model, without consensus, and open PRs 254 and 258 revise its definition. [Cloudflare Content Signals](#cloudflare-content-signals) `ai-input` covered grounding from 2025-09-24, and [Microsoft training and grounding preferences](#microsoft-grounding-preference) adds a page-level grounding preference. MCP has no field for a server to declare it.
 
 #### Related
 
@@ -1321,8 +1356,10 @@ Vocabulary for AI usage preferences and how they attach to content (`Content-Usa
 
 #### History
 
-- 2026-09-13: vocab-08 posted, without consensus.
-- 2026-08-18: attach-05 posted.
+- 2026-11-19: Issues 245 and 246 on downstream survival closed.
+- 2026-11-17: Kevin Kelley [asked for volunteers](https://mailarchive.ietf.org/arch/msg/ai-control/mLGJnETEzXfUug-xJfjRnY27LvY/) for an attachment design team, at the chairs' request, to report before the next interim.
+- 2026-09-14: vocab-08 posted, without consensus.
+- 2026-08-19: attach-05 posted.
 
 Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudflare Content Signals](#cloudflare-content-signals), [Creative Commons](#creative-commons), [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF](#ietf), [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Microsoft training and grounding preferences](#microsoft-grounding-preference), [Model Context Protocol](#mcp), [Really Simple Licensing](#rsl), [Shared AI training robots.txt token](#aipref-training-token)
 
@@ -1331,14 +1368,14 @@ Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudf
 - Id: ietf-web-bot-auth
 - Also known as: webbotauth
 - Type: working-group
-- Status: httpsig-protocol draft; Cloudflare libraries
+- Status: WG draft httpsig-protocol-01 (2026-10-29); Cloudflare libraries
 - Website: https://datatracker.ietf.org/wg/webbotauth/about/
 - News: https://datatracker.ietf.org/wg/webbotauth/history/
 - Feed: https://datatracker.ietf.org/feed/group-changes/webbotauth/
 - Part of: [IETF](#ietf)
 - Take part: [web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/)
 - Tags: type/working-group, layer/identity, layer/access
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ietf-web-bot-auth
 
 Signed bot traffic with RFC 9421 HTTP message signatures and a key directory at `/.well-known/http-message-signatures-directory`.
@@ -1367,17 +1404,17 @@ Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Agent Ident
 - News: https://internetcollective.org/press
 - Take part: [publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)
 - Tags: type/organization, layer/licensing, layer/payments
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#internet-licensing-collective
 
 Nonprofit, publisher-led collecting society for AI use of web content, formerly the RSL Collective. Sells AI companies one blanket license to its members' content and pays the revenue out to publishers after costs it projects at 10% or less. Co-authored [Really Simple Licensing](#rsl) and says it supports any standard a publisher wishes to use.
 
 #### Topics
 
-- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).
+- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. AI companies pay based on the value content brings to their products, with costs that scale with their business, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).
 - **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [Really Simple Licensing](#rsl) on the publisher's own site.
 - **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.
-- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked.
+- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path. Its publishers page says it "supports auditing of license compliance" and does not say how reports are checked.
 
 #### Related
 
@@ -1411,7 +1448,7 @@ Linked from: [CISAC](#cisac), [GEMA](#gema), [Really Simple Licensing](#rsl)
 - News: https://iptc.org/news/
 - Feed: https://iptc.org/feed/
 - Tags: type/organization, layer/licensing, layer/access, layer/provenance, stage/trust, medium/image, medium/video
-- Updated: 2026-11-15
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#iptc
 
 News-media standards body. RightsML is a profile of [W3C ODRL](#w3c-odrl). Its photo metadata standard has a Data Mining property. [Creator Assertions Working Group](#cawg)'s metadata assertion can bind IPTC metadata to a C2PA manifest. With Project Origin it runs the Origin Verified News Publishers List for [C2PA](#c2pa) signing.
@@ -1439,7 +1476,7 @@ Linked from: [C2PA](#c2pa), [Creator Assertions Working Group](#cawg), [Encypher
 - Part of: [NISO](#niso)
 - Take part: [KBART Standing Committee](https://www.niso.org/standards-committees/kbart)
 - Tags: type/specification, layer/access, medium/text
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#kbart
 
 NISO recommended practice for sending title lists and coverage data from content providers to knowledge bases and libraries. KBART Automation (NISO RP-26-2019) adds library-specific holdings reports, exchanged by API.
@@ -1469,14 +1506,14 @@ Linked from: [GetFTR](#getftr), [MCP Registry](#mcp-registry), [NISO](#niso)
 - Website: https://kgi.georgetown.edu
 - News: https://kgi.georgetown.edu/news/
 - Tags: type/organization, layer/governance, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#knight-georgetown-institute
 
 Tech policy institute led by Alissa Cooper. Related: [Shared AI training robots.txt token](#aipref-training-token).
 
 #### Topics
 
-- **Crawler and training controls**: convening policy work on how AI training controls should work.
+- **Crawler and training controls**: Alissa Cooper's [commentary](https://kgi.georgetown.edu/research-and-commentary/what-the-new-ai-training-opt-out-really-means/) of 2026-11-06 places the shared training opt-out in the AIPREF standards process.
 
 ### Machine Payments Protocol
 
@@ -1506,7 +1543,7 @@ Linked from: [IETF](#ietf)
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/interest-group, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-fsig
 
 Financial-services interest group. Its charter also has an audit and attestation pillar, which these cards do not cover.
@@ -1517,9 +1554,9 @@ Financial-services interest group. Its charter also has an audit and attestation
 
 #### Related
 
-- [SEP-3094 Granular Citations](#mcp-sep-3094-citations) was on the agenda of the 2026-09-24 meeting. The notes have no section on it.
+- [SEP-3094 Granular Citations](#mcp-sep-3094-citations) was item 9 on the agenda of the 2026-09-24 meeting. The notes record no discussion of it. "Granular Citations" is listed as a topic for the lineage RFC.
 
-Linked from: [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
+Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
 
 ### MCP Interceptors WG and SEP-2624
 
@@ -1531,7 +1568,7 @@ Linked from: [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [SEP-3
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/working-group, venue/mcp, stage/boundary
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-interceptors
 
 Context middleware for clients, servers and gateways: deterministic code that sees each request and result on the way through. The place a seal or citation validator can run without a core spec change.
@@ -1557,12 +1594,12 @@ Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Model 
 - Id: mcp-registry
 - Also known as: server.json, Registry WG
 - Type: project
-- Status: In preview since 2025-09-08; registry release v1.8.9 dated 2026-11-10
+- Status: In preview since 2025-09-08; registry release v1.8.10 dated 2026-11-20
 - Website: https://modelcontextprotocol.io/registry/about
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)
 - Tags: type/project, venue/mcp, layer/identity, topic/discovery
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-registry
 
 The official metadata catalog for publicly accessible MCP servers, run by the MCP Registry Working Group. Each entry is a `server.json` with the server's name, where to find it and how to run it.
@@ -1627,10 +1664,10 @@ Linked from: [Model Context Protocol](#mcp)
 - Type: project
 - Status: Pilot announced 2026-02-03, with Copilot grounding answers in licensed content; no public spec
 - Tags: type/project, layer/licensing, layer/payments
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace
 
-Voluntary marketplace with publisher-set terms and pricing and usage reporting.
+Voluntary marketplace where publishers define licensing and usage terms, with usage-based reporting.
 
 #### Topics
 
@@ -1638,7 +1675,7 @@ Voluntary marketplace with publisher-set terms and pricing and usage reporting.
 
 #### Compare
 
-- News reports say it supports [Really Simple Licensing](#rsl). Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-15).
+- Microsoft's announcement does not mention [Really Simple Licensing](#rsl). A vendor blog calls the marketplace "inspired by" RSL. Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-15).
 
 #### History
 
@@ -1651,23 +1688,27 @@ Linked from: [Really Simple Licensing](#rsl)
 - Id: microsoft-grounding-preference
 - Also known as: ai-grounding:disallow
 - Type: proposal
-- Status: Effective 2027-02-01
+- Status: Announced 2026-10-30; effective 2027-02-01; NoArchive and NoCache stop being read as preferences after 2027-03-01
 - Website: https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/
 - News: https://blogs.bing.com/search/
 - Feed: https://blogs.bing.com/search/feed/
 - Tags: type/proposal, layer/access, stage/after-delivery
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference
 
-Training via [Shared AI training robots.txt token](#aipref-training-token) or a page-level `ai-training:disallow`, plus a separate page-level grounding preference (`ai-grounding:disallow`) with no robots.txt form. Replaces `NoArchive` and `NoCache`.
+Training via [Shared AI training robots.txt token](#aipref-training-token) or a page-level `ai-training:disallow`, plus a separate page-level grounding preference (`ai-grounding:disallow`, or `ai-grounding:disallowextended` to limit grounding to Microsoft-operated experiences) with no robots.txt form. Replaces `NoArchive` and `NoCache`.
 
 #### Topics
 
-- **Inference-time preferences**: letting a page opt out of grounding, the first vendor signal for a use [IETF AI Preferences Working Group](#ietf-aipref) does not yet cover.
+- **Inference-time preferences**: letting a page opt out of grounding. Microsoft says it first offered grounding controls in 2023, through `NoArchive` and `NoCache`. Google-Extended also covers grounding in Gemini Apps and Vertex AI. The closest [IETF AI Preferences Working Group](#ietf-aipref) category is `ai-use` in vocab-08, using an asset as input to a generative AI model.
 
 #### Related
 
 - Microsoft says the preferences do not establish licensing or payment.
+
+#### History
+
+- 2026-10-30: Microsoft [announced](https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/) the training and grounding preferences. Grounding settings in Bing Webmaster Tools open 2026-12-15, and the temporary grounding preferences expire 2027-09-30.
 
 Linked from: [IETF AI Preferences Working Group](#ietf-aipref)
 
@@ -1676,21 +1717,21 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref)
 - Id: mcp
 - Also known as: MCP
 - Type: specification
-- Status: Next spec release moved to 2027-03-30 (SEP-3398); WG-first rule for SEPs
+- Status: Next spec release moved to 2027-03-30 (SEP-3398); SEPs need Working Group or Core Maintainer sponsorship
 - Website: https://modelcontextprotocol.io
 - News: https://blog.modelcontextprotocol.io/
 - Feed: https://blog.modelcontextprotocol.io/index.xml
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)
 - Tags: type/specification, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp
 
 The protocol between agents and the tools, resources, prompts and skills they read. MCP is the hop where content provenance can be carried or lost.
 
 #### Topics
 
-- **Content provenance ownership**: no WG or IG owns content provenance or attribution.
+- **Content provenance ownership**: no WG owns content provenance or attribution. The [MCP Financial Services Interest Group](#mcp-fsig) charter covers "source attribution, citation, and consent metadata" for data surfaced through MCP. The Scientific Computing IG charter covers reproducibility and provenance of computed results.
 - **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.
 - **Credit reporting**: nothing reports display or credit past the last hop ([Content Telemetry](#content-telemetry)).
 
@@ -1717,19 +1758,19 @@ Linked from: [Agentic AI Foundation](#aaif), [AI Catalog](#ai-catalog), [C2PA co
 - Id: niso
 - Also known as: National Information Standards Organization
 - Type: organization
-- Status: Twelve-month provenance and attribution pilot announced October 2026; KBART Phase III published 2026-08-26
+- Status: Provenance and attribution pilot announced October 2026, first planned for twelve months and possibly shorter (2026-11 letter); KBART Phase III published 2026-08-26
 - Website: https://www.niso.org
 - News: https://www.niso.org/press-releases
 - Take part: [NISO standards committees](https://www.niso.org/standards-committees)
 - Tags: type/organization, layer/provenance, layer/attribution, layer/governance, medium/text
-- Updated: 2026-11-17
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#niso
 
 US standards body for libraries, publishers and the vendors between them. Publishes [KBART](#kbart) and is a partner in [TRACE](#trace).
 
 #### Topics
 
-- **Provenance metadata for AI retrieval**: a pilot to "develop and test a minimum metadata model that accurately tracks provenance and attribution" when AI systems retrieve scholarly content. It convenes content creators, publishers, repositories, AI tool developers and end-users. NISO's page gives no way to join yet (read 2026-11-16).
+- **Provenance metadata for AI retrieval**: a pilot to "develop and test a minimum metadata model that accurately tracks provenance and attribution" when AI systems retrieve scholarly content. It convenes content creators, publishers, repositories, AI tool developers and end-users. The executive director's November 2026 [letter](https://www.niso.org/niso-io/2026/11/can-standards-move-pace-ai) welcomes "further expressions of interest in the pilot development work" and gives no form or contact for it (read 2026-11-20).
 - **Naming the version of an article**: [Journal Article Versions](https://www.niso.org/publications/rp-8-2026-jav) (RP-8-2026) is a way of describing the versions of a journal article that appear online before, during and after formal publication. It revises the 2008 edition. Steve Smith and Josh Nicholson [point to it](https://scholarlykitchen.sspnet.org/2026/11/16/guest-post-beyond-the-download-what-counts-as-scholarly-content-use-in-the-age-of-ai/) for saying which version an AI usage report refers to.
 - **A venue for library standards on AI**: Lisa Janicke Hinchliffe [asks](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) for a NISO-style community process to define what a register of publisher MCP connectors should record.
 
@@ -1740,6 +1781,7 @@ US standards body for libraries, publishers and the vendors between them. Publis
 
 #### History
 
+- 2026-11: The executive director's letter says the pilot may finish sooner than twelve months.
 - 2026-10: [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
 - 2026-10-05: Journal Article Versions RP-8-2026 published.
 - 2026-08-26: KBART Phase III published.
@@ -1754,7 +1796,7 @@ Linked from: [KBART](#kbart), [TRACE](#trace)
 - News: https://openfuture.eu/blog/
 - Feed: https://openfuture.eu/feed/
 - Tags: type/organization, layer/governance, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#open-future
 
 European think tank on the digital commons.
@@ -1777,7 +1819,7 @@ Linked from: [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [Wikim
 - Feed: https://blog.okfn.org/feed/
 - Take part: [okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)
 - Tags: type/organization, layer/attribution, stage/in-transit, venue/mcp
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#okfn
 
 CKAN maintainers. MCP Labs runs chat over official datasets with every answer linked to its source.
@@ -1785,17 +1827,13 @@ CKAN maintainers. MCP Labs runs chat over official datasets with every answer li
 #### Topics
 
 - **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.
-- **Interim convention to standard**: moving its required `structuredContent.sources` list onto a standard citation format.
-
-#### Related
-
-- Plans to move charts to MCP Apps and citations to SEP-3094.
+- **Interim convention to standard**: its required `structuredContent.sources` list has no standard citation format to map onto.
 
 #### Compare
 
-- Its `sources` list could map onto [SEP-3094 Granular Citations](#mcp-sep-3094-citations). An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).
+- Its `sources` list could map onto [SEP-3094 Granular Citations](#mcp-sep-3094-citations), which closed unmerged on 2026-11-08. An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).
 - A [Wikimedia](#wikimedia) contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).
-- A natural pilot for the [Creative Commons](#creative-commons) RAG attribution best practices. Neither names the other (searched 2026-11-15).
+- A natural early adopter for the [Creative Commons](#creative-commons) SourceConnection component of CC Signals. Neither names the other (searched 2026-11-15).
 
 #### In use
 
@@ -1813,7 +1851,7 @@ Linked from: [Creative Commons](#creative-commons), [SEP-3094 Granular Citations
 - Feed: https://openattribution.org/feed.xml
 - Take part: [GitHub](https://github.com/openattribution-org)
 - Tags: type/organization, layer/attribution, layer/identity, layer/payments
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#openattribution
 
 Not-for-profit that originally developed the [Content Telemetry](#content-telemetry) SDKs, which [SPUR Coalition](#spur-coalition) now maintains. Its [Cloudflare edge worker](https://github.com/SPUR-Coalition/cloudflare-worker) is in SPUR's GitHub organization too (checked 2026-11-16). It maintains the policycheck scanner, the commerce profile and [Agent Identity and Manifest Standard](#aims).
@@ -1835,7 +1873,7 @@ Linked from: [Agent Identity and Manifest Standard](#aims), [Agentic Commerce Pr
 - Feed: https://openlineage.io/blog/feed.json
 - Take part: [GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)
 - Tags: type/project, layer/provenance, stage/in-transit, medium/data
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#openlineage
 
 Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's proposed MCP `_meta` lineage key ([FSIG issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16)) carry lineage identity across the tool-call boundary.
@@ -1869,7 +1907,7 @@ Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [MCP Fi
 - Website: https://github.com/open-telemetry/semantic-conventions-genai/blob/main/docs/gen-ai/mcp.md
 - Take part: [semantic-conventions-genai issues](https://github.com/open-telemetry/semantic-conventions-genai/issues), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/specification, venue/mcp, layer/provenance, stage/in-transit
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#otel-mcp
 
 OpenTelemetry semantic conventions for MCP spans and metrics, and the SDKs that emit them. Spans are named `{mcp.method.name} {target}`, for example `tools/call get-weather`, with `mcp.session.id`, `mcp.protocol.version` and `jsonrpc.request.id`. Trace context travels in `params._meta` under three keys that [SEP-414](https://modelcontextprotocol.io/seps/414-request-meta) proposed in April 2025 and the [2026-07-28 spec reserves](https://modelcontextprotocol.io/specification/2026-07-28/basic/index#_meta): `traceparent`, `tracestate` and `baggage`.
@@ -1878,7 +1916,7 @@ OpenTelemetry semantic conventions for MCP spans and metrics, and the SDKs that 
 
 - **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in `_meta`. The propagation rules are a precedent for any other credential that has to survive the hop.
 - **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where the [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg) sits.
-- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-08). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation.
+- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-20). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation.
 
 #### Related
 
@@ -1897,7 +1935,7 @@ OpenTelemetry semantic conventions for MCP spans and metrics, and the SDKs that 
 
 #### History
 
-- 2026-10-31: Conventions merged for the TypeScript SDK, not yet released.
+- 2026-10-31: Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released.
 
 Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [Content Telemetry](#content-telemetry), [Model Context Protocol](#mcp)
 
@@ -1905,10 +1943,10 @@ Linked from: [AAIF Observability and Traceability WG](#aaif-observability-tracea
 
 - Id: project-nanda
 - Type: project
-- Website: https://nanda.media.mit.edu
+- Website: https://projectnanda.org
 - Take part: [GitHub](https://github.com/projnanda)
 - Tags: type/project, layer/identity, topic/discovery
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#project-nanda
 
 MIT-originated agent registry and trust-manifest work, discussed in [AAIF Security and Privacy WG](#aaif-security-privacy-wg).
@@ -1929,7 +1967,7 @@ Linked from: [AAIF Security and Privacy WG](#aaif-security-privacy-wg)
 - News: https://rslstandard.org/press
 - Take part: [GitHub](https://github.com/rslstandard)
 - Tags: type/specification, layer/licensing, layer/payments
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#rsl
 
 XML vocabulary for usage and compensation terms (per-crawl, per-inference, subscription, attribution-only), discovered from robots.txt, RSS, HTTP headers or HTML. Includes a Crawler Authorization Protocol and an Open License Protocol on OAuth 2.0. [Internet Licensing Collective](#internet-licensing-collective), formerly the RSL Collective, is the collecting society behind it.
@@ -1939,11 +1977,11 @@ XML vocabulary for usage and compensation terms (per-crawl, per-inference, subsc
 - **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.
 - **Training opt-out**: saying whether AI may train on content. The [usage vocabulary](https://rslstandard.org/rsl#_3-4-1-1-usage-vocabulary) (section 3.4.1.1) has `ai-train`, `ai-input`, `ai-index` and `ai-all` tokens for `<permits>` and `<prohibits>`. The spec says it includes the [Cloudflare Content Signals](#cloudflare-content-signals) vocabulary and may add terms from [IETF AI Preferences Working Group](#ietf-aipref).
 - **Adoption**: getting model developers to honor it on the open web. None has committed.
-- **Enforcement**: supplying the lever [Content Telemetry](#content-telemetry) manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings), a v0.1 draft marked for discussion with the RSL working group (read 2026-11-16).
+- **Enforcement**: supplying the lever [Content Telemetry](#content-telemetry) manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings) that declares reporting in RSL's `<reporting>` element, a v0.1 draft marked for discussion with the RSL working group (read 2026-11-20).
 
 #### Compare
 
-- The [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace) is reported to support RSL. Neither side's pages say so (searched 2026-11-15).
+- [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace): Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-20).
 
 #### In use
 
@@ -1953,6 +1991,7 @@ XML vocabulary for usage and compensation terms (per-crawl, per-inference, subsc
 #### History
 
 - 2026-11-12: The RSL Collective relaunched as [Internet Licensing Collective](#internet-licensing-collective).
+- 2026-06-12: Section 3.12 `<reporting>` [added](https://rslstandard.org/rsl/errata), for machine-readable reporting requirements on licensed activity.
 - 2025-12-10: RSL 1.0 published.
 
 Linked from: [Content Telemetry](#content-telemetry), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [Internet Licensing Collective](#internet-licensing-collective), [Microsoft Publisher Content Marketplace](#microsoft-publisher-content-marketplace), [OpenAttribution.org](#openattribution), [W3C ODRL](#w3c-odrl), [x402](#x402)
@@ -1966,7 +2005,7 @@ Linked from: [Content Telemetry](#content-telemetry), [Encypher](#encypher), [EU
 - Website: https://www.rightsandai.com
 - Take part: [add a company to the declaration](https://www.rightsandai.com)
 - Tags: type/project, layer/access, layer/licensing, medium/audio
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#rights-and-ai
 
 Public declaration in which music publishers and collecting societies reserve their rights against AI training without a license, with a downloadable file of the companies behind it. The International Confederation of Music Publishers (ICMP) announced it in a [release](https://icmpmusic.com/wp-content/uploads/2024/04/PRESS-RELEASE-International-music-sector-and-AI-www.RightsAndAI.com-03-04-2024.pdf) for 2024-04-04.
@@ -1982,7 +2021,7 @@ Public declaration in which music publishers and collecting societies reserve th
 
 - The site shows 16 rightsholders, among them Universal Music Publishing Group, Sony Music Publishing, Warner Chappell Music, Kobalt, Concord, BMG, peermusic, Deezer and the societies PRS for Music, MCPS and APRA AMCOS. It shows 16 endorsing trade bodies, among them the National Music Publishers Association and ICMP (read 2026-11-16).
 - The site itself does not name its operator. The release is ICMP's.
-- The release says the site is available in seven languages.
+- The release says the site will be available in seven languages, including Japanese. The site offers English, Arabic, Chinese, French, German, Italian and Spanish (read 2026-11-20).
 - Record companies reserve the same rights in separate declarations, which IFPI [lists](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/). WIN, the network of independent music trade associations, publishes its own [notice](https://winformusic.org/ai-rights-reservation).
 
 #### Compare
@@ -2002,12 +2041,12 @@ Public declaration in which music publishers and collecting societies reserve th
 - Id: mcp-server-cards
 - Also known as: SEP-2127, MCP Server Card, ext-server-card
 - Type: specification
-- Status: SEP-2127 is Final and its PR merged 2026-10-06; the extension repository README still says Experimental
+- Status: SEP-2127 is Final and its PR merged 2026-10-06; SEP-3392 (merged 2026-10-29) classifies ext-server-card as Beta; the extension repository README still says Experimental
 - Website: https://github.com/modelcontextprotocol/ext-server-card
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [ext-server-card issues](https://github.com/modelcontextprotocol/ext-server-card/issues), [Server Card WG charter](https://modelcontextprotocol.io/community/working-groups/server-card)
 - Tags: type/specification, venue/mcp, layer/identity, topic/discovery
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-server-cards
 
 A static JSON document that describes a remote MCP server before a client connects: its name, version, transport endpoints and supported protocol versions. The extension identifier is `io.modelcontextprotocol/server-card`. A domain advertises its cards through an [AI Catalog](#ai-catalog) entry of type `application/mcp-server-card+json`.
@@ -2025,6 +2064,7 @@ A static JSON document that describes a remote MCP server before a client connec
 
 #### History
 
+- 2026-10-29: SEP-3392 merged, classifying ext-server-card as Beta.
 - 2026-10-06: SEP-2127 PR merged.
 - 2026-01-21: SEP-2127 created.
 
@@ -2040,7 +2080,7 @@ Linked from: [AI Catalog](#ai-catalog), [KBART](#kbart), [MCP Registry](#mcp-reg
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-2640 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/specification, venue/mcp, stage/at-rest, topic/skills, medium/code
-- Updated: 2026-11-15
+- Updated: 2026-11-16
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-skills-extension
 
 Serves [Agent Skills](#agent-skills) over MCP, with digests and a `_meta` slot for intermediaries.
@@ -2069,7 +2109,7 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing thre
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [SEP-3094 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/proposal, venue/mcp, layer/attribution, stage/in-transit, stage/after-delivery
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations
 
 Citations on tool results bound by CommonMark links in the text, each a flat schema.org CreativeWork, granularity via URL fragments, integrity deferred. A `citations.render` client capability.
@@ -2077,7 +2117,7 @@ Citations on tool results bound by CommonMark links in the text, each a flat sch
 #### Topics
 
 - **Citations in transit**: keeping sources attached from tool result to the answer a user sees.
-- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion. A maintainer said on 2026-11-06 that SEPs now go through working groups, and suggested the Core Primitives WG or a new interest group on citations.
+- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion. A maintainer wrote on 2026-11-06 that "we now encourage people to go through working groups to create SEPs", and suggested the Core Primitives WG or a new interest group on citations.
 - **Field placement**: choosing a top-level field or `_meta` processed by [MCP Interceptors WG and SEP-2624](#mcp-interceptors).
 
 #### Related
@@ -2102,12 +2142,12 @@ Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [CC Sig
 - Id: aipref-training-token
 - Also known as: draft-kelley-aipref-training-preference-signal, __usage_ai-training
 - Type: proposal
-- Status: Individual draft posted 2026-10-30; Google, OpenAI, Microsoft and Anthropic committed to honor it
+- Status: Individual draft -01 posted 2026-11-16; Google, OpenAI, Microsoft and Anthropic committed to honor it; Microsoft starts 2027-02-01 and Google plans early 2027
 - Website: https://datatracker.ietf.org/doc/draft-kelley-aipref-training-preference-signal/
 - Part of: [IETF AI Preferences Working Group](#ietf-aipref)
 - Take part: [ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)
 - Tags: type/proposal, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#aipref-training-token
 
 A robots.txt group whose `User-Agent` is the cross-vendor token `__usage_ai-training`, using ordinary `Allow` and `Disallow` rules. No new syntax. "AI Training" takes its definition from the [IETF AI Preferences Working Group](#ietf-aipref) vocab draft.
@@ -2119,13 +2159,18 @@ A robots.txt group whose `User-Agent` is the cross-vendor token `__usage_ai-trai
 
 #### Related
 
-- An alternative to the attach draft's `Content-Usage` directive in [IETF AI Preferences Working Group](#ietf-aipref).
+- An alternative to the attach draft's `Content-Usage` directive in [IETF AI Preferences Working Group](#ietf-aipref). [Pull request 260](https://github.com/ietf-wg-aipref/drafts/pull/260) (open, 2026-11-13) proposes the cross-vendor tokens in place of a `Content-Usage` robots.txt rule in the WG drafts.
+
+#### In use
+
+- [ai.robots.txt](#ai-robots-txt) v2.2 (2026-11-16) adds a `User-agent: __usage_ai-training` group to its generated robots.txt.
 
 #### History
 
+- 2026-11-16: -01 posted.
 - 2026-10-30: Individual draft posted.
 
-Linked from: [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF AI Preferences Working Group](#ietf-aipref), [Knight-Georgetown Institute](#knight-georgetown-institute), [Microsoft training and grounding preferences](#microsoft-grounding-preference)
+Linked from: [ai.robots.txt](#ai-robots-txt), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF AI Preferences Working Group](#ietf-aipref), [Knight-Georgetown Institute](#knight-georgetown-institute), [Microsoft training and grounding preferences](#microsoft-grounding-preference)
 
 ### Skills Marketplace
 
@@ -2137,7 +2182,7 @@ Linked from: [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IETF 
 - Part of: [AI Disclosures Project](#ai-disclosures-project)
 - Take part: [Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)
 - Tags: type/project, layer/licensing, layer/attribution, layer/payments, topic/skills, medium/code
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#skills-marketplace
 
 A marketplace for modular, interoperable, rights-protected skills with monetization for their authors, built with O'Reilly Media and Miso.ai. Two public tools so far: [Skill Cards](https://github.com/SrulyRosenblat/skill-cards) measures how well a skill covers its source documentation, and [SkillProof](https://srulyrosenblat.github.io/skillproof/) benchmarks the uplift a skill gives an agent.
@@ -2146,7 +2191,7 @@ A marketplace for modular, interoperable, rights-protected skills with monetizat
 
 - **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.
 - **Multi-source skills**: crediting every source behind a skill.
-- **Missing metadata**: no skill registry frontmatter carries author, license or source.
+- **Missing metadata**: [Agent Skills](#agent-skills) frontmatter has an optional `license` field and a free-form `metadata` map, with no defined author or source field.
 
 #### Related
 
@@ -2164,11 +2209,11 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills](#agent-skills), [AI
 
 - Id: socan
 - Type: organization
-- Status: Sued Suno on 2026-09-02, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-16)
+- Status: Sued Suno on 2026-09-02 and amended the claim on 2026-11-18, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-20)
 - Website: https://www.socan.com
 - News: https://www.socan.com/media-centre/
 - Tags: type/organization, layer/licensing, layer/payments, layer/attribution, medium/audio
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#socan
 
 The Society of Composers, Authors and Music Publishers of Canada, a rights society that collects license fees for the public performance and reproduction of music. Its CEO is a Vice-Chair of the [CISAC](#cisac) board ([CISAC](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors), 2025-05-28). It registers works made with AI tools, has named an attribution technology partner, and is suing Suno over generated songs.
@@ -2184,14 +2229,14 @@ The Society of Composers, Authors and Music Publishers of Canada, a rights socie
 
 #### Related
 
-- The account of the lawsuit here comes from SOCAN's release and lawsuit page. The [statement of claim](https://www.socan.com/wp-content/uploads/2026/09/ISSUED-Statement-of-Claim-SOCAN-v-Suno-September-2-2026-2.pdf) was not read.
+- The account of the lawsuit here comes from SOCAN's release and lawsuit page. The original [statement of claim](https://www.socan.com/wp-content/uploads/2026/09/ISSUED-Statement-of-Claim-SOCAN-v-Suno-September-2-2026-2.pdf) is a scan with no text layer and was not read. The [amended statement of claim](https://www.socan.com/wp-content/uploads/2026/11/ISSUED-Amended-Statement-of-Claim-SOCAN-v-Suno-November-18-2026.pdf) was read on 2026-11-20.
 - The lawsuit page says "SOCAN has neither issued a licence nor received any royalty payments from Suno."
 - In the joint release, SOCAN, ASCAP and BMI each define a partially AI-generated work as one that "combines elements of AI-generated musical content with elements of human authorship". ASCAP's and BMI's own policy pages were not read.
 
 #### Compare
 
 - [DDEX](#ddex) messages carry a declaration that a recording was made with AI. SOCAN asks for none at registration. The guidelines do not mention DDEX (read 2026-11-16).
-- [GEMA](#gema) won at first instance against Suno on 2026-07-31, in a case about works stored in the model. SOCAN's claim is about outputs. SOCAN's release and lawsuit page do not mention GEMA (read 2026-11-16).
+- [GEMA](#gema) won at first instance against Suno on 2026-07-31, in a case about works stored in the model. SOCAN's claim is for infringement of the performing right through outputs. It also alleges that the Suno model has memorized many of the works it was trained on. SOCAN's release and lawsuit page do not mention GEMA (read 2026-11-16).
 
 #### In use
 
@@ -2199,6 +2244,7 @@ The Society of Composers, Authors and Music Publishers of Canada, a rights socie
 
 #### History
 
+- 2026-11-18: Filed an amended statement of claim (Federal Court T-3803-26) that adds outputs made with Suno's v6 models, which Suno released on 2026-09-09.
 - 2026-09-02: [Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.
 - 2026-07-20: Named Musical AI an approved technology partner for attribution services.
 - 2025-10-28: Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI.
@@ -2210,11 +2256,11 @@ Linked from: [CISAC](#cisac), [STIM](#stim)
 - Id: spawning
 - Also known as: datadiligence
 - Type: organization
-- Status: datadiligence dormant since 2024-10
+- Status: datadiligence dormant since 2024-10; spawning.ai shows a maintenance page (read 2026-11-20)
 - Website: https://spawning.ai
 - Take part: [GitHub](https://github.com/Spawning-Inc/datadiligence)
 - Tags: type/organization, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#spawning
 
 Maker of datadiligence, a Python library that checks works against known opt-out methods inside a training pipeline.
@@ -2227,26 +2273,29 @@ Maker of datadiligence, a Python library that checks works against known opt-out
 
 - Id: spur-coalition
 - Type: organization
-- Status: Content Telemetry v1.0 published 2026-09-02
+- Status: Content Telemetry v1.0 published 2026-09-02; The New York Times, AFP, The Economist and The Atlantic joined 2026-10-13
 - Website: https://www.spurcoalition.org
 - News: https://www.spurcoalition.org/updates
 - Feed: https://www.spurcoalition.org/updates?format=rss
 - Take part: [GitHub](https://github.com/SPUR-Coalition)
 - Tags: type/organization, layer/attribution, stage/after-delivery, stage/trust
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#spur-coalition
 
-Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [Content Telemetry](#content-telemetry) and the publisher accreditation profile and conformance mark. Sister body [OpenAttribution.org](#openattribution) originally developed the SDKs, which SPUR now maintains.
+Publisher coalition whose founding members are the BBC, Financial Times, Guardian Media Group, Mediahuis, Sky News, Telegraph Media Group, the Associated Press and CMA Media. The AP is the first US-based founding member. Stewards [Content Telemetry](#content-telemetry) and the publisher accreditation profile and conformance mark. Sister body [OpenAttribution.org](#openattribution) originally developed the SDKs, which SPUR now maintains.
 
 #### Topics
 
 - **Visibility past retrieval**: letting publishers see grounding, citation, display and engagement, not only the fetch.
-- **Verifying reports**: checking self-reported events through sampled audits or canary content. Signed events are deferred to a later version of the spec (section 8.9).
+- **Verifying reports**: checking self-reported events through sampled audits or canary content. v1.0 makes per-event signing optional (section 8.4) and defers manifest signing (section 8.9). The SPUR evidence profile, a working draft, covers how claims are corroborated.
 - **Publisher accreditation**: a conformance mark for agents that report at the required level.
 
 #### History
 
+- 2026-10-13: The New York Times, Agence France-Presse, The Economist and The Atlantic joined.
 - 2026-09-02: [Content Telemetry](#content-telemetry) v1.0 published.
+- 2026-07-09: The Associated Press joined as the first US-based founding member.
+- 2026-05-11: Mediahuis joined as a founding member.
 
 Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet Licensing Collective](#internet-licensing-collective), [OpenAttribution.org](#openattribution)
 
@@ -2260,7 +2309,7 @@ Linked from: [C2PA](#c2pa), [Content Telemetry](#content-telemetry), [Internet L
 - News: https://www.stim.se/en/news
 - Take part: [license for AI services](https://www.stim.se/en/license-for-ai-services)
 - Tags: type/organization, layer/licensing, layer/payments, layer/attribution, medium/audio
-- Updated: 2026-11-16
+- Updated: 2026-11-17
 - Explorer: https://www.olahungerford.com/content-provenance/#stim
 
 Swedish collecting society for songwriters and music publishers, founded in 1923. It offers AI services a license that covers training and generation and requires attribution technology. [CISAC](#cisac) carried the [launch announcement](https://www.cisac.org/Newsroom/society-news/stim-launches-worlds-first-collective-ai-music-licence) in its society news.
@@ -2306,7 +2355,7 @@ Linked from: [CISAC](#cisac)
 - Status: Launched 2026-10-06 with funding for three projects
 - Website: https://www.countermetrics.org/trace-project/
 - Tags: type/project, layer/provenance, layer/attribution, layer/access, medium/text
-- Updated: 2026-11-16
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#trace
 
 An initiative of scholarly publishers and standards bodies on how AI systems retrieve, attribute and report their use of scholarly content. It was announced at the STM conference in Frankfurt on 2026-10-06 and brings together STM, [NISO](#niso), [COUNTER Metrics](#counter) and Ithaka S+R. It funds three projects and has no site of its own (searched 2026-11-16).
@@ -2314,8 +2363,8 @@ An initiative of scholarly publishers and standards bodies on how AI systems ret
 #### Topics
 
 - **Counting AI use**: TRACE participants part-fund the [COUNTER Metrics](#counter) API and JSON Schema work for its AI metrics. COUNTER names nine publishers as contributors, including Elsevier, Springer Nature and Wiley.
-- **Provenance at inference time**: [NISO](#niso) runs a twelve-month pilot on a minimum metadata model for provenance and attribution.
-- **How agents reach licensed content**: [The Endpoint Question](https://stm-assoc.org/stm-and-ithaka-sr-launch-research-project-on-the-interface-between-scholarly-content-and-ai/), a three-month Ithaka S+R study announced with STM. It looks at how AI agents discover scholarly content, authenticate through a user's entitlements, receive provenance-bearing information and create a credible record of use. Its scope includes "MCP-style access protocols". Findings are to be published openly.
+- **Provenance at inference time**: [NISO](#niso) runs a pilot, first planned for twelve months, on a minimum metadata model for provenance and attribution.
+- **How agents reach licensed content**: [The Endpoint Question](https://stm-assoc.org/stm-and-ithaka-sr-launch-research-project-on-the-interface-between-scholarly-content-and-ai/), a three-month Ithaka S+R study announced with STM. It looks at how AI agents discover scholarly content, authenticate through a user's entitlements, receive provenance-bearing information and create a credible record of use. The STM announcement says "Publishers are already exploring MCP endpoints and other ways of enabling access to content". The [launch article](https://scholarlykitchen.sspnet.org/2026/10/07/trace-project-launches-to-advance-ai-interoperability/) says the study's scope includes "MCP-style access protocols". Findings are to be published openly.
 
 #### Related
 
@@ -2332,13 +2381,13 @@ Linked from: [COUNTER Metrics](#counter), [NISO](#niso)
 - Id: ucp
 - Also known as: UCP
 - Type: specification
-- Status: Google-led consortium, no foundation home
+- Status: Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25
 - Website: https://github.com/Universal-Commerce-Protocol/ucp
 - News: https://ucp.dev/documentation/announcements/
 - Feed: https://github.com/Universal-Commerce-Protocol/ucp/releases.atom
 - Take part: [GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#ucp
 
 Merchant commerce protocol. [OpenAttribution.org](#openattribution) has an `org.openattribution.telemetry` vendor extension for it.
@@ -2346,6 +2395,11 @@ Merchant commerce protocol. [OpenAttribution.org](#openattribution) has an `org.
 #### Topics
 
 - **Cross-merchant commerce**: agent commerce across merchants, compared with [Agentic Commerce Protocol](#acp) in [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg).
+
+#### History
+
+- 2026-08-25: Release v2026-08-25.
+- 2026-04-28: Stripe joined Google and Shopify on the Governing Council.
 
 Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [OpenAttribution.org](#openattribution)
 
@@ -2357,9 +2411,9 @@ Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [OpenAttribu
 - Website: https://www.w3.org
 - News: https://www.w3.org/news/, https://www.w3.org/blog/
 - Feed: https://www.w3.org/news/feed/, https://www.w3.org/blog/feed/
-- Take part: [how to participate](https://www.w3.org/participate/)
+- Take part: [how to participate](https://www.w3.org/get-involved/)
 - Tags: type/organization, layer/licensing, layer/access
-- Updated: 2026-11-03
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#w3c
 
 Web standards body. Hosts [W3C ODRL](#w3c-odrl) and [W3C TDM Reservation Protocol Community Group](#w3c-tdmrep), and the DID and Verifiable Credentials specs [Agent Identity and Manifest Standard](#aims) uses.
@@ -2375,13 +2429,13 @@ Linked from: [W3C ODRL](#w3c-odrl), [W3C TDM Reservation Protocol Community Grou
 - Id: w3c-odrl
 - Also known as: Open Digital Rights Language
 - Type: community-group
-- Status: 2.2 is a W3C Recommendation; a W3C WG for 3.0 is being chartered; ai-vocab draft
+- Status: 2.2 is a W3C Recommendation; a draft Digital Policy WG charter covers ODRL 3.0; ai-vocab draft
 - Website: https://www.w3.org/community/odrl/
 - Feed: https://www.w3.org/community/odrl/feed/
 - Part of: [W3C](#w3c)
 - Take part: [join the community group](https://www.w3.org/community/odrl/join)
 - Tags: type/community-group, layer/licensing
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#w3c-odrl
 
 Policy language for permissions, prohibitions and duties on content.
@@ -2398,13 +2452,13 @@ Linked from: [Dataspace Protocol](#dataspace-protocol), [Encypher](#encypher), [
 - Id: w3c-tdmrep
 - Also known as: TDMRep
 - Type: community-group
-- Status: CG draft; last push 2026-09
+- Status: CG Final Report version 3 (2024-05-10); last push 2026-09
 - Website: https://www.w3.org/community/tdmrep/
 - Feed: https://www.w3.org/community/tdmrep/feed/
 - Part of: [W3C](#w3c)
 - Take part: [join the community group](https://www.w3.org/community/tdmrep/join)
 - Tags: type/community-group, layer/access, layer/licensing
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#w3c-tdmrep
 
 The EU DSM Article 4 text and data mining opt-out: `tdm-reservation` and `tdm-policy` by HTTP header, HTML meta or `/.well-known/tdmrep.json`.
@@ -2434,10 +2488,10 @@ Linked from: [Creator Assertions Working Group](#cawg), [EU AI Act and GPAI Code
 - News: https://wikimediafoundation.org/news/
 - Feed: https://wikimediafoundation.org/news/feed/
 - Tags: type/organization, layer/attribution, layer/identity
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#wikimedia
 
-Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API access to the projects, and volunteer contributors review citation and agent-identity proposals.
+Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API access to the projects. A WikiCite contributor reviewed an MCP citation proposal.
 
 #### Topics
 
@@ -2452,7 +2506,7 @@ Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API
 
 #### In use
 
-- Wikimedia Enterprise supplies Amazon, Google, Meta, Microsoft, Mistral AI and Perplexity, among others ([announcement](https://enterprise.wikimedia.com/blog/wikipedia-25-enterprise-partners/), 2026-01-15).
+- Wikimedia Enterprise partners include Google, Ecosia, Nomic, Pleias, ProRata and Reef Media. Amazon, Meta, Microsoft, Mistral AI and Perplexity were announced as partners on 2026-01-15 ([announcement](https://enterprise.wikimedia.com/blog/wikipedia-25-enterprise-partners/)).
 
 #### History
 
@@ -2465,13 +2519,13 @@ Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Internet Li
 - Id: x402
 - Also known as: x402 Foundation
 - Type: specification
-- Status: x402 Foundation (Linux Foundation) operational 2026-07-14; v2 spec
+- Status: x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec
 - Website: https://x402.org
 - News: https://x402.org/announcements/, https://x402.org/blog/
 - Feed: https://x402.org/feed/
-- Take part: [GitHub](https://github.com/coinbase/x402)
+- Take part: [GitHub](https://github.com/x402-foundation/x402)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-15
+- Updated: 2026-11-20
 - Explorer: https://www.olahungerford.com/content-provenance/#x402
 
 HTTP 402 payments in headers, with schemes `exact`, `upto`, `auth-capture` and `batch-settlement` and transports for HTTP, MCP and A2A. Successor in spirit to L402 (Lightning). Sibling of [Agentic AI Foundation](#aaif) under the Linux Foundation, not part of it.
@@ -2491,6 +2545,7 @@ HTTP 402 payments in headers, with schemes `exact`, `upto`, `auth-capture` and `
 
 #### History
 
+- 2026-10-01: The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.
 - 2026-07-14: x402 Foundation (Linux Foundation) operational.
 
 Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [Agent Payments Protocol](#ap2), [Machine Payments Protocol](#mpp)

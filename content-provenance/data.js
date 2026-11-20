@@ -10,7 +10,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Chartered 2026-05-15; catalogs specs rather than authoring one",
   "participate": "[GitHub issues](https://github.com/aaif/wg-agentic-commerce/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-15",
   "tags": [
    "type/working-group",
    "layer/payments"
@@ -50,7 +50,10 @@ window.CARDS = [
   "id": "aaif-grr-wg",
   "name": "AAIF Governance, Risk and Regulatory WG",
   "aliases": [
-   "GRR"
+   "GRR",
+   "GRRA WG",
+   "\"Governance",
+   "Risk & Regulatory Alignment\""
   ],
   "type": "working-group",
   "website": "https://github.com/aaif/wg-governance-risk-and-regulatory",
@@ -59,7 +62,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "",
   "participate": "[GitHub issues](https://github.com/aaif/wg-governance-risk-and-regulatory/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/working-group",
    "layer/governance"
@@ -68,7 +71,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9)).\n- **Policy mapping**: mapping regulation onto the projects. Its gap analysis covers EU AI Act logging articles ([[eu-ai-act-gpai-code]]) and does not name the GPAI Code of Practice."
+    "text": "- **Evidence record shape**: converging record formats for logging and evidence ([issue 9](https://github.com/aaif/wg-governance-risk-and-regulatory/issues/9), closed 2026-11-12 into the interim report).\n- **Policy mapping**: mapping regulation onto the projects. The phase 2 input in issue 9 cites EU AI Act Articles 12, 19 and 26(6) ([[eu-ai-act-gpai-code]]). The public repository does not name the GPAI Code of Practice (searched 2026-11-20). The interim report is a Google Doc that needs sign-in."
    }
   ],
   "links": [
@@ -92,7 +95,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Chartered 2026-05-12",
   "participate": "[GitHub issues](https://github.com/aaif/wg-identity-and-trust/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -143,9 +146,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "aaif",
-  "status": "Nine-task Agent Behavior Trace Model plan; provenance initiative lead named 2026-09-02; OTel cross-domain provenance proposal 2026-10-28",
+  "status": "Nine-task Agent Behavior Trace Model plan; provenance initiative lead named 2026-09-02; proposal joining OTel GenAI telemetry to signed evidence records opened 2026-10-28; trace model proposal well received at the OTel GenAI SIG 2026-11-11",
   "participate": "[GitHub issues](https://github.com/aaif/wg-observability-and-traceability/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -155,7 +158,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Evidence records**: tamper-evident records of agent behavior ([Evidence Record Spec proposal](https://github.com/aaif/wg-observability-and-traceability/issues/37)).\n- **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.\n- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/issues/11) has no content-side member."
+    "text": "- **Evidence records**: tamper-evident records of agent behavior ([Evidence Record Spec proposal](https://github.com/aaif/wg-observability-and-traceability/issues/37)).\n- **Responsibility chains**: attributing which agent or human initiated, delegated or approved an action.\n- **Liaisons**: the [liaison roster](https://github.com/aaif/wg-observability-and-traceability/blob/main/LIAISONS.md) has no content-side member."
    },
    {
     "title": "Related",
@@ -167,7 +170,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-10-28: OTel cross-domain provenance proposal.\n- 2026-09-02: Provenance initiative lead named."
+    "text": "- 2026-11-11: Minutes record a positive reception of the Agent Behavior Trace Model proposal at the OTel GenAI SIG.\n- 2026-11-04: Liaison roster published.\n- 2026-10-28: [PR 67](https://github.com/aaif/wg-observability-and-traceability/pull/67) proposes joining OTel GenAI telemetry to signed action and evidence records. The meeting set an action to draft a cross-domain tracing and provenance proposal for OTel.\n- 2026-09-02: Provenance initiative lead named."
    }
   ],
   "links": [
@@ -184,8 +187,16 @@ window.CARDS = [
   ],
   "history": [
    {
+    "date": "2026-11-11",
+    "text": "Minutes record a positive reception of the Agent Behavior Trace Model proposal at the OTel GenAI SIG."
+   },
+   {
+    "date": "2026-11-04",
+    "text": "Liaison roster published."
+   },
+   {
     "date": "2026-10-28",
-    "text": "OTel cross-domain provenance proposal."
+    "text": "[PR 67](https://github.com/aaif/wg-observability-and-traceability/pull/67) proposes joining OTel GenAI telemetry to signed action and evidence records. The meeting set an action to draft a cross-domain tracing and provenance proposal for OTel."
    },
    {
     "date": "2026-09-02",
@@ -204,7 +215,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "",
   "participate": "[GitHub issues](https://github.com/aaif/wg-security-and-privacy/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/working-group",
    "layer/governance",
@@ -250,7 +261,7 @@ window.CARDS = [
   "part_of": "openattribution",
   "status": "v0.1 draft",
   "participate": "[GitHub issues](https://github.com/openattribution-org/aims/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/specification",
    "layer/identity"
@@ -302,7 +313,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Donated by Google to the FIDO Alliance",
   "participate": "[GitHub](https://github.com/google-agentic-commerce/AP2)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-17",
   "tags": [
    "type/specification",
    "layer/payments",
@@ -337,9 +348,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "",
-  "status": "1.0.0 published 2026-08-06; 1.1.0 is a working draft; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel",
+  "status": "1.0.0 published 2026-08-06; 1.1.0 is a working draft; AAIF Technical Committee approved it as a Growth-stage project 2026-10-27, Governing Board vote pending; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel",
   "participate": "[GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -352,7 +363,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin can carry the authorship and licence that a bare `SKILL.md` cannot. Clients validate these by JSON type only, so nothing stops an empty or false value.\n- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails.\n- **No distribution layer**: registries, marketplaces, installation and updates are each client's own."
+    "text": "- **Who made this, under what terms**: the manifest has `author` (name, email, url), `repository`, `homepage` and `license` (SPDX recommended), so a plugin carries structured authorship and repository fields. A `SKILL.md` has an optional `license` field and a free-form `metadata` map. Clients validate these by JSON type only, so nothing stops an empty or false value.\n- **Trust left to the client**: 1.x defines no signatures, publisher identity or provenance checks. The project's future-considerations list names signature verification, trusted-publisher policies and audit trails.\n- **No distribution layer**: registries, marketplaces, installation and updates are each client's own."
    },
    {
     "title": "Related",
@@ -360,11 +371,11 @@ window.CARDS = [
    },
    {
     "title": "Compare",
-    "text": "- Not an [[aaif]] project. The AAIF project list does not include it (read 2026-11-15).\n- Its future-considerations list covers the same ground as the [[agent-skills-signing]]. Neither refers to the other (searched 2026-11-15).\n- A [[skills-marketplace]] would have a package to ship here and no shared channel to ship it through.\n- [[mcp-skills-extension]] serves the same skills over MCP instead of on disk. Both build on Agent Skills, and neither names the other (searched 2026-11-15)."
+    "text": "- Not yet an [[aaif]] project. The AAIF Technical Committee approved it as a Growth-stage project, and it awaits a Governing Board vote ([proposal 56](https://github.com/aaif/project-proposals/issues/56)). The AAIF project list does not include it (read 2026-11-20).\n- Its future-considerations list covers the same ground as the [[agent-skills-signing]]. Neither refers to the other (searched 2026-11-15).\n- A [[skills-marketplace]] would have a package to ship here and no shared channel to ship it through.\n- [[mcp-skills-extension]] serves the same skills over MCP instead of on disk. Both build on Agent Skills, and neither names the other (searched 2026-11-15)."
    },
    {
     "title": "History",
-    "text": "- 2026-08-06: 1.0.0 published."
+    "text": "- 2026-10-27: AAIF staff reported Technical Committee approval as a Growth-stage project. A Governing Board vote is pending.\n- 2026-10-12: Proposed to [[aaif]].\n- 2026-08-06: 1.0.0 published."
    }
   ],
   "links": [
@@ -375,7 +386,6 @@ window.CARDS = [
    "mcp-skills-extension"
   ],
   "compares": [
-   "aaif",
    "agent-skills-signing",
    "skills-marketplace",
    "mcp-skills-extension"
@@ -386,6 +396,14 @@ window.CARDS = [
    "skills-marketplace"
   ],
   "history": [
+   {
+    "date": "2026-10-27",
+    "text": "AAIF staff reported Technical Committee approval as a Growth-stage project. A Governing Board vote is pending."
+   },
+   {
+    "date": "2026-10-12",
+    "text": "Proposed to [[aaif]]."
+   },
    {
     "date": "2026-08-06",
     "text": "1.0.0 published."
@@ -406,7 +424,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Joined AAIF 2026-10-22",
   "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/specification",
    "topic/skills",
@@ -440,7 +458,8 @@ window.CARDS = [
    "agent-skills-signing",
    "aaif",
    "ai-catalog",
-   "mcp-skills-extension"
+   "mcp-skills-extension",
+   "skills-marketplace"
   ],
   "history": [
    {
@@ -466,9 +485,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "agent-skills",
-  "status": "Seven open discussions in Ideas, one maintainer, no convergence",
+  "status": "Seven open discussions in Ideas, none answered by a listed maintainer, no convergence",
   "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
-  "updated": "2026-11-17",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "layer/provenance",
@@ -480,7 +499,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Copy sprawl**: tracking copies, which outnumber originals. One dataset has half of SKILL.md files as verbatim copies, and only 11.1% of fixes reach every copy.\n- **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.\n- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. The six earlier threads cover neither. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [[c2pa]] content credentials for skills and names the [[cawg]] identity assertion for the signer. Its example repository has no identity assertion yet.\n- **Whole-folder coverage**: signing the scripts and other files, when a C2PA manifest binds to one file. Discussion 651 signs SKILL.md and puts a digest of every other file in `metadata.directory-digest`, which the signature covers. In its tests a generic C2PA validator passes a skill with an edited script, and a verifier that recomputes the digest fails it.\n- **Removed credentials**: telling a skill whose manifest line was removed from one that was never signed. The bytes are the same. The author of discussion 651 says the expectation of a signature has to come from outside the skill, through publisher pinning, trust on first use or a distribution-layer policy. On 2026-11-16 they proposed four verifier results: `verified`, `invalid`, `unreachable` and `absent`."
+    "text": "- **Copy sprawl**: tracking copies of a skill. The GitSkills dataset reports that half of SKILL.md files on GitHub are verbatim copies. [Skill Constellations](https://arxiv.org/abs/2610.11169) finds that only 11.1% of changes to a clone group reach every copy.\n- **Field ownership**: separating identity (digest), lineage (source, derived-from), authorship (signature) and evidence (keyed by digest) so each thread owns one field.\n- **Retraction and signer identity**: withdrawing a bad skill and naming who signed it. [#252](https://github.com/agentskills/agentskills/discussions/252) names the signer by domain and suggests a `.well-known/skills-revoked` endpoint. [#393](https://github.com/agentskills/agentskills/discussions/393) carries a publisher block and a `revocation_url`. [Discussion 651](https://github.com/agentskills/agentskills/discussions/651) (2026-11-05) proposes [[c2pa]] content credentials for skills and names the [[cawg]] identity assertion for the signer. Its example repository has no identity assertion yet.\n- **Whole-folder coverage**: signing the scripts and other files, when a C2PA manifest binds to one file. Discussion 651 signs SKILL.md and puts a digest of every other file in `metadata.directory-digest`, which the signature covers. In its tests a generic C2PA validator passes a skill with an edited script, and a verifier that recomputes the digest fails it.\n- **Removed credentials**: telling a skill whose manifest line was removed from one that was never signed. The bytes are the same. The author of discussion 651 says the expectation of a signature has to come from outside the skill, through publisher pinning, trust on first use or a distribution-layer policy. On 2026-11-16 they proposed four verifier results: `verified`, `invalid`, `unreachable` and `absent`."
    },
    {
     "title": "Related",
@@ -547,7 +566,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Linux Foundation; ten hosted projects in its first year",
   "participate": "[working group repos on GitHub](https://github.com/aaif)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/governance"
@@ -595,9 +614,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "",
-  "status": "Published by OpenAI and Stripe",
+  "status": "Beta; maintained by OpenAI, Stripe and Meta (Meta since 2026-04-24); latest spec 2026-04-17",
   "participate": "[GitHub issues](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -607,6 +626,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Agent checkout**: letting agents complete merchant checkout.\n- **Credit for purchases**: crediting the content that led to a purchase, through the [[openattribution]] extension."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-04-24: Meta joined OpenAI and Stripe as a lead maintainer ([PR 236](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/236))."
    }
   ],
   "links": [
@@ -618,7 +641,12 @@ window.CARDS = [
    "openattribution",
    "ucp"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-04-24",
+    "text": "Meta joined OpenAI and Stripe as a lead maintainer ([PR 236](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/236))."
+   }
+  ]
  },
  {
   "id": "ard",
@@ -635,7 +663,7 @@ window.CARDS = [
   "part_of": "",
   "status": "v0.91 dated 2026-08-26, marked Proposal",
   "participate": "[GitHub issues](https://github.com/ards-project/ard-spec/issues)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/identity",
@@ -649,7 +677,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Built on the [[ai-catalog]] entry. The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0010 here, ADR-0017 there): the catalog entry stays thin, and ARD adds namespaced terms.\n- v0.91 has publishers serve entries at `/.well-known/ard.json` and says a publisher on `/.well-known/ai-catalog.json` should move."
+    "text": "- v0.91 defines its own ARD entry, and \"every ARD entry is a well-formed catalog entry\" ([[ai-catalog]]). The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0010 here, ADR-0017 there): the catalog entry stays thin, and ARD adds namespaced terms.\n- v0.91 has publishers serve entries at `/.well-known/ard.json` and says a publisher on `/.well-known/ai-catalog.json` should move."
    },
    {
     "title": "In use",
@@ -657,7 +685,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-08-26: v0.91.\n- 2026-07-09: Loose coupling with AI Catalog agreed.\n- 2026-06-17: Announced by Google.\n- 2026-05-28: v0.5."
+    "text": "- 2026-08-26: v0.91.\n- 2026-07-09: Loose coupling with AI Catalog agreed.\n- 2026-06-17: Announced by Google.\n- 2026-06-16: v0.9 (Draft).\n- 2026-05-28: v0.5."
    }
   ],
   "links": [
@@ -681,6 +709,10 @@ window.CARDS = [
     "text": "Announced by Google."
    },
    {
+    "date": "2026-06-16",
+    "text": "v0.9 (Draft)."
+   },
+   {
     "date": "2026-05-28",
     "text": "v0.5."
    }
@@ -698,9 +730,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "",
-  "status": "ADR-0028 accepted on the 2026-11-05 TSC call, opening catalog and entry objects to unrecognized members; identity-keyed trust manifests merged 2026-10-28",
+  "status": "ADR-0028 (open catalog and entry objects) accepted on the 2026-11-05 AI Catalog call and merged into the spec 2026-11-11; independently signed trust manifest contributions merged 2026-10-28",
   "participate": "[GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -712,11 +744,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: signing catalog entries with [identity-keyed trust manifests](https://github.com/Agent-Card/ai-catalog/pull/117).\n- **Publisher and operator**: the party that runs a catalog (`host`) and the party responsible for an artifact (`publisher`) are separate roles. An operator that lists an artifact it does not publish must use an identifier under its own control, and \"MUST NOT infer publisher authorization from the artifact's URL or an unsigned `publisher` field\" (Catalog Projection).\n- **Policy links**: the Policy URLs extension carries `privacyPolicyUrl` and `termsOfServiceUrl` for an artifact. A catalog signature covers the URL strings and not the documents behind them. The spec has no field for machine-readable usage terms or for the entitlements an artifact covers (read 2026-11-16)."
+    "text": "- **Discovery**: finding agents, servers and skills across vendors.\n- **Catalog trust**: publishers, assessors and operators each add an [independently signed trust manifest](https://github.com/Agent-Card/ai-catalog/pull/117) to an entry's `trustManifests` array. Each signature covers that manifest and its subject, the artifact release, and not the rest of the entry.\n- **Publisher and operator**: the party that runs a catalog (`host`) and the party responsible for an artifact (`publisher`) are separate roles. An operator that lists an artifact it does not publish must use an identifier under its own control, and \"MUST NOT infer publisher authorization from the artifact's URL or an unsigned `publisher` field\" (Catalog Projection).\n- **Policy links**: the Policy URLs extension carries `privacyPolicyUrl` and `termsOfServiceUrl` for an artifact. A catalog signature covers the URL strings and not the documents behind them. The spec has no field for machine-readable usage terms or for the entitlements an artifact covers (read 2026-11-16)."
    },
    {
     "title": "Related",
-    "text": "- Entry types include `application/mcp-server-card+json` for [[mcp-server-cards]] and `application/agent-skills+zip` for [[agent-skills]] bundles.\n- [[ard]] builds its search entries on the catalog entry. The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0017): the catalog keeps thin entries with a small `extensions` map, and ARD takes JSON-LD `@context` for richer metadata."
+    "text": "- Entry types include `application/mcp-server-card+json` for [[mcp-server-cards]] and `application/agent-skills+zip` for [[agent-skills]] bundles.\n- [[ard]] defines its own entry, and \"every ARD entry is a well-formed catalog entry\". The two groups agreed on 2026-07-09 to stay loosely coupled (ADR-0017): the catalog keeps thin entries with a small `extensions` map, and ARD takes JSON-LD `@context` for richer metadata."
    },
    {
     "title": "Compare",
@@ -724,7 +756,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-11-05: ADR-0028 accepted, opening catalog and entry objects to unrecognized members.\n- 2026-10-28: Identity-keyed trust manifests merged.\n- 2026-07-09: Loose coupling with ARD agreed."
+    "text": "- 2026-11-11: Spec aligned with ADR-0028 ([PR 131](https://github.com/Agent-Card/ai-catalog/pull/131)).\n- 2026-11-05: ADR-0028 accepted, opening catalog and entry objects to unrecognized members.\n- 2026-10-28: Independently signed trust manifest contributions merged.\n- 2026-07-09: Loose coupling with ARD agreed."
    }
   ],
   "links": [
@@ -745,12 +777,16 @@ window.CARDS = [
   ],
   "history": [
    {
+    "date": "2026-11-11",
+    "text": "Spec aligned with ADR-0028 ([PR 131](https://github.com/Agent-Card/ai-catalog/pull/131))."
+   },
+   {
     "date": "2026-11-05",
     "text": "ADR-0028 accepted, opening catalog and entry objects to unrecognized members."
    },
    {
     "date": "2026-10-28",
-    "text": "Identity-keyed trust manifests merged."
+    "text": "Independently signed trust manifest contributions merged."
    },
    {
     "date": "2026-07-09",
@@ -773,14 +809,14 @@ window.CARDS = [
   "part_of": "",
   "status": "Convenings at Bellagio (April 2026), Foo Camp (June and October 2026), Microsoft Research New York (September 2026)",
   "participate": "",
-  "updated": "2026-11-08",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/governance",
    "layer/attribution",
    "layer/payments"
   ],
-  "summary": "Project housed at Code for Science and Society working on the standards and mechanisms for value distribution in the human and AI economy. Prototypes include [[skills-marketplace]], the Open Memory Protocol Consortium and the Open Alpha Registry.",
+  "summary": "Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [[skills-marketplace]], the Open Memory Protocol Initiative (OMPI) and the Open Alpha Registry.",
   "sections": [
    {
     "title": "Topics",
@@ -832,24 +868,40 @@ window.CARDS = [
   "part_of": "",
   "status": "",
   "participate": "[GitHub issues](https://github.com/ai-robots-txt/ai.robots.txt/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/access"
   ],
-  "summary": "Community list of AI crawlers with generated robots.txt, nginx, Caddy, HAProxy and lighttpd blocks.",
+  "summary": "Community list of AI crawlers with generated robots.txt, Apache .htaccess, nginx, Caddy, HAProxy and lighttpd blocks.",
   "sections": [
    {
     "title": "Topics",
     "text": "- **Crawler blocking today**: giving site operators ready-made blocks, and a record of what they deploy compared with what [[ietf-aipref]] specifies."
+   },
+   {
+    "title": "In use",
+    "text": "- v2.2 (2026-11-16) adds the [[aipref-training-token]] group `User-agent: __usage_ai-training` to its robots.txt."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-16: [v2.2](https://github.com/ai-robots-txt/ai.robots.txt/releases/tag/v2.2) released with the `__usage_ai-training` token."
    }
   ],
   "links": [
-   "ietf-aipref"
+   "ietf-aipref",
+   "aipref-training-token"
   ],
   "compares": [],
-  "backlinks": [],
-  "history": []
+  "backlinks": [
+   "aipref-training-token"
+  ],
+  "history": [
+   {
+    "date": "2026-11-16",
+    "text": "[v2.2](https://github.com/ai-robots-txt/ai.robots.txt/releases/tag/v2.2) released with the `__usage_ai-training` token."
+   }
+  ]
  },
  {
   "id": "c2pa",
@@ -869,7 +921,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Spec 2.5 published October 2026",
   "participate": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
-  "updated": "2026-11-17",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -885,7 +937,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [[mcp-c2pa-in-meta]] relies on. The conformance text rubric has no JSON group yet.\n- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (60 entries by 2026-10-28). 22 of them list an audio media type, 18 watermarks and 4 fingerprints (read 2026-11-15).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
+    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [[mcp-c2pa-in-meta]] relies on. The conformance text rubric has no JSON group yet.\n- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
    },
    {
     "title": "Related",
@@ -897,7 +949,7 @@ window.CARDS = [
    },
    {
     "title": "In use",
-    "text": "- The [conforming products list](https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json) had 342 records from 216 applicants on 2026-11-14: 300 generators and 42 validators. Most sign images, video and audio. One lists a plain-text format and none lists HTML. The [Conformance Explorer](https://spec.c2pa.org/conformance-explorer/) shows the same data.\n- Appendix A.8 has two published libraries: [c2pa-text](https://pypi.org/project/c2pa-text/) from [[encypher]] (3.0.0, 2026-06-19) and [c2pa-unstructured-text](https://crates.io/crates/c2pa-unstructured-text) from WritersLogic (0.2.0, 2026-08-02).\n- News publishers that sign images and video are listed on [[iptc]]."
+    "text": "- The [conforming products list](https://github.com/c2pa-org/conformance-public/blob/main/conforming-products/conforming-products-list.json) had 349 records from 222 applicants on 2026-11-19: 307 generators and 42 validators. 262 generators sign images, 201 sign video and 109 sign audio. One lists a plain-text format and none lists HTML. The [Conformance Explorer](https://spec.c2pa.org/conformance-explorer/) shows the same data.\n- Appendix A.8 has two published libraries: [c2pa-text](https://pypi.org/project/c2pa-text/) from [[encypher]] (3.0.0, 2026-06-19) and [c2pa-unstructured-text](https://crates.io/crates/c2pa-unstructured-text) from WritersLogic (0.2.0, 2026-08-02).\n- News publishers that sign images and video are listed on [[iptc]]."
    },
    {
     "title": "History",
@@ -949,9 +1001,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "mcp",
-  "status": "Discussion closed 2026-09-25 with all spec-repo discussions; no SEP filed yet",
+  "status": "Discussion closed 2026-09-25 when the spec repo limited Discussions to meeting notes; no SEP filed yet",
   "participate": "[the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "layer/provenance",
@@ -962,7 +1014,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Provenance in transit**: keeping a credential attached as content crosses from server to client.\n- **A venue**: finding an owner, since no WG or IG covers content provenance and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.\n- **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.\n- **Where the field lives**: choosing between a top-level field and `_meta`."
+    "text": "- **Provenance in transit**: keeping a credential attached as content crosses from server to client.\n- **A venue**: finding an owner. The [[mcp-fsig]] lists data lineage and provenance for its sector and the Scientific Computing IG lists provenance of computed results. No WG or IG covers content provenance in general, and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.\n- **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.\n- **Where the field lives**: choosing between a top-level field and `_meta`."
    },
    {
     "title": "Compare",
@@ -970,11 +1022,12 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-09-25: Discussion closed along with all spec-repo discussions."
+    "text": "- 2026-09-25: Discussion closed when the spec repo limited Discussions to meeting notes."
    }
   ],
   "links": [
    "c2pa",
+   "mcp-fsig",
    "mcp-sep-3094-citations",
    "mcp-interceptors",
    "openlineage",
@@ -997,7 +1050,7 @@ window.CARDS = [
   "history": [
    {
     "date": "2026-09-25",
-    "text": "Discussion closed along with all spec-repo discussions."
+    "text": "Discussion closed when the spec repo limited Discussions to meeting notes."
    }
   ]
  },
@@ -1010,15 +1063,15 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "creative-commons",
-  "status": "GitHub draft unchanged since 2025-12; v2 to make attribution a requirement",
+  "status": "Public alpha planned for early 2027, starting with SourceConnection (announced 2026-11-16); the GitHub draft is unchanged since 2025-12-04",
   "participate": "[GitHub issues](https://github.com/creativecommons/cc-signals/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "layer/access",
    "layer/attribution"
   ],
-  "summary": "Preference signals for AI reuse with terms attached: Credit, Credit + Direct Contribution, Credit + Ecosystem Contribution, Credit + Open. Layered on [[ietf-aipref]] vocabulary.",
+  "summary": "Preference signals for AI reuse with terms attached: Credit, Credit + Direct Contribution, Credit + Ecosystem Contribution, Credit + Open. Layered on [[ietf-aipref]] vocabulary. That is the 2025 GitHub draft. CC's [page](https://creativecommons.org/ai-and-the-commons/cc-signals/) now describes a framework of legal tools and norms with two components, SourceConnection and ShareBack.",
   "sections": [
    {
     "title": "Topics",
@@ -1027,6 +1080,10 @@ window.CARDS = [
    {
     "title": "Compare",
     "text": "- [[content-telemetry]] and [[mcp-sep-3094-citations]] are two ways to check whether credit was given. Neither names CC Signals (searched 2026-11-15)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-16: CC [said](https://creativecommons.org/2026/11/16/advancing-cc-signals-preparing-for-public-alpha-testing-in-2027/) a public alpha is planned for early 2027 and will first focus on SourceConnection.\n- 2026-05-13: CC [said](https://creativecommons.org/2026/05/13/from-signals-to-infrastructure-strengthening-the-commons-for-the-ai-era/) attribution must be a requirement in the next iteration.\n- 2026-04-23: CC [said](https://creativecommons.org/2026/04/23/update-on-cc-signals-what-changed-and-why/) CC Signals is no longer limited to signaling preferences."
    }
   ],
   "links": [
@@ -1044,7 +1101,20 @@ window.CARDS = [
    "ietf-aipref",
    "niso"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-11-16",
+    "text": "CC [said](https://creativecommons.org/2026/11/16/advancing-cc-signals-preparing-for-public-alpha-testing-in-2027/) a public alpha is planned for early 2027 and will first focus on SourceConnection."
+   },
+   {
+    "date": "2026-05-13",
+    "text": "CC [said](https://creativecommons.org/2026/05/13/from-signals-to-infrastructure-strengthening-the-commons-for-the-ai-era/) attribution must be a requirement in the next iteration."
+   },
+   {
+    "date": "2026-04-23",
+    "text": "CC [said](https://creativecommons.org/2026/04/23/update-on-cc-signals-what-changed-and-why/) CC Signals is no longer limited to signaling preferences."
+   }
+  ]
  },
  {
   "id": "cisac",
@@ -1061,7 +1131,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Asks policymakers for licensing, transparency and an effective opt-out from data mining exceptions (AI page read 2026-11-15)",
   "participate": "",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -1070,7 +1140,7 @@ window.CARDS = [
    "medium/audio",
    "medium/video"
   ],
-  "summary": "Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [[gema]] is a member, and the CEO of [[socan]] is a Vice-Chair of [its board](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors). It lists the ISWC work identifier, IPI and CIS-Net as its standards and tools.",
+  "summary": "Network of authors' collecting societies, founded in 1926 and based in France. Its About page counts over 225 member societies in more than 110 countries, representing more than 5 million creators in music, audiovisual, drama, literature and visual arts. [[gema]] is a member, and the CEO of [[socan]] is a Vice-Chair of [its board](https://www.cisac.org/Newsroom/news-releases/cisac-announces-new-board-directors). It lists ISWC, ida, CIS-Net, ISAN, DDEX and IPI as its standards and tools.",
   "sections": [
    {
     "title": "Topics",
@@ -1131,7 +1201,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Individual AIPREF draft, shown as expired on Datatracker (read 2026-11-15); parsed by policycheck",
   "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "layer/access"
@@ -1144,7 +1214,7 @@ window.CARDS = [
    },
    {
     "title": "In use",
-    "text": "- Cloudflare's managed robots.txt serves the policy with `search=yes, ai-train=no` by default. Cloudflare said customers had turned managed robots.txt on for over 3.8 million domains at launch ([Cloudflare blog](https://blog.cloudflare.com/content-signals-policy/), 2025-09-24).\n- [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) detects the signals in robots.txt and in `Content-Signal` headers."
+    "text": "- Cloudflare's managed robots.txt serves the policy with `search=yes, ai-train=no` by default. Cloudflare said customers had turned managed robots.txt on for over 3.8 million domains at launch ([Cloudflare blog](https://blog.cloudflare.com/content-signals-policy/), 2025-09-24).\n- [policycheck](https://github.com/openattribution-org/policycheck) v0.2.1 (2026-02-15) reads `Content-Signal` lines in robots.txt."
    }
   ],
   "links": [
@@ -1210,9 +1280,9 @@ window.CARDS = [
    "https://github.com/SPUR-Coalition/telemetry/releases.atom"
   ],
   "part_of": "spur-coalition",
-  "status": "v1.0 published 2026-09-02; signed events deferred (section 8.9)",
+  "status": "v1.0 published 2026-09-02; per-event signing is informational (section 8.4) and manifest signing is deferred (section 8.9)",
   "participate": "[GitHub issues](https://github.com/SPUR-Coalition/telemetry/issues)",
-  "updated": "2026-11-17",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/attribution",
@@ -1222,7 +1292,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Usage reporting**: reporting how AI systems use content after retrieval, in five events.\n- **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).\n- **Declaring coverage**: a report does not show whether every event was reported. Section 5.7.6 has an emitter declare one of four coverage modes (complete, sampled, aggregated, selected) and the scope it applies over, and says a consumer must not read a missing event as proof that nothing happened unless coverage is complete.\n- **Reporting for an institution**: `access_context` names the institution a session's access rights derive from, as a claim by the emitter (section 5.1.3). `content_depth` records whether a retrieval reached metadata, an abstract or the full record (section 6.1).\n- **MCP binding**: emitting `content_cited` and `content_presented` from MCP clients."
+    "text": "- **Usage reporting**: reporting how AI systems use content after retrieval, in five events.\n- **Demanding conformance**: a manifest cannot require a conformance level from an agent (section 8.5).\n- **Declaring coverage**: a report does not show whether every event was reported. Section 5.7.6 has an emitter declare one of four coverage modes (complete, sampled, aggregated, selected) and the scope it applies over, and says a consumer must not read a missing event as proof that nothing happened unless coverage is complete.\n- **Reporting for an institution**: `access_context` names the institution a session's access rights derive from, as a claim by the emitter (section 5.1.3). `content_depth` records whether a retrieval reached metadata, an abstract or the full record (section 6.1).\n- **MCP binding**: the specification defines none and lists MCP tool calls as one delivery pattern (section 7.1). telemetry-js's `MCPSessionTracker` emits retrieved, cited and presented events from MCP tool and response hooks."
    },
    {
     "title": "Related",
@@ -1234,7 +1304,7 @@ window.CARDS = [
    },
    {
     "title": "In use",
-    "text": "- [telemetry-js](https://github.com/SPUR-Coalition/telemetry-js) is on npm as `@openattribution/telemetry` 0.1.3 (2026-06-12) and includes an `MCPSessionTracker`. Its 1.0.0, which implements v1.0 of the standard, is unreleased."
+    "text": "- [telemetry-js](https://github.com/SPUR-Coalition/telemetry-js) is on npm as `@openattribution/telemetry` and includes an `MCPSessionTracker`. Its `latest` tag is 0.1.3 (2026-06-12), and versions 0.2.0 to 0.4.0 (2026-03-03 to 2026-05-28) are also published. Its 1.0.0, which implements v1.0 of the standard, is unreleased."
    },
    {
     "title": "History",
@@ -1286,8 +1356,8 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Phase two of its AI best practice published 2026-10-23; it says the guidelines are aligned with the SPUR telemetry framework",
-  "participate": "[membership](https://www.countermetrics.org/membership/)",
-  "updated": "2026-11-17",
+  "participate": "[membership](https://www.countermetrics.org/members/)",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/attribution"
@@ -1344,9 +1414,9 @@ window.CARDS = [
    "https://creativecommons.org/feed/"
   ],
   "part_of": "",
-  "status": "Attribution to become a requirement in the next CC Signals iteration; RAG attribution best practices planned",
-  "participate": "[contact](https://creativecommons.org/about/contact/)",
-  "updated": "2026-11-16",
+  "status": "CC Signals public alpha planned for early 2027, starting with SourceConnection (announced 2026-11-16)",
+  "participate": "[contact](https://creativecommons.org/mission/contact/)",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -1357,11 +1427,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **AI reuse beyond licensing**: giving stewards terms for AI reuse, since licensing alone cannot address it (September 2026 guidance).\n- **Attribution in answers**: honoring the CC attribution requirement when content reaches a model or an agent answer.\n- **RAG attribution pilots**: finding adopters for best practices later in 2026."
+    "text": "- **AI reuse beyond licensing**: giving stewards terms for AI reuse, since licensing alone cannot address it (September 2026 guidance).\n- **Attribution in answers**: honoring the CC attribution requirement when content reaches a model or an agent answer.\n- **Source references in answers**: finding early adopters for the CC Signals alpha in 2027. Its SourceConnection component would require AI developers to \"provide references to sources when AI systems use outside sources to help answer questions\"."
    },
    {
     "title": "Compare",
-    "text": "- [[okfn]], whose MCP server already returns a list of sources, is a candidate pilot for the RAG attribution best practices. Neither names the other (searched 2026-11-15)."
+    "text": "- [[okfn]], whose MCP server already returns a list of sources, is a candidate early adopter for SourceConnection. Neither names the other (searched 2026-11-15)."
    }
   ],
   "links": [
@@ -1390,9 +1460,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "dif",
-  "status": "Moved under DIF; consent assertion added 2026-07",
-  "participate": "[GitHub](https://github.com/creator-assertions), via DIF membership",
-  "updated": "2026-11-15",
+  "status": "Moved under DIF; consent assertion started as a placeholder draft 2026-07-12",
+  "participate": "[spec repositories](https://github.com/orgs/decentralized-identity/repositories?q=cawg), via DIF membership",
+  "updated": "2026-11-20",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -1415,7 +1485,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-07: Consent assertion added."
+    "text": "- 2026-07-12: Consent assertion repository created with a placeholder 1.0 draft."
    }
   ],
   "links": [
@@ -1441,8 +1511,8 @@ window.CARDS = [
   ],
   "history": [
    {
-    "date": "2026-07",
-    "text": "Consent assertion added."
+    "date": "2026-07-12",
+    "text": "Consent assertion repository created with a placeholder 1.0 draft."
    }
   ]
  },
@@ -1459,9 +1529,9 @@ window.CARDS = [
    "https://mlcommons.org/tag/croissant/feed/"
   ],
   "part_of": "",
-  "status": "1.1 (February 2026); required for NeurIPS 2026 dataset submissions",
+  "status": "1.1 published 2026-01-29 and announced 2026-02-12; required for NeurIPS 2026 dataset submissions",
   "participate": "[GitHub issues](https://github.com/mlcommons/croissant/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -1480,11 +1550,11 @@ window.CARDS = [
    },
    {
     "title": "In use",
-    "text": "- The NeurIPS 2026 Evaluations and Datasets Track required a Croissant file with every dataset submission, including Responsible AI fields ([NeurIPS blog](https://blog.neurips.cc/2026/05/04/responsible-ai-metadata-requirements-for-the-evaluations-and-datasets-track-neurips-2026/), 2026-05-04).\n- Hugging Face, Kaggle, OpenML and Dataverse generate a Croissant file for the datasets they host, according to the [NeurIPS 2026 hosting guidelines](https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting)."
+    "text": "- The NeurIPS 2026 Evaluations and Datasets Track required a Croissant file with every dataset submission, including Responsible AI fields ([NeurIPS blog](https://blog.neurips.cc/2026/05/04/responsible-ai-metadata-requirements-for-the-evaluations-and-datasets-track-neurips-2026/), 2026-05-04).\n- Hugging Face, Kaggle, OpenML and Harvard Dataverse generate a Croissant file for the datasets they host, according to the [NeurIPS 2026 hosting guidelines](https://neurips.cc/Conferences/2026/EvaluationsDatasetsHosting)."
    },
    {
     "title": "History",
-    "text": "- 2026-02: 1.1 released."
+    "text": "- 2026-02-12: MLCommons announced 1.1.\n- 2026-01-29: 1.1 specification published."
    }
   ],
   "links": [
@@ -1496,8 +1566,12 @@ window.CARDS = [
   "backlinks": [],
   "history": [
    {
-    "date": "2026-02",
-    "text": "1.1 released."
+    "date": "2026-02-12",
+    "text": "MLCommons announced 1.1."
+   },
+   {
+    "date": "2026-01-29",
+    "text": "1.1 specification published."
    }
   ]
  },
@@ -1512,7 +1586,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Last code push 2025-03",
   "participate": "[GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/project",
    "layer/provenance",
@@ -1551,7 +1625,7 @@ window.CARDS = [
   "part_of": "",
   "status": "2025-1 released 2025-08-29 and considered stable; second errata tagged 2026-09-11",
   "participate": "[GitHub issues](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/issues)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -1600,16 +1674,14 @@ window.CARDS = [
   ],
   "type": "organization",
   "website": "https://ddex.net",
-  "news": [
-   "https://ddex.net/press/"
-  ],
+  "news": [],
   "feed": [
    "https://ddex.net/feed/"
   ],
   "part_of": "",
-  "status": "Generative AI Declaration Standard (GAI-D) in peer review, with publication expected in early 2027 (announced 2026-11-05)",
+  "status": "Generative AI Declaration Standard (GAI-D) committee draft finished member comments and goes to peer review next, with publication expected in early 2027 (announced 2026-11-05)",
   "participate": "[working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -1621,7 +1693,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Release metadata**: telling a streaming service what a release is and who is credited on it, in one message format, the Electronic Release Notification (ERN).\n- **AI disclosure**: saying that a recording, or one contributor's part in it, was made with generative AI. The [ERN release notes](https://ern.ddex.net/electronic-release-notification-message-suite-part-1-definitions-of-messages/annex-a-(informative)-release-notes/) list both under version 4.3.1. A sound recording, image, text, video or release can carry [`ContainsAI`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_ContainsAI.html), and a contributor can carry [`AiContribution`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_AiContribution.html). The data dictionary's rules use the values All, Partly and None.\n- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify says it depends on artist disclosure and that \"the absence of a credit doesn't mean AI wasn't used\".\n- **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.\n- **A standard for AI declarations**: its Artificial Intelligence group is set up \"to investigate the metadata requirements for the communication of AI-generated music\", including musical works. The group's Generative AI Declaration Standard has finished member comments on its committee draft."
+    "text": "- **Release metadata**: telling a streaming service what a release is and who is credited on it, in one message format, the Electronic Release Notification (ERN).\n- **AI disclosure**: saying that a recording, or one contributor's part in it, was made with generative AI. The [ERN release notes](https://ern.ddex.net/electronic-release-notification-message-suite-part-1-definitions-of-messages/annex-a-(informative)-release-notes/) list both under version 4.3.1. A sound recording, image, text, video or release can carry [`ContainsAI`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_ContainsAI.html), and a contributor can carry [`AiContribution`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_AiContribution.html). The data dictionary's rules use the values All, Partly and None.\n- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify's [help page](https://support.spotify.com/us/article/ai-credits/) says \"AI credits are optional for artists to share\" and \"The absence of AI credits doesn't mean AI wasn't used on a song.\"\n- **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.\n- **A standard for AI declarations**: its Artificial Intelligence group is set up \"to investigate the metadata requirements for the communication of AI-generated music\", including musical works. The group's Generative AI Declaration Standard (GAI-D) has finished member comments on its committee draft and goes to peer review next, with publication expected in early 2027."
    },
    {
     "title": "Compare",
@@ -1682,7 +1754,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Hosts CAWG",
   "participate": "[join DIF](https://identity.foundation/join/)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/identity"
@@ -1729,7 +1801,7 @@ window.CARDS = [
   "part_of": "",
   "status": "The Atlantic plans to implement its text marking, announced 2026-11-11 with no rollout date",
   "participate": "[c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -1740,7 +1812,7 @@ window.CARDS = [
    "medium/audio",
    "medium/video"
   ],
-  "summary": "Company that sells text provenance built on [[c2pa]]. Signing is free for publishers, and AI companies pay for verification and usage reporting. It says it wrote the C2PA text appendix (A.8) and co-chairs the Text Provenance Task Force. The spec names no authors.",
+  "summary": "Company that sells text provenance built on [[c2pa]]. Signing is free for publishers and checking is free for anyone. Plans for marking AI output start at $99 a month, and its Meter usage reports are offered as a pilot with no listed price (read 2026-11-20). It says it wrote the C2PA text appendix (A.8) and co-chairs the Text Provenance Task Force. The spec names no authors.",
   "sections": [
    {
     "title": "Topics",
@@ -1748,7 +1820,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Its 2026-11-11 post carries one C2PA manifest and 66 sentence markers. Seven of the manifest's eleven assertions are in Encypher's namespace, and none is a CAWG identity assertion or a licensing assertion (decoded 2026-11-15, signature not checked).\n- [WritersLogic](https://github.com/writerslogic/c2pa-unstructured-text) publishes a separate implementation of the same appendix."
+    "text": "- Its 2026-11-11 post carries one C2PA manifest and 67 sentence markers (counted 2026-11-20). Seven of the manifest's eleven assertions are in Encypher's namespace, and none is a CAWG identity assertion or a licensing assertion (decoded 2026-11-15, signature not checked).\n- [WritersLogic](https://github.com/writerslogic/c2pa-unstructured-text) publishes a separate implementation of the same appendix."
    },
    {
     "title": "In use",
@@ -1796,7 +1868,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Stable since 2026-06-18; its interest group was folded into the Authorization IG on 2026-08-17",
   "participate": "[ext-auth issues](https://github.com/modelcontextprotocol/ext-auth/issues), [Authorization IG charter](https://modelcontextprotocol.io/community/interest-groups/auth)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -1858,28 +1930,32 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "",
-  "status": "Commission compiling a list of recognized machine-readable opt-out mechanisms",
+  "status": "Opt-out protocol consultation closed 2026-01-23; the Commission has not published its list of generally agreed protocols (searched 2026-11-20); Article 50 applies from 2026-08-02",
   "participate": "",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/regulation",
    "layer/access",
    "layer/governance",
    "layer/provenance"
   ],
-  "summary": "The copyright chapter of the GPAI Code of Practice has signatories honor robots.txt and make best efforts on other protocols. Article 50 sets transparency duties for AI-generated content.",
+  "summary": "The copyright chapter of the GPAI Code of Practice has signatories follow robots.txt and identify and comply with other appropriate machine-readable protocols. Article 50 sets transparency duties for AI-generated content.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Ranking opt-outs**: deciding which mechanisms count. The Commission's [consultation FAQ](https://digital-strategy.ec.europa.eu/en/faqs/stakeholder-consultation-ai-and-copyright-compliance) lists [[w3c-tdmrep]] and \"C2PA TDM Assertions\" ([[c2pa]]) among the solutions. [[open-future]] and [[iptc]] answered the consultation.\n- **Transparency for generated content**: Article 50 duties."
+    "text": "- **Ranking opt-outs**: deciding which mechanisms count. The Commission's [consultation FAQ](https://digital-strategy.ec.europa.eu/en/faqs/stakeholder-consultation-ai-and-copyright-compliance) lists [[w3c-tdmrep]] and \"C2PA TDM Assertions\" ([[c2pa]]) among the solutions. [[open-future]] and [[iptc]] answered the consultation.\n- **Transparency for generated content**: Article 50 applies from 2026-08-02. Generative AI systems placed on the market before that date have until December 2026 to meet the Article 50(2) marking duty, under the AI Omnibus (Regulation (EU) 2026/1744). The Code of Practice on Transparency of AI-generated Content was published 2026-06-10."
    },
    {
     "title": "Related",
-    "text": "- Google ties [[aipref-training-token]] support to the Code."
+    "text": "- Google says its planned [[aipref-training-token]] support \"is consistent with\" the Code."
    },
    {
     "title": "Compare",
     "text": "- The FAQ does not name [[ietf-aipref]], [[rsl]] or [[cawg]]. Open Future's response names the first two, and the assertion the FAQ calls C2PA's is now a CAWG spec (searched 2026-11-15).\n- Article 50 is the compliance framing behind the C2PA pitch. Only secondary sources tie the two (searched 2026-11-15)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-08-02: Article 50 transparency rules apply.\n- 2026-07-27: AI Omnibus (Regulation (EU) 2026/1744) entered into force.\n- 2026-06-10: Final Code of Practice on Transparency of AI-generated Content published.\n- 2026-01-23: Consultation on opt-out protocols closed."
    }
   ],
   "links": [
@@ -1903,7 +1979,24 @@ window.CARDS = [
    "open-future",
    "w3c-tdmrep"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-08-02",
+    "text": "Article 50 transparency rules apply."
+   },
+   {
+    "date": "2026-07-27",
+    "text": "AI Omnibus (Regulation (EU) 2026/1744) entered into force."
+   },
+   {
+    "date": "2026-06-10",
+    "text": "Final Code of Practice on Transparency of AI-generated Content published."
+   },
+   {
+    "date": "2026-01-23",
+    "text": "Consultation on opt-out protocols closed."
+   }
+  ]
  },
  {
   "id": "fairly-trained",
@@ -1920,7 +2013,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Quiet since 2024. Its sitemap shows no page changed after 2024-12-17, and the newest blog post is dated 2024-08-01 (read 2026-11-15)",
   "participate": "[apply for certification](https://www.fairlytrained.org/apply)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing"
@@ -1929,7 +2022,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Licensed training data**: telling apart the generative AI models that were trained without unlicensed copyrighted work. Its [launch post](https://www.fairlytrained.org/blog/fairly-trained-launches-certification-for-generative-ai-models-that-respect-creators-rights) says the Licensed Model certification \"will not be awarded to models that rely on a 'fair use' copyright exception or similar\".\n- **Checking the claim**: an applicant [makes a written submission](https://www.fairlytrained.org/certifications), and Fairly Trained reviews it and may ask for more. The applicant must have processes for due diligence on training data and for keeping records of the data used in each training. The certifications page describes no inspection of the data itself. Certification is reevaluated each year, for an annual fee of $250 to $6,000 depending on revenue and scope.\n- **Partly certified products**: saying which parts of a product the certificate covers. An applicant certifying a single model must state publicly which of the models it uses are certified and which are not."
+    "text": "- **Licensed training data**: telling apart the generative AI models that were trained without unlicensed copyrighted work. Its [launch post](https://www.fairlytrained.org/blog/fairly-trained-launches-certification-for-generative-ai-models-that-respect-creators-rights) says the Licensed Model certification \"will not be awarded to models that rely on a 'fair use' copyright exception or similar\".\n- **Checking the claim**: an applicant [makes a written submission](https://www.fairlytrained.org/certifications), and Fairly Trained reviews it and may ask for more. The applicant must have processes for due diligence on training data and for keeping records of the data used in each training. The certifications page describes no inspection of the data itself. Certification is reevaluated each year. An applicant pays a submission fee of $100 to $500, and if certified an annual fee of $250 to $6,000, depending on revenue and scope.\n- **Partly certified products**: saying which parts of a product the certificate covers. An applicant certifying a single model must state publicly which of the models it uses are certified and which are not."
    },
    {
     "title": "Related",
@@ -1983,7 +2076,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Won at Munich Regional Court against OpenAI (2025-11-11, under appeal) and Suno (2026-07-31, not final)",
   "participate": "",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -1994,7 +2087,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Pricing generative AI**: setting a fee for training on its repertoire and generating from it. The [model](https://www.gema.de/de/w/generative-ki-lizenzmodell-zwei-saeulen) it presented in September 2024 asks for 30% of the net revenue of the AI model or system, with a minimum fee tied to the volume of output. A second part covers later uses of the generated music. Its [AI page](https://www.gema.de/de/aktuelles/ki-und-musik) names no generative AI provider that has taken the license (read 2026-11-15).\n- **Works stored in a model**: whether a model that can reproduce a work is itself a copy of it. In the [OpenAI case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) the court found the lyrics of nine songs \"reproduzierbar\" in models 4 and 4o, called this memorisation, and held that the text and data mining exception does not cover it. In the [Suno case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) it found the same for six musical works in Suno's v3.5 and v4 models, which were stored on servers in Germany.\n- **Who answers for the output**: whether the user's prompt or the provider is responsible when a work comes back out. In both cases the court held the provider responsible, because the prompts were simple and the provider chose the training data and built the model.\n- **Training done abroad**: whether a claim reaches training that happened in the United States. The court applied US law to the copies made there and held that fair use did not cover them, because the works reappeared in the outputs. Its press release says Suno took the works from YouTube by stream-ripping.\n- **Licensed training data**: offering AI developers a dataset with the rights already cleared. [PLAI by GEMA](https://www.gema.de/de/w/plai-by-gema-musikdatensatz) bundles sound files, metadata, authors' rights and master rights, for AI tools whose output does not compete with the works. It does not cover generative AI providers.\n- **Training transparency**: its [AI Charter](https://www.gema.de/de/aktuelles/ki-und-musik/ki-charta-der-gema) of ten principles says it must be clear which works were used for training."
+    "text": "- **Pricing generative AI**: setting a fee for training on its repertoire and generating from it. The [model](https://www.gema.de/de/w/generative-ki-lizenzmodell-zwei-saeulen) it presented in September 2024 asks for 30% of the net revenue of the AI model or system, with a minimum fee tied to the volume of output. A second part covers later uses of the generated music. Its [AI page](https://www.gema.de/de/aktuelles/ki-und-musik) names no generative AI provider that has taken the license (read 2026-11-15).\n- **Works stored in a model**: whether a model that can reproduce a work is itself a copy of it. In the [OpenAI case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) the court found the lyrics of nine songs \"reproduzierbar\" in models 4 and 4o, called this memorisation, and held that the text and data mining exception does not cover it. In the [Suno case](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) it found the same for six musical works in Suno's v3.5 and v4 models, which were stored on servers in Germany.\n- **Who answers for the output**: whether the user's prompt or the provider is responsible when a work comes back out. In both cases the court held the provider responsible, because the prompts were simple and the provider chose the training data and built the model.\n- **Training done abroad**: whether a claim reaches training that happened in the United States. In the Suno case the court applied US law to the copies made there and held that fair use did not cover them, because the works reappeared in the outputs. Its press release says Suno took the works from YouTube by stream-ripping.\n- **Licensed training data**: offering AI developers a dataset with the rights already cleared. [PLAI by GEMA](https://www.gema.de/de/w/plai-by-gema-musikdatensatz) bundles sound files, metadata, authors' rights and master rights, for AI tools whose output does not compete with the works. GEMA says it leaves open whether generative AI providers need a license.\n- **Training transparency**: its [AI Charter](https://www.gema.de/de/aktuelles/ki-und-musik/ki-charta-der-gema) of ten principles says it must be clear which works were used for training."
    },
    {
     "title": "Related",
@@ -2010,7 +2103,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-07-31: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.\n- 2026-07-23: Launched PLAI by GEMA with Klangio as first customer.\n- 2025-11-11: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.\n- 2025-01-21: Sued Suno.\n- 2024-11-13: Sued OpenAI.\n- 2024-11: Published its AI Charter.\n- 2024-09: Presented its licensing model for generative AI."
+    "text": "- 2026-07-31: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.\n- 2026-07-23: Launched PLAI by GEMA with Klangio as first customer.\n- 2025-11-11: Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA [says](https://www.gema.de/en/w/suno-entscheidung-2026) OpenAI has appealed to the Munich Higher Regional Court.\n- 2025-01-21: Sued Suno.\n- 2024-11-13: Sued OpenAI.\n- 2024-11: Published its AI Charter.\n- 2024-09: Presented its licensing model for generative AI."
    }
   ],
   "links": [
@@ -2039,7 +2132,7 @@ window.CARDS = [
    },
    {
     "date": "2025-11-11",
-    "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court."
+    "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA [says](https://www.gema.de/en/w/suno-entscheidung-2026) OpenAI has appealed to the Munich Higher Regional Court."
    },
    {
     "date": "2025-01-21",
@@ -2076,7 +2169,7 @@ window.CARDS = [
   "part_of": "",
   "status": "MCP service available to partners and developers since January 2026",
   "participate": "[integrator documentation](https://docs.getfulltextresearch.com/latest/integrators/mcp-service), [publishers](https://www.getfulltextresearch.com/why-publishers-should-join)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/access",
@@ -2090,7 +2183,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Its FAQ recommends that service providers use it alongside [[kbart]] \"to increase the number of links available through real-time, DOI level checks.\""
+    "text": "- Its FAQ recommends that service providers use it alongside [[kbart]] or Subscriber Links \"to increase the number of links available through real-time, DOI level checks.\""
    },
    {
     "title": "In use",
@@ -2129,9 +2222,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "",
-  "status": "Policies on Google's publisher page, with no public description of the MERU message format (read 2026-11-17); COUNTER mapped MERU to its AI metrics on 2026-10-23",
+  "status": "Policies on Google's publisher page, with no public description of the MERU message format (read 2026-11-17); COUNTER mapped MERU to its AI metrics by 2026-09-18 and published the guidance on 2026-10-23",
   "participate": "",
-  "updated": "2026-11-17",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/attribution",
@@ -2194,9 +2287,9 @@ window.CARDS = [
    "https://github.com/IABTechLab/CoMP/releases.atom"
   ],
   "part_of": "",
-  "status": "1.0, public comment from 2026-03-10",
+  "status": "1.0 final 2026-04-28",
   "participate": "[GitHub issues](https://github.com/IABTechLab/CoMP/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -2210,7 +2303,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-03-10: 1.0 opened for public comment."
+    "text": "- 2026-04-28: 1.0 finalized ([release CoMP v1.0-202604](https://github.com/IABTechLab/CoMP/releases/tag/1.0-202604)).\n- 2026-04-09: Public comment on 1.0 closed.\n- 2026-03-10: 1.0 opened for public comment."
    }
   ],
   "links": [],
@@ -2220,6 +2313,14 @@ window.CARDS = [
    "x402"
   ],
   "history": [
+   {
+    "date": "2026-04-28",
+    "text": "1.0 finalized ([release CoMP v1.0-202604](https://github.com/IABTechLab/CoMP/releases/tag/1.0-202604))."
+   },
+   {
+    "date": "2026-04-09",
+    "text": "Public comment on 1.0 closed."
+   },
    {
     "date": "2026-03-10",
     "text": "1.0 opened for public comment."
@@ -2243,7 +2344,7 @@ window.CARDS = [
   "part_of": "",
   "status": "IETF 127 San Francisco, November 2026",
   "participate": "[how to participate](https://www.ietf.org/participate/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/access",
@@ -2284,9 +2385,9 @@ window.CARDS = [
    "https://datatracker.ietf.org/feed/group-changes/aipref/"
   ],
   "part_of": "ietf",
-  "status": "vocab-08 (2026-09-13) without consensus; attach-05 (2026-08-18); IETF 127 sessions 2026-11-16 and 11-19",
+  "status": "vocab-08 (2026-09-14) without consensus; attach-05 (2026-08-19); IETF 127 sessions 2026-11-16 and 11-19; issues 245 and 246 closed 2026-11-19",
   "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/working-group",
    "layer/access",
@@ -2296,7 +2397,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Shared vocabulary**: defining training and other AI uses so every crawler reads a preference the same way.\n- **Attachment**: binding a preference to content through a `Content-Usage` header and robots.txt directive.\n- **Downstream survival**: keeping preferences intact through model redistribution, caching and embeddings ([issues 245](https://github.com/ietf-wg-aipref/drafts/issues/245) and [246](https://github.com/ietf-wg-aipref/drafts/issues/246)).\n- **Inference-time use**: covering grounding and agent use, which the vocabulary does not yet do. [[microsoft-grounding-preference]] is the first vendor signal there. MCP has no field for a server to declare it."
+    "text": "- **Shared vocabulary**: defining training and other AI uses so every crawler reads a preference the same way.\n- **Attachment**: binding a preference to content through a `Content-Usage` header and robots.txt directive.\n- **Downstream survival**: keeping preferences intact through model redistribution, caching and embeddings ([issues 245](https://github.com/ietf-wg-aipref/drafts/issues/245) and [246](https://github.com/ietf-wg-aipref/drafts/issues/246), closed 2026-11-19 with the existing draft text).\n- **Inference-time use**: covering grounding and agent use. vocab-08 adds an AI Use category (`ai-use`) for input to a generative model, without consensus, and open PRs 254 and 258 revise its definition. [[cloudflare-content-signals]] `ai-input` covered grounding from 2025-09-24, and [[microsoft-grounding-preference]] adds a page-level grounding preference. MCP has no field for a server to declare it."
    },
    {
     "title": "Related",
@@ -2304,13 +2405,13 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-09-13: vocab-08 posted, without consensus.\n- 2026-08-18: attach-05 posted."
+    "text": "- 2026-11-19: Issues 245 and 246 on downstream survival closed.\n- 2026-11-17: Kevin Kelley [asked for volunteers](https://mailarchive.ietf.org/arch/msg/ai-control/mLGJnETEzXfUug-xJfjRnY27LvY/) for an attachment design team, at the chairs' request, to report before the next interim.\n- 2026-09-14: vocab-08 posted, without consensus.\n- 2026-08-19: attach-05 posted."
    }
   ],
   "links": [
+   "cloudflare-content-signals",
    "microsoft-grounding-preference",
    "aipref-training-token",
-   "cloudflare-content-signals",
    "creative-commons",
    "ietf-web-bot-auth",
    "cc-signals",
@@ -2333,11 +2434,19 @@ window.CARDS = [
   ],
   "history": [
    {
-    "date": "2026-09-13",
+    "date": "2026-11-19",
+    "text": "Issues 245 and 246 on downstream survival closed."
+   },
+   {
+    "date": "2026-11-17",
+    "text": "Kevin Kelley [asked for volunteers](https://mailarchive.ietf.org/arch/msg/ai-control/mLGJnETEzXfUug-xJfjRnY27LvY/) for an attachment design team, at the chairs' request, to report before the next interim."
+   },
+   {
+    "date": "2026-09-14",
     "text": "vocab-08 posted, without consensus."
    },
    {
-    "date": "2026-08-18",
+    "date": "2026-08-19",
     "text": "attach-05 posted."
    }
   ]
@@ -2357,9 +2466,9 @@ window.CARDS = [
    "https://datatracker.ietf.org/feed/group-changes/webbotauth/"
   ],
   "part_of": "ietf",
-  "status": "httpsig-protocol draft; Cloudflare libraries",
+  "status": "WG draft httpsig-protocol-01 (2026-10-29); Cloudflare libraries",
   "participate": "[web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -2415,7 +2524,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Launched 2026-11-12 with Yahoo Scout as first commercial licensee",
   "participate": "[publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -2425,7 +2534,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. Fees scale with the AI product's revenue, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).\n- **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [[rsl]] on the publisher's own site.\n- **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.\n- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path, and its site does not say how reports are checked."
+    "text": "- **Blanket licensing**: replacing a separate deal between every publisher and every AI company with one agreement per side. AI companies pay based on the value content brings to their products, with costs that scale with their business, and the licensee picks the uses it needs (training, RAG, grounding, agentic use, AI overviews).\n- **Publisher control**: letting a publisher choose which content it offers, to which licensees and for which uses. Joining is free and non-exclusive, and terms are declared with [[rsl]] on the publisher's own site.\n- **Royalty allocation**: dividing revenue by what each work contributed to AI outputs, how often it is relied on and the value of the AI product.\n- **Usage reporting**: paying out on usage that licensees report. ILC is not in the content path. Its publishers page says it \"supports auditing of license compliance\" and does not say how reports are checked."
    },
    {
     "title": "Related",
@@ -2483,7 +2592,7 @@ window.CARDS = [
   "part_of": "",
   "status": "RightsML and the Data Mining property; Verified News Publishers List; answered the EU opt-out consultation",
   "participate": "",
-  "updated": "2026-11-15",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -2535,7 +2644,7 @@ window.CARDS = [
   "part_of": "niso",
   "status": "Phase III (NISO RP-9-2026) published 2026-08-26",
   "participate": "[KBART Standing Committee](https://www.niso.org/standards-committees/kbart)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "tags": [
    "type/specification",
    "layer/access",
@@ -2602,7 +2711,7 @@ window.CARDS = [
   "part_of": "",
   "status": "",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/governance",
@@ -2612,7 +2721,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Crawler and training controls**: convening policy work on how AI training controls should work."
+    "text": "- **Crawler and training controls**: Alissa Cooper's [commentary](https://kgi.georgetown.edu/research-and-commentary/what-the-new-ai-training-opt-out-really-means/) of 2026-11-06 places the shared training opt-out in the AIPREF standards process."
    }
   ],
   "links": [
@@ -2672,7 +2781,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Charter has a data lineage and citation pillar",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/interest-group",
    "venue/mcp",
@@ -2687,7 +2796,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- [[mcp-sep-3094-citations]] was on the agenda of the 2026-09-24 meeting. The notes have no section on it."
+    "text": "- [[mcp-sep-3094-citations]] was item 9 on the agenda of the 2026-09-24 meeting. The notes record no discussion of it. \"Granular Citations\" is listed as a topic for the lineage RFC."
    }
   ],
   "links": [
@@ -2697,6 +2806,7 @@ window.CARDS = [
   ],
   "compares": [],
   "backlinks": [
+   "mcp-c2pa-in-meta",
    "mcp",
    "openlineage",
    "mcp-sep-3094-citations"
@@ -2717,7 +2827,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "SEP open; chain concept removed 2026-10-27; `signature` on ValidationResult reserved",
   "participate": "[SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/working-group",
    "venue/mcp",
@@ -2770,9 +2880,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "mcp",
-  "status": "In preview since 2025-09-08; registry release v1.8.9 dated 2026-11-10",
+  "status": "In preview since 2025-09-08; registry release v1.8.10 dated 2026-11-20",
   "participate": "[registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "venue/mcp",
@@ -2888,13 +2998,13 @@ window.CARDS = [
   "part_of": "",
   "status": "Pilot announced 2026-02-03, with Copilot grounding answers in licensed content; no public spec",
   "participate": "",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/licensing",
    "layer/payments"
   ],
-  "summary": "Voluntary marketplace with publisher-set terms and pricing and usage reporting.",
+  "summary": "Voluntary marketplace where publishers define licensing and usage terms, with usage-based reporting.",
   "sections": [
    {
     "title": "Topics",
@@ -2902,7 +3012,7 @@ window.CARDS = [
    },
    {
     "title": "Compare",
-    "text": "- News reports say it supports [[rsl]]. Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-15)."
+    "text": "- Microsoft's announcement does not mention [[rsl]]. A vendor blog calls the marketplace \"inspired by\" RSL. Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -2940,23 +3050,27 @@ window.CARDS = [
    "https://blogs.bing.com/search/feed/"
   ],
   "part_of": "",
-  "status": "Effective 2027-02-01",
+  "status": "Announced 2026-10-30; effective 2027-02-01; NoArchive and NoCache stop being read as preferences after 2027-03-01",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "layer/access",
    "stage/after-delivery"
   ],
-  "summary": "Training via [[aipref-training-token]] or a page-level `ai-training:disallow`, plus a separate page-level grounding preference (`ai-grounding:disallow`) with no robots.txt form. Replaces `NoArchive` and `NoCache`.",
+  "summary": "Training via [[aipref-training-token]] or a page-level `ai-training:disallow`, plus a separate page-level grounding preference (`ai-grounding:disallow`, or `ai-grounding:disallowextended` to limit grounding to Microsoft-operated experiences) with no robots.txt form. Replaces `NoArchive` and `NoCache`.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Inference-time preferences**: letting a page opt out of grounding, the first vendor signal for a use [[ietf-aipref]] does not yet cover."
+    "text": "- **Inference-time preferences**: letting a page opt out of grounding. Microsoft says it first offered grounding controls in 2023, through `NoArchive` and `NoCache`. Google-Extended also covers grounding in Gemini Apps and Vertex AI. The closest [[ietf-aipref]] category is `ai-use` in vocab-08, using an asset as input to a generative AI model."
    },
    {
     "title": "Related",
     "text": "- Microsoft says the preferences do not establish licensing or payment."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-30: Microsoft [announced](https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/) the training and grounding preferences. Grounding settings in Bing Webmaster Tools open 2026-12-15, and the temporary grounding preferences expire 2027-09-30."
    }
   ],
   "links": [
@@ -2967,7 +3081,12 @@ window.CARDS = [
   "backlinks": [
    "ietf-aipref"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-10-30",
+    "text": "Microsoft [announced](https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/) the training and grounding preferences. Grounding settings in Bing Webmaster Tools open 2026-12-15, and the temporary grounding preferences expire 2027-09-30."
+   }
+  ]
  },
  {
   "id": "mcp",
@@ -2984,9 +3103,9 @@ window.CARDS = [
    "https://blog.modelcontextprotocol.io/index.xml"
   ],
   "part_of": "aaif",
-  "status": "Next spec release moved to 2027-03-30 (SEP-3398); WG-first rule for SEPs",
+  "status": "Next spec release moved to 2027-03-30 (SEP-3398); SEPs need Working Group or Core Maintainer sponsorship",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -2997,7 +3116,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Content provenance ownership**: no WG or IG owns content provenance or attribution.\n- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.\n- **Credit reporting**: nothing reports display or credit past the last hop ([[content-telemetry]])."
+    "text": "- **Content provenance ownership**: no WG owns content provenance or attribution. The [[mcp-fsig]] charter covers \"source attribution, citation, and consent metadata\" for data surfaced through MCP. The Scientific Computing IG charter covers reproducibility and provenance of computed results.\n- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.\n- **Credit reporting**: nothing reports display or credit past the last hop ([[content-telemetry]])."
    },
    {
     "title": "Related",
@@ -3013,13 +3132,13 @@ window.CARDS = [
    }
   ],
   "links": [
+   "mcp-fsig",
    "content-telemetry",
    "otel-mcp",
    "mcp-c2pa-in-meta",
    "mcp-sep-3094-citations",
    "mcp-skills-extension",
    "mcp-interceptors",
-   "mcp-fsig",
    "mcp-security-ig",
    "mcp-registry",
    "mcp-server-cards",
@@ -3062,9 +3181,9 @@ window.CARDS = [
   ],
   "feed": [],
   "part_of": "",
-  "status": "Twelve-month provenance and attribution pilot announced October 2026; KBART Phase III published 2026-08-26",
+  "status": "Provenance and attribution pilot announced October 2026, first planned for twelve months and possibly shorter (2026-11 letter); KBART Phase III published 2026-08-26",
   "participate": "[NISO standards committees](https://www.niso.org/standards-committees)",
-  "updated": "2026-11-17",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -3076,7 +3195,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Provenance metadata for AI retrieval**: a pilot to \"develop and test a minimum metadata model that accurately tracks provenance and attribution\" when AI systems retrieve scholarly content. It convenes content creators, publishers, repositories, AI tool developers and end-users. NISO's page gives no way to join yet (read 2026-11-16).\n- **Naming the version of an article**: [Journal Article Versions](https://www.niso.org/publications/rp-8-2026-jav) (RP-8-2026) is a way of describing the versions of a journal article that appear online before, during and after formal publication. It revises the 2008 edition. Steve Smith and Josh Nicholson [point to it](https://scholarlykitchen.sspnet.org/2026/11/16/guest-post-beyond-the-download-what-counts-as-scholarly-content-use-in-the-age-of-ai/) for saying which version an AI usage report refers to.\n- **A venue for library standards on AI**: Lisa Janicke Hinchliffe [asks](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) for a NISO-style community process to define what a register of publisher MCP connectors should record."
+    "text": "- **Provenance metadata for AI retrieval**: a pilot to \"develop and test a minimum metadata model that accurately tracks provenance and attribution\" when AI systems retrieve scholarly content. It convenes content creators, publishers, repositories, AI tool developers and end-users. The executive director's November 2026 [letter](https://www.niso.org/niso-io/2026/11/can-standards-move-pace-ai) welcomes \"further expressions of interest in the pilot development work\" and gives no form or contact for it (read 2026-11-20).\n- **Naming the version of an article**: [Journal Article Versions](https://www.niso.org/publications/rp-8-2026-jav) (RP-8-2026) is a way of describing the versions of a journal article that appear online before, during and after formal publication. It revises the 2008 edition. Steve Smith and Josh Nicholson [point to it](https://scholarlykitchen.sspnet.org/2026/11/16/guest-post-beyond-the-download-what-counts-as-scholarly-content-use-in-the-age-of-ai/) for saying which version an AI usage report refers to.\n- **A venue for library standards on AI**: Lisa Janicke Hinchliffe [asks](https://scholarlykitchen.sspnet.org/2026/10/27/mcp-discovery/) for a NISO-style community process to define what a register of publisher MCP connectors should record."
    },
    {
     "title": "Related",
@@ -3084,7 +3203,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-10: [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.\n- 2026-10-05: Journal Article Versions RP-8-2026 published.\n- 2026-08-26: KBART Phase III published."
+    "text": "- 2026-11: The executive director's letter says the pilot may finish sooner than twelve months.\n- 2026-10: [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.\n- 2026-10-05: Journal Article Versions RP-8-2026 published.\n- 2026-08-26: KBART Phase III published."
    }
   ],
   "links": [
@@ -3099,6 +3218,10 @@ window.CARDS = [
    "trace"
   ],
   "history": [
+   {
+    "date": "2026-11",
+    "text": "The executive director's letter says the pilot may finish sooner than twelve months."
+   },
    {
     "date": "2026-10-05",
     "text": "Journal Article Versions RP-8-2026 published."
@@ -3128,7 +3251,7 @@ window.CARDS = [
   "part_of": "",
   "status": "",
   "participate": "",
-  "updated": "2026-11-03",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/governance",
@@ -3172,7 +3295,7 @@ window.CARDS = [
   "part_of": "",
   "status": "MCP Labs (mcp.okfn.org) live; okfn/mcp-server uses structuredContent.sources",
   "participate": "[okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/attribution",
@@ -3183,15 +3306,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.\n- **Interim convention to standard**: moving its required `structuredContent.sources` list onto a standard citation format."
-   },
-   {
-    "title": "Related",
-    "text": "- Plans to move charts to MCP Apps and citations to SEP-3094."
+    "text": "- **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.\n- **Interim convention to standard**: its required `structuredContent.sources` list has no standard citation format to map onto."
    },
    {
     "title": "Compare",
-    "text": "- Its `sources` list could map onto [[mcp-sep-3094-citations]]. An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).\n- A [[wikimedia]] contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).\n- A natural pilot for the [[creative-commons]] RAG attribution best practices. Neither names the other (searched 2026-11-15)."
+    "text": "- Its `sources` list could map onto [[mcp-sep-3094-citations]], which closed unmerged on 2026-11-08. An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).\n- A [[wikimedia]] contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).\n- A natural early adopter for the [[creative-commons]] SourceConnection component of CC Signals. Neither names the other (searched 2026-11-15)."
    },
    {
     "title": "In use",
@@ -3229,7 +3348,7 @@ window.CARDS = [
   "part_of": "",
   "status": "policycheck, commerce profile, AIMS draft",
   "participate": "[GitHub](https://github.com/openattribution-org)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/attribution",
@@ -3278,7 +3397,7 @@ window.CARDS = [
   "part_of": "",
   "status": "RFC 4484 open (updated 2026-10-07); BearingNode proposed an MCP `_meta` lineage key to the FSIG 2026-10-08",
   "participate": "[GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "tags": [
    "type/project",
    "layer/provenance",
@@ -3345,7 +3464,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Conventions in Development; built into the Python SDK since v2.0.0; merged for the TypeScript SDK 2026-10-31, not yet released",
   "participate": "[semantic-conventions-genai issues](https://github.com/open-telemetry/semantic-conventions-genai/issues), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3356,7 +3475,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in `_meta`. The propagation rules are a precedent for any other credential that has to survive the hop.\n- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where the [[aaif-observability-traceability-wg]] sits.\n- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-08). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation."
+    "text": "- **Metadata that already travels with a tool call**: a trace id is the one piece of metadata MCP carries end to end today, client to server and back, in `_meta`. The propagation rules are a precedent for any other credential that has to survive the hop.\n- **What a span does not say**: the conventions make tool arguments and results opt-in attributes marked as sensitive (`gen_ai.tool.call.arguments`, `gen_ai.tool.call.result`), so a trace shows which tool ran, when and for how long, and nothing about the content that came back or where it came from. That gap is where the [[aaif-observability-traceability-wg]] sits.\n- **SDK coverage**: the Python SDK has emitted client and server spans since v2.0.0 ([#2381](https://github.com/modelcontextprotocol/python-sdk/pull/2381), 2026-03-31, middleware form in [#2941](https://github.com/modelcontextprotocol/python-sdk/pull/2941)), with no metrics. The TypeScript SDK adds spans and `mcp.client.operation.duration` and `mcp.server.operation.duration` histograms, on by default once an OpenTelemetry SDK is registered ([#3115](https://github.com/modelcontextprotocol/typescript-sdk/pull/3115), merged 2026-10-31, not in a release as of 2026-11-20). The C# SDK has an `Experimental.ModelContextProtocol` activity source. The Go and Java SDKs have no built-in instrumentation."
    },
    {
     "title": "Related",
@@ -3372,7 +3491,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-10-31: Conventions merged for the TypeScript SDK, not yet released."
+    "text": "- 2026-10-31: Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released."
    }
   ],
   "links": [
@@ -3395,7 +3514,7 @@ window.CARDS = [
   "history": [
    {
     "date": "2026-10-31",
-    "text": "Conventions merged for the TypeScript SDK, not yet released."
+    "text": "Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released."
    }
   ]
  },
@@ -3404,13 +3523,13 @@ window.CARDS = [
   "name": "Project NANDA",
   "aliases": [],
   "type": "project",
-  "website": "https://nanda.media.mit.edu",
+  "website": "https://projectnanda.org",
   "news": [],
   "feed": [],
   "part_of": "",
   "status": "",
   "participate": "[GitHub](https://github.com/projnanda)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/identity",
@@ -3447,7 +3566,7 @@ window.CARDS = [
   "part_of": "",
   "status": "RSL 1.0 published 2025-12-10; the collective behind it relaunched as the Internet Licensing Collective 2026-11-12",
   "participate": "[GitHub](https://github.com/rslstandard)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -3457,11 +3576,11 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Training opt-out**: saying whether AI may train on content. The [usage vocabulary](https://rslstandard.org/rsl#_3-4-1-1-usage-vocabulary) (section 3.4.1.1) has `ai-train`, `ai-input`, `ai-index` and `ai-all` tokens for `<permits>` and `<prohibits>`. The spec says it includes the [[cloudflare-content-signals]] vocabulary and may add terms from [[ietf-aipref]].\n- **Adoption**: getting model developers to honor it on the open web. None has committed.\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings), a v0.1 draft marked for discussion with the RSL working group (read 2026-11-16)."
+    "text": "- **Machine-readable terms**: publishing usage terms and prices that crawlers and AI systems can read and accept.\n- **Training opt-out**: saying whether AI may train on content. The [usage vocabulary](https://rslstandard.org/rsl#_3-4-1-1-usage-vocabulary) (section 3.4.1.1) has `ai-train`, `ai-input`, `ai-index` and `ai-all` tokens for `<permits>` and `<prohibits>`. The spec says it includes the [[cloudflare-content-signals]] vocabulary and may add terms from [[ietf-aipref]].\n- **Adoption**: getting model developers to honor it on the open web. None has committed.\n- **Enforcement**: supplying the lever [[content-telemetry]] manifests lack, through a [SPUR profile binding](https://github.com/SPUR-Coalition/telemetry-profile/tree/main/bindings) that declares reporting in RSL's `<reporting>` element, a v0.1 draft marked for discussion with the RSL working group (read 2026-11-20)."
    },
    {
     "title": "Compare",
-    "text": "- The [[microsoft-publisher-content-marketplace]] is reported to support RSL. Neither side's pages say so (searched 2026-11-15)."
+    "text": "- [[microsoft-publisher-content-marketplace]]: Microsoft's announcement does not mention RSL, and RSL's pages do not mention Microsoft (searched 2026-11-20)."
    },
    {
     "title": "In use",
@@ -3469,7 +3588,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-11-12: The RSL Collective relaunched as [[internet-licensing-collective]].\n- 2025-12-10: RSL 1.0 published."
+    "text": "- 2026-11-12: The RSL Collective relaunched as [[internet-licensing-collective]].\n- 2026-06-12: Section 3.12 `<reporting>` [added](https://rslstandard.org/rsl/errata), for machine-readable reporting requirements on licensed activity.\n- 2025-12-10: RSL 1.0 published."
    }
   ],
   "links": [
@@ -3498,6 +3617,10 @@ window.CARDS = [
     "text": "The RSL Collective relaunched as [[internet-licensing-collective]]."
    },
    {
+    "date": "2026-06-12",
+    "text": "Section 3.12 `<reporting>` [added](https://rslstandard.org/rsl/errata), for machine-readable reporting requirements on licensed activity."
+   },
+   {
     "date": "2025-12-10",
     "text": "RSL 1.0 published."
    }
@@ -3517,7 +3640,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Lists 16 reserving rightsholders, with its company file at version 31 (read 2026-11-16)",
   "participate": "[add a company to the declaration](https://www.rightsandai.com)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/access",
@@ -3532,7 +3655,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- The site shows 16 rightsholders, among them Universal Music Publishing Group, Sony Music Publishing, Warner Chappell Music, Kobalt, Concord, BMG, peermusic, Deezer and the societies PRS for Music, MCPS and APRA AMCOS. It shows 16 endorsing trade bodies, among them the National Music Publishers Association and ICMP (read 2026-11-16).\n- The site itself does not name its operator. The release is ICMP's.\n- The release says the site is available in seven languages.\n- Record companies reserve the same rights in separate declarations, which IFPI [lists](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/). WIN, the network of independent music trade associations, publishes its own [notice](https://winformusic.org/ai-rights-reservation)."
+    "text": "- The site shows 16 rightsholders, among them Universal Music Publishing Group, Sony Music Publishing, Warner Chappell Music, Kobalt, Concord, BMG, peermusic, Deezer and the societies PRS for Music, MCPS and APRA AMCOS. It shows 16 endorsing trade bodies, among them the National Music Publishers Association and ICMP (read 2026-11-16).\n- The site itself does not name its operator. The release is ICMP's.\n- The release says the site will be available in seven languages, including Japanese. The site offers English, Arabic, Chinese, French, German, Italian and Spanish (read 2026-11-20).\n- Record companies reserve the same rights in separate declarations, which IFPI [lists](https://www.ifpi.org/ifpi-priorities/reservations-of-rights/). WIN, the network of independent music trade associations, publishes its own [notice](https://winformusic.org/ai-rights-reservation)."
    },
    {
     "title": "Compare",
@@ -3574,9 +3697,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "mcp",
-  "status": "SEP-2127 is Final and its PR merged 2026-10-06; the extension repository README still says Experimental",
+  "status": "SEP-2127 is Final and its PR merged 2026-10-06; SEP-3392 (merged 2026-10-29) classifies ext-server-card as Beta; the extension repository README still says Experimental",
   "participate": "[ext-server-card issues](https://github.com/modelcontextprotocol/ext-server-card/issues), [Server Card WG charter](https://modelcontextprotocol.io/community/working-groups/server-card)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3595,7 +3718,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-10-06: SEP-2127 PR merged.\n- 2026-01-21: SEP-2127 created."
+    "text": "- 2026-10-29: SEP-3392 merged, classifying ext-server-card as Beta.\n- 2026-10-06: SEP-2127 PR merged.\n- 2026-01-21: SEP-2127 created."
    }
   ],
   "links": [
@@ -3611,6 +3734,10 @@ window.CARDS = [
    "mcp"
   ],
   "history": [
+   {
+    "date": "2026-10-29",
+    "text": "SEP-3392 merged, classifying ext-server-card as Beta."
+   },
    {
     "date": "2026-10-06",
     "text": "SEP-2127 PR merged."
@@ -3635,7 +3762,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Final 2026-09-13; Beta under SEP-3392",
   "participate": "[SEP-2640 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3690,7 +3817,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Closed without merging 2026-11-08; the author plans to take it to the Core Primitives WG on 2026-11-23",
   "participate": "[SEP-3094 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "venue/mcp",
@@ -3702,7 +3829,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Citations in transit**: keeping sources attached from tool result to the answer a user sees.\n- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion. A maintainer said on 2026-11-06 that SEPs now go through working groups, and suggested the Core Primitives WG or a new interest group on citations.\n- **Field placement**: choosing a top-level field or `_meta` processed by [[mcp-interceptors]]."
+    "text": "- **Citations in transit**: keeping sources attached from tool result to the answer a user sees.\n- **Sponsorship and venue**: finding a sponsor and a WG or IG discussion. A maintainer wrote on 2026-11-06 that \"we now encourage people to go through working groups to create SEPs\", and suggested the Core Primitives WG or a new interest group on citations.\n- **Field placement**: choosing a top-level field or `_meta` processed by [[mcp-interceptors]]."
    },
    {
     "title": "Related",
@@ -3763,9 +3890,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "ietf-aipref",
-  "status": "Individual draft posted 2026-10-30; Google, OpenAI, Microsoft and Anthropic committed to honor it",
+  "status": "Individual draft -01 posted 2026-11-16; Google, OpenAI, Microsoft and Anthropic committed to honor it; Microsoft starts 2027-02-01 and Google plans early 2027",
   "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/proposal",
    "layer/access"
@@ -3778,24 +3905,34 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- An alternative to the attach draft's `Content-Usage` directive in [[ietf-aipref]]."
+    "text": "- An alternative to the attach draft's `Content-Usage` directive in [[ietf-aipref]]. [Pull request 260](https://github.com/ietf-wg-aipref/drafts/pull/260) (open, 2026-11-13) proposes the cross-vendor tokens in place of a `Content-Usage` robots.txt rule in the WG drafts."
+   },
+   {
+    "title": "In use",
+    "text": "- [[ai-robots-txt]] v2.2 (2026-11-16) adds a `User-agent: __usage_ai-training` group to its generated robots.txt."
    },
    {
     "title": "History",
-    "text": "- 2026-10-30: Individual draft posted."
+    "text": "- 2026-11-16: -01 posted.\n- 2026-10-30: Individual draft posted."
    }
   ],
   "links": [
-   "ietf-aipref"
+   "ietf-aipref",
+   "ai-robots-txt"
   ],
   "compares": [],
   "backlinks": [
+   "ai-robots-txt",
    "eu-ai-act-gpai-code",
    "ietf-aipref",
    "knight-georgetown-institute",
    "microsoft-grounding-preference"
   ],
   "history": [
+   {
+    "date": "2026-11-16",
+    "text": "-01 posted."
+   },
    {
     "date": "2026-10-30",
     "text": "Individual draft posted."
@@ -3816,7 +3953,7 @@ window.CARDS = [
   "part_of": "ai-disclosures-project",
   "status": "Work in progress with O'Reilly Media and Miso.ai; initial testing with O'Reilly Media authors",
   "participate": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/licensing",
@@ -3829,7 +3966,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.\n- **Multi-source skills**: crediting every source behind a skill.\n- **Missing metadata**: no skill registry frontmatter carries author, license or source."
+    "text": "- **Paying skill authors**: choosing a payout basis for skills, measured contribution or invocation count.\n- **Multi-source skills**: crediting every source behind a skill.\n- **Missing metadata**: [[agent-skills]] frontmatter has an optional `license` field and a free-form `metadata` map, with no defined author or source field."
    },
    {
     "title": "Related",
@@ -3841,6 +3978,7 @@ window.CARDS = [
    }
   ],
   "links": [
+   "agent-skills",
    "openattribution",
    "c2pa",
    "agent-skills-signing",
@@ -3871,9 +4009,9 @@ window.CARDS = [
   ],
   "feed": [],
   "part_of": "",
-  "status": "Sued Suno on 2026-09-02, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-16)",
+  "status": "Sued Suno on 2026-09-02 and amended the claim on 2026-11-18, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-20)",
   "participate": "",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -3889,11 +4027,11 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- The account of the lawsuit here comes from SOCAN's release and lawsuit page. The [statement of claim](https://www.socan.com/wp-content/uploads/2026/09/ISSUED-Statement-of-Claim-SOCAN-v-Suno-September-2-2026-2.pdf) was not read.\n- The lawsuit page says \"SOCAN has neither issued a licence nor received any royalty payments from Suno.\"\n- In the joint release, SOCAN, ASCAP and BMI each define a partially AI-generated work as one that \"combines elements of AI-generated musical content with elements of human authorship\". ASCAP's and BMI's own policy pages were not read."
+    "text": "- The account of the lawsuit here comes from SOCAN's release and lawsuit page. The original [statement of claim](https://www.socan.com/wp-content/uploads/2026/09/ISSUED-Statement-of-Claim-SOCAN-v-Suno-September-2-2026-2.pdf) is a scan with no text layer and was not read. The [amended statement of claim](https://www.socan.com/wp-content/uploads/2026/11/ISSUED-Amended-Statement-of-Claim-SOCAN-v-Suno-November-18-2026.pdf) was read on 2026-11-20.\n- The lawsuit page says \"SOCAN has neither issued a licence nor received any royalty payments from Suno.\"\n- In the joint release, SOCAN, ASCAP and BMI each define a partially AI-generated work as one that \"combines elements of AI-generated musical content with elements of human authorship\". ASCAP's and BMI's own policy pages were not read."
    },
    {
     "title": "Compare",
-    "text": "- [[ddex]] messages carry a declaration that a recording was made with AI. SOCAN asks for none at registration. The guidelines do not mention DDEX (read 2026-11-16).\n- [[gema]] won at first instance against Suno on 2026-07-31, in a case about works stored in the model. SOCAN's claim is about outputs. SOCAN's release and lawsuit page do not mention GEMA (read 2026-11-16)."
+    "text": "- [[ddex]] messages carry a declaration that a recording was made with AI. SOCAN asks for none at registration. The guidelines do not mention DDEX (read 2026-11-16).\n- [[gema]] won at first instance against Suno on 2026-07-31, in a case about works stored in the model. SOCAN's claim is for infringement of the performing right through outputs. It also alleges that the Suno model has memorized many of the works it was trained on. SOCAN's release and lawsuit page do not mention GEMA (read 2026-11-16)."
    },
    {
     "title": "In use",
@@ -3901,7 +4039,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-09-02: [Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.\n- 2026-07-20: Named Musical AI an approved technology partner for attribution services.\n- 2025-10-28: Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI."
+    "text": "- 2026-11-18: Filed an amended statement of claim (Federal Court T-3803-26) that adds outputs made with Suno's v6 models, which Suno released on 2026-09-09.\n- 2026-09-02: [Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire.\n- 2026-07-20: Named Musical AI an approved technology partner for attribution services.\n- 2025-10-28: Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI."
    }
   ],
   "links": [
@@ -3918,6 +4056,10 @@ window.CARDS = [
    "stim"
   ],
   "history": [
+   {
+    "date": "2026-11-18",
+    "text": "Filed an amended statement of claim (Federal Court T-3803-26) that adds outputs made with Suno's v6 models, which Suno released on 2026-09-09."
+   },
    {
     "date": "2026-09-02",
     "text": "[Sued](https://www.socan.com/socan-is-standing-up-for-music-creators-and-publishers-with-legal-action-against-suno-inc-for-unauthorized-use-of-music-in-generative-ai-platform/) Suno Inc. over outputs that replicate songs in its repertoire."
@@ -3943,9 +4085,9 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "",
-  "status": "datadiligence dormant since 2024-10",
+  "status": "datadiligence dormant since 2024-10; spawning.ai shows a maintenance page (read 2026-11-20)",
   "participate": "[GitHub](https://github.com/Spawning-Inc/datadiligence)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/access"
@@ -3975,24 +4117,24 @@ window.CARDS = [
    "https://www.spurcoalition.org/updates?format=rss"
   ],
   "part_of": "",
-  "status": "Content Telemetry v1.0 published 2026-09-02",
+  "status": "Content Telemetry v1.0 published 2026-09-02; The New York Times, AFP, The Economist and The Atlantic joined 2026-10-13",
   "participate": "[GitHub](https://github.com/SPUR-Coalition)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/attribution",
    "stage/after-delivery",
    "stage/trust"
   ],
-  "summary": "Publisher coalition founded by the BBC, FT, Guardian, Sky News and Telegraph, with the AP as first US member. Stewards [[content-telemetry]] and the publisher accreditation profile and conformance mark. Sister body [[openattribution]] originally developed the SDKs, which SPUR now maintains.",
+  "summary": "Publisher coalition whose founding members are the BBC, Financial Times, Guardian Media Group, Mediahuis, Sky News, Telegraph Media Group, the Associated Press and CMA Media. The AP is the first US-based founding member. Stewards [[content-telemetry]] and the publisher accreditation profile and conformance mark. Sister body [[openattribution]] originally developed the SDKs, which SPUR now maintains.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Visibility past retrieval**: letting publishers see grounding, citation, display and engagement, not only the fetch.\n- **Verifying reports**: checking self-reported events through sampled audits or canary content. Signed events are deferred to a later version of the spec (section 8.9).\n- **Publisher accreditation**: a conformance mark for agents that report at the required level."
+    "text": "- **Visibility past retrieval**: letting publishers see grounding, citation, display and engagement, not only the fetch.\n- **Verifying reports**: checking self-reported events through sampled audits or canary content. v1.0 makes per-event signing optional (section 8.4) and defers manifest signing (section 8.9). The SPUR evidence profile, a working draft, covers how claims are corroborated.\n- **Publisher accreditation**: a conformance mark for agents that report at the required level."
    },
    {
     "title": "History",
-    "text": "- 2026-09-02: [[content-telemetry]] v1.0 published."
+    "text": "- 2026-10-13: The New York Times, Agence France-Presse, The Economist and The Atlantic joined.\n- 2026-09-02: [[content-telemetry]] v1.0 published.\n- 2026-07-09: The Associated Press joined as the first US-based founding member.\n- 2026-05-11: Mediahuis joined as a founding member."
    }
   ],
   "links": [
@@ -4008,8 +4150,20 @@ window.CARDS = [
   ],
   "history": [
    {
+    "date": "2026-10-13",
+    "text": "The New York Times, Agence France-Presse, The Economist and The Atlantic joined."
+   },
+   {
     "date": "2026-09-02",
     "text": "[[content-telemetry]] v1.0 published."
+   },
+   {
+    "date": "2026-07-09",
+    "text": "The Associated Press joined as the first US-based founding member."
+   },
+   {
+    "date": "2026-05-11",
+    "text": "Mediahuis joined as a founding member."
    }
   ]
  },
@@ -4028,7 +4182,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Offers a license for AI services, launched as a pilot on 2025-09-08. AI has been a separate rights category since 2026-06-01, and members approve works one by one (read 2026-11-16)",
   "participate": "[license for AI services](https://www.stim.se/en/license-for-ai-services)",
-  "updated": "2026-11-16",
+  "updated": "2026-11-17",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -4105,7 +4259,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Launched 2026-10-06 with funding for three projects",
   "participate": "",
-  "updated": "2026-11-16",
+  "updated": "2026-11-20",
   "tags": [
    "type/project",
    "layer/provenance",
@@ -4117,7 +4271,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Counting AI use**: TRACE participants part-fund the [[counter]] API and JSON Schema work for its AI metrics. COUNTER names nine publishers as contributors, including Elsevier, Springer Nature and Wiley.\n- **Provenance at inference time**: [[niso]] runs a twelve-month pilot on a minimum metadata model for provenance and attribution.\n- **How agents reach licensed content**: [The Endpoint Question](https://stm-assoc.org/stm-and-ithaka-sr-launch-research-project-on-the-interface-between-scholarly-content-and-ai/), a three-month Ithaka S+R study announced with STM. It looks at how AI agents discover scholarly content, authenticate through a user's entitlements, receive provenance-bearing information and create a credible record of use. Its scope includes \"MCP-style access protocols\". Findings are to be published openly."
+    "text": "- **Counting AI use**: TRACE participants part-fund the [[counter]] API and JSON Schema work for its AI metrics. COUNTER names nine publishers as contributors, including Elsevier, Springer Nature and Wiley.\n- **Provenance at inference time**: [[niso]] runs a pilot, first planned for twelve months, on a minimum metadata model for provenance and attribution.\n- **How agents reach licensed content**: [The Endpoint Question](https://stm-assoc.org/stm-and-ithaka-sr-launch-research-project-on-the-interface-between-scholarly-content-and-ai/), a three-month Ithaka S+R study announced with STM. It looks at how AI agents discover scholarly content, authenticate through a user's entitlements, receive provenance-bearing information and create a credible record of use. The STM announcement says \"Publishers are already exploring MCP endpoints and other ways of enabling access to content\". The [launch article](https://scholarlykitchen.sspnet.org/2026/10/07/trace-project-launches-to-advance-ai-interoperability/) says the study's scope includes \"MCP-style access protocols\". Findings are to be published openly."
    },
    {
     "title": "Related",
@@ -4160,9 +4314,9 @@ window.CARDS = [
    "https://github.com/Universal-Commerce-Protocol/ucp/releases.atom"
   ],
   "part_of": "",
-  "status": "Google-led consortium, no foundation home",
+  "status": "Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25",
   "participate": "[GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)",
-  "updated": "2026-11-03",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -4172,6 +4326,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Cross-merchant commerce**: agent commerce across merchants, compared with [[acp]] in [[aaif-agentic-commerce-wg]]."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-08-25: Release v2026-08-25.\n- 2026-04-28: Stripe joined Google and Shopify on the Governing Council."
    }
   ],
   "links": [
@@ -4184,7 +4342,16 @@ window.CARDS = [
    "aaif-agentic-commerce-wg",
    "openattribution"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-08-25",
+    "text": "Release v2026-08-25."
+   },
+   {
+    "date": "2026-04-28",
+    "text": "Stripe joined Google and Shopify on the Governing Council."
+   }
+  ]
  },
  {
   "id": "w3c",
@@ -4204,8 +4371,8 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "",
-  "participate": "[how to participate](https://www.w3.org/participate/)",
-  "updated": "2026-11-03",
+  "participate": "[how to participate](https://www.w3.org/get-involved/)",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -4243,9 +4410,9 @@ window.CARDS = [
    "https://www.w3.org/community/odrl/feed/"
   ],
   "part_of": "w3c",
-  "status": "2.2 is a W3C Recommendation; a W3C WG for 3.0 is being chartered; ai-vocab draft",
+  "status": "2.2 is a W3C Recommendation; a draft Digital Policy WG charter covers ODRL 3.0; ai-vocab draft",
   "participate": "[join the community group](https://www.w3.org/community/odrl/join)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/community-group",
    "layer/licensing"
@@ -4287,9 +4454,9 @@ window.CARDS = [
    "https://www.w3.org/community/tdmrep/feed/"
   ],
   "part_of": "w3c",
-  "status": "CG draft; last push 2026-09",
+  "status": "CG Final Report version 3 (2024-05-10); last push 2026-09",
   "participate": "[join the community group](https://www.w3.org/community/tdmrep/join)",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/community-group",
    "layer/access",
@@ -4349,13 +4516,13 @@ window.CARDS = [
   "part_of": "",
   "status": "Published investigation of OpenAI-run agents 2026-10-05; a WikiCite contributor reviewed SEP-3094, which closed 2026-11-08",
   "participate": "",
-  "updated": "2026-11-15",
+  "updated": "2026-11-20",
   "tags": [
    "type/organization",
    "layer/attribution",
    "layer/identity"
   ],
-  "summary": "Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API access to the projects, and volunteer contributors review citation and agent-identity proposals.",
+  "summary": "Movement behind Wikipedia and Wikidata. Wikimedia Enterprise sells companies API access to the projects. A WikiCite contributor reviewed an MCP citation proposal.",
   "sections": [
    {
     "title": "Topics",
@@ -4367,7 +4534,7 @@ window.CARDS = [
    },
    {
     "title": "In use",
-    "text": "- Wikimedia Enterprise supplies Amazon, Google, Meta, Microsoft, Mistral AI and Perplexity, among others ([announcement](https://enterprise.wikimedia.com/blog/wikipedia-25-enterprise-partners/), 2026-01-15)."
+    "text": "- Wikimedia Enterprise partners include Google, Ecosia, Nomic, Pleias, ProRata and Reef Media. Amazon, Meta, Microsoft, Mistral AI and Perplexity were announced as partners on 2026-01-15 ([announcement](https://enterprise.wikimedia.com/blog/wikipedia-25-enterprise-partners/))."
    },
    {
     "title": "History",
@@ -4416,9 +4583,9 @@ window.CARDS = [
    "https://x402.org/feed/"
   ],
   "part_of": "",
-  "status": "x402 Foundation (Linux Foundation) operational 2026-07-14; v2 spec",
-  "participate": "[GitHub](https://github.com/coinbase/x402)",
-  "updated": "2026-11-15",
+  "status": "x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec",
+  "participate": "[GitHub](https://github.com/x402-foundation/x402)",
+  "updated": "2026-11-20",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -4439,7 +4606,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-07-14: x402 Foundation (Linux Foundation) operational."
+    "text": "- 2026-10-01: The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.\n- 2026-07-14: x402 Foundation (Linux Foundation) operational."
    }
   ],
   "links": [
@@ -4458,6 +4625,10 @@ window.CARDS = [
    "mpp"
   ],
   "history": [
+   {
+    "date": "2026-10-01",
+    "text": "The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation."
+   },
    {
     "date": "2026-07-14",
     "text": "x402 Foundation (Linux Foundation) operational."
