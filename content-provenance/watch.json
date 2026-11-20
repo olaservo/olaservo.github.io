@@ -557,6 +557,30 @@
    "feed": [
     "https://internet.exchangepoint.tech/rss/"
    ]
+  },
+  {
+   "id": "google-search-central-blog",
+   "name": "Google Search Central Blog",
+   "card": null,
+   "note": "Google's blog for site owners, including its crawlers and AI training controls",
+   "news": [
+    "https://developers.google.com/search/blog"
+   ],
+   "feed": [
+    "https://developers.google.com/search/blog/feed.xml"
+   ]
+  },
+  {
+   "id": "openai-news",
+   "name": "OpenAI News",
+   "card": null,
+   "note": "Includes OpenAI's publisher partnerships and content provenance posts. The feed covers all of its announcements",
+   "news": [
+    "https://openai.com/news/"
+   ],
+   "feed": [
+    "https://openai.com/news/rss.xml"
+   ]
   }
  ]
 }
