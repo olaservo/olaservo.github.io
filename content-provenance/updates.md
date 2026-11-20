@@ -2,22 +2,37 @@
 
 Dated events from the History section of each card, newest first. These are things that happened to the efforts the cards describe. Edits to the guide itself are in the changelog.
 
+- 2026-11-19 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): Issues 245 and 246 on downstream survival closed.
+- 2026-11-18 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Filed an amended statement of claim (Federal Court T-3803-26) that adds outputs made with Suno's v6 models, which Suno released on 2026-09-09.
+- 2026-11-17 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): Kevin Kelley [asked for volunteers](https://mailarchive.ietf.org/arch/msg/ai-control/mLGJnETEzXfUug-xJfjRnY27LvY/) for an attachment design team, at the chairs' request, to report before the next interim.
+- 2026-11-16 [ai.robots.txt](https://www.olahungerford.com/content-provenance/#ai-robots-txt): [v2.2](https://github.com/ai-robots-txt/ai.robots.txt/releases/tag/v2.2) released with the `__usage_ai-training` token.
+- 2026-11-16 [CC Signals](https://www.olahungerford.com/content-provenance/#cc-signals): CC [said](https://creativecommons.org/2026/11/16/advancing-cc-signals-preparing-for-public-alpha-testing-in-2027/) a public alpha is planned for early 2027 and will first focus on SourceConnection.
+- 2026-11-16 [Shared AI training robots.txt token](https://www.olahungerford.com/content-provenance/#aipref-training-token): -01 posted.
 - 2026-11-12 [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective): Launched under this name, formerly the RSL Collective, with Yahoo Scout as first commercial licensee.
 - 2026-11-12 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): The RSL Collective relaunched as [Internet Licensing Collective](https://www.olahungerford.com/content-provenance/#internet-licensing-collective).
+- 2026-11-11 [AAIF Observability and Traceability WG](https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg): Minutes record a positive reception of the Agent Behavior Trace Model proposal at the OTel GenAI SIG.
+- 2026-11-11 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Spec aligned with ADR-0028 ([PR 131](https://github.com/Agent-Card/ai-catalog/pull/131)).
 - 2026-11-11 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Announced that The Atlantic plans to implement its provenance technology.
 - 2026-11-08 [SEP-3094 Granular Citations](https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations): Closed without merging.
 - 2026-11-05 [Agent Skills at-rest signing threads](https://www.olahungerford.com/content-provenance/#agent-skills-signing): Discussion 651 proposed C2PA content credentials for skills, with an example repository the same day.
 - 2026-11-05 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): ADR-0028 accepted, opening catalog and entry objects to unrecognized members.
 - 2026-11-05 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): [Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.
+- 2026-11-04 [AAIF Observability and Traceability WG](https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg): Liaison roster published.
+- 2026-11 [NISO](https://www.olahungerford.com/content-provenance/#niso): The executive director's letter says the pilot may finish sooner than twelve months.
 - 2026-10-31 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).
-- 2026-10-31 [OpenTelemetry for MCP](https://www.olahungerford.com/content-provenance/#otel-mcp): Conventions merged for the TypeScript SDK, not yet released.
+- 2026-10-31 [OpenTelemetry for MCP](https://www.olahungerford.com/content-provenance/#otel-mcp): Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released.
+- 2026-10-30 [Microsoft training and grounding preferences](https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference): Microsoft [announced](https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/) the training and grounding preferences. Grounding settings in Bing Webmaster Tools open 2026-12-15, and the temporary grounding preferences expire 2027-09-30.
 - 2026-10-30 [Shared AI training robots.txt token](https://www.olahungerford.com/content-provenance/#aipref-training-token): Individual draft posted.
-- 2026-10-28 [AAIF Observability and Traceability WG](https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg): OTel cross-domain provenance proposal.
-- 2026-10-28 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Identity-keyed trust manifests merged.
+- 2026-10-29 [SEP-2127 Server Cards](https://www.olahungerford.com/content-provenance/#mcp-server-cards): SEP-3392 merged, classifying ext-server-card as Beta.
+- 2026-10-28 [AAIF Observability and Traceability WG](https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg): [PR 67](https://github.com/aaif/wg-observability-and-traceability/pull/67) proposes joining OTel GenAI telemetry to signed action and evidence records. The meeting set an action to draft a cross-domain tracing and provenance proposal for OTel.
+- 2026-10-28 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Independently signed trust manifest contributions merged.
+- 2026-10-27 [Agent Plugins](https://www.olahungerford.com/content-provenance/#agent-plugins): AAIF staff reported Technical Committee approval as a Growth-stage project. A Governing Board vote is pending.
 - 2026-10-27 [MCP Interceptors WG and SEP-2624](https://www.olahungerford.com/content-provenance/#mcp-interceptors): Chain concept removed from the SEP.
 - 2026-10-23 [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter): [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.
 - 2026-10-23 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [phase two](https://www.countermetrics.org/ai-phase-two/) announcement says "We've also mapped Google Scholar's new MERU tool to our metrics."
 - 2026-10-22 [Agent Skills](https://www.olahungerford.com/content-provenance/#agent-skills): Joined AAIF.
+- 2026-10-13 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): The New York Times, Agence France-Presse, The Economist and The Atlantic joined.
+- 2026-10-12 [Agent Plugins](https://www.olahungerford.com/content-provenance/#agent-plugins): Proposed to [Agentic AI Foundation](https://www.olahungerford.com/content-provenance/#aaif).
 - 2026-10-08 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): BearingNode filed the `_meta` lineage key proposal as FSIG issue 16.
 - 2026-10-07 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): RFC 4484 updated.
 - 2026-10-06 [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter): TRACE funding announced.
@@ -25,13 +40,14 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-10-06 [TRACE](https://www.olahungerford.com/content-provenance/#trace): Launched at the STM conference in Frankfurt.
 - 2026-10-05 [NISO](https://www.olahungerford.com/content-provenance/#niso): Journal Article Versions RP-8-2026 published.
 - 2026-10-05 [Wikimedia](https://www.olahungerford.com/content-provenance/#wikimedia): Published its investigation of OpenAI-run agents.
+- 2026-10-01 [x402](https://www.olahungerford.com/content-provenance/#x402): The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.
 - 2026-10 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-10 [C2PA](https://www.olahungerford.com/content-provenance/#c2pa): Spec 2.5 published.
 - 2026-10 [NISO](https://www.olahungerford.com/content-provenance/#niso): [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
-- 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed along with all spec-repo discussions.
+- 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed when the spec repo limited Discussions to meeting notes.
 - 2026-09-24 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): Presented to the MCP Financial Services Interest Group.
 - 2026-09-18 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [update](https://www.countermetrics.org/ai-update-sept26/) on phase two calls MERU "a form of syndicated usage" and says it has mapped how MERU messages should be reported.
-- 2026-09-13 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): vocab-08 posted, without consensus.
+- 2026-09-14 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): vocab-08 posted, without consensus.
 - 2026-09-13 [SEP-2640 Skills Extension](https://www.olahungerford.com/content-provenance/#mcp-skills-extension): SEP-2640 marked Final.
 - 2026-09-11 [Dataspace Protocol](https://www.olahungerford.com/content-provenance/#dataspace-protocol): Second errata to 2025-1 tagged.
 - 2026-09-04 [SEP-3094 Granular Citations](https://www.olahungerford.com/content-provenance/#mcp-sep-3094-citations): Revised.
@@ -44,33 +60,49 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-08-26 [KBART](https://www.olahungerford.com/content-provenance/#kbart): [Phase III](https://www.niso.org/publications/rp-9-2026-kbart) published.
 - 2026-08-26 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.
 - 2026-08-26 [NISO](https://www.olahungerford.com/content-provenance/#niso): KBART Phase III published.
-- 2026-08-18 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): attach-05 posted.
+- 2026-08-25 [Universal Commerce Protocol](https://www.olahungerford.com/content-provenance/#ucp): Release v2026-08-25.
+- 2026-08-19 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): attach-05 posted.
 - 2026-08-17 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): Interest group folded into the Authorization IG.
 - 2026-08-06 [Agent Plugins](https://www.olahungerford.com/content-provenance/#agent-plugins): 1.0.0 published.
+- 2026-08-02 [EU AI Act and GPAI Code of Practice](https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code): Article 50 transparency rules apply.
 - 2026-07-31 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.
+- 2026-07-27 [EU AI Act and GPAI Code of Practice](https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code): AI Omnibus (Regulation (EU) 2026/1744) entered into force.
 - 2026-07-23 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Launched PLAI by GEMA with Klangio as first customer.
 - 2026-07-20 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Named Musical AI an approved technology partner for attribution services.
 - 2026-07-14 [x402](https://www.olahungerford.com/content-provenance/#x402): x402 Foundation (Linux Foundation) operational.
+- 2026-07-12 [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg): Consent assertion repository created with a placeholder 1.0 draft.
 - 2026-07-09 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Loose coupling with AI Catalog agreed.
 - 2026-07-09 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Loose coupling with ARD agreed.
-- 2026-07 [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg): Consent assertion added.
+- 2026-07-09 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): The Associated Press joined as the first US-based founding member.
 - 2026-06-18 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): Extension announced as stable.
 - 2026-06-17 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Announced by Google.
+- 2026-06-16 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): v0.9 (Draft).
+- 2026-06-12 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): Section 3.12 `<reporting>` [added](https://rslstandard.org/rsl/errata), for machine-readable reporting requirements on licensed activity.
+- 2026-06-10 [EU AI Act and GPAI Code of Practice](https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code): Final Code of Practice on Transparency of AI-generated Content published.
 - 2026-06-01 [STIM](https://www.olahungerford.com/content-provenance/#stim): The AI rights category took effect.
 - 2026-06 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-05-31 [STIM](https://www.olahungerford.com/content-provenance/#stim): Announced that its members had voted for a separate rights category for AI.
 - 2026-05-28 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): v0.5.
 - 2026-05-26 [Encypher](https://www.olahungerford.com/content-provenance/#encypher): Listed by C2PA as a conformant generator product.
 - 2026-05-15 [AAIF Agentic Commerce WG](https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg): Chartered.
+- 2026-05-13 [CC Signals](https://www.olahungerford.com/content-provenance/#cc-signals): CC [said](https://creativecommons.org/2026/05/13/from-signals-to-infrastructure-strengthening-the-commons-for-the-ai-era/) attribution must be a requirement in the next iteration.
 - 2026-05-12 [AAIF Identity and Trust WG](https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg): Chartered.
+- 2026-05-11 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): Mediahuis joined as a founding member.
+- 2026-04-28 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): 1.0 finalized ([release CoMP v1.0-202604](https://github.com/IABTechLab/CoMP/releases/tag/1.0-202604)).
+- 2026-04-28 [Universal Commerce Protocol](https://www.olahungerford.com/content-provenance/#ucp): Stripe joined Google and Shopify on the Governing Council.
+- 2026-04-24 [Agentic Commerce Protocol](https://www.olahungerford.com/content-provenance/#acp): Meta joined OpenAI and Stripe as a lead maintainer ([PR 236](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/236)).
+- 2026-04-23 [CC Signals](https://www.olahungerford.com/content-provenance/#cc-signals): CC [said](https://creativecommons.org/2026/04/23/update-on-cc-signals-what-changed-and-why/) CC Signals is no longer limited to signaling preferences.
+- 2026-04-09 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): Public comment on 1.0 closed.
 - 2026-04 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Bellagio.
 - 2026-03-10 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): 1.0 opened for public comment.
+- 2026-02-12 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): MLCommons announced 1.1.
 - 2026-02-03 [Microsoft Publisher Content Marketplace](https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace): Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer.
-- 2026-02 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): 1.1 released.
+- 2026-01-29 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): 1.1 specification published.
+- 2026-01-23 [EU AI Act and GPAI Code of Practice](https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code): Consultation on opt-out protocols closed.
 - 2026-01-21 [SEP-2127 Server Cards](https://www.olahungerford.com/content-provenance/#mcp-server-cards): SEP-2127 created.
 - 2026-01 [GetFTR](https://www.olahungerford.com/content-provenance/#getftr): [MCP capability](https://www.getfulltextresearch.com/getftr-enables-ai-tools-to-check-access-rights-for-academic-content) announced for AI tools.
 - 2025-12-10 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): RSL 1.0 published.
-- 2025-11-11 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.
+- 2025-11-11 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA [says](https://www.gema.de/en/w/suno-entscheidung-2026) OpenAI has appealed to the Munich Higher Regional Court.
 - 2025-10-28 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Published its AI registration guidelines, alongside aligned policies from ASCAP and BMI.
 - 2025-09-25 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support "the new industry standard for AI disclosures in music credits, developed through DDEX", and named 19 labels and distributors working on it.
 - 2025-09-08 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): [STIM](https://www.olahungerford.com/content-provenance/#stim) launched a collective AI license for music as a pilot.

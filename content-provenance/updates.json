@@ -2,9 +2,51 @@
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-17",
+ "as_of": "2026-11-20",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
+  {
+   "date": "2026-11-19",
+   "card": "ietf-aipref",
+   "name": "IETF AI Preferences Working Group",
+   "text": "Issues 245 and 246 on downstream survival closed.",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-11-18",
+   "card": "socan",
+   "name": "SOCAN",
+   "text": "Filed an amended statement of claim (Federal Court T-3803-26) that adds outputs made with Suno's v6 models, which Suno released on 2026-09-09.",
+   "url": "https://www.olahungerford.com/content-provenance/#socan"
+  },
+  {
+   "date": "2026-11-17",
+   "card": "ietf-aipref",
+   "name": "IETF AI Preferences Working Group",
+   "text": "Kevin Kelley [asked for volunteers](https://mailarchive.ietf.org/arch/msg/ai-control/mLGJnETEzXfUug-xJfjRnY27LvY/) for an attachment design team, at the chairs' request, to report before the next interim.",
+   "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-11-16",
+   "card": "ai-robots-txt",
+   "name": "ai.robots.txt",
+   "text": "[v2.2](https://github.com/ai-robots-txt/ai.robots.txt/releases/tag/v2.2) released with the `__usage_ai-training` token.",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-robots-txt"
+  },
+  {
+   "date": "2026-11-16",
+   "card": "cc-signals",
+   "name": "CC Signals",
+   "text": "CC [said](https://creativecommons.org/2026/11/16/advancing-cc-signals-preparing-for-public-alpha-testing-in-2027/) a public alpha is planned for early 2027 and will first focus on SourceConnection.",
+   "url": "https://www.olahungerford.com/content-provenance/#cc-signals"
+  },
+  {
+   "date": "2026-11-16",
+   "card": "aipref-training-token",
+   "name": "Shared AI training robots.txt token",
+   "text": "-01 posted.",
+   "url": "https://www.olahungerford.com/content-provenance/#aipref-training-token"
+  },
   {
    "date": "2026-11-12",
    "card": "internet-licensing-collective",
@@ -18,6 +60,20 @@
    "name": "Really Simple Licensing",
    "text": "The RSL Collective relaunched as [[internet-licensing-collective]].",
    "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  },
+  {
+   "date": "2026-11-11",
+   "card": "aaif-observability-traceability-wg",
+   "name": "AAIF Observability and Traceability WG",
+   "text": "Minutes record a positive reception of the Agent Behavior Trace Model proposal at the OTel GenAI SIG.",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg"
+  },
+  {
+   "date": "2026-11-11",
+   "card": "ai-catalog",
+   "name": "AI Catalog",
+   "text": "Spec aligned with ADR-0028 ([PR 131](https://github.com/Agent-Card/ai-catalog/pull/131)).",
+   "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
   },
   {
    "date": "2026-11-11",
@@ -55,6 +111,20 @@
    "url": "https://www.olahungerford.com/content-provenance/#ddex"
   },
   {
+   "date": "2026-11-04",
+   "card": "aaif-observability-traceability-wg",
+   "name": "AAIF Observability and Traceability WG",
+   "text": "Liaison roster published.",
+   "url": "https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg"
+  },
+  {
+   "date": "2026-11",
+   "card": "niso",
+   "name": "NISO",
+   "text": "The executive director's letter says the pilot may finish sooner than twelve months.",
+   "url": "https://www.olahungerford.com/content-provenance/#niso"
+  },
+  {
    "date": "2026-10-31",
    "card": "mcp-security-ig",
    "name": "MCP Security Interest Group",
@@ -65,8 +135,15 @@
    "date": "2026-10-31",
    "card": "otel-mcp",
    "name": "OpenTelemetry for MCP",
-   "text": "Conventions merged for the TypeScript SDK, not yet released.",
+   "text": "Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released.",
    "url": "https://www.olahungerford.com/content-provenance/#otel-mcp"
+  },
+  {
+   "date": "2026-10-30",
+   "card": "microsoft-grounding-preference",
+   "name": "Microsoft training and grounding preferences",
+   "text": "Microsoft [announced](https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/) the training and grounding preferences. Grounding settings in Bing Webmaster Tools open 2026-12-15, and the temporary grounding preferences expire 2027-09-30.",
+   "url": "https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference"
   },
   {
    "date": "2026-10-30",
@@ -76,18 +153,32 @@
    "url": "https://www.olahungerford.com/content-provenance/#aipref-training-token"
   },
   {
+   "date": "2026-10-29",
+   "card": "mcp-server-cards",
+   "name": "SEP-2127 Server Cards",
+   "text": "SEP-3392 merged, classifying ext-server-card as Beta.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-server-cards"
+  },
+  {
    "date": "2026-10-28",
    "card": "aaif-observability-traceability-wg",
    "name": "AAIF Observability and Traceability WG",
-   "text": "OTel cross-domain provenance proposal.",
+   "text": "[PR 67](https://github.com/aaif/wg-observability-and-traceability/pull/67) proposes joining OTel GenAI telemetry to signed action and evidence records. The meeting set an action to draft a cross-domain tracing and provenance proposal for OTel.",
    "url": "https://www.olahungerford.com/content-provenance/#aaif-observability-traceability-wg"
   },
   {
    "date": "2026-10-28",
    "card": "ai-catalog",
    "name": "AI Catalog",
-   "text": "Identity-keyed trust manifests merged.",
+   "text": "Independently signed trust manifest contributions merged.",
    "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
+  },
+  {
+   "date": "2026-10-27",
+   "card": "agent-plugins",
+   "name": "Agent Plugins",
+   "text": "AAIF staff reported Technical Committee approval as a Growth-stage project. A Governing Board vote is pending.",
+   "url": "https://www.olahungerford.com/content-provenance/#agent-plugins"
   },
   {
    "date": "2026-10-27",
@@ -116,6 +207,20 @@
    "name": "Agent Skills",
    "text": "Joined AAIF.",
    "url": "https://www.olahungerford.com/content-provenance/#agent-skills"
+  },
+  {
+   "date": "2026-10-13",
+   "card": "spur-coalition",
+   "name": "SPUR Coalition",
+   "text": "The New York Times, Agence France-Presse, The Economist and The Atlantic joined.",
+   "url": "https://www.olahungerford.com/content-provenance/#spur-coalition"
+  },
+  {
+   "date": "2026-10-12",
+   "card": "agent-plugins",
+   "name": "Agent Plugins",
+   "text": "Proposed to [[aaif]].",
+   "url": "https://www.olahungerford.com/content-provenance/#agent-plugins"
   },
   {
    "date": "2026-10-08",
@@ -167,6 +272,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#wikimedia"
   },
   {
+   "date": "2026-10-01",
+   "card": "x402",
+   "name": "x402",
+   "text": "The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.",
+   "url": "https://www.olahungerford.com/content-provenance/#x402"
+  },
+  {
    "date": "2026-10",
    "card": "ai-disclosures-project",
    "name": "AI Disclosures Project",
@@ -191,7 +303,7 @@
    "date": "2026-09-25",
    "card": "mcp-c2pa-in-meta",
    "name": "C2PA content credentials in MCP _meta",
-   "text": "Discussion closed along with all spec-repo discussions.",
+   "text": "Discussion closed when the spec repo limited Discussions to meeting notes.",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta"
   },
   {
@@ -209,7 +321,7 @@
    "url": "https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading"
   },
   {
-   "date": "2026-09-13",
+   "date": "2026-09-14",
    "card": "ietf-aipref",
    "name": "IETF AI Preferences Working Group",
    "text": "vocab-08 posted, without consensus.",
@@ -300,7 +412,14 @@
    "url": "https://www.olahungerford.com/content-provenance/#niso"
   },
   {
-   "date": "2026-08-18",
+   "date": "2026-08-25",
+   "card": "ucp",
+   "name": "Universal Commerce Protocol",
+   "text": "Release v2026-08-25.",
+   "url": "https://www.olahungerford.com/content-provenance/#ucp"
+  },
+  {
+   "date": "2026-08-19",
    "card": "ietf-aipref",
    "name": "IETF AI Preferences Working Group",
    "text": "attach-05 posted.",
@@ -321,11 +440,25 @@
    "url": "https://www.olahungerford.com/content-provenance/#agent-plugins"
   },
   {
+   "date": "2026-08-02",
+   "card": "eu-ai-act-gpai-code",
+   "name": "EU AI Act and GPAI Code of Practice",
+   "text": "Article 50 transparency rules apply.",
+   "url": "https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code"
+  },
+  {
    "date": "2026-07-31",
    "card": "gema",
    "name": "GEMA",
    "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2026/16.php) GEMA's claims against Suno for an injunction, information and damages (42 O 763/25). The court's press release says the judgment is not final.",
    "url": "https://www.olahungerford.com/content-provenance/#gema"
+  },
+  {
+   "date": "2026-07-27",
+   "card": "eu-ai-act-gpai-code",
+   "name": "EU AI Act and GPAI Code of Practice",
+   "text": "AI Omnibus (Regulation (EU) 2026/1744) entered into force.",
+   "url": "https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code"
   },
   {
    "date": "2026-07-23",
@@ -349,6 +482,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#x402"
   },
   {
+   "date": "2026-07-12",
+   "card": "cawg",
+   "name": "Creator Assertions Working Group",
+   "text": "Consent assertion repository created with a placeholder 1.0 draft.",
+   "url": "https://www.olahungerford.com/content-provenance/#cawg"
+  },
+  {
    "date": "2026-07-09",
    "card": "ard",
    "name": "Agentic Resource Discovery",
@@ -363,11 +503,11 @@
    "url": "https://www.olahungerford.com/content-provenance/#ai-catalog"
   },
   {
-   "date": "2026-07",
-   "card": "cawg",
-   "name": "Creator Assertions Working Group",
-   "text": "Consent assertion added.",
-   "url": "https://www.olahungerford.com/content-provenance/#cawg"
+   "date": "2026-07-09",
+   "card": "spur-coalition",
+   "name": "SPUR Coalition",
+   "text": "The Associated Press joined as the first US-based founding member.",
+   "url": "https://www.olahungerford.com/content-provenance/#spur-coalition"
   },
   {
    "date": "2026-06-18",
@@ -382,6 +522,27 @@
    "name": "Agentic Resource Discovery",
    "text": "Announced by Google.",
    "url": "https://www.olahungerford.com/content-provenance/#ard"
+  },
+  {
+   "date": "2026-06-16",
+   "card": "ard",
+   "name": "Agentic Resource Discovery",
+   "text": "v0.9 (Draft).",
+   "url": "https://www.olahungerford.com/content-provenance/#ard"
+  },
+  {
+   "date": "2026-06-12",
+   "card": "rsl",
+   "name": "Really Simple Licensing",
+   "text": "Section 3.12 `<reporting>` [added](https://rslstandard.org/rsl/errata), for machine-readable reporting requirements on licensed activity.",
+   "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  },
+  {
+   "date": "2026-06-10",
+   "card": "eu-ai-act-gpai-code",
+   "name": "EU AI Act and GPAI Code of Practice",
+   "text": "Final Code of Practice on Transparency of AI-generated Content published.",
+   "url": "https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code"
   },
   {
    "date": "2026-06-01",
@@ -426,11 +587,60 @@
    "url": "https://www.olahungerford.com/content-provenance/#aaif-agentic-commerce-wg"
   },
   {
+   "date": "2026-05-13",
+   "card": "cc-signals",
+   "name": "CC Signals",
+   "text": "CC [said](https://creativecommons.org/2026/05/13/from-signals-to-infrastructure-strengthening-the-commons-for-the-ai-era/) attribution must be a requirement in the next iteration.",
+   "url": "https://www.olahungerford.com/content-provenance/#cc-signals"
+  },
+  {
    "date": "2026-05-12",
    "card": "aaif-identity-trust-wg",
    "name": "AAIF Identity and Trust WG",
    "text": "Chartered.",
    "url": "https://www.olahungerford.com/content-provenance/#aaif-identity-trust-wg"
+  },
+  {
+   "date": "2026-05-11",
+   "card": "spur-coalition",
+   "name": "SPUR Coalition",
+   "text": "Mediahuis joined as a founding member.",
+   "url": "https://www.olahungerford.com/content-provenance/#spur-coalition"
+  },
+  {
+   "date": "2026-04-28",
+   "card": "iab-comp",
+   "name": "IAB Tech Lab Content Monetization Protocols",
+   "text": "1.0 finalized ([release CoMP v1.0-202604](https://github.com/IABTechLab/CoMP/releases/tag/1.0-202604)).",
+   "url": "https://www.olahungerford.com/content-provenance/#iab-comp"
+  },
+  {
+   "date": "2026-04-28",
+   "card": "ucp",
+   "name": "Universal Commerce Protocol",
+   "text": "Stripe joined Google and Shopify on the Governing Council.",
+   "url": "https://www.olahungerford.com/content-provenance/#ucp"
+  },
+  {
+   "date": "2026-04-24",
+   "card": "acp",
+   "name": "Agentic Commerce Protocol",
+   "text": "Meta joined OpenAI and Stripe as a lead maintainer ([PR 236](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/pull/236)).",
+   "url": "https://www.olahungerford.com/content-provenance/#acp"
+  },
+  {
+   "date": "2026-04-23",
+   "card": "cc-signals",
+   "name": "CC Signals",
+   "text": "CC [said](https://creativecommons.org/2026/04/23/update-on-cc-signals-what-changed-and-why/) CC Signals is no longer limited to signaling preferences.",
+   "url": "https://www.olahungerford.com/content-provenance/#cc-signals"
+  },
+  {
+   "date": "2026-04-09",
+   "card": "iab-comp",
+   "name": "IAB Tech Lab Content Monetization Protocols",
+   "text": "Public comment on 1.0 closed.",
+   "url": "https://www.olahungerford.com/content-provenance/#iab-comp"
   },
   {
    "date": "2026-04",
@@ -447,6 +657,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#iab-comp"
   },
   {
+   "date": "2026-02-12",
+   "card": "croissant",
+   "name": "Croissant",
+   "text": "MLCommons announced 1.1.",
+   "url": "https://www.olahungerford.com/content-provenance/#croissant"
+  },
+  {
    "date": "2026-02-03",
    "card": "microsoft-publisher-content-marketplace",
    "name": "Microsoft Publisher Content Marketplace",
@@ -454,11 +671,18 @@
    "url": "https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace"
   },
   {
-   "date": "2026-02",
+   "date": "2026-01-29",
    "card": "croissant",
    "name": "Croissant",
-   "text": "1.1 released.",
+   "text": "1.1 specification published.",
    "url": "https://www.olahungerford.com/content-provenance/#croissant"
+  },
+  {
+   "date": "2026-01-23",
+   "card": "eu-ai-act-gpai-code",
+   "name": "EU AI Act and GPAI Code of Practice",
+   "text": "Consultation on opt-out protocols closed.",
+   "url": "https://www.olahungerford.com/content-provenance/#eu-ai-act-gpai-code"
   },
   {
    "date": "2026-01-21",
@@ -485,7 +709,7 @@
    "date": "2025-11-11",
    "card": "gema",
    "name": "GEMA",
-   "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA says OpenAI has appealed to the Munich Higher Regional Court.",
+   "text": "Munich Regional Court [largely granted](https://www.justiz.bayern.de/gerichte-und-behoerden/landgericht/muenchen-1/presse/2025/11.php) GEMA's claims against OpenAI over song lyrics in ChatGPT (42 O 14139/24). GEMA [says](https://www.gema.de/en/w/suno-entscheidung-2026) OpenAI has appealed to the Munich Higher Regional Court.",
    "url": "https://www.olahungerford.com/content-provenance/#gema"
   },
   {

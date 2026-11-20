@@ -37,7 +37,6 @@ Where each effort in the guide posts its blog or announcements, with a feed wher
   - News: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases
   - Feed: https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/releases.atom
 - [DDEX](https://www.olahungerford.com/content-provenance/#ddex)
-  - News: https://ddex.net/press/
   - Feed: https://ddex.net/feed/
 - [Decentralized Identity Foundation](https://www.olahungerford.com/content-provenance/#dif)
   - News: https://blog.identity.foundation/
