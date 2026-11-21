@@ -921,7 +921,7 @@ window.CARDS = [
   "part_of": "",
   "status": "Spec 2.5 published October 2026",
   "participate": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -937,7 +937,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [[mcp-c2pa-in-meta]] relies on. The conformance text rubric has no JSON group yet.\n- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
+    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added [Appendix A.9.3](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_guidance_for_json_based_formats), \"Guidance for JSON-Based Formats\", which says a JSON format \"can define their own extension point\" and gives a `c2pa_credential` root member as an example (read 2026-11-21). [[mcp-c2pa-in-meta]] relies on it, and the spec does not name MCP. The conformance text rubric has no JSON group yet.\n- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
    },
    {
     "title": "Related",
@@ -1003,7 +1003,7 @@ window.CARDS = [
   "part_of": "mcp",
   "status": "Discussion closed 2026-09-25 when the spec repo limited Discussions to meeting notes; no SEP filed yet",
   "participate": "[the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "tags": [
    "type/proposal",
    "layer/provenance",
@@ -1014,7 +1014,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Provenance in transit**: keeping a credential attached as content crosses from server to client.\n- **A venue**: finding an owner. The [[mcp-fsig]] lists data lineage and provenance for its sector and the Scientific Computing IG lists provenance of computed results. No WG or IG covers content provenance in general, and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.\n- **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.\n- **Where the field lives**: choosing between a top-level field and `_meta`."
+    "text": "- **Provenance in transit**: keeping a credential attached as content crosses from server to client.\n- **A venue**: finding an owner. The [[mcp-fsig]] lists data lineage and citation for its sector and the Scientific Computing IG lists provenance of computed results. No WG or IG covers content provenance in general, and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.\n- **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.\n- **Where the field lives**: choosing between a top-level field and `_meta`."
    },
    {
     "title": "Compare",
@@ -1022,7 +1022,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-09-25: Discussion closed when the spec repo limited Discussions to meeting notes."
+    "text": "- 2026-09-25: Discussion closed when the spec repo limited Discussions to meeting notes ([closing comment](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225#discussioncomment-18603053))."
    }
   ],
   "links": [
@@ -1050,7 +1050,7 @@ window.CARDS = [
   "history": [
    {
     "date": "2026-09-25",
-    "text": "Discussion closed when the spec repo limited Discussions to meeting notes."
+    "text": "Discussion closed when the spec repo limited Discussions to meeting notes ([closing comment](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225#discussioncomment-18603053))."
    }
   ]
  },
@@ -2779,24 +2779,28 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "mcp",
-  "status": "Charter has a data lineage and citation pillar",
+  "status": "Charter amended 2026-11-21 to a problem-first forum that routes gaps to Working Groups; data lineage and citation stays in scope",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "tags": [
    "type/interest-group",
    "venue/mcp",
    "layer/provenance",
    "layer/attribution"
   ],
-  "summary": "Financial-services interest group. Its charter also has an audit and attestation pillar, which these cards do not cover.",
+  "summary": "Financial-services interest group. Its charter also covers auditability and operational control, which these cards do not cover.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Regulated data lineage and citation**: tracing financial data through agents. A lineage key for [[openlineage]] was presented on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)) and filed as [issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16) on 2026-10-08."
+    "text": "- **Regulated data lineage and citation**: tracing financial data through agents. A lineage key for [[openlineage]] was presented on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)) and filed as [issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16) on 2026-10-08.\n- **Charter scope**: the [charter](https://modelcontextprotocol.io/community/interest-groups/financial-services) lists \"Data lineage and citation\" and \"Data handling\" for results that carry usage or redistribution restrictions. It says the group \"does not independently sponsor SEPs\" and brings unresolved gaps to a Working Group. It meets monthly."
    },
    {
     "title": "Related",
     "text": "- [[mcp-sep-3094-citations]] was item 9 on the agenda of the 2026-09-24 meeting. The notes record no discussion of it. \"Granular Citations\" is listed as a topic for the lineage RFC."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-21: Charter amended to problem-first scope and Working Group referrals ([#3572](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3572)). The earlier text listed \"source attribution, citation, and consent metadata\" and finance-specific extensions.\n- 2026-06-25: Charter merged ([#2979](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2979))."
    }
   ],
   "links": [
@@ -2811,7 +2815,16 @@ window.CARDS = [
    "openlineage",
    "mcp-sep-3094-citations"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-11-21",
+    "text": "Charter amended to problem-first scope and Working Group referrals ([#3572](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3572)). The earlier text listed \"source attribution, citation, and consent metadata\" and finance-specific extensions."
+   },
+   {
+    "date": "2026-06-25",
+    "text": "Charter merged ([#2979](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2979))."
+   }
+  ]
  },
  {
   "id": "mcp-interceptors",
@@ -3105,7 +3118,7 @@ window.CARDS = [
   "part_of": "aaif",
   "status": "Next spec release moved to 2027-03-30 (SEP-3398); SEPs need Working Group or Core Maintainer sponsorship",
   "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)",
-  "updated": "2026-11-20",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3116,7 +3129,7 @@ window.CARDS = [
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Content provenance ownership**: no WG owns content provenance or attribution. The [[mcp-fsig]] charter covers \"source attribution, citation, and consent metadata\" for data surfaced through MCP. The Scientific Computing IG charter covers reproducibility and provenance of computed results.\n- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.\n- **Credit reporting**: nothing reports display or credit past the last hop ([[content-telemetry]])."
+    "text": "- **Content provenance ownership**: no WG owns content provenance or attribution. The [[mcp-fsig]] charter covers \"Data lineage and citation\" for financial data returned through MCP. The Scientific Computing IG charter covers reproducibility and provenance of computed results.\n- **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.\n- **Credit reporting**: nothing reports display or credit past the last hop ([[content-telemetry]])."
    },
    {
     "title": "Related",

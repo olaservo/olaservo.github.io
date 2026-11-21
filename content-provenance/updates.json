@@ -2,9 +2,16 @@
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-20",
+ "as_of": "2026-11-21",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
+  {
+   "date": "2026-11-21",
+   "card": "mcp-fsig",
+   "name": "MCP Financial Services Interest Group",
+   "text": "Charter amended to problem-first scope and Working Group referrals ([#3572](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3572)). The earlier text listed \"source attribution, citation, and consent metadata\" and finance-specific extensions.",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-fsig"
+  },
   {
    "date": "2026-11-19",
    "card": "ietf-aipref",
@@ -303,7 +310,7 @@
    "date": "2026-09-25",
    "card": "mcp-c2pa-in-meta",
    "name": "C2PA content credentials in MCP _meta",
-   "text": "Discussion closed when the spec repo limited Discussions to meeting notes.",
+   "text": "Discussion closed when the spec repo limited Discussions to meeting notes ([closing comment](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225#discussioncomment-18603053)).",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta"
   },
   {
@@ -508,6 +515,13 @@
    "name": "SPUR Coalition",
    "text": "The Associated Press joined as the first US-based founding member.",
    "url": "https://www.olahungerford.com/content-provenance/#spur-coalition"
+  },
+  {
+   "date": "2026-06-25",
+   "card": "mcp-fsig",
+   "name": "MCP Financial Services Interest Group",
+   "text": "Charter merged ([#2979](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2979)).",
+   "url": "https://www.olahungerford.com/content-provenance/#mcp-fsig"
   },
   {
    "date": "2026-06-18",

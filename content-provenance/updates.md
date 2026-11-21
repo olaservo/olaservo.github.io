@@ -2,6 +2,7 @@
 
 Dated events from the History section of each card, newest first. These are things that happened to the efforts the cards describe. Edits to the guide itself are in the changelog.
 
+- 2026-11-21 [MCP Financial Services Interest Group](https://www.olahungerford.com/content-provenance/#mcp-fsig): Charter amended to problem-first scope and Working Group referrals ([#3572](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3572)). The earlier text listed "source attribution, citation, and consent metadata" and finance-specific extensions.
 - 2026-11-19 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): Issues 245 and 246 on downstream survival closed.
 - 2026-11-18 [SOCAN](https://www.olahungerford.com/content-provenance/#socan): Filed an amended statement of claim (Federal Court T-3803-26) that adds outputs made with Suno's v6 models, which Suno released on 2026-09-09.
 - 2026-11-17 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): Kevin Kelley [asked for volunteers](https://mailarchive.ietf.org/arch/msg/ai-control/mLGJnETEzXfUug-xJfjRnY27LvY/) for an attachment design team, at the chairs' request, to report before the next interim.
@@ -44,7 +45,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-10 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-10 [C2PA](https://www.olahungerford.com/content-provenance/#c2pa): Spec 2.5 published.
 - 2026-10 [NISO](https://www.olahungerford.com/content-provenance/#niso): [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
-- 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed when the spec repo limited Discussions to meeting notes.
+- 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed when the spec repo limited Discussions to meeting notes ([closing comment](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225#discussioncomment-18603053)).
 - 2026-09-24 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): Presented to the MCP Financial Services Interest Group.
 - 2026-09-18 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [update](https://www.countermetrics.org/ai-update-sept26/) on phase two calls MERU "a form of syndicated usage" and says it has mapped how MERU messages should be reported.
 - 2026-09-14 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): vocab-08 posted, without consensus.
@@ -74,6 +75,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-07-09 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Loose coupling with AI Catalog agreed.
 - 2026-07-09 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Loose coupling with ARD agreed.
 - 2026-07-09 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): The Associated Press joined as the first US-based founding member.
+- 2026-06-25 [MCP Financial Services Interest Group](https://www.olahungerford.com/content-provenance/#mcp-fsig): Charter merged ([#2979](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2979)).
 - 2026-06-18 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): Extension announced as stable.
 - 2026-06-17 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Announced by Google.
 - 2026-06-16 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): v0.9 (Draft).
