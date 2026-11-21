@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-20. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
+79 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-21. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -529,7 +529,7 @@ Linked from: [Shared AI training robots.txt token](#aipref-training-token)
 - Feed: https://c2pa.org/feed/
 - Take part: [membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)
 - Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text
-- Updated: 2026-11-20
+- Updated: 2026-11-21
 - Explorer: https://www.olahungerford.com/content-provenance/#c2pa
 
 Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [Content Authenticity Initiative](#content-authenticity-initiative).
@@ -537,7 +537,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 #### Topics
 
 - **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.
-- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method "remains under review", and partially copied text counts as having no manifest. [Encypher](#encypher) sells sentence-level marking on top of it. 2.5 added Appendix A.9.3 guidance for JSON, which [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) relies on. The conformance text rubric has no JSON group yet.
+- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method "remains under review", and partially copied text counts as having no manifest. [Encypher](#encypher) sells sentence-level marking on top of it. 2.5 added [Appendix A.9.3](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_guidance_for_json_based_formats), "Guidance for JSON-Based Formats", which says a JSON format "can define their own extension point" and gives a `c2pa_credential` root member as an example (read 2026-11-21). [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) relies on it, and the spec does not name MCP. The conformance text rubric has no JSON group yet.
 - **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.
 - **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).
 - **Signer trust**: deciding who may sign, through a trust list and a conformance program.
@@ -574,7 +574,7 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2P
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/proposal, layer/provenance, stage/in-transit, venue/mcp
-- Updated: 2026-11-20
+- Updated: 2026-11-21
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta
 
 Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` under `org.c2pa/credential`.
@@ -582,7 +582,7 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 #### Topics
 
 - **Provenance in transit**: keeping a credential attached as content crosses from server to client.
-- **A venue**: finding an owner. The [MCP Financial Services Interest Group](#mcp-fsig) lists data lineage and provenance for its sector and the Scientific Computing IG lists provenance of computed results. No WG or IG covers content provenance in general, and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.
+- **A venue**: finding an owner. The [MCP Financial Services Interest Group](#mcp-fsig) lists data lineage and citation for its sector and the Scientific Computing IG lists provenance of computed results. No WG or IG covers content provenance in general, and [PR 3336](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3336) requires a WG or IG thread before a SEP PR.
 - **Track choice**: deciding between an `experimental-ext-` repo under SEP-3392 and a Standards Track SEP.
 - **Where the field lives**: choosing between a top-level field and `_meta`.
 
@@ -594,7 +594,7 @@ Carry a [C2PA](#c2pa) credential for tool results and resources in MCP `_meta` u
 
 #### History
 
-- 2026-09-25: Discussion closed when the spec repo limited Discussions to meeting notes.
+- 2026-09-25: Discussion closed when the spec repo limited Discussions to meeting notes ([closing comment](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225#discussioncomment-18603053)).
 
 Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA](#c2pa), [MCP Interceptors WG and SEP-2624](#mcp-interceptors), [MCP Security Interest Group](#mcp-security-ig), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [OpenTelemetry for MCP](#otel-mcp)
 
@@ -1539,22 +1539,28 @@ Linked from: [IETF](#ietf)
 - Id: mcp-fsig
 - Also known as: FSIG
 - Type: interest-group
-- Status: Charter has a data lineage and citation pillar
+- Status: Charter amended 2026-11-21 to a problem-first forum that routes gaps to Working Groups; data lineage and citation stays in scope
 - Part of: [Model Context Protocol](#mcp)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication)
 - Tags: type/interest-group, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-20
+- Updated: 2026-11-21
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-fsig
 
-Financial-services interest group. Its charter also has an audit and attestation pillar, which these cards do not cover.
+Financial-services interest group. Its charter also covers auditability and operational control, which these cards do not cover.
 
 #### Topics
 
 - **Regulated data lineage and citation**: tracing financial data through agents. A lineage key for [OpenLineage](#openlineage) was presented on 2026-09-24 ([meeting notes](https://docs.google.com/document/d/19HwCw7i4k-omABGnRYGGuLdMJNXQc3rs_QRgJxPhQU8/edit)) and filed as [issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16) on 2026-10-08.
+- **Charter scope**: the [charter](https://modelcontextprotocol.io/community/interest-groups/financial-services) lists "Data lineage and citation" and "Data handling" for results that carry usage or redistribution restrictions. It says the group "does not independently sponsor SEPs" and brings unresolved gaps to a Working Group. It meets monthly.
 
 #### Related
 
 - [SEP-3094 Granular Citations](#mcp-sep-3094-citations) was item 9 on the agenda of the 2026-09-24 meeting. The notes record no discussion of it. "Granular Citations" is listed as a topic for the lineage RFC.
+
+#### History
+
+- 2026-11-21: Charter amended to problem-first scope and Working Group referrals ([#3572](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3572)). The earlier text listed "source attribution, citation, and consent metadata" and finance-specific extensions.
+- 2026-06-25: Charter merged ([#2979](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2979)).
 
 Linked from: [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Model Context Protocol](#mcp), [OpenLineage](#openlineage), [SEP-3094 Granular Citations](#mcp-sep-3094-citations)
 
@@ -1724,14 +1730,14 @@ Linked from: [IETF AI Preferences Working Group](#ietf-aipref)
 - Part of: [Agentic AI Foundation](#aaif)
 - Take part: [MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)
 - Tags: type/specification, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-20
+- Updated: 2026-11-21
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp
 
 The protocol between agents and the tools, resources, prompts and skills they read. MCP is the hop where content provenance can be carried or lost.
 
 #### Topics
 
-- **Content provenance ownership**: no WG owns content provenance or attribution. The [MCP Financial Services Interest Group](#mcp-fsig) charter covers "source attribution, citation, and consent metadata" for data surfaced through MCP. The Scientific Computing IG charter covers reproducibility and provenance of computed results.
+- **Content provenance ownership**: no WG owns content provenance or attribution. The [MCP Financial Services Interest Group](#mcp-fsig) charter covers "Data lineage and citation" for financial data returned through MCP. The Scientific Computing IG charter covers reproducibility and provenance of computed results.
 - **Usage declarations**: no field lets a server declare how its content may be used for training or grounding.
 - **Credit reporting**: nothing reports display or credit past the last hop ([Content Telemetry](#content-telemetry)).
 
