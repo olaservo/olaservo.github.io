@@ -9,8 +9,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "aaif",
   "status": "Chartered 2026-05-15; catalogs specs rather than authoring one",
-  "participate": "[GitHub issues](https://github.com/aaif/wg-agentic-commerce/issues)",
-  "updated": "2026-11-15",
+  "contribute": "[GitHub issues](https://github.com/aaif/wg-agentic-commerce/issues)",
+  "discussion": "[Discord channel](https://discord.com/channels/1461090924791595243/1463637051546140918), [mailing list](https://lists.aaif.io/g/wg-agentic-commerce)",
+  "meetings": "[meeting schedule](https://github.com/aaif/wg-agentic-commerce#meetings), [working group calendar](https://aaif.io/working-groups/calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/payments"
@@ -61,8 +63,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "aaif",
   "status": "",
-  "participate": "[GitHub issues](https://github.com/aaif/wg-governance-risk-and-regulatory/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/aaif/wg-governance-risk-and-regulatory/issues)",
+  "discussion": "[Discord channel](https://discord.com/channels/1461090924791595243/1464021069840122006), [mailing list](https://lists.aaif.io/g/wg-governance-risk-regulatory)",
+  "meetings": "[meeting schedule](https://github.com/aaif/wg-governance-risk-and-regulatory#meetings), [working group calendar](https://aaif.io/working-groups/calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/governance"
@@ -94,8 +98,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "aaif",
   "status": "Chartered 2026-05-12",
-  "participate": "[GitHub issues](https://github.com/aaif/wg-identity-and-trust/issues)",
-  "updated": "2026-11-16",
+  "contribute": "[GitHub issues](https://github.com/aaif/wg-identity-and-trust/issues)",
+  "discussion": "[Discord channel](https://discord.com/channels/1461090924791595243/1463637083737296979), [mailing list](https://lists.aaif.io/g/wg-identity-trust)",
+  "meetings": "[meeting schedule](https://github.com/aaif/wg-identity-and-trust#meetings), [working group calendar](https://aaif.io/working-groups/calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -147,8 +153,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "aaif",
   "status": "Nine-task Agent Behavior Trace Model plan; provenance initiative lead named 2026-09-02; proposal joining OTel GenAI telemetry to signed evidence records opened 2026-10-28; trace model proposal well received at the OTel GenAI SIG 2026-11-11",
-  "participate": "[GitHub issues](https://github.com/aaif/wg-observability-and-traceability/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/aaif/wg-observability-and-traceability/issues)",
+  "discussion": "[Discord channel](https://discord.com/channels/1461090924791595243/1464020789350240266), [mailing list](https://lists.aaif.io/g/wg-observability-traceability)",
+  "meetings": "[meeting schedule](https://github.com/aaif/wg-observability-and-traceability#meetings), [working group calendar](https://aaif.io/working-groups/calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -214,8 +222,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "aaif",
   "status": "",
-  "participate": "[GitHub issues](https://github.com/aaif/wg-security-and-privacy/issues)",
-  "updated": "2026-11-16",
+  "contribute": "[GitHub issues](https://github.com/aaif/wg-security-and-privacy/issues)",
+  "discussion": "[Discord channel](https://discord.com/channels/1461090924791595243/1463637113831686154), [mailing list](https://lists.aaif.io/g/wg-security-privacy)",
+  "meetings": "[meeting schedule](https://github.com/aaif/wg-security-and-privacy#meetings), [working group calendar](https://aaif.io/working-groups/calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/governance",
@@ -260,7 +270,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "openattribution",
   "status": "v0.1 draft",
-  "participate": "[GitHub issues](https://github.com/openattribution-org/aims/issues)",
+  "contribute": "[GitHub issues](https://github.com/openattribution-org/aims/issues)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-16",
   "tags": [
    "type/specification",
@@ -312,8 +324,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Donated by Google to the FIDO Alliance",
-  "participate": "[GitHub](https://github.com/google-agentic-commerce/AP2)",
-  "updated": "2026-11-17",
+  "contribute": "[GitHub](https://github.com/google-agentic-commerce/AP2)",
+  "discussion": "[GitHub discussions](https://github.com/google-agentic-commerce/AP2/discussions)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/payments",
@@ -349,8 +363,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "1.0.0 published 2026-08-06; 1.1.0 is a working draft; AAIF Technical Committee approved it as a Growth-stage project 2026-10-27, Governing Board vote pending; steering committee from Amazon, Cursor, Microsoft, OpenAI and Vercel",
-  "participate": "[GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues), [GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/agentplugins/agent-plugins-spec/issues)",
+  "discussion": "[GitHub discussions](https://github.com/agentplugins/agent-plugins-spec/discussions), [Agent Plugins Discord](https://discord.gg/692jE8wsmj)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -423,8 +439,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "aaif",
   "status": "Joined AAIF 2026-10-22",
-  "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
-  "updated": "2026-11-16",
+  "contribute": "[contributing guide](https://github.com/agentskills/agentskills/blob/main/CONTRIBUTING.md)",
+  "discussion": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions), [Agent Skills Discord](https://discord.gg/MKPE9g8aUy)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "topic/skills",
@@ -458,6 +476,7 @@ window.CARDS = [
    "agent-skills-signing",
    "aaif",
    "ai-catalog",
+   "mcp-progressive-disclosure-wg",
    "mcp-skills-extension",
    "skills-marketplace"
   ],
@@ -486,8 +505,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "agent-skills",
   "status": "Seven open discussions in Ideas, none answered by a listed maintainer, no convergence",
-  "participate": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/proposal",
    "layer/provenance",
@@ -565,8 +586,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Linux Foundation; ten hosted projects in its first year",
-  "participate": "[working group repos on GitHub](https://github.com/aaif)",
-  "updated": "2026-11-17",
+  "contribute": "[working group repos on GitHub](https://github.com/aaif)",
+  "discussion": "[AAIF Discord](https://discord.com/invite/9zTwngHAMy)",
+  "meetings": "[working group calendar](https://aaif.io/working-groups/calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/governance"
@@ -615,8 +638,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Beta; maintained by OpenAI, Stripe and Meta (Meta since 2026-04-24); latest spec 2026-04-17",
-  "participate": "[GitHub issues](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/issues)",
+  "discussion": "[GitHub discussions](https://github.com/agentic-commerce-protocol/agentic-commerce-protocol/discussions)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -662,8 +687,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "v0.91 dated 2026-08-26, marked Proposal",
-  "participate": "[GitHub issues](https://github.com/ards-project/ard-spec/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/ards-project/ard-spec/issues)",
+  "discussion": "[Discord](https://discord.gg/2TK3Tnn27R)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/identity",
@@ -731,8 +758,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "ADR-0028 (open catalog and entry objects) accepted on the 2026-11-05 AI Catalog call and merged into the spec 2026-11-11; independently signed trust manifest contributions merged 2026-10-28",
-  "participate": "[GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/Agent-Card/ai-catalog/issues)",
+  "discussion": "[GitHub discussions](https://github.com/Agent-Card/ai-catalog/discussions)",
+  "meetings": "[TSC meetings](https://github.com/Agent-Card/ai-catalog/blob/main/GOVERNANCE.md#tsc-meetings)",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -808,7 +837,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Convenings at Bellagio (April 2026), Foo Camp (June and October 2026), Microsoft Research New York (September 2026)",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -867,8 +898,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "",
-  "participate": "[GitHub issues](https://github.com/ai-robots-txt/ai.robots.txt/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/ai-robots-txt/ai.robots.txt/issues)",
+  "discussion": "[GitHub discussions](https://github.com/ai-robots-txt/ai.robots.txt/discussions)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "layer/access"
@@ -920,7 +953,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Spec 2.5 published October 2026",
-  "participate": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
+  "contribute": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-21",
   "tags": [
    "type/organization",
@@ -1002,7 +1037,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "Discussion closed 2026-09-25 when the spec repo limited Discussions to meeting notes; no SEP filed yet",
-  "participate": "[the discussion thread](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
+  "contribute": "",
+  "discussion": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
+  "meetings": "",
   "updated": "2026-11-21",
   "tags": [
    "type/proposal",
@@ -1064,8 +1101,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "creative-commons",
   "status": "Public alpha planned for early 2027, starting with SourceConnection (announced 2026-11-16); the GitHub draft is unchanged since 2025-12-04",
-  "participate": "[GitHub issues](https://github.com/creativecommons/cc-signals/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/creativecommons/cc-signals/issues)",
+  "discussion": "[GitHub discussions](https://github.com/creativecommons/cc-signals/discussions), [CC community Zulip](https://creativecommons.org/community/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/proposal",
    "layer/access",
@@ -1130,7 +1169,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Asks policymakers for licensing, transparency and an effective opt-out from data mining exceptions (AI page read 2026-11-15)",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -1200,8 +1241,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Individual AIPREF draft, shown as expired on Datatracker (read 2026-11-15); parsed by policycheck",
-  "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/proposal",
    "layer/access"
@@ -1243,8 +1286,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Maintains c2pa-rs, c2pa-python, c2pa-js and c2patool",
-  "participate": "[join CAI](https://contentauthenticity.org/join), [GitHub](https://github.com/contentauth)",
-  "updated": "2026-11-17",
+  "contribute": "[GitHub](https://github.com/contentauth)",
+  "discussion": "[Discord](https://opensource.contentauthenticity.org/docs/community-resources#discussions-on-discord)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "layer/provenance"
@@ -1281,7 +1326,9 @@ window.CARDS = [
   ],
   "part_of": "spur-coalition",
   "status": "v1.0 published 2026-09-02; per-event signing is informational (section 8.4) and manifest signing is deferred (section 8.9)",
-  "participate": "[GitHub issues](https://github.com/SPUR-Coalition/telemetry/issues)",
+  "contribute": "[GitHub issues](https://github.com/SPUR-Coalition/telemetry/issues)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/specification",
@@ -1356,8 +1403,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Phase two of its AI best practice published 2026-10-23; it says the guidelines are aligned with the SPUR telemetry framework",
-  "participate": "[membership](https://www.countermetrics.org/members/)",
-  "updated": "2026-11-20",
+  "contribute": "[membership](https://www.countermetrics.org/members/)",
+  "discussion": "[Community listserv](https://groups.google.com/a/countermetrics.org/g/Community/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/attribution"
@@ -1415,8 +1464,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "CC Signals public alpha planned for early 2027, starting with SourceConnection (announced 2026-11-16)",
-  "participate": "[contact](https://creativecommons.org/mission/contact/)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "[community Zulip](https://creativecommons.org/community/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -1461,8 +1512,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "dif",
   "status": "Moved under DIF; consent assertion started as a placeholder draft 2026-07-12",
-  "participate": "[spec repositories](https://github.com/orgs/decentralized-identity/repositories?q=cawg), via DIF membership",
-  "updated": "2026-11-20",
+  "contribute": "[spec repositories](https://github.com/orgs/decentralized-identity/repositories?q=cawg), [membership](https://cawg.io/membership/)",
+  "discussion": "[cawg mailing list](https://lists.identity.foundation/g/cawg)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -1530,8 +1583,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "1.1 published 2026-01-29 and announced 2026-02-12; required for NeurIPS 2026 dataset submissions",
-  "participate": "[GitHub issues](https://github.com/mlcommons/croissant/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/mlcommons/croissant/issues), [join the working group](https://mlcommons.org/community/subscribe/)",
+  "discussion": "[Discord](https://discord.gg/59UkrvQAbh), [users forum](https://groups.google.com/a/mlcommons.org/g/croissant-users)",
+  "meetings": "[working group meetings](https://mlcommons.org/working-groups/data/croissant/)",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/provenance",
@@ -1585,7 +1640,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Last code push 2025-03",
-  "participate": "[GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)",
+  "contribute": "[GitHub](https://github.com/Data-Provenance-Initiative/Data-Provenance-Collection)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-16",
   "tags": [
    "type/project",
@@ -1624,8 +1681,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "2025-1 released 2025-08-29 and considered stable; second errata tagged 2026-09-11",
-  "participate": "[GitHub issues](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/issues)",
-  "updated": "2026-11-17",
+  "contribute": "[GitHub issues](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/issues)",
+  "discussion": "[GitHub Discussions](https://github.com/eclipse-dataspace-protocol-base/DataspaceProtocol/discussions), [mailing list](https://accounts.eclipse.org/mailing-list/dataspace-protocol-base-dev)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -1680,8 +1739,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Generative AI Declaration Standard (GAI-D) committee draft finished member comments and goes to peer review next, with publication expected in early 2027 (announced 2026-11-05)",
-  "participate": "[working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members",
-  "updated": "2026-11-20",
+  "contribute": "[working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -1753,8 +1814,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Hosts CAWG",
-  "participate": "[join DIF](https://identity.foundation/join/)",
-  "updated": "2026-11-17",
+  "contribute": "[join DIF](https://identity.foundation/join/)",
+  "discussion": "[mailing lists](https://lists.identity.foundation/)",
+  "meetings": "[DIF calendar](https://calendar.google.com/calendar/u/0/embed?src=decentralized.identity@gmail.com)",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/identity"
@@ -1800,7 +1863,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "The Atlantic plans to implement its text marking, announced 2026-11-11 with no rollout date",
-  "participate": "[c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)",
+  "contribute": "[c2pa-text issues](https://github.com/encypherai/c2pa-text/issues)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -1867,8 +1932,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "Stable since 2026-06-18; its interest group was folded into the Authorization IG on 2026-08-17",
-  "participate": "[ext-auth issues](https://github.com/modelcontextprotocol/ext-auth/issues), [Authorization IG charter](https://modelcontextprotocol.io/community/interest-groups/auth)",
-  "updated": "2026-11-17",
+  "contribute": "[ext-auth issues](https://github.com/modelcontextprotocol/ext-auth/issues), [Authorization IG charter](https://modelcontextprotocol.io/community/interest-groups/auth)",
+  "discussion": "[Discord #auth-ig](https://discord.com/channels/1358869848138059966/1360835991749001368)",
+  "meetings": "[community calendar: auth-ig](https://meet.modelcontextprotocol.io/tag/auth-ig)",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -1931,7 +1998,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Opt-out protocol consultation closed 2026-01-23; the Commission has not published its list of generally agreed protocols (searched 2026-11-20); Article 50 applies from 2026-08-02",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/regulation",
@@ -2012,8 +2081,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Quiet since 2024. Its sitemap shows no page changed after 2024-12-17, and the newest blog post is dated 2024-08-01 (read 2026-11-15)",
-  "participate": "[apply for certification](https://www.fairlytrained.org/apply)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/licensing"
@@ -2075,7 +2146,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Won at Munich Regional Court against OpenAI (2025-11-11, under appeal) and Suno (2026-07-31, not final)",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -2168,8 +2241,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "MCP service available to partners and developers since January 2026",
-  "participate": "[integrator documentation](https://docs.getfulltextresearch.com/latest/integrators/mcp-service), [publishers](https://www.getfulltextresearch.com/why-publishers-should-join)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "layer/access",
@@ -2223,7 +2298,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Policies on Google's publisher page, with no public description of the MERU message format (read 2026-11-17); COUNTER mapped MERU to its AI metrics by 2026-09-18 and published the guidance on 2026-10-23",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/project",
@@ -2288,8 +2365,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "1.0 final 2026-04-28",
-  "participate": "[GitHub issues](https://github.com/IABTechLab/CoMP/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/IABTechLab/CoMP/issues), [CoMP working group](https://iabtechlab.com/working-groups/content-monetization-protocols-comp-for-ai-working-group/)",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -2343,8 +2422,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "IETF 127 San Francisco, November 2026",
-  "participate": "[how to participate](https://www.ietf.org/participate/)",
-  "updated": "2026-11-17",
+  "contribute": "[how to participate](https://www.ietf.org/participate/)",
+  "discussion": "[mailing lists](https://www.ietf.org/participate/lists/), [ietf mailing list](https://mailarchive.ietf.org/arch/browse/ietf/)",
+  "meetings": "[upcoming meetings](https://datatracker.ietf.org/meeting/upcoming)",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/access",
@@ -2386,8 +2467,10 @@ window.CARDS = [
   ],
   "part_of": "ietf",
   "status": "vocab-08 (2026-09-14) without consensus; attach-05 (2026-08-19); IETF 127 sessions 2026-11-16 and 11-19; issues 245 and 246 closed 2026-11-19",
-  "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/ietf-wg-aipref/drafts/issues)",
+  "discussion": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/), [Zulip](https://zulip.ietf.org/#narrow/stream/aipref)",
+  "meetings": "[meetings](https://datatracker.ietf.org/wg/aipref/meetings/)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/access",
@@ -2467,8 +2550,10 @@ window.CARDS = [
   ],
   "part_of": "ietf",
   "status": "WG draft httpsig-protocol-01 (2026-10-29); Cloudflare libraries",
-  "participate": "[web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/webbotauth/draft-ietf-webbotauth-httpsig-protocol/issues)",
+  "discussion": "[web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/), [Zulip](https://zulip.ietf.org/#narrow/stream/webbotauth)",
+  "meetings": "[meetings](https://datatracker.ietf.org/wg/webbotauth/meetings/)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -2523,8 +2608,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Launched 2026-11-12 with Yahoo Scout as first commercial licensee",
-  "participate": "[publishers](https://internetcollective.org/publishers), [AI companies](https://internetcollective.org/ai-companies)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -2591,8 +2678,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "RightsML and the Data Mining property; Verified News Publishers List; answered the EU opt-out consultation",
-  "participate": "",
-  "updated": "2026-11-17",
+  "contribute": "[membership](https://iptc.org/participate/membership/)",
+  "discussion": "[public discussion forums](https://iptc.org/about-iptc/working-groups/), [RightsML forum](https://groups.io/g/iptc-rightsml)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -2643,8 +2732,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "niso",
   "status": "Phase III (NISO RP-9-2026) published 2026-08-26",
-  "participate": "[KBART Standing Committee](https://www.niso.org/standards-committees/kbart)",
-  "updated": "2026-11-17",
+  "contribute": "[KBART Standing Committee](https://www.niso.org/standards-committees/kbart)",
+  "discussion": "[KBART Interest Group](https://groups.google.com/a/niso.org/g/kbart-interest/about)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/access",
@@ -2710,7 +2801,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -2745,8 +2838,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Individual IETF draft, draft-httpauth-payment-01 (2026-09-09), active on Datatracker; the earlier draft-ryan-httpauth-payment expired 2026-09-19 (read 2026-11-16); not a WG item",
-  "participate": "",
-  "updated": "2026-11-16",
+  "contribute": "[GitHub issues](https://github.com/tempoxyz/mpp-specs/issues)",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -2780,7 +2875,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "Charter amended 2026-11-21 to a problem-first forum that routes gaps to Working Groups; data lineage and citation stays in scope",
-  "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
+  "contribute": "[FSIG charter](https://modelcontextprotocol.io/community/interest-groups/financial-services), [FSIG issues](https://github.com/modelcontextprotocol/financial-services-interest-group/issues)",
+  "discussion": "[Discord #financial-services-ig](https://discord.gg/modelcontextprotocol)",
+  "meetings": "[community calendar: finance](https://meet.modelcontextprotocol.io/tag/finance)",
   "updated": "2026-11-21",
   "tags": [
    "type/interest-group",
@@ -2839,8 +2936,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "SEP open; chain concept removed 2026-10-27; `signature` on ValidationResult reserved",
-  "participate": "[SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-16",
+  "contribute": "[SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [experimental-ext-interceptors](https://github.com/modelcontextprotocol/experimental-ext-interceptors)",
+  "discussion": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
+  "meetings": "[community calendar: interceptors-wg](https://meet.modelcontextprotocol.io/tag/interceptors-wg)",
+  "updated": "2026-11-21",
   "tags": [
    "type/working-group",
    "venue/mcp",
@@ -2882,6 +2981,74 @@ window.CARDS = [
   ]
  },
  {
+  "id": "mcp-progressive-disclosure-wg",
+  "name": "MCP Progressive Disclosure WG",
+  "aliases": [
+   "Progressive Disclosure Working Group",
+   "Primitive Grouping IG"
+  ],
+  "type": "working-group",
+  "website": "https://modelcontextprotocol.io/community/working-groups/progressive-disclosure",
+  "news": [],
+  "feed": [],
+  "part_of": "mcp",
+  "status": "Draft SEP for an `io.modelcontextprotocol/groups` extension open as a PR in the WG repository since 2026-09-28; not yet filed in the specification repository. The Core Primitives WG charter, open since 2026-11-11 (PR 3545), hands progressive discovery to this WG",
+  "contribute": "[draft groups SEP](https://github.com/modelcontextprotocol/progressive-disclosure-wg/pull/19), [WG repository](https://github.com/modelcontextprotocol/progressive-disclosure-wg)",
+  "discussion": "[Discord #progressive-disclosure-wg](https://discord.com/channels/1358869848138059966/1425903819186770064), [GitHub discussions](https://github.com/modelcontextprotocol/progressive-disclosure-wg/discussions)",
+  "meetings": "[community calendar: progressive-disclosure-wg](https://meet.modelcontextprotocol.io/tag/progressive-disclosure-wg)",
+  "updated": "2026-11-21",
+  "tags": [
+   "type/working-group",
+   "venue/mcp",
+   "topic/skills"
+  ],
+  "summary": "Working group exploring how a server's tools, resources, prompts and tasks can be organized beyond flat lists, so a client loads a small entry point first and the full definitions only when it needs them. Its problem statement uses CLIs and [[agent-skills]] as examples of this loading pattern. For skills, a client sees each skill's name and description, loads `SKILL.md` when the skill is activated, and loads supporting files during execution. It says MCP has no equivalent for its own primitives.",
+  "sections": [
+   {
+    "title": "Topics",
+    "text": "- **Loading primitives the way skills load**: long lists of primitives fill a model's context and cost tokens. The WG supports reference extensions for several approaches, such as grouping, tool search and code mode, and feeds recommendations into the SEP process.\n- **A `group` primitive**: the draft SEP defines a group as a named bundle that a server lists with `groups/list`. `groups/get` returns the group's scoped tools, prompts, resources and nested groups, with optional `instructions`, in one stateless call. Scoped primitives stay out of `tools/list`, `prompts/list` and `resources/list`.\n- **Groups and skills**: a positioning draft says Groups borrows its design from Agent Skills, applied to MCP primitives. It lists three options for how Groups relates to the [[mcp-skills-extension]]: competing standards, complementary standards, or renaming Groups to Skills as a \"Skills v2\". It says the complementary option got the most votes in the initial WG discussion and that renaming remains a competitive alternative ([PR 22](https://github.com/modelcontextprotocol/progressive-disclosure-wg/pull/22), open)."
+   },
+   {
+    "title": "Related",
+    "text": "- The charter lists the Skills Over MCP WG and the [[mcp-skills-extension]] as related, saying skill discovery and progressive disclosure overlap with grouping. The Skills Over MCP charter lists this WG in return.\n- Organizing MCP servers is out of scope. The charter leaves server discovery to the [[mcp-registry]] WG.\n- The MCP roadmap assigns \"progressive discovery\" of a server's tools and resources to the Core Primitives WG. The draft Core Primitives charter ([PR 3545](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3545), open) says progressive discovery is handled by this WG."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-10-30: Positioning draft on Groups and Skills over MCP opened as PR 22.\n- 2026-10-26: The WG agreed to keep `group` as the primitive name, with stateless `groups/list` and `groups/get`, `description` as the \"when to use\" field and optional `instructions` ([meeting notes](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3458)). The decision log recorded these the next day.\n- 2026-09-28: Draft groups SEP opened as PR 19.\n- 2026-09-21: Renamed from the Primitive Grouping Interest Group and converted to a Working Group.\n- 2026-06-18: Initial charter, as the Primitive Grouping Interest Group."
+   }
+  ],
+  "links": [
+   "agent-skills",
+   "mcp-skills-extension",
+   "mcp-registry",
+   "mcp"
+  ],
+  "compares": [],
+  "backlinks": [],
+  "history": [
+   {
+    "date": "2026-10-30",
+    "text": "Positioning draft on Groups and Skills over MCP opened as PR 22."
+   },
+   {
+    "date": "2026-10-26",
+    "text": "The WG agreed to keep `group` as the primitive name, with stateless `groups/list` and `groups/get`, `description` as the \"when to use\" field and optional `instructions` ([meeting notes](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3458)). The decision log recorded these the next day."
+   },
+   {
+    "date": "2026-09-28",
+    "text": "Draft groups SEP opened as PR 19."
+   },
+   {
+    "date": "2026-09-21",
+    "text": "Renamed from the Primitive Grouping Interest Group and converted to a Working Group."
+   },
+   {
+    "date": "2026-06-18",
+    "text": "Initial charter, as the Primitive Grouping Interest Group."
+   }
+  ]
+ },
+ {
   "id": "mcp-registry",
   "name": "MCP Registry",
   "aliases": [
@@ -2894,8 +3061,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "In preview since 2025-09-08; registry release v1.8.10 dated 2026-11-20",
-  "participate": "[registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)",
-  "updated": "2026-11-20",
+  "contribute": "[registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)",
+  "discussion": "[Discord #registry-dev](https://discord.gg/modelcontextprotocol), [registry discussions](https://github.com/modelcontextprotocol/registry/discussions)",
+  "meetings": "[community calendar: registry-dev](https://meet.modelcontextprotocol.io/tag/registry-dev)",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "venue/mcp",
@@ -2935,6 +3104,7 @@ window.CARDS = [
   ],
   "backlinks": [
    "kbart",
+   "mcp-progressive-disclosure-wg",
    "mcp",
    "mcp-server-cards"
   ],
@@ -2955,8 +3125,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "Restructured as a routing group, decided 2026-08-26 and merged into the charter 2026-10-31; monthly agenda-driven call",
-  "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-16",
+  "contribute": "[Security IG charter](https://modelcontextprotocol.io/community/interest-groups/security)",
+  "discussion": "[Discord #security-ig](https://discord.com/channels/1358869848138059966/1379811011669921883)",
+  "meetings": "[meeting schedule](https://modelcontextprotocol.io/community/interest-groups/security#operations)",
+  "updated": "2026-11-21",
   "tags": [
    "type/interest-group",
    "venue/mcp",
@@ -3010,7 +3182,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Pilot announced 2026-02-03, with Copilot grounding answers in licensed content; no public spec",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/project",
@@ -3064,7 +3238,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Announced 2026-10-30; effective 2027-02-01; NoArchive and NoCache stop being read as preferences after 2027-03-01",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/proposal",
@@ -3117,7 +3293,9 @@ window.CARDS = [
   ],
   "part_of": "aaif",
   "status": "Next spec release moved to 2027-03-30 (SEP-3398); SEPs need Working Group or Core Maintainer sponsorship",
-  "participate": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [GitHub discussions](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions)",
+  "contribute": "[contributing guide](https://modelcontextprotocol.io/community/contributing), [SEP guidelines](https://modelcontextprotocol.io/community/sep-guidelines)",
+  "discussion": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [MCP Contributor Discord](https://discord.gg/modelcontextprotocol)",
+  "meetings": "[meeting calendar](https://meet.modelcontextprotocol.io/)",
   "updated": "2026-11-21",
   "tags": [
    "type/specification",
@@ -3172,6 +3350,7 @@ window.CARDS = [
    "getftr",
    "mcp-fsig",
    "mcp-interceptors",
+   "mcp-progressive-disclosure-wg",
    "mcp-registry",
    "mcp-security-ig",
    "otel-mcp",
@@ -3195,7 +3374,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Provenance and attribution pilot announced October 2026, first planned for twelve months and possibly shorter (2026-11 letter); KBART Phase III published 2026-08-26",
-  "participate": "[NISO standards committees](https://www.niso.org/standards-committees)",
+  "contribute": "[NISO standards committees](https://www.niso.org/standards-committees)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -3263,7 +3444,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-17",
   "tags": [
    "type/organization",
@@ -3307,8 +3490,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "MCP Labs (mcp.okfn.org) live; okfn/mcp-server uses structuredContent.sources",
-  "participate": "[okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)",
-  "updated": "2026-11-20",
+  "contribute": "[okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)",
+  "discussion": "[forum](https://discuss.okfn.org/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/attribution",
@@ -3360,7 +3545,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "policycheck, commerce profile, AIMS draft",
-  "participate": "[GitHub](https://github.com/openattribution-org)",
+  "contribute": "[GitHub](https://github.com/openattribution-org)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-17",
   "tags": [
    "type/organization",
@@ -3409,8 +3596,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "RFC 4484 open (updated 2026-10-07); BearingNode proposed an MCP `_meta` lineage key to the FSIG 2026-10-08",
-  "participate": "[GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)",
-  "updated": "2026-11-17",
+  "contribute": "[GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)",
+  "discussion": "[Slack](https://openlineage.io/community/), [mailing list](https://lists.lfaidata.foundation/g/openlineage-tsc), [GitHub Discussions](https://github.com/OpenLineage/OpenLineage/discussions)",
+  "meetings": "[TSC meetings](https://openlineage.io/meetings/), [community calendar](https://zoom-lfx.platform.linuxfoundation.org/meetings/open-lineage?view=week)",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "layer/provenance",
@@ -3476,8 +3665,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Conventions in Development; built into the Python SDK since v2.0.0; merged for the TypeScript SDK 2026-10-31, not yet released",
-  "participate": "[semantic-conventions-genai issues](https://github.com/open-telemetry/semantic-conventions-genai/issues), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-20",
+  "contribute": "[semantic-conventions-genai issues](https://github.com/open-telemetry/semantic-conventions-genai/issues)",
+  "discussion": "[Slack #otel-genai-instrumentation](https://cloud-native.slack.com/archives/C06KR7ARS3X)",
+  "meetings": "[GenAI SIG meetings](https://github.com/open-telemetry/community/blob/main/sigs.md#semantic-conventions-and-instrumentation-genai), [community calendar](https://calendar.google.com/calendar/embed?src=c_2bf73e3b6b530da4babd444e72b76a6ad893a5c3f43cf40467abc7a9a897f977%40group.calendar.google.com)",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3541,8 +3732,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "",
-  "participate": "[GitHub](https://github.com/projnanda)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub](https://github.com/projnanda)",
+  "discussion": "[Discord](https://discord.gg/BxnPBEqd88)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "layer/identity",
@@ -3578,8 +3771,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "RSL 1.0 published 2025-12-10; the collective behind it relaunched as the Internet Licensing Collective 2026-11-12",
-  "participate": "[GitHub](https://github.com/rslstandard)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub](https://github.com/rslstandard)",
+  "discussion": "[GitHub discussions](https://github.com/rslstandard/rsl/discussions)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/licensing",
@@ -3652,8 +3847,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Lists 16 reserving rightsholders, with its company file at version 31 (read 2026-11-16)",
-  "participate": "[add a company to the declaration](https://www.rightsandai.com)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/project",
    "layer/access",
@@ -3711,8 +3908,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "SEP-2127 is Final and its PR merged 2026-10-06; SEP-3392 (merged 2026-10-29) classifies ext-server-card as Beta; the extension repository README still says Experimental",
-  "participate": "[ext-server-card issues](https://github.com/modelcontextprotocol/ext-server-card/issues), [Server Card WG charter](https://modelcontextprotocol.io/community/working-groups/server-card)",
-  "updated": "2026-11-20",
+  "contribute": "[ext-server-card issues](https://github.com/modelcontextprotocol/ext-server-card/issues), [Server Card WG charter](https://modelcontextprotocol.io/community/working-groups/server-card)",
+  "discussion": "[Discord #server-card-wg](https://discord.com/channels/1358869848138059966/1399986204405141534)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3774,8 +3973,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "Final 2026-09-13; Beta under SEP-3392",
-  "participate": "[SEP-2640 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-16",
+  "contribute": "[ext-skills issues](https://github.com/modelcontextprotocol/ext-skills/issues)",
+  "discussion": "[Discord #skills-over-mcp-wg](https://discord.com/channels/1358869848138059966/1464745826629976084)",
+  "meetings": "[community calendar: skills-over-mcp-wg](https://meet.modelcontextprotocol.io/tag/skills-over-mcp-wg)",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3807,6 +4008,7 @@ window.CARDS = [
   "backlinks": [
    "agent-plugins",
    "agent-skills-signing",
+   "mcp-progressive-disclosure-wg",
    "mcp"
   ],
   "history": [
@@ -3829,8 +4031,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "mcp",
   "status": "Closed without merging 2026-11-08; the author plans to take it to the Core Primitives WG on 2026-11-23",
-  "participate": "[SEP-3094 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3094), [MCP community channels](https://modelcontextprotocol.io/community/communication)",
-  "updated": "2026-11-20",
+  "contribute": "[Core Primitives WG repository](https://github.com/modelcontextprotocol/core-primitives-wg)",
+  "discussion": "[Discord #core-primitives-wg](https://discord.gg/modelcontextprotocol)",
+  "meetings": "[community calendar: core-primitives-wg](https://meet.modelcontextprotocol.io/tag/core-primitives-wg)",
+  "updated": "2026-11-21",
   "tags": [
    "type/proposal",
    "venue/mcp",
@@ -3904,8 +4108,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "ietf-aipref",
   "status": "Individual draft -01 posted 2026-11-16; Google, OpenAI, Microsoft and Anthropic committed to honor it; Microsoft starts 2027-02-01 and Google plans early 2027",
-  "participate": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
-  "updated": "2026-11-20",
+  "contribute": "",
+  "discussion": "[ai-control mailing list](https://mailarchive.ietf.org/arch/browse/ai-control/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/proposal",
    "layer/access"
@@ -3965,7 +4171,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "ai-disclosures-project",
   "status": "Work in progress with O'Reilly Media and Miso.ai; initial testing with O'Reilly Media authors",
-  "participate": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
+  "contribute": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/project",
@@ -4023,7 +4231,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Sued Suno on 2026-09-02 and amended the claim on 2026-11-18, with no ruling yet. Named Musical AI an approved attribution partner on 2026-07-20 (read 2026-11-20)",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -4099,7 +4309,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "datadiligence dormant since 2024-10; spawning.ai shows a maintenance page (read 2026-11-20)",
-  "participate": "[GitHub](https://github.com/Spawning-Inc/datadiligence)",
+  "contribute": "[GitHub](https://github.com/Spawning-Inc/datadiligence)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -4131,7 +4343,9 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Content Telemetry v1.0 published 2026-09-02; The New York Times, AFP, The Economist and The Atlantic joined 2026-10-13",
-  "participate": "[GitHub](https://github.com/SPUR-Coalition)",
+  "contribute": "[GitHub](https://github.com/SPUR-Coalition)",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/organization",
@@ -4194,8 +4408,10 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Offers a license for AI services, launched as a pilot on 2025-09-08. AI has been a separate rights category since 2026-06-01, and members approve works one by one (read 2026-11-16)",
-  "participate": "[license for AI services](https://www.stim.se/en/license-for-ai-services)",
-  "updated": "2026-11-17",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -4271,7 +4487,9 @@ window.CARDS = [
   "feed": [],
   "part_of": "",
   "status": "Launched 2026-10-06 with funding for three projects",
-  "participate": "",
+  "contribute": "",
+  "discussion": "",
+  "meetings": "",
   "updated": "2026-11-20",
   "tags": [
    "type/project",
@@ -4328,8 +4546,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25",
-  "participate": "[GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)",
+  "discussion": "[GitHub discussions](https://github.com/Universal-Commerce-Protocol/ucp/discussions)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -4384,8 +4604,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "",
-  "participate": "[how to participate](https://www.w3.org/get-involved/)",
-  "updated": "2026-11-20",
+  "contribute": "[how to participate](https://www.w3.org/get-involved/)",
+  "discussion": "[public mailing lists](https://lists.w3.org/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -4424,8 +4646,10 @@ window.CARDS = [
   ],
   "part_of": "w3c",
   "status": "2.2 is a W3C Recommendation; a draft Digital Policy WG charter covers ODRL 3.0; ai-vocab draft",
-  "participate": "[join the community group](https://www.w3.org/community/odrl/join)",
-  "updated": "2026-11-20",
+  "contribute": "[join the community group](https://www.w3.org/community/odrl/join), [GitHub issues](https://github.com/w3c/odrl/issues)",
+  "discussion": "[public-odrl mailing list](https://lists.w3.org/Archives/Public/public-odrl/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/community-group",
    "layer/licensing"
@@ -4468,8 +4692,10 @@ window.CARDS = [
   ],
   "part_of": "w3c",
   "status": "CG Final Report version 3 (2024-05-10); last push 2026-09",
-  "participate": "[join the community group](https://www.w3.org/community/tdmrep/join)",
-  "updated": "2026-11-20",
+  "contribute": "[join the community group](https://www.w3.org/community/tdmrep/join), [GitHub issues](https://github.com/w3c-cg/tdm-reservation-protocol/issues)",
+  "discussion": "[public-tdmrep mailing list](https://lists.w3.org/Archives/Public/public-tdmrep/)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/community-group",
    "layer/access",
@@ -4528,8 +4754,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "Published investigation of OpenAI-run agents 2026-10-05; a WikiCite contributor reviewed SEP-3094, which closed 2026-11-08",
-  "participate": "",
-  "updated": "2026-11-20",
+  "contribute": "[Phabricator (WikiCite)](https://phabricator.wikimedia.org/tag/wikicite/)",
+  "discussion": "[wikimedia-l](https://lists.wikimedia.org/postorius/lists/wikimedia-l.lists.wikimedia.org/), [WikiCite group](https://groups.google.com/a/wikimedia.org/g/wikicite-discuss)",
+  "meetings": "",
+  "updated": "2026-11-21",
   "tags": [
    "type/organization",
    "layer/attribution",
@@ -4597,8 +4825,10 @@ window.CARDS = [
   ],
   "part_of": "",
   "status": "x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec",
-  "participate": "[GitHub](https://github.com/x402-foundation/x402)",
-  "updated": "2026-11-20",
+  "contribute": "[GitHub](https://github.com/x402-foundation/x402)",
+  "discussion": "[Slack and mailing lists](https://x402.org/get-involved/)",
+  "meetings": "[meeting calendar](https://x402.org/get-involved/#calendar)",
+  "updated": "2026-11-21",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -4677,6 +4907,11 @@ window.VOCAB = {
  "topics": {
   "skills": "agent skills and plugins, and how they are packaged, signed, listed and credited",
   "discovery": "how an agent finds a server, an agent or a skill, through registries, catalogs and well-known files"
+ },
+ "participation": {
+  "contribute": "how to work on the effort itself: its issue tracker or specification repository, or the membership, join page or committee you have to be part of before you can contribute",
+  "discussion": "where people talk about the effort in public: a chat space such as Zulip, Discord or Slack, a forum, a mailing list or GitHub Discussions",
+  "meetings": "a public calendar of the effort's meetings, or its own page that lists open calls and how to join them"
  },
  "labels": {
   "stage/boundary": "at the boundary"
