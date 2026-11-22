@@ -1141,7 +1141,8 @@ window.CARDS = [
   "backlinks": [
    "creative-commons",
    "ietf-aipref",
-   "niso"
+   "niso",
+   "okfn"
   ],
   "history": [
    {
@@ -1470,7 +1471,7 @@ window.CARDS = [
   "contribute": "",
   "discussion": "[community Zulip](https://creativecommons.org/community/)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -1485,20 +1486,24 @@ window.CARDS = [
    },
    {
     "title": "Compare",
-    "text": "- [[okfn]], whose MCP server already returns a list of sources, is a candidate early adopter for SourceConnection. Neither names the other (searched 2026-11-15)."
+    "text": "- [[okfn]], whose MCP server already returns a list of sources, is a candidate early adopter for SourceConnection. No CC page names OKFN's MCP server, and no OKFN page names SourceConnection (searched 2026-11-22)."
+   },
+   {
+    "title": "Related",
+    "text": "- CC, [[okfn]], [[open-future]], the Open Source Initiative and the Digital Public Goods Alliance were announced for a session on attribution through DPG Standard indicators at the DPGA Annual Members Meeting in Paris ([OKFN, 2026-11-11](https://blog.okfn.org/2026/11/11/attribution-commons-and-open-source-ai-okfn-in-paris-for-the-dpga-annual-members-meeting/))."
    }
   ],
   "links": [
    "cc-signals",
    "ietf-aipref",
-   "okfn"
+   "okfn",
+   "open-future"
   ],
-  "compares": [
-   "okfn"
-  ],
+  "compares": [],
   "backlinks": [
    "cc-signals",
    "ietf-aipref",
+   "open-future",
    "okfn",
    "podcast-namespace"
   ],
@@ -3452,7 +3457,7 @@ window.CARDS = [
   "contribute": "",
   "discussion": "",
   "meetings": "",
-  "updated": "2026-11-17",
+  "updated": "2026-11-22",
   "tags": [
    "type/organization",
    "layer/governance",
@@ -3463,16 +3468,24 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Commons in EU policy**: representing the commons in the opt-out consultation ([[eu-ai-act-gpai-code]]).\n- **Commons in agent standards**: arguing for a [[wikimedia]] seat at [[aaif]]."
+   },
+   {
+    "title": "Related",
+    "text": "- Open Future, [[okfn]], [[creative-commons]], the Open Source Initiative and the Digital Public Goods Alliance were announced for a session on attribution through DPG Standard indicators at the DPGA Annual Members Meeting in Paris ([OKFN, 2026-11-11](https://blog.okfn.org/2026/11/11/attribution-commons-and-open-source-ai-okfn-in-paris-for-the-dpga-annual-members-meeting/)).\n- Its Public Digital Infrastructure work is listed as a connected effort on the [about page](https://sharingshift.okfn.org/about/) of [[okfn]]'s The Sharing Shift."
    }
   ],
   "links": [
    "eu-ai-act-gpai-code",
    "wikimedia",
-   "aaif"
+   "aaif",
+   "okfn",
+   "creative-commons"
   ],
   "compares": [],
   "backlinks": [
+   "creative-commons",
    "eu-ai-act-gpai-code",
+   "okfn",
    "wikimedia"
   ],
   "history": []
@@ -3483,7 +3496,8 @@ window.CARDS = [
   "aliases": [
    "OKFN",
    "CKAN",
-   "MCP Labs"
+   "MCP Labs",
+   "The Sharing Shift"
   ],
   "type": "organization",
   "website": "https://okfn.org",
@@ -3498,43 +3512,62 @@ window.CARDS = [
   "contribute": "[okfn/mcp-server on GitHub](https://github.com/okfn/mcp-server)",
   "discussion": "[forum](https://discuss.okfn.org/)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "tags": [
    "type/organization",
    "layer/attribution",
    "stage/in-transit",
    "venue/mcp"
   ],
-  "summary": "CKAN maintainers. MCP Labs runs chat over official datasets with every answer linked to its source.",
+  "summary": "CKAN maintainers. MCP Labs runs chat over official datasets with every answer linked to its source. Leads [The Sharing Shift](https://sharingshift.okfn.org/) with the Centre for Internet and Society at CNRS, on licences, governance, standards and code for keeping knowledge shareable in the age of AI.",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.\n- **Interim convention to standard**: its required `structuredContent.sources` list has no standard citation format to map onto."
+    "text": "- **Attributable open-data answers**: linking every answer to its dataset, which open licenses can make a legal requirement.\n- **Interim convention to standard**: its required `structuredContent.sources` list has no standard citation format to map onto.\n- **Attribution in the DPG Standard**: asking how the Digital Public Goods Alliance's DPG Standard could make attribution for AI systems \"the norm rather than an afterthought\"."
+   },
+   {
+    "title": "Related",
+    "text": "- The Sharing Shift's [about page](https://sharingshift.okfn.org/about/) lists [[cc-signals]] and [[open-future]]'s Public Digital Infrastructure as connected efforts.\n- OKFN, [[creative-commons]], [[open-future]], the Open Source Initiative and the DPGA were announced for a session on attribution through DPG Standard indicators at the DPGA Annual Members Meeting in Paris ([OKFN, 2026-11-11](https://blog.okfn.org/2026/11/11/attribution-commons-and-open-source-ai-okfn-in-paris-for-the-dpga-annual-members-meeting/))."
    },
    {
     "title": "Compare",
-    "text": "- Its `sources` list could map onto [[mcp-sep-3094-citations]], which closed unmerged on 2026-11-08. An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).\n- A [[wikimedia]] contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).\n- A natural early adopter for the [[creative-commons]] SourceConnection component of CC Signals. Neither names the other (searched 2026-11-15)."
+    "text": "- Its `sources` list could map onto [[mcp-sep-3094-citations]], which closed unmerged on 2026-11-08. An OKFN developer reviewed the SEP, and no OKFN page names it (searched 2026-11-15).\n- A [[wikimedia]] contributor reviewed the same SEP. No source connects the two organisations (searched 2026-11-15).\n- A natural early adopter for the [[creative-commons]] SourceConnection component of CC Signals. No OKFN page names SourceConnection, and no CC page names OKFN's MCP server (searched 2026-11-22)."
    },
    {
     "title": "In use",
     "text": "- [MCP Labs](https://mcp.okfn.org) answers questions over official datasets and links each answer to its source (responding 2026-11-15)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-12: OKFN [announced](https://www.linkedin.com/pulse/shift-how-knowledge-shared-okfn-mhfof/) the launch of The Sharing Shift website and its white paper, [Envisioning Digital Public Infrastructures as Commons](https://doi.org/10.5281/zenodo.23033612).\n- 2026-11-11: OKFN [said](https://blog.okfn.org/2026/11/11/attribution-commons-and-open-source-ai-okfn-in-paris-for-the-dpga-annual-members-meeting/) it would join Creative Commons, Open Future, the Open Source Initiative and the DPGA in a session at the DPGA Annual Members Meeting, \"Enabling Attribution for AI Systems through DPGA Standard Indicators\", and share lessons from its MCP pilot with Brazil and Uruguay."
    }
   ],
   "links": [
+   "cc-signals",
+   "open-future",
+   "creative-commons",
    "mcp-sep-3094-citations",
-   "wikimedia",
-   "creative-commons"
+   "wikimedia"
   ],
   "compares": [
    "mcp-sep-3094-citations",
-   "wikimedia",
-   "creative-commons"
+   "wikimedia"
   ],
   "backlinks": [
    "creative-commons",
+   "open-future",
    "mcp-sep-3094-citations"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-11-12",
+    "text": "OKFN [announced](https://www.linkedin.com/pulse/shift-how-knowledge-shared-okfn-mhfof/) the launch of The Sharing Shift website and its white paper, [Envisioning Digital Public Infrastructures as Commons](https://doi.org/10.5281/zenodo.23033612)."
+   },
+   {
+    "date": "2026-11-11",
+    "text": "OKFN [said](https://blog.okfn.org/2026/11/11/attribution-commons-and-open-source-ai-okfn-in-paris-for-the-dpga-annual-members-meeting/) it would join Creative Commons, Open Future, the Open Source Initiative and the DPGA in a session at the DPGA Annual Members Meeting, \"Enabling Attribution for AI Systems through DPGA Standard Indicators\", and share lessons from its MCP pilot with Brazil and Uruguay."
+   }
+  ]
  },
  {
   "id": "openattribution",
