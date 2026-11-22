@@ -2,7 +2,7 @@
  "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
  "description": "Dated events from the History section of each card, newest first.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-21",
+ "as_of": "2026-11-22",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
   {
@@ -706,6 +706,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#iab-comp"
   },
   {
+   "date": "2026-03-05",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "`ai-content` added to the known purposes of `<podcast:txt>` ([PR 757](https://github.com/Podcastindex-org/podcast-namespace/pull/757)).",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
+  },
+  {
    "date": "2026-02-12",
    "card": "croissant",
    "name": "Croissant",
@@ -860,6 +867,13 @@
    "url": "https://www.olahungerford.com/content-provenance/#fairly-trained"
   },
   {
+   "date": "2024-07-01",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "Phase 7 comment period closed.",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
+  },
+  {
    "date": "2024-04-04",
    "card": "rights-and-ai",
    "name": "Rights & AI",
@@ -886,6 +900,41 @@
    "name": "CISAC",
    "text": "Published seven principles for policymakers on AI.",
    "url": "https://www.olahungerford.com/content-provenance/#cisac"
+  },
+  {
+   "date": "2023-06-01",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "Phase 6 closed. `<podcast:txt>` was among the six tags formalized.",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
+  },
+  {
+   "date": "2022-07-15",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "Phase 5 closed. `<podcast:block>` formalized.",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
+  },
+  {
+   "date": "2021-06-01",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "Phase 3 closed. `<podcast:license>` and `<podcast:integrity>` formalized.",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
+  },
+  {
+   "date": "2021-01-31",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "Phase 2 closed. `<podcast:person>` formalized.",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
+  },
+  {
+   "date": "2020-11-15",
+   "card": "podcast-namespace",
+   "name": "Podcast Namespace",
+   "text": "Phase 1 closed. `<podcast:funding>` and `<podcast:locked>` were among the five tags formalized.",
+   "url": "https://www.olahungerford.com/content-provenance/#podcast-namespace"
   },
   {
    "date": "2019-06-18",

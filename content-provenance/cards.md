@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-80 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-21. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
+81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-22. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -41,6 +41,7 @@ Subjects that cards on different layers share.
 
 - skills: agent skills and plugins, and how they are packaged, signed, listed and credited.
 - discovery: how an agent finds a server, an agent or a skill, through registries, catalogs and well-known files.
+- lineage: how a work or a dataset records what it was made from, such as a parent it was derived from, the parts it is composed of and the inputs to the process that produced it.
 
 ## Ways to take part
 
@@ -326,8 +327,8 @@ Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing thre
 - Website: https://github.com/agentskills/agentskills/discussions/393
 - Part of: [Agent Skills](#agent-skills)
 - Discussion: [GitHub discussions](https://github.com/agentskills/agentskills/discussions)
-- Tags: type/proposal, layer/provenance, stage/at-rest, topic/skills, medium/code
-- Updated: 2026-11-21
+- Tags: type/proposal, layer/provenance, stage/at-rest, topic/skills, medium/code, topic/lineage
+- Updated: 2026-11-22
 - Explorer: https://www.olahungerford.com/content-provenance/#agent-skills-signing
 
 Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)), a [C2PA](#c2pa) manifest reference in a frontmatter comment with a digest of the other files in `metadata` ([#651](https://github.com/agentskills/agentskills/discussions/651)).
@@ -556,8 +557,8 @@ Linked from: [Shared AI training robots.txt token](#aipref-training-token)
 - News: https://c2pa.org/news/, https://c2pa.org/blog/
 - Feed: https://c2pa.org/feed/
 - Contribute: [membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)
-- Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text
-- Updated: 2026-11-21
+- Tags: type/organization, layer/provenance, stage/at-rest, stage/in-transit, stage/trust, medium/image, medium/video, medium/audio, medium/text, topic/lineage
+- Updated: 2026-11-22
 - Explorer: https://www.olahungerford.com/content-provenance/#c2pa
 
 Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [Content Authenticity Initiative](#content-authenticity-initiative).
@@ -567,6 +568,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 - **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.
 - **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method "remains under review", and partially copied text counts as having no manifest. [Encypher](#encypher) sells sentence-level marking on top of it. 2.5 added [Appendix A.9.3](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_guidance_for_json_based_formats), "Guidance for JSON-Based Formats", which says a JSON format "can define their own extension point" and gives a `c2pa_credential` root member as an example (read 2026-11-21). [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta) relies on it, and the spec does not name MCP. The conformance text rubric has no JSON group yet.
 - **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.
+- **Derived works and packages**: recording what an asset was made from. An ingredient assertion names another asset and its [relationship](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_relationship): `parentOf` (the asset is derived from the ingredient), `componentOf` (the ingredient is one part of a composed asset) or `inputTo` (the ingredient was input to a computational process such as an AI model). A manifest can have at most one `parentOf` ingredient. [Appendix A.6](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_embedding_manifests_into_zip_based_formats) puts the manifest store in a ZIP-based file at `META-INF/content_credential.c2pa`, stored uncompressed, and names EPUB, Office Open XML, Open Document and OpenXPS. [Appendix A.7](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#embedding_manifests_into_html) covers HTML with a `script` or `link` element of type `application/c2pa` in the `head`, and prefers the `link` to an external manifest (read 2026-11-22).
 - **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).
 - **Signer trust**: deciding who may sign, through a trust list and a conformance program.
 
@@ -590,7 +592,7 @@ Standards body for content credentials: signed manifests (claims and assertions)
 
 - 2026-10: Spec 2.5 published.
 
-Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Content Authenticity Initiative](#content-authenticity-initiative), [Creator Assertions Working Group](#cawg), [Croissant](#croissant), [DDEX](#ddex), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IPTC](#iptc), [NISO](#niso), [Skills Marketplace](#skills-marketplace)
+Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA content credentials in MCP _meta](#mcp-c2pa-in-meta), [Content Authenticity Initiative](#content-authenticity-initiative), [Creator Assertions Working Group](#cawg), [Croissant](#croissant), [DDEX](#ddex), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IPTC](#iptc), [NISO](#niso), [Podcast Namespace](#podcast-namespace), [Skills Marketplace](#skills-marketplace)
 
 ### C2PA content credentials in MCP _meta
 
@@ -846,7 +848,7 @@ Steward of the CC licenses and CC REL machine-readable license metadata. Propose
 
 - [Open Knowledge Foundation](#okfn), whose MCP server already returns a list of sources, is a candidate early adopter for SourceConnection. Neither names the other (searched 2026-11-15).
 
-Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#ietf-aipref), [Open Knowledge Foundation](#okfn)
+Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#ietf-aipref), [Open Knowledge Foundation](#okfn), [Podcast Namespace](#podcast-namespace)
 
 ### Creator Assertions Working Group
 
@@ -1590,8 +1592,8 @@ Linked from: [IETF](#ietf)
 - Contribute: [FSIG charter](https://modelcontextprotocol.io/community/interest-groups/financial-services), [FSIG issues](https://github.com/modelcontextprotocol/financial-services-interest-group/issues)
 - Discussion: [Discord #financial-services-ig](https://discord.gg/modelcontextprotocol)
 - Meetings: [community calendar: finance](https://meet.modelcontextprotocol.io/tag/finance)
-- Tags: type/interest-group, venue/mcp, layer/provenance, layer/attribution
-- Updated: 2026-11-21
+- Tags: type/interest-group, venue/mcp, layer/provenance, layer/attribution, topic/lineage
+- Updated: 2026-11-22
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-fsig
 
 Financial-services interest group. Its charter also covers auditability and operational control, which these cards do not cover.
@@ -1974,8 +1976,8 @@ Linked from: [Agent Identity and Manifest Standard](#aims), [Agentic Commerce Pr
 - Contribute: [GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)
 - Discussion: [Slack](https://openlineage.io/community/), [mailing list](https://lists.lfaidata.foundation/g/openlineage-tsc), [GitHub Discussions](https://github.com/OpenLineage/OpenLineage/discussions)
 - Meetings: [TSC meetings](https://openlineage.io/meetings/), [community calendar](https://zoom-lfx.platform.linuxfoundation.org/meetings/open-lineage?view=week)
-- Tags: type/project, layer/provenance, stage/in-transit, medium/data
-- Updated: 2026-11-21
+- Tags: type/project, layer/provenance, stage/in-transit, medium/data, topic/lineage
+- Updated: 2026-11-22
 - Explorer: https://www.olahungerford.com/content-provenance/#openlineage
 
 Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's proposed MCP `_meta` lineage key ([FSIG issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16)) carry lineage identity across the tool-call boundary.
@@ -2042,6 +2044,51 @@ OpenTelemetry semantic conventions for MCP spans and metrics, and the SDKs that 
 - 2026-10-31: Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released.
 
 Linked from: [AAIF Observability and Traceability WG](#aaif-observability-traceability-wg), [Content Telemetry](#content-telemetry), [Model Context Protocol](#mcp)
+
+### Podcast Namespace
+
+- Id: podcast-namespace
+- Also known as: Podcasting 2.0, podcast namespace
+- Type: specification
+- Status: 27 tags formalized in seven phases from 2020 to 2024; Phase 8 open
+- Website: https://github.com/Podcastindex-org/podcast-namespace
+- Contribute: [GitHub issues](https://github.com/Podcastindex-org/podcast-namespace/issues)
+- Discussion: [GitHub Discussions](https://github.com/Podcastindex-org/podcast-namespace/discussions), [podcastindex.social](https://podcastindex.social)
+- Tags: type/specification, layer/payments, layer/licensing, layer/attribution, layer/access, medium/audio
+- Updated: 2026-11-22
+- Explorer: https://www.olahungerford.com/content-provenance/#podcast-namespace
+
+RSS namespace for podcast feeds, written in the open as part of the Podcasting 2.0 project. Its tags let a feed carry funding links, payment recipients, a licence, credits and platform blocking. The [README](https://github.com/Podcastindex-org/podcast-namespace#readme) says "We are not a 'standards body'". A tag is adopted when there is consensus and at least one host and one app commit to it, or it is already in use.
+
+#### Topics
+
+- **Direct support**: giving a listener a way to pay the creator. [`<podcast:funding>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/funding.md) carries a donation or membership URL and the text an app shows beside it.
+- **Payment recipients**: [`<podcast:value>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/value.md) names a cryptocurrency or payment layer, a transport and a suggested amount, and holds one or more `<podcast:valueRecipient>` elements. Its example uses Lightning with keysend.
+- **Licence**: [`<podcast:license>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/license.md) holds an identifier from the namespace's [licence list](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/examples/license/licenses.json) or a custom name with a URL to the full text. The list had five entries on 2026-11-22: all rights reserved, three [Creative Commons](#creative-commons) licences and a value-for-value licence.
+- **Credits**: [`<podcast:person>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/person.md) names hosts, guests and other contributors for a show or an episode, with roles from the Podcast Taxonomy Project.
+- **Platform access**: [`<podcast:block>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/block.md) says which platforms may ingest a feed for public display, by service slug. `<podcast:locked>` says whether another hosting platform may import the feed. Neither is about AI training or crawling.
+- **AI disclosure**: [`<podcast:txt purpose="ai-content">`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/txt.md) holds `true` or `false` for whether AI-generated content was used in a podcast or episode. The tag doc points to shouldidisclose.ai for when to set it.
+- **Integrity and alternate sources**: `<podcast:integrity>` carries a Subresource Integrity string or a PGP signature for an alternate enclosure. The `<podcast:source>` examples include an IPFS URI and a BitTorrent file.
+
+#### Compare
+
+- GitHub's [`FUNDING.yml`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository) and the npm [`funding`](https://docs.npmjs.com/cli/configuring-npm/package-json#funding) field in `package.json` carry funding links for a repository and a package. The namespace repository mentions neither (searched 2026-11-22).
+- [C2PA](#c2pa) signs what `ai-content` states unsigned and what `<podcast:integrity>` states as a hash or a PGP signature. The namespace repository does not mention C2PA (searched 2026-11-22).
+- [x402](#x402) and the other machine payment specs pay per request. `<podcast:funding>` is a link a person follows.
+
+#### In use
+
+- The repository's [support list](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/element-support.md) names 23 hosts and apps for `<podcast:funding>`, 17 for `<podcast:locked>`, 8 for `<podcast:value>`, 7 for `<podcast:person>` and 6 for `<podcast:txt>`. The file last changed on 2026-03-14 (read 2026-11-22).
+
+#### History
+
+- 2026-03-05: `ai-content` added to the known purposes of `<podcast:txt>` ([PR 757](https://github.com/Podcastindex-org/podcast-namespace/pull/757)).
+- 2024-07-01: Phase 7 comment period closed.
+- 2023-06-01: Phase 6 closed. `<podcast:txt>` was among the six tags formalized.
+- 2022-07-15: Phase 5 closed. `<podcast:block>` formalized.
+- 2021-06-01: Phase 3 closed. `<podcast:license>` and `<podcast:integrity>` formalized.
+- 2021-01-31: Phase 2 closed. `<podcast:person>` formalized.
+- 2020-11-15: Phase 1 closed. `<podcast:funding>` and `<podcast:locked>` were among the five tags formalized.
 
 ### Project NANDA
 
@@ -2665,4 +2712,4 @@ HTTP 402 payments in headers, with schemes `exact`, `upto`, `auth-capture` and `
 - 2026-10-01: The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.
 - 2026-07-14: x402 Foundation (Linux Foundation) operational.
 
-Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [Agent Payments Protocol](#ap2), [Machine Payments Protocol](#mpp)
+Linked from: [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg), [Agent Payments Protocol](#ap2), [Machine Payments Protocol](#mpp), [Podcast Namespace](#podcast-namespace)

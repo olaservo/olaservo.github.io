@@ -508,13 +508,14 @@ window.CARDS = [
   "contribute": "",
   "discussion": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "tags": [
    "type/proposal",
    "layer/provenance",
    "stage/at-rest",
    "topic/skills",
-   "medium/code"
+   "medium/code",
+   "topic/lineage"
   ],
   "summary": "Proposals for signing, lockfiles and lineage of SKILL.md folders: signature in frontmatter ([#252](https://github.com/agentskills/agentskills/discussions/252)), SKILL.sig sidecar ([#393](https://github.com/agentskills/agentskills/discussions/393)), skills-lock.json ([#588](https://github.com/agentskills/agentskills/discussions/588)), `metadata.source` ([#564](https://github.com/agentskills/agentskills/discussions/564)), `metadata.derived-from` ([#620](https://github.com/agentskills/agentskills/discussions/620)), skill-evidence documents keyed by digest ([#643](https://github.com/agentskills/agentskills/discussions/643)), a [[c2pa]] manifest reference in a frontmatter comment with a digest of the other files in `metadata` ([#651](https://github.com/agentskills/agentskills/discussions/651)).",
   "sections": [
@@ -956,7 +957,7 @@ window.CARDS = [
   "contribute": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
   "discussion": "",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "tags": [
    "type/organization",
    "layer/provenance",
@@ -966,13 +967,14 @@ window.CARDS = [
    "medium/image",
    "medium/video",
    "medium/audio",
-   "medium/text"
+   "medium/text",
+   "topic/lineage"
   ],
   "summary": "Standards body for content credentials: signed manifests (claims and assertions) bound to an asset, with ingredients for derived works. Reference code is maintained by the [[content-authenticity-initiative]].",
   "sections": [
    {
     "title": "Topics",
-    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added [Appendix A.9.3](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_guidance_for_json_based_formats), \"Guidance for JSON-Based Formats\", which says a JSON format \"can define their own extension point\" and gives a `c2pa_credential` root member as an example (read 2026-11-21). [[mcp-c2pa-in-meta]] relies on it, and the spec does not name MCP. The conformance text rubric has no JSON group yet.\n- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
+    "text": "- **Asset provenance**: proving where an asset came from and what was done to it, with the record cryptographically bound to the asset.\n- **Text and JSON provenance**: binding a credential to formats with no metadata slot. Appendix A.8 carries a manifest in unstructured text as invisible Unicode variation selectors. The spec says the method \"remains under review\", and partially copied text counts as having no manifest. [[encypher]] sells sentence-level marking on top of it. 2.5 added [Appendix A.9.3](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_guidance_for_json_based_formats), \"Guidance for JSON-Based Formats\", which says a JSON format \"can define their own extension point\" and gives a `c2pa_credential` root member as an example (read 2026-11-21). [[mcp-c2pa-in-meta]] relies on it, and the spec does not name MCP. The conformance text rubric has no JSON group yet.\n- **Front matter**: carrying a manifest reference in a file that already has YAML front matter. Appendix A.9.4.2 puts the two delimiters and the reference on three lines inside it. PyYAML 6.0.3 rejects the spec's own example in A.9.4.3.3 (run 2026-11-17). [Agent Skills discussion 651](https://github.com/agentskills/agentskills/discussions/651) reports the same from PyYAML, strictyaml and js-yaml and uses a single `#` comment line. Its author says they have proposed that form to C2PA.\n- **Derived works and packages**: recording what an asset was made from. An ingredient assertion names another asset and its [relationship](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_relationship): `parentOf` (the asset is derived from the ingredient), `componentOf` (the ingredient is one part of a composed asset) or `inputTo` (the ingredient was input to a computational process such as an AI model). A manifest can have at most one `parentOf` ingredient. [Appendix A.6](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#_embedding_manifests_into_zip_based_formats) puts the manifest store in a ZIP-based file at `META-INF/content_credential.c2pa`, stored uncompressed, and names EPUB, Office Open XML, Open Document and OpenXPS. [Appendix A.7](https://spec.c2pa.org/specifications/specifications/2.5/specs/C2PA_Specification.html#embedding_manifests_into_html) covers HTML with a `script` or `link` element of type `application/c2pa` in the `head`, and prefers the `link` to an external manifest (read 2026-11-22).\n- **Stripped metadata**: recovering provenance after the manifest is removed, through watermarks and fingerprints on the soft-binding algorithm list (79 entries on 2026-11-16: 60 watermarks and 19 fingerprints). 26 of them list an audio media type, 20 watermarks and 6 fingerprints (read 2026-11-20).\n- **Signer trust**: deciding who may sign, through a trust list and a conformance program."
    },
    {
     "title": "Related",
@@ -1015,6 +1017,7 @@ window.CARDS = [
    "eu-ai-act-gpai-code",
    "iptc",
    "niso",
+   "podcast-namespace",
    "skills-marketplace"
   ],
   "history": [
@@ -1496,7 +1499,8 @@ window.CARDS = [
   "backlinks": [
    "cc-signals",
    "ietf-aipref",
-   "okfn"
+   "okfn",
+   "podcast-namespace"
   ],
   "history": []
  },
@@ -2878,12 +2882,13 @@ window.CARDS = [
   "contribute": "[FSIG charter](https://modelcontextprotocol.io/community/interest-groups/financial-services), [FSIG issues](https://github.com/modelcontextprotocol/financial-services-interest-group/issues)",
   "discussion": "[Discord #financial-services-ig](https://discord.gg/modelcontextprotocol)",
   "meetings": "[community calendar: finance](https://meet.modelcontextprotocol.io/tag/finance)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "tags": [
    "type/interest-group",
    "venue/mcp",
    "layer/provenance",
-   "layer/attribution"
+   "layer/attribution",
+   "topic/lineage"
   ],
   "summary": "Financial-services interest group. Its charter also covers auditability and operational control, which these cards do not cover.",
   "sections": [
@@ -3599,12 +3604,13 @@ window.CARDS = [
   "contribute": "[GitHub issues](https://github.com/OpenLineage/OpenLineage/issues)",
   "discussion": "[Slack](https://openlineage.io/community/), [mailing list](https://lists.lfaidata.foundation/g/openlineage-tsc), [GitHub Discussions](https://github.com/OpenLineage/OpenLineage/discussions)",
   "meetings": "[TSC meetings](https://openlineage.io/meetings/), [community calendar](https://zoom-lfx.platform.linuxfoundation.org/meetings/open-lineage?view=week)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-22",
   "tags": [
    "type/project",
    "layer/provenance",
    "stage/in-transit",
-   "medium/data"
+   "medium/data",
+   "topic/lineage"
   ],
   "summary": "Open standard for data lineage events. [RFC 4484](https://github.com/OpenLineage/OpenLineage/issues/4484) and BearingNode's proposed MCP `_meta` lineage key ([FSIG issue 16](https://github.com/modelcontextprotocol/financial-services-interest-group/issues/16)) carry lineage identity across the tool-call boundary.",
   "sections": [
@@ -3719,6 +3725,91 @@ window.CARDS = [
    {
     "date": "2026-10-31",
     "text": "Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released."
+   }
+  ]
+ },
+ {
+  "id": "podcast-namespace",
+  "name": "Podcast Namespace",
+  "aliases": [
+   "Podcasting 2.0",
+   "podcast namespace"
+  ],
+  "type": "specification",
+  "website": "https://github.com/Podcastindex-org/podcast-namespace",
+  "news": [],
+  "feed": [],
+  "part_of": "",
+  "status": "27 tags formalized in seven phases from 2020 to 2024; Phase 8 open",
+  "contribute": "[GitHub issues](https://github.com/Podcastindex-org/podcast-namespace/issues)",
+  "discussion": "[GitHub Discussions](https://github.com/Podcastindex-org/podcast-namespace/discussions), [podcastindex.social](https://podcastindex.social)",
+  "meetings": "",
+  "updated": "2026-11-22",
+  "tags": [
+   "type/specification",
+   "layer/payments",
+   "layer/licensing",
+   "layer/attribution",
+   "layer/access",
+   "medium/audio"
+  ],
+  "summary": "RSS namespace for podcast feeds, written in the open as part of the Podcasting 2.0 project. Its tags let a feed carry funding links, payment recipients, a licence, credits and platform blocking. The [README](https://github.com/Podcastindex-org/podcast-namespace#readme) says \"We are not a 'standards body'\". A tag is adopted when there is consensus and at least one host and one app commit to it, or it is already in use.",
+  "sections": [
+   {
+    "title": "Topics",
+    "text": "- **Direct support**: giving a listener a way to pay the creator. [`<podcast:funding>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/funding.md) carries a donation or membership URL and the text an app shows beside it.\n- **Payment recipients**: [`<podcast:value>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/value.md) names a cryptocurrency or payment layer, a transport and a suggested amount, and holds one or more `<podcast:valueRecipient>` elements. Its example uses Lightning with keysend.\n- **Licence**: [`<podcast:license>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/license.md) holds an identifier from the namespace's [licence list](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/examples/license/licenses.json) or a custom name with a URL to the full text. The list had five entries on 2026-11-22: all rights reserved, three [[creative-commons]] licences and a value-for-value licence.\n- **Credits**: [`<podcast:person>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/person.md) names hosts, guests and other contributors for a show or an episode, with roles from the Podcast Taxonomy Project.\n- **Platform access**: [`<podcast:block>`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/block.md) says which platforms may ingest a feed for public display, by service slug. `<podcast:locked>` says whether another hosting platform may import the feed. Neither is about AI training or crawling.\n- **AI disclosure**: [`<podcast:txt purpose=\"ai-content\">`](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/tags/txt.md) holds `true` or `false` for whether AI-generated content was used in a podcast or episode. The tag doc points to shouldidisclose.ai for when to set it.\n- **Integrity and alternate sources**: `<podcast:integrity>` carries a Subresource Integrity string or a PGP signature for an alternate enclosure. The `<podcast:source>` examples include an IPFS URI and a BitTorrent file."
+   },
+   {
+    "title": "Compare",
+    "text": "- GitHub's [`FUNDING.yml`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository) and the npm [`funding`](https://docs.npmjs.com/cli/configuring-npm/package-json#funding) field in `package.json` carry funding links for a repository and a package. The namespace repository mentions neither (searched 2026-11-22).\n- [[c2pa]] signs what `ai-content` states unsigned and what `<podcast:integrity>` states as a hash or a PGP signature. The namespace repository does not mention C2PA (searched 2026-11-22).\n- [[x402]] and the other machine payment specs pay per request. `<podcast:funding>` is a link a person follows."
+   },
+   {
+    "title": "In use",
+    "text": "- The repository's [support list](https://github.com/Podcastindex-org/podcast-namespace/blob/main/docs/element-support.md) names 23 hosts and apps for `<podcast:funding>`, 17 for `<podcast:locked>`, 8 for `<podcast:value>`, 7 for `<podcast:person>` and 6 for `<podcast:txt>`. The file last changed on 2026-03-14 (read 2026-11-22)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-03-05: `ai-content` added to the known purposes of `<podcast:txt>` ([PR 757](https://github.com/Podcastindex-org/podcast-namespace/pull/757)).\n- 2024-07-01: Phase 7 comment period closed.\n- 2023-06-01: Phase 6 closed. `<podcast:txt>` was among the six tags formalized.\n- 2022-07-15: Phase 5 closed. `<podcast:block>` formalized.\n- 2021-06-01: Phase 3 closed. `<podcast:license>` and `<podcast:integrity>` formalized.\n- 2021-01-31: Phase 2 closed. `<podcast:person>` formalized.\n- 2020-11-15: Phase 1 closed. `<podcast:funding>` and `<podcast:locked>` were among the five tags formalized."
+   }
+  ],
+  "links": [
+   "creative-commons",
+   "c2pa",
+   "x402"
+  ],
+  "compares": [
+   "c2pa",
+   "x402"
+  ],
+  "backlinks": [],
+  "history": [
+   {
+    "date": "2026-03-05",
+    "text": "`ai-content` added to the known purposes of `<podcast:txt>` ([PR 757](https://github.com/Podcastindex-org/podcast-namespace/pull/757))."
+   },
+   {
+    "date": "2024-07-01",
+    "text": "Phase 7 comment period closed."
+   },
+   {
+    "date": "2023-06-01",
+    "text": "Phase 6 closed. `<podcast:txt>` was among the six tags formalized."
+   },
+   {
+    "date": "2022-07-15",
+    "text": "Phase 5 closed. `<podcast:block>` formalized."
+   },
+   {
+    "date": "2021-06-01",
+    "text": "Phase 3 closed. `<podcast:license>` and `<podcast:integrity>` formalized."
+   },
+   {
+    "date": "2021-01-31",
+    "text": "Phase 2 closed. `<podcast:person>` formalized."
+   },
+   {
+    "date": "2020-11-15",
+    "text": "Phase 1 closed. `<podcast:funding>` and `<podcast:locked>` were among the five tags formalized."
    }
   ]
  },
@@ -4865,7 +4956,8 @@ window.CARDS = [
   "backlinks": [
    "aaif-agentic-commerce-wg",
    "ap2",
-   "mpp"
+   "mpp",
+   "podcast-namespace"
   ],
   "history": [
    {
@@ -4906,7 +4998,8 @@ window.VOCAB = {
  },
  "topics": {
   "skills": "agent skills and plugins, and how they are packaged, signed, listed and credited",
-  "discovery": "how an agent finds a server, an agent or a skill, through registries, catalogs and well-known files"
+  "discovery": "how an agent finds a server, an agent or a skill, through registries, catalogs and well-known files",
+  "lineage": "how a work or a dataset records what it was made from, such as a parent it was derived from, the parts it is composed of and the inputs to the process that produced it"
  },
  "participation": {
   "contribute": "how to work on the effort itself: its issue tracker or specification repository, or the membership, join page or committee you have to be part of before you can contribute",
