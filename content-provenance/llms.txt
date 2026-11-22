@@ -22,7 +22,7 @@ A prototype at https://content-provenance-field-guide.olahungerford.workers.dev/
 
 ## All cards in one file
 
-- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): every card in one file of about 192 KB, one section per card, with the layer and stage definitions first
+- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): every card in one file of about 195 KB, one section per card, with the layer and stage definitions first
 - [All cards as JSON](https://www.olahungerford.com/content-provenance/cards.json): the same cards as structured data, with the vocabularies under "vocab"
 
 ## Optional
