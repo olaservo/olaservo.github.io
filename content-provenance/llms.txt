@@ -10,8 +10,8 @@ A prototype at https://content-provenance-field-guide.olahungerford.workers.dev/
 
 - [Guide index](https://content-provenance-field-guide.olahungerford.workers.dev/index.md): the layer and stage definitions and one line per card. One card is at https://content-provenance-field-guide.olahungerford.workers.dev/cards/<id>.md
 - [Field guide skill](https://content-provenance-field-guide.olahungerford.workers.dev/skills/content-provenance-field-guide/SKILL.md): how to answer questions from the guide, loading only the cards a question needs
-- [More for agents](https://content-provenance-field-guide.olahungerford.workers.dev/llms.txt): the cards by layer, the contributor skill and an MCP server
-- [Plugin](https://github.com/olaservo/content-provenance-cards#start-here): both skills and the MCP server for Codex and Claude Code
+- [More for agents](https://content-provenance-field-guide.olahungerford.workers.dev/llms.txt): the cards by layer, the contributor and feedback skills and an MCP server
+- [Plugin](https://github.com/olaservo/content-provenance-cards#start-here): the skills and the MCP server for Codex and Claude Code
 
 ## Updates and topics
 
