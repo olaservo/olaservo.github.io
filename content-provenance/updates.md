@@ -102,6 +102,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-04-09 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): Public comment on 1.0 closed.
 - 2026-04 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Bellagio.
 - 2026-03-10 [IAB Tech Lab Content Monetization Protocols](https://www.olahungerford.com/content-provenance/#iab-comp): 1.0 opened for public comment.
+- 2026-03-05 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): `ai-content` added to the known purposes of `<podcast:txt>` ([PR 757](https://github.com/Podcastindex-org/podcast-namespace/pull/757)).
 - 2026-02-12 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): MLCommons announced 1.1.
 - 2026-02-03 [Microsoft Publisher Content Marketplace](https://www.olahungerford.com/content-provenance/#microsoft-publisher-content-marketplace): Microsoft [announced the pilot](https://about.ads.microsoft.com/en/blog/post/february-2026/building-toward-a-sustainable-content-economy-for-the-agentic-web), with Copilot grounding answers in licensed content and Yahoo starting to onboard as a buyer.
 - 2026-01-29 [Croissant](https://www.olahungerford.com/content-provenance/#croissant): 1.1 specification published.
@@ -124,10 +125,16 @@ Dated events from the History section of each card, newest first. These are thin
 - 2024-09 [GEMA](https://www.olahungerford.com/content-provenance/#gema): Presented its licensing model for generative AI.
 - 2024-08-09 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.
 - 2024-08-01 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Updated its individual model certification.
+- 2024-07-01 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): Phase 7 comment period closed.
 - 2024-04-04 [Rights & AI](https://www.olahungerford.com/content-provenance/#rights-and-ai): ICMP announced the site. The release was issued the day before, and says the site had already launched.
 - 2024-03-20 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Announced newly certified models, including its first language and speech models.
 - 2024-01-17 [Fairly Trained](https://www.olahungerford.com/content-provenance/#fairly-trained): Launched with nine certified companies.
 - 2023-07 [CISAC](https://www.olahungerford.com/content-provenance/#cisac): Published seven principles for policymakers on AI.
+- 2023-06-01 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): Phase 6 closed. `<podcast:txt>` was among the six tags formalized.
+- 2022-07-15 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): Phase 5 closed. `<podcast:block>` formalized.
+- 2021-06-01 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): Phase 3 closed. `<podcast:license>` and `<podcast:integrity>` formalized.
+- 2021-01-31 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): Phase 2 closed. `<podcast:person>` formalized.
+- 2020-11-15 [Podcast Namespace](https://www.olahungerford.com/content-provenance/#podcast-namespace): Phase 1 closed. `<podcast:funding>` and `<podcast:locked>` were among the five tags formalized.
 - 2019-06-18 [KBART](https://www.olahungerford.com/content-provenance/#kbart): KBART Automation published.
 - 2014-03-27 [KBART](https://www.olahungerford.com/content-provenance/#kbart): Phase II (NISO RP-9-2014) published.
 - 2006 [DDEX](https://www.olahungerford.com/content-provenance/#ddex): Founded.
