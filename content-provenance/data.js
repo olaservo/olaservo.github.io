@@ -841,14 +841,14 @@ window.CARDS = [
   "contribute": "",
   "discussion": "",
   "meetings": "",
-  "updated": "2026-11-20",
+  "updated": "2026-11-22",
   "tags": [
    "type/organization",
    "layer/governance",
    "layer/attribution",
    "layer/payments"
   ],
-  "summary": "Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [[skills-marketplace]], the Open Memory Protocol Initiative (OMPI) and the Open Alpha Registry.",
+  "summary": "Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [[skills-marketplace]], the [Open Memory Protocol Initiative (OMPI)](https://ai-disclosures.org/ompi) and the [Open Alpha Registry](https://ai-disclosures.org/assets/prototypes/Searching_for_Alpha.pdf), so far a concept note.",
   "sections": [
    {
     "title": "Topics",
