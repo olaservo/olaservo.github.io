@@ -22,6 +22,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-11 [NISO](https://www.olahungerford.com/content-provenance/#niso): The executive director's letter says the pilot may finish sooner than twelve months.
 - 2026-10-31 [MCP Security Interest Group](https://www.olahungerford.com/content-provenance/#mcp-security-ig): The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).
 - 2026-10-31 [OpenTelemetry for MCP](https://www.olahungerford.com/content-provenance/#otel-mcp): Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released.
+- 2026-10-30 [MCP Progressive Disclosure WG](https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg): Positioning draft on Groups and Skills over MCP opened as PR 22.
 - 2026-10-30 [Microsoft training and grounding preferences](https://www.olahungerford.com/content-provenance/#microsoft-grounding-preference): Microsoft [announced](https://blogs.bing.com/search/2026/10/your-content-your-choice-clearer-preferences-for-training-and-grounding/) the training and grounding preferences. Grounding settings in Bing Webmaster Tools open 2026-12-15, and the temporary grounding preferences expire 2027-09-30.
 - 2026-10-30 [Shared AI training robots.txt token](https://www.olahungerford.com/content-provenance/#aipref-training-token): Individual draft posted.
 - 2026-10-29 [SEP-2127 Server Cards](https://www.olahungerford.com/content-provenance/#mcp-server-cards): SEP-3392 merged, classifying ext-server-card as Beta.
@@ -29,6 +30,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-10-28 [AI Catalog](https://www.olahungerford.com/content-provenance/#ai-catalog): Independently signed trust manifest contributions merged.
 - 2026-10-27 [Agent Plugins](https://www.olahungerford.com/content-provenance/#agent-plugins): AAIF staff reported Technical Committee approval as a Growth-stage project. A Governing Board vote is pending.
 - 2026-10-27 [MCP Interceptors WG and SEP-2624](https://www.olahungerford.com/content-provenance/#mcp-interceptors): Chain concept removed from the SEP.
+- 2026-10-26 [MCP Progressive Disclosure WG](https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg): The WG agreed to keep `group` as the primitive name, with stateless `groups/list` and `groups/get`, `description` as the "when to use" field and optional `instructions` ([meeting notes](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3458)). The decision log recorded these the next day.
 - 2026-10-23 [COUNTER Metrics](https://www.olahungerford.com/content-provenance/#counter): [Phase two](https://www.countermetrics.org/ai-phase-two/) of the AI best practice published.
 - 2026-10-23 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [phase two](https://www.countermetrics.org/ai-phase-two/) announcement says "We've also mapped Google Scholar's new MERU tool to our metrics."
 - 2026-10-22 [Agent Skills](https://www.olahungerford.com/content-provenance/#agent-skills): Joined AAIF.
@@ -45,8 +47,10 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-10 [AI Disclosures Project](https://www.olahungerford.com/content-provenance/#ai-disclosures-project): Convening at Foo Camp.
 - 2026-10 [C2PA](https://www.olahungerford.com/content-provenance/#c2pa): Spec 2.5 published.
 - 2026-10 [NISO](https://www.olahungerford.com/content-provenance/#niso): [Provenance and attribution pilot](https://www.niso.org/niso-io/2026/10/niso-develop-metadata-model-provenance-and-attribution-ai-systems) announced.
+- 2026-09-28 [MCP Progressive Disclosure WG](https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg): Draft groups SEP opened as PR 19.
 - 2026-09-25 [C2PA content credentials in MCP _meta](https://www.olahungerford.com/content-provenance/#mcp-c2pa-in-meta): Discussion closed when the spec repo limited Discussions to meeting notes ([closing comment](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3225#discussioncomment-18603053)).
 - 2026-09-24 [OpenLineage](https://www.olahungerford.com/content-provenance/#openlineage): Presented to the MCP Financial Services Interest Group.
+- 2026-09-21 [MCP Progressive Disclosure WG](https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg): Renamed from the Primitive Grouping Interest Group and converted to a Working Group.
 - 2026-09-18 [Google Scholar Mediated Reading](https://www.olahungerford.com/content-provenance/#google-scholar-mediated-reading): COUNTER's [update](https://www.countermetrics.org/ai-update-sept26/) on phase two calls MERU "a form of syndicated usage" and says it has mapped how MERU messages should be reported.
 - 2026-09-14 [IETF AI Preferences Working Group](https://www.olahungerford.com/content-provenance/#ietf-aipref): vocab-08 posted, without consensus.
 - 2026-09-13 [SEP-2640 Skills Extension](https://www.olahungerford.com/content-provenance/#mcp-skills-extension): SEP-2640 marked Final.
@@ -77,6 +81,7 @@ Dated events from the History section of each card, newest first. These are thin
 - 2026-07-09 [SPUR Coalition](https://www.olahungerford.com/content-provenance/#spur-coalition): The Associated Press joined as the first US-based founding member.
 - 2026-06-25 [MCP Financial Services Interest Group](https://www.olahungerford.com/content-provenance/#mcp-fsig): Charter merged ([#2979](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2979)).
 - 2026-06-18 [Enterprise-Managed Authorization](https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization): Extension announced as stable.
+- 2026-06-18 [MCP Progressive Disclosure WG](https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg): Initial charter, as the Primitive Grouping Interest Group.
 - 2026-06-17 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): Announced by Google.
 - 2026-06-16 [Agentic Resource Discovery](https://www.olahungerford.com/content-provenance/#ard): v0.9 (Draft).
 - 2026-06-12 [Really Simple Licensing](https://www.olahungerford.com/content-provenance/#rsl): Section 3.12 `<reporting>` [added](https://rslstandard.org/rsl/errata), for machine-readable reporting requirements on licensed activity.
