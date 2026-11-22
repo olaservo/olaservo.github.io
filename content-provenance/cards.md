@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-22. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
+81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-22. This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -499,10 +499,10 @@ Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [Age
 - News: https://ai-disclosures.org/blog
 - Feed: https://asimovaddendum.substack.com/feed
 - Tags: type/organization, layer/governance, layer/attribution, layer/payments
-- Updated: 2026-11-20
+- Updated: 2026-11-22
 - Explorer: https://www.olahungerford.com/content-provenance/#ai-disclosures-project
 
-Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [Skills Marketplace](#skills-marketplace), the Open Memory Protocol Initiative (OMPI) and the Open Alpha Registry.
+Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [Skills Marketplace](#skills-marketplace), the [Open Memory Protocol Initiative (OMPI)](https://ai-disclosures.org/ompi) and the [Open Alpha Registry](https://ai-disclosures.org/assets/prototypes/Searching_for_Alpha.pdf), so far a concept note.
 
 #### Topics
 

@@ -11,7 +11,7 @@
  "markdown": "https://www.olahungerford.com/content-provenance/cards.md",
  "updates": "https://www.olahungerford.com/content-provenance/updates.json",
  "changelog": "https://www.olahungerford.com/content-provenance/changelog.md",
- "note": "One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.",
+ "note": "This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one.",
  "vocab": {
   "layers": {
    "provenance": "where content came from and what was done to it, carried as signed records",
@@ -908,14 +908,14 @@
    "contribute": "",
    "discussion": "",
    "meetings": "",
-   "updated": "2026-11-20",
+   "updated": "2026-11-22",
    "tags": [
     "type/organization",
     "layer/governance",
     "layer/attribution",
     "layer/payments"
    ],
-   "summary": "Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [[skills-marketplace]], the Open Memory Protocol Initiative (OMPI) and the Open Alpha Registry.",
+   "summary": "Project hosted at Code for Science & Society. It works on the protocols that would make Human+AI markets participatory and decentralized. Prototypes include [[skills-marketplace]], the [Open Memory Protocol Initiative (OMPI)](https://ai-disclosures.org/ompi) and the [Open Alpha Registry](https://ai-disclosures.org/assets/prototypes/Searching_for_Alpha.pdf), so far a concept note.",
    "sections": [
     {
      "title": "Topics",
