@@ -2,7 +2,7 @@
  "title": "Content Provenance, Access and Attribution: A Field Guide: watch list",
  "description": "Where each effort in the guide posts its blog or announcements, with a feed where it has one, and sources that have no card. A source with a card has the card's id under card.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-22",
+ "as_of": "2026-11-23",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "sources": [
   {
@@ -580,6 +580,18 @@
    ],
    "feed": [
     "https://openai.com/news/rss.xml"
+   ]
+  },
+  {
+   "id": "agentic-standards-map",
+   "name": "Agentic Standards Map",
+   "card": null,
+   "note": "Francesco Marinoni Moretto's map of agentic commerce standards, with a new version each Monday",
+   "news": [
+    "https://frmoretto.github.io/agentic-standards-map/"
+   ],
+   "feed": [
+    "https://github.com/frmoretto/agentic-standards-map/releases.atom"
    ]
   }
  ]

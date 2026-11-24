@@ -2558,11 +2558,11 @@ window.CARDS = [
    "https://datatracker.ietf.org/feed/group-changes/webbotauth/"
   ],
   "part_of": "ietf",
-  "status": "WG draft httpsig-protocol-01 (2026-10-29); Cloudflare libraries",
+  "status": "WG draft httpsig-protocol-01 (2026-10-29); met at IETF 127 on 2026-11-17; Cloudflare libraries",
   "contribute": "[GitHub issues](https://github.com/webbotauth/draft-ietf-webbotauth-httpsig-protocol/issues)",
   "discussion": "[web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/), [Zulip](https://zulip.ietf.org/#narrow/stream/webbotauth)",
   "meetings": "[meetings](https://datatracker.ietf.org/wg/webbotauth/meetings/)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -2581,6 +2581,10 @@ window.CARDS = [
    {
     "title": "In use",
     "text": "- [cloudflare/web-bot-auth](https://github.com/cloudflare/web-bot-auth) publishes libraries for signing and verifying requests. `web-bot-auth` on npm is at 0.2.0 (2026-08-31) and was first published on 2025-04-14."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-17: At IETF 127 ([session](https://datatracker.ietf.org/meeting/127/session/webbotauth), 16:30 in San Francisco, 00:30 UTC on 2026-11-18) the WG re-confirmed that tracking or reputation for sub-agents, sessions or end users is out of scope under the charter, in discussion of the Signed Agent Metadata and PACE proposals. The authors will update the httpsig-protocol draft to replace the `tag` parameter, define a minimal set of signed components and add signature-failure response headers ([minutes](https://datatracker.ietf.org/meeting/127/materials/minutes-127-webbotauth-00))."
    }
   ],
   "links": [
@@ -2600,7 +2604,12 @@ window.CARDS = [
    "ietf-aipref",
    "wikimedia"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-11-17",
+    "text": "At IETF 127 ([session](https://datatracker.ietf.org/meeting/127/session/webbotauth), 16:30 in San Francisco, 00:30 UTC on 2026-11-18) the WG re-confirmed that tracking or reputation for sub-agents, sessions or end users is out of scope under the charter, in discussion of the Signed Agent Metadata and PACE proposals. The authors will update the httpsig-protocol draft to replace the `tag` parameter, define a minimal set of signed components and add signature-failure response headers ([minutes](https://datatracker.ietf.org/meeting/127/materials/minutes-127-webbotauth-00))."
+   }
+  ]
  },
  {
   "id": "internet-licensing-collective",
@@ -2850,7 +2859,7 @@ window.CARDS = [
   "contribute": "[GitHub issues](https://github.com/tempoxyz/mpp-specs/issues)",
   "discussion": "",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -2860,6 +2869,14 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Method-neutral HTTP payment**: one auth scheme for any payment method, an alternative to [[x402]]."
+   },
+   {
+    "title": "Related",
+    "text": "- Mark Nottingham's [IETF 127 slides](https://datatracker.ietf.org/meeting/127/materials/slides-127-httpbis-402-payment-required-00) for [draft-nottingham-httpbis-402](https://datatracker.ietf.org/doc/draft-nottingham-httpbis-402/) list draft-httpauth-payment with [[x402]], h402 and L402 as current uses of 402. The draft text names none of them."
+   },
+   {
+    "title": "In use",
+    "text": "- Amazon Bedrock AgentCore payments, generally available since August 2026, pays MPP and x402 sellers ([AWS, 2026-11-19](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/))."
    }
   ],
   "links": [
@@ -2868,7 +2885,8 @@ window.CARDS = [
   ],
   "compares": [],
   "backlinks": [
-   "ietf"
+   "ietf",
+   "x402"
   ],
   "history": []
  },
@@ -3070,11 +3088,11 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "mcp",
-  "status": "In preview since 2025-09-08; registry release v1.8.10 dated 2026-11-20",
+  "status": "In preview since 2025-09-08; registry release v1.8.16 dated 2026-11-23",
   "contribute": "[registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)",
   "discussion": "[Discord #registry-dev](https://discord.gg/modelcontextprotocol), [registry discussions](https://github.com/modelcontextprotocol/registry/discussions)",
   "meetings": "[community calendar: registry-dev](https://meet.modelcontextprotocol.io/tag/registry-dev)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "tags": [
    "type/project",
    "venue/mcp",
@@ -4096,11 +4114,11 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "mcp",
-  "status": "Final 2026-09-13; Beta under SEP-3392",
+  "status": "Final 2026-09-13; Beta under SEP-3392; ext-skills v0.1.0 tagged 2026-11-20; agentgateway support merged 2026-11-20, not yet in a release",
   "contribute": "[ext-skills issues](https://github.com/modelcontextprotocol/ext-skills/issues)",
   "discussion": "[Discord #skills-over-mcp-wg](https://discord.com/channels/1358869848138059966/1464745826629976084)",
   "meetings": "[community calendar: skills-over-mcp-wg](https://meet.modelcontextprotocol.io/tag/skills-over-mcp-wg)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -4119,8 +4137,12 @@ window.CARDS = [
     "text": "- At-rest signing is not on the Skills WG agenda ([[agent-skills-signing]])."
    },
    {
+    "title": "In use",
+    "text": "- [ext-skills v0.1.0](https://github.com/modelcontextprotocol/ext-skills/releases/tag/v0.1.0) (2026-11-20), a GitHub pre-release: the Beta specification with a JSON Schema and TypeScript types, against MCP base revision 2026-07-28."
+   },
+   {
     "title": "History",
-    "text": "- 2026-09-13: SEP-2640 marked Final."
+    "text": "- 2026-11-20: agentgateway merged initial support for the extension, without multiplexing ([agentgateway#4214](https://github.com/agentgateway/agentgateway/pull/4214)).\n- 2026-11-20: ext-skills v0.1.0, the first tagged release, at Beta stage.\n- 2026-09-13: SEP-2640 marked Final."
    }
   ],
   "links": [
@@ -4136,6 +4158,14 @@ window.CARDS = [
    "mcp"
   ],
   "history": [
+   {
+    "date": "2026-11-20",
+    "text": "agentgateway merged initial support for the extension, without multiplexing ([agentgateway#4214](https://github.com/agentgateway/agentgateway/pull/4214))."
+   },
+   {
+    "date": "2026-11-20",
+    "text": "ext-skills v0.1.0, the first tagged release, at Beta stage."
+   },
    {
     "date": "2026-09-13",
     "text": "SEP-2640 marked Final."
@@ -4669,11 +4699,11 @@ window.CARDS = [
    "https://github.com/Universal-Commerce-Protocol/ucp/releases.atom"
   ],
   "part_of": "",
-  "status": "Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25",
+  "status": "Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25; nominations for the B2B Procurement and Local Services Tech Councils close 2026-11-27",
   "contribute": "[GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)",
   "discussion": "[GitHub discussions](https://github.com/Universal-Commerce-Protocol/ucp/discussions)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -4686,7 +4716,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-08-25: Release v2026-08-25.\n- 2026-04-28: Stripe joined Google and Shopify on the Governing Council."
+    "text": "- 2026-11-14: Nominations opened until 2026-11-27 for the [B2B Procurement](https://github.com/Universal-Commerce-Protocol/ucp/discussions/1094) and [Local Services](https://github.com/Universal-Commerce-Protocol/ucp/discussions/1093) Tech Councils.\n- 2026-11-11: Shopify [deprecated](https://shopify.dev/changelog/posts/storefront-mcp-policies-and-faqs-tool-is-being-deprecated-in-favor-of-ucp-mcp-ask-tool) its Storefront MCP `search_shop_policies_and_faqs` tool in favour of the UCP MCP `ask_business` tool, with migration due by 2027-01-15.\n- 2026-11-05: The Governing Council approved the B2B Procurement Tech Council charter ([ucp#947](https://github.com/Universal-Commerce-Protocol/ucp/issues/947)).\n- 2026-11-04: The Governing Council approved the Local Services Tech Council charter ([ucp#922](https://github.com/Universal-Commerce-Protocol/ucp/issues/922)).\n- 2026-08-25: Release v2026-08-25.\n- 2026-04-28: Stripe joined Google and Shopify on the Governing Council."
    }
   ],
   "links": [
@@ -4700,6 +4730,22 @@ window.CARDS = [
    "openattribution"
   ],
   "history": [
+   {
+    "date": "2026-11-14",
+    "text": "Nominations opened until 2026-11-27 for the [B2B Procurement](https://github.com/Universal-Commerce-Protocol/ucp/discussions/1094) and [Local Services](https://github.com/Universal-Commerce-Protocol/ucp/discussions/1093) Tech Councils."
+   },
+   {
+    "date": "2026-11-11",
+    "text": "Shopify [deprecated](https://shopify.dev/changelog/posts/storefront-mcp-policies-and-faqs-tool-is-being-deprecated-in-favor-of-ucp-mcp-ask-tool) its Storefront MCP `search_shop_policies_and_faqs` tool in favour of the UCP MCP `ask_business` tool, with migration due by 2027-01-15."
+   },
+   {
+    "date": "2026-11-05",
+    "text": "The Governing Council approved the B2B Procurement Tech Council charter ([ucp#947](https://github.com/Universal-Commerce-Protocol/ucp/issues/947))."
+   },
+   {
+    "date": "2026-11-04",
+    "text": "The Governing Council approved the Local Services Tech Council charter ([ucp#922](https://github.com/Universal-Commerce-Protocol/ucp/issues/922))."
+   },
    {
     "date": "2026-08-25",
     "text": "Release v2026-08-25."
@@ -4948,11 +4994,11 @@ window.CARDS = [
    "https://x402.org/feed/"
   ],
   "part_of": "",
-  "status": "x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec",
+  "status": "x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec; USDC default on eight more EVM networks 2026-11-20",
   "contribute": "[GitHub](https://github.com/x402-foundation/x402)",
   "discussion": "[Slack and mailing lists](https://x402.org/get-involved/)",
   "meetings": "[meeting calendar](https://x402.org/get-involved/#calendar)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-23",
   "tags": [
    "type/specification",
    "layer/payments"
@@ -4965,15 +5011,19 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Compared with other commerce specs in [[aaif-agentic-commerce-wg]]."
+    "text": "- Compared with other commerce specs in [[aaif-agentic-commerce-wg]].\n- Mark Nottingham's individual draft [draft-nottingham-httpbis-402](https://datatracker.ietf.org/doc/draft-nottingham-httpbis-402/) defines semantics for the 402 status code. The draft names no payment protocol. Its [IETF 127 slides](https://datatracker.ietf.org/meeting/127/materials/slides-127-httpbis-402-payment-required-00) list x402, h402, L402 and [[mpp]]'s draft-httpauth-payment as current uses of 402. At the [HTTP WG session](https://datatracker.ietf.org/meeting/127/session/httpbis) on 2026-11-20, 15 of 75 participants were interested in adopting it, 3 were not and 18 had no opinion ([minutes](https://datatracker.ietf.org/meeting/127/materials/minutes-127-httpbis-00))."
    },
    {
     "title": "Compare",
     "text": "- [[iab-comp]] terms could settle on the same rail. CoMP does not mention x402 (searched 2026-11-15)."
    },
    {
+    "title": "In use",
+    "text": "- Amazon Bedrock AgentCore payments (generally available since August 2026) pays x402 and [[mpp]] sellers. Since 2026-11-19 an agent can also pay [x402 sellers on AWS Marketplace](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/) in USD on its AWS bill, with no wallet. AWS Billing supports only the `exact` scheme at launch."
+   },
+   {
     "title": "History",
-    "text": "- 2026-10-01: The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.\n- 2026-07-14: x402 Foundation (Linux Foundation) operational."
+    "text": "- 2026-11-20: USDC became the default stablecoin on eight more EVM networks in the TypeScript, Go and Python SDKs ([x402#4337](https://github.com/x402-foundation/x402/pull/4337)).\n- 2026-11-19: AWS added AWS Billing to AgentCore payments for x402 products on AWS Marketplace ([AWS](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/)).\n- 2026-11-18: Advisory [GHSA-5cgh-j82v-jvrj](https://github.com/x402-foundation/x402/security/advisories/GHSA-5cgh-j82v-jvrj) (moderate): the SDKs' batch-settlement voucher verifiers accepted signatures the settlement contract cannot recover, so a receiver could hold a voucher whose claim reverts. The advisory lists no patched version. The fixes merged in [x402#4316](https://github.com/x402-foundation/x402/pull/4316) and [x402#4319](https://github.com/x402-foundation/x402/pull/4319).\n- 2026-10-01: The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.\n- 2026-07-14: x402 Foundation (Linux Foundation) operational."
    }
   ],
   "links": [
@@ -4981,6 +5031,7 @@ window.CARDS = [
    "rsl",
    "ap2",
    "aaif-agentic-commerce-wg",
+   "mpp",
    "iab-comp"
   ],
   "compares": [
@@ -4993,6 +5044,18 @@ window.CARDS = [
    "podcast-namespace"
   ],
   "history": [
+   {
+    "date": "2026-11-20",
+    "text": "USDC became the default stablecoin on eight more EVM networks in the TypeScript, Go and Python SDKs ([x402#4337](https://github.com/x402-foundation/x402/pull/4337))."
+   },
+   {
+    "date": "2026-11-19",
+    "text": "AWS added AWS Billing to AgentCore payments for x402 products on AWS Marketplace ([AWS](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/))."
+   },
+   {
+    "date": "2026-11-18",
+    "text": "Advisory [GHSA-5cgh-j82v-jvrj](https://github.com/x402-foundation/x402/security/advisories/GHSA-5cgh-j82v-jvrj) (moderate): the SDKs' batch-settlement voucher verifiers accepted signatures the settlement contract cannot recover, so a receiver could hold a voucher whose claim reverts. The advisory lists no patched version. The fixes merged in [x402#4316](https://github.com/x402-foundation/x402/pull/4316) and [x402#4319](https://github.com/x402-foundation/x402/pull/4319)."
+   },
    {
     "date": "2026-10-01",
     "text": "The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation."

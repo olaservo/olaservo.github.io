@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-22. This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
+81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-23. This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -1415,7 +1415,7 @@ Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudf
 - Id: ietf-web-bot-auth
 - Also known as: webbotauth
 - Type: working-group
-- Status: WG draft httpsig-protocol-01 (2026-10-29); Cloudflare libraries
+- Status: WG draft httpsig-protocol-01 (2026-10-29); met at IETF 127 on 2026-11-17; Cloudflare libraries
 - Website: https://datatracker.ietf.org/wg/webbotauth/about/
 - News: https://datatracker.ietf.org/wg/webbotauth/history/
 - Feed: https://datatracker.ietf.org/feed/group-changes/webbotauth/
@@ -1424,7 +1424,7 @@ Linked from: [ai.robots.txt](#ai-robots-txt), [CC Signals](#cc-signals), [Cloudf
 - Discussion: [web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/), [Zulip](https://zulip.ietf.org/#narrow/stream/webbotauth)
 - Meetings: [meetings](https://datatracker.ietf.org/wg/webbotauth/meetings/)
 - Tags: type/working-group, layer/identity, layer/access
-- Updated: 2026-11-21
+- Updated: 2026-11-23
 - Explorer: https://www.olahungerford.com/content-provenance/#ietf-web-bot-auth
 
 Signed bot traffic with RFC 9421 HTTP message signatures and a key directory at `/.well-known/http-message-signatures-directory`.
@@ -1440,6 +1440,10 @@ Signed bot traffic with RFC 9421 HTTP message signatures and a key directory at 
 #### In use
 
 - [cloudflare/web-bot-auth](https://github.com/cloudflare/web-bot-auth) publishes libraries for signing and verifying requests. `web-bot-auth` on npm is at 0.2.0 (2026-08-31) and was first published on 2025-04-14.
+
+#### History
+
+- 2026-11-17: At IETF 127 ([session](https://datatracker.ietf.org/meeting/127/session/webbotauth), 16:30 in San Francisco, 00:30 UTC on 2026-11-18) the WG re-confirmed that tracking or reputation for sub-agents, sessions or end users is out of scope under the charter, in discussion of the Signed Agent Metadata and PACE proposals. The authors will update the httpsig-protocol draft to replace the `tag` parameter, define a minimal set of signed components and add signature-failure response headers ([minutes](https://datatracker.ietf.org/meeting/127/materials/minutes-127-webbotauth-00)).
 
 Linked from: [AAIF Identity and Trust WG](#aaif-identity-trust-wg), [Agent Identity and Manifest Standard](#aims), [IETF](#ietf), [IETF AI Preferences Working Group](#ietf-aipref), [Wikimedia](#wikimedia)
 
@@ -1575,7 +1579,7 @@ Tech policy institute led by Alissa Cooper. Related: [Shared AI training robots.
 - Website: https://paymentauth.org
 - Contribute: [GitHub issues](https://github.com/tempoxyz/mpp-specs/issues)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-21
+- Updated: 2026-11-23
 - Explorer: https://www.olahungerford.com/content-provenance/#mpp
 
 Stripe and Tempo protocol: HTTP 402 with a `Payment` authentication scheme, payment-method agnostic, with an MCP transport. Filed at the [IETF](#ietf).
@@ -1584,7 +1588,15 @@ Stripe and Tempo protocol: HTTP 402 with a `Payment` authentication scheme, paym
 
 - **Method-neutral HTTP payment**: one auth scheme for any payment method, an alternative to [x402](#x402).
 
-Linked from: [IETF](#ietf)
+#### Related
+
+- Mark Nottingham's [IETF 127 slides](https://datatracker.ietf.org/meeting/127/materials/slides-127-httpbis-402-payment-required-00) for [draft-nottingham-httpbis-402](https://datatracker.ietf.org/doc/draft-nottingham-httpbis-402/) list draft-httpauth-payment with [x402](#x402), h402 and L402 as current uses of 402. The draft text names none of them.
+
+#### In use
+
+- Amazon Bedrock AgentCore payments, generally available since August 2026, pays MPP and x402 sellers ([AWS, 2026-11-19](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/)).
+
+Linked from: [IETF](#ietf), [x402](#x402)
 
 ### MCP Financial Services Interest Group
 
@@ -1693,14 +1705,14 @@ Working group exploring how a server's tools, resources, prompts and tasks can b
 - Id: mcp-registry
 - Also known as: server.json, Registry WG
 - Type: project
-- Status: In preview since 2025-09-08; registry release v1.8.10 dated 2026-11-20
+- Status: In preview since 2025-09-08; registry release v1.8.16 dated 2026-11-23
 - Website: https://modelcontextprotocol.io/registry/about
 - Part of: [Model Context Protocol](#mcp)
 - Contribute: [registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)
 - Discussion: [Discord #registry-dev](https://discord.gg/modelcontextprotocol), [registry discussions](https://github.com/modelcontextprotocol/registry/discussions)
 - Meetings: [community calendar: registry-dev](https://meet.modelcontextprotocol.io/tag/registry-dev)
 - Tags: type/project, venue/mcp, layer/identity, topic/discovery
-- Updated: 2026-11-21
+- Updated: 2026-11-23
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-registry
 
 The official metadata catalog for publicly accessible MCP servers, run by the MCP Registry Working Group. Each entry is a `server.json` with the server's name, where to find it and how to run it.
@@ -2248,14 +2260,14 @@ Linked from: [AI Catalog](#ai-catalog), [KBART](#kbart), [MCP Registry](#mcp-reg
 - Id: mcp-skills-extension
 - Also known as: SEP-2640, ext-skills
 - Type: specification
-- Status: Final 2026-09-13; Beta under SEP-3392
+- Status: Final 2026-09-13; Beta under SEP-3392; ext-skills v0.1.0 tagged 2026-11-20; agentgateway support merged 2026-11-20, not yet in a release
 - Website: https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2640
 - Part of: [Model Context Protocol](#mcp)
 - Contribute: [ext-skills issues](https://github.com/modelcontextprotocol/ext-skills/issues)
 - Discussion: [Discord #skills-over-mcp-wg](https://discord.com/channels/1358869848138059966/1464745826629976084)
 - Meetings: [community calendar: skills-over-mcp-wg](https://meet.modelcontextprotocol.io/tag/skills-over-mcp-wg)
 - Tags: type/specification, venue/mcp, stage/at-rest, topic/skills, medium/code
-- Updated: 2026-11-21
+- Updated: 2026-11-23
 - Explorer: https://www.olahungerford.com/content-provenance/#mcp-skills-extension
 
 Serves [Agent Skills](#agent-skills) over MCP, with digests and a `_meta` slot for intermediaries.
@@ -2268,8 +2280,14 @@ Serves [Agent Skills](#agent-skills) over MCP, with digests and a `_meta` slot f
 
 - At-rest signing is not on the Skills WG agenda ([Agent Skills at-rest signing threads](#agent-skills-signing)).
 
+#### In use
+
+- [ext-skills v0.1.0](https://github.com/modelcontextprotocol/ext-skills/releases/tag/v0.1.0) (2026-11-20), a GitHub pre-release: the Beta specification with a JSON Schema and TypeScript types, against MCP base revision 2026-07-28.
+
 #### History
 
+- 2026-11-20: agentgateway merged initial support for the extension, without multiplexing ([agentgateway#4214](https://github.com/agentgateway/agentgateway/pull/4214)).
+- 2026-11-20: ext-skills v0.1.0, the first tagged release, at Beta stage.
 - 2026-09-13: SEP-2640 marked Final.
 
 Linked from: [Agent Plugins](#agent-plugins), [Agent Skills at-rest signing threads](#agent-skills-signing), [MCP Progressive Disclosure WG](#mcp-progressive-disclosure-wg), [Model Context Protocol](#mcp)
@@ -2557,14 +2575,14 @@ Linked from: [COUNTER Metrics](#counter), [NISO](#niso)
 - Id: ucp
 - Also known as: UCP
 - Type: specification
-- Status: Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25
+- Status: Governing Council of Google, Shopify and Stripe; no foundation home; latest release v2026-08-25; nominations for the B2B Procurement and Local Services Tech Councils close 2026-11-27
 - Website: https://github.com/Universal-Commerce-Protocol/ucp
 - News: https://ucp.dev/documentation/announcements/
 - Feed: https://github.com/Universal-Commerce-Protocol/ucp/releases.atom
 - Contribute: [GitHub issues](https://github.com/Universal-Commerce-Protocol/ucp/issues)
 - Discussion: [GitHub discussions](https://github.com/Universal-Commerce-Protocol/ucp/discussions)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-21
+- Updated: 2026-11-23
 - Explorer: https://www.olahungerford.com/content-provenance/#ucp
 
 Merchant commerce protocol. [OpenAttribution.org](#openattribution) has an `org.openattribution.telemetry` vendor extension for it.
@@ -2575,6 +2593,10 @@ Merchant commerce protocol. [OpenAttribution.org](#openattribution) has an `org.
 
 #### History
 
+- 2026-11-14: Nominations opened until 2026-11-27 for the [B2B Procurement](https://github.com/Universal-Commerce-Protocol/ucp/discussions/1094) and [Local Services](https://github.com/Universal-Commerce-Protocol/ucp/discussions/1093) Tech Councils.
+- 2026-11-11: Shopify [deprecated](https://shopify.dev/changelog/posts/storefront-mcp-policies-and-faqs-tool-is-being-deprecated-in-favor-of-ucp-mcp-ask-tool) its Storefront MCP `search_shop_policies_and_faqs` tool in favour of the UCP MCP `ask_business` tool, with migration due by 2027-01-15.
+- 2026-11-05: The Governing Council approved the B2B Procurement Tech Council charter ([ucp#947](https://github.com/Universal-Commerce-Protocol/ucp/issues/947)).
+- 2026-11-04: The Governing Council approved the Local Services Tech Council charter ([ucp#922](https://github.com/Universal-Commerce-Protocol/ucp/issues/922)).
 - 2026-08-25: Release v2026-08-25.
 - 2026-04-28: Stripe joined Google and Shopify on the Governing Council.
 
@@ -2701,7 +2723,7 @@ Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Internet Li
 - Id: x402
 - Also known as: x402 Foundation
 - Type: specification
-- Status: x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec
+- Status: x402 Foundation (Linux Foundation) operational 2026-07-14; Executive Director appointed 2026-10-01; v2 spec; USDC default on eight more EVM networks 2026-11-20
 - Website: https://x402.org
 - News: https://x402.org/announcements/, https://x402.org/blog/
 - Feed: https://x402.org/feed/
@@ -2709,7 +2731,7 @@ Linked from: [IETF Web Bot Auth Working Group](#ietf-web-bot-auth), [Internet Li
 - Discussion: [Slack and mailing lists](https://x402.org/get-involved/)
 - Meetings: [meeting calendar](https://x402.org/get-involved/#calendar)
 - Tags: type/specification, layer/payments
-- Updated: 2026-11-21
+- Updated: 2026-11-23
 - Explorer: https://www.olahungerford.com/content-provenance/#x402
 
 HTTP 402 payments in headers, with schemes `exact`, `upto`, `auth-capture` and `batch-settlement` and transports for HTTP, MCP and A2A. Successor in spirit to L402 (Lightning). Sibling of [Agentic AI Foundation](#aaif) under the Linux Foundation, not part of it.
@@ -2722,13 +2744,21 @@ HTTP 402 payments in headers, with schemes `exact`, `upto`, `auth-capture` and `
 #### Related
 
 - Compared with other commerce specs in [AAIF Agentic Commerce WG](#aaif-agentic-commerce-wg).
+- Mark Nottingham's individual draft [draft-nottingham-httpbis-402](https://datatracker.ietf.org/doc/draft-nottingham-httpbis-402/) defines semantics for the 402 status code. The draft names no payment protocol. Its [IETF 127 slides](https://datatracker.ietf.org/meeting/127/materials/slides-127-httpbis-402-payment-required-00) list x402, h402, L402 and [Machine Payments Protocol](#mpp)'s draft-httpauth-payment as current uses of 402. At the [HTTP WG session](https://datatracker.ietf.org/meeting/127/session/httpbis) on 2026-11-20, 15 of 75 participants were interested in adopting it, 3 were not and 18 had no opinion ([minutes](https://datatracker.ietf.org/meeting/127/materials/minutes-127-httpbis-00)).
 
 #### Compare
 
 - [IAB Tech Lab Content Monetization Protocols](#iab-comp) terms could settle on the same rail. CoMP does not mention x402 (searched 2026-11-15).
 
+#### In use
+
+- Amazon Bedrock AgentCore payments (generally available since August 2026) pays x402 and [Machine Payments Protocol](#mpp) sellers. Since 2026-11-19 an agent can also pay [x402 sellers on AWS Marketplace](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/) in USD on its AWS bill, with no wallet. AWS Billing supports only the `exact` scheme at launch.
+
 #### History
 
+- 2026-11-20: USDC became the default stablecoin on eight more EVM networks in the TypeScript, Go and Python SDKs ([x402#4337](https://github.com/x402-foundation/x402/pull/4337)).
+- 2026-11-19: AWS added AWS Billing to AgentCore payments for x402 products on AWS Marketplace ([AWS](https://aws.amazon.com/blogs/machine-learning/enable-ai-agents-to-pay-for-aws-marketplace-x402-products-with-amazon-bedrock-agentcore-payments/)).
+- 2026-11-18: Advisory [GHSA-5cgh-j82v-jvrj](https://github.com/x402-foundation/x402/security/advisories/GHSA-5cgh-j82v-jvrj) (moderate): the SDKs' batch-settlement voucher verifiers accepted signatures the settlement contract cannot recover, so a receiver could hold a voucher whose claim reverts. The advisory lists no patched version. The fixes merged in [x402#4316](https://github.com/x402-foundation/x402/pull/4316) and [x402#4319](https://github.com/x402-foundation/x402/pull/4319).
 - 2026-10-01: The Linux Foundation appointed Michael Hursta as Executive Director of the x402 Foundation.
 - 2026-07-14: x402 Foundation (Linux Foundation) operational.
 
