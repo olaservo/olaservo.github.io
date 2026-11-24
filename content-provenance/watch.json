@@ -1,8 +1,8 @@
 {
- "title": "Content Provenance, Access and Attribution: A Field Guide: watch list",
+ "title": "Provenance, Attribution, Rights and Payment for AI Content: A Field Guide from an MCP Point of View: watch list",
  "description": "Where each effort in the guide posts its blog or announcements, with a feed where it has one, and sources that have no card. A source with a card has the card's id under card.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-23",
+ "as_of": "2026-11-24",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "sources": [
   {
@@ -593,6 +593,28 @@
    "feed": [
     "https://github.com/frmoretto/agentic-standards-map/releases.atom"
    ]
+  },
+  {
+   "id": "mcp-progressive-disclosure-wg",
+   "name": "MCP Progressive Disclosure WG",
+   "card": null,
+   "note": "How a server's tools, resources, prompts and tasks load progressively. A card until 2026-11-24, removed because no layer fits it yet. Its draft groups SEP borrows from Agent Skills",
+   "news": [
+    "https://github.com/modelcontextprotocol/progressive-disclosure-wg"
+   ],
+   "feed": [
+    "https://github.com/modelcontextprotocol/progressive-disclosure-wg/commits/main.atom"
+   ]
+  },
+  {
+   "id": "mcp-security-ig",
+   "name": "MCP Security Interest Group",
+   "card": null,
+   "note": "First stop for MCP security topics, routing each to an owning group. A card until 2026-11-24, removed because it routes no provenance or attribution work yet",
+   "news": [
+    "https://modelcontextprotocol.io/community/interest-groups/security"
+   ],
+   "feed": []
   }
  ]
 }

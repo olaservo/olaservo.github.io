@@ -1,8 +1,8 @@
 {
- "title": "Content Provenance, Access and Attribution: A Field Guide: updates",
+ "title": "Provenance, Attribution, Rights and Payment for AI Content: A Field Guide from an MCP Point of View: updates",
  "description": "Dated events from the History section of each card, newest first.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-23",
+ "as_of": "2026-11-24",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
   {
@@ -39,6 +39,13 @@
    "name": "IETF AI Preferences Working Group",
    "text": "Issues 245 and 246 on downstream survival closed.",
    "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-11-19",
+   "card": "w3c-agentic-web-wg",
+   "name": "W3C Agentic Web Working Group (proposed)",
+   "text": "WebMCP replaced the `RegisteredTool` dictionary with a `Tool` interface keyed by a UUID, a breaking change ([webmcp#348](https://github.com/webmachinelearning/webmcp/pull/348)).",
+   "url": "https://www.olahungerford.com/content-provenance/#w3c-agentic-web-wg"
   },
   {
    "date": "2026-11-19",
@@ -123,6 +130,13 @@
    "name": "Really Simple Licensing",
    "text": "The RSL Collective relaunched as [[internet-licensing-collective]].",
    "url": "https://www.olahungerford.com/content-provenance/#rsl"
+  },
+  {
+   "date": "2026-11-12",
+   "card": "w3c-agentic-web-wg",
+   "name": "W3C Agentic Web Working Group (proposed)",
+   "text": "The Web Machine Learning Community Group assigned explainers for Agent Identity, Agent Delegation and Agent Interaction Measurement, due by the end of November so the charter can go to Advisory Committee review ([minutes](https://www.w3.org/2026/11/12-webmachinelearning-minutes.html)).",
+   "url": "https://www.olahungerford.com/content-provenance/#w3c-agentic-web-wg"
   },
   {
    "date": "2026-11-11",
@@ -217,24 +231,10 @@
   },
   {
    "date": "2026-10-31",
-   "card": "mcp-security-ig",
-   "name": "MCP Security Interest Group",
-   "text": "The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-security-ig"
-  },
-  {
-   "date": "2026-10-31",
    "card": "otel-mcp",
    "name": "OpenTelemetry for MCP",
    "text": "Built-in OpenTelemetry tracing and metrics merged for the TypeScript SDK, not yet released.",
    "url": "https://www.olahungerford.com/content-provenance/#otel-mcp"
-  },
-  {
-   "date": "2026-10-30",
-   "card": "mcp-progressive-disclosure-wg",
-   "name": "MCP Progressive Disclosure WG",
-   "text": "Positioning draft on Groups and Skills over MCP opened as PR 22.",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg"
   },
   {
    "date": "2026-10-30",
@@ -284,13 +284,6 @@
    "name": "MCP Interceptors WG and SEP-2624",
    "text": "Chain concept removed from the SEP.",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-interceptors"
-  },
-  {
-   "date": "2026-10-26",
-   "card": "mcp-progressive-disclosure-wg",
-   "name": "MCP Progressive Disclosure WG",
-   "text": "The WG agreed to keep `group` as the primitive name, with stateless `groups/list` and `groups/get`, `description` as the \"when to use\" field and optional `instructions` ([meeting notes](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3458)). The decision log recorded these the next day.",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg"
   },
   {
    "date": "2026-10-23",
@@ -406,10 +399,10 @@
   },
   {
    "date": "2026-09-28",
-   "card": "mcp-progressive-disclosure-wg",
-   "name": "MCP Progressive Disclosure WG",
-   "text": "Draft groups SEP opened as PR 19.",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg"
+   "card": "w3c-agentic-web-wg",
+   "name": "W3C Agentic Web Working Group (proposed)",
+   "text": "Charter review issue opened ([w3c/strategy#576](https://github.com/w3c/strategy/issues/576)).",
+   "url": "https://www.olahungerford.com/content-provenance/#w3c-agentic-web-wg"
   },
   {
    "date": "2026-09-25",
@@ -424,13 +417,6 @@
    "name": "OpenLineage",
    "text": "Presented to the MCP Financial Services Interest Group.",
    "url": "https://www.olahungerford.com/content-provenance/#openlineage"
-  },
-  {
-   "date": "2026-09-21",
-   "card": "mcp-progressive-disclosure-wg",
-   "name": "MCP Progressive Disclosure WG",
-   "text": "Renamed from the Primitive Grouping Interest Group and converted to a Working Group.",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg"
   },
   {
    "date": "2026-09-18",
@@ -515,13 +501,6 @@
    "name": "KBART",
    "text": "[Phase III](https://www.niso.org/publications/rp-9-2026-kbart) published.",
    "url": "https://www.olahungerford.com/content-provenance/#kbart"
-  },
-  {
-   "date": "2026-08-26",
-   "card": "mcp-security-ig",
-   "name": "MCP Security Interest Group",
-   "text": "Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives.",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-security-ig"
   },
   {
    "date": "2026-08-26",
@@ -641,13 +620,6 @@
    "name": "Enterprise-Managed Authorization",
    "text": "Extension announced as stable.",
    "url": "https://www.olahungerford.com/content-provenance/#mcp-enterprise-managed-authorization"
-  },
-  {
-   "date": "2026-06-18",
-   "card": "mcp-progressive-disclosure-wg",
-   "name": "MCP Progressive Disclosure WG",
-   "text": "Initial charter, as the Primitive Grouping Interest Group.",
-   "url": "https://www.olahungerford.com/content-provenance/#mcp-progressive-disclosure-wg"
   },
   {
    "date": "2026-06-17",

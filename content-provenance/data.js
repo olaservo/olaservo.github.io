@@ -442,14 +442,15 @@ window.CARDS = [
   "contribute": "[contributing guide](https://github.com/agentskills/agentskills/blob/main/CONTRIBUTING.md)",
   "discussion": "[GitHub discussions](https://github.com/agentskills/agentskills/discussions), [Agent Skills Discord](https://discord.gg/MKPE9g8aUy)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-24",
   "tags": [
    "type/specification",
+   "layer/licensing",
    "topic/skills",
    "stage/at-rest",
    "medium/code"
   ],
-  "summary": "The SKILL.md format for packaging instructions and files for agents.",
+  "summary": "The SKILL.md format for packaging instructions and files for agents. Its frontmatter has an optional `license` field that names the skill's license or a bundled license file ([spec](https://agentskills.io/specification)).",
   "sections": [
    {
     "title": "Topics",
@@ -476,7 +477,6 @@ window.CARDS = [
    "agent-skills-signing",
    "aaif",
    "ai-catalog",
-   "mcp-progressive-disclosure-wg",
    "mcp-skills-extension",
    "skills-marketplace"
   ],
@@ -622,6 +622,7 @@ window.CARDS = [
    "agent-skills",
    "mcp",
    "open-future",
+   "w3c-agentic-web-wg",
    "wikimedia",
    "x402"
   ],
@@ -1016,9 +1017,11 @@ window.CARDS = [
    "encypher",
    "eu-ai-act-gpai-code",
    "iptc",
+   "mcp-interceptors",
    "niso",
    "podcast-namespace",
-   "skills-marketplace"
+   "skills-marketplace",
+   "w3c-agentic-web-wg"
   ],
   "history": [
    {
@@ -1082,7 +1085,6 @@ window.CARDS = [
    "agent-skills-signing",
    "c2pa",
    "mcp-interceptors",
-   "mcp-security-ig",
    "mcp",
    "openlineage",
    "otel-mcp"
@@ -2093,10 +2095,11 @@ window.CARDS = [
   "contribute": "",
   "discussion": "",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-24",
   "tags": [
    "type/organization",
-   "layer/licensing"
+   "layer/licensing",
+   "topic/quality"
   ],
   "summary": "Non-profit that certifies generative AI companies, products and models whose training data was licensed for training, openly licensed, in the public domain or owned by the developer. Ed Newton-Rex is its CEO.",
   "sections": [
@@ -2522,7 +2525,8 @@ window.CARDS = [
    "microsoft-grounding-preference",
    "mcp",
    "rsl",
-   "aipref-training-token"
+   "aipref-training-token",
+   "w3c-agentic-web-wg"
   ],
   "history": [
    {
@@ -2562,7 +2566,7 @@ window.CARDS = [
   "contribute": "[GitHub issues](https://github.com/webbotauth/draft-ietf-webbotauth-httpsig-protocol/issues)",
   "discussion": "[web-bot-auth mailing list](https://mailarchive.ietf.org/arch/browse/web-bot-auth/), [Zulip](https://zulip.ietf.org/#narrow/stream/webbotauth)",
   "meetings": "[meetings](https://datatracker.ietf.org/wg/webbotauth/meetings/)",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "tags": [
    "type/working-group",
    "layer/identity",
@@ -2573,6 +2577,10 @@ window.CARDS = [
    {
     "title": "Topics",
     "text": "- **Bot identity**: proving who a crawler or agent is. The preference ([[ietf-aipref]]) says what is allowed, bot auth says who is asking."
+   },
+   {
+    "title": "Related",
+    "text": "- The draft charter for the [[w3c-agentic-web-wg]] says its Agent Identity work will build on this WG's mechanisms and coordinate on how HTTP-level agent identity relates to identity exposed to web pages ([draft charter](https://w3c.github.io/charter-drafts/2026/agenticweb-wg.html), checked 2026-11-24)."
    },
    {
     "title": "Compare",
@@ -2589,6 +2597,7 @@ window.CARDS = [
   ],
   "links": [
    "ietf-aipref",
+   "w3c-agentic-web-wg",
    "aims",
    "wikimedia",
    "ietf"
@@ -2602,6 +2611,7 @@ window.CARDS = [
    "aims",
    "ietf",
    "ietf-aipref",
+   "w3c-agentic-web-wg",
    "wikimedia"
   ],
   "history": [
@@ -2967,13 +2977,15 @@ window.CARDS = [
   "contribute": "[SEP-2624 PR](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2624), [experimental-ext-interceptors](https://github.com/modelcontextprotocol/experimental-ext-interceptors)",
   "discussion": "[MCP community channels](https://modelcontextprotocol.io/community/communication)",
   "meetings": "[community calendar: interceptors-wg](https://meet.modelcontextprotocol.io/tag/interceptors-wg)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-24",
   "tags": [
    "type/working-group",
    "venue/mcp",
+   "layer/provenance",
+   "layer/attribution",
    "stage/boundary"
   ],
-  "summary": "Context middleware for clients, servers and gateways: deterministic code that sees each request and result on the way through. The place a seal or citation validator can run without a core spec change.",
+  "summary": "Context middleware for clients, servers and gateways: deterministic code that sees each request and result on the way through. It is the place in MCP where a provenance or attribution check, such as a seal or citation validator, can run without a core spec change.",
   "sections": [
    {
     "title": "Topics",
@@ -2981,7 +2993,7 @@ window.CARDS = [
    },
    {
     "title": "Compare",
-    "text": "- A seal validator for [[mcp-c2pa-in-meta]] is this guide's suggestion. Neither thread refers to the other (searched 2026-11-15)."
+    "text": "- A seal validator for [[mcp-c2pa-in-meta]], which carries a [[c2pa]] credential, is this guide's suggestion. Neither thread refers to the other (searched 2026-11-15)."
    },
    {
     "title": "History",
@@ -2991,10 +3003,12 @@ window.CARDS = [
   "links": [
    "mcp-sep-3094-citations",
    "mcp-c2pa-in-meta",
+   "c2pa",
    "mcp"
   ],
   "compares": [
-   "mcp-c2pa-in-meta"
+   "mcp-c2pa-in-meta",
+   "c2pa"
   ],
   "backlinks": [
    "mcp-c2pa-in-meta",
@@ -3005,74 +3019,6 @@ window.CARDS = [
    {
     "date": "2026-10-27",
     "text": "Chain concept removed from the SEP."
-   }
-  ]
- },
- {
-  "id": "mcp-progressive-disclosure-wg",
-  "name": "MCP Progressive Disclosure WG",
-  "aliases": [
-   "Progressive Disclosure Working Group",
-   "Primitive Grouping IG"
-  ],
-  "type": "working-group",
-  "website": "https://modelcontextprotocol.io/community/working-groups/progressive-disclosure",
-  "news": [],
-  "feed": [],
-  "part_of": "mcp",
-  "status": "Draft SEP for an `io.modelcontextprotocol/groups` extension open as a PR in the WG repository since 2026-09-28; not yet filed in the specification repository. The Core Primitives WG charter, open since 2026-11-11 (PR 3545), hands progressive discovery to this WG",
-  "contribute": "[draft groups SEP](https://github.com/modelcontextprotocol/progressive-disclosure-wg/pull/19), [WG repository](https://github.com/modelcontextprotocol/progressive-disclosure-wg)",
-  "discussion": "[Discord #progressive-disclosure-wg](https://discord.com/channels/1358869848138059966/1425903819186770064), [GitHub discussions](https://github.com/modelcontextprotocol/progressive-disclosure-wg/discussions)",
-  "meetings": "[community calendar: progressive-disclosure-wg](https://meet.modelcontextprotocol.io/tag/progressive-disclosure-wg)",
-  "updated": "2026-11-21",
-  "tags": [
-   "type/working-group",
-   "venue/mcp",
-   "topic/skills"
-  ],
-  "summary": "Working group exploring how a server's tools, resources, prompts and tasks can be organized beyond flat lists, so a client loads a small entry point first and the full definitions only when it needs them. Its problem statement uses CLIs and [[agent-skills]] as examples of this loading pattern. For skills, a client sees each skill's name and description, loads `SKILL.md` when the skill is activated, and loads supporting files during execution. It says MCP has no equivalent for its own primitives.",
-  "sections": [
-   {
-    "title": "Topics",
-    "text": "- **Loading primitives the way skills load**: long lists of primitives fill a model's context and cost tokens. The WG supports reference extensions for several approaches, such as grouping, tool search and code mode, and feeds recommendations into the SEP process.\n- **A `group` primitive**: the draft SEP defines a group as a named bundle that a server lists with `groups/list`. `groups/get` returns the group's scoped tools, prompts, resources and nested groups, with optional `instructions`, in one stateless call. Scoped primitives stay out of `tools/list`, `prompts/list` and `resources/list`.\n- **Groups and skills**: a positioning draft says Groups borrows its design from Agent Skills, applied to MCP primitives. It lists three options for how Groups relates to the [[mcp-skills-extension]]: competing standards, complementary standards, or renaming Groups to Skills as a \"Skills v2\". It says the complementary option got the most votes in the initial WG discussion and that renaming remains a competitive alternative ([PR 22](https://github.com/modelcontextprotocol/progressive-disclosure-wg/pull/22), open)."
-   },
-   {
-    "title": "Related",
-    "text": "- The charter lists the Skills Over MCP WG and the [[mcp-skills-extension]] as related, saying skill discovery and progressive disclosure overlap with grouping. The Skills Over MCP charter lists this WG in return.\n- Organizing MCP servers is out of scope. The charter leaves server discovery to the [[mcp-registry]] WG.\n- The MCP roadmap assigns \"progressive discovery\" of a server's tools and resources to the Core Primitives WG. The draft Core Primitives charter ([PR 3545](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3545), open) says progressive discovery is handled by this WG."
-   },
-   {
-    "title": "History",
-    "text": "- 2026-10-30: Positioning draft on Groups and Skills over MCP opened as PR 22.\n- 2026-10-26: The WG agreed to keep `group` as the primitive name, with stateless `groups/list` and `groups/get`, `description` as the \"when to use\" field and optional `instructions` ([meeting notes](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3458)). The decision log recorded these the next day.\n- 2026-09-28: Draft groups SEP opened as PR 19.\n- 2026-09-21: Renamed from the Primitive Grouping Interest Group and converted to a Working Group.\n- 2026-06-18: Initial charter, as the Primitive Grouping Interest Group."
-   }
-  ],
-  "links": [
-   "agent-skills",
-   "mcp-skills-extension",
-   "mcp-registry",
-   "mcp"
-  ],
-  "compares": [],
-  "backlinks": [],
-  "history": [
-   {
-    "date": "2026-10-30",
-    "text": "Positioning draft on Groups and Skills over MCP opened as PR 22."
-   },
-   {
-    "date": "2026-10-26",
-    "text": "The WG agreed to keep `group` as the primitive name, with stateless `groups/list` and `groups/get`, `description` as the \"when to use\" field and optional `instructions` ([meeting notes](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3458)). The decision log recorded these the next day."
-   },
-   {
-    "date": "2026-09-28",
-    "text": "Draft groups SEP opened as PR 19."
-   },
-   {
-    "date": "2026-09-21",
-    "text": "Renamed from the Primitive Grouping Interest Group and converted to a Working Group."
-   },
-   {
-    "date": "2026-06-18",
-    "text": "Initial charter, as the Primitive Grouping Interest Group."
    }
   ]
  },
@@ -3092,12 +3038,13 @@ window.CARDS = [
   "contribute": "[registry issues](https://github.com/modelcontextprotocol/registry/issues), [Registry WG charter](https://modelcontextprotocol.io/community/working-groups/registry)",
   "discussion": "[Discord #registry-dev](https://discord.gg/modelcontextprotocol), [registry discussions](https://github.com/modelcontextprotocol/registry/discussions)",
   "meetings": "[community calendar: registry-dev](https://meet.modelcontextprotocol.io/tag/registry-dev)",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "tags": [
    "type/project",
    "venue/mcp",
    "layer/identity",
-   "topic/discovery"
+   "topic/discovery",
+   "topic/quality"
   ],
   "summary": "The official metadata catalog for publicly accessible MCP servers, run by the MCP Registry Working Group. Each entry is a `server.json` with the server's name, where to find it and how to run it.",
   "sections": [
@@ -3132,7 +3079,6 @@ window.CARDS = [
   ],
   "backlinks": [
    "kbart",
-   "mcp-progressive-disclosure-wg",
    "mcp",
    "mcp-server-cards"
   ],
@@ -3140,63 +3086,6 @@ window.CARDS = [
    {
     "date": "2025-09-08",
     "text": "Launched in preview."
-   }
-  ]
- },
- {
-  "id": "mcp-security-ig",
-  "name": "MCP Security Interest Group",
-  "aliases": [],
-  "type": "interest-group",
-  "website": "",
-  "news": [],
-  "feed": [],
-  "part_of": "mcp",
-  "status": "Restructured as a routing group, decided 2026-08-26 and merged into the charter 2026-10-31; monthly agenda-driven call",
-  "contribute": "[Security IG charter](https://modelcontextprotocol.io/community/interest-groups/security)",
-  "discussion": "[Discord #security-ig](https://discord.com/channels/1358869848138059966/1379811011669921883)",
-  "meetings": "[meeting schedule](https://modelcontextprotocol.io/community/interest-groups/security#operations)",
-  "updated": "2026-11-21",
-  "tags": [
-   "type/interest-group",
-   "venue/mcp",
-   "layer/governance"
-  ],
-  "summary": "First stop for security topics. Routes validated work to the owning group.",
-  "sections": [
-   {
-    "title": "Topics",
-    "text": "- **Routing**: acting as the first stop for security topics and sending each to an owning group."
-   },
-   {
-    "title": "Compare",
-    "text": "- [[mcp-c2pa-in-meta]] and [[mcp-sep-3094-citations]] have no owning group, and this IG could route them. No IG record names either. The first was filed in the Ideas - Security discussion category (searched 2026-11-15)."
-   },
-   {
-    "title": "History",
-    "text": "- 2026-10-31: The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331)).\n- 2026-08-26: Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives."
-   }
-  ],
-  "links": [
-   "mcp-c2pa-in-meta",
-   "mcp-sep-3094-citations",
-   "mcp"
-  ],
-  "compares": [
-   "mcp-c2pa-in-meta",
-   "mcp-sep-3094-citations"
-  ],
-  "backlinks": [
-   "mcp"
-  ],
-  "history": [
-   {
-    "date": "2026-10-31",
-    "text": "The restructure was merged into the charter ([#3331](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3331))."
-   },
-   {
-    "date": "2026-08-26",
-    "text": "Restructured as a routing group at a core maintainer meeting ([discussion 3316](https://github.com/modelcontextprotocol/modelcontextprotocol/discussions/3316)), the date the charter changelog gives."
    }
   ]
  },
@@ -3324,7 +3213,7 @@ window.CARDS = [
   "contribute": "[contributing guide](https://modelcontextprotocol.io/community/contributing), [SEP guidelines](https://modelcontextprotocol.io/community/sep-guidelines)",
   "discussion": "[MCP community channels](https://modelcontextprotocol.io/community/communication), [MCP Contributor Discord](https://discord.gg/modelcontextprotocol)",
   "meetings": "[meeting calendar](https://meet.modelcontextprotocol.io/)",
-  "updated": "2026-11-21",
+  "updated": "2026-11-24",
   "tags": [
    "type/specification",
    "venue/mcp",
@@ -3339,7 +3228,7 @@ window.CARDS = [
    },
    {
     "title": "Related",
-    "text": "- Built-in tracing and metrics in the SDKs: [[otel-mcp]].\n- Threads: [[mcp-c2pa-in-meta]], [[mcp-sep-3094-citations]], [[mcp-skills-extension]], [[mcp-interceptors]].\n- Groups: [[mcp-fsig]], [[mcp-security-ig]].\n- Discovery and authorization: [[mcp-registry]], [[mcp-server-cards]], [[mcp-enterprise-managed-authorization]]."
+    "text": "- Built-in tracing and metrics in the SDKs: [[otel-mcp]].\n- Threads: [[mcp-c2pa-in-meta]], [[mcp-sep-3094-citations]], [[mcp-skills-extension]], [[mcp-interceptors]].\n- Groups: [[mcp-fsig]].\n- Discovery and authorization: [[mcp-registry]], [[mcp-server-cards]], [[mcp-enterprise-managed-authorization]]."
    },
    {
     "title": "Compare",
@@ -3358,7 +3247,6 @@ window.CARDS = [
    "mcp-sep-3094-citations",
    "mcp-skills-extension",
    "mcp-interceptors",
-   "mcp-security-ig",
    "mcp-registry",
    "mcp-server-cards",
    "mcp-enterprise-managed-authorization",
@@ -3378,13 +3266,12 @@ window.CARDS = [
    "getftr",
    "mcp-fsig",
    "mcp-interceptors",
-   "mcp-progressive-disclosure-wg",
    "mcp-registry",
-   "mcp-security-ig",
    "otel-mcp",
    "mcp-server-cards",
    "mcp-skills-extension",
-   "mcp-sep-3094-citations"
+   "mcp-sep-3094-citations",
+   "w3c-agentic-web-wg"
   ],
   "history": []
  },
@@ -4118,15 +4005,17 @@ window.CARDS = [
   "contribute": "[ext-skills issues](https://github.com/modelcontextprotocol/ext-skills/issues)",
   "discussion": "[Discord #skills-over-mcp-wg](https://discord.com/channels/1358869848138059966/1464745826629976084)",
   "meetings": "[community calendar: skills-over-mcp-wg](https://meet.modelcontextprotocol.io/tag/skills-over-mcp-wg)",
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "tags": [
    "type/specification",
    "venue/mcp",
+   "layer/provenance",
+   "layer/licensing",
    "stage/at-rest",
    "topic/skills",
    "medium/code"
   ],
-  "summary": "Serves [[agent-skills]] over MCP, with digests and a `_meta` slot for intermediaries.",
+  "summary": "Serves [[agent-skills]] over MCP. Each skill entry carries its `SKILL.md` frontmatter verbatim, including any `license`, and a manifest of its files with SHA-256 digests that a client checks when it reads them ([spec](https://github.com/modelcontextprotocol/ext-skills/blob/main/specification/beta/skills.mdx)).",
   "sections": [
    {
     "title": "Topics",
@@ -4154,7 +4043,6 @@ window.CARDS = [
   "backlinks": [
    "agent-plugins",
    "agent-skills-signing",
-   "mcp-progressive-disclosure-wg",
    "mcp"
   ],
   "history": [
@@ -4233,7 +4121,6 @@ window.CARDS = [
    "content-telemetry",
    "mcp-fsig",
    "mcp-interceptors",
-   "mcp-security-ig",
    "mcp",
    "okfn",
    "wikimedia"
@@ -4328,13 +4215,14 @@ window.CARDS = [
   "contribute": "[Skill Cards issues](https://github.com/SrulyRosenblat/skill-cards/issues), [SkillProof issues](https://github.com/SrulyRosenblat/skillproof/issues)",
   "discussion": "",
   "meetings": "",
-  "updated": "2026-11-20",
+  "updated": "2026-11-24",
   "tags": [
    "type/project",
    "layer/licensing",
    "layer/attribution",
    "layer/payments",
    "topic/skills",
+   "topic/quality",
    "medium/code"
   ],
   "summary": "A marketplace for modular, interoperable, rights-protected skills with monetization for their authors, built with O'Reilly Media and Miso.ai. Two public tools so far: [Skill Cards](https://github.com/SrulyRosenblat/skill-cards) measures how well a skill covers its source documentation, and [SkillProof](https://srulyrosenblat.github.io/skillproof/) benchmarks the uplift a skill gives an agent.",
@@ -4777,13 +4665,13 @@ window.CARDS = [
   "contribute": "[how to participate](https://www.w3.org/get-involved/)",
   "discussion": "[public mailing lists](https://lists.w3.org/)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-24",
   "tags": [
    "type/organization",
    "layer/licensing",
    "layer/access"
   ],
-  "summary": "Web standards body. Hosts [[w3c-odrl]] and [[w3c-tdmrep]], and the DID and Verifiable Credentials specs [[aims]] uses.",
+  "summary": "Web standards body. Hosts [[w3c-odrl]], [[w3c-tdmrep]] and the proposed [[w3c-agentic-web-wg]], and the DID and Verifiable Credentials specs [[aims]] uses.",
   "sections": [
    {
     "title": "Topics",
@@ -4793,14 +4681,84 @@ window.CARDS = [
   "links": [
    "w3c-odrl",
    "w3c-tdmrep",
+   "w3c-agentic-web-wg",
    "aims"
   ],
   "compares": [],
   "backlinks": [
+   "w3c-agentic-web-wg",
    "w3c-odrl",
    "w3c-tdmrep"
   ],
   "history": []
+ },
+ {
+  "id": "w3c-agentic-web-wg",
+  "name": "W3C Agentic Web Working Group (proposed)",
+  "aliases": [
+   "Agentic Web WG",
+   "WebMCP"
+  ],
+  "type": "working-group",
+  "website": "https://w3c.github.io/charter-drafts/2026/agenticweb-wg.html",
+  "news": [],
+  "feed": [],
+  "part_of": "w3c",
+  "status": "Draft charter in charter refinement ([w3c/strategy#576](https://github.com/w3c/strategy/issues/576), updated 2026-11-23); Agent Identity, Agent Delegation and Agent Interaction Measurement explainers assigned 2026-11-12 for the end of November; WebMCP in origin trials",
+  "contribute": "[WebMCP issues](https://github.com/webmachinelearning/webmcp/issues), [Web Machine Learning Community Group](https://www.w3.org/community/webmachinelearning/)",
+  "discussion": "[charter review issue](https://github.com/w3c/strategy/issues/576)",
+  "meetings": "",
+  "updated": "2026-11-24",
+  "tags": [
+   "type/working-group",
+   "layer/identity"
+  ],
+  "summary": "Proposed W3C working group on how AI agents interact with the web. Its Agent Identity deliverable would tell a page that an agent is acting for a user, and where appropriate which agent and for whom, building on [[ietf-web-bot-auth]] and OAuth without duplicating them. Its first draft is WebMCP, a browser API (`document.modelContext`) that lets a page expose tools to agents, incubated in the Web Machine Learning Community Group. WebMCP is a W3C effort, separate from the [[mcp]] project. The draft charter names Heather Flanagan, Liad Yosef and Yoav Weiss as chairs.",
+  "sections": [
+   {
+    "title": "Topics",
+    "text": "- **Telling a site an agent is acting**: conveying that an interaction comes from an agent on a user's behalf, so a site can decide which actions need the user directly. The draft puts detecting agents that do not disclose themselves, and cryptographic authentication, out of scope.\n- **Measuring agent use**: Agent Interaction Measurement would let a page measure capability invocations, interaction timing and coarse outcomes such as user feedback, through the Performance Timeline and Reporting API. It must not expose the user's conversation with the agent.\n- **Site capabilities**: describing a page's functions as tools with input and output schemas and hints such as read-only or needing user acknowledgement. WebMCP is the starting draft."
+   },
+   {
+    "title": "Related",
+    "text": "- The draft charter lists crawler controls and content provenance as out of scope, and names [[ietf-aipref]] and [[c2pa]] as liaisons. It also names [[ietf-web-bot-auth]] and [[aaif]], and says it will coordinate with AAIF on how its specifications relate to MCP."
+   },
+   {
+    "title": "In use",
+    "text": "- WebMCP origin trials in Chrome 149 and Edge 150 ([implementation status](https://github.com/webmachinelearning/webmcp/blob/main/implementation-status.md), checked 2026-11-24).\n- [@w3c/webmcp-polyfill](https://www.npmjs.com/package/@w3c/webmcp-polyfill) 0.2.0 on npm (checked 2026-11-24)."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-19: WebMCP replaced the `RegisteredTool` dictionary with a `Tool` interface keyed by a UUID, a breaking change ([webmcp#348](https://github.com/webmachinelearning/webmcp/pull/348)).\n- 2026-11-12: The Web Machine Learning Community Group assigned explainers for Agent Identity, Agent Delegation and Agent Interaction Measurement, due by the end of November so the charter can go to Advisory Committee review ([minutes](https://www.w3.org/2026/11/12-webmachinelearning-minutes.html)).\n- 2026-09-28: Charter review issue opened ([w3c/strategy#576](https://github.com/w3c/strategy/issues/576))."
+   }
+  ],
+  "links": [
+   "ietf-web-bot-auth",
+   "mcp",
+   "ietf-aipref",
+   "c2pa",
+   "aaif",
+   "w3c"
+  ],
+  "compares": [],
+  "backlinks": [
+   "ietf-web-bot-auth",
+   "w3c"
+  ],
+  "history": [
+   {
+    "date": "2026-11-19",
+    "text": "WebMCP replaced the `RegisteredTool` dictionary with a `Tool` interface keyed by a UUID, a breaking change ([webmcp#348](https://github.com/webmachinelearning/webmcp/pull/348))."
+   },
+   {
+    "date": "2026-11-12",
+    "text": "The Web Machine Learning Community Group assigned explainers for Agent Identity, Agent Delegation and Agent Interaction Measurement, due by the end of November so the charter can go to Advisory Committee review ([minutes](https://www.w3.org/2026/11/12-webmachinelearning-minutes.html))."
+   },
+   {
+    "date": "2026-09-28",
+    "text": "Charter review issue opened ([w3c/strategy#576](https://github.com/w3c/strategy/issues/576))."
+   }
+  ]
  },
  {
   "id": "w3c-odrl",
@@ -5072,7 +5030,7 @@ window.VOCAB = {
   "provenance": "where content came from and what was done to it, carried as signed records",
   "access": "whether a crawler or agent may read or use content, and how that preference is expressed",
   "licensing": "the terms and prices for use, in a form machines can read",
-  "attribution": "whether the source is named and credited where the content ends up",
+  "attribution": "whether the source is credited where the content ends up, and how its contribution to an output is measured so it can be paid",
   "payments": "how a use gets paid for, from HTTP 402 to agent checkout",
   "identity": "who the agent, crawler or signer is",
   "governance": "the foundations, policy bodies and regulation around the rest"
@@ -5095,7 +5053,8 @@ window.VOCAB = {
  "topics": {
   "skills": "agent skills and plugins, and how they are packaged, signed, listed and credited",
   "discovery": "how an agent finds a server, an agent or a skill, through registries, catalogs and well-known files",
-  "lineage": "how a work or a dataset records what it was made from, such as a parent it was derived from, the parts it is composed of and the inputs to the process that produced it"
+  "lineage": "how a work or a dataset records what it was made from, such as a parent it was derived from, the parts it is composed of and the inputs to the process that produced it",
+  "quality": "signals a buyer or agent uses to judge whether content, data, a skill or a service is worth using or paying more for, such as ratings, certifications and benchmarks"
  },
  "participation": {
   "contribute": "how to work on the effort itself: its issue tracker or specification repository, or the membership, join page or committee you have to be part of before you can contribute",
