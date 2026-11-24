@@ -1,6 +1,6 @@
 # Content Provenance, Access and Attribution: A Field Guide
 
-> 81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford, as of 2026-11-22.
+> 81 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited (attribution), and where the Model Context Protocol fits among them. Compiled by Ola Hungerford, as of 2026-11-23.
 
 This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide. Each card has a name, type, status, website, tags (layer, stage, medium, topic, type), a short summary, topic sections, a dated history where one is known, links to related cards and, where the effort names them, public places to take part: Contribute (issue tracker, repository or join page), Discussion (chat, forum or mailing list) and Meetings (public calendar or list of open calls). A link under a card's Compare heading is a comparison made by this guide. Every other link is a connection that a primary source states.
 
@@ -22,7 +22,7 @@ A prototype at https://content-provenance-field-guide.olahungerford.workers.dev/
 
 ## All cards in one file
 
-- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): every card in one file of about 195 KB, one section per card, with the layer and stage definitions first
+- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): every card in one file of about 200 KB, one section per card, with the layer and stage definitions first
 - [All cards as JSON](https://www.olahungerford.com/content-provenance/cards.json): the same cards as structured data, with the vocabularies under "vocab"
 
 ## Optional
