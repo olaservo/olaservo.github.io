@@ -6,7 +6,7 @@
   "url": "https://www.olahungerford.com/about/"
  },
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-24",
+ "as_of": "2026-11-25",
  "explorer": "https://www.olahungerford.com/content-provenance/",
  "markdown": "https://www.olahungerford.com/content-provenance/cards.md",
  "updates": "https://www.olahungerford.com/content-provenance/updates.json",
@@ -1028,7 +1028,7 @@
    "contribute": "[membership](https://c2pa.org/membership/), [spec issues](https://github.com/c2pa-org/specifications/issues)",
    "discussion": "",
    "meetings": "",
-   "updated": "2026-11-22",
+   "updated": "2026-11-25",
    "tags": [
     "type/organization",
     "layer/provenance",
@@ -1049,7 +1049,7 @@
     },
     {
      "title": "Related",
-     "text": "- Identity and consent assertions come from [[cawg]].\n- Signing skill folders: [[agent-skills-signing]].\n- [[spur-coalition]]'s Content Telemetry accepts a C2PA manifest hash as a content identifier."
+     "text": "- Identity and consent assertions come from [[cawg]].\n- Signing skill folders: [[agent-skills-signing]].\n- Its music guidance, [Applying Content Credentials to Music Assets](https://spec.c2pa.org/specifications/specifications/2.4/music/guidance_applying_content_credential_music_assets.html), has an annex on aligning credentials with [[ddex]] metadata (read 2026-11-25).\n- [[spur-coalition]]'s Content Telemetry accepts a C2PA manifest hash as a content identifier."
     },
     {
      "title": "Compare",
@@ -1070,6 +1070,7 @@
     "mcp-c2pa-in-meta",
     "cawg",
     "agent-skills-signing",
+    "ddex",
     "spur-coalition",
     "aaif-identity-trust-wg",
     "iptc"
@@ -1646,6 +1647,7 @@
    "backlinks": [
     "agent-skills-signing",
     "c2pa",
+    "ddex",
     "dif",
     "encypher",
     "eu-ai-act-gpai-code",
@@ -1836,7 +1838,7 @@
    "contribute": "[working groups](https://ddex.net/about-ddex/working-groups/), for Charter and Full Members",
    "discussion": "",
    "meetings": "",
-   "updated": "2026-11-21",
+   "updated": "2026-11-25",
    "tags": [
     "type/organization",
     "layer/provenance",
@@ -1851,8 +1853,8 @@
      "text": "- **Release metadata**: telling a streaming service what a release is and who is credited on it, in one message format, the Electronic Release Notification (ERN).\n- **AI disclosure**: saying that a recording, or one contributor's part in it, was made with generative AI. The [ERN release notes](https://ern.ddex.net/electronic-release-notification-message-suite-part-1-definitions-of-messages/annex-a-(informative)-release-notes/) list both under version 4.3.1. A sound recording, image, text, video or release can carry [`ContainsAI`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_ContainsAI.html), and a contributor can carry [`AiContribution`](https://service.ddex.net/dd/DD-ERN-432/dd/ddex_AiContribution.html). The data dictionary's rules use the values All, Partly and None.\n- **Declared, not checked**: the disclosure is what the sender of the message declares. Spotify's [help page](https://support.spotify.com/us/article/ai-credits/) says \"AI credits are optional for artists to share\" and \"The absence of AI credits doesn't mean AI wasn't used on a song.\"\n- **AI as a use type**: naming AI training among the uses a message can refer to. The [allowed value sets](https://kb.ddex.net/reference-material/current-allowed-value-sets/) include `UseForGenerativeAI`, `UseForTrainingGenerativeAI` and `UseForTrainingNonGenerativeAI`.\n- **A standard for AI declarations**: its Artificial Intelligence group is set up \"to investigate the metadata requirements for the communication of AI-generated music\", including musical works. The group's Generative AI Declaration Standard (GAI-D) has finished member comments on its committee draft and goes to peer review next, with publication expected in early 2027."
     },
     {
-     "title": "Compare",
-     "text": "- [[c2pa]] records how an asset was made in a signed manifest bound to the file. No DDEX page refers to it, and no C2PA page refers to DDEX (searched 2026-11-15)."
+     "title": "Related",
+     "text": "- [[c2pa]]'s music guidance, [Applying Content Credentials to Music Assets](https://spec.c2pa.org/specifications/specifications/2.4/music/guidance_applying_content_credential_music_assets.html), has an annex, [DDEX and Metadata Alignment](https://spec.c2pa.org/specifications/specifications/2.4/music/guidance_applying_content_credential_music_assets.html#_ddex_and_metadata_alignment). It says Content Credentials act as \"an upstream provenance layer\" for DDEX metadata and that \"DDEX remains the exchange format for structured music metadata\". Labels may use what a credential records \"to populate, validate, or support DDEX metadata\" (read 2026-11-25)."
     },
     {
      "title": "In use",
@@ -1860,16 +1862,16 @@
     },
     {
      "title": "History",
-     "text": "- 2026-11-05: [Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.\n- 2025-09-25: Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support \"the new industry standard for AI disclosures in music credits, developed through DDEX\", and named 19 labels and distributors working on it.\n- 2024-08-09: Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.\n- 2006: Founded."
+     "text": "- 2026-11-05: [Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027.\n- 2025-11: At its 45th plenary in Toronto, DDEX members present agreed to engage further with [[c2pa]] and [[cawg]] to describe music-specific metadata, starting with what is released to the public. The [readout](https://cawg.io/meeting-notes/2025/2025-11-24-media-identifiers-tf/) at CAWG's Media Identifiers Task Force on 2025-11-24 also says DDEX will send more representatives to CAWG.\n- 2025-09-25: Spotify [said](https://newsroom.spotify.com/2025-09-25/spotify-strengthens-ai-protections/) it would support \"the new industry standard for AI disclosures in music credits, developed through DDEX\", and named 19 labels and distributors working on it.\n- 2024-08-09: Date of the ERN 4.3.1 data dictionary, which includes `ContainsAI` and `AiContribution`.\n- 2006: Founded."
     }
    ],
    "links": [
-    "c2pa"
+    "c2pa",
+    "cawg"
    ],
-   "compares": [
-    "c2pa"
-   ],
+   "compares": [],
    "backlinks": [
+    "c2pa",
     "socan",
     "stim"
    ],
@@ -1877,6 +1879,10 @@
     {
      "date": "2026-11-05",
      "text": "[Announced](https://ddex.net/ddex-announces-elevenlabs-as-first-ai-company-to-join-membership/) ElevenLabs as the first AI company among its members, and said GAI-D would go through peer review before publication in early 2027."
+    },
+    {
+     "date": "2025-11",
+     "text": "At its 45th plenary in Toronto, DDEX members present agreed to engage further with [[c2pa]] and [[cawg]] to describe music-specific metadata, starting with what is released to the public. The [readout](https://cawg.io/meeting-notes/2025/2025-11-24-media-identifiers-tf/) at CAWG's Media Identifiers Task Force on 2025-11-24 also says DDEX will send more representatives to CAWG."
     },
     {
      "date": "2025-09-25",
