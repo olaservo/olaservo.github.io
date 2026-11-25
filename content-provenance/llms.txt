@@ -1,6 +1,6 @@
 # Provenance, Attribution, Rights and Payment for AI Content: A Field Guide from an MCP Point of View
 
-> 80 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited and its contribution measured (attribution), plus who the agent or signer is (identity) and the bodies and law around them (governance). It is written from inside the Model Context Protocol (MCP) community, so MCP efforts get more cards and more detail than other venues. Compiled by Ola Hungerford, as of 2026-11-24.
+> 80 cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited and its contribution measured (attribution), plus who the agent or signer is (identity) and the bodies and law around them (governance). It is written from inside the Model Context Protocol (MCP) community, so MCP efforts get more cards and more detail than other venues. Compiled by Ola Hungerford, as of 2026-11-25.
 
 This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide. Each card has a name, type, status, website, tags (layer, stage, medium, topic, type), a short summary, topic sections, a dated history where one is known, links to related cards and, where the effort names them, public places to take part: Contribute (issue tracker, repository or join page), Discussion (chat, forum or mailing list) and Meetings (public calendar or list of open calls). A link under a card's Compare heading is a comparison made by this guide. Every other link is a connection that a primary source states.
 
@@ -23,7 +23,7 @@ A prototype at https://content-provenance-field-guide.olahungerford.workers.dev/
 
 ## All cards in one file
 
-- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): every card in one file of about 199 KB, one section per card, with the layer and stage definitions first
+- [All cards as Markdown](https://www.olahungerford.com/content-provenance/cards.md): every card in one file of about 200 KB, one section per card, with the layer and stage definitions first
 - [All cards as JSON](https://www.olahungerford.com/content-provenance/cards.json): the same cards as structured data, with the vocabularies under "vocab"
 
 ## Optional
