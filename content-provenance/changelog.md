@@ -2,6 +2,10 @@
 
 Changes to the cards and the explorer, newest first. Dates are when the change was made in the source repo. The site is rebuilt from it afterwards.
 
+## 2026-11-26
+
+- The intro and the guide's description no longer state the number of cards. The count next to the card list is still worked out from the cards when the page loads.
+
 ## 2026-11-25
 
 - [DDEX](https://www.olahungerford.com/content-provenance/#ddex) and [C2PA](https://www.olahungerford.com/content-provenance/#c2pa) are now linked. C2PA's music guidance has an annex on DDEX metadata, and DDEX members agreed at their 45th plenary in November 2025 to engage further with C2PA and [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg). The pair is no longer on the not-connected list.
