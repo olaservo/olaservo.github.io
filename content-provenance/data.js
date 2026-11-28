@@ -1523,11 +1523,11 @@ window.CARDS = [
   "news": [],
   "feed": [],
   "part_of": "dif",
-  "status": "Moved under DIF; consent assertion started as a placeholder draft 2026-07-12",
+  "status": "Plans to become independent of DIF, with the DIF Steering Committee's support (November 2026); consent assertion started as a placeholder draft 2026-07-12",
   "contribute": "[spec repositories](https://github.com/orgs/decentralized-identity/repositories?q=cawg), [membership](https://cawg.io/membership/)",
   "discussion": "[cawg mailing list](https://lists.identity.foundation/g/cawg)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-27",
   "tags": [
    "type/working-group",
    "layer/provenance",
@@ -1550,7 +1550,7 @@ window.CARDS = [
    },
    {
     "title": "History",
-    "text": "- 2026-07-12: Consent assertion repository created with a placeholder 1.0 draft."
+    "text": "- 2026-11: The DIF Steering Committee is aware of the plan for CAWG to become independent ([DIF Newsletter #67](https://blog.identity.foundation/dif-newsletter-67/)). The committee supports transferring the standards and helping with the transition. The newsletter says naming the new organization remains the main obstacle to forming it. CAWG's Trust Task Force agreed to extend the interim S/MIME trust-list sunset to 31 December 2027.\n- 2026-07-12: Consent assertion repository created with a placeholder 1.0 draft."
    }
   ],
   "links": [
@@ -1576,6 +1576,10 @@ window.CARDS = [
    "w3c-odrl"
   ],
   "history": [
+   {
+    "date": "2026-11",
+    "text": "The DIF Steering Committee is aware of the plan for CAWG to become independent ([DIF Newsletter #67](https://blog.identity.foundation/dif-newsletter-67/)). The committee supports transferring the standards and helping with the transition. The newsletter says naming the new organization remains the main obstacle to forming it. CAWG's Trust Task Force agreed to extend the interim S/MIME trust-list sunset to 31 December 2027."
+   },
    {
     "date": "2026-07-12",
     "text": "Consent assertion repository created with a placeholder 1.0 draft."
@@ -2715,7 +2719,7 @@ window.CARDS = [
   "contribute": "[membership](https://iptc.org/participate/membership/)",
   "discussion": "[public discussion forums](https://iptc.org/about-iptc/working-groups/), [RightsML forum](https://groups.io/g/iptc-rightsml)",
   "meetings": "",
-  "updated": "2026-11-21",
+  "updated": "2026-11-27",
   "tags": [
    "type/organization",
    "layer/licensing",
@@ -2734,6 +2738,10 @@ window.CARDS = [
    {
     "title": "In use",
     "text": "- The [Origin Verified News Publishers List](https://iptc.org/verified-news-publishers-list/) names the BBC, CBC/Radio-Canada, WDR, Deutsche Welle, AFP, France Télévisions, NTB and RTÉ (read 2026-11-15). Its sample content is images.\n- The C2PA conforming products list (2026-11-14) has IPTC's C2PA Signer Tool (2026-03-20) and Content Credentials Signing Service (2026-11-11), CBC/Radio-Canada's Content Provenance Platform (2026-08-26) and BBC Image Distribution Services (2026-10-16). All four sign images or video."
+   },
+   {
+    "title": "History",
+    "text": "- 2026-11-19: The new Controlled Vocabulary server took over the cv.iptc.org address, replacing the server launched in 2014 ([IPTC](https://iptc.org/news/new-controlled-vocabulary-server-now-live-at-cv-iptc-org/)). It publishes IPTC's NewsCodes, including Digital Source Type. IPTC says every vocabulary and concept keeps its identifier URI."
    }
   ],
   "links": [
@@ -2750,7 +2758,12 @@ window.CARDS = [
    "eu-ai-act-gpai-code",
    "w3c-odrl"
   ],
-  "history": []
+  "history": [
+   {
+    "date": "2026-11-19",
+    "text": "The new Controlled Vocabulary server took over the cv.iptc.org address, replacing the server launched in 2014 ([IPTC](https://iptc.org/news/new-controlled-vocabulary-server-now-live-at-cv-iptc-org/)). It publishes IPTC's NewsCodes, including Digital Source Type. IPTC says every vocabulary and concept keeps its identifier URI."
+   }
+  ]
  },
  {
   "id": "kbart",
