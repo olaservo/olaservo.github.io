@@ -2,7 +2,7 @@
  "title": "Provenance, Attribution, Rights and Payment for AI Content: A Field Guide from an MCP Point of View: updates",
  "description": "Dated events from the History section of each card, newest first.",
  "license": "https://creativecommons.org/licenses/by/4.0/",
- "as_of": "2026-11-25",
+ "as_of": "2026-11-27",
  "cards": "https://www.olahungerford.com/content-provenance/cards.json",
  "updates": [
   {
@@ -39,6 +39,13 @@
    "name": "IETF AI Preferences Working Group",
    "text": "Issues 245 and 246 on downstream survival closed.",
    "url": "https://www.olahungerford.com/content-provenance/#ietf-aipref"
+  },
+  {
+   "date": "2026-11-19",
+   "card": "iptc",
+   "name": "IPTC",
+   "text": "The new Controlled Vocabulary server took over the cv.iptc.org address, replacing the server launched in 2014 ([IPTC](https://iptc.org/news/new-controlled-vocabulary-server-now-live-at-cv-iptc-org/)). It publishes IPTC's NewsCodes, including Digital Source Type. IPTC says every vocabulary and concept keeps its identifier URI.",
+   "url": "https://www.olahungerford.com/content-provenance/#iptc"
   },
   {
    "date": "2026-11-19",
@@ -221,6 +228,13 @@
    "name": "Universal Commerce Protocol",
    "text": "The Governing Council approved the Local Services Tech Council charter ([ucp#922](https://github.com/Universal-Commerce-Protocol/ucp/issues/922)).",
    "url": "https://www.olahungerford.com/content-provenance/#ucp"
+  },
+  {
+   "date": "2026-11",
+   "card": "cawg",
+   "name": "Creator Assertions Working Group",
+   "text": "The DIF Steering Committee is aware of the plan for CAWG to become independent ([DIF Newsletter #67](https://blog.identity.foundation/dif-newsletter-67/)). The committee supports transferring the standards and helping with the transition. The newsletter says naming the new organization remains the main obstacle to forming it. CAWG's Trust Task Force agreed to extend the interim S/MIME trust-list sunset to 31 December 2027.",
+   "url": "https://www.olahungerford.com/content-provenance/#cawg"
   },
   {
    "date": "2026-11",

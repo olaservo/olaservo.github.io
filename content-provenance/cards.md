@@ -1,6 +1,6 @@
 # Provenance, Attribution, Rights and Payment for AI Content: A Field Guide from an MCP Point of View
 
-Cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited and its contribution measured (attribution), plus who the agent or signer is (identity) and the bodies and law around them (governance). It is written from inside the Model Context Protocol (MCP) community, so MCP efforts get more cards and more detail than other venues. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-25. This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
+Cards for the organizations, working groups, specifications and proposals that decide where content came from (provenance), what may be done with it (access, licensing, payment) and whether its source gets credited and its contribution measured (attribution), plus who the agent or signer is (identity) and the bodies and law around them (governance). It is written from inside the Model Context Protocol (MCP) community, so MCP efforts get more cards and more detail than other venues. Compiled by Ola Hungerford (https://www.olahungerford.com/about/), as of 2026-11-27. This field guide is an early alpha, shared for feedback. Card fields, the MCP tools, the plugin layout and the published file formats may change. Send feedback as an issue or pull request at https://github.com/olaservo/content-provenance-cards. One person's working notes. Status lines carry the dates the sources gave, so check upstream before relying on one. The cards are licensed under CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/): reuse them with credit to Ola Hungerford and a link to the guide.
 
 Explorer for people: https://www.olahungerford.com/content-provenance/. The same cards as JSON: https://www.olahungerford.com/content-provenance/cards.json. Dated events across all cards: https://www.olahungerford.com/content-provenance/updates.md. What changed in the guide and when: https://www.olahungerford.com/content-provenance/changelog.md. Links between cards point at the card's heading in this file; each card also has an Id line.
 
@@ -861,13 +861,13 @@ Linked from: [CC Signals](#cc-signals), [IETF AI Preferences Working Group](#iet
 - Id: cawg
 - Also known as: CAWG
 - Type: working-group
-- Status: Moved under DIF; consent assertion started as a placeholder draft 2026-07-12
+- Status: Plans to become independent of DIF, with the DIF Steering Committee's support (November 2026); consent assertion started as a placeholder draft 2026-07-12
 - Website: https://cawg.io
 - Part of: [Decentralized Identity Foundation](#dif)
 - Contribute: [spec repositories](https://github.com/orgs/decentralized-identity/repositories?q=cawg), [membership](https://cawg.io/membership/)
 - Discussion: [cawg mailing list](https://lists.identity.foundation/g/cawg)
 - Tags: type/working-group, layer/provenance, layer/identity, layer/access
-- Updated: 2026-11-21
+- Updated: 2026-11-27
 - Explorer: https://www.olahungerford.com/content-provenance/#cawg
 
 Assertion specs that ride inside [C2PA](#c2pa) manifests: identity, training and data mining, consent, metadata, endorsement, certificate policy.
@@ -888,6 +888,7 @@ Assertion specs that ride inside [C2PA](#c2pa) manifests: identity, training and
 
 #### History
 
+- 2026-11: The DIF Steering Committee is aware of the plan for CAWG to become independent ([DIF Newsletter #67](https://blog.identity.foundation/dif-newsletter-67/)). The committee supports transferring the standards and helping with the transition. The newsletter says naming the new organization remains the main obstacle to forming it. CAWG's Trust Task Force agreed to extend the interim S/MIME trust-list sunset to 31 December 2027.
 - 2026-07-12: Consent assertion repository created with a placeholder 1.0 draft.
 
 Linked from: [Agent Skills at-rest signing threads](#agent-skills-signing), [C2PA](#c2pa), [DDEX](#ddex), [Decentralized Identity Foundation](#dif), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [IPTC](#iptc), [W3C ODRL](#w3c-odrl)
@@ -1509,7 +1510,7 @@ Linked from: [CISAC](#cisac), [GEMA](#gema), [Really Simple Licensing](#rsl)
 - Contribute: [membership](https://iptc.org/participate/membership/)
 - Discussion: [public discussion forums](https://iptc.org/about-iptc/working-groups/), [RightsML forum](https://groups.io/g/iptc-rightsml)
 - Tags: type/organization, layer/licensing, layer/access, layer/provenance, stage/trust, medium/image, medium/video
-- Updated: 2026-11-21
+- Updated: 2026-11-27
 - Explorer: https://www.olahungerford.com/content-provenance/#iptc
 
 News-media standards body. RightsML is a profile of [W3C ODRL](#w3c-odrl). Its photo metadata standard has a Data Mining property. [Creator Assertions Working Group](#cawg)'s metadata assertion can bind IPTC metadata to a C2PA manifest. With Project Origin it runs the Origin Verified News Publishers List for [C2PA](#c2pa) signing.
@@ -1524,6 +1525,10 @@ News-media standards body. RightsML is a profile of [W3C ODRL](#w3c-odrl). Its p
 
 - The [Origin Verified News Publishers List](https://iptc.org/verified-news-publishers-list/) names the BBC, CBC/Radio-Canada, WDR, Deutsche Welle, AFP, France Télévisions, NTB and RTÉ (read 2026-11-15). Its sample content is images.
 - The C2PA conforming products list (2026-11-14) has IPTC's C2PA Signer Tool (2026-03-20) and Content Credentials Signing Service (2026-11-11), CBC/Radio-Canada's Content Provenance Platform (2026-08-26) and BBC Image Distribution Services (2026-10-16). All four sign images or video.
+
+#### History
+
+- 2026-11-19: The new Controlled Vocabulary server took over the cv.iptc.org address, replacing the server launched in 2014 ([IPTC](https://iptc.org/news/new-controlled-vocabulary-server-now-live-at-cv-iptc-org/)). It publishes IPTC's NewsCodes, including Digital Source Type. IPTC says every vocabulary and concept keeps its identifier URI.
 
 Linked from: [C2PA](#c2pa), [Creator Assertions Working Group](#cawg), [Encypher](#encypher), [EU AI Act and GPAI Code of Practice](#eu-ai-act-gpai-code), [W3C ODRL](#w3c-odrl)
 

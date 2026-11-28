@@ -2,6 +2,12 @@
 
 Changes to the cards and the explorer, newest first. Dates are when the change was made in the source repo. The site is rebuilt from it afterwards.
 
+## 2026-11-27
+
+- A weekly workflow reads the feeds on the watch list and opens a draft pull request when a new post supports a card update. Each one is checked by the maintainer before it merges, and its changelog lines are added then.
+- [IPTC](https://www.olahungerford.com/content-provenance/#iptc) now has a History section, starting with the new Controlled Vocabulary server taking over cv.iptc.org on 2026-11-19. It serves NewsCodes such as Digital Source Type under the same identifier URIs.
+- [Creator Assertions Working Group](https://www.olahungerford.com/content-provenance/#cawg) plans to become independent of [Decentralized Identity Foundation](https://www.olahungerford.com/content-provenance/#dif), and the DIF Steering Committee supports transferring the standards. Its status and History say so, along with the interim S/MIME trust-list sunset being extended to 31 December 2027.
+
 ## 2026-11-26
 
 - The intro and the guide's description no longer state the number of cards. The count next to the card list is still worked out from the cards when the page loads.
